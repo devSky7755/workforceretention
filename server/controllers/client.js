@@ -1,0 +1,282 @@
+const Client = require('../models/client');
+
+//RELATIONAL MODEL
+const User = require('../models/user');
+
+//Validation Library
+const Joi = require('joi');
+Joi.objectId = require('joi-objectid')(Joi);
+
+//Validation SCHEMA
+const clientSchema = require('../validation/client');
+
+exports.Create = function (req, res, next) {
+    const data = req.body;
+
+    const userId = req.params.userId;
+    if (typeof req.file !=='undefined'){
+        data.image = req.file.filename;
+    }
+
+    Joi.validate(data, clientSchema, (err, value) => {
+        if (err) {
+            return next(err)
+        }
+        //First find the employee by id
+        //now push this newClient to the employee clients array === employee.clients.push(newPost)
+        //now save the employee. this will automatically creates the relationship
+        //and the newClient will be added into the staticPage table
+        User.findById(userId, (err, user) => {
+            if (err) return next(err);
+            if (!user) {
+                //set error that employee not found
+                return res.status(404).json({status: false, message: 'No employee found!'})
+            }
+            const client = new Client(data);
+            client.save().then(client => {
+                user.clients.push(client);
+                user.save(); //This will return another promise
+            }).then(() => {
+                //Here create The Client Email template for sending employee username and password
+
+                return res.status(200).send({
+                    "success": true,
+                    "message": "Client successfully created",
+                    client
+                })
+            }).catch(err => {
+                return next(err)
+            });
+        })
+    })
+}
+
+exports.Find = (req, res, next) => {
+    const currentPage = Number(req.query.page || 1); //staticPage number
+    const perPage = Number(req.query.perPage || 10); //total items display per staticPage
+    let totalItems; //how many items in the database
+
+    Client.find()
+        .countDocuments()
+        .then(count => {
+            totalItems = count;
+            //This will return a new promise with the posts.
+            return Client.find({}, '-surveys -employees -organizations')
+                .populate({
+                    path: 'industry',
+                    model: 'Industry',
+                    select: 'name'
+                })
+                .skip((currentPage) * perPage)
+                .limit(perPage);
+        }).then(clients => {
+        return res.status(200).json({success: true, clients, totalItems})
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err)
+    });
+};
+
+exports.FindById = (req, res, next) => {
+    let id = req.params.id;
+
+    Client.findById(id).populate({
+        path: 'industry',
+        model: 'Industry'
+    }).exec(function (err, client) {
+        if (err) return next(err);
+        return res.status(200).json({success: true, "message": "Data successfully retrieve", client})
+    });
+};
+
+exports.Update = (req, res, next) => {
+    // fetch the request data
+    const data = req.body;
+    let id = req.params.id;
+
+    if (typeof req.file !=='undefined'){
+        data.image = req.file.filename;
+    }
+
+    //Update the employee
+
+    // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
+    // Find the existing resource by ID
+    Client.findByIdAndUpdate(
+        // the id of the item to find
+        id,
+        // the change to be made. Mongoose will smartly combine your existing
+        // document with this change, which allows for partial updates too
+        data,
+        // an option that asks mongoose to return the updated version
+        // of the document instead of the pre-updated one.
+        {new: true},
+
+        // the callback function
+        (err, client) => {
+            // Handle any possible database errors
+            if (err) return next(err);
+            if (!client) {
+                return res.status(404).json({success: false, message: "Client not found."});
+            }
+            return res.send({
+                "success": true,
+                "message": "Record updated successfully",
+                client
+            });
+        }
+    );
+};
+
+exports.Delete = (req, res, next) => {
+    let id = req.params.id;
+
+    const schema = Joi.object({
+        id: Joi.objectId()
+    });
+
+    Joi.validate({id}, schema, (err, value) => {
+        if (err) {
+            // send a 422 error response if validation fails
+            return res.status(422).json({
+                success: false,
+                message: 'Invalid request data',
+                err
+            });
+        }
+        // The "todo" in this callback function represents the document that was found.
+        // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
+        Client.findByIdAndRemove(id, (err, client) => {
+            // As always, handle any potential errors:
+            if (err) return next(err);
+            if (!client) return res.status(404).json({success: false, message: "Client not found."});
+            // We'll create a simple object to send back with a message and the id of the document that was removed
+            // You can really do this however you want, though.
+            return res.send({
+                "success": true,
+                "message": "Record deleted successfully",
+                client
+            });
+        });
+    });
+};
+
+
+//RELATIONAL DATA FIND FUNCTIONS
+exports.FindEmployees = (req, res, next) => {
+    // const currentPage = Number(req.query.staticPage || 1); //staticPage number
+    // const perPage = Number(req.query.perPage || 10); //total items display per staticPage
+    // let totalItems; //how many items in the database
+    const clientId = req.params.clientId;
+
+    // populate options
+    // options: {
+    //     sort:{ },
+    //     skip: 5,
+    //         limit : 10
+    // },
+
+    Client.findById(clientId)
+        .populate([{
+            path: 'employees',
+            model: 'Employee',
+        }])
+        .exec(function (err, client) {
+            if (err) return next(err);
+            return res.status(200).json({success: true, client})
+        });
+};
+
+
+exports.FindSurveys = (req, res, next) => {
+
+    const clientId = req.params.clientId;
+
+    Client.findById(clientId)
+        .populate([{
+            path: 'surveys',
+            model: 'Survey',
+        }])
+        .exec(function (err, client) {
+            if (err) return next(err);
+            return res.status(200).json({success: true, client})
+        });
+};
+exports.FindEmails = (req, res, next) => {
+    const clientId = req.params.clientId;
+
+    Client.findById(clientId)
+        .populate([{
+            path: 'emails',
+            model: 'Email',
+        }])
+        .exec(function (err, client) {
+            if (err) return next(err);
+            return res.status(200).json({success: true, client})
+        });
+};
+
+exports.FindOrganizations = (req, res, next) => {
+
+    const clientId = req.params.clientId;
+    Client.findById(clientId)
+        .populate({
+            path: 'organizations',
+            model: 'Organization',
+            select: 'name',
+            populate: {
+                path: 'divisions',
+                model: 'Division',
+                select: 'name',
+                populate: {
+                    path: 'departments',
+                    model: 'Department',
+                    select: 'name'
+                }
+            }
+        })
+        .exec(function (err, client) {
+            if (err) return next(err);
+            return res.status(200).json({success: true, client})
+        });
+};
+
+exports.AssignSurvey = (req, res, next) => {
+    const surveyId = req.query.surveyId;
+    const clientId = req.query.clientId;
+
+    //check if the client is found or not
+    Client.findById(clientId).then((client) => {
+        console.log(client);
+        client.surveys.push(surveyId);
+        client.save().then(() => {
+            res.json({client,success:true, message:'Survey successfully assigned'})
+        }).catch(err => {
+            return next(err);
+        });
+    })
+};
+exports.UnAssignSurvey = (req, res, next) => {
+    const surveyId = req.query.surveyId;
+    const clientId = req.query.clientId;
+
+    //Check if the client is found or not
+
+    Client.findById(clientId).then((client) => {
+        console.log(client);
+        client.surveys.map((survey, index) => {
+            console.log(typeof surveyId);
+            console.log(typeof survey);
+            if (survey == surveyId) {
+                client.surveys.splice(index, 1);
+            }
+        });
+        client.save().then(() => {
+            res.json({client,success:true, message:'Survey successfully unAssigned'})
+        }).catch(err => {
+            return next(err);
+        });
+    })
+};

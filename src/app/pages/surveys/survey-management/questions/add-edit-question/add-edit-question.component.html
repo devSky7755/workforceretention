@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-lg-12">
+        <nb-card>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--Client Industry Row-->
+                    <br>
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4"><strong>Survey Title</strong></div>
+                        <div class="col-lg-5">{{survey.title}}</div>
+                    </div>
+                    <br>
+                    <!--No Of Employees-->
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4"><strong>Survey Description</strong></div>
+                        <div class="col-lg-5" [innerHTML]="survey.description"></div>
+                    </div>
+                    <br>
+                    <!--Employee Turnover-->
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4"><strong>Survey Type</strong></div>
+                        <div class="col-lg-5">{{survey.type_label}}</div>
+                    </div>
+                    <br>
+                    <!--Client State and Country-->
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4"><strong>Rating Scale</strong></div>
+                        <div class="col-lg-5">{{survey.rating_label}}</div>
+                    </div>
+                    <br>
+                    <!--Client Product-->
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-4"><strong>No of questions</strong></div>
+                        <div class="col-lg-5">{{survey.no_of_questions}}</div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <form [formGroup]="myForm">
+
+                <div formArrayName="phones">
+                    <div class="panel">
+                        <div class="question-box" *ngFor="let phone of phoneForms.controls; let i=index"
+                             [formGroupName]="i">
+                            <a [routerLink]="" style="float: right;color: #ff5680;font-size: 30px" (click)="deletePhone(i)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                            <div class="container question-container" style="margin-bottom: 10px">
+                                <h4>Question # {{i+1}}.</h4>
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-md-2">Question Text: *</div>
+                                    <div class="col-md-9"><input formControlName="area" class="form-control"></div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-2">Question Type: *</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" formControlName="prefix">
+                                            <option value="" selected>Select Question Type *</option>
+                                            <option *ngFor="let type of question_types"
+                                                    value="{{type.id}}">{{type.value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-2">Exit Reporting Reason: *</div>
+                                    <div class="col-md-9">
+                                        <select class="form-control" formControlName="exit_reason">
+                                            <option value="" selected>Select Reporting Reason *</option>
+                                            <option *ngFor="let reason of exit_reason"
+                                                    value="{{reason.id}}">{{reason.value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-2">Exit Reporting Label: *</div>
+                                    <div class="col-md-9">
+                                        <input formControlName="line" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-primary" (click)="saveSurvey()">Finish</button>
+                </div>
+                <br><br>
+                <!--<button style="float: right" (click)="addPhone()" class="btn btn-primary">Add More</button>-->
+            </form>
+        </nb-card>
+    </div>
+</div>
