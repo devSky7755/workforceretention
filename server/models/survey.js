@@ -31,6 +31,11 @@ const surveySchema = new Schema({
     rating_scale: {
         type: Number
     },
+    // if rating_scale is 5. then the rating labels possibility is
+    // 1. Not at all like me 2. Unlike me 3. Neutral 4. Like me 5. Very much like me
+    rating_labels:[{
+        type: String
+    }],
     survey_schedule: {
         type: String
     },

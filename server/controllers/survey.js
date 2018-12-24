@@ -154,3 +154,20 @@ exports.Delete = (req, res, next) => {
     });
 };
 
+
+//RELATIONAL DATA FIND FUNCTIONS
+// Get survey question
+
+exports.SurveyQuestions = (req, res, next) => {
+    let surveyId = req.params.surveyId;
+
+    Survey.findById(surveyId)
+        .populate([{
+            path: 'questions',
+            model: 'Question',
+        }])
+        .exec(function (err, survey) {
+            if (err) return next(err);
+            return res.status(200).json({success: true, survey})
+        });
+};

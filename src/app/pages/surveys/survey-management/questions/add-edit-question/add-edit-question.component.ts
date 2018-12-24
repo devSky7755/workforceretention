@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../../../../@core/data/survey.service";
 
 @Component({
@@ -13,6 +13,7 @@ export class AddEditQuestionComponent implements OnInit {
     myForm: FormGroup;
     surveyId;
     survey;
+    questions = [];
     survey_types = [
         {id: 1, value: 'RECAP'},
         {id: 2, value: 'Exit Interview'}
@@ -56,7 +57,8 @@ export class AddEditQuestionComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
                 private route: ActivatedRoute,
-                private surveyService: SurveyService) {
+                private surveyService: SurveyService,
+                private router: Router) {
         this.survey = {};
     }
 
@@ -110,7 +112,14 @@ export class AddEditQuestionComponent implements OnInit {
 
     saveSurvey() {
         for (let i = 0; i < this.phoneForms.controls.length; i++) {
-            // this.phoneForms.controls[i].setValue({area: 'I am Ashik Mahmud', prefix: '1', line: 'This is line'});
+            // title
+            // number_of_options
+            // type
+            // options
+            this.phoneForms.controls[i].setValue({area: 'I am Ashik Mahmud', prefix: '1', line: 'This is line'});
+            // save the survey
+            // after survey successfully saved go to the survey list page
+            this.router.navigateByUrl('/pages/surveys/survey-management');
         }
     }
 

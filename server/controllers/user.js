@@ -48,6 +48,8 @@ exports.Create = (req, res, next) => {
                 // Store hash in your password DB.
                 // save the employee to the database
 
+                //check the user password in the console
+                console.log(data.password);
                 // Update the password of the data
                 data.password = hash;
                 const user = new User(data);

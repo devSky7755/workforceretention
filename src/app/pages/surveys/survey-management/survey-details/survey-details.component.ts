@@ -13,6 +13,7 @@ export class SurveyDetailsComponent implements OnInit {
     surveyId;
     survey;
     myForm: FormGroup;
+    errorMessage;
     survey_types = [
         {id: 1, value: 'RECAP'},
         {id: 2, value: 'Exit Interview'}
@@ -28,6 +29,7 @@ export class SurveyDetailsComponent implements OnInit {
         {id: 9, value: '1-9'},
         {id: 10, value: '1-10'}
     ];
+    rating_labels = [];
 
     constructor(private route: ActivatedRoute,
                 private surveyService: SurveyService,
@@ -53,7 +55,23 @@ export class SurveyDetailsComponent implements OnInit {
     }
 
     saveSurvey() {
-        this.router.navigateByUrl('/pages/surveys/survey-management/question/add/' + this.surveyId);
+        // get all the rating labels. set it into the survey variable
+        for (let i = 0; i < this.getRatingLabels().controls.length; i++) {
+            this.rating_labels[i] = this.getRatingLabels().controls[i].get('label').value;
+        }
+        this.survey.rating_labels = this.rating_labels;
+        // update the survey and if success then redirect to the survey questions page
+        this.surveyService.updateSurvey(this.survey, this.surveyId).subscribe(
+            data => {
+                console.log(data);
+                this.router.navigateByUrl('/pages/surveys/survey-management/question/add/' + this.surveyId);
+            },
+            err => {
+                console.log(err);
+                const {error} = err;
+                this.errorMessage = error.message;
+            }
+        );
     }
 
     addLabel() {
@@ -89,10 +107,25 @@ export class SurveyDetailsComponent implements OnInit {
         for (let i = 1; i <= this.survey.rating_scale; i++) {
             this.addLabel();
         }
+        //check the rating_labels array
+        //if the rating_labels array is not empty and not null
+        //then create the label
+        //read the value from the rating_labels array and assign it into the text-box
+        this.rating_labels = data.survey.rating_labels;
+        if (this.rating_labels !== null && typeof this.rating_labels !== 'undefined') {
+            this.setRatingLabels(this.rating_labels);
+        }
+        // this.phoneForms.controls[i].setValue({area: 'I am Ashik Mahmud', prefix: '1', line: 'This is line'});
 
 
         this.surveyId = data.survey._id;
 
+    }
+
+    setRatingLabels(labels) {
+        for (let i = 0; i < labels.length; i++) {
+            this.getRatingLabels().controls[i].setValue({label: this.rating_labels[i]});
+        }
     }
 
 

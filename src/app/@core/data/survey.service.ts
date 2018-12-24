@@ -27,7 +27,7 @@ export class SurveyService {
         return this.http.get(this.urlService.baseUrl + '/api/v1/surveys/' + id);
     }
 
-    getSurveyQuestion(surveyId): Observable<any> {
+    getSurveyQuestions(surveyId): Observable<any> {
         return this.http.get(this.urlService.baseUrl + '/api/v1/surveys/questions/' + surveyId);
     }
 

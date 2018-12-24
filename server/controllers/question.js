@@ -41,7 +41,37 @@ exports.Create = function (req, res, next) {
             });
         })
     })
-}
+};
+
+exports.CreateMany = (req, res, next) => {
+    let surveyId = req.params.surveyId;
+    let data = req.body;
+
+    //get the survey by the surveyId
+    Survey.findById(surveyId, (err, survey) => {
+        if (err) return next(err);
+        if (!survey) {
+            return res.status(404).json({status: false, message: 'No survey found!'})
+        }
+        //Save the Questions into the database
+        Question.insertMany(data.questions, (err, docs) => {
+            if (err) return next(err);
+            //After saving the employees insert all the employees id to the
+            //client employees array
+            docs.forEach((question) => {
+                survey.questions.push(question);
+            });
+            //Finally save the client
+            survey.save().then(() => {
+                res.status(200).json({
+                    questions: docs,
+                    success: true,
+                    message: 'Question successfully saved'
+                });
+            });
+        });
+    });
+};
 
 exports.Find = (req, res, next) => {
     const currentPage = req.query.page || 1; //staticPage number
@@ -150,4 +180,3 @@ exports.Delete = (req, res, next) => {
         });
     });
 };
-

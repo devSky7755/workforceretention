@@ -22,7 +22,8 @@ const questionSchema = new Schema({
     options: [{
         type: String
     }],
-    //Multiple-Choice, Dropdown, Checkboxes, Star-Rating, Comment-Box, Date
+    //Rating Radio Buttons [Number of options = survey rating_label], Free Text [Number of options = 0], Exit Interview - Exit Reasons [Checkbox],
+    // Yes/No Radio [No of options = 0], Radio Labels [it should have labels], Multiple Choice [it should have labels]
     type: {
         type: String,
         required: true

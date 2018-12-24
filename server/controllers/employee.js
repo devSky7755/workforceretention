@@ -61,7 +61,6 @@ exports.Upload = function (req, res, next) {
 
                     employees.push(json[i]);
                 }
-                console.log(employees);
                 //Save the employees into the database
                 Employee.insertMany(employees, (err, docs) => {
                     if (err) return next(err);
