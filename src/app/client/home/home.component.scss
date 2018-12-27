@@ -27,3 +27,11 @@ nb-card:hover {
   color: #616161;
   line-height: 1.5rem;
 }
+.home-cta {
+  background: url('/assets/images/home-bg.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #ffffff;
+}

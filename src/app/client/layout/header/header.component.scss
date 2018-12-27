@@ -10,7 +10,9 @@
   text-decoration: none;
   box-sizing: border-box;
 }
-
+.active{
+  border-bottom: 2px solid #fff;
+}
 body, html { height: 100%; overflow: hidden;}
 ul, ol { list-style: none; }
 
@@ -47,6 +49,7 @@ header nav .logo {
   font-size: 2em;
   text-transform: uppercase;
   padding: 20px 20px 10px 20px;
+  text-decoration: none;
 }
 
 header nav .logo a { color: #fff; }
