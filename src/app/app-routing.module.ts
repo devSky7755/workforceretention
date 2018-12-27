@@ -13,6 +13,10 @@ import {LoginComponent} from './auth/login/login.component';
 
 const routes: Routes = [
     {
+        path: 'client',
+        loadChildren: 'app/client/client.module#ClientModule'
+    },
+    {
         path: 'pages',
         canActivate: [AuthGuard], // here we tell Angular to check the access with our AuthGuard
         loadChildren: 'app/pages/pages.module#PagesModule'
@@ -47,8 +51,8 @@ const routes: Routes = [
             }
         ],
     },
-    {path: '', redirectTo: 'pages', pathMatch: 'full'},
-    {path: '**', redirectTo: 'pages'},
+    // {path: '', redirectTo: 'pages', pathMatch: 'full'},
+    // {path: '**', redirectTo: 'pages'},
 ];
 
 const config: ExtraOptions = {

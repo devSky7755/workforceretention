@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {NbSpinnerService} from "@nebular/theme";
 
 @Component({
-  selector: 'ngx-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'ngx-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+    constructor(private spinnerService: NbSpinnerService) {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.spinnerService.load();
+    }
 
 }

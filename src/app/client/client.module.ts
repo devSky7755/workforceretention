@@ -1,18 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { ClientRoutingModule } from './client-routing.module';
-import { HomeComponent } from './home/home.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProductComponent } from './product/product.component';
-import { DetailsComponent } from './product/details/details.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
+import {ClientRoutingModule} from './client-routing.module';
+import {HomeComponent} from './home/home.component';
+import {ContactComponent} from './contact/contact.component';
+import {ProductComponent} from './product/product.component';
+import {DetailsComponent} from './product/details/details.component';
+import {AuthenticationComponent} from './authentication/authentication.component';
+import {HeaderComponent} from './layout/header/header.component';
+import {FooterComponent} from './layout/footer/footer.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {NbCardModule} from "@nebular/theme";
 
 @NgModule({
-  declarations: [HomeComponent, ContactComponent, ProductComponent, DetailsComponent, AuthenticationComponent],
-  imports: [
-    CommonModule,
-    ClientRoutingModule
-  ]
+    declarations: [HomeComponent, ContactComponent, ProductComponent, DetailsComponent, AuthenticationComponent, HeaderComponent, FooterComponent],
+    imports: [
+        CommonModule,
+        ClientRoutingModule,
+        FlexLayoutModule,
+        NbCardModule
+    ]
 })
-export class ClientModule { }
+export class ClientModule {
+}
