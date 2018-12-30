@@ -120,3 +120,11 @@ label {
 .loginbttm {
   padding: 0px;
 }
+
+//re-writing global css
+/deep/ nb-layout .layout {
+  background-color: #fff !important;
+}
+nb-layout-column {
+  padding: 0 !important;
+}

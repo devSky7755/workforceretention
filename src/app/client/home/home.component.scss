@@ -13,6 +13,14 @@
   border-top: 2px solid #000;
 }
 
+nb-layout-column {
+  padding: 0 !important;
+}
+
+/deep/ nb-layout .layout {
+  background-color: #fff !important;
+}
+
 nb-card:hover {
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   border-top: 2px solid #3f51b5;
@@ -27,6 +35,7 @@ nb-card:hover {
   color: #616161;
   line-height: 1.5rem;
 }
+
 .home-cta {
   background: url('/assets/images/home-bg.jpg') no-repeat center center;
   -webkit-background-size: cover;

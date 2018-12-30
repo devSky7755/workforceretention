@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NbSpinnerService} from "@nebular/theme";
+import {NbLayoutScrollService, NbSpinnerService} from "@nebular/theme";
 
 @Component({
     selector: 'ngx-home',
@@ -8,11 +8,10 @@ import {NbSpinnerService} from "@nebular/theme";
 })
 export class HomeComponent implements OnInit {
 
-    constructor(private spinnerService: NbSpinnerService) {
+    constructor() {
     }
 
     ngOnInit() {
-        this.spinnerService.load();
     }
 
 }

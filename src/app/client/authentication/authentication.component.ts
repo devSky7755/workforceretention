@@ -8,11 +8,10 @@ import {NbSpinnerService} from "@nebular/theme";
 })
 export class AuthenticationComponent implements OnInit {
 
-    constructor(private spinnerService: NbSpinnerService) {
+    constructor() {
     }
 
     ngOnInit() {
-        this.spinnerService.load();
     }
 
 }

@@ -10,15 +10,26 @@ import {AuthenticationComponent} from './authentication/authentication.component
 import {HeaderComponent} from './layout/header/header.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {NbCardModule} from "@nebular/theme";
+import {NbCardModule, NbLayoutModule} from "@nebular/theme";
+import {PageNameComponent} from './page-name/page-name.component';
 
 @NgModule({
-    declarations: [HomeComponent, ContactComponent, ProductComponent, DetailsComponent, AuthenticationComponent, HeaderComponent, FooterComponent],
+    declarations: [
+        HomeComponent,
+        ContactComponent,
+        ProductComponent,
+        DetailsComponent,
+        AuthenticationComponent,
+        HeaderComponent,
+        FooterComponent,
+        PageNameComponent
+    ],
     imports: [
         CommonModule,
         ClientRoutingModule,
         FlexLayoutModule,
-        NbCardModule
+        NbCardModule,
+        NbLayoutModule
     ]
 })
 export class ClientModule {
