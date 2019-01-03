@@ -39,17 +39,13 @@ exports.Create = (req, res, next) => {
         await bcrypt.genSalt(10, function (err, salt) {
             if (err) return next(err);
             //GENERATE THE PASSWORD HERE
-            data.password = generator.generate({
+            let password = generator.generate({
                 length: 10,
                 numbers: true
             });
-            bcrypt.hash(data.password, salt, async function (err, hash) {
+            bcrypt.hash(password, salt, async function (err, hash) {
                 if (err) return next(err);
                 // Store hash in your password DB.
-                // save the employee to the database
-
-                //check the user password in the console
-                console.log(data.password);
                 // Update the password of the data
                 data.password = hash;
                 const user = new User(data);

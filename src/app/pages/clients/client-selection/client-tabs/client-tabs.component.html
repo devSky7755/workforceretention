@@ -48,7 +48,7 @@
 
                 <!--DEPARTMENT GROUP-->
                 <div *ngIf="isAddDepartment">
-                    <ngx-add-edit-department [divisionId]="divisionId" [departmentId]="departmentId"></ngx-add-edit-department>
+                    <ngx-add-edit-department (selectDepartment)="selectDepartment()" [divisionId]="divisionId" [departmentId]="departmentId"></ngx-add-edit-department>
                 </div>
                 <div *ngIf="isShowDepartment">
                     <i class="icon nb-arrow-thin-left" (click)="selectDivision()" style="font-size: 50px;cursor: pointer;color: #00d977" ></i>

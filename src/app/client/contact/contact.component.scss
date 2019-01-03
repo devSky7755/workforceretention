@@ -32,3 +32,12 @@ nb-card:hover {
 nb-layout-column {
   padding: 0 !important;
 }
+
+/deep/ .nb-theme-cosmic .form-control{
+  background-color: #fff;
+  border: 1px solid #342e73;
+}
+/deep/ .nb-theme-cosmic .form-control:focus{
+  background-color: #f0f0f5;
+  color: #3f51b5;
+}

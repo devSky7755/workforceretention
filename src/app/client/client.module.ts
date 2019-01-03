@@ -12,6 +12,7 @@ import {FooterComponent} from './layout/footer/footer.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {NbCardModule, NbLayoutModule} from "@nebular/theme";
 import {PageNameComponent} from './page-name/page-name.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import {PageNameComponent} from './page-name/page-name.component';
         ClientRoutingModule,
         FlexLayoutModule,
         NbCardModule,
-        NbLayoutModule
+        NbLayoutModule,
+        FormsModule
     ]
 })
 export class ClientModule {

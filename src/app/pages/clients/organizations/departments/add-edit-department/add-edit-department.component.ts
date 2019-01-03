@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {DepartmentService} from "../../../../../@core/data/department.service";
 
@@ -10,6 +10,7 @@ import {DepartmentService} from "../../../../../@core/data/department.service";
 export class AddEditDepartmentComponent implements OnInit, OnChanges {
     @Input() departmentId: string;
     @Input() divisionId: string;
+    @Output() selectDepartment = new EventEmitter();
 
     departmentName;
     successMessage;
@@ -22,7 +23,9 @@ export class AddEditDepartmentComponent implements OnInit, OnChanges {
 
     ngOnInit() {
     }
-
+    onClickSelectDepartment() {
+        this.selectDepartment.emit();
+    }
     getDepartment() {
         this.departmentService.getDepartment(this.departmentId).subscribe(
             data => {

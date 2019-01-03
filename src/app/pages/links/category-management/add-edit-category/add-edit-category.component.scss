@@ -2,6 +2,12 @@
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
 
+//#2f296b
+//re-writing global css
+/deep/ nb-layout .layout {
+  background-color: #2f296b !important;
+}
+
 @include nb-install-component() {
 
   nb-card-body {

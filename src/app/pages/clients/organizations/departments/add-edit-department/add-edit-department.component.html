@@ -1,8 +1,12 @@
 <div class="row">
   <div class="col-lg-12">
     <nb-card>
-      <nb-card-header
-              class="text-center">{{departmentId ? 'UPDATE DEPARTMENT' : 'ADD NEW DEPARTMENT'}}</nb-card-header>
+      <nb-card-header>
+        <i class="icon nb-arrow-thin-left" (click)="onClickSelectDepartment()" style="font-size: 50px;cursor: pointer;color: #00d977" ></i>
+        <div class="text-center">
+          {{departmentId ? 'UPDATE DEPARTMENT' : 'ADD NEW DEPARTMENT'}}
+        </div>
+      </nb-card-header>
       <nb-card-body>
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-8">

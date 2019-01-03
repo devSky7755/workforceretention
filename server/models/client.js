@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const emailSchema = require('../schema/email');
 
 const clientSchema = new Schema({
     name: {
@@ -46,7 +47,7 @@ const clientSchema = new Schema({
 
     organizations: [{type: Schema.Types.ObjectId, ref: 'Organization'}],
 
-    emails: [{type: Schema.Types.ObjectId, ref: 'email'}]
+    emails: [emailSchema]
 
 }, {timestamps: true});
 

@@ -10,11 +10,14 @@ Joi.objectId = require('joi-objectid')(Joi);
 //Validation SCHEMA
 const clientSchema = require('../validation/client');
 
+//Email Template
+const email_template = require('../helpers/email_template');
+
 exports.Create = function (req, res, next) {
     const data = req.body;
 
     const userId = req.params.userId;
-    if (typeof req.file !=='undefined'){
+    if (typeof req.file !== 'undefined') {
         data.image = req.file.filename;
     }
 
@@ -32,6 +35,17 @@ exports.Create = function (req, res, next) {
                 //set error that employee not found
                 return res.status(404).json({status: false, message: 'No employee found!'})
             }
+            // before creating the client. set the client emails
+            // so that later time can edit that email
+            const emails = [];
+            emails.push(email_template.InitialExitNonConfidentialEmailTemplate,
+                email_template.InitialExitConfidentialEmailTemplate,
+                email_template.ExitReminderNonConfidentialEmailTemplate,
+                email_template.ExitReminderConfidentialEmailTemplate,
+                email_template.InitialExitManagerReportEmailTemplate
+            );
+            data.emails = emails;
+
             const client = new Client(data);
             client.save().then(client => {
                 user.clients.push(client);
@@ -96,7 +110,7 @@ exports.Update = (req, res, next) => {
     const data = req.body;
     let id = req.params.id;
 
-    if (typeof req.file !=='undefined'){
+    if (typeof req.file !== 'undefined') {
         data.image = req.file.filename;
     }
 
@@ -209,8 +223,7 @@ exports.FindEmails = (req, res, next) => {
 
     Client.findById(clientId)
         .populate([{
-            path: 'emails',
-            model: 'Email',
+            path: 'emails'
         }])
         .exec(function (err, client) {
             if (err) return next(err);
@@ -252,7 +265,7 @@ exports.AssignSurvey = (req, res, next) => {
         console.log(client);
         client.surveys.push(surveyId);
         client.save().then(() => {
-            res.json({client,success:true, message:'Survey successfully assigned'})
+            res.json({client, success: true, message: 'Survey successfully assigned'})
         }).catch(err => {
             return next(err);
         });
@@ -274,7 +287,7 @@ exports.UnAssignSurvey = (req, res, next) => {
             }
         });
         client.save().then(() => {
-            res.json({client,success:true, message:'Survey successfully unAssigned'})
+            res.json({client, success: true, message: 'Survey successfully unAssigned'})
         }).catch(err => {
             return next(err);
         });

@@ -14,7 +14,7 @@ export class EmailsComponent implements OnInit, OnChanges {
     rows = [];
     count = 0;
     offset = 0;
-    limit = 3;
+    limit = 5;
     emails;
 
     constructor(private router: Router,
