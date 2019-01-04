@@ -42,6 +42,19 @@ export class AddEditDivisionComponent implements OnInit, OnChanges {
         );
     }
 
+    deleteDivision(divisionId) {
+        this.divisionService.deleteDivision(divisionId).subscribe(
+            () => {
+                this.selectDivision.emit();
+            },
+            err => {
+                const {error} = err;
+                this.errorMessage = error.message;
+                console.log(err);
+            }
+        );
+    }
+
     getOrganization() {
         this.organizationService.getOrganization(this.organizationId).subscribe(
             data => {

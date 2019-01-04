@@ -23,15 +23,30 @@ export class AddEditDepartmentComponent implements OnInit, OnChanges {
 
     ngOnInit() {
     }
+
     onClickSelectDepartment() {
         this.selectDepartment.emit();
     }
+
     getDepartment() {
         this.departmentService.getDepartment(this.departmentId).subscribe(
             data => {
                 this.setResult(data);
             },
             err => {
+                console.log(err);
+            }
+        );
+    }
+
+    deleteDepartment(departmentId) {
+        this.departmentService.deleteDepartment(departmentId).subscribe(
+            () => {
+                this.selectDepartment.emit();
+            },
+            err => {
+                const {error} = err;
+                this.errorMessage = error.message;
                 console.log(err);
             }
         );

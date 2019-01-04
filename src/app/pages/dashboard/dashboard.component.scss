@@ -1,15 +1,11 @@
 @import '../../@theme/styles/themes';
 @import '~bootstrap/scss/mixins/breakpoints';
 @import '~@nebular/theme/styles/global/breakpoints';
-//#2f296b
-//re-writing global css
+
 @include nb-install-component() {
   .solar-card nb-card-header {
     border: none;
     padding-bottom: 0;
-  }
-  /deep/ nb-layout .layout {
-    background-color: #2f296b !important;
   }
   @include media-breakpoint-down(sm) {
     ngx-traffic {

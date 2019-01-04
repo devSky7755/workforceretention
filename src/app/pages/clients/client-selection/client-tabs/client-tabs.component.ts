@@ -64,12 +64,18 @@ export class ClientTabsComponent implements OnInit {
         this.isShowOrganization = true;
         this.isShowDivision = false;
         this.isShowDepartment = false;
+        this.organizationId = null;
+        this.departmentId = null;
+        this.divisionId = null;
         this.selectTab();
     }
     selectDepartment() {
         this.isShowOrganization = true;
         this.isShowDivision = false;
         this.isShowDepartment = false;
+        this.organizationId = null;
+        this.departmentId = null;
+        this.divisionId = null;
         this.selectTab();
     }
 

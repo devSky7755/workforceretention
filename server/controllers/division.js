@@ -31,7 +31,7 @@ exports.Create = function (req, res, next) {
             }).then(() => {
                 return res.status(200).send({
                     "success": true,
-                    "message": "Data successfully retrieve",
+                    "message": "Division successfully created",
                     division
                 })
             }).catch(err => {

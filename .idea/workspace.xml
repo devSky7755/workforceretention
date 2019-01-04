@@ -2,28 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/schema/email.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/helpers/email_template.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/helpers/email_template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/client.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/client.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/contact/contact.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/contact/contact.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/contact/contact.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/contact/contact.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/contact/contact.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/contact/contact.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/product/product.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/product/product.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/department.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/department.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/division.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/division.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/@core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/core.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/article/article-management/add-edit-article/add-edit-article.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/article/article-management/add-edit-article/add-edit-article.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/article/article-management/article-management.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/article/article-management/article-management.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-selection.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-selection.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/links/category-management/add-edit-category/add-edit-category.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/links/category-management/add-edit-category/add-edit-category.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/links/link-management/add-edit-link/add-edit-link.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/links/link-management/add-edit-link/add-edit-link.component.scss" afterDir="false" />
@@ -58,22 +52,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="52" column="45" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
-              <folding>
-                <element signature="e#0#80#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="45">
+              <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -91,57 +73,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/app/client/authentication/authentication.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/client/page-name/page-name.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/client/product/product.component.html" />
-        <option value="$PROJECT_DIR$/src/app/client/page-name/page-name.component.scss" />
         <option value="$PROJECT_DIR$/src/app/client/page-name/page-name.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/client-routing.module.ts" />
         <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/product/product.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/article/article-management/article-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/article/article-management/add-edit-article/add-edit-article.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-selection.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/links/link-management/link-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/links/link-management/add-edit-link/add-edit-link.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/links/category-management/add-edit-category/add-edit-category.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/products/static-pages/static-pages.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/products/static-pages/assign-box/assign-box.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/products/product-management/product-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/products/product-management/add-edit-product/add-edit-product.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/products/box-management/box-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/products/box-management/add-edit-box/add-edit-box.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/office-admin/user-management/user-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/office-admin/user-management/add-edit-user/add-edit-user.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/office-admin/permission-management/permission-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/office-admin/permission-management/add-edit-permission/add-edit-permission.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/survey-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/add-edit-survey/add-edit-survey.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/questions.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/surveys/email-management/email-management.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/surveys/email-management/edit-email/edit-email.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.scss" />
         <option value="$PROJECT_DIR$/server/controllers/user.js" />
         <option value="$PROJECT_DIR$/server/schema/email.js" />
         <option value="$PROJECT_DIR$/server/helpers/email_template.js" />
         <option value="$PROJECT_DIR$/server/models/client.js" />
         <option value="$PROJECT_DIR$/server/controllers/client.js" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.html" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/client.module.ts" />
         <option value="$PROJECT_DIR$/src/app/client/contact/contact.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/contact/contact.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/contact/contact.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.ts" />
+        <option value="$PROJECT_DIR$/server/controllers/department.js" />
+        <option value="$PROJECT_DIR$/server/controllers/division.js" />
+        <option value="$PROJECT_DIR$/src/app/pages/article/article-management/article-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/article/article-management/add-edit-article/add-edit-article.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-selection.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/office-admin/permission-management/permission-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/office-admin/permission-management/add-edit-permission/add-edit-permission.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/office-admin/user-management/user-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/office-admin/user-management/add-edit-user/add-edit-user.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/box-management/box-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/box-management/add-edit-box/add-edit-box.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/product-management/product-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/product-management/add-edit-product/add-edit-product.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/static-pages/static-pages.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/products/static-pages/assign-box/assign-box.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/surveys/email-management/email-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/surveys/email-management/edit-email/edit-email.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/survey-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/questions.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/add-edit-survey/add-edit-survey.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/links/link-management/link-management.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/links/category-management/add-edit-category/add-edit-category.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/links/link-management/add-edit-link/add-edit-link.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.scss" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -161,7 +143,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -169,93 +150,11 @@
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
               <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="@core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="@core" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="contact" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="office-admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="office-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="user-management" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="office-admin" type="462c0819:PsiDirectoryNode" />
-              <item name="user-management" type="462c0819:PsiDirectoryNode" />
-              <item name="add-edit-user" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -341,18 +240,20 @@
       <workItem from="1546337420219" duration="9222000" />
       <workItem from="1546426491845" duration="792000" />
       <workItem from="1546445508120" duration="4821000" />
-      <workItem from="1546494931115" duration="266000" />
+      <workItem from="1546494931115" duration="1716000" />
+      <workItem from="1546526143759" duration="3059000" />
+      <workItem from="1546578825078" duration="19000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58285000" />
+    <option name="totallyTimeSpent" value="62813000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23568414" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31525016" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -366,7 +267,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.23571429" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.23571429" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -377,302 +278,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/pages/products/static-pages/static-pages.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/products/static-pages/assign-box/assign-box.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/products/product-management/product-management.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/products/product-management/add-edit-product/add-edit-product.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/products/box-management/box-management.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/products/box-management/add-edit-box/add-edit-box.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/user-management/user-management.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/user-management/add-edit-user/add-edit-user.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/permission-management/permission-management.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/permission-management/add-edit-permission/add-edit-permission.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/survey-management.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/survey-management.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/add-edit-survey/add-edit-survey.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/questions.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/email-management/email-management.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/email-management/edit-email/edit-email.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/survey.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/employee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-857" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/survey.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/email.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/helpers/email.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/email.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/schema/permission.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/schema/email.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="64" lean-forward="true" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/helpers/email_template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="56" lean-forward="true" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="24" selection-start-line="49" selection-start-column="24" selection-end-line="49" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="466">
-          <caret line="225" column="26" lean-forward="true" selection-start-line="225" selection-start-column="26" selection-end-line="225" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="41" lean-forward="true" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#103#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="20" lean-forward="true" selection-start-line="14" selection-end-line="14" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#103#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="76" lean-forward="true" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="137" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#nb-card-header#0;n#nb-card#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#374#380#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="71" selection-start-line="6" selection-start-column="71" selection-end-line="6" selection-end-column="71" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#nb-card-header#0;n#nb-card#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="50" column="83" selection-start-line="50" selection-start-column="83" selection-end-line="50" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/product/product.component.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/product/product.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="29" lean-forward="true" selection-start-line="5" selection-end-line="7" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/client.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="23" lean-forward="true" selection-start-line="32" selection-start-column="23" selection-end-line="32" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="555">
@@ -716,20 +321,285 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="74" column="38" lean-forward="true" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/division.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="63" lean-forward="true" selection-start-line="33" selection-start-column="63" selection-end-line="33" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/department.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="63" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="57" column="23" lean-forward="true" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="47" column="36" lean-forward="true" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/departments/add-edit-department/add-edit-department.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="120" selection-start-line="28" selection-start-column="120" selection-end-line="28" selection-end-column="120" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#nb-card-header#0;n#nb-card#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="52" column="45" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
+        <state relative-caret-position="452">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="87" lean-forward="true" selection-start-line="29" selection-start-column="87" selection-end-line="29" selection-end-column="87" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#nb-card-header#0;n#nb-card#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#374#380#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/article/article-management/add-edit-article/add-edit-article.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/article/article-management/article-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="314" column="1" selection-start-line="314" selection-start-column="1" selection-end-line="314" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/article/article-management/article-management.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-details/client-details.component.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-details/client-details.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-selection.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/industries/industries.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/surveys/surveys.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/user-management/add-edit-user/add-edit-user.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/user-management/user-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="60" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/permission-management/add-edit-permission/add-edit-permission.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/permission-management/permission-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/products/box-management/add-edit-box/add-edit-box.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/products/box-management/box-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/products/static-pages/assign-box/assign-box.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/products/static-pages/static-pages.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/products/product-management/add-edit-product/add-edit-product.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/products/product-management/product-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/email-management/edit-email/edit-email.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/links/category-management/category-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/links/category-management/add-edit-category/add-edit-category.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/links/link-management/link-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/email-management/email-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/survey-management.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/survey-details/survey-details.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/questions.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/add-edit-survey/add-edit-survey.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/reporting/data-reports/data-reports.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/links/link-management/add-edit-link/add-edit-link.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
         </state>
       </provider>
     </entry>
