@@ -65,7 +65,8 @@ export class EmployeesComponent implements OnInit, OnChanges {
                     this.page(this.offset, this.limit);
                 },
                 err => {
-                    this.errorMessage = err.message;
+                    const {error} = err;
+                    this.errorMessage = error.message;
                 }
             );
     }

@@ -45,13 +45,12 @@ exports.Upload = function (req, res, next) {
                     model: 'Department'
                 }
             }])
-            .exec(function (err, organizations) {
+            .exec(async function (err, organizations) {
                 if (err) return next(err);
-                console.log(organizations);
                 for (let i = 0; i < json.length; i++) {
                     //here find the organization by name
                     const employeeOrganization = findOrganizationByName(json[i].organization, organizations);
-                    json[i].organization = employeeOrganization ? employeeOrganization: null;
+                    json[i].organization = employeeOrganization ? employeeOrganization : null;
                     //here find the division by name
                     const employeeDivision = findDivisionByName(json[i].division, organizations);
                     json[i].division = employeeDivision ? employeeDivision : null;
@@ -59,27 +58,98 @@ exports.Upload = function (req, res, next) {
                     const employeeDepartment = findDepartmentByName(json[i].department, organizations);
                     json[i].department = employeeDepartment ? employeeDepartment : null;
 
+                    //here before push the json object bcrypt password
                     employees.push(json[i]);
                 }
-                //Save the employees into the database
-                Employee.insertMany(employees, (err, docs) => {
-                    if (err) return next(err);
-                    //After saving the employees insert all the employees id to the
-                    //client employees array
-                    docs.forEach((employee) => {
-                        client.employees.push(employee);
-                    });
-                    //Finally save the client
-                    client.save().then(() => {
-                        res.status(200).json({
-                            employees: docs,
-                            success: true,
-                            message: 'Employees successfully uploaded'
+                await passwordGenerator(employees, client).then((employees) => {
+                    // Save the employees into the database
+                    Employee.insertMany(employees, (err, docs) => {
+                        if (err) {
+                            if (err.name === 'BulkWriteError' && err.code === 11000) {
+                                return next(new Error(`Employee with the email ${err.op.email} already exist`));
+                            } else {
+                                return next(err);
+                            }
+                        }
+                        //After saving the employees insert all the employees id to the
+                        //client employees array
+                        docs.forEach((employee) => {
+                            client.employees.push(employee);
                         });
+                        //Finally save the client
+                        client.save().then(() => {
+                            return res.status(200).json({
+                                employees: docs,
+                                success: true,
+                                message: 'Employees successfully uploaded'
+                            });
+                        })
                     });
-                });
+                })
             });
     });
+};
+
+// This function will generate password as well as send email to employee
+const passwordGenerator = function (employees, client) {
+    const employeePromises = [];
+    employees.map((employee) => {
+        employeePromises.push(new Promise((resolve, reject) => {
+            //generate salt
+            bcrypt.genSalt(10, function (err, salt) {
+                if (err) {
+                    console.log('Something Wrong In Salt Generating');
+                    reject(new Error('Something Wrong In Salt Generating'));
+                }
+                //GENERATE THE PASSWORD HERE
+                const password = generator.generate({
+                    length: 10,
+                    numbers: true
+                });
+                bcrypt.hash(password, salt, async function (err, hash) {
+                    if (err) {
+                        console.log('password generating error');
+                        reject(new Error("Password can't generate"));
+                    } else {
+                        // send the password to the employee email
+                        // step-1 : first get the email template from the client for creating an employee
+                        const from = email_template.InitialExitNonConfidentialEmailTemplate.from_address;
+                        let subject = email_template.InitialExitNonConfidentialEmailTemplate.subject;
+                        let body = email_template.InitialExitNonConfidentialEmailTemplate.body;
+                        let to = employee.email;
+
+                        // step-2 : replace the [client_name] by the client.username
+                        body = body.replace('[client_name]', client.name);
+                        subject = subject.replace('[client_name]', client.name);
+                        body = body.replace('[employee_firstname]', employee.first_name);
+
+                        // step-3 : [employee_username] set the employee email
+                        body = body.replace('[employee_username]', to);
+
+                        // step-4 : [employee_password] set the employee plain password.
+                        body = body.replace('[employee_password]', password);
+
+                        helpers.SendEmailToEmployee({from, to, subject, body}).then(
+                            () => {
+                                // if the promise full fill this block of code will execute
+                                // assign the hash password to the employee
+                                employee.password = hash;
+                                resolve(employee)
+                            },
+                            //if the promise rejected this code will execute
+                            () => {
+                                // assign the hash password to the employee
+                                employee.password = hash;
+                                resolve(employee)
+                            }
+                        ); // End of Send Email To Employee
+                    }
+
+                })//----end of password hashing----
+            }) //---end of salt generation----
+        }))
+    });
+    return Promise.all(employeePromises);
 };
 const findOrganizationByName = function (name, organizations) {
     if (organizations !== null) {
