@@ -61,9 +61,13 @@ exports.Upload = function (req, res, next) {
                     //here before push the json object bcrypt password
                     employees.push(json[i]);
                 }
-                await passwordGenerator(employees, client).then((employees) => {
+                //before generating password we need to checkout if employee exist with the given email
+                let allEmployees = await Employee.find();
+                let finalEmployeesArray = checkDuplicateEmployees(allEmployees, employees);
+
+                await passwordGenerator(finalEmployeesArray, client).then((employeesToUpload) => {
                     // Save the employees into the database
-                    Employee.insertMany(employees, (err, docs) => {
+                    Employee.insertMany(employeesToUpload, (err, docs) => {
                         if (err) {
                             if (err.name === 'BulkWriteError' && err.code === 11000) {
                                 return next(new Error(`Employee with the email ${err.op.email} already exist`));
@@ -81,7 +85,7 @@ exports.Upload = function (req, res, next) {
                             return res.status(200).json({
                                 employees: docs,
                                 success: true,
-                                message: 'Employees successfully uploaded'
+                                message: `From ${employees.length} employees ${employeesToUpload.length} uploaded and ${employees.length - employeesToUpload.length} skip`
                             });
                         })
                     });
@@ -89,6 +93,28 @@ exports.Upload = function (req, res, next) {
             });
     });
 };
+
+const checkDuplicateEmployees = function (employees, employeesToUpload) {
+
+    let finalEmployeesToUpload = employeesToUpload;
+    //for each employees to upload check if the employee exist in the employees array or not
+    employeesToUpload.forEach((employee) => {
+        //this line of code is checking if the employee exist with the email
+        let checkedEmployee = employees.find(e => e.email === employee.email);
+        if (!isNullOrEmpty(checkedEmployee)) {
+            // if the employee exist with the email then it's eliminating from the final employees to upload array
+            finalEmployeesToUpload = finalEmployeesToUpload.filter(fe => fe.email !== employee.email)
+        }
+    });
+    return finalEmployeesToUpload;
+    // if exist in the employees array then eliminate that employee
+};
+
+
+const isNullOrEmpty = function (obj) {
+    return typeof obj === "undefined" || obj === null;
+};
+
 
 // This function will generate password as well as send email to employee
 const passwordGenerator = function (employees, client) {
