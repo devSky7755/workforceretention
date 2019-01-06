@@ -5,7 +5,7 @@ import {SurveysRoutingModule} from './surveys-routing.module';
 import {SurveyManagementComponent} from './survey-management/survey-management.component';
 import {EmailManagementComponent} from './email-management/email-management.component';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
-import {NbCardModule} from '@nebular/theme';
+import {NbCardModule, NbCheckboxModule} from '@nebular/theme';
 import {SmartTableService} from '../../@core/data/smart-table.service';
 import {EditEmailComponent} from './email-management/edit-email/edit-email.component';
 import {AddEditSurveyComponent} from './survey-management/add-edit-survey/add-edit-survey.component';
@@ -27,6 +27,7 @@ import { SurveyDetailsComponent } from './survey-management/survey-details/surve
         NgxDatatableModule,
         ThemeModule,
         ButtonsModule,
+        NbCheckboxModule
     ],
     providers: [
         SmartTableService,

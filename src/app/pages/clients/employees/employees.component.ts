@@ -1,4 +1,14 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild
+} from '@angular/core';
 import {EmployeeService} from "../../../@core/data/employee.service";
 
 @Component({
@@ -17,6 +27,8 @@ export class EmployeesComponent implements OnInit, OnChanges {
     successMessage;
     errorMessage;
     employees = [];
+    @ViewChild('filePicker')
+    filePicker: ElementRef;
 
     constructor(private employeeService: EmployeeService) {
     }
@@ -62,6 +74,8 @@ export class EmployeesComponent implements OnInit, OnChanges {
             .subscribe(
                 data => {
                     this.successMessage = data.message;
+                    // reset the file input field
+                    this.filePicker.nativeElement.value = "";
                     this.page(this.offset, this.limit);
                 },
                 err => {

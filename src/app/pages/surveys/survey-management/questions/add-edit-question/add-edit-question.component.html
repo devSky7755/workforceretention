@@ -50,7 +50,9 @@
                                 <br><br>
                                 <div class="row">
                                     <div class="col-md-2">Question Text: *</div>
-                                    <div class="col-md-9"><input formControlName="area" class="form-control"></div>
+                                    <div class="col-md-9">
+                                        <input formControlName="area" class="form-control">
+                                    </div>
                                 </div>
                                 <br>
                                 <div class="row">
@@ -64,6 +66,83 @@
                                     </div>
                                 </div>
                                 <br>
+                                <!--when selection question type is Ratings Radio Buttons, Free Text, Yes No Radio Button then nothing will happen-->
+
+                                <!--When selecting question type is Exit Interview - Exit Reasons Then Checkbox Option will generate-->
+                                <!--Options [Career Opportunities, Meaningful Work,Communication, Effective Leadership, Induction, Learning & Development]-->
+                                <!--Options [Manager, Pay & Benefits, Work Conditions, Being Valued, Operational, Restructure]-->
+
+                                <!--When Selecting Radio Labels Then generate a dropdown field with label 1-10-->
+                                <!--If the number of labels selected is 3 then Generate Three input field-->
+
+                                <!--When Selecting Multiple Choice Then generate a dropdown field with label 1-10-->
+                                <!--If the number of labels selected is 3 then Generate Three input field-->
+
+                                <!--Depending on question selection. hide or display-->
+                                <!--Depending on question type here generate the input field-->
+                                <!--There are some static field. put in here-->
+
+                                <!-- ************Tricks to Solve The Above Problem**************-->
+                                <!-- create a div and add an id exit-reason-i here i is dynamic value also give a class called hide. which initially hides the div-->
+                                <!-- inside div create the input checkbox with the appropriate label-->
+                                <div class="row hide-div" id="exit-reason-{{i}}">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-9">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <nb-checkbox status="success">Career Opportunities</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Meaningful Work</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Communication</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Effective Leadership</nb-checkbox>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <nb-checkbox status="success">Induction</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Learning & Development</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Manager</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Pay & Benefits</nb-checkbox>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <nb-checkbox status="success">Work Conditions</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Being Valued</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Operational</nb-checkbox><br>
+                                                    <nb-checkbox status="success">Restructure</nb-checkbox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- create another div and add id radio-label-i here i is also dynamic value also give a class call hide-->
+                                <!-- create the select input with value from 0 to 10 add a change event. so when the value change from 0 to 1 for example then generate 1 text-box-->
+                                <div class="row hide-div" id="radio-label-{{i}}">
+                                    <div class="col-lg-2">Number Of Labels</div>
+                                    <div class="col-lg-9">
+                                        <div class="form-group">
+                                            <!--Add a change event handler-->
+                                            <select class="form-control">
+                                                <option *ngFor="let label of no_of_labels" value="{{label}}">{{label}}</option>
+                                            </select>
+                                        </div>
+                                        <!--Here generate the Labels-->
+                                    </div>
+                                </div>
+
+                                <!-- create another div and add id multiple-choice-i here i is also dynamic value also give a class call hide-->
+                                <!-- create the select input with value from 0 to 10 add a change event. so when the value change from 0 to 1 for example then generate 1 text-box-->
+                                <div class="row hide-div" id="multiple-choice-{{i}}">
+                                    <div class="col-lg-2">Number Of Labels</div>
+                                    <div class="col-lg-9">
+                                        <div class="form-group">
+                                            <!--Add a change event handler-->
+                                            <select class="form-control">
+                                                <option *ngFor="let label of no_of_labels" value="{{label}}">{{label}}</option>
+                                            </select>
+                                        </div>
+                                        <!--Here generate the Labels-->
+                                    </div>
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-2">Exit Reporting Reason: *</div>
                                     <div class="col-md-9">

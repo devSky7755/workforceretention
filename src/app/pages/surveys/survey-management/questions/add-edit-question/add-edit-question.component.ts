@@ -9,11 +9,11 @@ import {SurveyService} from "../../../../../@core/data/survey.service";
     styleUrls: ['./add-edit-question.component.scss']
 })
 export class AddEditQuestionComponent implements OnInit {
-
     myForm: FormGroup;
     surveyId;
     survey;
     questions = [];
+    no_of_labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     survey_types = [
         {id: 1, value: 'RECAP'},
         {id: 2, value: 'Exit Interview'}
@@ -106,6 +106,31 @@ export class AddEditQuestionComponent implements OnInit {
 
     }
 
+    // when selection question type is Ratings Radio Buttons, Free Text, Yes No Radio Button then nothing will happen
+    //
+    // When selecting question type is Exit Interview - Exit Reasons Then Checkbox Option will generate
+    // Options [Career Opportunities, Meaningful Work,Communication, Effective Leadership, Induction, Learning & Development]
+    // Options [Manager, Pay & Benefits, Work Conditions, Being Valued, Operational, Restructure]
+    //
+    // When Selecting Radio Labels Then generate a dropdown field with label 1-10
+    // If the number of labels selected is 3 then Generate Three input field
+    //
+    // When Selecting Multiple Choice Then generate a dropdown field with label 1-10
+    // If the number of labels selected is 3 then Generate Three input field
+    //
+    // Depending on question selection. hide or display
+    // Depending on question type here generate the input field
+    // There are some static field. put in here
+
+    // ************Tricks to Solve The Above Problem**************
+    // create a div and add an id exit-reason-i here i is dynamic value also give a class called hide. which initially hides the div
+    // inside div create the input checkbox with the appropriate label
+
+    // create another div and add id radio-label-i here i is also dynamic value also give a class call hide
+    // create the select input with value from 0 to 10 add a change event. so when the value change from 0 to 1 for example then generate 1 text-box
+
+    // create another div and add id multiple-choice-i here i is also dynamic value also give a class call hide
+    // create the select input with value from 0 to 10 add a change event. so when the value change from 0 to 1 for example then generate 1 text-box
     get phoneForms() {
         return this.myForm.get('phones') as FormArray;
     }
