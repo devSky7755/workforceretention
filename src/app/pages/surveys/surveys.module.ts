@@ -13,12 +13,19 @@ import {AddEditSurveyComponent} from './survey-management/add-edit-survey/add-ed
 import {ThemeModule} from '../../@theme/theme.module';
 import {ButtonsModule} from '../forms/buttons/buttons.module';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
-import { QuestionsComponent } from './survey-management/questions/questions.component';
-import { AddEditQuestionComponent } from './survey-management/questions/add-edit-question/add-edit-question.component';
-import { SurveyDetailsComponent } from './survey-management/survey-details/survey-details.component';
+import {QuestionsComponent} from './survey-management/questions/questions.component';
+import {AddEditQuestionComponent} from './survey-management/questions/add-edit-question/add-edit-question.component';
+import {SurveyDetailsComponent} from './survey-management/survey-details/survey-details.component';
 
 @NgModule({
-    declarations: [SurveyManagementComponent, EmailManagementComponent, EditEmailComponent, AddEditSurveyComponent, QuestionsComponent, AddEditQuestionComponent, SurveyDetailsComponent],
+    declarations: [
+        SurveyManagementComponent,
+        EmailManagementComponent,
+        EditEmailComponent,
+        AddEditSurveyComponent,
+        QuestionsComponent,
+        AddEditQuestionComponent,
+        SurveyDetailsComponent],
     imports: [
         CommonModule,
         SurveysRoutingModule,

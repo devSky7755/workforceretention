@@ -58,7 +58,7 @@
                                 <div class="row">
                                     <div class="col-md-2">Question Type: *</div>
                                     <div class="col-md-9">
-                                        <select class="form-control" formControlName="prefix">
+                                        <select class="form-control" formControlName="prefix" (change)="onChangeQuestionType(i, $event)">
                                             <option value="" selected>Select Question Type *</option>
                                             <option *ngFor="let type of question_types"
                                                     value="{{type.id}}">{{type.value}}</option>
@@ -120,11 +120,13 @@
                                     <div class="col-lg-9">
                                         <div class="form-group">
                                             <!--Add a change event handler-->
-                                            <select class="form-control">
+                                            <select class="form-control" (change)="onChangeRadioLabel(i, $event)">
                                                 <option *ngFor="let label of no_of_labels" value="{{label}}">{{label}}</option>
                                             </select>
                                         </div>
                                         <!--Here generate the Labels-->
+                                        <div id="generate-radio-label-{{i}}"></div>
+
                                     </div>
                                 </div>
 
@@ -135,11 +137,12 @@
                                     <div class="col-lg-9">
                                         <div class="form-group">
                                             <!--Add a change event handler-->
-                                            <select class="form-control">
+                                            <select class="form-control" (change)="onChangeMultipleChoice(i, $event)">
                                                 <option *ngFor="let label of no_of_labels" value="{{label}}">{{label}}</option>
                                             </select>
                                         </div>
                                         <!--Here generate the Labels-->
+                                        <div id="generate-multiple-choice-{{i}}"></div>
                                     </div>
                                 </div>
 

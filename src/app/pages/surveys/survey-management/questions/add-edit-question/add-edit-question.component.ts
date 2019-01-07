@@ -85,8 +85,73 @@ export class AddEditQuestionComponent implements OnInit {
         );
     }
 
+    onChangeQuestionType(index, event) {
+        // {id: 1, value: 'Rating Radio Buttons'},
+        // {id: 2, value: 'Free Text'},
+        // {id: 3, value: 'Exit Interview - Exit Reasons'},
+        // {id: 4, value: 'Yes / No Radio'},
+        // {id: 5, value: 'Radio Labels'},
+        // {id: 6, value: 'Multiple Choice'},
+
+        const exitReasonDiv = <HTMLInputElement>document.getElementById('exit-reason-' + index);
+        const radioLabelDiv = <HTMLInputElement>document.getElementById('radio-label-' + index);
+        const multipleChoiceDiv = <HTMLInputElement>document.getElementById('multiple-choice-' + index);
+        const selectedId = event.target.value;
+        // if selectedId=3 then show the exit-reason div
+        // if selectedId=5 then show the radio-label div
+        // if selectedId=6 then show the multiple-choice div
+        if (selectedId == 3) {
+            this.checkClassAndRemove(exitReasonDiv, 'hide-div');
+            this.checkClassAndAdd(radioLabelDiv, 'hide-div');
+            this.checkClassAndAdd(multipleChoiceDiv, 'hide-div');
+        } else if (selectedId == 5) {
+            this.checkClassAndAdd(exitReasonDiv, 'hide-div');
+            this.checkClassAndRemove(radioLabelDiv, 'hide-div');
+            this.checkClassAndAdd(multipleChoiceDiv, 'hide-div');
+        } else if (selectedId == 6) {
+            this.checkClassAndAdd(exitReasonDiv, 'hide-div');
+            this.checkClassAndAdd(radioLabelDiv, 'hide-div');
+            this.checkClassAndRemove(multipleChoiceDiv, 'hide-div');
+        } else {
+            this.checkClassAndAdd(exitReasonDiv, 'hide-div');
+            this.checkClassAndAdd(radioLabelDiv, 'hide-div');
+            this.checkClassAndAdd(multipleChoiceDiv, 'hide-div');
+        }
+    }
+
+    onChangeRadioLabel(index, event) {
+        const noOfLabels = event.target.value;
+        const generateRadioLabelDiv = <HTMLInputElement>document.getElementById('generate-radio-label-' + index);
+        generateRadioLabelDiv.innerHTML = "";
+        for (let i = 1; i <= noOfLabels; i++) {
+            generateRadioLabelDiv.innerHTML += `<div class='row'><div class='col-lg-2'>Label ${i} *</div> <div class="col-lg-10">
+                                                    <div class="form-group"> <input type="text" class="form-control"></div></div></div>`;
+        }
+    }
+
+    onChangeMultipleChoice(index, event) {
+        const noOfLabels = event.target.value;
+        const generateMultipleChoiceDiv = <HTMLInputElement>document.getElementById('generate-multiple-choice-' + index);
+        generateMultipleChoiceDiv.innerHTML = "";
+        for (let i = 1; i <= noOfLabels; i++) {
+            generateMultipleChoiceDiv.innerHTML += `<div class='row'><div class='col-lg-2'>Label ${i} *</div> <div class="col-lg-10">
+                                                    <div class="form-group"> <input type="text" class="form-control"></div></div></div>`;
+        }
+    }
+
+    checkClassAndAdd(element, className) {
+        if (!element.classList.contains(className)) {
+            element.classList.add(className);
+        }
+    }
+
+    checkClassAndRemove(element, className) {
+        if (element.classList.contains(className)) {
+            element.classList.remove(className);
+        }
+    }
+
     setPage(data) {
-        console.log(data);
         this.survey.title = data.survey.title;
         this.survey.description = data.survey.description;
         this.survey.instruction = data.survey.instruction;
@@ -137,14 +202,39 @@ export class AddEditQuestionComponent implements OnInit {
 
     saveSurvey() {
         for (let i = 0; i < this.phoneForms.controls.length; i++) {
+            const question_object = {};
+
+            // render questions
+            const title = this.phoneForms.controls[i].get('area').value;
             // title
             // number_of_options
             // type
+            const question_type = this.phoneForms.controls[i].get('prefix').value;
             // options
-            this.phoneForms.controls[i].setValue({area: 'I am Ashik Mahmud', prefix: '1', line: 'This is line'});
+            // here depend on question type render label.
+            // if question type is 3 get all the selected input value
+            if (question_type == 3) {
+                // get all the selected value
+            } else if (question_type == 5) {
+                // get all the labels
+            } else if (question_type == 6) {
+                // get all the labels
+            }
+
+            // if question type is 5(radio-label) get all the labels value
+            // if question type is 6(multiple-choice) get all the labels value
+
+            //exit-reason
+            const exit_reason = this.phoneForms.controls[i].get('exit_reason').value;
+            // exit-reporting-label
+            const exit_reporting_label = this.phoneForms.controls[i].get('line').value;
+            question_object['title'] = title;
+            question_object['question_type'] = question_type;
+            question_object['exit_reason'] = exit_reason;
+            question_object['exit_reporting_label'] = exit_reporting_label;
             // save the survey
             // after survey successfully saved go to the survey list page
-            this.router.navigateByUrl('/pages/surveys/survey-management');
+            // this.router.navigateByUrl('/pages/surveys/survey-management');
         }
     }
 

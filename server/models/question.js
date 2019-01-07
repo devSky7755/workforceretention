@@ -12,12 +12,10 @@ const questionSchema = new Schema({
         required: true
     },
     number_of_options: {
-        type: Number,
-        required: true
+        type: Number
     },
     answer: {
-        type: String,
-        required: true
+        type: String
     },
     options: [{
         type: String
@@ -25,8 +23,13 @@ const questionSchema = new Schema({
     //Rating Radio Buttons [Number of options = survey rating_label], Free Text [Number of options = 0], Exit Interview - Exit Reasons [Checkbox],
     // Yes/No Radio [No of options = 0], Radio Labels [it should have labels], Multiple Choice [it should have labels]
     type: {
-        type: String,
-        required: true
+        type: String
+    },
+    exit_reason: {
+        type: String
+    },
+    exit_reporting_label: {
+      type: String
     },
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
