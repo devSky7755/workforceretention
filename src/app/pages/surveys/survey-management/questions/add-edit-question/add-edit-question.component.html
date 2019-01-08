@@ -36,7 +36,7 @@
                 </div>
             </div>
             <br><br>
-            <form [formGroup]="myForm">
+            <form [formGroup]="myForm" (ngSubmit)="submitSurvey()">
 
                 <div formArrayName="phones">
                     <div class="panel">
@@ -51,14 +51,14 @@
                                 <div class="row">
                                     <div class="col-md-2">Question Text: *</div>
                                     <div class="col-md-9">
-                                        <input formControlName="area" class="form-control">
+                                        <input formControlName="area" class="form-control" required>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-md-2">Question Type: *</div>
                                     <div class="col-md-9">
-                                        <select class="form-control" formControlName="prefix" (change)="onChangeQuestionType(i, $event)">
+                                        <select class="form-control" formControlName="prefix" (change)="onChangeQuestionType(i, $event.target.value)" required>
                                             <option value="" selected>Select Question Type *</option>
                                             <option *ngFor="let type of question_types"
                                                     value="{{type.id}}">{{type.value}}</option>
@@ -89,24 +89,52 @@
                                     <div class="col-lg-2"></div>
                                     <div class="col-lg-9">
                                         <div class="form-group">
-                                            <div class="row">
+                                            <div class="row" id="exit-reason-option-{{i}}">
                                                 <div class="col-lg-4">
-                                                    <nb-checkbox status="success">Career Opportunities</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Meaningful Work</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Communication</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Effective Leadership</nb-checkbox>
+                                                    <div class="boxes">
+                                                        <input type="checkbox" id="career-opportunities-{{i}}">
+                                                        <label for="career-opportunities-{{i}}">Career Opportunities</label>
+
+                                                        <input type="checkbox" id="meaningful-work-{{i}}">
+                                                        <label for="meaningful-work-{{i}}">Meaningful Work</label>
+
+                                                        <input type="checkbox" id="communication-{{i}}">
+                                                        <label for="communication-{{i}}">Communication</label>
+
+                                                        <input type="checkbox" id="effective-leadership-{{i}}">
+                                                        <label for="effective-leadership-{{i}}">Effective Leadership</label>
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <nb-checkbox status="success">Induction</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Learning & Development</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Manager</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Pay & Benefits</nb-checkbox>
+                                                    <div class="boxes">
+                                                        <input type="checkbox" id="induction-{{i}}">
+                                                        <label for="induction-{{i}}">Induction</label>
+
+                                                        <input type="checkbox" id="learning-development-{{i}}">
+                                                        <label for="learning-development-{{i}}">Learning & Development</label>
+
+                                                        <input type="checkbox" id="manager-{{i}}">
+                                                        <label for="manager-{{i}}">Manager</label>
+
+                                                        <input type="checkbox" id="pay-benefits-{{i}}">
+                                                        <label for="pay-benefits-{{i}}">Pay & Benefits</label>
+
+                                                    </div>
                                                 </div>
                                                 <div class="col-lg-4">
-                                                    <nb-checkbox status="success">Work Conditions</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Being Valued</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Operational</nb-checkbox><br>
-                                                    <nb-checkbox status="success">Restructure</nb-checkbox>
+                                                    <div class="boxes">
+                                                        <input type="checkbox" id="work-conditions-{{i}}">
+                                                        <label for="work-conditions-{{i}}">Work Conditions</label>
+
+                                                        <input type="checkbox" id="being-valued-{{i}}">
+                                                        <label for="being-valued-{{i}}">Being Valued</label>
+
+                                                        <input type="checkbox" id="operational-{{i}}">
+                                                        <label for="operational-{{i}}">Operational</label>
+
+                                                        <input type="checkbox" id="restructure-{{i}}">
+                                                        <label for="restructure-{{i}}">Restructure</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +148,7 @@
                                     <div class="col-lg-9">
                                         <div class="form-group">
                                             <!--Add a change event handler-->
-                                            <select class="form-control" (change)="onChangeRadioLabel(i, $event)">
+                                            <select class="form-control" (change)="onChangeRadioLabel(i, $event.target.value)" id="no-of-radio-label-{{i}}">
                                                 <option *ngFor="let label of no_of_labels" value="{{label}}">{{label}}</option>
                                             </select>
                                         </div>
@@ -137,7 +165,7 @@
                                     <div class="col-lg-9">
                                         <div class="form-group">
                                             <!--Add a change event handler-->
-                                            <select class="form-control" (change)="onChangeMultipleChoice(i, $event)">
+                                            <select class="form-control" (change)="onChangeMultipleChoice(i, $event.target.value)" id="no-of-multiple-choice-{{i}}">
                                                 <option *ngFor="let label of no_of_labels" value="{{label}}">{{label}}</option>
                                             </select>
                                         </div>
@@ -168,7 +196,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <button class="btn btn-primary" (click)="saveSurvey()">Finish</button>
+                    <input class="btn btn-primary" type="submit" value="Finish">
                 </div>
                 <br><br>
                 <!--<button style="float: right" (click)="addPhone()" class="btn btn-primary">Add More</button>-->

@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../../../../@core/data/survey.service";
+import {QuestionService} from "../../../../../@core/data/question.service";
 
 @Component({
     selector: 'ngx-add-edit-question',
     templateUrl: './add-edit-question.component.html',
     styleUrls: ['./add-edit-question.component.scss']
 })
-export class AddEditQuestionComponent implements OnInit {
+export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     myForm: FormGroup;
     surveyId;
     survey;
@@ -17,6 +18,20 @@ export class AddEditQuestionComponent implements OnInit {
     survey_types = [
         {id: 1, value: 'RECAP'},
         {id: 2, value: 'Exit Interview'}
+    ];
+    exit_interview_exit_reason_ids = [
+        {id: "career-opportunities-"},
+        {id: "meaningful-work-"},
+        {id: "communication-"},
+        {id: "effective-leadership-"},
+        {id: "induction-"},
+        {id: "learning-development-"},
+        {id: "manager-"},
+        {id: "pay-benefits-"},
+        {id: "work-conditions-"},
+        {id: "being-valued-"},
+        {id: "operational-"},
+        {id: "restructure-"},
     ];
     question_types = [
         {id: 1, value: 'Rating Radio Buttons'},
@@ -58,6 +73,7 @@ export class AddEditQuestionComponent implements OnInit {
     constructor(private fb: FormBuilder,
                 private route: ActivatedRoute,
                 private surveyService: SurveyService,
+                private questionService: QuestionService,
                 private router: Router) {
         this.survey = {};
     }
@@ -65,10 +81,6 @@ export class AddEditQuestionComponent implements OnInit {
     ngOnInit() {
         //  here get the id of the survey
         this.surveyId = this.route.snapshot.paramMap.get('id');
-        if (this.surveyId) {
-            //get the employee from the database and set to the employee
-            this.getSurvey();
-        }
         this.myForm = this.fb.group({
             email: '',
             phones: this.fb.array([])
@@ -76,7 +88,8 @@ export class AddEditQuestionComponent implements OnInit {
     }
 
     getSurvey() {
-        this.surveyService.getSurvey(this.surveyId).subscribe(data => {
+        this.surveyService.getSurveyQuestions(this.surveyId).subscribe(
+            data => {
                 this.setPage(data);
             },
             err => {
@@ -85,7 +98,7 @@ export class AddEditQuestionComponent implements OnInit {
         );
     }
 
-    onChangeQuestionType(index, event) {
+    onChangeQuestionType(index, selectedId) {
         // {id: 1, value: 'Rating Radio Buttons'},
         // {id: 2, value: 'Free Text'},
         // {id: 3, value: 'Exit Interview - Exit Reasons'},
@@ -96,7 +109,6 @@ export class AddEditQuestionComponent implements OnInit {
         const exitReasonDiv = <HTMLInputElement>document.getElementById('exit-reason-' + index);
         const radioLabelDiv = <HTMLInputElement>document.getElementById('radio-label-' + index);
         const multipleChoiceDiv = <HTMLInputElement>document.getElementById('multiple-choice-' + index);
-        const selectedId = event.target.value;
         // if selectedId=3 then show the exit-reason div
         // if selectedId=5 then show the radio-label div
         // if selectedId=6 then show the multiple-choice div
@@ -119,23 +131,21 @@ export class AddEditQuestionComponent implements OnInit {
         }
     }
 
-    onChangeRadioLabel(index, event) {
-        const noOfLabels = event.target.value;
+    onChangeRadioLabel(index, labels) {
         const generateRadioLabelDiv = <HTMLInputElement>document.getElementById('generate-radio-label-' + index);
         generateRadioLabelDiv.innerHTML = "";
-        for (let i = 1; i <= noOfLabels; i++) {
+        for (let i = 1; i <= labels; i++) {
             generateRadioLabelDiv.innerHTML += `<div class='row'><div class='col-lg-2'>Label ${i} *</div> <div class="col-lg-10">
-                                                    <div class="form-group"> <input type="text" class="form-control"></div></div></div>`;
+                                                    <div class="form-group"> <input type="text" class="form-control radio-label"></div></div></div>`;
         }
     }
 
-    onChangeMultipleChoice(index, event) {
-        const noOfLabels = event.target.value;
+    onChangeMultipleChoice(index, labels) {
         const generateMultipleChoiceDiv = <HTMLInputElement>document.getElementById('generate-multiple-choice-' + index);
         generateMultipleChoiceDiv.innerHTML = "";
-        for (let i = 1; i <= noOfLabels; i++) {
+        for (let i = 1; i <= labels; i++) {
             generateMultipleChoiceDiv.innerHTML += `<div class='row'><div class='col-lg-2'>Label ${i} *</div> <div class="col-lg-10">
-                                                    <div class="form-group"> <input type="text" class="form-control"></div></div></div>`;
+                                                    <div class="form-group"> <input type="text" class="form-control multiple-choice"></div></div></div>`;
         }
     }
 
@@ -146,6 +156,7 @@ export class AddEditQuestionComponent implements OnInit {
     }
 
     checkClassAndRemove(element, className) {
+        console.log(element);
         if (element.classList.contains(className)) {
             element.classList.remove(className);
         }
@@ -158,6 +169,7 @@ export class AddEditQuestionComponent implements OnInit {
         this.survey.no_of_questions = data.survey.no_of_questions;
         this.survey.survey_type = data.survey.survey_type;
         this.survey.rating_scale = data.survey.rating_scale;
+        this.questions = data.survey.questions;
         // Finally set the Id of the Page
         // Depending on the rating_scale generate text-box
         this.survey.type_label = this.survey_types.find(s => s.id == this.survey.survey_type).value;
@@ -165,10 +177,71 @@ export class AddEditQuestionComponent implements OnInit {
         for (let i = 1; i <= this.survey.no_of_questions; i++) {
             this.addPhone();
         }
-
-
         this.surveyId = data.survey._id;
+        if (this.questions.length > 0) {
+            //this means this survey has question
+            const self = this;
+            setTimeout(function () {
+                self.setQuestion();
+            }, 1000);
+        }
 
+    }
+
+    setQuestion() {
+        for (let i = 0; i < this.questions.length; i++) {
+            // area is the synonym of question title
+            // prefix is the synonym of question type
+            // exit_reason is same as exit_reason
+            // line is the synonym as exit_reporting_label
+            this.phoneForms.controls[i].setValue({
+                area: this.questions[i].title ? this.questions[i].title : '',
+                prefix: this.questions[i].type ? this.questions[i].type : '',
+                exit_reason: this.questions[i].exit_reason ? this.questions[i].exit_reason : '',
+                line: this.questions[i].exit_reporting_label ? this.questions[i].exit_reporting_label : ''
+            });
+            // check question type as well
+            this.onChangeQuestionType(i, this.questions[i].type);
+            if (this.questions[i].type == 5) {
+                const labels = this.questions[i].options.length;
+                this.onChangeRadioLabel(i, labels);
+            }
+            if (this.questions[i].type == 6) {
+                const labels = this.questions[i].options.length;
+                this.onChangeMultipleChoice(i, labels);
+            }
+        }
+        this.setLabels();
+    }
+
+    setLabels() {
+        for (let i = 0; i < this.questions.length; i++) {
+            const question_type = this.questions[i].type;
+            // if question type is 3 get all the selected input value
+            if (question_type == 3) {
+                // set the value
+                this.exit_interview_exit_reason_ids.forEach((obj, index) => {
+                    const element = <HTMLInputElement>document.getElementById(obj.id + i);
+                    element.checked = this.questions[i].options[index] == "true";
+                });
+            } else if (question_type == 5) {
+                const radio_label_inputs = document.getElementById('generate-radio-label-' + i).getElementsByClassName('radio-label');
+                const no_of_labels = <HTMLInputElement>document.getElementById('no-of-radio-label-' + i);
+                no_of_labels.value = '' + radio_label_inputs.length;
+                for (let index = 0; index < radio_label_inputs.length; index++) {
+                    const element = <HTMLInputElement>radio_label_inputs[index];
+                    element.value = this.questions[i].options[index];
+                }
+            } else if (question_type == 6) {
+                const multiple_choice_inputs = document.getElementById('generate-multiple-choice-' + i).getElementsByClassName('multiple-choice');
+                const no_of_labels = <HTMLInputElement>document.getElementById('no-of-multiple-choice-' + i);
+                no_of_labels.value = '' + multiple_choice_inputs.length;
+                for (let index = 0; index < multiple_choice_inputs.length; index++) {
+                    const element = <HTMLInputElement>multiple_choice_inputs[index];
+                    element.value = this.questions[i].options[index];
+                }
+            }
+        }
     }
 
     // when selection question type is Ratings Radio Buttons, Free Text, Yes No Radio Button then nothing will happen
@@ -200,7 +273,10 @@ export class AddEditQuestionComponent implements OnInit {
         return this.myForm.get('phones') as FormArray;
     }
 
-    saveSurvey() {
+    submitSurvey() {
+        // check the questions length
+        // if question length is 0 that means we need to insert all the questions
+        const question_array = [];
         for (let i = 0; i < this.phoneForms.controls.length; i++) {
             const question_object = {};
 
@@ -214,11 +290,29 @@ export class AddEditQuestionComponent implements OnInit {
             // here depend on question type render label.
             // if question type is 3 get all the selected input value
             if (question_type == 3) {
+                const options = [];
                 // get all the selected value
+                this.exit_interview_exit_reason_ids.forEach((obj) => {
+                    const element = <HTMLInputElement>document.getElementById(obj.id + i);
+                    options.push(element.checked);
+                });
+                question_object['options'] = options;
             } else if (question_type == 5) {
-                // get all the labels
+                const radio_label_inputs = document.getElementById('generate-radio-label-' + i).getElementsByClassName('radio-label');
+                const options = [];
+                for (let i = 0; i < radio_label_inputs.length; i++) {
+                    const element = <HTMLInputElement>radio_label_inputs[i];
+                    options.push(element.value);
+                }
+                question_object['options'] = options;
             } else if (question_type == 6) {
-                // get all the labels
+                const multiple_choice_inputs = document.getElementById('generate-multiple-choice-' + i).getElementsByClassName('multiple-choice');
+                const options = [];
+                for (let i = 0; i < multiple_choice_inputs.length; i++) {
+                    const element = <HTMLInputElement>multiple_choice_inputs[i];
+                    options.push(element.value);
+                }
+                question_object['options'] = options;
             }
 
             // if question type is 5(radio-label) get all the labels value
@@ -229,13 +323,41 @@ export class AddEditQuestionComponent implements OnInit {
             // exit-reporting-label
             const exit_reporting_label = this.phoneForms.controls[i].get('line').value;
             question_object['title'] = title;
-            question_object['question_type'] = question_type;
+            question_object['type'] = question_type;
             question_object['exit_reason'] = exit_reason;
             question_object['exit_reporting_label'] = exit_reporting_label;
-            // save the survey
-            // after survey successfully saved go to the survey list page
-            // this.router.navigateByUrl('/pages/surveys/survey-management');
+            question_array.push(question_object);
         }
+        // save the survey
+        // after survey successfully saved go to the survey list page
+        if (this.questions.length == 0) {
+            this.saveSurveyQuestion(question_array);
+        } else {
+            this.updateSurveyQuestion(question_array);
+        }
+    }
+
+    saveSurveyQuestion(question_array) {
+        this.questionService.createManyQuestion(question_array, this.surveyId).subscribe(
+            data => {
+                console.log(data);
+                this.router.navigateByUrl('/pages/surveys/survey-management');
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    updateSurveyQuestion(question_array) {
+        console.log(this.questions);
+        // check if the question_array and this.questions length is same that means no question is deleted
+        // sometime a question can be deleted and a new can question can be added so we should consider this scenario
+        // sometimes a question can be deleted so we should delete that question from the database
+        // sometimes a new question can be added so at that time we should insert a new question in the database
+        // sometimes a existing question can be edited so we need to update that question.
+
+        // we need to do most of the processing here so that on server we need to process less
     }
 
     addPhone() {
@@ -250,7 +372,18 @@ export class AddEditQuestionComponent implements OnInit {
     }
 
     deletePhone(i) {
+        if (this.questions.length > 0) {
+            // this means this question was previously saved. so we need to keep track
+            this.questions[i].deleted = true;
+        }
         this.phoneForms.removeAt(i);
+    }
+
+    ngAfterViewInit() {
+        if (this.surveyId) {
+            //get the employee from the database and set to the employee
+            this.getSurvey();
+        }
     }
 
 }

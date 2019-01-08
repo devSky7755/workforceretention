@@ -46,6 +46,7 @@ exports.Create = function (req, res, next) {
 exports.CreateMany = (req, res, next) => {
     let surveyId = req.params.surveyId;
     let data = req.body;
+    console.log(data);
 
     //get the survey by the surveyId
     Survey.findById(surveyId, (err, survey) => {
@@ -54,7 +55,7 @@ exports.CreateMany = (req, res, next) => {
             return res.status(404).json({status: false, message: 'No survey found!'})
         }
         //Save the Questions into the database
-        Question.insertMany(data.questions, (err, docs) => {
+        Question.insertMany(data, (err, docs) => {
             if (err) return next(err);
             //After saving the employees insert all the employees id to the
             //client employees array
