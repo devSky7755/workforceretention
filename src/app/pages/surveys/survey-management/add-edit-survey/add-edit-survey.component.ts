@@ -176,6 +176,7 @@ export class AddEditSurveyComponent implements OnInit {
 
         this.setEditorContent(this.survey.description);
         this.setSimpleEditorContent(this.survey.instruction);
+        this.get('no_of_questions').disable();
         // Finally set the Id of the Page
         this.surveyId = data.survey._id;
 

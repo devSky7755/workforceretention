@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Question = require('../models/question');
 
 //RELATIONAL MODEL
@@ -46,7 +47,6 @@ exports.Create = function (req, res, next) {
 exports.CreateMany = (req, res, next) => {
     let surveyId = req.params.surveyId;
     let data = req.body;
-    console.log(data);
 
     //get the survey by the surveyId
     Survey.findById(surveyId, (err, survey) => {
@@ -72,6 +72,127 @@ exports.CreateMany = (req, res, next) => {
             });
         });
     });
+};
+
+exports.UpdateSurveyQuestions = (req, res, next) => {
+    // here we should make a transactional query.
+    // first we need to delete question if any.
+    // which question we will delete we also need to remove that question id from the survey question array
+
+    // we need to insert question if any
+    // this will return an array of promise with the questions
+    // we don't need to return array of promise if we use insertMany query where promise will resolve with docs
+
+    // we need to update question if any
+    // this will also return an array of promise
+
+    // finally we also need to update the survey no_of_questions label with the new value
+
+    let surveyId = req.params.surveyId;
+    let data = req.body;
+
+    let delete_question_ids = [];
+    let new_questions = [];
+    let update_questions = [];
+
+    //get the survey by the surveyId
+    Survey.findById(surveyId, (err, survey) => {
+        if (err) return next(err);
+        if (!survey) {
+            return res.status(404).json({status: false, message: 'No survey found!'});
+        }
+        // loop through the data array and separate the collections into delete_question_ids, new_questions, update_questions
+        data.forEach((question) => {
+            if (question._id == null) {
+                // This means this is a new question which needs to be inserted
+                delete question._id;
+                new_questions.push(question);
+            } else if (question.deleted) {
+                // this means this question has been deleted so we need to delete from the database as well
+                delete_question_ids.push(question._id);
+            } else {
+                // this means question has been updated
+                update_questions.push(question);
+            }
+        });
+        DeleteMany(delete_question_ids).then(() => InsertMany(new_questions)).then((questions) => {
+            questions.forEach((question) => {
+                survey.questions.push(question);
+            });
+            UpdateMany(update_questions);
+        }).then(() => {
+            delete_question_ids.map((id) => {
+                let objId = mongoose.Types.ObjectId(id);
+                survey.questions = survey.questions.filter(sq => !sq.equals(objId));
+            });
+            survey.no_of_questions = survey.questions.length;
+            survey.save();
+        }).then(() => {
+            return res.send({success: true, message: 'Survey question successfully updated'})
+        }).catch(err => {
+            return next(err)
+        });
+
+        //
+        // console.log('************** Deleted Items ************');
+        // console.log(delete_question_ids);
+        // console.log('************** Insert Items ************');
+        // console.log(new_questions);
+        // console.log('************** Update Items ************');
+        // console.log(update_questions);
+        // return res.send({success: true});
+    })
+};
+const DeleteMany = function (delete_question_ids) {
+    return new Promise((resolve, reject) => {
+        Question.deleteMany({_id: {$in: delete_question_ids}}, function (err) {
+            if (err) {
+                reject(err)
+            } else {
+                resolve()
+            }
+        });
+    });
+};
+const InsertMany = function (new_questions) {
+    return new Promise((resolve, reject) => {
+        Question.insertMany(new_questions, (err, docs) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(docs);
+            }
+        })
+    });
+};
+const UpdateMany = function (update_questions) {
+    const questionPromises = [];
+    update_questions.map((question) => {
+        let question_id = question._id;
+        delete question._id;
+        questionPromises.push(new Promise((resolve, reject) => {
+            Question.findById(question_id, function (err, prev_question) {
+                if (err){
+                    reject(err);
+                }else {
+                    prev_question.title = question.title;
+                    prev_question.type = question.type;
+                    prev_question.options = question.options;
+                    prev_question.exit_reason = question.exit_reason;
+                    prev_question.exit_reporting_label = question.exit_reporting_label;
+
+                    prev_question.save(function (err, updatedQuestion) {
+                        if (err) {
+                            reject(err)
+                        }else {
+                            resolve(updatedQuestion)
+                        }
+                    });
+                }
+            });
+        }))
+    });
+    return Promise.all(questionPromises);
 };
 
 exports.Find = (req, res, next) => {

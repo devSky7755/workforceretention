@@ -195,6 +195,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             // exit_reason is same as exit_reason
             // line is the synonym as exit_reporting_label
             this.phoneForms.controls[i].setValue({
+                id: this.questions[i]._id,
                 area: this.questions[i].title ? this.questions[i].title : '',
                 prefix: this.questions[i].type ? this.questions[i].type : '',
                 exit_reason: this.questions[i].exit_reason ? this.questions[i].exit_reason : '',
@@ -280,6 +281,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
         for (let i = 0; i < this.phoneForms.controls.length; i++) {
             const question_object = {};
 
+            const id = this.phoneForms.controls[i].get('id').value;
             // render questions
             const title = this.phoneForms.controls[i].get('area').value;
             // title
@@ -322,6 +324,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             const exit_reason = this.phoneForms.controls[i].get('exit_reason').value;
             // exit-reporting-label
             const exit_reporting_label = this.phoneForms.controls[i].get('line').value;
+            question_object['_id'] = id;
             question_object['title'] = title;
             question_object['type'] = question_type;
             question_object['exit_reason'] = exit_reason;
@@ -338,6 +341,10 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     }
 
     saveSurveyQuestion(question_array) {
+        // delete the id from the question array
+        question_array.forEach((question) => {
+            delete question.id;
+        });
         this.questionService.createManyQuestion(question_array, this.surveyId).subscribe(
             data => {
                 console.log(data);
@@ -350,7 +357,24 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     }
 
     updateSurveyQuestion(question_array) {
-        console.log(this.questions);
+        // ********************* This Approach is easy and modular *****************
+        // now it's very easy to keep track
+        // which has an id that means this is an existing question [so we need to do an update query]
+        // which question id is '' or null or undefined that means this is a new question [so we need to do an insert query]
+        // and from the questions array we will get the deleted questions
+        this.questions.forEach((question) => {
+            if (question.deleted) {
+                question_array.push(question);
+            }
+        });
+        this.questionService.updateManyQuestion(question_array, this.surveyId).subscribe(
+            data => {
+                console.log(data);
+            }
+        );
+
+
+        // ********************* This Approach is not modular *************************
         // check if the question_array and this.questions length is same that means no question is deleted
         // sometime a question can be deleted and a new can question can be added so we should consider this scenario
         // sometimes a question can be deleted so we should delete that question from the database
@@ -363,10 +387,11 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     addPhone() {
 
         const phone = this.fb.group({
+            id: [],
             area: [],
             prefix: [],
             line: [],
-            exit_reason: []
+            exit_reason: [],
         });
         this.phoneForms.push(phone);
     }
@@ -374,7 +399,9 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     deletePhone(i) {
         if (this.questions.length > 0) {
             // this means this question was previously saved. so we need to keep track
-            this.questions[i].deleted = true;
+            if (typeof this.questions[i] !== 'undefined' && this.questions[i] !== null) {
+                this.questions[i].deleted = true;
+            }
         }
         this.phoneForms.removeAt(i);
     }
