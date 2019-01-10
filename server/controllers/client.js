@@ -230,6 +230,56 @@ exports.FindEmails = (req, res, next) => {
             return res.status(200).json({success: true, client})
         });
 };
+exports.FindEmailById = (req, res, next) => {
+    const clientId = req.params.clientId;
+    const emailId = req.query.emailId;
+    //first find the client
+    //search the sub_document and match with the id
+    Client.findById(clientId, (err, client) => {
+        if (err) return next(err);
+        if (!client) {
+            return res.status(404).json({
+                "success": false,
+                "message": "Client not found"
+            })
+        }
+        console.log(client);
+        // find the subdocument
+        const email = client.emails.id(emailId);
+        return res.status(200).send({
+            "success": true,
+            "message": "Data successfully retrieve",
+            email
+        })
+    });
+    // if id is same then return that subdocument
+};
+exports.UpdateEmail = (req, res, next) => {
+    const clientId = req.params.clientId;
+    const emailId = req.query.emailId;
+    const data = req.body;
+
+    Client.findById(clientId, (err, client) => {
+        if (err) return next(err);
+        if (!client) {
+            return res.status(404).json({
+                "success": false,
+                "message": "Client not found"
+            })
+        }
+        // find the subdocument
+        const email = client.emails.id(emailId);
+        //update the subdocument
+        email.set(data);
+        client.save().then(client => {
+            return res.status(200).send({
+                "success": true,
+                "message": "Client email successfully updated",
+                email
+            })
+        });
+    });
+};
 
 exports.FindOrganizations = (req, res, next) => {
 

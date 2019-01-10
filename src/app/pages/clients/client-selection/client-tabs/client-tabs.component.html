@@ -83,7 +83,7 @@
                 <br><br>
                 <!--Show the Email Information Here-->
                 <div *ngIf="isEditEmail">
-                    <ngx-add-edit-email [emailId]="emailId"></ngx-add-edit-email>
+                    <ngx-add-edit-email [emailId]="emailId" [clientId]="clientId"></ngx-add-edit-email>
                 </div>
                 <div *ngIf="!isEditEmail">
                     <ngx-emails [clientId]="clientId" (emailEdit)="editEmail($event)"></ngx-emails>

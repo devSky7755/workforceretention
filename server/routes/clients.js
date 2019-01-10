@@ -51,4 +51,8 @@ router.get('/organizations/:clientId', clientController.FindOrganizations);
 
 router.get('/emails/:clientId', clientController.FindEmails);
 
+router.get('/email_by_id/:clientId', clientController.FindEmailById);
+
+router.post('/emails/update/:clientId', clientController.UpdateEmail);
+
 module.exports = router;

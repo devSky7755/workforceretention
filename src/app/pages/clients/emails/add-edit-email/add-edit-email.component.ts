@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {EmailService} from "../../../../@core/data/email.service";
+import {ClientService} from "../../../../@core/data/client.service";
 
 @Component({
     selector: 'ngx-add-edit-email',
@@ -9,11 +10,12 @@ import {EmailService} from "../../../../@core/data/email.service";
 })
 export class AddEditEmailComponent implements OnInit, OnChanges {
     @Input() emailId;
+    @Input() clientId: string;
     successMessage;
     errorMessage;
     email;
 
-    constructor(private route: ActivatedRoute, private emailService: EmailService) {
+    constructor(private route: ActivatedRoute, private emailService: EmailService, private clientService: ClientService) {
         this.email = {fromAddress: '', subject: '', body: ''};
     }
 
@@ -21,9 +23,8 @@ export class AddEditEmailComponent implements OnInit, OnChanges {
     }
 
     getEmail() {
-        this.emailService.getEmail(this.emailId).subscribe(
+        this.clientService.getClientEmail(this.clientId, this.emailId).subscribe(
             data => {
-                console.log(data);
                 this.setResult(data);
             },
             err => {
@@ -45,16 +46,14 @@ export class AddEditEmailComponent implements OnInit, OnChanges {
     }
 
     update(email) {
-        this.emailService.updateEmail(email, this.emailId).subscribe(
+        this.clientService.updateEmail(this.clientId, this.emailId, email).subscribe(
             data => {
                 this.errorMessage = null;
                 this.successMessage = data.message;
-                this.setResult(data);
             },
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-                console.log(err);
             }
         );
     }
@@ -66,6 +65,7 @@ export class AddEditEmailComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         this.emailId = changes.emailId.currentValue;
+        this.clientId = changes.clientId.currentValue;
         if (typeof this.emailId !== 'undefined' && this.emailId !== null) {
             this.getEmail();
         }

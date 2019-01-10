@@ -48,6 +48,10 @@ exports.CreateMany = (req, res, next) => {
     let surveyId = req.params.surveyId;
     let data = req.body;
 
+    // from data we should remove the _id
+    data.forEach((question) => {
+        delete question._id;
+    });
     //get the survey by the surveyId
     Survey.findById(surveyId, (err, survey) => {
         if (err) return next(err);
@@ -172,9 +176,9 @@ const UpdateMany = function (update_questions) {
         delete question._id;
         questionPromises.push(new Promise((resolve, reject) => {
             Question.findById(question_id, function (err, prev_question) {
-                if (err){
+                if (err) {
                     reject(err);
-                }else {
+                } else {
                     prev_question.title = question.title;
                     prev_question.type = question.type;
                     prev_question.options = question.options;
@@ -184,7 +188,7 @@ const UpdateMany = function (update_questions) {
                     prev_question.save(function (err, updatedQuestion) {
                         if (err) {
                             reject(err)
-                        }else {
+                        } else {
                             resolve(updatedQuestion)
                         }
                     });

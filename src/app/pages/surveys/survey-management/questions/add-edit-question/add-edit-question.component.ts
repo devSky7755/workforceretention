@@ -369,7 +369,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
         });
         this.questionService.updateManyQuestion(question_array, this.surveyId).subscribe(
             data => {
-                console.log(data);
+                this.router.navigateByUrl('/pages/surveys/survey-management');
             }
         );
 
