@@ -26,7 +26,6 @@ exports.Create = (req, res, next) => {
                 return res.status(422).send({
                     success: false,
                     message: 'User with this username already exist!'
-
                 });
             }
             return res.status(422).send({

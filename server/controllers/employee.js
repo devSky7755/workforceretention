@@ -7,6 +7,11 @@ const Organization = require('../models/organization');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const bcrypt = require('bcryptjs');
+const uuidv4 = require('uuid/v4');
+const jwt = require("jsonwebtoken");
+
+//Config
+const config = require('../config');
 
 //JSON FILE PARSING LIBRARY
 let csvToJson = require('convert-csv-to-json');
@@ -21,6 +26,7 @@ const generator = require('generate-password');
 //LOAD EMAIL TEMPLATES
 const email_template = require('../helpers/email_template');
 const helpers = require('../helpers/email');
+const refreshTokens = {};
 
 
 exports.Upload = function (req, res, next) {
@@ -340,6 +346,124 @@ exports.FindById = (req, res, next) => {
             employee
         })
     });
+};
+
+//Login, Logout and Refresh Token Feature for employee
+/**
+ * this is used to authenticate employee to our api using email and password
+ * POST api/v1/employee/login
+ * @param req
+ * @param res
+ */
+
+exports.login = function (req, res, next) {
+
+    const {email, password} = req.body;
+    /**
+     * this is param checking if they are provided
+     */
+    if (!password || !email) {
+        return res.status(422).send({errors: [{title: 'Data missing!', detail: 'Provide email and password!'}]});
+    }
+
+    /**
+     * check if the username matches any email
+     */
+
+    User.findOne({email}, 'username email password').then((employee, err) => {
+        if (err) return (new Error("Unable to find employee with the email " + email));
+
+        if (!user) {
+            const error = new Error("Employee not found, please sign up.");
+            error.statusCode = 401;
+            return next(error)
+        }
+        //check if the entered password is correct
+        bcrypt.compare(password, employee.password, function (error, matched) {
+            if (error) return next(error);
+
+            if (!matched) {
+                const error = new Error("Invalid password.");
+                error.statusCode = 400;
+                return next(error)
+            }
+
+            //save the date the token was generated for already inside toJSON()
+            const employeeData = employee.toJSON();
+
+            delete employeeData.password;
+
+            //Generate refresh token
+            let refreshToken = uuidv4();
+            refreshTokens[refreshToken] = email;
+
+            let token = jwt.sign(employeeData, config.SECRET, {
+                expiresIn: '30m'
+            });
+
+            //return the token here
+            res.json({token, refreshToken, employee_id: employee._id});
+        });
+    }).catch(err => {
+        next(err)
+    });
+};
+
+/**
+ * this is used to request for another token when the other token is about
+ * expiring so for next request call the token can be validated as true
+ * GET /api/v1/employee/token
+ * @param req
+ * @param res
+ */
+
+exports.token = function (req, res, next) {
+    let email = req.body.email;
+    let refreshToken = req.body.refreshToken;
+
+    if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] === email)) {
+        Employee.findOne({email}, 'username email').then((employee, err) => {
+            if (err) return next(err);
+            if (!employee) {
+                const error = new Error("Employee not found, please sign up.");
+                error.statusCode = 401;
+                return next(error);
+            }
+
+            // on employee we only need to set employee username, password and email
+            const employeeData = employee.toJSON();
+            employeeData.refreshToken = refreshToken;
+
+            const token = jwt.sign(employeeData, config.SECRET, {
+                expiresIn: '30m'
+            });
+            return res.json({token});
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        })
+    } else {
+        const error = new Error("Employee not found, please sign up.");
+        error.statusCode = 401;
+        return next(error)
+    }
+};
+
+/**
+ * this is used to request for another token when the other token is about
+ * expiring so for next request call the token can be validated as true
+ * GET /api/v1/employee/logout
+ * @param req
+ * @param res
+ */
+exports.logout = function (req, res) {
+    let refreshToken = req.body.refreshToken;
+    if (refreshToken in refreshTokens) {
+        delete refreshTokens[refreshToken]
+    }
+    return res.status(200).json({success: true})
 };
 
 exports.Update = (req, res, next) => {

@@ -16,7 +16,6 @@
 }
 
 .login-title {
-  margin-top: 15px;
   text-align: center;
   font-size: 30px;
   letter-spacing: 2px;
@@ -30,16 +29,19 @@
   text-align: left;
 }
 
-input[type=text] {
+.alert-danger {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+input[type=text], input[type=email] {
   background-color: #ECF0F5;
   border: none;
   border-bottom: 2px solid #0DB8DE;
-  border-top: 0px;
-  border-radius: 0px;
+  border-top: 0;
   font-weight: bold;
   outline: 0;
   margin-bottom: 20px;
-  padding-left: 0px;
+  padding-left: 0;
   color: #2d8ac7;
 }
 
@@ -47,18 +49,17 @@ input[type=password] {
   background-color: #ECF0F5;
   border: none;
   border-bottom: 2px solid #0DB8DE;
-  border-top: 0px;
-  border-radius: 0px;
+  border-top: 0;
   font-weight: bold;
   outline: 0;
-  padding-left: 0px;
+  padding-left: 0;
   margin-bottom: 20px;
   color: #2d8ac7;
 }
 
 .form-group {
   margin-bottom: 40px;
-  outline: 0px;
+  outline: 0;
 }
 
 .form-control:focus {
@@ -90,7 +91,7 @@ label {
 .btn-outline-primary {
   border-color: #ECF0F5;
   color: #ECF0F5;
-  border-radius: 0px;
+  border-radius: 0;
   font-weight: bold;
   letter-spacing: 1px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -98,7 +99,7 @@ label {
 
 .btn-outline-primary:hover {
   background-color: #0DB8DE;
-  right: 0px;
+  right: 0;
 }
 
 .login-btm {
@@ -106,25 +107,26 @@ label {
 }
 
 .login-button {
-  padding-right: 0px;
+  padding-right: 0;
   text-align: right;
   margin-bottom: 25px;
 }
 
 .login-text {
   text-align: left;
-  padding-left: 0px;
+  padding-left: 0;
   color: #ECF0F5;
 }
 
 .loginbttm {
-  padding: 0px;
+  padding: 0;
 }
 
 //re-writing global css
 /deep/ nb-layout .layout {
   background-color: #fff !important;
 }
+
 nb-layout-column {
   padding: 0 !important;
 }

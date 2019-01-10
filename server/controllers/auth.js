@@ -32,7 +32,7 @@ exports.login = function (req, res, next) {
      */
 
     User.findOne({email}).then((user, err) => {
-        if (err) throw new Error("Unable to find employee with the email " + email);
+        if (err) throw new Error("Unable to find user with the email " + email);
 
         if (!user) {
             const error = new Error("User not found, please sign up.");
@@ -74,7 +74,7 @@ exports.login = function (req, res, next) {
     }).catch(err => {
         next(err)
     });
-}
+};
 
 /**
  * this is used to request for another token when the other token is about
@@ -120,7 +120,7 @@ exports.token = function (req, res, next) {
         error.statusCode = 401;
         return next(error)
     }
-}
+};
 
 /**
  * this is used to request for another token when the other token is about
@@ -135,5 +135,5 @@ exports.logout = function (req, res) {
         delete refreshTokens[refreshToken]
     }
     return res.status(200).json({success: true})
-}
+};
 

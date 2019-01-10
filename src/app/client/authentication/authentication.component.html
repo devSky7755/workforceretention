@@ -16,16 +16,26 @@
 
                     <div class="col-lg-12 login-form">
                         <div class="col-lg-12 login-form">
-                            <form>
+                            <form (ngSubmit)="login()" [formGroup]="employeeForm">
                                 <div class="form-group">
-                                    <label class="form-control-label">USERNAME</label>
-                                    <input type="text" class="form-control">
+                                    <label class="form-control-label" for="email">EMAIL</label>
+                                    <input type="email" class="form-control" formControlName="email" [(ngModel)]="employee.email" id="email">
+                                    <!--Register Error Here-->
+                                    <div class="alert alert-danger" role="alert"
+                                         *ngIf="get('email').touched && get('email').invalid">
+                                        <div *ngIf="get('email').errors.required"> Email is required</div>
+                                        <div *ngIf="get('email').errors.pattern">Invalid email address</div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-control-label">PASSWORD</label>
-                                    <input type="password" class="form-control" i>
+                                    <label class="form-control-label" for="password">PASSWORD</label>
+                                    <input type="password" class="form-control" formControlName="password" [(ngModel)]="employee.password" id="password">
+                                    <!--Register Error Here-->
+                                    <div class="alert alert-danger" role="alert"
+                                         *ngIf="get('password').touched && get('password').invalid">
+                                         Password is required
+                                    </div>
                                 </div>
-
                                 <div class="col-lg-12 loginbttm">
                                     <div class="col-lg-6 login-btm login-text">
                                         <!-- Error Message -->
