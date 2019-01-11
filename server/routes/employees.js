@@ -24,6 +24,12 @@ const upload = multer({storage: storage});
 
 router.post('/upload/:clientId', upload.single('employees'), employeeController.Upload);
 
+router.post('/login', employeeController.login);
+
+router.post('/token', employeeController.token);
+
+router.post('/logout', employeeController.logout);
+
 router.post('/:clientId', employeeController.Create);
 
 router.get('/', employeeController.Find);

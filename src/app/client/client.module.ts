@@ -13,6 +13,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {NbCardModule, NbLayoutModule} from "@nebular/theme";
 import {PageNameComponent} from './page-name/page-name.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         AuthenticationComponent,
         HeaderComponent,
         FooterComponent,
-        PageNameComponent
+        PageNameComponent,
+        DashboardComponent
     ],
     imports: [
         CommonModule,

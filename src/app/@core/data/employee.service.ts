@@ -29,11 +29,14 @@ export class EmployeeService {
         return this.http.post(this.urlService.baseUrl + `/api/v1/employees/${clientId}`, body, httpOptions);
     }
 
-    updateEmployee(role, id): Observable<any> {
-        const body = JSON.stringify(role);
+    updateEmployee(employee, id): Observable<any> {
+        const body = JSON.stringify(employee);
         return this.http.put(this.urlService.baseUrl + '/api/v1/employees/' + id, body, httpOptions);
     }
-
+    loginEmployee(credential): Observable<any> {
+        const body = JSON.stringify(credential);
+        return this.http.post(this.urlService.baseUrl + '/api/v1/employees/login', body, httpOptions);
+    }
     deleteEmployee(id): Observable<any> {
         return this.http.delete(this.urlService.baseUrl + '/api/v1/employees/' + id);
     }

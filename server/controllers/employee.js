@@ -363,17 +363,17 @@ exports.login = function (req, res, next) {
      * this is param checking if they are provided
      */
     if (!password || !email) {
-        return res.status(422).send({errors: [{title: 'Data missing!', detail: 'Provide email and password!'}]});
+        return next(new Error('Email and password is required'))
     }
 
     /**
      * check if the username matches any email
      */
 
-    User.findOne({email}, 'username email password').then((employee, err) => {
+    Employee.findOne({email}, 'username email password').then((employee, err) => {
         if (err) return (new Error("Unable to find employee with the email " + email));
 
-        if (!user) {
+        if (!employee) {
             const error = new Error("Employee not found, please sign up.");
             error.statusCode = 401;
             return next(error)
@@ -383,7 +383,7 @@ exports.login = function (req, res, next) {
             if (error) return next(error);
 
             if (!matched) {
-                const error = new Error("Invalid password.");
+                const error = new Error("Invalid email or password.");
                 error.statusCode = 400;
                 return next(error)
             }
@@ -402,7 +402,7 @@ exports.login = function (req, res, next) {
             });
 
             //return the token here
-            res.json({token, refreshToken, employee_id: employee._id});
+            res.json({access_token: token, refresh_token: refreshToken, employee_id: employee._id});
         });
     }).catch(err => {
         next(err)
@@ -432,12 +432,11 @@ exports.token = function (req, res, next) {
 
             // on employee we only need to set employee username, password and email
             const employeeData = employee.toJSON();
-            employeeData.refreshToken = refreshToken;
 
             const token = jwt.sign(employeeData, config.SECRET, {
                 expiresIn: '30m'
             });
-            return res.json({token});
+            return res.json({access_token: token, refresh_token: refreshToken, employee_id:employee._id});
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;

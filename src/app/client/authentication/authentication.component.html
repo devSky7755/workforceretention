@@ -17,6 +17,10 @@
                     <div class="col-lg-12 login-form">
                         <div class="col-lg-12 login-form">
                             <form (ngSubmit)="login()" [formGroup]="employeeForm">
+                                <div class="alert alert-danger" role="alert"
+                                     *ngIf="errorMessage">
+                                    {{errorMessage}}
+                                </div>
                                 <div class="form-group">
                                     <label class="form-control-label" for="email">EMAIL</label>
                                     <input type="email" class="form-control" formControlName="email" [(ngModel)]="employee.email" id="email">
@@ -41,7 +45,7 @@
                                         <!-- Error Message -->
                                     </div>
                                     <div class="col-lg-6 login-btm login-button">
-                                        <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                                        <button type="submit" class="btn btn-outline-primary" [disabled]="!employeeForm.valid">LOGIN</button>
                                     </div>
                                 </div>
                             </form>
