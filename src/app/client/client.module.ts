@@ -14,6 +14,8 @@ import {NbCardModule, NbLayoutModule} from "@nebular/theme";
 import {PageNameComponent} from './page-name/page-name.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { QuestionsComponent } from './questions/questions.component';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
 @NgModule({
     declarations: [
@@ -25,7 +27,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         HeaderComponent,
         FooterComponent,
         PageNameComponent,
-        DashboardComponent
+        DashboardComponent,
+        QuestionsComponent
     ],
     imports: [
         CommonModule,
@@ -34,6 +37,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         NbCardModule,
         NbLayoutModule,
         FormsModule,
+        NgxDatatableModule,
         ReactiveFormsModule
     ]
 })
