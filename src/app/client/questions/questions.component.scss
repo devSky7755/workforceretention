@@ -1,0 +1,20 @@
+//re-writing global css
+/deep/ nb-layout .layout {
+  background-color: #fff !important;
+}
+
+nb-layout-column {
+  padding: 0 !important;
+}
+
+h2, h3, h4, h5, h6 {
+  color: #000;
+}
+
+.question-box {
+  border: 1px solid #0bbb79;
+  padding-bottom: 30px;
+  padding-top: 30px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}

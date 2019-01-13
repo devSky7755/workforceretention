@@ -1,18 +1,20 @@
 <header>
-  <nav>
-    <h1 class="logo">
-      <a routerLink="/client/home">Workforce</a>
-    </h1>
-    <ul>
-      <li><a routerLink="/client/home" routerLinkActive="active">Home</a></li>
-      <li><a routerLink="/client/product" routerLinkActive="active">Products & Services</a></li>
-      <li><a routerLink="/client/contact" routerLinkActive="active">Contact</a> </li>
-      <li><a routerLink="/client/login" routerLinkActive="active">Login</a> </li>
+    <nav>
+        <h1 class="logo">
+            <a routerLink="/client/home">Workforce</a>
+        </h1>
+        <ul>
+            <li><a routerLink="/client/home" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/client/product" routerLinkActive="active">Products & Services</a></li>
+            <li><a routerLink="/client/contact" routerLinkActive="active">Contact</a></li>
+            <li *ngIf="!isAuth"><a routerLink="/client/login" routerLinkActive="active">Login</a></li>
+            <li *ngIf="isAuth"><a routerLink="" (click)="logout()">Logout</a></li>
 
-      <!--Here set-up a list which will show only if the user is logged in-->
-      <!--List will have a circle image avatar-->
-      <!--when we will put cursor on top of that image that dropdown will expand-->
-      <!--Also here will have a dropdown which will have option profile, surveys, reports and login -->
-    </ul>
-  </nav>
+
+            <!--Here set-up a list which will show only if the user is logged in-->
+            <!--List will have a circle image avatar-->
+            <!--when we will put cursor on top of that image that dropdown will expand-->
+            <!--Also here will have a dropdown which will have option profile, surveys, reports and login -->
+        </ul>
+    </nav>
 </header>

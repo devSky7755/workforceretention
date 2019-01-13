@@ -1,3 +1,26 @@
-<p>
-  questions works!
-</p>
+<nb-layout>
+    <nb-layout-column>
+        <ngx-header></ngx-header>
+        <ngx-page-name [pageName]="'Answer your questions'"></ngx-page-name>
+
+        <br><br>
+        <section class="home-section light-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10">
+                        <div *ngFor="let cat_question of categorical_questions">
+                            <div class="question-box" *ngIf="cat_question.questions.length > 0">
+                                <h4>{{cat_question.exit_reason}}</h4>
+                                <div *ngFor="let question of cat_question.questions" class="individual-question-box">
+                                    <h6>{{question.question_no}}. {{question.title}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+            </div>
+        </section>
+    </nb-layout-column>
+</nb-layout>

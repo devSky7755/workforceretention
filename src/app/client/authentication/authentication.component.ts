@@ -49,10 +49,11 @@ export class AuthenticationComponent implements OnInit {
                 //
                 data.remember_me = this.employee.remember_me;
                 localStorage.setItem('employee', JSON.stringify(data));
+                this.employeeService.employee = data;
+                this.employeeService.authChange.next(true);
                 this.router.navigateByUrl('/client/dashboard');
             },
             err => {
-                console.log(err);
                 const {error} = err;
                 this.errorMessage = error.message;
                 this.employeeForm.reset();

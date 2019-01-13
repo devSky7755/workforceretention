@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {URLService} from "./url.service";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -9,7 +9,11 @@ const httpOptions = {
 
 @Injectable()
 export class EmployeeService {
-
+    authChange = new Subject<boolean>();
+    employee;
+    isAuth() {
+        return this.employee != null;
+    }
     constructor(private http: HttpClient, private urlService: URLService) {
     }
 
