@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const multer = require('multer');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -40,8 +39,10 @@ const staticPageRoutes = require('./routes/static_pages');
 const surveyEmailRoutes = require('./routes/survey_emails');
 
 //Connect with the mongodb database
-mongoose.connect(config.MONGO_URI, {useNewUrlParser: true})
-    .then(() => console.log('Connected to MongoDB'))
+mongoose.connect(config.MONGO_URI, {
+    useCreateIndex: true,
+    useNewUrlParser: true
+}).then(() => console.log('Connected to MongoDB'))
     .catch(error => console.log('could not connect', error));
 
 

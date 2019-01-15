@@ -7,9 +7,16 @@ const answerSchema = new Schema({
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    answer: {
+    // answer will look something like this
+    // if question type is Free Text then in option it will save only that text-box value
+    // if question type is Rating Radio Buttons then it will save the selected radio button value
+    // if question type is Checkbox then answer will have multiple
+    options: [{
         type: String,
         required: true
+    }],
+    question_type: {
+        type: String
     },
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -18,6 +25,10 @@ const answerSchema = new Schema({
     employee: {
         type: Schema.Types.ObjectId,
         ref: 'Employee'
+    },
+    question: {
+        type: Schema.Types.ObjectId,
+        ref: 'Question'
     }
 
 });

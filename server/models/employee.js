@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const employeeSurveySchema = require('../schema/employee_survey');
 const employeeSchema = new Schema({
     first_name: {
         type: String,
@@ -77,6 +77,9 @@ const employeeSchema = new Schema({
         type: String,
         required: true
     },
+    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     organization: {
         type: Schema.Types.ObjectId,
         ref: 'Organization'
@@ -88,7 +91,8 @@ const employeeSchema = new Schema({
     department: {
         type: Schema.Types.ObjectId,
         ref: 'Department'
-    }
+    },
+    surveys: [employeeSurveySchema]
 }, {timestamps: true});
 
 module.exports = mongoose.model('Employee', employeeSchema);

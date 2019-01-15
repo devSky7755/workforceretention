@@ -91,7 +91,7 @@ exports.FindById = (req, res, next) => {
 exports.Update = (req, res, next) => {
     // fetch the request data
     const data = req.body;
-    let id = req.param('id');
+    let id = req.params.id;
 
     //Update the employee
 
@@ -171,3 +171,5 @@ exports.SurveyQuestions = (req, res, next) => {
             return res.status(200).json({success: true, survey})
         });
 };
+
+// Get survey question answer by employee

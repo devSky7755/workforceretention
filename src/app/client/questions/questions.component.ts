@@ -12,6 +12,7 @@ export class QuestionsComponent implements OnInit {
     surveyId;
     questions = [];
     categorical_questions = [];
+    answers = [];
     survey;
     survey_types = [
         {id: 1, value: 'RECAP'},
@@ -35,6 +36,20 @@ export class QuestionsComponent implements OnInit {
         {id: 4, value: 'Yes / No Radio'},
         {id: 5, value: 'Radio Labels'},
         {id: 6, value: 'Multiple Choice'},
+    ];
+    exit_reason_checkbox = [
+        {id: 1, value: 'Career Opportunities'},
+        {id: 2, value: 'Meaningful Work'},
+        {id: 3, value: 'Communication'},
+        {id: 4, value: 'Effective Leadership'},
+        {id: 5, value: 'Induction'},
+        {id: 6, value: 'Learning & Development'},
+        {id: 7, value: 'Manager'},
+        {id: 8, value: 'Pay & Benefits'},
+        {id: 9, value: 'Work Conditions'},
+        {id: 10, value: 'Being Valued'},
+        {id: 11, value: 'Operational'},
+        {id: 12, value: 'Restructure'},
     ];
     exit_reason = [
         {id: 11, value: 'Initial Question'},
@@ -88,6 +103,7 @@ export class QuestionsComponent implements OnInit {
         this.survey.no_of_questions = data.survey.no_of_questions;
         this.survey.survey_type = data.survey.survey_type;
         this.survey.rating_scale = data.survey.rating_scale;
+        this.survey.rating_labels = data.survey.rating_labels;
         this.questions = data.survey.questions;
         // Depending on the rating_scale generate text-box
         this.survey.type_label = this.survey_types.find(s => s.id == this.survey.survey_type).value;
@@ -111,5 +127,74 @@ export class QuestionsComponent implements OnInit {
             });
             this.categorical_questions.push({exit_reason: reason.value, questions: categorical_questions});
         });
+    }
+
+    onSubmitAnswer() {
+        // validate answer
+        // render answer
+        this.categorical_questions.map((cat_question) => {
+            // foreach question there will have an answer
+            cat_question.questions.map((question) => {
+                // first check the question type
+                // {id: 1, value: 'Rating Radio Buttons'},
+                // {id: 2, value: 'Free Text'},
+                // {id: 3, value: 'Exit Interview - Exit Reasons'},
+                // {id: 4, value: 'Yes / No Radio'},
+                // {id: 5, value: 'Radio Labels'},
+                // {id: 6, value: 'Multiple Choice'},
+                const options = [];
+                if (question.type == this.question_types[0].id) {
+                    // Rating Radio Buttons
+                    this.survey.rating_labels.map((label, index) => {
+                        const rating_radio_input = <HTMLInputElement>document.getElementById(`rating-radio-label-${question.question_no}-${index}`);
+                        if (rating_radio_input.checked) {
+                            options.push(rating_radio_input.value);
+                        }
+                    });
+                } else if (question.type == this.question_types[1].id) {
+                    // Free Text
+                    const free_text_input = <HTMLInputElement>document.getElementById(`question-comment-${question.question_no}`);
+                    options.push(free_text_input);
+                } else if (question.type == this.question_types[2].id) {
+                    // Exit Interview - Exit Reasons
+                    question.options.map((option, index) => {
+                        if (option == 'true') {
+                            const simple_radio_input = <HTMLInputElement>document.getElementById(`exit-reason-choice-${question.question_no}-${index}`);
+                            // this will store the index of the checked item
+                            if (simple_radio_input.checked) options.push(index);
+                        }
+                    });
+                } else if (question.type == this.question_types[3].id) {
+                    // Yes / No Radio
+                    const yes_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-yes`);
+                    const no_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-no`);
+                    if (yes_radio_label.checked) {
+                        options.push(yes_radio_label.value);
+                    }
+                    if (no_radio_label.checked) {
+                        options.push(no_radio_label.value);
+                    }
+                } else if (question.type == this.question_types[4].id) {
+                    // Radio Labels
+                    question.options.map((option, index) => {
+                        const radio_label_input = <HTMLInputElement>document.getElementById(`radio-label-${question.question_no}-${index}`);
+                        if (radio_label_input.checked) options.push(index);
+                    });
+                } else {
+                    // Multiple Choice
+                    question.options.map((option, index) => {
+                        const multiple_choice_input = <HTMLInputElement>document.getElementById(`multiple-choice-${question.question_no}-${index}`);
+                        if (multiple_choice_input.checked) options.push(index);
+                    });
+                }
+                const answer = {options: options, question: question._id, question_type: question.type};
+                this.answers.push(answer);
+            });
+        });
+        // save the answer to the database
+        console.log(this.answers);
+    }
+
+    setQuestionAnswer() {
     }
 }
