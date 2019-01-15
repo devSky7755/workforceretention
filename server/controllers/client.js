@@ -1,7 +1,9 @@
+const mongoose = require('mongoose');
 const Client = require('../models/client');
 
 //RELATIONAL MODEL
 const User = require('../models/user');
+const Employee = require('../models/employee');
 
 //Validation Library
 const Joi = require('joi');
@@ -314,32 +316,92 @@ exports.AssignSurvey = (req, res, next) => {
     Client.findById(clientId).then((client) => {
         console.log(client);
         client.surveys.push(surveyId);
-        client.save().then(() => {
+        // Also find all the employees under this client
+        // Foreach employee survey list save the survey
+        // Finally send email to that employee
+        employeeAssignSurvey(client.employees, surveyId).then(
+            (employees) => {
+                client.save()
+            }).then(() => {
             res.json({client, success: true, message: 'Survey successfully assigned'})
         }).catch(err => {
             return next(err);
         });
     })
 };
+
+const employeeAssignSurvey = (employees, surveyId) => {
+    return new Promise((resolve, reject) => {
+        // here employee is the id of the employee.
+        Employee.find({
+            '_id': {$in: employees}
+        }, function (err, docs) {
+            if (err) {
+                reject(err)
+            } else {
+                docs.forEach((employee) => {
+                    let survey = {survey: surveyId, completed: false};
+                    //before pushing the survey check if this employee can do survey or not
+                    if (employee.is_survey === '1') {
+                        employee.surveys.push(survey);
+                        employee.save();
+                    }
+                });
+                resolve(docs)
+            }
+        });
+        // so first we should get the employee
+        // we should save the survey in the employee surveys array
+        // then we should send an email to that employee that a survey is assign to that employee
+    });
+};
 exports.UnAssignSurvey = (req, res, next) => {
-    const surveyId = req.query.surveyId;
+    let surveyId = req.query.surveyId;
     const clientId = req.query.clientId;
 
     //Check if the client is found or not
 
     Client.findById(clientId).then((client) => {
-        console.log(client);
         client.surveys.map((survey, index) => {
-            console.log(typeof surveyId);
-            console.log(typeof survey);
-            if (survey == surveyId) {
+            surveyId = mongoose.Types.ObjectId(surveyId);
+            if (survey.equals(surveyId)) {
                 client.surveys.splice(index, 1);
+                // whoever employee under this client assigned that survey un-assign that survey
             }
         });
-        client.save().then(() => {
+        employeeUnAssignSurvey(client.employees, surveyId).then(
+            (employee) => {
+                client.save();
+            }).then(() => {
             res.json({client, success: true, message: 'Survey successfully unAssigned'})
         }).catch(err => {
             return next(err);
         });
     })
+};
+
+const employeeUnAssignSurvey = (employees, surveyId) => {
+    return new Promise((resolve, reject) => {
+        // here employee is the id of the employee.
+        Employee.find({
+            '_id': {$in: employees}
+        }, function (err, docs) {
+            if (err) {
+                reject(err)
+            } else {
+                docs.forEach((employee) => {
+                    //un-assign survey from the employee
+                    employee.surveys.map((survey, index) => {
+                        // here survey is an object which has two fields one is survey and another is completed
+                        let empSurveyId = survey.survey;
+                        if (empSurveyId.equals(surveyId)) {
+                            employee.surveys.splice(index, 1);
+                        }
+                    });
+                    employee.save();
+                });
+                resolve(docs)
+            }
+        });
+    });
 };

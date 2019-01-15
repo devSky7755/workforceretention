@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../@core/data/survey.service";
+import {AnswerService} from "../../@core/data/answer.service";
 
 @Component({
     selector: 'ngx-questions',
@@ -10,6 +11,7 @@ import {SurveyService} from "../../@core/data/survey.service";
 export class QuestionsComponent implements OnInit {
 
     surveyId;
+    employee;
     questions = [];
     categorical_questions = [];
     answers = [];
@@ -76,12 +78,21 @@ export class QuestionsComponent implements OnInit {
     // question type free-text that means it show textarea
     // question type yes_no radio buttons that means it will show two radio buttons
     // question type exit_interview exit_reason that means it will show the selected checkbox
-    constructor(private route: ActivatedRoute, private surveyService: SurveyService) {
+    constructor(private route: ActivatedRoute,
+                private surveyService: SurveyService,
+                private answerService: AnswerService,
+                private router: Router) {
         this.survey = {};
     }
 
     ngOnInit() {
         this.surveyId = this.route.snapshot.paramMap.get('id');
+        // here parse the employee
+        // check the localStorage. if get the user id then set isAuth to true
+        if (localStorage.getItem('employee')) {
+            // parse the employee object and check the expiration of the login. if the login time is expired
+            this.employee = JSON.parse(localStorage.getItem('employee'));
+        }
         this.getSurvey();
     }
 
@@ -131,6 +142,8 @@ export class QuestionsComponent implements OnInit {
 
     onSubmitAnswer() {
         // validate answer
+        const errors = [];
+        this.answers = [];
         // render answer
         this.categorical_questions.map((cat_question) => {
             // foreach question there will have an answer
@@ -145,54 +158,102 @@ export class QuestionsComponent implements OnInit {
                 const options = [];
                 if (question.type == this.question_types[0].id) {
                     // Rating Radio Buttons
+                    let valid = false;
                     this.survey.rating_labels.map((label, index) => {
                         const rating_radio_input = <HTMLInputElement>document.getElementById(`rating-radio-label-${question.question_no}-${index}`);
                         if (rating_radio_input.checked) {
                             options.push(rating_radio_input.value);
+                            valid = true;
                         }
                     });
+                    if (!valid) {
+                        errors.push(question.question_no);
+                    }
                 } else if (question.type == this.question_types[1].id) {
                     // Free Text
                     const free_text_input = <HTMLInputElement>document.getElementById(`question-comment-${question.question_no}`);
-                    options.push(free_text_input);
+                    options.push(free_text_input.value);
                 } else if (question.type == this.question_types[2].id) {
+                    let valid = false;
                     // Exit Interview - Exit Reasons
                     question.options.map((option, index) => {
                         if (option == 'true') {
                             const simple_radio_input = <HTMLInputElement>document.getElementById(`exit-reason-choice-${question.question_no}-${index}`);
                             // this will store the index of the checked item
-                            if (simple_radio_input.checked) options.push(index);
+                            if (simple_radio_input.checked) {
+                                options.push(index);
+                                valid = true;
+                            }
                         }
                     });
+                    if (!valid) {
+                        errors.push(question.question_no);
+                    }
                 } else if (question.type == this.question_types[3].id) {
+                    let valid = false;
                     // Yes / No Radio
                     const yes_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-yes`);
                     const no_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-no`);
                     if (yes_radio_label.checked) {
                         options.push(yes_radio_label.value);
+                        valid = true;
                     }
                     if (no_radio_label.checked) {
                         options.push(no_radio_label.value);
+                        valid = true;
+                    }
+                    if (!valid) {
+                        errors.push(question.question_no);
                     }
                 } else if (question.type == this.question_types[4].id) {
                     // Radio Labels
+                    let valid = false;
                     question.options.map((option, index) => {
                         const radio_label_input = <HTMLInputElement>document.getElementById(`radio-label-${question.question_no}-${index}`);
-                        if (radio_label_input.checked) options.push(index);
+                        if (radio_label_input.checked) {
+                            options.push(index);
+                            valid = true;
+                        }
                     });
+                    if (!valid) {
+                        errors.push(question.question_no);
+                    }
                 } else {
+                    let valid = false;
                     // Multiple Choice
                     question.options.map((option, index) => {
                         const multiple_choice_input = <HTMLInputElement>document.getElementById(`multiple-choice-${question.question_no}-${index}`);
-                        if (multiple_choice_input.checked) options.push(index);
+                        if (multiple_choice_input.checked) {
+                            options.push(index);
+                            valid = true;
+                        }
                     });
+                    if (!valid) {
+                        errors.push(question.question_no);
+                    }
                 }
                 const answer = {options: options, question: question._id, question_type: question.type};
                 this.answers.push(answer);
             });
         });
         // save the answer to the database
-        console.log(this.answers);
+        if (errors.length > 0) {
+            alert('Please select an option for question -> ' + errors[0]);
+        } else {
+            // this means no error
+            // send the answer to the server
+            // since here is list of answers server needs to handle list of answer
+            // foreach answer set the employee. so that in server we need to do less processing
+            this.answers.map((answer) => {
+                answer.employee = this.employee.employee_id;
+            });
+            this.answerService.createManyAnswer(this.answers, this.surveyId, this.employee.employee_id).subscribe(
+                data => {
+                    console.log(data);
+                    this.router.navigateByUrl('/client/dashboard');
+                }
+            );
+        }
     }
 
     setQuestionAnswer() {

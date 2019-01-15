@@ -25,6 +25,14 @@ export class AnswerService {
         const body = JSON.stringify(answer);
         return this.http.post(this.urlService.baseUrl + '/api/v1/answers', body, httpOptions);
     }
+    createManyAnswer(answer, surveyId, employeeId) {
+        const body = JSON.stringify(answer);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/answers/add-many?surveyId=${surveyId}&employeeId=${employeeId}`, body, httpOptions);
+    }
+    updateManyAnswer(answer) {
+        const body = JSON.stringify(answer);
+        return this.http.post(this.urlService.baseUrl + '/api/v1/answers/update-many', body, httpOptions);
+    }
 
     updateAnswer(answer, id) {
         const body = JSON.stringify(answer);

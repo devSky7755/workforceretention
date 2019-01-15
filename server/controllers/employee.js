@@ -436,7 +436,7 @@ exports.token = function (req, res, next) {
             const token = jwt.sign(employeeData, config.SECRET, {
                 expiresIn: '30m'
             });
-            return res.json({access_token: token, refresh_token: refreshToken, employee_id:employee._id});
+            return res.json({access_token: token, refresh_token: refreshToken, employee_id: employee._id});
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -529,5 +529,20 @@ exports.Delete = (req, res, next) => {
             });
         });
     });
+};
+
+//RELATIONAL DATA FIND FUNCTIONS
+exports.FindSurveys = (req, res, next) => {
+
+    const employeeId = req.params.employeeId;
+
+    Employee.findById(employeeId)
+        .populate({
+            path: 'surveys.survey'
+        })
+        .exec(function (err, employee) {
+            if (err) return next(err);
+            return res.status(200).json({success: true, surveys : employee.surveys})
+        });
 };
 

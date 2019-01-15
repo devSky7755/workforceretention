@@ -2,6 +2,7 @@ const Answer = require('../models/answer');
 
 //RELATIONAL MODEL
 const Question = require('../models/question');
+const Employee = require('../models/employee');
 
 //Validation Library
 const Joi = require('joi');
@@ -41,7 +42,22 @@ exports.Create = function (req, res, next) {
             });
         })
     })
-}
+};
+
+exports.CreateMany = (req, res, next) => {
+    let data = req.body;
+    let surveyId = req.query.surveyId;
+    let employeeId = req.query.employeeId;
+    // after save the answer
+    // mark the survey as complete
+    Employee.findById(employeeId, (err, employee) => {
+        res.json({data, message:"Answer successfully created",employee})
+    });
+};
+exports.UpdateAnswers = (req, res, next) => {
+    let data = req.body;
+    res.json({data, message:"Answer successfully updated"});
+};
 
 exports.Find = (req, res, next) => {
     const currentPage = req.query.page || 1; //staticPage number

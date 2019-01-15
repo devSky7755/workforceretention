@@ -11,13 +11,14 @@ const httpOptions = {
 export class EmployeeService {
     authChange = new Subject<boolean>();
     employee;
+
     isAuth() {
         return this.employee != null;
     }
+
     constructor(private http: HttpClient, private urlService: URLService) {
     }
 
-    // TODO: observables
     getEmployees(page, perPage, clientId): Observable<any> {
 
         return this.http.get(this.urlService.baseUrl +
@@ -37,10 +38,12 @@ export class EmployeeService {
         const body = JSON.stringify(employee);
         return this.http.put(this.urlService.baseUrl + '/api/v1/employees/' + id, body, httpOptions);
     }
+
     loginEmployee(credential): Observable<any> {
         const body = JSON.stringify(credential);
         return this.http.post(this.urlService.baseUrl + '/api/v1/employees/login', body, httpOptions);
     }
+
     deleteEmployee(id): Observable<any> {
         return this.http.delete(this.urlService.baseUrl + '/api/v1/employees/' + id);
     }
@@ -49,5 +52,9 @@ export class EmployeeService {
         const formData = new FormData();
         formData.append('employees', file);
         return this.http.post(this.urlService.baseUrl + `/api/v1/employees/upload/${clientId}`, formData);
+    }
+
+    getEmployeeSurveys(employeeId): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + `/api/v1/employees/surveys/${employeeId}`);
     }
 }

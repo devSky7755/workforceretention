@@ -40,5 +40,8 @@ router.put('/:id', employeeController.Update);
 
 router.delete('/:id', employeeController.Delete);
 
+// SET UP RELATIONAL ROUTES
+router.get('/surveys/:employeeId', employeeController.FindSurveys);
+
 
 module.exports = router;

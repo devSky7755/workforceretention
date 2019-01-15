@@ -3,6 +3,10 @@ const router = express.Router();
 
 const answerController = require('../controllers/answer');
 
+router.post('/update-many', answerController.UpdateAnswers);
+
+router.post('/add-many', answerController.CreateMany);
+
 router.post('/:questionId', answerController.Create);
 
 router.get('/', answerController.Find);

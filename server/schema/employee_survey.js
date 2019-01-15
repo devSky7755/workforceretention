@@ -6,9 +6,9 @@ const employeeSurveySchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Survey'
     },
-    // status true means that survey is completed
-    // status false means that survey is not completed
-    status: {
+    // completed true means that survey is completed
+    // completed false means that survey is not completed
+    completed: {
         type: Boolean,
         default: false
     }
