@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../@core/data/survey.service";
 import {AnswerService} from "../../@core/data/answer.service";
+import {EmployeeService} from "../../@core/data/employee.service";
 
 @Component({
     selector: 'ngx-questions',
     templateUrl: './questions.component.html',
     styleUrls: ['./questions.component.scss']
 })
-export class QuestionsComponent implements OnInit {
+export class QuestionsComponent implements OnInit, AfterViewInit {
 
     surveyId;
     employee;
@@ -81,6 +82,7 @@ export class QuestionsComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private surveyService: SurveyService,
                 private answerService: AnswerService,
+                private employeeService: EmployeeService,
                 private router: Router) {
         this.survey = {};
     }
@@ -247,15 +249,36 @@ export class QuestionsComponent implements OnInit {
             this.answers.map((answer) => {
                 answer.employee = this.employee.employee_id;
             });
-            this.answerService.createManyAnswer(this.answers, this.surveyId, this.employee.employee_id).subscribe(
-                data => {
-                    console.log(data);
-                    this.router.navigateByUrl('/client/dashboard');
-                }
-            );
+            if (this.employeeService.surveyCompleted) {
+                this.updateQuestionAnswer();
+            } else {
+                this.saveQuestionAnswer();
+            }
         }
     }
 
+    saveQuestionAnswer() {
+        this.answerService.createManyAnswer(this.answers, this.surveyId, this.employee.employee_id).subscribe(
+            data => {
+                console.log(data);
+                this.router.navigateByUrl('/client/dashboard');
+            }
+        );
+    }
+    updateQuestionAnswer() {
+    }
+
     setQuestionAnswer() {
+    }
+
+    ngAfterViewInit() {
+        // here check if the survey was previously completed or not.
+        // if the survey was previously completed then set the answer
+        if (this.employeeService.surveyCompleted) {
+            const self = this;
+            setTimeout(function () {
+                self.setQuestionAnswer();
+            }, 1000);
+        }
     }
 }

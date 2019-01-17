@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Answer = require('../models/answer');
 
 //RELATIONAL MODEL
@@ -50,13 +51,50 @@ exports.CreateMany = (req, res, next) => {
     let employeeId = req.query.employeeId;
     // after save the answer
     // mark the survey as complete
+    let questions = [];
+    data.forEach((answer) => {
+        questions.push(answer.question);
+    });
+
     Employee.findById(employeeId, (err, employee) => {
-        res.json({data, message:"Answer successfully created",employee})
+
+        if (err) return next(err);
+
+        Answer.insertMany(data, (err, docs) => {
+            let answers = [];
+
+            // get all the question
+            // from the docs extract the answer _id
+
+            docs.forEach((answer) => {
+                answers.push(answer._id)
+            });
+
+            Question.find({'_id': {$in: questions}}, function (err, question_docs) {
+                if (err) return next(err);
+
+                question_docs.forEach((question, index) => {
+                    question.answers.push(answers[index]);
+                    question.save();
+                });
+
+                //finally mark the employee survey as complete
+                employee.surveys.forEach((employee_survey) => {
+                    surveyId = mongoose.Types.ObjectId(surveyId);
+                    if (employee_survey.survey.equals(surveyId)) {
+                        employee_survey.completed = true;
+                    }
+                });
+                employee.save().then(() => {
+                    res.json({message: "Answer successfully recorded", success: true})
+                })
+            })
+        });
     });
 };
 exports.UpdateAnswers = (req, res, next) => {
     let data = req.body;
-    res.json({data, message:"Answer successfully updated"});
+    res.json({data, message: "Answer successfully updated"});
 };
 
 exports.Find = (req, res, next) => {

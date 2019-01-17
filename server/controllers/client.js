@@ -314,7 +314,6 @@ exports.AssignSurvey = (req, res, next) => {
 
     //check if the client is found or not
     Client.findById(clientId).then((client) => {
-        console.log(client);
         client.surveys.push(surveyId);
         // Also find all the employees under this client
         // Foreach employee survey list save the survey
@@ -333,9 +332,7 @@ exports.AssignSurvey = (req, res, next) => {
 const employeeAssignSurvey = (employees, surveyId) => {
     return new Promise((resolve, reject) => {
         // here employee is the id of the employee.
-        Employee.find({
-            '_id': {$in: employees}
-        }, function (err, docs) {
+        Employee.find({'_id': {$in: employees}}, function (err, docs) {
             if (err) {
                 reject(err)
             } else {

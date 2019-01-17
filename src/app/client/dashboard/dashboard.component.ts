@@ -15,7 +15,9 @@ export class DashboardComponent implements OnInit {
     employee;
     completedSurveys = [];
 
-    constructor(private surveyService: SurveyService, private router: Router, private employeeService: EmployeeService) {
+    constructor(private surveyService: SurveyService,
+                private router: Router,
+                private employeeService: EmployeeService) {
     }
 
     ngOnInit() {
@@ -70,7 +72,8 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    onClickGoSurvey(surveyId) {
+    onClickGoSurvey(surveyId, completed) {
+        this.employeeService.surveyCompleted = completed;
         this.router.navigateByUrl('/client/questions/' + surveyId);
     }
 

@@ -11,6 +11,7 @@ const httpOptions = {
 export class EmployeeService {
     authChange = new Subject<boolean>();
     employee;
+    surveyCompleted = false;
 
     isAuth() {
         return this.employee != null;
