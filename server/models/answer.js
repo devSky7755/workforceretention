@@ -29,6 +29,10 @@ const answerSchema = new Schema({
     question: {
         type: Schema.Types.ObjectId,
         ref: 'Question'
+    },
+    survey: {
+        type: Schema.Types.ObjectId,
+        ref: 'Survey'
     }
 
 });

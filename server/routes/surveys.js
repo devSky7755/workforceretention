@@ -5,6 +5,8 @@ const surveyController = require('../controllers/survey');
 
 router.post('/:userId', surveyController.Create);
 
+router.get('/questions/answers/:surveyId', surveyController.SurveyQuestionsAnswers);
+
 router.get('/questions/:surveyId', surveyController.SurveyQuestions);
 
 router.get('/', surveyController.Find);

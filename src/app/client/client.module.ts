@@ -16,6 +16,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuestionsComponent } from './questions/questions.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
         FooterComponent,
         PageNameComponent,
         DashboardComponent,
-        QuestionsComponent
+        QuestionsComponent,
+        ProfileComponent
     ],
     imports: [
         CommonModule,

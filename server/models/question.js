@@ -34,12 +34,10 @@ const questionSchema = new Schema({
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    answers: [
-        {
+    answers: [{
             type: Schema.Types.ObjectId,
             ref: 'Answer'
-        }
-    ]
+        }]
 
 }, {timestamps: true});
 // surveySchema.pre('remove', function (next) {

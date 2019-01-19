@@ -43,5 +43,7 @@ router.delete('/:id', employeeController.Delete);
 // SET UP RELATIONAL ROUTES
 router.get('/surveys/:employeeId', employeeController.FindSurveys);
 
+// router.get('/details/:employeeId', employeeController.FindEmployeeDetails);
+
 
 module.exports = router;

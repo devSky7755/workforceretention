@@ -29,6 +29,9 @@ export class EmployeeService {
     getEmployee(id): Observable<any> {
         return this.http.get(this.urlService.baseUrl + '/api/v1/employees/' + id);
     }
+    getEmployeeDetails(id): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + '/api/v1/employees/details/' + id);
+    }
 
     createEmployee(employee, clientId): Observable<any> {
         const body = JSON.stringify(employee);

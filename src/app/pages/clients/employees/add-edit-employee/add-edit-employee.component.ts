@@ -285,7 +285,6 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
         //here we will get the clientId and employeeId on the changes object
         //Find The Employee and set the employee
         this.clientId = changes.clientId.currentValue;

@@ -1,25 +1,26 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {SurveyService} from "../../@core/data/survey.service";
-import {AnswerService} from "../../@core/data/answer.service";
-import {EmployeeService} from "../../@core/data/employee.service";
-import {indexDebugNode} from "@angular/core/src/debug/debug_node";
+import {SurveyService} from "../../../../@core/data/survey.service";
+import {AnswerService} from "../../../../@core/data/answer.service";
+import {EmployeeService} from "../../../../@core/data/employee.service";
 
 @Component({
-    selector: 'ngx-questions',
-    templateUrl: './questions.component.html',
-    styleUrls: ['./questions.component.scss']
+    selector: 'ngx-employee-survey',
+    templateUrl: './employee-survey.component.html',
+    styleUrls: ['./employee-survey.component.scss']
 })
-export class QuestionsComponent implements OnInit, AfterViewInit {
+export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges {
 
-    surveyId;
+    @Input() surveyId: string;
+    @Input() clientId: string;
+    @Input() employeeId: string;
+    @Input() surveyCompleted: string;
     employee;
     questions = [];
     categorical_questions = [];
     answers = [];
     question_answers = [];
     survey;
-    surveyCompleted;
     survey_types = [
         {id: 1, value: 'RECAP'},
         {id: 2, value: 'Exit Interview'}
@@ -91,19 +92,6 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.surveyId = this.route.snapshot.paramMap.get('id');
-        // here parse the employee
-        // check the localStorage. if get the user id then set isAuth to true
-        if (localStorage.getItem('employee')) {
-            // parse the employee object and check the expiration of the login. if the login time is expired
-            this.employee = JSON.parse(localStorage.getItem('employee'));
-        }
-        // This would print out the json object which contained
-        // all of our query parameters for this particular route.
-        this.route.queryParams.subscribe(params => {
-            this.surveyCompleted = params['completed'];
-        });
-        this.getSurvey();
     }
 
     getSurvey() {
@@ -277,7 +265,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             // since here is list of answers server needs to handle list of answer
             // foreach answer set the employee. so that in server we need to do less processing
             this.question_answers.map((answer) => {
-                answer.employee = this.employee.employee_id;
+                answer.employee = this.employeeId;
                 answer.survey = this.surveyId;
             });
             if (this.surveyCompleted) {
@@ -289,9 +277,10 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     saveQuestionAnswer() {
-        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employee.employee_id).subscribe(
-            () => {
-                this.router.navigateByUrl('/client/dashboard');
+        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employeeId).subscribe(
+            data => {
+                alert(data.message);
+                this.router.navigateByUrl('/pages/clients/client-selection/details/' + this.clientId);
             }
         );
     }
@@ -302,14 +291,15 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             // remove everything except the options since options will be updated
         });
         this.answerService.updateManyAnswer(this.answers).subscribe(
-            () => {
-                this.router.navigateByUrl('/client/dashboard');
+            data => {
+                alert(data.message);
+                this.router.navigateByUrl('/pages/clients/client-selection/details/' + this.clientId);
             }
         );
     }
 
     setQuestionAnswer() {
-        this.answerService.getEmployeeSurveyAnswer(this.employee.employee_id, this.surveyId).subscribe(
+        this.answerService.getEmployeeSurveyAnswer(this.employeeId, this.surveyId).subscribe(
             data => {
                 this.answers = data.answers;
                 this.setAnswer();
@@ -411,6 +401,17 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+
+        this.surveyId = changes.surveyId.currentValue;
+        this.employeeId = changes.employeeId.currentValue;
+        this.clientId = changes.clientId.currentValue;
+        this.surveyCompleted = changes.surveyCompleted.currentValue;
+        if (typeof this.surveyId !== 'undefined' && this.surveyId !== null) {
+            this.getSurvey();
+        }
         // here check if the survey was previously completed or not.
         // if the survey was previously completed then set the answer
         if (this.surveyCompleted) {
@@ -420,4 +421,5 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             }, 1000);
         }
     }
+
 }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {URLService} from "./url.service";
+import {Observable} from "rxjs";
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -26,14 +27,18 @@ export class AnswerService {
         return this.http.post(this.urlService.baseUrl + '/api/v1/answers', body, httpOptions);
     }
 
-    createManyAnswer(answer, surveyId, employeeId) {
+    createManyAnswer(answer, surveyId, employeeId): Observable<any> {
         const body = JSON.stringify(answer);
         return this.http.post(this.urlService.baseUrl + `/api/v1/answers/add-many?surveyId=${surveyId}&employeeId=${employeeId}`, body, httpOptions);
     }
 
-    updateManyAnswer(answer) {
+    updateManyAnswer(answer): Observable<any> {
         const body = JSON.stringify(answer);
         return this.http.post(this.urlService.baseUrl + '/api/v1/answers/update-many', body, httpOptions);
+    }
+
+    getEmployeeSurveyAnswer(employeeId, surveyId): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + `/api/v1/answers/employee/survey?surveyId=${surveyId}&employeeId=${employeeId}`);
     }
 
     updateAnswer(answer, id) {

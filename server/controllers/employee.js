@@ -3,6 +3,9 @@ const Employee = require('../models/employee');
 //RELATIONAL MODEL
 const Client = require('../models/client');
 const Organization = require('../models/organization');
+const Division = require('../models/division');
+const Department = require('../models/department');
+
 //Validation Library
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -64,7 +67,13 @@ exports.Upload = function (req, res, next) {
                     const employeeDepartment = findDepartmentByName(json[i].department, organizations);
                     json[i].department = employeeDepartment ? employeeDepartment : null;
 
-                    //here before push the json object bcrypt password
+                    // here before push the json object check if the employee client has assign surveys. if so then assign that surveys to the employee
+                    let clientSurveys = [];
+                    client.surveys.forEach((survey) => {
+                        let employeeSurvey = {survey: survey, completed: false};
+                        clientSurveys.push(employeeSurvey);
+                    });
+                    json[i].surveys = clientSurveys;
                     employees.push(json[i]);
                 }
                 //before generating password we need to checkout if employee exist with the given email
@@ -267,6 +276,13 @@ exports.Create = function (req, res, next) {
                     if (!client) {
                         return res.status(404).json({status: false, message: 'Client not found!'})
                     }
+                    // here before create the employee check if the employee client has assign surveys. if so then assign that surveys to the employee
+                    let clientSurveys = [];
+                    client.surveys.forEach((survey) => {
+                        let employeeSurvey = {survey: survey, completed: false};
+                        clientSurveys.push(employeeSurvey);
+                    });
+                    data.surveys = clientSurveys;
                     data.password = hash;
                     const employee = new Employee(data);
                     employee.save().then(employee => {
@@ -538,11 +554,96 @@ exports.FindSurveys = (req, res, next) => {
 
     Employee.findById(employeeId)
         .populate({
-            path: 'surveys.survey'
+            path: 'surveys.survey',
         })
         .exec(function (err, employee) {
             if (err) return next(err);
-            return res.status(200).json({success: true, surveys : employee.surveys})
+            return res.status(200).json({success: true, surveys: employee.surveys})
         });
 };
+
+// exports.FindEmployeeDetails = (req, res, next) => {
+//     const employeeId = req.params.employeeId;
+//
+//     Employee.findById(employeeId, (err, employee) => {
+//         if (err) return next(err);
+//         console.log(employee);
+//         // check if the employee organization is null or not
+//         findOrganization(employee.organization).then((organization) => {
+//             employee.organization = organization;
+//             findDivision(employee.division)
+//         }).then((division) => {
+//             employee.division = division;
+//             findDepartment(employee.department)
+//         }).then((department) => {
+//             employee.department = department;
+//             return res.status(200).json({success: true, employee})
+//         }).catch((err) => next(err))
+//         // check if the employee division is null or not
+//         // check if the employee department is null or not
+//     })
+// };
+//
+// const findOrganization = (organizationId) => {
+//     return new Promise((resolve, reject) => {
+//         if (organizationId) {
+//             Organization.findById(organizationId, (err, organization) => {
+//                 console.log(organization);
+//                 if (err) {
+//                     reject(err)
+//                 } else {
+//                     if (organization) {
+//                         resolve(organization.name)
+//                     } else {
+//                         resolve(null)
+//                     }
+//                 }
+//             })
+//         } else {
+//             resolve(null);
+//         }
+//     })
+// };
+//
+// const findDivision = (divisionId) => {
+//     return new Promise((resolve, reject) => {
+//         if (divisionId) {
+//             Division.findById(divisionId, (err, division) => {
+//                 console.log(division);
+//                 if (err) {
+//                     reject(err)
+//                 } else {
+//                     if (division) {
+//                         resolve(division.name)
+//                     } else {
+//                         resolve(null)
+//                     }
+//                 }
+//             })
+//         } else {
+//             resolve(null);
+//         }
+//     })
+// };
+//
+// const findDepartment = (departmentId) => {
+//     return new Promise((resolve, reject) => {
+//         if (departmentId) {
+//             Division.findById(departmentId, (err, department) => {
+//                 console.log(department);
+//                 if (err) {
+//                     reject(err)
+//                 } else {
+//                     if (department) {
+//                         resolve(department.name)
+//                     } else {
+//                         resolve(null)
+//                     }
+//                 }
+//             })
+//         } else {
+//             resolve(null);
+//         }
+//     })
+// };
 

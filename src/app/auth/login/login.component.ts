@@ -7,14 +7,6 @@ export class LoginComponent extends NbLoginComponent implements OnInit, OnDestro
     loginService: Subscription;
 
     ngOnInit() {
-        this.loginService = this.service.getToken()
-            .subscribe(token => {
-                if (token.isValid()) {
-                    console.log('I am redirecting from here');
-                    // Navigate the employee to the product staticPage
-                    this.router.navigateByUrl('/pages/dashboard');
-                }
-            });
     }
 
     ngOnDestroy() {

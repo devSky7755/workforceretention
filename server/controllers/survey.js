@@ -173,3 +173,19 @@ exports.SurveyQuestions = (req, res, next) => {
 };
 
 // Get survey question answer by employee
+exports.SurveyQuestionsAnswers = (req, res, next) => {
+    let surveyId = req.params.surveyId;
+
+    Survey.findById(surveyId)
+        .populate([{
+            path: 'questions',
+            model: 'Question',
+            populate: {
+                path:'questions.answers'
+            }
+        }])
+        .exec(function (err, survey) {
+            if (err) return next(err);
+            return res.status(200).json({success: true, survey})
+        });
+};

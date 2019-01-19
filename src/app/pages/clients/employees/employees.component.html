@@ -26,7 +26,7 @@
             Username
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-            <strong>{{value}}</strong>
+            <a [routerLink]="" (click)="onClickDetails(row.id)"> <strong>{{value}}</strong></a>
         </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="email">

@@ -94,7 +94,19 @@ exports.CreateMany = (req, res, next) => {
 };
 exports.UpdateAnswers = (req, res, next) => {
     let data = req.body;
-    res.json({data, message: "Answer successfully updated"});
+    let answer_ids = [];
+    data.forEach((answer) => {
+        answer_ids.push(answer._id);
+    });
+    // find out the answers by the answer ids
+    Answer.find({'_id': {$in: answer_ids}}, function (err, answers) {
+        if (err) return next(err);
+        answers.forEach((answer, index) => {
+            answer.options = data[index].options;
+            answer.save();
+        });
+        res.json({success: true, message: "Answer successfully updated"});
+    });
 };
 
 exports.Find = (req, res, next) => {
@@ -200,5 +212,17 @@ exports.Delete = (req, res, next) => {
             });
         });
     });
+};
+
+
+// RELATIONAL FUNCTIONS
+exports.FindEmployeeSurveyQuestionsAnswers = (req, res, next) => {
+    let surveyId = req.query.surveyId;
+    let employeeId = req.query.employeeId;
+    Answer.find({survey: surveyId, employee: employeeId}, (err, answers) => {
+        if (err) return next(err);
+        console.log(answers);
+        res.json({answers});
+    })
 };
 

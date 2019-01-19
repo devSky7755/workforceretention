@@ -26,6 +26,8 @@ import {AddEditEmailComponent} from './emails/add-edit-email/add-edit-email.comp
 import {DivisionsComponent} from './organizations/divisions/divisions.component';
 import {DepartmentsComponent} from './organizations/departments/departments.component';
 import { SurveysComponent } from './surveys/surveys.component';
+import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
+import { EmployeeSurveyComponent } from './employees/employee-survey/employee-survey.component';
 
 @NgModule({
     declarations: [ClientSelectionComponent, AddEditClientComponent,
@@ -40,7 +42,9 @@ import { SurveysComponent } from './surveys/surveys.component';
         AddEditEmailComponent,
         DivisionsComponent,
         DepartmentsComponent,
-        SurveysComponent],
+        SurveysComponent,
+        EmployeeDetailsComponent,
+        EmployeeSurveyComponent],
     imports: [
         CommonModule,
         ClientsRoutingModule,

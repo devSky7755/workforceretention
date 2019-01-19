@@ -74,7 +74,7 @@ export class DashboardComponent implements OnInit {
 
     onClickGoSurvey(surveyId, completed) {
         this.employeeService.surveyCompleted = completed;
-        this.router.navigateByUrl('/client/questions/' + surveyId);
+        this.router.navigate(['/client/questions/' + surveyId], {queryParams: {completed: completed}});
     }
 
 }

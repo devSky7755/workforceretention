@@ -31,6 +31,10 @@ export class SurveyService {
         return this.http.get(this.urlService.baseUrl + '/api/v1/surveys/questions/' + surveyId);
     }
 
+    getSurveyQuestionsAnswers(surveyId): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + '/api/v1/surveys/questions/answers/' + surveyId);
+    }
+
     createSurvey(survey, userId): Observable<any> {
         const body = JSON.stringify(survey);
         return this.http.post(this.urlService.baseUrl + `/api/v1/surveys/${userId}`, body, httpOptions);

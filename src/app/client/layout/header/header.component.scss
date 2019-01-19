@@ -10,11 +10,19 @@
   text-decoration: none;
   box-sizing: border-box;
 }
-.active{
+
+.active {
   border-bottom: 2px solid #fff;
 }
-body, html { height: 100%; overflow: hidden;}
-ul, ol { list-style: none; }
+
+body, html {
+  height: 100%;
+  overflow: hidden;
+}
+
+ul, ol {
+  list-style: none;
+}
 
 header {
   width: 100%;
@@ -52,7 +60,9 @@ header nav .logo {
   text-decoration: none;
 }
 
-header nav .logo a { color: #fff; }
+header nav .logo a {
+  color: #fff;
+}
 
 header nav ul {
   display: flex;
@@ -69,7 +79,7 @@ header nav li a {
 header nav li a:before, header nav li a:after {
   content: "";
   bottom: 0;
-  width: 0px;
+  width: 0;
   height: 2px;
   display: block;
   position: absolute;
@@ -77,13 +87,20 @@ header nav li a:before, header nav li a:after {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-nav ul li a:hover{
+
+nav ul li a:hover {
   text-decoration: none;
 }
-header nav li a:before { right: 50%; }
-header nav li a:after { left: 50%; }
 
-header nav li a:hover:before , header nav li a:hover:after {
+header nav li a:before {
+  right: 50%;
+}
+
+header nav li a:after {
+  left: 50%;
+}
+
+header nav li a:hover:before, header nav li a:hover:after {
   width: 50%;
 }
 
@@ -95,3 +112,39 @@ header nav li a:hover:before , header nav li a:hover:after {
   }
 }
 
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  color: #fff;
+}
+.dropdown-item:hover{
+  background-color: transparent;
+  transition: 1s ease-in-out;
+}
+
+nav ul ul {
+  text-align: left;
+  border-radius: 3px;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 60px;
+  padding: 0;
+  z-index: 99999;
+  opacity: 0;
+  visibility: hidden;
+  width: 200px;
+  transition: all 0.25s ease-out;
+}
+
+nav li:hover ul {
+  top: 50px;
+  opacity: 1;
+  visibility: visible;
+}
+.dropdown-image{
+  top: -10px;
+  width: 100px;
+  position: relative;
+}

@@ -20,6 +20,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
 
     @Input() clientId: string;
     @Output() employeeEdit = new EventEmitter();
+    @Output() employeeDetails = new EventEmitter();
     rows = [];
     count = 0;
     offset = 0;
@@ -54,6 +55,10 @@ export class EmployeesComponent implements OnInit, OnChanges {
         if (confirm("Are you sure to delete " + name)) {
             this.deleteEmployee(employeeId);
         }
+    }
+
+    onClickDetails(id) {
+        this.employeeDetails.emit({employeeId: id});
     }
 
     deleteEmployee(employeeId) {

@@ -14,11 +14,16 @@ export class ClientTabsComponent implements OnInit {
     employeeId;
     divisionId;
     departmentId;
+    surveyCompleted;
+    surveyId;
 
     //IS ADD EDIT Variable is used to display the Form for editing
     isAddDivision = false;
     isAddDepartment = false;
     isAddEmployee = false;
+    isShowEmployeeTable = false;
+    showEmployeeDetails = false;
+    isShowEmployeeSurvey = false;
     isAddOrganization = false;
     isEditEmail = false;
 
@@ -33,6 +38,7 @@ export class ClientTabsComponent implements OnInit {
     onTabChange($event) {
         switch ($event.tabTitle) {
             case 'Employees':
+                this.isShowEmployeeTable = true;
                 this.selectTab();
                 break;
             case 'Organizations':
@@ -69,6 +75,7 @@ export class ClientTabsComponent implements OnInit {
         this.divisionId = null;
         this.selectTab();
     }
+
     selectDepartment() {
         this.isShowOrganization = true;
         this.isShowDivision = false;
@@ -80,7 +87,9 @@ export class ClientTabsComponent implements OnInit {
     }
 
     selectTab() {
+        this.isShowEmployeeSurvey = false;
         this.isAddEmployee = false;
+        this.showEmployeeDetails = false;
         this.isAddOrganization = false;
         this.isEditEmail = false;
         this.isAddDivision = false;
@@ -92,7 +101,6 @@ export class ClientTabsComponent implements OnInit {
     }
 
     onClickAddDivision(event) {
-        console.log(event);
         this.organizationId = event.organizationId;
         this.isAddDivision = true;
         this.isShowDivision = false;
@@ -111,7 +119,6 @@ export class ClientTabsComponent implements OnInit {
     }
 
     onClickViewDivision(event) {
-        console.log(event);
         this.organizationId = event.organizationId;
         this.isShowDivision = true;
         this.isAddDivision = false;
@@ -122,7 +129,6 @@ export class ClientTabsComponent implements OnInit {
     }
 
     onClickAddDepartment(event) {
-        console.log(event);
         this.divisionId = event.divisionId;
         this.isShowDepartment = false;
         this.isAddDepartment = true;
@@ -133,7 +139,6 @@ export class ClientTabsComponent implements OnInit {
     }
 
     onClickViewDepartment(event) {
-        console.log(event);
         this.divisionId = event.divisionId;
         this.isShowDepartment = true;
         this.isAddDepartment = false;
@@ -153,9 +158,30 @@ export class ClientTabsComponent implements OnInit {
         this.isAddDivision = false;
     }
 
+    onClickEmployeeDetails(event) {
+        this.employeeId = event.employeeId;
+        this.showEmployeeDetails = true;
+        this.isShowEmployeeSurvey = false;
+        this.isAddEmployee = false;
+        this.isShowEmployeeTable = false;
+    }
+
+    editSurvey(event) {
+        console.log(event);
+        this.surveyId = event.surveyId;
+        this.surveyCompleted = event.surveyCompleted;
+        this.isAddEmployee = false;
+        this.isShowEmployeeSurvey = true;
+        this.isShowEmployeeTable = false;
+        this.showEmployeeDetails = false;
+    }
+
     editEmployee(event) {
         this.employeeId = event.employeeId;
         this.isAddEmployee = true;
+        this.isShowEmployeeSurvey = false;
+        this.isShowEmployeeTable = false;
+        this.showEmployeeDetails = false;
     }
 
     editEmail(event) {
