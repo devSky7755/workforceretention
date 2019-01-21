@@ -2,42 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/client/profile/profile.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/client/profile/profile.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/client/profile/profile.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/survey.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/survey.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/question.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/employees.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/employees.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/surveys.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/surveys.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/employee.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/employee.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/survey.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/survey.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/@core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/core.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/auth/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/auth/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/client-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/client-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/client.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/client.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/layout/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/layout/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/layout/header/header.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/layout/header/header.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/questions/questions.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/questions/questions.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/questions/questions.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/questions/questions.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/clients.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/clients.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -50,35 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="100" column="74" selection-start-line="100" selection-start-column="74" selection-end-line="100" selection-end-column="74" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="281" column="36" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/@core/data/answer.service.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -102,7 +43,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/controllers/auth.js" />
         <option value="$PROJECT_DIR$/server/controllers/user.js" />
         <option value="$PROJECT_DIR$/angular.json" />
         <option value="$PROJECT_DIR$/src/app/client/authentication/authentication.component.scss" />
@@ -118,8 +58,6 @@
         <option value="$PROJECT_DIR$/server/models/employee.js" />
         <option value="$PROJECT_DIR$/server/schema/employee_survey.js" />
         <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
         <option value="$PROJECT_DIR$/server/controllers/client.js" />
         <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/questions/questions.component.html" />
@@ -143,7 +81,6 @@
         <option value="$PROJECT_DIR$/server/controllers/employee.js" />
         <option value="$PROJECT_DIR$/server/routes/employees.js" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/auth/login/login.component.ts" />
         <option value="$PROJECT_DIR$/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.ts" />
@@ -153,6 +90,10 @@
         <option value="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.html" />
+        <option value="$PROJECT_DIR$/src/app/auth/login/login.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
       </list>
     </option>
   </component>
@@ -172,6 +113,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -179,115 +121,10 @@
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
               <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="questions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="client-selection" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="client-selection" type="462c0819:PsiDirectoryNode" />
-              <item name="client-tabs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="employees" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="employees" type="462c0819:PsiDirectoryNode" />
-              <item name="add-edit-employee" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="employees" type="462c0819:PsiDirectoryNode" />
-              <item name="employee-details" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="employees" type="462c0819:PsiDirectoryNode" />
-              <item name="employee-survey" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -402,16 +239,18 @@
       <workItem from="1547740335231" duration="5954000" />
       <workItem from="1547807748909" duration="14092000" />
       <workItem from="1547832767223" duration="14645000" />
-      <workItem from="1547879753420" duration="20755000" />
+      <workItem from="1547879753420" duration="21980000" />
+      <workItem from="1547968281334" duration="1312000" />
+      <workItem from="1548003057314" duration="194000" />
+      <workItem from="1548094128139" duration="2616000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289597000" />
+    <option name="totallyTimeSpent" value="294944000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24653405" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -438,15 +277,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/assets/images/home-bg.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/images/kitten-default.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/images/page_banner.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/images/square_pattern.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -586,16 +416,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/auth/login/login.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/auth-guard.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
@@ -658,16 +478,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="36" column="70" lean-forward="true" selection-start-line="36" selection-start-column="70" selection-end-line="36" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="44" column="99" selection-start-line="44" selection-start-column="99" selection-end-line="44" selection-end-column="99" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#form#0;n#nb-card#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -776,24 +586,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/answer.service.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/auth/login/login.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+        <state relative-caret-position="75">
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="281" column="36" selection-start-line="281" selection-start-column="36" selection-end-line="281" selection-end-column="36" />
+        <state relative-caret-position="5055">
+          <caret line="337" column="13" lean-forward="true" selection-start-line="337" selection-start-column="13" selection-end-line="337" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="100" column="74" selection-start-line="100" selection-start-column="74" selection-end-line="100" selection-end-column="74" />
+        <state relative-caret-position="315">
+          <caret line="21" column="44" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1643">
+          <caret line="44" column="99" selection-start-line="44" selection-start-column="99" selection-end-line="44" selection-end-column="99" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#form#0;n#nb-card#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3870">
+          <caret line="262" column="34" lean-forward="true" selection-start-line="262" selection-start-column="34" selection-end-line="262" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/answer.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="48" column="23" lean-forward="true" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#80#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

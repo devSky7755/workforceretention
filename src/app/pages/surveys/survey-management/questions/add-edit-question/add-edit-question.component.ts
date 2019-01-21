@@ -277,6 +277,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     submitSurvey() {
         // check the questions length
         // if question length is 0 that means we need to insert all the questions
+        const errors = [];
         const question_array = [];
         for (let i = 0; i < this.phoneForms.controls.length; i++) {
             const question_object = {};
@@ -329,15 +330,37 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             question_object['type'] = question_type;
             question_object['exit_reason'] = exit_reason;
             question_object['exit_reporting_label'] = exit_reporting_label;
+            if (title === '' || this.isNullOrEmpty(title)) {
+                errors.push('title field is required for question no => ' + (i + 1));
+            }
+            if (exit_reason === '' || this.isNullOrEmpty(exit_reason)) {
+                errors.push('select exit reporting reason for question no => ' + (i + 1));
+            }
+            if (exit_reporting_label === '' || this.isNullOrEmpty(exit_reporting_label)) {
+                errors.push('exit reporting label field is required for question no => ' + (i + 1));
+            }
+            // exit_reason = 13 means this is the final question
+            if ((question_type === '' || this.isNullOrEmpty(question_type)) && exit_reason != 13) {
+                errors.push('select question type for question no => ' + (i + 1));
+            }
             question_array.push(question_object);
         }
-        // save the survey
-        // after survey successfully saved go to the survey list page
-        if (this.questions.length == 0) {
-            this.saveSurveyQuestion(question_array);
+        // validate the question
+        if (errors.length > 0) {
+            alert(errors[0]);
         } else {
-            this.updateSurveyQuestion(question_array);
+            // save the survey
+            // after survey successfully saved go to the survey list page
+            if (this.questions.length == 0) {
+                this.saveSurveyQuestion(question_array);
+            } else {
+                this.updateSurveyQuestion(question_array);
+            }
         }
+    }
+
+    isNullOrEmpty(obj) {
+        return typeof obj === 'undefined' || obj === null;
     }
 
     saveSurveyQuestion(question_array) {
