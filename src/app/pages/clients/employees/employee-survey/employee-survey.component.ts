@@ -60,8 +60,8 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     ];
     exit_reason = [
         {id: 11, value: 'Initial Question'},
-        {id: 1, value: 'Career Opportunities'},
         {id: 10, value: 'Being Valued'},
+        {id: 1, value: 'Career Opportunities'},
         {id: 15, value: 'Restructure'},
         {id: 3, value: 'Communication'},
         {id: 5, value: 'Induction'},

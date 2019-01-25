@@ -3,8 +3,6 @@ const Employee = require('../models/employee');
 //RELATIONAL MODEL
 const Client = require('../models/client');
 const Organization = require('../models/organization');
-const Division = require('../models/division');
-const Department = require('../models/department');
 
 //Validation Library
 const Joi = require('joi');
@@ -161,6 +159,7 @@ const passwordGenerator = function (employees, client) {
 
                         // step-2 : replace the [client_name] by the client.username
                         body = body.replace('[client_name]', client.name);
+                        body = body.replace('[client_name]', client.name);
                         subject = subject.replace('[client_name]', client.name);
                         body = body.replace('[employee_firstname]', employee.first_name);
 
@@ -297,6 +296,7 @@ exports.Create = function (req, res, next) {
                         let to = employee.email;
 
                         // step-2 : replace the [client_name] by the client.username
+                        body = body.replace('[client_name]', client.name);
                         body = body.replace('[client_name]', client.name);
                         subject = subject.replace('[client_name]', client.name);
                         body = body.replace('[employee_firstname]', employee.first_name);
@@ -561,89 +561,4 @@ exports.FindSurveys = (req, res, next) => {
             return res.status(200).json({success: true, surveys: employee.surveys})
         });
 };
-
-// exports.FindEmployeeDetails = (req, res, next) => {
-//     const employeeId = req.params.employeeId;
-//
-//     Employee.findById(employeeId, (err, employee) => {
-//         if (err) return next(err);
-//         console.log(employee);
-//         // check if the employee organization is null or not
-//         findOrganization(employee.organization).then((organization) => {
-//             employee.organization = organization;
-//             findDivision(employee.division)
-//         }).then((division) => {
-//             employee.division = division;
-//             findDepartment(employee.department)
-//         }).then((department) => {
-//             employee.department = department;
-//             return res.status(200).json({success: true, employee})
-//         }).catch((err) => next(err))
-//         // check if the employee division is null or not
-//         // check if the employee department is null or not
-//     })
-// };
-//
-// const findOrganization = (organizationId) => {
-//     return new Promise((resolve, reject) => {
-//         if (organizationId) {
-//             Organization.findById(organizationId, (err, organization) => {
-//                 console.log(organization);
-//                 if (err) {
-//                     reject(err)
-//                 } else {
-//                     if (organization) {
-//                         resolve(organization.name)
-//                     } else {
-//                         resolve(null)
-//                     }
-//                 }
-//             })
-//         } else {
-//             resolve(null);
-//         }
-//     })
-// };
-//
-// const findDivision = (divisionId) => {
-//     return new Promise((resolve, reject) => {
-//         if (divisionId) {
-//             Division.findById(divisionId, (err, division) => {
-//                 console.log(division);
-//                 if (err) {
-//                     reject(err)
-//                 } else {
-//                     if (division) {
-//                         resolve(division.name)
-//                     } else {
-//                         resolve(null)
-//                     }
-//                 }
-//             })
-//         } else {
-//             resolve(null);
-//         }
-//     })
-// };
-//
-// const findDepartment = (departmentId) => {
-//     return new Promise((resolve, reject) => {
-//         if (departmentId) {
-//             Division.findById(departmentId, (err, department) => {
-//                 console.log(department);
-//                 if (err) {
-//                     reject(err)
-//                 } else {
-//                     if (department) {
-//                         resolve(department.name)
-//                     } else {
-//                         resolve(null)
-//                     }
-//                 }
-//             })
-//         } else {
-//             resolve(null);
-//         }
-//     })
-// };
 

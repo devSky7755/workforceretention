@@ -86,7 +86,7 @@ exports.CreateMany = (req, res, next) => {
                     }
                 });
                 employee.save().then(() => {
-                    res.json({message: "Answer successfully recorded", success: true})
+                    res.json({message: "Exit Interview submitted successfully", success: true})
                 })
             })
         });
@@ -105,7 +105,7 @@ exports.UpdateAnswers = (req, res, next) => {
             answer.options = data[index].options;
             answer.save();
         });
-        res.json({success: true, message: "Answer successfully updated"});
+        res.json({success: true, message: "Exit Interview Updated"});
     });
 };
 

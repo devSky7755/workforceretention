@@ -278,6 +278,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
         // check the questions length
         // if question length is 0 that means we need to insert all the questions
         const errors = [];
+        const final_questions = [];
         const question_array = [];
         for (let i = 0; i < this.phoneForms.controls.length; i++) {
             const question_object = {};
@@ -323,6 +324,14 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
 
             //exit-reason
             const exit_reason = this.phoneForms.controls[i].get('exit_reason').value;
+            if (exit_reason == 13) {
+                // this means this is the final question
+                // now check if the question type Exit Interview Exit Reason ---> 3
+                if (question_type != 3) {
+                    errors.push('For Exit Reporting Reason Final Question Question Type Should be Exit Interview Exit Reason');
+                }
+                final_questions.push(i + 1);
+            }
             // exit-reporting-label
             const exit_reporting_label = this.phoneForms.controls[i].get('line').value;
             question_object['_id'] = id;
@@ -344,6 +353,14 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
                 errors.push('select question type for question no => ' + (i + 1));
             }
             question_array.push(question_object);
+        }
+        if (final_questions.length > 1) {
+            // this means this survey has multiple final questions
+            errors.push('There should have only one question which Exit Reporting Reason is Final Question');
+        }
+        if (final_questions.length === 0) {
+            // this means there is no final question
+            errors.push('There should have at least one question which Exit Reporting Reason is Final Question');
         }
         // validate the question
         if (errors.length > 0) {

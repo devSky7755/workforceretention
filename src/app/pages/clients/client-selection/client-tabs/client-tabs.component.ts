@@ -97,7 +97,11 @@ export class ClientTabsComponent implements OnInit {
     }
 
     onClickAddEmployee() {
+        this.employeeId = null;
         this.isAddEmployee = true;
+        this.isShowEmployeeSurvey = false;
+        this.isShowEmployeeTable = false;
+        this.showEmployeeDetails = false;
     }
 
     onClickAddDivision(event) {
@@ -116,16 +120,6 @@ export class ClientTabsComponent implements OnInit {
 
     addDepartmentButtonClicked() {
         this.onClickAddDepartment({divisionId: this.divisionId});
-    }
-
-    onClickViewDivision(event) {
-        this.organizationId = event.organizationId;
-        this.isShowDivision = true;
-        this.isAddDivision = false;
-        this.isShowOrganization = false;
-        this.isAddOrganization = false;
-        this.isShowDepartment = false;
-        this.isAddDepartment = false;
     }
 
     onClickAddDepartment(event) {
@@ -167,7 +161,6 @@ export class ClientTabsComponent implements OnInit {
     }
 
     editSurvey(event) {
-        console.log(event);
         this.surveyId = event.surveyId;
         this.surveyCompleted = event.surveyCompleted;
         this.isAddEmployee = false;

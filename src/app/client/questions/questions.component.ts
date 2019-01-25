@@ -59,8 +59,8 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     ];
     exit_reason = [
         {id: 11, value: 'Initial Question'},
-        {id: 1, value: 'Career Opportunities'},
         {id: 10, value: 'Being Valued'},
+        {id: 1, value: 'Career Opportunities'},
         {id: 15, value: 'Restructure'},
         {id: 3, value: 'Communication'},
         {id: 5, value: 'Induction'},
@@ -233,16 +233,20 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
                     let second_choice_valid = false;
                     // Final Question
                     // get the 1st  choice and 2nd choice
-                    this.exit_reason_checkbox.map((exit_reason) => {
-                        const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
-                        const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
-                        if (first_choice_radio_input.checked) {
-                            options.push('1st-choice-' + exit_reason.id);
-                            first_choice_valid = true;
-                        }
-                        if (second_choice_radio_input.checked) {
-                            options.push('2nd-choice-' + exit_reason.id);
-                            second_choice_valid = true;
+                    this.exit_reason_checkbox.map((exit_reason, index) => {
+                        // check if the question.options[index]=='true' or not.
+                        // if true then execute the below functionality
+                        if (question.options[index] == 'true') {
+                            const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
+                            const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
+                            if (first_choice_radio_input.checked) {
+                                options.push('1st-choice-' + exit_reason.id);
+                                first_choice_valid = true;
+                            }
+                            if (second_choice_radio_input.checked) {
+                                options.push('2nd-choice-' + exit_reason.id);
+                                second_choice_valid = true;
+                            }
                         }
                     });
                     // for final question set the question type 7
@@ -369,30 +373,34 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
                     });
                 } else if (answer.question_type === '7') {
                     // This is the final question
-                    this.exit_reason_checkbox.map((exit_reason) => {
-                        const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
-                        const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
-                        // answer options will contain two values
-                        const first_choice = answer.options[0].split('-');
-                        const second_choice = answer.options[1].split('-');
-                        if (first_choice[0] == '1st') {
-                            if (first_choice[2] == exit_reason.id) {
-                                first_choice_radio_input.checked = true;
+                    this.exit_reason_checkbox.map((exit_reason, index) => {
+                        // check if the question.options[index]=='true' or not.
+                        // if true then execute the below functionality
+                        if (question.options[index] == 'true') {
+                            const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
+                            const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
+                            // answer options will contain two values
+                            const first_choice = answer.options[0].split('-');
+                            const second_choice = answer.options[1].split('-');
+                            if (first_choice[0] == '1st') {
+                                if (first_choice[2] == exit_reason.id) {
+                                    first_choice_radio_input.checked = true;
+                                }
+
+                            } else {
+                                if (first_choice[2] == exit_reason.id) {
+                                    second_choice_radio_input.checked = true;
+                                }
                             }
 
-                        } else {
-                            if (first_choice[2] == exit_reason.id) {
-                                second_choice_radio_input.checked = true;
-                            }
-                        }
-
-                        if (second_choice[0] == '1st') {
-                            if (second_choice[2] == exit_reason.id) {
-                                first_choice_radio_input.checked = true;
-                            }
-                        } else {
-                            if (second_choice[2] == exit_reason.id) {
-                                second_choice_radio_input.checked = true;
+                            if (second_choice[0] == '1st') {
+                                if (second_choice[2] == exit_reason.id) {
+                                    first_choice_radio_input.checked = true;
+                                }
+                            } else {
+                                if (second_choice[2] == exit_reason.id) {
+                                    second_choice_radio_input.checked = true;
+                                }
                             }
                         }
                     });

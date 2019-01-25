@@ -12,6 +12,10 @@ const generator = require('generate-password');
 //Validation SCHEMA
 // const userSchema = require('../validation/employee');
 
+//LOAD EMAIL TEMPLATES
+const email_template = require('../helpers/email_template');
+const helpers = require('../helpers/email');
+
 exports.Create = (req, res, next) => {
     const data = req.body;
     const {email} = req.body;
@@ -52,17 +56,38 @@ exports.Create = (req, res, next) => {
                 user.save(function (err) {
                     if (err) return next(err);
                     //SEND THE USER EMAIL WITH THE USERNAME AND PASSWORD
-                    return res.status(200).send({
-                        "success": true,
-                        "message": "User successfully created",
-                        user
+                    const from = email_template.UserEmailPasswordTemplate.from_address;
+                    let subject = email_template.UserEmailPasswordTemplate.subject;
+                    let body = email_template.UserEmailPasswordTemplate.body;
+                    let to = user.email;
+
+                    // step-2 : replace the [user_firstname] by the client.username
+                    body = body.replace('[user_firstname]', user.first_name);
+                    body = body.replace('[user_firstname]', user.first_name);
+
+                    // step-3 : [user_lastname] set the user lastname
+                    body = body.replace('[user_lastname]', user.last_name);
+
+                    // step-4 : [user_password] set the user plain password.
+                    body = body.replace('[user_email]',user.email);
+                    body = body.replace('[user_username]',user.email);
+                    body = body.replace('[user_password]', password);
+                    helpers.SendEmailToEmployee({from, to, subject, body}).then(
+                        () => {
+                            return res.status(200).send({
+                                "success": true,
+                                "message": "User successfully created",
+                                user
+                            })
+                        }).catch(() => {
+                            return next(new Error('Email send failed.'))
                     })
                 })
             })
         })
 
     })
-}
+};
 
 exports.Find = (req, res, next) => {
     let currentPage = Number(req.query.page || 1); //staticPage number

@@ -120,34 +120,38 @@
                                                             <th>1<sup>st</sup> Choice</th>
                                                             <th>2<sup>nd</sup> Choice</th>
                                                         </tr>
-                                                        <tr *ngFor="let exit_reason of exit_reason_checkbox">
-                                                            <td>{{exit_reason.value}}</td>
-                                                            <td style="padding-bottom: 20px">
-                                                                <div class="form__group u-margin-bottom-medium">
-                                                                    <div class="form__radio-group">
-                                                                        <input type="radio" class="form__radio-input"
-                                                                               name="final-1st-choice" value="{{exit_reason.value}}"
-                                                                               id="final-1st-choice-{{question.question_no}}-{{exit_reason.id}}">
-                                                                        <label for="final-1st-choice-{{question.question_no}}-{{exit_reason.id}}"
-                                                                               class="form__radio-label">
-                                                                            <span class="form__radio-button"></span>
-                                                                        </label>
+                                                        <tr *ngFor="let exit_reason of exit_reason_checkbox; let i=index">
+                                                            <ng-container *ngIf="question.options[i] == 'true'">
+                                                                <td>{{exit_reason.value}}</td>
+                                                                <td style="padding-bottom: 20px">
+                                                                    <div class="form__group u-margin-bottom-medium">
+                                                                        <div class="form__radio-group">
+                                                                            <input type="radio" class="form__radio-input"
+                                                                                   name="final-1st-choice"
+                                                                                   value="{{exit_reason.value}}"
+                                                                                   id="final-1st-choice-{{question.question_no}}-{{exit_reason.id}}">
+                                                                            <label for="final-1st-choice-{{question.question_no}}-{{exit_reason.id}}"
+                                                                                   class="form__radio-label">
+                                                                                <span class="form__radio-button"></span>
+                                                                            </label>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
-                                                            <td style="padding-bottom: 20px">
-                                                                <div class="form__group u-margin-bottom-medium">
-                                                                    <div class="form__radio-group">
-                                                                        <input type="radio" class="form__radio-input"
-                                                                               name="final-2nd-choice" value="{{exit_reason.value}}"
-                                                                               id="final-2nd-choice-{{question.question_no}}-{{exit_reason.id}}">
-                                                                        <label for="final-2nd-choice-{{question.question_no}}-{{exit_reason.id}}"
-                                                                               class="form__radio-label">
-                                                                            <span class="form__radio-button"></span>
-                                                                        </label>
+                                                                </td>
+                                                                <td style="padding-bottom: 20px">
+                                                                    <div class="form__group u-margin-bottom-medium">
+                                                                        <div class="form__radio-group">
+                                                                            <input type="radio" class="form__radio-input"
+                                                                                   name="final-2nd-choice"
+                                                                                   value="{{exit_reason.value}}"
+                                                                                   id="final-2nd-choice-{{question.question_no}}-{{exit_reason.id}}">
+                                                                            <label for="final-2nd-choice-{{question.question_no}}-{{exit_reason.id}}"
+                                                                                   class="form__radio-label">
+                                                                                <span class="form__radio-button"></span>
+                                                                            </label>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </td>
+                                                                </td>
+                                                            </ng-container>
                                                         </tr>
                                                     </table>
 
