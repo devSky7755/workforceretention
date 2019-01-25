@@ -15,8 +15,7 @@ export class SurveyDetailsComponent implements OnInit {
     myForm: FormGroup;
     errorMessage;
     survey_types = [
-        {id: 1, value: 'RECAP'},
-        {id: 2, value: 'Exit Interview'}
+        {id: 1, value: 'Exit Interview'}
     ];
     ratings = [
         {id: 2, value: '1-2'},

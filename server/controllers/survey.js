@@ -1,6 +1,7 @@
 const Survey = require('../models/survey');
 
 //RELATIONAL MODEL
+const Question = require('../models/question');
 
 const User = require('../models/user');
 
@@ -29,7 +30,6 @@ exports.Create = function (req, res, next) {
             }
             data.user = userId;
             const survey = new Survey(data);
-            console.log(user);
             survey.save().then(survey => {
                 user.surveys.push(survey);
                 user.save(); //This will return another promise
@@ -44,7 +44,104 @@ exports.Create = function (req, res, next) {
             });
         })
     })
-}
+};
+
+exports.Clone = (req, res, next) => {
+    let surveyId = req.params.surveyId;
+    let userId = req.query.userId;
+
+    Survey.findById(surveyId)
+        .populate([{
+            path: 'questions',
+            model: 'Question',
+        }])
+        .exec(function (err, survey) {
+            if (err) return next(err);
+            // here we will get all the survey questions
+            // create a new survey with the existing survey.
+            // survey will return a new promise
+            // after getting the survey set the survey questions with the returned questions
+            // survey fields answer_rating(Array), questions(Array), rating_labels(Array),survey_type, rating_scale, title, description, instruction, user
+            // user will be who is cloning the survey
+            let new_survey = {
+                title: survey.title + ' COPY',
+                description: survey.description,
+                instruction: survey.instruction,
+                rating_labels: survey.rating_labels,
+                questions: [],
+                ratings: [],
+                no_of_questions: survey.no_of_questions,
+                survey_type: survey.survey_type,
+                rating_scale: survey.rating_scale,
+                answer_rating: [],
+                user: userId
+            };
+            User.findById(userId, (err, user) => {
+                if (err) return next(err);
+                if (!user) {
+                    return res.status(404).json({status: false, message: 'No user found!'})
+                }
+                // create a new survey object
+                const survey_object = new Survey(new_survey);
+                survey_object.save((err) => {
+                    if (err) return next(err);
+                    // user surveys push the newly created survey
+                    user.surveys.push(survey_object);
+                    // push the question id to the survey questions array
+                    CreateQuestions(survey.questions).then((questions) => {
+                        questions.forEach((question) => {
+                            survey_object.questions.push(question._id);
+                        });
+                        survey_object.save();
+                    }).then(() => {
+                        user.save(); //This will return another promise
+                    }).then(() => {
+                        return res.status(200).send({
+                            "success": true,
+                            "message": "Survey successfully created",
+                            survey_object
+                        })
+                    }).catch(err => {
+                        next(err);
+                    })
+                })
+            });
+        });
+};
+
+const CreateQuestions = function (questions) {
+    let questionArray = [];
+    // question property
+    // title, type, exit_reason, exit_reporting_label, answers, options(optional)
+    questions.map((question) => {
+        let new_formatted_question = {
+            title: question.title,
+            exit_reason: question.exit_reason,
+            exit_reporting_label: question.exit_reporting_label,
+            type: question.type,
+            answers: []
+        };
+        if (!isNullOrEmpty(question.options)) {
+            new_formatted_question.options = question.options;
+        }
+        questionArray.push(new_formatted_question);
+
+    });
+    return new Promise((resolve, reject) => {
+        //Save the Questions into the database
+        Question.insertMany(questionArray, (err, docs) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(docs)
+            }
+        });
+    })
+};
+
+const isNullOrEmpty = function (obj) {
+    return typeof obj === "undefined" || obj === null;
+};
 
 exports.Find = (req, res, next) => {
     const currentPage = Number(req.query.page || 1); //staticPage number
@@ -181,7 +278,7 @@ exports.SurveyQuestionsAnswers = (req, res, next) => {
             path: 'questions',
             model: 'Question',
             populate: {
-                path:'questions.answers'
+                path: 'questions.answers'
             }
         }])
         .exec(function (err, survey) {

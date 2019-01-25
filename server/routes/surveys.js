@@ -9,6 +9,8 @@ router.get('/questions/answers/:surveyId', surveyController.SurveyQuestionsAnswe
 
 router.get('/questions/:surveyId', surveyController.SurveyQuestions);
 
+router.get('/clone/:surveyId', surveyController.Clone);
+
 router.get('/', surveyController.Find);
 
 router.get('/:id', surveyController.FindById);

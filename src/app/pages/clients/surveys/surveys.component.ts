@@ -14,11 +14,11 @@ export class SurveysComponent implements OnInit, OnChanges {
     count = 0;
     offset = 0;
     limit = 10;
+    assigned = false;
     surveys;
     clientSurveys = [];
     survey_types = [
-        {id: 1, value: 'RECAP'},
-        {id: 2, value: 'Exit Interview'}
+        {id: 1, value: 'Exit Interview'}
     ];
 
     constructor(private surveyService: SurveyService, private clientService: ClientService) {
@@ -61,12 +61,14 @@ export class SurveysComponent implements OnInit, OnChanges {
     }
 
     onClickAssign(surveyId, assigned) {
-        console.log(assigned);
-        console.log(surveyId);
         if (assigned) {
             this.unAssignSurvey(surveyId);
         } else {
-            this.assignSurvey(surveyId);
+            if (!this.assigned) {
+                this.assignSurvey(surveyId);
+            } else {
+                alert('Already assigned a survey');
+            }
         }
     }
 
@@ -77,7 +79,6 @@ export class SurveysComponent implements OnInit, OnChanges {
                 const rows = [];
                 this.surveys.map((survey) => {
                     // Modify staticPage role
-                    console.log(survey);
                     survey.id = survey._id;
                     //first check if clientSurveys array is null or not.
                     const survey_type = this.survey_types.find(s => s.id == survey.survey_type);
@@ -92,7 +93,12 @@ export class SurveysComponent implements OnInit, OnChanges {
                     rows.push(survey);
                 });
                 this.rows = rows;
-                console.log(this.surveys);
+                for (let i = 0; i < this.rows.length; i++) {
+                    if (this.rows[i].assigned) {
+                        this.assigned = true;
+                        break;
+                    }
+                }
             },
             (err) => {
                 console.log(err);

@@ -51,9 +51,7 @@ export class AddEditClientComponent implements OnInit {
         {id: 5, value: '5,000 +'}
     ];
     products = [
-        {id: 0, name: 'RECAP Only'},
-        {id: 1, name: 'Exit Interviews Only'},
-        {id: 2, name: 'RECAP + Exit Interviews'},
+        {id: 1, name: 'Exit Interview'},
     ];
     aggregate_reports = [
         {id: 0, name: 'Standard'},

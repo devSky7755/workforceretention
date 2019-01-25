@@ -15,9 +15,7 @@ export class ClientSelectionComponent implements OnInit {
     limit = 10;
     clients;
     products = [
-        {id: 0, name: 'RECAP Only'},
-        {id: 1, name: 'Exit Interviews Only'},
-        {id: 2, name: 'RECAP + Exit Interviews'},
+        {id: 1, name: 'Exit Interview'},
     ];
     workforces = [
         {id: 0, value: 'Less than 100'},

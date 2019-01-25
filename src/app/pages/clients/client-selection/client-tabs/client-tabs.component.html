@@ -1,5 +1,7 @@
 <nb-card>
     <nb-card-body>
+        <!--Here display the client name-->
+        <h5 class="text-center">Client <i class="fa fa-long-arrow-right" aria-hidden="true"></i> {{client.name}}</h5>
         <nb-tabset (changeTab)="onTabChange($event)" fullWidth>
             <nb-tab tabTitle="Client Details" tabIcon="nb-person" responsive>
                 <!--Show the Client Information Here-->

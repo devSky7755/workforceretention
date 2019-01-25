@@ -36,13 +36,20 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="id">
         <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-          <span (click)="sort()">Action</span>
+          <span>Action</span>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <button type="button" (click)="onClickEdit(value)"
+          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Survey" (click)="onClickEdit(value)"
                   style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: #fff">
-            <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 22px"></i></button>
-          <button type="button" (click)="onClickDelete(value)"
+            <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 22px"></i>
+          </button>
+          <!--Survey Clone Button-->
+          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Clone Survey" (click)="onClickCloneSurvey(value)"
+                  style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: #fff;">
+            <i class="fa fa-clone" aria-hidden="true"></i>
+          </button>
+          <!--Survey Delete Button-->
+          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Survey" (click)="onClickDelete(value)"
                   style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: #fff;">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </button>

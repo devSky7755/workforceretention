@@ -22,8 +22,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     question_answers = [];
     survey;
     survey_types = [
-        {id: 1, value: 'RECAP'},
-        {id: 2, value: 'Exit Interview'}
+        {id: 1, value: 'Exit Interview'}
     ];
     ratings = [
         {id: 2, value: '1-2'},

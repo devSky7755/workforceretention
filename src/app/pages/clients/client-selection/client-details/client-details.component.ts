@@ -21,9 +21,7 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
         {id: 5, value: '5,000 +'}
     ];
     products = [
-        {id: 0, name: 'RECAP Only'},
-        {id: 1, name: 'Exit Interviews Only'},
-        {id: 2, name: 'RECAP + Exit Interviews'},
+        {id: 1, name: 'Exit Interview'},
     ];
     aggregate_reports = [
         {id: 0, name: 'Standard'},
@@ -54,9 +52,9 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
                 this.client.state_country_label = this.client.state + ', '
                     + this.countryService.getCountries()[this.client.country].name;
                 //set the client product
-                this.client.product_label = this.products[this.client.product].name;
+                this.client.product_label = this.products.find(p => p.id == this.client.product).name;
                 //set aggregate_report
-                this.client.aggregate_report_label = this.aggregate_reports[this.client.aggregate_reports].name;
+                this.client.aggregate_report_label = this.aggregate_reports.find(ar => ar.id == this.client.aggregate_reports).name;
                 //set organization level
                 this.client.organization_label = this.levels[this.client.org_mgt].name;
                 //set division level

@@ -10,11 +10,6 @@ const httpOptions = {
 @Injectable()
 export class SurveyService {
 
-    surveyTypes = [
-        {Id: 1, type: 'recap'},
-        {Id: 2, type: 'exit'}
-    ];
-
     constructor(private http: HttpClient, private urlService: URLService) {
     }
 
@@ -33,6 +28,10 @@ export class SurveyService {
 
     getSurveyQuestionsAnswers(surveyId): Observable<any> {
         return this.http.get(this.urlService.baseUrl + '/api/v1/surveys/questions/answers/' + surveyId);
+    }
+
+    cloneSurvey(surveyId, userId) {
+        return this.http.get(this.urlService.baseUrl + `/api/v1/surveys/clone/${surveyId}?userId=${userId}`);
     }
 
     createSurvey(survey, userId): Observable<any> {

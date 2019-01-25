@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {SurveyService} from "../../../@core/data/survey.service";
+import {NbTokenService} from "@nebular/auth";
 
 @Component({
     selector: 'ngx-survey-management',
@@ -13,8 +14,9 @@ export class SurveyManagementComponent implements OnInit {
     offset = 0;
     limit = 9;
     surveys;
+    user;
 
-    constructor(private router: Router, private surveyService: SurveyService) {
+    constructor(private router: Router, private surveyService: SurveyService, private tokenService: NbTokenService) {
     }
 
     onClickAdd() {
@@ -22,6 +24,11 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+        // call the refresh token here
+        this.tokenService.get()
+            .subscribe(token => {
+                this.user = token.getPayload();
+            });
         this.page(this.offset, this.limit);
     }
 
@@ -43,6 +50,13 @@ export class SurveyManagementComponent implements OnInit {
         if (confirm("Are you sure to delete " + name)) {
             this.deleteSurvey(id);
         }
+    }
+
+    onClickCloneSurvey(id) {
+        this.surveyService.cloneSurvey(id, this.user._id).subscribe(
+            () => {
+                this.page(this.offset, this.limit);
+            });
     }
 
     deleteSurvey(id) {

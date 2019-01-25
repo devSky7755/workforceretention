@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {ClientService} from "../../../../@core/data/client.service";
 
 @Component({
     selector: 'ngx-client-tabs',
@@ -9,6 +10,7 @@ import {ActivatedRoute} from "@angular/router";
 export class ClientTabsComponent implements OnInit {
 
     clientId;
+    client;
     emailId;
     organizationId;
     employeeId;
@@ -32,7 +34,8 @@ export class ClientTabsComponent implements OnInit {
     isShowDivision = false;
     isShowDepartment = false;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private clientService: ClientService) {
+        this.client = {};
     }
 
     onTabChange($event) {
@@ -214,6 +217,17 @@ export class ClientTabsComponent implements OnInit {
 
     ngOnInit() {
         this.clientId = this.route.snapshot.paramMap.get('id');
+        this.getClient();
+    }
+
+    getClient() {
+        this.clientService.getClient(this.clientId).subscribe(data => {
+                this.client = data.client;
+            },
+            err => {
+                console.log(err);
+            }
+        );
     }
 
 }
