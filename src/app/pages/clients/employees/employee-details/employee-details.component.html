@@ -62,6 +62,10 @@
                         <div class="col-lg-4"><strong>View Exit Interview Results</strong></div>
                         <div class="col-lg-5"><a [routerLink]="" (click)="onEditSurvey()">Click here to View these Exit Interview Results</a></div>
                     </div>
+                    <div class="row align-items-center justify-content-center padding-bottom-10" *ngIf="surveyCompleted">
+                        <div class="col-lg-4"><strong>Download PDF</strong></div>
+                        <div class="col-lg-5"><a [routerLink]="" (click)="onDownloadPdf()">Click here to download a pdf of these Exit Interview Results</a></div>
+                    </div>
                     <!--Client Product-->
                     <div class="row align-items-center justify-content-center">
                         <div class="col-lg-4"><strong>Level Manager</strong></div>

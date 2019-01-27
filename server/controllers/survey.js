@@ -1,7 +1,9 @@
 const Survey = require('../models/survey');
-
+const path = require('path');
+const puppeteer = require('puppeteer');
 //RELATIONAL MODEL
 const Question = require('../models/question');
+const Answer = require('../models/answer');
 
 const User = require('../models/user');
 
@@ -185,6 +187,26 @@ exports.FindById = (req, res, next) => {
     });
 };
 
+exports.PrintCompletedSurvey = async (req, res) => {
+    // here we will get the url from the request body
+    //here we need to configure puppeteer for printing pdf
+    const url = req.body.url;
+    const baseUrl = 'http://localhost:8080';
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    // here generate a unique name for the file
+    const fileName = Date.now() + '_employee_survey.pdf';
+    const filePath = path.join(__dirname, '../pdf/' + fileName);
+    const options = {
+        path: filePath,
+        format: 'A4'
+    };
+    await page.goto(baseUrl + url, {waitUntil: 'networkidle2'});
+    await page.pdf(options);
+    await browser.close();
+    res.json({fileName: fileName});
+};
+
 exports.Update = (req, res, next) => {
     // fetch the request data
     const data = req.body;
@@ -268,7 +290,38 @@ exports.SurveyQuestions = (req, res, next) => {
             return res.status(200).json({success: true, survey})
         });
 };
+//
+exports.SurveyWithQuestionAnswer = (req, res, next) => {
+    let surveyId = req.params.surveyId;
+    let employeeId = req.query.employeeId;
 
+    Survey.findById(surveyId)
+        .populate([{
+            path: 'questions',
+            model: 'Question',
+        }])
+        .exec(function (err, survey) {
+            if (err) return next(err);
+            surveyQuestionAnswer(surveyId, employeeId).then(
+                (answers) => {
+                    return res.status(200).json({success: true, survey,answers})
+                }
+            );
+        });
+};
+
+const surveyQuestionAnswer = function (surveyId, employeeId) {
+    return new Promise((resolve, reject) => {
+        Answer.find({survey: surveyId, employee: employeeId}, (err, answers) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(answers);
+            }
+
+        })
+    })
+};
 // Get survey question answer by employee
 exports.SurveyQuestionsAnswers = (req, res, next) => {
     let surveyId = req.params.surveyId;

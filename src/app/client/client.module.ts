@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { QuestionsComponent } from './questions/questions.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { ProfileComponent } from './profile/profile.component';
+import { EmployeeSurveyDownloadComponent } from './employee-survey-download/employee-survey-download.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { ProfileComponent } from './profile/profile.component';
         PageNameComponent,
         DashboardComponent,
         QuestionsComponent,
-        ProfileComponent
+        ProfileComponent,
+        EmployeeSurveyDownloadComponent
     ],
     imports: [
         CommonModule,

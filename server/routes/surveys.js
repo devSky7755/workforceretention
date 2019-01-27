@@ -3,7 +3,11 @@ const router = express.Router();
 
 const surveyController = require('../controllers/survey');
 
+router.post('/download-completed-survey', surveyController.PrintCompletedSurvey);
+
 router.post('/:userId', surveyController.Create);
+
+router.get('/survey-question-answer/:surveyId', surveyController.SurveyWithQuestionAnswer);
 
 router.get('/questions/answers/:surveyId', surveyController.SurveyQuestionsAnswers);
 

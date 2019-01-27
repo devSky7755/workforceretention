@@ -106,6 +106,16 @@ app.use('/api/v1/survey_emails', surveyEmailRoutes);
 const appPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(appPath));
 
+// This route is for downloading file
+app.get('/:file(*)', function (req, res) { // this routes all types of file
+
+    const file = req.params.file;
+
+    const filePath = path.resolve(".") + '/' + file;
+
+    res.download(filePath); // magic of download function
+
+});
 // Serve the Angular index.html file
 app.get('*', (req, res) => {
     res.sendFile(path.join(appPath, 'index.html'))

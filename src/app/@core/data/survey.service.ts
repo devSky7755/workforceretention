@@ -26,8 +26,13 @@ export class SurveyService {
         return this.http.get(this.urlService.baseUrl + '/api/v1/surveys/questions/' + surveyId);
     }
 
-    getSurveyQuestionsAnswers(surveyId): Observable<any> {
-        return this.http.get(this.urlService.baseUrl + '/api/v1/surveys/questions/answers/' + surveyId);
+    getSurveyWithQuestionsAnswers(surveyId, employeeId): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + `/api/v1/surveys/survey-question-answer/${surveyId}?employeeId=${employeeId}`);
+    }
+
+    downloadCompletedSurvey(url): Observable<any> {
+        const body = JSON.stringify(url);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/surveys/download-completed-survey`, body, httpOptions);
     }
 
     cloneSurvey(surveyId, userId) {

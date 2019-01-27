@@ -3,6 +3,9 @@ import {EmployeeService} from "../../../../@core/data/employee.service";
 import {OrganizationService} from "../../../../@core/data/organization.service";
 import {DivisionService} from "../../../../@core/data/division.service";
 import {DepartmentService} from "../../../../@core/data/department.service";
+import {Router} from "@angular/router";
+import {URLService} from "../../../../@core/data/url.service";
+import {SurveyService} from "../../../../@core/data/survey.service";
 
 @Component({
     selector: 'ngx-employee-details',
@@ -21,7 +24,10 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     constructor(private employeeService: EmployeeService,
                 private organizationService: OrganizationService,
                 private divisionService: DivisionService,
-                private departmentService: DepartmentService) {
+                private departmentService: DepartmentService,
+                private router: Router,
+                private urlService: URLService,
+                private surveyService: SurveyService) {
         this.employee = {};
     }
 
@@ -72,6 +78,29 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 this.employee.department = data.department.name;
             }
         );
+    }
+
+    onDownloadPdf() {
+        // here we have employee details
+        // we need to build a url with this employee details which we will send to the server
+        const url = `/#/client/employee-survey?completed=${this.surveyCompleted}&employeeId=${this.employeeId}&surveyId=${this.surveyId}`;
+        // window.open(url, '_blank');
+        this.surveyService.downloadCompletedSurvey({url}).subscribe(
+            res => {
+                // here we will get the name of the file
+                const fileName = res.fileName;
+                this.download(fileName);
+            }
+        );
+    }
+
+    download(fileName) {
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = this.urlService.baseUrl + '/server/pdf/' + fileName;
+        a.click();
+        a.remove(); // remove the element
     }
 
     getEmployee() {

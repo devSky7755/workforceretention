@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
                     this.user = token.getPayload(); // here we receive a payload from the
                     // token and assigne it to our `employee` variable
                     // Navigate the employee to the product staticPage
-                    this.router.navigate(['pages']);
+                    // this.router.navigate(['pages']);
 
                 }
 
