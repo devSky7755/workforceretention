@@ -13,6 +13,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
 
     surveyCompleted = false;
     employeeId;
+    employee;
     surveyId;
     survey;
     questions = [];
@@ -70,6 +71,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
                 private surveyService: SurveyService,
                 private spinnerService: NbSpinnerService) {
         this.survey = {};
+        this.employee = {};
     }
 
     ngOnInit() {
@@ -107,6 +109,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
         this.survey.type_label = this.survey_types.find(s => s.id == this.survey.survey_type).value;
         this.survey.rating_label = this.ratings.find(r => r.id == this.survey.rating_scale).value;
         this.answers = data.answers;
+        this.employee = data.employee;
         this.questionArrange();
     }
 
@@ -148,6 +151,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
             });
         });
         console.log(this.categorical_questions);
+        console.log(this.employee);
         // here check if the survey was previously completed or not.
         // if the survey was previously completed then set the answer
     }

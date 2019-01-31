@@ -20,6 +20,13 @@ const clientSchema = new Schema({
     org_mgt: {
         type: Number,
     },
+    // There are two email template. template-1 and template-2
+    // Depending on selected template email will be sent to employee
+    // when creating employee client will be set to default email template-one
+    email_template: {
+        type: String,
+        default: 'template-one'
+    },
     div_mgt: {
         type: Number
     },

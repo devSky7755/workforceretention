@@ -93,7 +93,7 @@ exports.Update = (req, res, next) => {
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Link.findByIdAndUpdate(
+    Link.findOneAndUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -135,7 +135,7 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
-        Link.findByIdAndRemove(id, (err, link) => {
+        Link.findOneAndDelete(id, (err, link) => {
             // As always, handle any potential errors:
             if (err) return next(err);
             if (!link) return res.status(404).json({success: false, message: "Link not found."});

@@ -68,7 +68,7 @@
                 <!--Show the Client Information Here-->
                 <br><br>
                 <div *ngIf="isShowEmployeeSurvey">
-                    <ngx-employee-survey [employeeId]="employeeId" [surveyCompleted]="surveyCompleted" [surveyId]="surveyId" [clientId]="clientId"></ngx-employee-survey>
+                    <ngx-employee-survey [employeeId]="employeeId" [surveyCompleted]="surveyCompleted" [surveyId]="surveyId" [clientId]="clientId" (showEmployee)="showEmployees()"></ngx-employee-survey>
                 </div>
                 <div *ngIf="showEmployeeDetails">
                     <ngx-employee-details [employeeId]="employeeId" [clientId]="clientId" (editSurvey)="editSurvey($event)"></ngx-employee-details>

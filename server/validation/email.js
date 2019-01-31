@@ -15,8 +15,17 @@ const schema = Joi.object().keys({
     // password is required
     body: Joi.string().min(50).required(),
 
-    //role should be a valid mongodb objectid
-    // role: Joi.objectId()
+    editable: Joi.boolean(),
+
+    assign_to_client: Joi.boolean(),
+
+    description: Joi.string(),
+
+    email_type: Joi.string(),
+
+    title: Joi.string()
+
+
 
 });
 module.exports = schema;

@@ -142,16 +142,11 @@ exports.Update = (req, res, next) => {
     const data = req.body;
     let id = req.params.id;
 
-    //Update the employee
-    // Update the password of the data
-    data.username = data.fullName;
-    delete data.fullName;
-
     //check if request body has email
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    User.findByIdAndUpdate(
+    User.findOneAndUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -193,7 +188,7 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
-        User.findByIdAndRemove(id, (error, user) => {
+        User.findOneAndDelete(id, (error, user) => {
             // As always, handle any potential errors:
             if (error) return next(error);
             if (!user) {

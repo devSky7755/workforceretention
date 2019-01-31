@@ -4,6 +4,7 @@ const Client = require('../models/client');
 //RELATIONAL MODEL
 const User = require('../models/user');
 const Employee = require('../models/employee');
+const Email = require('../models/email');
 
 //Validation Library
 const Joi = require('joi');
@@ -39,33 +40,41 @@ exports.Create = function (req, res, next) {
             }
             // before creating the client. set the client emails
             // so that later time can edit that email
-            const emails = [];
-            emails.push(email_template.InitialExitNonConfidentialEmailTemplate,
-                email_template.InitialExitConfidentialEmailTemplate,
-                email_template.ExitReminderNonConfidentialEmailTemplate,
-                email_template.ExitReminderConfidentialEmailTemplate,
-                email_template.InitialExitManagerReportEmailTemplate
-            );
-            data.emails = emails;
 
-            const client = new Client(data);
-            client.save().then(client => {
-                user.clients.push(client);
-                user.save(); //This will return another promise
-            }).then(() => {
-                //Here create The Client Email template for sending employee username and password
+            // read all the emails from the email table
+            // then check if the email assign_to_client property is true or not.
+            // if true then push that email into the emails
+            Email.find({}, function (err, emails) {
+               if (err) return next(err);
+                let client_emails = [];
+                emails.forEach((email) => {
+                   if (email.assign_to_client) {
+                       delete email._id;
+                       client_emails.push(email)
+                   }
+                });
+                data.emails = client_emails;
 
-                return res.status(200).send({
-                    "success": true,
-                    "message": "Client successfully created",
-                    client
-                })
-            }).catch(err => {
-                return next(err)
+                const client = new Client(data);
+                client.save().then(client => {
+                    user.clients.push(client);
+                    user.save(); //This will return another promise
+                }).then(() => {
+                    //Here create The Client Email template for sending employee username and password
+
+                    return res.status(200).send({
+                        "success": true,
+                        "message": "Client successfully created",
+                        client
+                    })
+                }).catch(err => {
+                    return next(err)
+                });
             });
+
         })
     })
-}
+};
 
 exports.Find = (req, res, next) => {
     const currentPage = Number(req.query.page || 1); //staticPage number
@@ -120,7 +129,7 @@ exports.Update = (req, res, next) => {
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Client.findByIdAndUpdate(
+    Client.findOneAndUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -164,16 +173,22 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
-        Client.findByIdAndRemove(id, (err, client) => {
+        Client.findOneAndDelete(id, (err, client) => {
             // As always, handle any potential errors:
             if (err) return next(err);
             if (!client) return res.status(404).json({success: false, message: "Client not found."});
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
-            return res.send({
-                "success": true,
-                "message": "Record deleted successfully",
-                client
+
+            // now find all the employees under this client and delete them as well
+            // since without the client employee should not exist
+            Employee.deleteMany({_id: {$in: client.employees}}, function (err) {
+                if (err) return next(err);
+                return res.send({
+                    "success": true,
+                    "message": "Record deleted successfully",
+                    client
+                });
             });
         });
     });

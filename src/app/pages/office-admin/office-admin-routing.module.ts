@@ -4,6 +4,7 @@ import {UserManagementComponent} from './user-management/user-management.compone
 import {PermissionManagementComponent} from './permission-management/permission-management.component';
 import {AddEditUserComponent} from "./user-management/add-edit-user/add-edit-user.component";
 import {AddEditPermissionComponent} from "./permission-management/add-edit-permission/add-edit-permission.component";
+import {EmailManagementComponent} from "./email-management/email-management.component";
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
     {
         path: 'permission-management/edit/:id',
         component: AddEditPermissionComponent
+    },
+    {
+        path: 'email-management',
+        component: EmailManagementComponent
     }
 ];
 

@@ -51,10 +51,10 @@ export const MENU_ITEMS: NbMenuItem[] =
                     title: 'Survey Management',
                     link: 'surveys/survey-management',
                 },
-                {
-                    title: 'Email Management',
-                    link: 'surveys/email-management',
-                },
+                // {
+                //     title: 'Email Management',
+                //     link: 'surveys/email-management',
+                // },
             ],
         },
         {
@@ -97,6 +97,10 @@ export const MENU_ITEMS: NbMenuItem[] =
                     title: 'Permission Management',
                     link: 'office-admin/permission-management',
                 },
+                {
+                    title: 'Email Management',
+                    link: 'office-admin/email-management'
+                }
             ],
         }
     ];

@@ -6,9 +6,30 @@ const cors = require('cors');
 
 const app = express();
 
-//CODING CONVENTION router name will be plural, model and controller name will be singular
+// ********************************* LIBRARY ******************************
+// Mongoose is used for Connecting to MongoDB Database and Query
+// ngx-charts is used for Charting in Angular
+// ngx-datatable is used for showing data in Table in Angular
+// ngx-toastr is used for showing toast notification in angular
+// angular2-toaster is used for showing toast notification in Angular
+// bcryptjs is used for encrypting password
+// body-parser is used to parse the data from the request body
+// ckeeditor is used for editable textbox
+// csv-parse is used for parsing csv data
+// convert-csv-to-json is used for converting csv data to json format
+// Joi is used for validation
+// multer is used for file upload in node.js
+// puppeteer is used for converting html to pdf in node.js
+// jsonwebtoken is used for generating token for authentication
+// uuid is used for generating unique id
+// generate-password is used for generating password
+// cors is used for enabling cross origin resource sharing (Allow ajax request from other domain)
+// nodemailer is used for sending email
+
+// ********************************* CODING CONVENTION ******************************
+// router name will be plural, model and controller name will be singular
 // Will use camel-case convention for declaring variable and functions
-//For Schema Design Multiple Word Property will declare such a way is_active [underscore will be the separator]
+// For Schema Design Multiple Word Property will declare such a way is_active [underscore will be the separator]
 // Sometimes we don't need a table rather we need a Schema that's why I created Schema folder
 // We should never store the token in the database.
 // We don't need any individual routes for logout because we are not saving the token anywhere in the server. just need to delete the token from staticPage
@@ -44,6 +65,7 @@ mongoose.connect(config.MONGO_URI, {
     useNewUrlParser: true
 }).then(() => console.log('Connected to MongoDB'))
     .catch(error => console.log('could not connect', error));
+mongoose.set('useFindAndModify', false);
 
 
 //Multer File Upload Set UP

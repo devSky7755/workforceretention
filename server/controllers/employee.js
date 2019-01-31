@@ -25,7 +25,6 @@ const employeeSchema = require('../validation/employee');
 const generator = require('generate-password');
 
 //LOAD EMAIL TEMPLATES
-const email_template = require('../helpers/email_template');
 const helpers = require('../helpers/email');
 const refreshTokens = {};
 
@@ -36,75 +35,79 @@ exports.Upload = function (req, res, next) {
     const clientId = req.params.clientId;
     //read file data
     //first find the client by it's clientId
-    Client.findById(clientId, (err, client) => {
-        if (err) return next(err);
-        if (!client) {
-            return res.status(404).json({status: false, message: 'Client not found!'})
-        }
-        let json = csvToJson.fieldDelimiter(',').getJsonFromCsv(file.path);
-        //here get all the organization and organization division and division department
-        Organization.find()
-            .populate([{
-                path: 'divisions',
-                model: 'Division',
-                populate: {
-                    path: 'departments',
-                    model: 'Department'
-                }
-            }])
-            .exec(async function (err, organizations) {
-                if (err) return next(err);
-                for (let i = 0; i < json.length; i++) {
-                    //here find the organization by name
-                    const employeeOrganization = findOrganizationByName(json[i].organization, organizations);
-                    json[i].organization = employeeOrganization ? employeeOrganization : null;
-                    //here find the division by name
-                    const employeeDivision = findDivisionByName(json[i].division, organizations);
-                    json[i].division = employeeDivision ? employeeDivision : null;
-                    //here find the department by name
-                    const employeeDepartment = findDepartmentByName(json[i].department, organizations);
-                    json[i].department = employeeDepartment ? employeeDepartment : null;
+    Client.findById(clientId)
+        .populate([{
+            path: 'emails'
+        }])
+        .exec(function (err, client) {
+            if (err) return next(err);
+            if (!client) {
+                return res.status(404).json({status: false, message: 'Client not found!'})
+            }
+            let json = csvToJson.fieldDelimiter(',').getJsonFromCsv(file.path);
+            //here get all the organization and organization division and division department
+            Organization.find()
+                .populate([{
+                    path: 'divisions',
+                    model: 'Division',
+                    populate: {
+                        path: 'departments',
+                        model: 'Department'
+                    }
+                }])
+                .exec(async function (err, organizations) {
+                    if (err) return next(err);
+                    for (let i = 0; i < json.length; i++) {
+                        //here find the organization by name
+                        const employeeOrganization = findOrganizationByName(json[i].organization, organizations);
+                        json[i].organization = employeeOrganization ? employeeOrganization : null;
+                        //here find the division by name
+                        const employeeDivision = findDivisionByName(json[i].division, organizations);
+                        json[i].division = employeeDivision ? employeeDivision : null;
+                        //here find the department by name
+                        const employeeDepartment = findDepartmentByName(json[i].department, organizations);
+                        json[i].department = employeeDepartment ? employeeDepartment : null;
 
-                    // here before push the json object check if the employee client has assign surveys. if so then assign that surveys to the employee
-                    let clientSurveys = [];
-                    client.surveys.forEach((survey) => {
-                        let employeeSurvey = {survey: survey, completed: false};
-                        clientSurveys.push(employeeSurvey);
-                    });
-                    json[i].surveys = clientSurveys;
-                    employees.push(json[i]);
-                }
-                //before generating password we need to checkout if employee exist with the given email
-                let allEmployees = await Employee.find();
-                let finalEmployeesArray = checkDuplicateEmployees(allEmployees, employees);
-
-                await passwordGenerator(finalEmployeesArray, client).then((employeesToUpload) => {
-                    // Save the employees into the database
-                    Employee.insertMany(employeesToUpload, (err, docs) => {
-                        if (err) {
-                            if (err.name === 'BulkWriteError' && err.code === 11000) {
-                                return next(new Error(`Employee with the email ${err.op.email} already exist`));
-                            } else {
-                                return next(err);
-                            }
-                        }
-                        //After saving the employees insert all the employees id to the
-                        //client employees array
-                        docs.forEach((employee) => {
-                            client.employees.push(employee);
+                        // here before push the json object check if the employee client has assign surveys. if so then assign that surveys to the employee
+                        let clientSurveys = [];
+                        client.surveys.forEach((survey) => {
+                            let employeeSurvey = {survey: survey, completed: false};
+                            clientSurveys.push(employeeSurvey);
                         });
-                        //Finally save the client
-                        client.save().then(() => {
-                            return res.status(200).json({
-                                employees: docs,
-                                success: true,
-                                message: `From ${employees.length} employees ${employeesToUpload.length} uploaded and ${employees.length - employeesToUpload.length} skip`
+                        json[i].surveys = clientSurveys;
+                        employees.push(json[i]);
+                    }
+                    //before generating password we need to checkout if employee exist with the given email
+                    let allEmployees = await Employee.find();
+                    let finalEmployeesArray = checkDuplicateEmployees(allEmployees, employees);
+
+                    await passwordGenerator(finalEmployeesArray, client).then((employeesToUpload) => {
+                        // Save the employees into the database
+                        Employee.insertMany(employeesToUpload, (err, docs) => {
+                            if (err) {
+                                if (err.name === 'BulkWriteError' && err.code === 11000) {
+                                    return next(new Error(`Employee with the email ${err.op.email} already exist`));
+                                } else {
+                                    return next(err);
+                                }
+                            }
+                            //After saving the employees insert all the employees id to the
+                            //client employees array
+                            docs.forEach((employee) => {
+                                client.employees.push(employee);
                             });
-                        })
-                    });
-                })
-            });
-    });
+                            //Finally save the client
+                            client.save().then(() => {
+                                return res.status(200).json({
+                                    employees: docs,
+                                    success: true,
+                                    message: `From ${employees.length} employees ${employeesToUpload.length} uploaded and ${employees.length - employeesToUpload.length} skip`
+                                });
+                            })
+                        });
+                    })
+                });
+        });
 };
 
 const checkDuplicateEmployees = function (employees, employeesToUpload) {
@@ -147,15 +150,31 @@ const passwordGenerator = function (employees, client) {
                 });
                 bcrypt.hash(password, salt, async function (err, hash) {
                     if (err) {
-                        console.log('password generating error');
                         reject(new Error("Password can't generate"));
                     } else {
+                        // select email depending on client selected email template
+                        let from;
+                        let subject;
+                        let body;
+                        let to;
+                        let email = {};
+                        // select email depending on client selected email template
+                        //check if the employee is a manager or not
+                        // if employee is a manager then sent
+                        if (employee.is_manager == '1') {
+                            email = client.emails.find(e => e.email_type === 'manager-report-email');
+                        }
+                        else if (client.email_template === 'template-one') {
+                            email = client.emails.find(e => e.email_type === 'template-one-email');
+                        } else {
+                            email = client.emails.find(e => e.email_type === 'template-two-email');
+                        }
                         // send the password to the employee email
                         // step-1 : first get the email template from the client for creating an employee
-                        const from = email_template.InitialExitNonConfidentialEmailTemplate.from_address;
-                        let subject = email_template.InitialExitNonConfidentialEmailTemplate.subject;
-                        let body = email_template.InitialExitNonConfidentialEmailTemplate.body;
-                        let to = employee.email;
+                        from = email.from_address;
+                        subject = email.subject;
+                        body = email.body;
+                        to = employee.email;
 
                         // step-2 : replace the [client_name] by the client.username
                         body = body.replace('[client_name]', client.name);
@@ -270,53 +289,71 @@ exports.Create = function (req, res, next) {
                 //now push this newClient to the employee clients array === employee.clients.push(newPost)
                 //now save the employee. this will automatically creates the relationship
                 //and the newClient will be added into the staticPage table
-                Client.findById(clientId, (err, client) => {
-                    if (err) return next(err);
-                    if (!client) {
-                        return res.status(404).json({status: false, message: 'Client not found!'})
-                    }
-                    // here before create the employee check if the employee client has assign surveys. if so then assign that surveys to the employee
-                    let clientSurveys = [];
-                    client.surveys.forEach((survey) => {
-                        let employeeSurvey = {survey: survey, completed: false};
-                        clientSurveys.push(employeeSurvey);
-                    });
-                    data.surveys = clientSurveys;
-                    data.password = hash;
-                    const employee = new Employee(data);
-                    employee.save().then(employee => {
-                        client.employees.push(employee);
-                        client.save();
-                    }).then(() => {
-                        //Now send the email to the employee here
-                        // step-1 : first get the email template from the client for creating an employee
-                        const from = email_template.InitialExitConfidentialEmailTemplate.from_address;
-                        let subject = email_template.InitialExitConfidentialEmailTemplate.subject;
-                        let body = email_template.InitialExitConfidentialEmailTemplate.body;
-                        let to = employee.email;
+                Client.findById(clientId)
+                    .populate([{
+                        path: 'emails'
+                    }])
+                    .exec(function (err, client) {
+                        if (err) return next(err);
+                        if (!client) {
+                            return res.status(404).json({status: false, message: 'Client not found!'})
+                        }
+                        // here before create the employee check if the employee client has assign surveys. if so then assign that surveys to the employee
+                        let clientSurveys = [];
+                        client.surveys.forEach((survey) => {
+                            let employeeSurvey = {survey: survey, completed: false};
+                            clientSurveys.push(employeeSurvey);
+                        });
+                        data.surveys = clientSurveys;
+                        data.password = hash;
+                        const employee = new Employee(data);
+                        employee.save().then(employee => {
+                            client.employees.push(employee);
+                            client.save();
+                        }).then(() => {
+                            //check if the client is set to email template one or template two
+                            // select email depending on client selected email template
+                            let from;
+                            let subject;
+                            let body;
+                            let to;
+                            let email = {};
+                            // select email depending on client selected email template
+                            if (client.email_template === 'template-one') {
+                                email = client.emails.find(e => e.email_type === 'template-one-email');
+                            } else {
+                                email = client.emails.find(e => e.email_type === 'template-two-email');
+                            }
+                            console.log(email);
+                            //Now send the email to the employee here
+                            // step-1 : first get the email template from the client for creating an employee
+                            from = email.from_address;
+                            subject = email.subject;
+                            body = email.body;
+                            to = employee.email;
 
-                        // step-2 : replace the [client_name] by the client.username
-                        body = body.replace('[client_name]', client.name);
-                        body = body.replace('[client_name]', client.name);
-                        subject = subject.replace('[client_name]', client.name);
-                        body = body.replace('[employee_firstname]', employee.first_name);
+                            // step-2 : replace the [client_name] by the client.username
+                            body = body.replace('[client_name]', client.name);
+                            body = body.replace('[client_name]', client.name);
+                            subject = subject.replace('[client_name]', client.name);
+                            body = body.replace('[employee_firstname]', employee.first_name);
 
-                        // step-3 : [employee_username] set the employee email
-                        body = body.replace('[employee_username]', to);
+                            // step-3 : [employee_username] set the employee email
+                            body = body.replace('[employee_username]', to);
 
-                        // step-4 : [employee_password] set the employee plain password.
-                        body = body.replace('[employee_password]', password);
-                        return helpers.SendEmailToEmployee({from, to, subject, body});
-                    }).then(() => {
-                        return res.status(200).send({
-                            "success": true,
-                            "message": "Employee successfully created",
-                            employee
-                        })
-                    }).catch(err => {
-                        next(err)
-                    });
-                })
+                            // step-4 : [employee_password] set the employee plain password.
+                            body = body.replace('[employee_password]', password);
+                            return helpers.SendEmailToEmployee({from, to, subject, body});
+                        }).then(() => {
+                            return res.status(200).send({
+                                "success": true,
+                                "message": "Employee successfully created",
+                                employee
+                            })
+                        }).catch(err => {
+                            next(err)
+                        });
+                    })
             })
         })
     })
@@ -490,7 +527,7 @@ exports.Update = (req, res, next) => {
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Employee.findByIdAndUpdate(
+    Employee.findOnendUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -532,7 +569,7 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
-        Employee.findByIdAndRemove(id, (err, employee) => {
+        Employee.findOneAndDelete(id, (err, employee) => {
             // As always, handle any potential errors:
             if (err) return next(err);
             if (!employee) return res.status(404).json({success: false, message: "Employee not found."});

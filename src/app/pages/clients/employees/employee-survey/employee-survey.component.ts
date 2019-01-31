@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../../../@core/data/survey.service";
 import {AnswerService} from "../../../../@core/data/answer.service";
@@ -15,6 +15,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     @Input() clientId: string;
     @Input() employeeId: string;
     @Input() surveyCompleted: string;
+    @Output() showEmployee = new EventEmitter();
     employee;
     questions = [];
     categorical_questions = [];
@@ -220,16 +221,18 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                     let second_choice_valid = false;
                     // Final Question
                     // get the 1st  choice and 2nd choice
-                    this.exit_reason_checkbox.map((exit_reason) => {
-                        const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
-                        const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
-                        if (first_choice_radio_input.checked) {
-                            options.push('1st-choice-' + exit_reason.id);
-                            first_choice_valid = true;
-                        }
-                        if (second_choice_radio_input.checked) {
-                            options.push('2nd-choice-' + exit_reason.id);
-                            second_choice_valid = true;
+                    this.exit_reason_checkbox.map((exit_reason, index) => {
+                        if (question.options[index] == 'true') {
+                            const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
+                            const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
+                            if (first_choice_radio_input.checked) {
+                                options.push('1st-choice-' + exit_reason.id);
+                                first_choice_valid = true;
+                            }
+                            if (second_choice_radio_input.checked) {
+                                options.push('2nd-choice-' + exit_reason.id);
+                                second_choice_valid = true;
+                            }
                         }
                     });
                     // for final question set the question type 7
@@ -277,9 +280,9 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
 
     saveQuestionAnswer() {
         this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employeeId).subscribe(
-            data => {
-                alert(data.message);
-                this.router.navigateByUrl('/pages/clients/client-selection/details/' + this.clientId);
+            () => {
+                alert('Exit interview submitted successfully');
+                this.showEmployee.emit();
             }
         );
     }
@@ -290,9 +293,9 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
             // remove everything except the options since options will be updated
         });
         this.answerService.updateManyAnswer(this.answers).subscribe(
-            data => {
-                alert(data.message);
-                this.router.navigateByUrl('/pages/clients/client-selection/details/' + this.clientId);
+            () => {
+                alert('Exit interview updated');
+                this.showEmployee.emit();
             }
         );
     }
@@ -358,30 +361,32 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                     });
                 } else if (answer.question_type === '7') {
                     // This is the final question
-                    this.exit_reason_checkbox.map((exit_reason) => {
-                        const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
-                        const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
-                        // answer options will contain two values
-                        const first_choice = answer.options[0].split('-');
-                        const second_choice = answer.options[1].split('-');
-                        if (first_choice[0] == '1st') {
-                            if (first_choice[2] == exit_reason.id) {
-                                first_choice_radio_input.checked = true;
+                    this.exit_reason_checkbox.map((exit_reason, index) => {
+                        if (question.options[index] == 'true') {
+                            const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
+                            const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
+                            // answer options will contain two values
+                            const first_choice = answer.options[0].split('-');
+                            const second_choice = answer.options[1].split('-');
+                            if (first_choice[0] == '1st') {
+                                if (first_choice[2] == exit_reason.id) {
+                                    first_choice_radio_input.checked = true;
+                                }
+
+                            } else {
+                                if (first_choice[2] == exit_reason.id) {
+                                    second_choice_radio_input.checked = true;
+                                }
                             }
 
-                        } else {
-                            if (first_choice[2] == exit_reason.id) {
-                                second_choice_radio_input.checked = true;
-                            }
-                        }
-
-                        if (second_choice[0] == '1st') {
-                            if (second_choice[2] == exit_reason.id) {
-                                first_choice_radio_input.checked = true;
-                            }
-                        } else {
-                            if (second_choice[2] == exit_reason.id) {
-                                second_choice_radio_input.checked = true;
+                            if (second_choice[0] == '1st') {
+                                if (second_choice[2] == exit_reason.id) {
+                                    first_choice_radio_input.checked = true;
+                                }
+                            } else {
+                                if (second_choice[2] == exit_reason.id) {
+                                    second_choice_radio_input.checked = true;
+                                }
                             }
                         }
                     });

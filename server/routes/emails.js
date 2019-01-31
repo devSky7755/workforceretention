@@ -6,7 +6,7 @@ const emailController = require('../controllers/email');
 //Helpers
 const emailService = require('../helpers/email');
 
-router.post('/:clientId', emailController.Create);
+router.post('/', emailController.Create);
 
 //Send Email
 router.post('/send',emailService.sendEmail);

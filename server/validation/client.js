@@ -26,6 +26,8 @@ const schema = Joi.object().keys({
 
     image: any,
 
+    email_template: Joi.any(),
+
     industry: Joi.objectId(),
 
     aggregate_reports: Joi.string().required()

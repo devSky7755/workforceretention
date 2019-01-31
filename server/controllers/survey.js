@@ -4,6 +4,7 @@ const puppeteer = require('puppeteer');
 //RELATIONAL MODEL
 const Question = require('../models/question');
 const Answer = require('../models/answer');
+const Employee = require('../models/employee');
 
 const User = require('../models/user');
 
@@ -199,7 +200,8 @@ exports.PrintCompletedSurvey = async (req, res) => {
     const filePath = path.join(__dirname, '../pdf/' + fileName);
     const options = {
         path: filePath,
-        format: 'A4'
+        format: 'A4',
+        printBackground: true
     };
     await page.goto(baseUrl + url, {waitUntil: 'networkidle2'});
     await page.pdf(options);
@@ -216,7 +218,7 @@ exports.Update = (req, res, next) => {
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Survey.findByIdAndUpdate(
+    Survey.findOneAndUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -258,7 +260,7 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the survey in case they need a reference for some reason.
-        Survey.findByIdAndRemove(id, (err, survey) => {
+        Survey.findOneAndDelete(id, (err, survey) => {
             // As always, handle any potential errors:
             if (err) return next(err);
             if (!survey) return res.status(404).json({success: false, message: "Survey not found."});
@@ -295,6 +297,8 @@ exports.SurveyWithQuestionAnswer = (req, res, next) => {
     let surveyId = req.params.surveyId;
     let employeeId = req.query.employeeId;
 
+    let response_object = {};
+
     Survey.findById(surveyId)
         .populate([{
             path: 'questions',
@@ -302,12 +306,30 @@ exports.SurveyWithQuestionAnswer = (req, res, next) => {
         }])
         .exec(function (err, survey) {
             if (err) return next(err);
+            response_object.survey = survey;
             surveyQuestionAnswer(surveyId, employeeId).then(
                 (answers) => {
-                    return res.status(200).json({success: true, survey,answers})
-                }
-            );
+                    // here find the employee
+                    response_object.answers = answers;
+                    return findEmployee(employeeId)
+                }).then((employee) => {
+                    response_object.success = true;
+                    response_object.employee = employee;
+                return res.status(200).json(response_object);
+            })
         });
+};
+
+const findEmployee = function (employeeId) {
+    return new Promise((resolve, reject) => {
+        Employee.findById(employeeId, (err, employee) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(employee);
+            }
+        })
+    });
 };
 
 const surveyQuestionAnswer = function (surveyId, employeeId) {

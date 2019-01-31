@@ -49,6 +49,32 @@
                 <div class="col-lg-4"><strong>Dept. Level Management</strong></div>
                 <div class="col-lg-5">{{client.department_label}}</div>
             </div>
+            <!--Here Put the Email Template-->
+            <br>
+            <div class="row">
+                <div class="col-lg-4"><strong>Email Template</strong></div>
+                <div class="col-lg-8">
+                    <!--FULL REPORTING-->
+                    <div class="form__group u-margin-bottom-medium">
+                        <div class="form__radio-group">
+                            <input type="radio" name="interview-type" class="form__radio-input" value="template-one"
+                                   id="template-one" (change)="onChangeEmailTemplate($event)">
+                            <label for="template-one" class="form__radio-label">
+                                <span class="form__radio-button"></span>
+                                Phone Interview
+                            </label>
+                        </div>
+                        <div class="form__radio-group">
+                            <input type="radio" name="interview-type" class="form__radio-input" value="template-two"
+                                   id="template-two" (change)="onChangeEmailTemplate($event)">
+                            <label for="template-two" class="form__radio-label">
+                                <span class="form__radio-button"></span>
+                                Online Survey
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

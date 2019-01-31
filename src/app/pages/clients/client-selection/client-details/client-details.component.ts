@@ -42,7 +42,6 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
     getClient() {
         this.clientService.getClient(this.clientId).subscribe(
             data => {
-                console.log(data);
                 this.client = data.client;
                 //set the client industry
                 this.client.industry_label = this.client.industry.name;
@@ -61,9 +60,24 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
                 this.client.division_label = this.levels[this.client.div_mgt].name;
                 //set department level
                 this.client.department_label = this.levels[this.client.dept_mgt].name;
+                //set email type
+                const self = this;
+                setTimeout(function () {
+                    self.setEmailTemplate(self.client.email_template);
+                }, 1000);
 
             }
         );
+    }
+
+    setEmailTemplate(template) {
+        const element = <HTMLInputElement>document.getElementById(template);
+        element.checked = true;
+    }
+
+    onChangeEmailTemplate(event) {
+        console.log(event.target.value);
+        // update client template
     }
 
     ngOnChanges(changes: SimpleChanges) {

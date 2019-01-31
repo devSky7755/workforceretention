@@ -179,6 +179,7 @@ export class AddEditUserComponent implements OnInit {
             first_name: this.get('name').get('firstName').value,
             last_name: this.get('name').get('lastName').value,
             role: this.get('role').value,
+            username: this.get('username').value,
             clients: this.userClients
         };
         this.userService.updateUser(user, this.userId).subscribe(

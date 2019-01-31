@@ -106,6 +106,10 @@ export class ClientTabsComponent implements OnInit {
         this.isShowEmployeeTable = false;
         this.showEmployeeDetails = false;
     }
+    showEmployees() {
+        this.isShowEmployeeTable = true;
+        this.selectTab();
+    }
 
     onClickAddDivision(event) {
         this.organizationId = event.organizationId;

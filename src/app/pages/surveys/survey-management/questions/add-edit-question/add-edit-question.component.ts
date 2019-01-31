@@ -344,7 +344,10 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             if (exit_reason === '' || this.isNullOrEmpty(exit_reason)) {
                 errors.push('select exit reporting reason for question no => ' + (i + 1));
             }
-            if (exit_reporting_label === '' || this.isNullOrEmpty(exit_reporting_label)) {
+            // initial question don't have required exit reporting label
+            // since initial question will not be used in the Graph
+            // exit_reason = 11 means this is the initial question
+            if (exit_reporting_label === '' || this.isNullOrEmpty(exit_reporting_label) && exit_reason != 11) {
                 errors.push('exit reporting label field is required for question no => ' + (i + 1));
             }
             // exit_reason = 13 means this is the final question

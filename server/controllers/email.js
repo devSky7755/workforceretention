@@ -11,7 +11,6 @@ const emailSchema = require('../validation/email');
 
 exports.Create = function (req, res, next) {
     const data = req.body;
-    const clientId = req.params.clientId;
     Joi.validate(data, emailSchema, (err, value) => {
         if (err) return next(err);
 
@@ -19,25 +18,16 @@ exports.Create = function (req, res, next) {
         //now push this newClient to the employee clients array === employee.clients.push(newPost)
         //now save the employee. this will automatically creates the relationship
         //and the newClient will be added into the staticPage table
-        Client.findById(clientId, (err, client) => {
-            if (err) return next(err);
-            if (!client) {
-                return res.status(404).json({status: false, message: 'No client found!'})
-            }
-            const email = new Email(data);
-            email.save().then(email => {
-                client.emails.push(email);
-                client.save(); //This will return another promise
-            }).then(() => {
-                return res.status(200).send({
-                    "success": true,
-                    "message": "Email successfully created",
-                    email
-                })
-            }).catch(err => {
-                next(err)
-            });
-        })
+        const email = new Email(data);
+        email.save().then(email => {
+            return res.status(200).send({
+                "success": true,
+                "message": "Email successfully created",
+                email
+            })
+        }).catch(err => {
+            next(err)
+        });
     })
 };
 
@@ -86,13 +76,13 @@ exports.FindById = (req, res, next) => {
 exports.Update = (req, res, next) => {
     // fetch the request data
     const data = req.body;
-    let id = req.param('id');
+    let id = req.params.id;
 
     //Update the employee
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Email.findByIdAndUpdate(
+    Email.findOneAndUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -134,7 +124,7 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
-        Email.findByIdAndRemove(id, (err, email) => {
+        Email.findOneAndDelete(id, (err, email) => {
             // As always, handle any potential errors:
             if (err) return next(err);
             if (!email) return res.status(404).json({success: false, message: "Email not found."});

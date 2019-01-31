@@ -294,6 +294,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     saveQuestionAnswer() {
         this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employee.employee_id).subscribe(
             () => {
+                alert('Exit interview submitted successfully');
                 this.router.navigateByUrl('/client/dashboard');
             }
         );
@@ -306,6 +307,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         });
         this.answerService.updateManyAnswer(this.answers).subscribe(
             () => {
+                alert('Exit interview updated');
                 this.router.navigateByUrl('/client/dashboard');
             }
         );

@@ -12,13 +12,15 @@ import {AddEditPermissionComponent} from './permission-management/add-edit-permi
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {ButtonsModule} from "../forms/buttons/buttons.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { EmailManagementComponent } from './email-management/email-management.component';
 
 @NgModule({
     declarations: [
         UserManagementComponent,
         PermissionManagementComponent,
         AddEditUserComponent,
-        AddEditPermissionComponent
+        AddEditPermissionComponent,
+        EmailManagementComponent
     ],
     imports: [
         CommonModule,
