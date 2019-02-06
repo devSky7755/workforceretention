@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EmailService} from "../../../@core/data/email.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'ngx-email-management',
@@ -14,11 +15,11 @@ export class EmailManagementComponent implements OnInit {
     limit = 5;
     emails;
 
-    constructor(private emailService: EmailService) {
+    constructor(private emailService: EmailService, private router: Router) {
     }
 
     onClickEdit(emailId) {
-
+        this.router.navigateByUrl('/pages/office-admin/email-management/edit/' + emailId);
     }
 
     /**

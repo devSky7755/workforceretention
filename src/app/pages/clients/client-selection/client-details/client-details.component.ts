@@ -76,8 +76,21 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
     }
 
     onChangeEmailTemplate(event) {
-        console.log(event.target.value);
+        // check if client.email_template and event.target.value both are same then no need to update data
+        if (this.client.email_template !== event.target.value) {
+            // update the client email_template
+            this.updateEmailTemplate(event.target.value);
+        }
         // update client template
+    }
+
+    updateEmailTemplate(template) {
+        const client = {email_template: template};
+        this.clientService.updateClient(client, this.clientId).subscribe(
+            res => {
+                this.client.email_template = res.client.email_template;
+            }
+        );
     }
 
     ngOnChanges(changes: SimpleChanges) {

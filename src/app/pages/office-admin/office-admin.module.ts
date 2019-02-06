@@ -13,6 +13,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {ButtonsModule} from "../forms/buttons/buttons.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EmailManagementComponent } from './email-management/email-management.component';
+import { AddEditEmailComponent } from './email-management/add-edit-email/add-edit-email.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { EmailManagementComponent } from './email-management/email-management.co
         PermissionManagementComponent,
         AddEditUserComponent,
         AddEditPermissionComponent,
-        EmailManagementComponent
+        EmailManagementComponent,
+        AddEditEmailComponent
     ],
     imports: [
         CommonModule,

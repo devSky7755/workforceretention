@@ -37,7 +37,7 @@ exports.Upload = function (req, res, next) {
     //first find the client by it's clientId
     Client.findById(clientId)
         .populate([{
-            path: 'emails'
+            path: 'emails.email'
         }])
         .exec(function (err, client) {
             if (err) return next(err);
@@ -169,6 +169,7 @@ const passwordGenerator = function (employees, client) {
                         } else {
                             email = client.emails.find(e => e.email_type === 'template-two-email');
                         }
+                        console.log(email);
                         // send the password to the employee email
                         // step-1 : first get the email template from the client for creating an employee
                         from = email.from_address;
@@ -291,7 +292,7 @@ exports.Create = function (req, res, next) {
                 //and the newClient will be added into the staticPage table
                 Client.findById(clientId)
                     .populate([{
-                        path: 'emails'
+                        path: 'emails.email'
                     }])
                     .exec(function (err, client) {
                         if (err) return next(err);
@@ -319,12 +320,15 @@ exports.Create = function (req, res, next) {
                             let to;
                             let email = {};
                             // select email depending on client selected email template
-                            if (client.email_template === 'template-one') {
+                            // if employee is a manager then sent
+                            if (employee.is_manager == '1') {
+                                email = client.emails.find(e => e.email_type === 'manager-report-email');
+                            }
+                            else if (client.email_template === 'template-one') {
                                 email = client.emails.find(e => e.email_type === 'template-one-email');
                             } else {
                                 email = client.emails.find(e => e.email_type === 'template-two-email');
                             }
-                            console.log(email);
                             //Now send the email to the employee here
                             // step-1 : first get the email template from the client for creating an employee
                             from = email.from_address;

@@ -240,7 +240,7 @@ exports.FindEmails = (req, res, next) => {
 
     Client.findById(clientId)
         .populate([{
-            path: 'emails'
+            path: 'emails.email'
         }])
         .exec(function (err, client) {
             if (err) return next(err);
