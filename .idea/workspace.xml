@@ -2,25 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/server/controllers/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/article.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/article.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/box.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/box.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/category.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/department.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/department.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/division.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/division.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/email.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/industry.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/industry.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/link.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/link.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/organization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/question.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/report.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/role.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/role.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/static_page.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/static_page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/survey.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/survey.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/@core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/core.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" afterDir="false" />
     </list>
@@ -36,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="47" column="42" lean-forward="true" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+            <state relative-caret-position="284">
+              <caret line="47" column="51" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
               <folding>
                 <element signature="e#0#80#0" expanded="true" />
               </folding>
@@ -48,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="105">
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -77,16 +59,18 @@
       <find>deleteMan</find>
       <find>setTi</find>
       <find>findOne</find>
-      <find>findOneAndUpdate</find>
       <find>findOneAndDelete</find>
       <find>req.param</find>
       <find>req.param('id')</find>
+      <find>findByIdAndUpdate</find>
+      <find>findOneAndUpdate</find>
     </findStrings>
     <replaceStrings>
       <replace>login-form-control</replace>
-      <replace>findByIdAndUpdate</replace>
       <replace>findByIdAndRemove</replace>
       <replace>req.params.id</replace>
+      <replace>findOneAndUpdate</replace>
+      <replace>findByIdAndUpdate</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -144,8 +128,8 @@
         <option value="$PROJECT_DIR$/server/controllers/page.js" />
         <option value="$PROJECT_DIR$/server/controllers/link.js" />
         <option value="$PROJECT_DIR$/server/controllers/division.js" />
-        <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
+        <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
       </list>
     </option>
   </component>
@@ -171,17 +155,6 @@
             <path>
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
               <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -323,18 +296,18 @@
       <workItem from="1549014688109" duration="1642000" />
       <workItem from="1549037103300" duration="1763000" />
       <workItem from="1549272110418" duration="528000" />
-      <workItem from="1549423747540" duration="10936000" />
+      <workItem from="1549423747540" duration="13242000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="409466000" />
+    <option name="totallyTimeSpent" value="411772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29535866" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29535866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -348,7 +321,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.36632654" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.36632654" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -737,20 +710,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="42" lean-forward="true" selection-start-line="47" selection-start-column="42" selection-end-line="47" selection-end-column="42" />
+        <state relative-caret-position="284">
+          <caret line="47" column="51" selection-start-line="47" selection-start-column="51" selection-end-line="47" selection-end-column="51" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
