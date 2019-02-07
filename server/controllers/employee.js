@@ -60,13 +60,13 @@ exports.Upload = function (req, res, next) {
                     for (let i = 0; i < json.length; i++) {
                         //here find the organization by name
                         const employeeOrganization = findOrganizationByName(json[i].organization, organizations);
-                        json[i].organization = employeeOrganization ? employeeOrganization : null;
+                        json[i].organization = employeeOrganization;
                         //here find the division by name
                         const employeeDivision = findDivisionByName(json[i].division, organizations);
-                        json[i].division = employeeDivision ? employeeDivision : null;
+                        json[i].division = employeeDivision;
                         //here find the department by name
                         const employeeDepartment = findDepartmentByName(json[i].department, organizations);
-                        json[i].department = employeeDepartment ? employeeDepartment : null;
+                        json[i].department = employeeDepartment;
 
                         // here before push the json object check if the employee client has assign surveys. if so then assign that surveys to the employee
                         let clientSurveys = [];
@@ -212,43 +212,46 @@ const passwordGenerator = function (employees, client) {
     return Promise.all(employeePromises);
 };
 const findOrganizationByName = function (name, organizations) {
+    let organizationId = null
     if (organizations !== null) {
         organizations.map((organization) => {
             if (organization.name.toUpperCase() === name.toUpperCase()) {
-                return organization._id;
+                organizationId = organization._id;
             }
         })
     }
-    return null;
+    return organizationId;
 };
 const findDivisionByName = function (name, organizations) {
+    let divisionId = null;
     organizations.map((organization) => {
         if (organization.divisions !== null && typeof organization.divisions !== 'undefined') {
             organization.divisions.map((division) => {
                 if (division.name.toUpperCase() === name.toUpperCase()) {
-                    return division._id;
+                    divisionId = division._id;
                 }
             })
         }
     });
-    return null;
+    return divisionId;
 };
 
 const findDepartmentByName = function (name, organizations) {
+    let departmentId = null;
     organizations.map((organization) => {
         if (organization.divisions !== null && typeof organization.divisions !== 'undefined') {
             organization.divisions.map((division) => {
                 if (division.departments !== null && typeof division.departments !== 'undefined') {
                     division.departments.map((department) => {
                         if (department.name.toUpperCase() === name.toUpperCase()) {
-                            return department._id;
+                            departmentId = department._id;
                         }
                     })
                 }
             })
         }
     });
-    return null;
+    return departmentId;
 };
 exports.Create = function (req, res, next) {
     const data = req.body;
@@ -525,7 +528,7 @@ exports.logout = function (req, res) {
 exports.Update = (req, res, next) => {
     // fetch the request data
     const data = req.body;
-    let id = req.param('id');
+    let id = req.params.id;
 
     //Update the employee
 
@@ -556,7 +559,7 @@ exports.Update = (req, res, next) => {
 };
 
 exports.Delete = (req, res, next) => {
-    let id = req.param('id');
+    let id = req.params.id;
 
     const schema = Joi.object({
         id: Joi.objectId()
@@ -573,7 +576,7 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
-        Employee.findOneAndDelete(id, (err, employee) => {
+        Employee.findByIdAndRemove(id, (err, employee) => {
             // As always, handle any potential errors:
             if (err) return next(err);
             if (!employee) return res.status(404).json({success: false, message: "Employee not found."});

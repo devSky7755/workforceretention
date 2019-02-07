@@ -72,13 +72,13 @@ exports.FindById = (req, res, next) => {
 exports.Update = (req, res, next) => {
     // fetch the request data
     const data = req.body;
-    let id = req.param('id');
+    let id = req.params.id;
 
     //Update the employee
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Report.findOneAndUpdate(
+    Report.findByIdAndUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -103,7 +103,7 @@ exports.Update = (req, res, next) => {
 };
 
 exports.Delete = (req, res, next) => {
-    let id = req.param('id');
+    let id = req.params.id;
 
     const schema = Joi.object({
         id: Joi.objectId()
@@ -120,7 +120,7 @@ exports.Delete = (req, res, next) => {
         }
         // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
-        Report.findOneAndDelete(id, (err, report) => {
+        Report.findByIdAndRemove(id, (err, report) => {
             // As always, handle any potential errors:
             if (err) return next(err);
             if (!report) return res.status(404).json({success: false, message: "Report not found."});
