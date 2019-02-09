@@ -58,6 +58,7 @@ const boxRoutes = require('./routes/boxs');
 const categoryRoutes = require('./routes/categories');
 const staticPageRoutes = require('./routes/static_pages');
 const surveyEmailRoutes = require('./routes/survey_emails');
+const reportRoutes = require('./routes/reports');
 
 //Connect with the mongodb database
 mongoose.connect(config.MONGO_URI, {
@@ -123,6 +124,7 @@ app.use('/api/v1/roles', roleRoutes);
 app.use('/api/v1/boxes', boxRoutes);
 app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/survey_emails', surveyEmailRoutes);
+app.use('/api/v1/reports', reportRoutes);
 
 //Angular DIST output folder
 const appPath = path.join(__dirname, '..', 'dist');
