@@ -38,22 +38,6 @@ export class DashboardComponent implements OnInit {
     }
 
     setCompletedSurveys(offset, limit) {
-        // this.surveyService.getSurveys(offset, limit).subscribe(results => {
-        //         this.count = results.totalItems;
-        //         const rows = [];
-        //         results.surveys.map((survey) => {
-        //             // Modify article role
-        //             survey.id = survey._id;
-        //             survey.noOfQuestion = survey.no_of_questions;
-        //             rows.push(survey);
-        //         });
-        //         this.completedSurveys = rows;
-        //
-        //     },
-        //     (err) => {
-        //         console.log(err);
-        //     }
-        // );
         this.employeeService.getEmployeeSurveys(this.employee.employee_id).subscribe(
             data => {
                 this.count = data.surveys.length;

@@ -80,6 +80,11 @@ const employeeSchema = new Schema({
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+    // the employee under the client
+    client: {
+      type: Schema.Types.ObjectId,
+      ref: 'Client'
+    },
     organization: {
         type: Schema.Types.ObjectId,
         ref: 'Organization'

@@ -1,0 +1,94 @@
+<nb-layout>
+    <nb-layout-column>
+        <ngx-header></ngx-header>
+        <ngx-page-name [pageName]="'EXIT INTERVIEW REPORT'"></ngx-page-name>
+        <section class="home-section light-gray">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10">
+                        <div class="filter-box">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!--Viewing Level Dropdown-->
+                                    <div class="form-group">
+                                        <select class="form-control" [(ngModel)]="filterData.level"
+                                                name="level">
+                                            <option value="">Select Level *</option>
+                                            <option *ngFor="let organization of organizations_divisions_departments"
+                                                    value="{{organization.id}}">
+                                                {{organization.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Occupational Group -->
+                                    <div class="form-group">
+                                        <select class="form-control"
+                                                [(ngModel)]="filterData.occupational_group"
+                                                name="occ-group">
+                                            <option value="" selected>Select Occupational Group *</option>
+                                            <option *ngFor="let occ of occupations"
+                                                    value="{{occ.id}}">{{occ.value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!--Start Date Datetime Show Box-->
+                                    <div class="form-group">
+                                        <input class="form-control" name="start_date"
+                                               placeholder="Start Date"
+                                               [nbDatepicker]="startDatePicker" [(ngModel)]="filterData.start_date">
+                                        <nb-datepicker #startDatePicker></nb-datepicker>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!--End Date Datetime Show Box-->
+                                    <div class="form-group">
+                                        <input class="form-control" name="end_date"
+                                               placeholder="End Date"
+                                               [nbDatepicker]="endDatePicker" [(ngModel)]="filterData.end_date">
+                                        <nb-datepicker #endDatePicker></nb-datepicker>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!--Gender Dropdown Box-->
+                                    <div class="form-group">
+                                        <select class="form-control"
+                                                [(ngModel)]="filterData.gender"
+                                                name="gender">
+                                            <option value="" selected>Select Gender *</option>
+                                            <option *ngFor="let gender of genders"
+                                                    value="{{gender.id}}">{{gender.value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!--Tenure Dropdown Box-->
+                                    <div class="form-group">
+                                        <select class="form-control"
+                                                [(ngModel)]="filterData.tenure"
+                                                name="tenure">
+                                            <option value="" selected>Select Tenure *</option>
+                                            <option *ngFor="let tenure of tenures"
+                                                    value="{{tenure.id}}">{{tenure.value}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-primary" (click)="viewReport()">View Report</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
+            </div>
+        </section>
+    </nb-layout-column>
+</nb-layout>

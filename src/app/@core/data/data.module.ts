@@ -37,6 +37,7 @@ import {EmailService} from "./email.service";
 import {DepartmentService} from "./department.service";
 import {DivisionService} from "./division.service";
 import {SurveyEmailService} from "./survey-email.service";
+import {ReportService} from "./report.service";
 
 const SERVICES = [
     UserService,
@@ -76,7 +77,8 @@ const SERVICES = [
     EmailService,
     DepartmentService,
     DivisionService,
-    SurveyEmailService
+    SurveyEmailService,
+    ReportService
 ];
 
 @NgModule({

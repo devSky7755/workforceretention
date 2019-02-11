@@ -10,7 +10,7 @@ import {AuthenticationComponent} from './authentication/authentication.component
 import {HeaderComponent} from './layout/header/header.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {NbCardModule, NbLayoutModule} from "@nebular/theme";
+import {NbCardModule, NbDatepickerModule, NbLayoutModule} from "@nebular/theme";
 import {PageNameComponent} from './page-name/page-name.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -18,6 +18,8 @@ import { QuestionsComponent } from './questions/questions.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { ProfileComponent } from './profile/profile.component';
 import { EmployeeSurveyDownloadComponent } from './employee-survey-download/employee-survey-download.component';
+import { ManagerReportComponent } from './manager-report/manager-report.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +34,9 @@ import { EmployeeSurveyDownloadComponent } from './employee-survey-download/empl
         DashboardComponent,
         QuestionsComponent,
         ProfileComponent,
-        EmployeeSurveyDownloadComponent
+        EmployeeSurveyDownloadComponent,
+        ManagerReportComponent,
+        ReportsComponent
     ],
     imports: [
         CommonModule,
@@ -42,7 +46,8 @@ import { EmployeeSurveyDownloadComponent } from './employee-survey-download/empl
         NbLayoutModule,
         FormsModule,
         NgxDatatableModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NbDatepickerModule
     ]
 })
 export class ClientModule {

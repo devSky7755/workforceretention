@@ -75,6 +75,7 @@ exports.Upload = function (req, res, next) {
                             clientSurveys.push(employeeSurvey);
                         });
                         json[i].surveys = clientSurveys;
+                        json[i].client = clientId;
                         employees.push(json[i]);
                     }
                     //before generating password we need to checkout if employee exist with the given email
@@ -163,8 +164,7 @@ const passwordGenerator = function (employees, client) {
                         // if employee is a manager then sent
                         if (employee.is_manager == '1') {
                             email = client.emails.find(e => e.email_type === 'manager-report-email');
-                        }
-                        else if (client.email_template === 'template-one') {
+                        } else if (client.email_template === 'template-one') {
                             email = client.emails.find(e => e.email_type === 'template-one-email');
                         } else {
                             email = client.emails.find(e => e.email_type === 'template-two-email');
@@ -287,6 +287,7 @@ exports.Create = function (req, res, next) {
                 numbers: true
             });
             data.password = password;
+            data.client = clientId;
             bcrypt.hash(data.password, salt, async function (err, hash) {
                 if (err) return next(err);
                 //First find the employee by id
@@ -326,8 +327,7 @@ exports.Create = function (req, res, next) {
                             // if employee is a manager then sent
                             if (employee.is_manager == '1') {
                                 email = client.emails.find(e => e.email_type === 'manager-report-email');
-                            }
-                            else if (client.email_template === 'template-one') {
+                            } else if (client.email_template === 'template-one') {
                                 email = client.emails.find(e => e.email_type === 'template-one-email');
                             } else {
                                 email = client.emails.find(e => e.email_type === 'template-two-email');
