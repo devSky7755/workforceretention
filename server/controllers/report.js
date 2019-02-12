@@ -232,8 +232,10 @@ exports.ManagerReport = (req, res, next) => {
                                         } else if (answer.question_type === '7') {
                                             // This is the final and special question
                                             question_object.options.forEach((option) => {
-                                                let first_choice_index = '1st-choice-' + option.label_index;
-                                                let second_choice_index = '2nd-choice-' + option.label_index;
+                                                // we have to increase label_index by 1 because when question is answered
+                                                // it inputs the exit_reason id which is 1 increased than it's index
+                                                let first_choice_index = '1st-choice-' + (option.label_index + 1);
+                                                let second_choice_index = '2nd-choice-' + (option.label_index + 1);
 
                                                 if (answer.options.includes(first_choice_index) || answer.options.includes(second_choice_index)) {
                                                     option.answered = option.answered + 1;

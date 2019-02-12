@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EmployeeSurveyDownloadComponent } from './employee-survey-download/employee-survey-download.component';
 import { ManagerReportComponent } from './manager-report/manager-report.component';
 import { ReportsComponent } from './reports/reports.component';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 @NgModule({
     declarations: [
@@ -47,7 +48,8 @@ import { ReportsComponent } from './reports/reports.component';
         FormsModule,
         NgxDatatableModule,
         ReactiveFormsModule,
-        NbDatepickerModule
+        NbDatepickerModule,
+        NgxChartsModule,
     ]
 })
 export class ClientModule {

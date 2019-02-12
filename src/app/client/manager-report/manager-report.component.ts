@@ -13,6 +13,21 @@ export class ManagerReportComponent implements OnInit {
     employee;
     organization;
     organizations_divisions_departments = [];
+    top_leaving_reasons = [];
+    exit_reasons = [
+        {id: 1, value: 'Career Opportunities'},
+        {id: 2, value: 'Meaningful Work'},
+        {id: 3, value: 'Communication'},
+        {id: 4, value: 'Effective Leadership'},
+        {id: 5, value: 'Induction'},
+        {id: 6, value: 'Learning & Development'},
+        {id: 7, value: 'Manager'},
+        {id: 8, value: 'Pay & Benefits'},
+        {id: 9, value: 'Work Conditions'},
+        {id: 10, value: 'Being Valued'},
+        {id: 11, value: 'Operational'},
+        {id: 12, value: 'Restructure'},
+    ];
     tenures = [
         {id: 1, value: "< 1 year"},
         {id: 2, value: "1 - 2 years"},
@@ -31,6 +46,23 @@ export class ManagerReportComponent implements OnInit {
         {id: 8, value: 'Machinery Operators and Drivers'},
         {id: 9, value: 'Labourers'},
     ];
+
+    // First Question Chart
+    view: any[] = [700, 400];
+
+    // options
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = true;
+    showXAxisLabel = true;
+    xAxisLabel = 'Number';
+    showYAxisLabel = true;
+    yAxisLabel = 'Color Value';
+    colorScheme = {
+        domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    };
+    top_reason_for_leaving_chart_data = [];
 
     constructor(private reportService: ReportService) {
     }
@@ -58,6 +90,7 @@ export class ManagerReportComponent implements OnInit {
         this.reportService.getReport(this.employee.employee_id, this.filterData).subscribe(
             res => {
                 console.log(res);
+                this.showChartReport(res);
             }
         );
     }
@@ -133,5 +166,34 @@ export class ManagerReportComponent implements OnInit {
     // answers (Array of objects) {question_id : 1, category_label: Career Opportunities, answers : [{label:Agree and Strongly Agree, percentage: 73.33}]}
 
     // re-arrange the answers by the category label (highest leaving reason)
+
+    showChartReport(data) {
+        // first get the final question
+        // find the top 3 reasons for leaving the exit interview from the final question
+        const final_question = data.response_array.find(ex => ex.exit_reason === '13');
+        // Percentage Calculation
+        // total points = 45
+        // Career Opportunities Percentage = (12 /45) * 100 = 26.66 %
+        let total_points = 0;
+        final_question.options.map((option) => {
+            total_points += option.answered;
+        });
+        // now calculate the percentage for each option
+        final_question.options.map((option) => {
+            option.percentage = (option.answered / total_points) * 100;
+        });
+        // now we need to re-arrange options by percentage in the descending order
+        final_question.options.sort((a, b) => (a.percentage < b.percentage) ? 1 : -1);
+        // now we can take the first three items and insert it into the top_leaving_reasons array
+        if (final_question.options.length > 3) {
+            // this means there are more than 3 items so we can take the first 3 items
+            this.top_leaving_reasons.push(final_question.options[0], final_question.options[1], final_question.options[2]);
+        }
+        final_question.options.map((option) => {
+            const result = {name: this.exit_reasons[option.label_index].value, value: option.percentage};
+            this.top_reason_for_leaving_chart_data.push(result);
+        });
+        console.log(this.top_reason_for_leaving_chart_data);
+    }
 
 }

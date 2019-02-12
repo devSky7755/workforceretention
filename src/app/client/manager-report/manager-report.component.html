@@ -85,6 +85,38 @@
                         <div class="text-center">
                             <button type="button" class="btn btn-primary" (click)="viewReport()">View Report</button>
                         </div>
+                        <br><br>
+                        <table width="100%">
+                            <tr>
+                                <th>Top 3 Reasons for Leaving</th>
+                                <th class="text-center">Ranking</th>
+                                <th class="text-center">Percentage ( % )</th>
+                            </tr>
+                            <tr *ngFor="let leaving_reason of top_leaving_reasons; let i=index">
+                                <td>{{exit_reasons[leaving_reason.label_index].value}}</td>
+                                <td class="text-center">{{i + 1}}</td>
+                                <td class="text-center">{{leaving_reason.percentage}}</td>
+                            </tr>
+                        </table>
+
+                        <br><br>
+                        <!--DISPLAY ALL THE CHART BELOW-->
+                        <!--FIRST CHART TOP REASONS FOR LEAVING - PERCENTAGE DISTRIBUTION-->
+                        <ngx-charts-bar-vertical
+                                [view]="view"
+                                [scheme]="colorScheme"
+                                [results]="top_reason_for_leaving_chart_data"
+                                [gradient]="gradient"
+                                [xAxis]="showXAxis"
+                                [yAxis]="showYAxis"
+                                [legend]="showLegend"
+                                [showXAxisLabel]="showXAxisLabel"
+                                [showYAxisLabel]="showYAxisLabel"
+                                [xAxisLabel]="xAxisLabel"
+                                [yAxisLabel]="yAxisLabel">
+                        </ngx-charts-bar-vertical>
+                        <hr>
+
                     </div>
                     <div class="col-lg-2"></div>
                 </div>
