@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {SurveyService} from "../../../../@core/data/survey.service";
 import {AnswerService} from "../../../../@core/data/answer.service";
-import {EmployeeService} from "../../../../@core/data/employee.service";
 
 @Component({
     selector: 'ngx-employee-survey',
@@ -85,9 +84,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     // question type exit_interview exit_reason that means it will show the selected checkbox
     constructor(private route: ActivatedRoute,
                 private surveyService: SurveyService,
-                private answerService: AnswerService,
-                private employeeService: EmployeeService,
-                private router: Router) {
+                private answerService: AnswerService) {
         this.survey = {};
     }
 

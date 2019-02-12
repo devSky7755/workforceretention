@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../@core/data/survey.service";
 import {AnswerService} from "../../@core/data/answer.service";
 import {EmployeeService} from "../../@core/data/employee.service";
-import {indexDebugNode} from "@angular/core/src/debug/debug_node";
 
 @Component({
     selector: 'ngx-questions',
@@ -100,7 +99,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         // This would print out the json object which contained
         // all of our query parameters for this particular route.
         this.route.queryParams.subscribe(params => {
-            this.surveyCompleted = params['completed'];
+            this.surveyCompleted = JSON.parse(params['completed']);
         });
         this.getSurvey();
     }

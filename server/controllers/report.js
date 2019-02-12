@@ -72,7 +72,6 @@ exports.ManagerReport = (req, res, next) => {
 
     const {start_date, end_date, level, occupational_group, gender, tenure} = req.body;
     let employeeId = req.params.id;
-    console.log(occupational_group);
 
     // we need to filter employee first by occupational_group, gender, tenure and organization level
     // after getting the employees we will checkout the survey start_date and end_date
@@ -122,41 +121,134 @@ exports.ManagerReport = (req, res, next) => {
 
                         // filter the employees who have completed the survey first
                         // here we have got the survey questions
-                        survey.questions.forEach((question) => {
-                            //here check the employees under this organization answered this question
-                            // foreach option check how many employee selected an option
-                            // for example option 1 - Not Like (count how many employees selected this option)
-                            // option 2 - Not Like at All (count how many employees selected this option)
+                        const response_array = [];
 
-                            // we need to find the answers for the question category
+                        // here get all the answers
+                        employeeQuestionAnswers(client.employees).then(
+                            (employee_answers) => {
+                                survey.questions.forEach((question) => {
+                                    // filter the answer by the question
+                                    const answers = employee_answers.filter(d => d.question.equals(question._id));
+                                    //here check the employees under this organization answered this question
+                                    // foreach option check how many employee selected an option
+                                    // for example option 1 - Not Like (count how many employees selected this option)
+                                    // option 2 - Not Like at All (count how many employees selected this option)
 
-                            // {id: 1, value: 'Career Opportunities'},
-                            // {id: 2, value: 'Meaningful Work'},
-                            // {id: 3, value: 'Communication'},
-                            // {id: 4, value: 'Effective Leadership'},
-                            // {id: 5, value: 'Induction'},
-                            // {id: 6, value: 'Learning & Development'},
-                            // {id: 7, value: 'Manager'},
-                            // {id: 8, value: 'Pay & Benefits'},
-                            // {id: 9, value: 'Work Conditions'},
-                            // {id: 10, value: 'Being Valued'},
-                            // {id: 11, value: 'Operational'},
-                            // {id: 12, value: 'Restructure'},
-                            //  exit_reason 13 means this is the final question
-                            employeeQuestionAnswers(client.employees, question._id).then(
-                                (docs) => {
+                                    // we need to find the answers for the question category
+
+                                    // {id: 1, value: 'Career Opportunities'},
+                                    // {id: 2, value: 'Meaningful Work'},
+                                    // {id: 3, value: 'Communication'},
+                                    // {id: 4, value: 'Effective Leadership'},
+                                    // {id: 5, value: 'Induction'},
+                                    // {id: 6, value: 'Learning & Development'},
+                                    // {id: 7, value: 'Manager'},
+                                    // {id: 8, value: 'Pay & Benefits'},
+                                    // {id: 9, value: 'Work Conditions'},
+                                    // {id: 10, value: 'Being Valued'},
+                                    // {id: 11, value: 'Operational'},
+                                    // {id: 12, value: 'Restructure'},
+                                    //  exit_reason 13 means this is the final question
+
+                                    // question_types = [
+                                    //     {id: 1, value: 'Rating Radio Buttons'},
+                                    //     {id: 2, value: 'Free Text'},
+                                    //     {id: 3, value: 'Exit Interview - Exit Reasons'},
+                                    //     {id: 4, value: 'Yes / No Radio'},
+                                    //     {id: 5, value: 'Radio Labels'},
+                                    //     {id: 6, value: 'Multiple Choice'},
+                                    // ];
+                                    let options = [];
+                                    if (question.type === '1') {
+                                        //here get the ratings from the survey
+                                        // survey.rating_labels
+                                        survey.rating_labels.forEach((label, label_index) => {
+                                            const option_object = {label, label_index, percentage: 0.0, answered: 0};// answered is used for how many employee selected
+                                            // the option.
+                                            options.push(option_object)
+                                        })
+                                    } else if (question.type === '3' || question.type === '5' || question.type === '6') {
+                                        // Exit Interview -  Exit Reasons Question
+                                        question.options.forEach((label, label_index) => {
+                                            // only we should insert which one is checked
+                                            const option_object = {label, label_index, percentage: 0.0, answered: 0};// answered is used for how many employee selected
+                                            // the option.
+                                            options.push(option_object)
+                                        })
+                                    } else if (question.type === '4') {
+                                        // Yes / No Radio Question
+                                        // we need to push two thing yes and no
+                                        const option_yes_object = {
+                                            label: 'Yes',
+                                            label_index: 1,
+                                            percentage: 0.0,
+                                            answered: 0
+                                        };// answered is used for how many employee selected
+                                        const option_no_object = {
+                                            label: 'No',
+                                            label_index: 0,
+                                            percentage: 0.0,
+                                            answered: 0
+                                        };
+                                        options.push(option_yes_object, option_no_object);
+                                    }
+                                    const question_object = {
+                                        id: question._id,
+                                        options: options,
+                                        question_type: question.type,
+                                        exit_reason: question.exit_reason,
+                                        exit_reporting_label: question.exit_reporting_label
+                                    };
                                     // now here we are getting answers for the question
                                     // here we need to check if the question is the final question
                                     // foreach question options we need to do two things how many employees selected an option
                                     // 2nd thing calculate the percentage
-
                                     // check the question type as well
-                                    console.log(docs);
-                                    console.log(`**************** question_id ${question._id} ******************`)
-                                }
-                            )
-                        });
-                        return res.status(200).json({success: true, survey, client})
+
+                                    // here check answer for multiple choice and also check answer for radio buttons
+                                    // for multiple choice answer user can select multiple answer
+                                    answers.forEach((answer) => {
+                                        // check which option is selected.
+                                        // get the question options by label_index and increase the answered
+                                        if (answer.question_type === '1' || answer.question_type === '4' || answer.question_type === '5') {
+                                            // this means question is radio type. so there will be only one answer
+                                            // this means answer.options array has only one element
+                                            question_object.options.forEach((option) => {
+                                                if (JSON.parse(answer.options[0]) === JSON.parse(option.label_index)) {
+                                                    // this means selected the option. so we need to increase the answered by one
+                                                    option.answered = option.answered + 1;
+                                                }
+                                            })
+
+                                        } else if (answer.question_type === '3' || answer.question_type === '6') {
+                                            // this is the multiple choice question
+                                            question_object.options.forEach((option) => {
+                                                let question_index = '' + option.label_index;
+                                                // check the answer array contains the label_index or not
+                                                if (answer.options.includes(question_index)) {
+                                                    option.answered = option.answered + 1;
+                                                }
+                                            })
+                                        } else if (answer.question_type === '7') {
+                                            // This is the final and special question
+                                            question_object.options.forEach((option) => {
+                                                let first_choice_index = '1st-choice-' + option.label_index;
+                                                let second_choice_index = '2nd-choice-' + option.label_index;
+
+                                                if (answer.options.includes(first_choice_index) || answer.options.includes(second_choice_index)) {
+                                                    option.answered = option.answered + 1;
+                                                }
+                                            });
+                                            // for final question we need both first choice ans also second choice
+                                            // how many employee selected first choice and how many employee selected 2nd choice
+                                        }
+                                    });
+
+                                    response_array.push(question_object);
+                                });
+                                return res.status(200).json({success: true, survey, client, response_array})
+                            });
+
                     });
             });
     });
@@ -168,7 +260,8 @@ exports.ManagerReport = (req, res, next) => {
 
     // we can do this way foreach question we should find out how many employee selected which option
     // so our data will be look something like this
-    // {question_id: 1, which category this question is for example being valued category, options:[{id:1, how many employees selected this option}]}
+    // {question_id: 1, which category this question is for example being valued category, options:[{id:1, how many employees selected this option}],
+    // charting_label (exit_reporting_label)}
 
 
     // *************** RULES ***************
@@ -207,7 +300,7 @@ exports.ManagerReport = (req, res, next) => {
     // re-arrange the answers by the category label (highest leaving reason)
 };
 
-const employeeQuestionAnswers = (employees, question_id) => {
+const employeeQuestionAnswers = (employees) => {
     // since An employee will have only one survey
     // so we can find the employee answer directly by employee id
     return new Promise((resolve, reject) => {
@@ -219,9 +312,7 @@ const employeeQuestionAnswers = (employees, question_id) => {
             if (err) {
                 reject(err);
             } else {
-                // filter the docs by question id
-                const filtered_docs = docs.filter(d => d.question.equals(question_id));
-                resolve(filtered_docs);
+                resolve(docs);
             }
         });
     })
