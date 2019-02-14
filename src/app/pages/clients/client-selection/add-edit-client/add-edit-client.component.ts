@@ -140,10 +140,14 @@ export class AddEditClientComponent implements OnInit {
             formData.append('div_mgt', this.get('div_mgt').value);
             formData.append('dept_mgt', this.get('dept_mgt').value);
             formData.append('aggregate_reports', this.get('aggregate_reports').value);
-            formData.append('turnover', this.get('turnover').value);
             formData.append('industry', this.get('industry').value);
             formData.append('product', this.get('product').value);
             //Add Image Conditionally
+            if (typeof this.get('turnover').value !== 'undefined' && this.get('turnover').value !== '' && this.get('turnover').value != null) {
+                formData.append('turnover', this.get('turnover').value);
+            } else {
+                formData.append('turnover', '0');
+            }
             if (this.get('image').value !== null) {
                 formData.append('image', this.get('image').value);
             }
@@ -189,8 +193,6 @@ export class AddEditClientComponent implements OnInit {
     getClient() {
         this.clientService.getClient(this.clientId).subscribe(data => {
                 this.setClient(data);
-                //API is returning client industry object which contain industry name and _id
-                this.client.industry = data.client.industry._id;
             },
             err => {
                 console.log(err);
@@ -210,8 +212,6 @@ export class AddEditClientComponent implements OnInit {
     }
 
     setClient(data) {
-        console.log('******Client Data');
-        console.log(data);
         this.client.product = data.client.product;
         this.client.turnover = data.client.turnover;
         this.client.name = data.client.name;
@@ -228,6 +228,8 @@ export class AddEditClientComponent implements OnInit {
         }
         // Finally set the Id of the Client
         this.clientId = data.client._id;
+        //API is returning client industry object which contain industry name and _id
+        this.client.industry = data.client.industry;
     }
 
     getCountries() {

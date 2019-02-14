@@ -52,15 +52,14 @@ exports.CreateMany = (req, res, next) => {
     // after save the answer
     // mark the survey as complete
     let questions = [];
-    data.forEach((answer) => {
+    data.answers.forEach((answer) => {
         questions.push(answer.question);
     });
-
     Employee.findById(employeeId, (err, employee) => {
 
         if (err) return next(err);
 
-        Answer.insertMany(data, (err, docs) => {
+        Answer.insertMany(data.answers, (err, docs) => {
             let answers = [];
 
             // get all the question
@@ -83,6 +82,8 @@ exports.CreateMany = (req, res, next) => {
                     surveyId = mongoose.Types.ObjectId(surveyId);
                     if (employee_survey.survey.equals(surveyId)) {
                         employee_survey.completed = true;
+                        // here we also need to update the employee survey end_date
+                        employee_survey.end_date = data.end_date;
                     }
                 });
                 employee.save().then(() => {

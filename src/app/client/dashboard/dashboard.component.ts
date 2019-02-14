@@ -13,7 +13,9 @@ export class DashboardComponent implements OnInit {
     offset = 0;
     limit = 9;
     employee;
+    survey_start_date;
     completedSurveys = [];
+    employeeSurvey;
 
     constructor(private surveyService: SurveyService,
                 private router: Router,
@@ -43,22 +45,52 @@ export class DashboardComponent implements OnInit {
                 this.count = data.surveys.length;
                 const rows = [];
                 data.surveys.map((employeeSurvey) => {
+                    console.log(employeeSurvey);
                     // Modify article role
                     employeeSurvey.id = employeeSurvey.survey._id;
                     employeeSurvey.description = employeeSurvey.survey.description;
                     employeeSurvey.title = employeeSurvey.survey.title;
                     employeeSurvey.noOfQuestion = employeeSurvey.survey.no_of_questions;
+                    this.survey_start_date = employeeSurvey.start_date;
+
+                    //completed, survey, start_date and end_date
+                    this.employeeSurvey = {
+                        _id: employeeSurvey._id,
+                        completed: employeeSurvey.completed,
+                        survey: employeeSurvey.survey._id,
+                        start_date: employeeSurvey.start_date,
+                        end_date: employeeSurvey.end_date
+                    };
                     rows.push(employeeSurvey);
                 });
                 this.completedSurveys = rows;
-                console.log(rows);
             }
         );
     }
 
     onClickGoSurvey(surveyId, completed) {
-        this.employeeService.surveyCompleted = completed;
-        this.router.navigate(['/client/questions/' + surveyId], {queryParams: {completed: completed}});
+        // update the employee survey start_date
+        if (this.employeeSurvey.start_date == null) {
+            // update survey start date
+            this.updateSurveyStartDate(surveyId, completed);
+        } else {
+            this.employeeService.surveyCompleted = completed;
+            this.router.navigate(['/client/questions/' + surveyId], {queryParams: {completed: completed}});
+        }
+    }
+
+    updateSurveyStartDate(surveyId, completed) {
+        this.employeeSurvey.start_date = new Date();
+        const employeeSurveys = [];
+        employeeSurveys.push(this.employeeSurvey);
+        const employeeData = {surveys: employeeSurveys};
+        console.log(this.employee.employee_id);
+        this.employeeService.updateEmployee(employeeData, this.employee.employee_id).subscribe(
+            (data) => {
+                this.employeeService.surveyCompleted = completed;
+                this.router.navigate(['/client/questions/' + surveyId], {queryParams: {completed: completed}});
+            }
+        );
     }
 
 }

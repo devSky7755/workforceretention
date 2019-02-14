@@ -73,6 +73,27 @@ exports.ManagerReport = (req, res, next) => {
     const {start_date, end_date, level, occupational_group, gender, tenure} = req.body;
     let employeeId = req.params.id;
 
+    let filter_object = {};
+    // we need to split level by _. if split levels length is one that means selected organization level
+    // if split levels length is two that means selected division level
+    // if split levels length is three that means selected department level
+    let split_levels = level.split('_');
+    if (split_levels.length === 1 && split_levels[0] !== '') {
+        filter_object.organization = split_levels[0];
+    } else if (split_levels.length === 2) {
+        filter_object.division = split_levels[1];
+    } else if (split_levels.length === 3) {
+        filter_object.department = split_levels[2];
+    }
+
+    if (!IsNullOrEmpty(occupational_group) && occupational_group !== '') {
+        filter_object.occupational_group = occupational_group;
+    }
+
+    if (!IsNullOrEmpty(gender) && gender !== '') {
+        filter_object.gender = gender
+    }
+
     // we need to filter employee first by occupational_group, gender, tenure and organization level
     // after getting the employees we will checkout the survey start_date and end_date
 
@@ -101,7 +122,7 @@ exports.ManagerReport = (req, res, next) => {
             .populate([{
                 path: 'employees',
                 model: 'Employee',
-                match: {organization: employee.organization}
+                match: filter_object
             }])
             .exec(function (err, client) {
                 // client.employees contains all the employees
@@ -118,13 +139,63 @@ exports.ManagerReport = (req, res, next) => {
                     }])
                     .exec(function (err, survey) {
                         if (err) return next(err);
-
                         // filter the employees who have completed the survey first
-                        // here we have got the survey questions
+                        let filtered_employees = client.employees;
+                        filtered_employees = filtered_employees.filter(e => e.surveys[0].completed === true); // this will filter all the employees who have completed the survey
+                        // also filter the employees by completed survey start_date and end_date
+                        if (!IsNullOrEmpty(start_date) && start_date !== '') {
+                            filtered_employees = filtered_employees.filter(e => e.surveys[0].start_date >= new Date(start_date));
+                        }
+                        if (!IsNullOrEmpty(end_date) && end_date !== '') {
+                            filtered_employees = filtered_employees.filter(e => e.surveys[0].end_date <= new Date(end_date));
+                        }
+                        // from the filtered employees find out the below things
+                        // Gender Split that means we need to find how many employee is Male and how Many is Female
+                        // Age Split <25, 25-34, 35-50, 50 >
+                        // Tenure Split < 1 year, 1-2 years, 3-5 years, 6-10 years, > 10 years
+                        let genders = [];
+                        let male = 0;
+                        let female = 0;
+                        filtered_employees.forEach((e) => {
+                            if (e.gender === 'Male') {
+                                male++
+                            } else {
+                                female++
+                            }
+                        });
+                        genders.push({name: "Male", value: male});
+                        genders.push(({name: 'Female', value: female}));
+
+
+                        let ages = [];
+                        // Calculate Age
+                        let less_than_twenty_five = 0;
+                        let twenty_five_to_thirty_fourth = 0;
+                        let thirty_five_to_fifty = 0;
+                        let greater_than_fifty = 0;
+                        filtered_employees.forEach((e) => {
+                            // calculate age
+                            let age = getAge(e.date_of_birth);
+                            if (age <= 25) {
+                                less_than_twenty_five++;
+                            } else if (age > 25 && age <= 34) {
+                                twenty_five_to_thirty_fourth++
+                            } else if (age > 34 && age <= 50) {
+                                thirty_five_to_fifty++
+                            } else if (age > 50) {
+                                greater_than_fifty++
+                            }
+                        });
+
+                        ages.push({name: "< 25", value: less_than_twenty_five});
+                        ages.push({name: "25 - 34", value: twenty_five_to_thirty_fourth});
+                        ages.push({name: "35 - 50", value: thirty_five_to_fifty});
+                        ages.push({name: "50 >", value: greater_than_fifty});
+
                         const response_array = [];
 
                         // here get all the answers
-                        employeeQuestionAnswers(client.employees).then(
+                        employeeQuestionAnswers(filtered_employees).then(
                             (employee_answers) => {
                                 survey.questions.forEach((question) => {
                                     // filter the answer by the question
@@ -163,7 +234,12 @@ exports.ManagerReport = (req, res, next) => {
                                         //here get the ratings from the survey
                                         // survey.rating_labels
                                         survey.rating_labels.forEach((label, label_index) => {
-                                            const option_object = {label, label_index, percentage: 0.0, answered: 0};// answered is used for how many employee selected
+                                            const option_object = {
+                                                label,
+                                                label_index,
+                                                percentage: 0.0,
+                                                answered: 0
+                                            };// answered is used for how many employee selected
                                             // the option.
                                             options.push(option_object)
                                         })
@@ -171,7 +247,12 @@ exports.ManagerReport = (req, res, next) => {
                                         // Exit Interview -  Exit Reasons Question
                                         question.options.forEach((label, label_index) => {
                                             // only we should insert which one is checked
-                                            const option_object = {label, label_index, percentage: 0.0, answered: 0};// answered is used for how many employee selected
+                                            const option_object = {
+                                                label,
+                                                label_index,
+                                                percentage: 0.0,
+                                                answered: 0
+                                            };// answered is used for how many employee selected
                                             // the option.
                                             options.push(option_object)
                                         })
@@ -248,7 +329,15 @@ exports.ManagerReport = (req, res, next) => {
 
                                     response_array.push(question_object);
                                 });
-                                return res.status(200).json({success: true, survey, client, response_array})
+                                return res.status(200).json({
+                                    success: true,
+                                    survey,
+                                    client,
+                                    response_array,
+                                    genders,
+                                    ages,
+                                    completed: filtered_employees.length
+                                })
                             });
 
                     });
@@ -324,3 +413,5 @@ const employeeQuestionAnswers = (employees) => {
 const IsNullOrEmpty = (obj) => {
     return typeof obj === 'undefined' || obj == null;
 };
+const getAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e+10);
+

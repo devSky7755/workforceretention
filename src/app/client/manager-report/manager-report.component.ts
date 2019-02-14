@@ -11,6 +11,7 @@ export class ManagerReportComponent implements OnInit {
     filterData = {start_date: null, end_date: null, level: "", occupational_group: "", gender: "", tenure: ""};
     genders = [{id: "Male", value: "Male"}, {id: "Female", value: "Female"}];
     employee;
+    completed_surveys = 0;
     organization;
     organizations_divisions_departments = [];
     top_leaving_reasons = [];
@@ -92,6 +93,24 @@ export class ManagerReportComponent implements OnInit {
 
     employee_sentiment_working_chart_data = [];
     employee_sentiment_not_working_chart_data = [];
+
+    // here we need to declare a dictionary
+    // where key will be the exit reason and value will be the array
+    // for example exit_reason === '1' so value will be top_reason_for_leaving_chart_data
+    exit_reason_data_mapper = [
+        {exit_reason: '1', value: this.career_opportunities_chart_data},
+        {exit_reason: '2', value: this.meaningful_work_chart_data},
+        {exit_reason: '3', value: this.communication_chart_data},
+        {exit_reason: '4', value: this.effective_leadership_chart_data},
+        {exit_reason: '5', value: this.induction_chart_data},
+        {exit_reason: '6', value: this.learning_development_chart_data},
+        {exit_reason: '7', value: this.manager_chart_data},
+        {exit_reason: '8', value: this.pay_benefits_chart_data},
+        {exit_reason: '9', value: this.work_conditions_chart_data},
+        {exit_reason: '10', value: this.being_valued_chart_data},
+        {exit_reason: '14', value: this.operational_chart_data},
+        {exit_reason: '15', value: this.restructure_chart_data}
+    ];
 
     constructor(private reportService: ReportService) {
     }
@@ -215,40 +234,6 @@ export class ManagerReportComponent implements OnInit {
 //             ]
 //         },
 // {
-//     "name": "United States",
-//     "series": [
-//         {
-//             "name": "2010",
-//             "value": 49737
-//         },
-//         {
-//             "name": "2000",
-//             "value": 45986
-//         },
-//         {
-//             "name": "1990",
-//             "value": 37060
-//         }
-//         ]
-// },
-// {
-//     "name": "France",
-//     "series": [
-//     {
-//         "name": "2010",
-//         "value": 36745
-//     },
-//     {
-//         "name": "2000",
-//         "value": 34774
-//     },
-//     {
-//         "name": "1990",
-//         "value": 29476
-//     }
-// ]
-// },
-// {
 //     "name": "United Kingdom",
 //     "series": [
 //     {
@@ -268,8 +253,35 @@ export class ManagerReportComponent implements OnInit {
 // ]
 
     showChartReport(data) {
+        this.completed_surveys = data.completed;
         // first get the final question
         // find the top 3 reasons for leaving the exit interview from the final question
+        this.gender_split_chart_data = data.genders;
+        // from gender data calculate percentage
+        let total = 0;
+        this.gender_split_chart_data.map((g) => {
+            total += g.value;
+        });
+        if (total !== 0) {
+            this.gender_split_chart_data.map((g) => {
+                g.value = (g.value / total) * 100;
+            });
+        } else {
+            this.gender_split_chart_data = [];
+        }
+        //from ages data calculate percentage
+        this.age_split_chart_data = data.ages;
+        total = 0;
+        this.age_split_chart_data.map((a) => {
+            total += a.value;
+        });
+        if (total !== 0) {
+            this.age_split_chart_data.map((a) => {
+                a.value = (a.value / total) * 100;
+            });
+        } else {
+            this.age_split_chart_data = [];
+        }
         this.response_array = data.response_array;
         const final_question = data.response_array.find(ex => ex.exit_reason === '13');
         // Percentage Calculation
@@ -287,6 +299,7 @@ export class ManagerReportComponent implements OnInit {
         final_question.options.sort((a, b) => (a.percentage < b.percentage) ? 1 : -1);
         this.leaving_reason_rearranged_array = final_question.options;
         // now we can take the first three items and insert it into the top_leaving_reasons array
+        this.top_leaving_reasons = [];
         if (final_question.options.length > 3) {
             // this means there are more than 3 items so we can take the first 3 items
             this.top_leaving_reasons.push(final_question.options[0], final_question.options[1], final_question.options[2]);
@@ -310,178 +323,56 @@ export class ManagerReportComponent implements OnInit {
                 });
             }
         });
-        console.log(this.response_array);
 
         // Now loop through the final question options and find out exit reason by the label_index
         // after finding the exit reason find out all the answers by the exit reason
         // for example exit reason is 3 (communication). so find out all the answers which exit_reason is 3
         // finally rearrange the data like as the above structure
-        final_question.options.map((option) => {
-            // option.label_index this will not work;
-            // filter the reason by the exit_reason.id
-            if (option.label_index === 0) {
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '1');
-                // Career Opportunities
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.career_opportunities_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 1) {
-                // Meaningful Work
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '2');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.meaningful_work_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 2) {
-                // Communication
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '3');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.communication_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 3) {
-                // Effective Leadership
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '4');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.effective_leadership_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 4) {
-                // Induction
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '5');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.induction_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 5) {
-                // Learning & Development
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '6');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.learning_development_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 6) {
-                // Manager
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '7');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.manager_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 7) {
-                // Pay & Benefits
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '8');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.pay_benefits_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 8) {
-                // Work Conditions
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '9');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.work_conditions_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 9) {
-                // Being Valued
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '10');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.being_valued_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 10) {
-                // Operational
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '14');
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.operational_chart_data.push(rearrange_answer);
-                });
-            } else if (option.label_index === 11) {
-                // Restructure
-                const filtered_reason = this.response_array.filter(x => x.exit_reason === '15');
-                // Career Opportunities
-                filtered_reason.map((reason) => {
-                    // name
-                    // series
-                    const series = [];
-                    reason.options.map((r) => {
-                        series.push({name: r.label, value: r.percentage});
-                    });
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    this.restructure_chart_data.push(rearrange_answer);
-                });
-            }
-            // now check the exit_reason in which category. depending on the category push data to the array
-            // for example exit_reason is Career Opportunities so we need to push data to the career_opportunities_chart_data array
+
+
+        // make empty the exit_reason_data_mapper array. so that later time when we click on view report button don't duplicate data
+        this.exit_reason_data_mapper.map((mapped_reason) => {
+            mapped_reason.value = [];
         });
-        console.log(this.induction_chart_data);
+        final_question.options.map((option) => {
+            const mapped_reason = this.exit_reason_data_mapper[option.label_index];
+            const filtered_reason = this.response_array.filter(x => x.exit_reason === mapped_reason.exit_reason);
+            filtered_reason.map((reason) => {
+                // name
+                // series
+                const series = [];
+                // calculate the total percentage. if total percentage is zero that means nobody answered this question
+                // so we don't need to push the object into the array
+                let calculated_total_percentage = 0;
+                reason.options.map((r) => {
+                    calculated_total_percentage += r.percentage;
+                });
+                reason.options.map((r, index) => {
+                    if (reason.question_type === '3') {
+                        if (JSON.parse(r.label)) { // this will make string "true" to boolean true
+                            series.push({name: this.exit_reasons[index].value, value: r.percentage});
+                        }
+                    } else {
+                        series.push({name: r.label, value: r.percentage});
+                    }
+                });
+                if (calculated_total_percentage !== 0 && !isNaN(calculated_total_percentage)) {
+                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
+                    mapped_reason.value.push(rearrange_answer);
+                }
+            });
+        });
         this.single = this.top_reason_for_leaving_chart_data;
+        // console.log(this.exit_reason_data_mapper);
+        // Solution for reducing the bar width but it's not working
+
+        // this.exit_reason_data_mapper.map((mapped_reason) => {
+        //     if (mapped_reason.value.length !== 0 && mapped_reason.value.length < 5) {
+        //         for (let i = 0; i < 20; i++) {
+        //             mapped_reason.value.push({name: "", series: [{name: "", value: null}]});
+        //         }
+        //     }
+        // })
     }
 
 }

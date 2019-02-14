@@ -59,19 +59,16 @@ exports.Upload = function (req, res, next) {
                     if (err) return next(err);
                     for (let i = 0; i < json.length; i++) {
                         //here find the organization by name
-                        const employeeOrganization = findOrganizationByName(json[i].organization, organizations);
-                        json[i].organization = employeeOrganization;
+                        json[i].organization = findOrganizationByName(json[i].organization, organizations);
                         //here find the division by name
-                        const employeeDivision = findDivisionByName(json[i].division, organizations);
-                        json[i].division = employeeDivision;
+                        json[i].division = findDivisionByName(json[i].division, organizations);
                         //here find the department by name
-                        const employeeDepartment = findDepartmentByName(json[i].department, organizations);
-                        json[i].department = employeeDepartment;
+                        json[i].department = findDepartmentByName(json[i].department, organizations);
 
                         // here before push the json object check if the employee client has assign surveys. if so then assign that surveys to the employee
                         let clientSurveys = [];
                         client.surveys.forEach((survey) => {
-                            let employeeSurvey = {survey: survey, completed: false};
+                            let employeeSurvey = {survey: survey, completed: false, start_date: null, end_date: null};
                             clientSurveys.push(employeeSurvey);
                         });
                         json[i].surveys = clientSurveys;
@@ -306,7 +303,7 @@ exports.Create = function (req, res, next) {
                         // here before create the employee check if the employee client has assign surveys. if so then assign that surveys to the employee
                         let clientSurveys = [];
                         client.surveys.forEach((survey) => {
-                            let employeeSurvey = {survey: survey, completed: false};
+                            let employeeSurvey = {survey: survey, completed: false, start_date: null, end_date: null};
                             clientSurveys.push(employeeSurvey);
                         });
                         data.surveys = clientSurveys;
@@ -534,7 +531,7 @@ exports.Update = (req, res, next) => {
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Employee.findOnendUpdate(
+    Employee.findByIdAndUpdate(
         // the id of the item to find
         id,
         // the change to be made. Mongoose will smartly combine your existing
@@ -574,7 +571,6 @@ exports.Delete = (req, res, next) => {
                 err
             });
         }
-        // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
         Employee.findByIdAndRemove(id, (err, employee) => {
             // As always, handle any potential errors:

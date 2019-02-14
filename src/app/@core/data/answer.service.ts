@@ -28,7 +28,8 @@ export class AnswerService {
     }
 
     createManyAnswer(answer, surveyId, employeeId): Observable<any> {
-        const body = JSON.stringify(answer);
+        const data = {end_date: new Date(), answers: answer};
+        const body = JSON.stringify(data);
         return this.http.post(this.urlService.baseUrl + `/api/v1/answers/add-many?surveyId=${surveyId}&employeeId=${employeeId}`, body, httpOptions);
     }
 

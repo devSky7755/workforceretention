@@ -85,6 +85,8 @@
                         <div class="text-center">
                             <button type="button" class="btn btn-primary" (click)="viewReport()">View Report</button>
                         </div>
+                        <br>
+                        <h4 class="text-center">There are currently {{completed_surveys}} completed Exit Interviews at this level.</h4>
                         <br><br>
                         <table width="100%">
                             <tr>
@@ -102,41 +104,43 @@
                         <br><br>
                         <!--DISPLAY ALL THE CHART BELOW-->
                         <!--FIRST CHART TOP REASONS FOR LEAVING - PERCENTAGE DISTRIBUTION-->
-                        <h2>Top Reasons for Leaving - Percentage Distribution</h2>
-                        <div style="display: flex; overflow: hidden;height: 500px">
-                            <ngx-charts-bar-vertical
-                                    [scheme]="colorScheme"
-                                    [schemeType]="schemaType"
-                                    [results]="single"
-                                    [gradient]="gradient"
-                                    [xAxis]="showXAxis"
-                                    [yAxis]="showYAxis"
-                                    [legend]="false"
-                                    [showXAxisLabel]="showXAxisLabel"
-                                    [showYAxisLabel]="showYAxisLabel"
-                                    [showDataLabel]="showDataLabel"
-                                    [xAxisLabel]="xAxisLabel"
-                                    [yAxisLabel]="yAxisLabel"
-                                    (select)="onSelect($event)">
-                            </ngx-charts-bar-vertical>
+                        <div>
+                            <h2>Top Reasons for Leaving - Percentage Distribution</h2>
+                            <div style="display: flex; overflow: hidden;height: 500px">
+                                <ngx-charts-bar-vertical
+                                        [scheme]="colorScheme"
+                                        [schemeType]="schemaType"
+                                        [results]="single"
+                                        [gradient]="gradient"
+                                        [xAxis]="showXAxis"
+                                        [yAxis]="showYAxis"
+                                        [legend]="false"
+                                        [showXAxisLabel]="showXAxisLabel"
+                                        [showYAxisLabel]="showYAxisLabel"
+                                        [showDataLabel]="showDataLabel"
+                                        [xAxisLabel]="xAxisLabel"
+                                        [yAxisLabel]="yAxisLabel"
+                                        (select)="onSelect($event)">
+                                </ngx-charts-bar-vertical>
+                            </div>
                         </div>
                         <div *ngFor="let response of leaving_reason_rearranged_array; let i=index">
-                            <div *ngIf="response.label_index === 0 && career_opportunities_chart_data.length > 0">
+                            <div *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0">
                                 <!--This means this is Career Opportunities Exit Reason-->
                                 <!--Give a title -->
-                                <h2>Career Opportunities ( Rank {{i + 1}} )</h2>
+                                <h2>{{exit_reasons[response.label_index].value}} ( Rank {{i + 1}} )</h2>
                                 <!--Display the chart-->
                                 <div style="display: flex; overflow: hidden;height: 500px">
                                     <ngx-charts-bar-vertical-stacked
                                             [scheme]="colorScheme"
                                             [schemeType]="schemaType"
-                                            [results]="career_opportunities_chart_data"
+                                            [results]="exit_reason_data_mapper[response.label_index].value"
                                             [gradient]="gradient"
                                             [xAxis]="showXAxis"
                                             [yAxis]="showYAxis"
                                             [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
+                                            [showXAxisLabel]="false"
+                                            [showYAxisLabel]="false"
                                             [showDataLabel]="showDataLabel"
                                             [xAxisLabel]="xAxisLabel"
                                             [yAxisLabel]="yAxisLabel"
@@ -145,268 +149,33 @@
                                     </ngx-charts-bar-vertical-stacked>
                                 </div>
                             </div>
-                            <div *ngIf="response.label_index === 1 && meaningful_work_chart_data.length > 0">
-                                <!--This means this is Meaningful Work Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Meaningful Work ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="meaningful_work_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
+                        </div>
+                        <div *ngIf="gender_split_chart_data.length > 0">
+                            <h2 class="text-center">Gender Split</h2>
+                            <div style="display: flex; overflow: hidden;height: 500px">
+                                <ngx-charts-pie-chart
+                                        [scheme]="colorScheme"
+                                        [schemeType]="schemaType"
+                                        [results]="gender_split_chart_data"
+                                        [gradient]="gradient"
+                                        [labels]="true"
+                                        [legend]="true"
+                                        (select)="onSelect($event)">
+                                </ngx-charts-pie-chart>
                             </div>
-                            <div *ngIf="response.label_index === 2 && communication_chart_data.length > 0">
-                                <!--This means this is Communication Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Communication ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="communication_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 3 && effective_leadership_chart_data.length > 0">
-                                <!--This means this is Effective Leadership Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Effective Leadership ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="effective_leadership_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 4 && induction_chart_data.length > 0">
-                                <!--This means this is Induction Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Induction ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="induction_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 5 && learning_development_chart_data.length > 0">
-                                <!--This means this is Learning & Development Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Learning & Development ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="learning_development_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 6 && manager_chart_data.length > 0">
-                                <!--This means this is Manager Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Manager ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="manager_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 7 && pay_benefits_chart_data.length > 0">
-                                <!--This means this is Pay & Benefits Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Pay & Benefits ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="pay_benefits_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 8 && work_conditions_chart_data.length > 0">
-                                <!--This means this is Work Conditions Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Work Conditions ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="work_conditions_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 9 && being_valued_chart_data.length > 0">
-                                <!--This means this is Being Valued Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Being Valued ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="being_valued_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 10 && operational_chart_data.length > 0">
-                                <!--This means this is Operational Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Operational ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="operational_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
-                            </div>
-                            <div *ngIf="response.label_index === 11 && restructure_chart_data.length > 0">
-                                <!--This means this is Restructure Exit Reason-->
-                                <!--Give a title -->
-                                <h2>Restructure ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="restructure_chart_data"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="showXAxisLabel"
-                                            [showYAxisLabel]="showYAxisLabel"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
-                                    </ngx-charts-bar-vertical-stacked>
-                                </div>
+                        </div>
+                        <div *ngIf="age_split_chart_data.length > 0">
+                            <h2 class="text-center">Age Split</h2>
+                            <div style="display: flex; overflow: hidden;height: 500px">
+                                <ngx-charts-pie-chart
+                                        [scheme]="colorScheme"
+                                        [schemeType]="schemaType"
+                                        [results]="age_split_chart_data"
+                                        [gradient]="gradient"
+                                        [labels]="true"
+                                        [legend]="true"
+                                        (select)="onSelect($event)">
+                                </ngx-charts-pie-chart>
                             </div>
                         </div>
                     </div>
