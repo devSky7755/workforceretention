@@ -149,6 +149,33 @@ exports.ManagerReport = (req, res, next) => {
                         if (!IsNullOrEmpty(end_date) && end_date !== '') {
                             filtered_employees = filtered_employees.filter(e => e.surveys[0].end_date <= new Date(end_date));
                         }
+                        // filter the employees by tenure
+                        // tenures = [
+                        //     {id: 1, value: "< 1 year"},
+                        //     {id: 2, value: "1 - 2 years"},
+                        //     {id: 3, value: "3 - 5 years"},
+                        //     {id: 4, value: "6 - 10 years"},
+                        //     {id: 5, value: "> 10 years"},
+                        // ];
+                        if (!IsNullOrEmpty(tenure) && tenure !== '') {
+                            if (tenure === '1') {
+                                // < 1 year
+                                filtered_employees = filtered_employees.filter(e => getAge(e.hire_date) <= 1);
+                            } else if (tenure === '2') {
+                                // 1-2 years
+                                filtered_employees = filtered_employees.filter(e => getAge(e.hire_date) > 1 && getAge(e.hire_date) <= 2);
+                            } else if (tenure === '3') {
+                                // 3-5 years
+                                filtered_employees = filtered_employees.filter(e => getAge(e.hire_date) > 2 && getAge(e.hire_date) <= 5);
+                            } else if (tenure === '4') {
+                                // 6-10 years
+                                filtered_employees = filtered_employees.filter(e => getAge(e.hire_date) > 5 && getAge(e.hire_date) <= 10);
+                            } else if (tenure === '5') {
+                                // greater than 10 > 10 years
+                                filtered_employees = filtered_employees.filter(e => getAge(e.hire_date) > 10);
+                            }
+                        }
+
                         // from the filtered employees find out the below things
                         // Gender Split that means we need to find how many employee is Male and how Many is Female
                         // Age Split <25, 25-34, 35-50, 50 >
@@ -175,15 +202,17 @@ exports.ManagerReport = (req, res, next) => {
                         let greater_than_fifty = 0;
                         filtered_employees.forEach((e) => {
                             // calculate age
-                            let age = getAge(e.date_of_birth);
-                            if (age <= 25) {
-                                less_than_twenty_five++;
-                            } else if (age > 25 && age <= 34) {
-                                twenty_five_to_thirty_fourth++
-                            } else if (age > 34 && age <= 50) {
-                                thirty_five_to_fifty++
-                            } else if (age > 50) {
-                                greater_than_fifty++
+                            if (!IsNullOrEmpty(e.date_of_birth)) {
+                                let age = getAge(e.date_of_birth);
+                                if (age <= 25) {
+                                    less_than_twenty_five++;
+                                } else if (age > 25 && age <= 34) {
+                                    twenty_five_to_thirty_fourth++
+                                } else if (age > 34 && age <= 50) {
+                                    thirty_five_to_fifty++
+                                } else if (age > 50) {
+                                    greater_than_fifty++
+                                }
                             }
                         });
 
@@ -191,6 +220,39 @@ exports.ManagerReport = (req, res, next) => {
                         ages.push({name: "25 - 34", value: twenty_five_to_thirty_fourth});
                         ages.push({name: "35 - 50", value: thirty_five_to_fifty});
                         ages.push({name: "50 >", value: greater_than_fifty});
+
+                        let tenures = [];
+                        // calculate tenures
+                        let less_than_one_year = 0;
+                        let one_to_two_year = 0;
+                        let three_to_five_year = 0;
+                        let six_to_ten_year = 0;
+                        let greater_than_ten_year = 0;
+
+                        filtered_employees.forEach((e) => {
+                            // first check e.hire_date is null or not
+                            // if hire_date not null then execute the following code
+                            if (!IsNullOrEmpty(e.hire_date)) {
+                                let hire_time = getAge(e.hire_date);
+                                if (hire_time <= 1) {
+                                    less_than_one_year++;
+                                } else if (hire_time > 1 && hire_time <= 2) {
+                                    one_to_two_year++;
+                                } else if (hire_time > 2 && hire_time <= 5) {
+                                    three_to_five_year++;
+                                } else if (hire_time > 5 && hire_time <= 10) {
+                                    six_to_ten_year++;
+                                } else if (hire_time > 10) {
+                                    greater_than_ten_year++;
+                                }
+                            }
+                        });
+
+                        tenures.push({name: '< 1 year', value: less_than_one_year});
+                        tenures.push({name: '1 - 2 years', value: one_to_two_year});
+                        tenures.push({name: '3 - 5 years', value: three_to_five_year});
+                        tenures.push({name: '6 - 10 years', value: six_to_ten_year});
+                        tenures.push({name: '> 10 years', value: greater_than_ten_year});
 
                         const response_array = [];
 
@@ -336,6 +398,7 @@ exports.ManagerReport = (req, res, next) => {
                                     response_array,
                                     genders,
                                     ages,
+                                    tenures,
                                     completed: filtered_employees.length
                                 })
                             });

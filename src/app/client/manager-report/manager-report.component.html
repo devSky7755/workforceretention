@@ -88,7 +88,7 @@
                         <br>
                         <h4 class="text-center">There are currently {{completed_surveys}} completed Exit Interviews at this level.</h4>
                         <br><br>
-                        <table width="100%">
+                        <table width="100%" *ngIf="completed_surveys !== 0">
                             <tr>
                                 <th>Top 3 Reasons for Leaving</th>
                                 <th class="text-center">Ranking</th>
@@ -104,7 +104,7 @@
                         <br><br>
                         <!--DISPLAY ALL THE CHART BELOW-->
                         <!--FIRST CHART TOP REASONS FOR LEAVING - PERCENTAGE DISTRIBUTION-->
-                        <div>
+                        <div *ngIf="completed_surveys !== 0">
                             <h2>Top Reasons for Leaving - Percentage Distribution</h2>
                             <div style="display: flex; overflow: hidden;height: 500px">
                                 <ngx-charts-bar-vertical
@@ -157,6 +157,20 @@
                                         [scheme]="colorScheme"
                                         [schemeType]="schemaType"
                                         [results]="gender_split_chart_data"
+                                        [gradient]="gradient"
+                                        [labels]="true"
+                                        [legend]="true"
+                                        (select)="onSelect($event)">
+                                </ngx-charts-pie-chart>
+                            </div>
+                        </div>
+                        <div *ngIf="tenure_split_chart_data.length > 0">
+                            <h2 class="text-center">Tenure Split</h2>
+                            <div style="display: flex; overflow: hidden;height: 500px">
+                                <ngx-charts-pie-chart
+                                        [scheme]="colorScheme"
+                                        [schemeType]="schemaType"
+                                        [results]="tenure_split_chart_data"
                                         [gradient]="gradient"
                                         [labels]="true"
                                         [legend]="true"

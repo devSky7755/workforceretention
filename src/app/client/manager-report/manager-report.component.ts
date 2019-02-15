@@ -256,6 +256,8 @@ export class ManagerReportComponent implements OnInit {
         this.completed_surveys = data.completed;
         // first get the final question
         // find the top 3 reasons for leaving the exit interview from the final question
+
+        //***************Gender Calculation***************
         this.gender_split_chart_data = data.genders;
         // from gender data calculate percentage
         let total = 0;
@@ -269,6 +271,7 @@ export class ManagerReportComponent implements OnInit {
         } else {
             this.gender_split_chart_data = [];
         }
+        //****************Age Calculation******************
         //from ages data calculate percentage
         this.age_split_chart_data = data.ages;
         total = 0;
@@ -282,6 +285,21 @@ export class ManagerReportComponent implements OnInit {
         } else {
             this.age_split_chart_data = [];
         }
+
+        //*****************Tenure Calculation****************
+        this.tenure_split_chart_data = data.tenures;
+        total = 0;
+        this.tenure_split_chart_data.map((t) => {
+            total += t.value;
+        });
+        if (total !== 0) {
+            this.tenure_split_chart_data.map((t) => {
+                t.value = (t.value / total) * 100;
+            });
+        } else {
+            this.tenure_split_chart_data = [];
+        }
+
         this.response_array = data.response_array;
         const final_question = data.response_array.find(ex => ex.exit_reason === '13');
         // Percentage Calculation
