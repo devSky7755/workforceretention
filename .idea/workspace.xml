@@ -2,8 +2,262 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/app/@core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/core.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/1.1f62fb67c4f859a8577b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/13.8f3e9208239e2d96892e.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/14.38b1de332d93cbf40857.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/15.60045991d1abb106c393.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/16.774f60de9b53738316ce.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/17.bd399cd1fd246a602776.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/18.f8e572a3d64779bc1808.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/19.0491265a7a30a8c0d557.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/2.126aeb54ddb19ff2148d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/20.33eee6fe06895b468cd6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/21.be10ef908dbc63fe0566.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/22.f1b5cf0e30d58e3637db.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/23.f87d4f81d615c6e387d6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/24.f75fec9afa0a01f1e2ef.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/25.2381c7d9504bc69169cd.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/26.4b0fbad59293fc1a2341.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/26.4ff9ea25f0f10fd67fbc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/27.6fadc5955dff10deb6ec.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/28.5a68c726b82f4d58b60b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/29.14da9729594a43f17b76.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/3.8182466b5567ade23e01.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/30.bf59e9b9544ee5026ff2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/31.8fc22ecee72a6c499a83.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/4.80a8ec7964ce6976631d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/5.614594f6d4121c53f1f8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/7.f4e86602cfa8dea79542.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/8.c61a77211a00c1fa7dc3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/9.3747b3d5adedc5fade46.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.2a82f89b0a35ee7f9d45.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.2b8d6922c2c9957356bc.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.44236ad507eddcbfd986.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.4c3b6229efe63a13dbb4.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.ab04c7611d94b690aee3.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.1f37c7545ae9f63d2279.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.38d14dd4ff163c34e45b.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.3a99796b2d8592471fcf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.4b7407c6740b8294d97a.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.ad0f284c7113fd0aaf39.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.56a76a220d9c9765946d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.ab96cca26751239828b8.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.ad140ff02a7091257e2b.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.c7f4667b59b9bc95130e.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.c8bcb1cb78f9e45e2bcb.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.355e388740673054493c.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.4b2cc52b05e2a960c4f1.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.a7dce23c0dd99a4afa5c.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.c2e0f75da3677f645034.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.d23d5bdadc495f12ef69.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.054fa50baa6598a7bf0c.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.183079184d96a491f16e.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.37fbbbad5577a95bdf05.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.8e0860f3581b197e9fa4.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.a2b8c641546c0e5a95e2.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.056caeabe95749fe2b97.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.1a9e39e536aed26b863b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.879d940bccbb25f6096e.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.c7b4e746cf8ecbf412fc.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.cdd1c486770034a6122e.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.2741a14e49524efa6059.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.2b4f394ce87ea4e7a68b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.303ded6436dcf7ea7515.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.76cad5ba6b8a38a77fe0.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.c54f2a3ee42d2a58d82f.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.7a49ce79b6089d4d37bf.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.da059a7386fea889c55c.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.eb65fb18d4446e4ac27d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.f10d1f42838680a70ac2.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.fa183350bf6b814ae552.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.081b11ebaca8ad30fd09.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.6a561d68369fd1fb9768.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.766c8926f6d9061fef24.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.99b14f0da0591e0d7167.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.b2a6341ae7440130ec4b.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.527502d7927a41ca0b6a.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.8add1ba317c27e39b778.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.90dbf902b8d0592e1beb.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.df8e3a9b9aed94341797.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.f3660f493ea5e5206484.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.790ebf41d0214f5eda4e.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.90d3804f0231704c15cc.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.ba422f71e799f3d29cbf.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.c25fd8d00fd9f570545d.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.cc85ce37b4256966e6f3.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.11b5cc9584f2c007a229.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.21e9a2e5ed0b0d8d1bb7.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.588293290e86dad97fcf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.64ca718f48db91b27e8c.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.8a2c1a5de09de8bb2c45.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/data/news.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/alan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/cover1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/cover2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/cover3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/eva.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/home-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/jack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kitten-corporate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kitten-cosmic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kitten-default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/lee.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/nick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/page_banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/square_pattern.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/square_pattern_cosmic.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/team.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/layers-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/layers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/marker-icon-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/marker-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/marker-shadow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/leaflet-countries/countries.geo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/map/world.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/content.inline.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/content.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/anchor.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/loader.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/object.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/trans.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/skin.ie7.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/skin.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/common.ae501d96b9955f0b1a70.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.246ea8fa6c452b0f3c4f.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.b0aebd744ce7adb780a9.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.bce071e976865da51100.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.c8c6d300cb7abb9f36e8.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.7a962253b4221d26fc52.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.86eb901a1b6a952ad4c6.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.e98b7075717664dffefd.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.f60defca0bb5c4a76c36.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.09b8eba1e3ca26851758.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.5d74bcc0fa9041da27ab.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.7fd525ae6ef32ca51c2b.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.d8d1b8142312dc8661ca.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.459a2b5c4d21445ecaa1.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.6272ec972e113356a7ac.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.9154b96a4e182f3f6027.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.ae44adae71863b09ecbc.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.3487e875e62e19f8725a.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.3a8391359886bc872041.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.cac790357edeabf496ba.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.fff0b8fbb6361809277d.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.038973967594a7dab606.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.21d8997134cbc12e5153.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.3f0b3ba8796b6e7fe4bd.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.e0e37075b606d93a9538.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.2f0f55679e620d222711.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.6ce1566735a3d3667090.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.8d40b499402fd4189be2.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.a2ca6baedb32297ce871.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.3002b7531096a5092d6e.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.6b1794f1847a277021b4.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.9f16e6ee1e3327b7db3a.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.d72d248cdbced438c110.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.11510e4de28d62aa3aa5.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.92d1911bd4c5f5ef04f7.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.9e4520097381adbfe70f.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.d672d50caf856a58828c.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.6596ef88679c21505494.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.6d4c29b8d9640e68f812.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.81d3a72e86d04e574f0d.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.c616c256d4843cc16357.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.1ac05bd5dc0714e32eac.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.3cb9a625a9283be01425.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.bd17cb2d62c226e06fdb.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.fe40c45465e6e99f006b.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.bb1d269e07b87773f1a6.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.ca209404a4885958c612.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.e0d97cf7ab8d3d75e34b.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.ed2ff71bda38119fa682.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.88502b7cff2e54cebf90.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.b0a8187a1614891ec57b.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.b7d2928a52331a7f1f07.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.e711eccd1fadfcd140a0.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.68cc7fa1f6a3184d73c2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.734067b6563affe65beb.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.7348a6cf42fcb58f0985.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.d38b55777560c246992c.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.1f6a024d5a00aba4cee1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.262dcaba2aca4a002e46.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.36b975e60be97473a1e6.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.dfd1344ebc20ecda89bf.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.006e7ec97fc14c6682a8.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.1ae3922dda8cca45438a.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.855ca29bb887be8df4bb.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.ca084c98b9f30fcf576f.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.0bc59516445e9a658021.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.ba95c7ebbd3ee83362b2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.c989d9d241c710a02bba.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.e75d9cbb1468c3156c59.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.5f81c4362dcb692ed3d3.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.6eb1c493737303a66b1b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.81e4c0811095cd6fbffa.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.c45295dd710f6c155910.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.833cc98e0a75891eebef.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.90bea911b093ad5f0cf2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.951a8bde845d7c17e4de.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.b64b7ad410228605c1a3.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.42f9fd6acee87559ac0d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.659c4d58b00226541ef9.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.8b7a9afd7b95f62e6ee8.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.b69de69a4ff8ca0abe96.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.ec0716ae8aa1ba781a1a.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.0b5e3a5451fc62d9023c.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.0c41971339b9fc5b1cef.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.6493321d567eb0f22bd5.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.b48c48ea8457846a5695.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.bdadb6ce95c5a2e7b673.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.4478b4d7022cad174e4c.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.48f54f63d7711d0912a9.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.bcb927a742a8370b7664.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.f29ad0031ad2c1c14b77.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.fb493903265cad425ccd.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.674f50d287a8c48dc19b.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.912ec66d7572ff821749.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.af7ae505a9eed503f8b8.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.b06871f281fee6b241d6.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.fee66e712a8a08eef580.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.19e65b89cee273a249fb.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.28df6ee7b407fd8a14b4.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.2c159d0d05473040b53e.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.dd4781d1acc57ba4c480.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layers-2x.4f0283c6ce28e888000e.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layers.a6137456ed160d760698.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.d5949fb825dab08edc86.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/marker-icon.2273e3d8ad9264b7daa5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.85e45e2f83750a4184af.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.e5b059e952431846f8ab.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.e7b6b47eeafe34432dca.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.ee79fa432c91db08585f.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/polyfills.a97b99bbef28931665b3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/runtime.15ddf494e6eae8292780.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/scripts.db6f6c877546c61ad1c1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.60e5857089e98edd8380.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.944f06f5f65ef84a3a36.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.9a64ef938f9e55a70a4d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.a35b65744f557fab5424.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/square_pattern.b7c0827326f8d621b1ed.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/square_pattern_cosmic.a242954570515ecdde9d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/styles.aba743c48b1aeef6f4a1.css" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -21,7 +275,7 @@
         <entry file="file://$PROJECT_DIR$/server/controllers/report.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2700">
-              <caret line="180" column="60" lean-forward="true" selection-start-line="180" selection-start-column="60" selection-end-line="180" selection-end-column="60" />
+              <caret line="180" column="60" selection-start-line="180" selection-start-column="60" selection-end-line="180" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -30,7 +284,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
-              <caret line="36" column="38" lean-forward="true" selection-start-line="33" selection-end-line="39" selection-end-column="6" />
+              <caret line="36" column="38" selection-start-line="33" selection-end-line="39" selection-end-column="6" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -58,7 +312,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="305">
-              <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
               <folding>
                 <element signature="e#0#80#0" expanded="true" />
               </folding>
@@ -70,7 +324,7 @@
         <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -218,14 +472,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="@core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="@core" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
@@ -393,18 +639,18 @@
       <workItem from="1550062013323" duration="15503000" />
       <workItem from="1550089141336" duration="283000" />
       <workItem from="1550113679187" duration="25271000" />
-      <workItem from="1550203602886" duration="3726000" />
+      <workItem from="1550203602886" duration="3944000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="520720000" />
+    <option name="totallyTimeSpent" value="520938000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29535866" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29535866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -418,7 +664,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.39489797" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.39489797" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -785,7 +1031,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
-          <caret line="36" column="38" lean-forward="true" selection-start-line="33" selection-end-line="39" selection-end-column="6" />
+          <caret line="36" column="38" selection-start-line="33" selection-end-line="39" selection-end-column="6" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
           </folding>
@@ -795,7 +1041,7 @@
     <entry file="file://$PROJECT_DIR$/server/controllers/report.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2700">
-          <caret line="180" column="60" lean-forward="true" selection-start-line="180" selection-start-column="60" selection-end-line="180" selection-end-column="60" />
+          <caret line="180" column="60" selection-start-line="180" selection-start-column="60" selection-end-line="180" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -816,7 +1062,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
-          <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
           </folding>
@@ -826,7 +1072,7 @@
     <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
