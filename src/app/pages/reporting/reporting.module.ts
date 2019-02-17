@@ -10,7 +10,6 @@ import {SmartTableService} from '../../@core/data/smart-table.service';
 import {AddEditReportComponent} from './report-files/add-edit-report/add-edit-report.component';
 
 import {ThemeModule} from '../../@theme/theme.module';
-import {ButtonsModule} from '../forms/buttons/buttons.module';
 
 @NgModule({
   declarations: [DataReportsComponent, ReportFilesComponent, AddEditReportComponent],
@@ -19,8 +18,7 @@ import {ButtonsModule} from '../forms/buttons/buttons.module';
     ReportingRoutingModule,
     Ng2SmartTableModule,
     NbCardModule,
-    ThemeModule,
-    ButtonsModule
+    ThemeModule
   ],
   providers: [
     SmartTableService,

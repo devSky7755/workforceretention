@@ -10,7 +10,6 @@ import {SmartTableService} from '../../@core/data/smart-table.service';
 import {AddEditUserComponent} from './user-management/add-edit-user/add-edit-user.component';
 import {AddEditPermissionComponent} from './permission-management/add-edit-permission/add-edit-permission.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
-import {ButtonsModule} from "../forms/buttons/buttons.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EmailManagementComponent } from './email-management/email-management.component';
 import { AddEditEmailComponent } from './email-management/add-edit-email/add-edit-email.component';
@@ -30,7 +29,6 @@ import { AddEditEmailComponent } from './email-management/add-edit-email/add-edi
         Ng2SmartTableModule,
         NbCardModule,
         NgxDatatableModule,
-        ButtonsModule,
         FormsModule,
         ReactiveFormsModule,
         NbCheckboxModule

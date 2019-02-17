@@ -8,7 +8,6 @@ import {SmartTableService} from '../../@core/data/smart-table.service';
 import {AddEditClientComponent} from './client-selection/add-edit-client/add-edit-client.component';
 
 import {ThemeModule} from '../../@theme/theme.module';
-import {ButtonsModule} from '../forms/buttons/buttons.module';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {EmployeesComponent} from './employees/employees.component';
@@ -50,7 +49,6 @@ import { EmployeeSurveyComponent } from './employees/employee-survey/employee-su
         ClientsRoutingModule,
         NbCardModule,
         ThemeModule,
-        ButtonsModule,
         NgxDatatableModule,
         FormsModule,
         ReactiveFormsModule,

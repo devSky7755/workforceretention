@@ -19,6 +19,13 @@ export class ContactsComponent implements OnInit, OnDestroy {
     constructor(private userService: UserService,
                 private themeService: NbThemeService,
                 private breakpointService: NbMediaBreakpointsService) {
+        this.contacts = [
+            {user: {name: 'Ashik'}, type: 'mobile'}
+        ];
+
+        this.recent = [
+            {user: {name: 'Ashik'}, type: 'mobile'}
+        ];
 
         this.breakpoints = this.breakpointService.getBreakpointsMap();
         this.themeSubscription = this.themeService.onMediaQueryChange()
@@ -28,29 +35,6 @@ export class ContactsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-
-        this.userService.getUsers(1, 10)
-            .subscribe((users: any) => {
-                this.contacts = [
-                    {user: users.nick, type: 'mobile'},
-                    {user: users.eva, type: 'home'},
-                    {user: users.jack, type: 'mobile'},
-                    {user: users.lee, type: 'mobile'},
-                    {user: users.alan, type: 'home'},
-                    {user: users.kate, type: 'work'},
-                ];
-
-                this.recent = [
-                    {user: users.alan, type: 'home', time: '9:12 pm'},
-                    {user: users.eva, type: 'home', time: '7:45 pm'},
-                    {user: users.nick, type: 'mobile', time: '5:29 pm'},
-                    {user: users.lee, type: 'mobile', time: '11:24 am'},
-                    {user: users.jack, type: 'mobile', time: '10:45 am'},
-                    {user: users.kate, type: 'work', time: '9:42 am'},
-                    {user: users.kate, type: 'work', time: '9:31 am'},
-                    {user: users.jack, type: 'mobile', time: '8:01 am'},
-                ];
-            });
     }
 
     ngOnDestroy() {

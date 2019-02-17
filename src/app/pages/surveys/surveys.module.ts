@@ -11,7 +11,6 @@ import {EditEmailComponent} from './email-management/edit-email/edit-email.compo
 import {AddEditSurveyComponent} from './survey-management/add-edit-survey/add-edit-survey.component';
 
 import {ThemeModule} from '../../@theme/theme.module';
-import {ButtonsModule} from '../forms/buttons/buttons.module';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {QuestionsComponent} from './survey-management/questions/questions.component';
 import {AddEditQuestionComponent} from './survey-management/questions/add-edit-question/add-edit-question.component';
@@ -33,7 +32,6 @@ import {SurveyDetailsComponent} from './survey-management/survey-details/survey-
         NbCardModule,
         NgxDatatableModule,
         ThemeModule,
-        ButtonsModule,
         NbCheckboxModule
     ],
     providers: [

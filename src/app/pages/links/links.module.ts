@@ -11,7 +11,6 @@ import {AddEditLinkComponent} from './link-management/add-edit-link/add-edit-lin
 import {AddEditCategoryComponent} from './category-management/add-edit-category/add-edit-category.component';
 
 import {ThemeModule} from '../../@theme/theme.module';
-import {ButtonsModule} from '../forms/buttons/buttons.module';
 import {FormsModule} from "@angular/forms";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
@@ -26,7 +25,6 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
         Ng2SmartTableModule,
         NbCardModule,
         ThemeModule,
-        ButtonsModule,
         NgxDatatableModule
     ],
     providers: [

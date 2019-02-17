@@ -7,7 +7,6 @@ import {NbCardModule} from '@nebular/theme';
 import {SmartTableService} from '../../@core/data/smart-table.service';
 
 import {ThemeModule} from '../../@theme/theme.module';
-import {ButtonsModule} from '../forms/buttons/buttons.module';
 import {AddEditArticleComponent} from './article-management/add-edit-article/add-edit-article.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
@@ -21,7 +20,6 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
         ArticleRoutingModule,
         NbCardModule,
         ThemeModule,
-        ButtonsModule,
         NgxDatatableModule
     ],
     providers: [
