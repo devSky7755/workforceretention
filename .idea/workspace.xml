@@ -3,21 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/email.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/email.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/controllers/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/client.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/client.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@theme/components/header/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@theme/components/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@theme/components/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/authentication/authentication.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/authentication/authentication.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/office-admin/email-management/email-management.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/office-admin/email-management/email-management.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -32,24 +24,27 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+            <state relative-caret-position="3825">
+              <caret line="255" column="48" lean-forward="true" selection-start-line="255" selection-start-column="48" selection-end-line="255" selection-end-column="48" />
               <folding>
-                <element signature="e#0#164#0" expanded="true" />
+                <element signature="e#0#48#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3945">
-              <caret line="263" column="53" selection-start-line="263" selection-start-column="53" selection-end-line="263" selection-end-column="53" />
+            <state relative-caret-position="377">
+              <caret line="112" column="54" lean-forward="true" selection-start-line="112" selection-start-column="54" selection-end-line="112" selection-end-column="54" />
               <folding>
-                <element signature="e#0#81#0" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#4;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#5;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,7 +53,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
+            <state relative-caret-position="600">
               <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
               <folding>
                 <element signature="e#0#80#0" expanded="true" />
@@ -76,22 +71,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="41" selection-start-line="37" selection-start-column="41" selection-end-line="37" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>labels</find>
-      <find>questions</find>
-      <find>form-control</find>
       <find>sendE</find>
       <find>$in</find>
       <find>.equ</find>
@@ -119,6 +102,9 @@
       <find>logout</find>
       <find>auth/logout</find>
       <find>Add Employee</find>
+      <find>auth0</find>
+      <find>this.employeeService.employee</find>
+      <find>single</find>
     </findStrings>
     <replaceStrings>
       <replace>login-form-control</replace>
@@ -134,8 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/controllers/survey.js" />
-        <option value="$PROJECT_DIR$/server/index.js" />
         <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.html" />
         <option value="$PROJECT_DIR$/server/models/employee.js" />
         <option value="$PROJECT_DIR$/src/app/@core/data/data.module.ts" />
@@ -152,7 +136,6 @@
         <option value="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" />
         <option value="$PROJECT_DIR$/server/controllers/answer.js" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
         <option value="$PROJECT_DIR$/server/controllers/report.js" />
         <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/office-admin/office-admin.module.ts" />
@@ -171,9 +154,6 @@
         <option value="$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.ts" />
         <option value="$PROJECT_DIR$/server/controllers/client.js" />
         <option value="$PROJECT_DIR$/src/app/@core/data/client.service.ts" />
-        <option value="$PROJECT_DIR$/server/controllers/employee.js" />
-        <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/office-admin/email-management/email-management.component.html" />
         <option value="$PROJECT_DIR$/server/controllers/email.js" />
         <option value="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" />
@@ -182,7 +162,13 @@
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" />
+        <option value="$PROJECT_DIR$/src/app/client/authentication/authentication.component.ts" />
+        <option value="$PROJECT_DIR$/server/controllers/employee.js" />
+        <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
       </list>
@@ -204,6 +190,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,7 +233,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -409,17 +395,19 @@
       <workItem from="1550638126671" duration="51000" />
       <workItem from="1550638261653" duration="1461000" />
       <workItem from="1550682894881" duration="2199000" />
-      <workItem from="1550736446488" duration="1047000" />
+      <workItem from="1550736446488" duration="1591000" />
+      <workItem from="1550751446960" duration="3819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="535599000" />
+    <option name="totallyTimeSpent" value="539962000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29535866" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29535866" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -433,7 +421,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50090414" side_tool="true" weight="0.2132653" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49909583" visible="true" weight="0.2132653" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49909583" visible="true" weight="0.2132653" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -444,49 +432,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/surveys.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="35" column="6" lean-forward="true" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/reporting/reporting.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="15" selection-start-line="20" selection-start-column="15" selection-end-line="20" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/products/products.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="31" column="20" selection-start-line="31" selection-start-column="20" selection-end-line="31" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/links/links.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/dashboard/dashboard.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/pages/dashboard/contacts/contacts.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -606,63 +551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="429" column="75" selection-start-line="429" selection-start-column="75" selection-end-line="429" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="21" column="42" lean-forward="true" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#5;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="47" selection-start-line="19" selection-start-column="47" selection-end-line="19" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/layout/header/header.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="27" column="34" selection-start-line="26" selection-end-line="28" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="34" column="12" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/email-management/email-management.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
@@ -688,16 +576,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/controllers/article.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/questions/questions.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4605">
-          <caret line="307" column="46" lean-forward="true" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/controllers/client.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -743,22 +621,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
-          <folding>
-            <element signature="e#0#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/pages/clients/organizations/divisions/add-edit-division/add-edit-division.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="31" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="50" />
           <folding>
             <element signature="e#0#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="116" selection-start-line="116" selection-end-line="116" />
+          <folding>
+            <element signature="e#0#164#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -770,19 +648,122 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/employee.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/questions/questions.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4605">
+          <caret line="307" column="46" lean-forward="true" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/employee-survey-download/employee-survey-download.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/employee.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="64" column="102" selection-start-line="64" selection-start-column="102" selection-end-line="64" selection-end-column="102" />
+          <folding>
+            <element signature="n#ngx-datatable#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="411">
+          <caret line="432" column="24" lean-forward="true" selection-start-line="432" selection-start-column="24" selection-end-line="432" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/layout/header/header.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/authentication/authentication.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="61" column="59" lean-forward="true" selection-start-line="61" selection-start-column="59" selection-end-line="61" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3945">
-          <caret line="263" column="53" selection-start-line="263" selection-start-column="53" selection-end-line="263" selection-end-column="53" />
+        <state relative-caret-position="4125">
+          <caret line="279" column="39" selection-start-line="279" selection-start-column="39" selection-end-line="279" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="112" column="54" lean-forward="true" selection-start-line="112" selection-start-column="54" selection-end-line="112" selection-end-column="54" />
           <folding>
-            <element signature="e#0#81#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#5;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3825">
+          <caret line="255" column="48" lean-forward="true" selection-start-line="255" selection-start-column="48" selection-end-line="255" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
+        <state relative-caret-position="600">
           <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />

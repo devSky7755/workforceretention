@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {EmployeeService} from "../../@core/data/employee.service";
 import {Router} from "@angular/router";
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Component({
     selector: 'ngx-authentication',
@@ -49,9 +50,21 @@ export class AuthenticationComponent implements OnInit {
                 //
                 data.remember_me = this.employee.remember_me;
                 localStorage.setItem('employee', JSON.stringify(data));
-                this.employeeService.employee = data;
+                const helper = new JwtHelperService();
+                const decodedToken = helper.decodeToken(data.access_token);
+                this.employeeService.employee = decodedToken;
                 this.employeeService.authChange.next(true);
-                this.router.navigateByUrl('/client/dashboard');
+                // decode data.access_token
+                // check the employee manager label
+                // if employee is a manager than redirect to the report page
+                // else redirect to the dashboard page where survey will display
+                if (decodedToken.is_manager == '1') {
+                    // this means the employee is a manager
+                    this.router.navigateByUrl('/client/report');
+                } else {
+                    this.router.navigateByUrl('/client/dashboard');
+
+                }
             },
             err => {
                 const {error} = err;

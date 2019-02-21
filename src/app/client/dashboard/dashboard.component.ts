@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
             this.employee = JSON.parse(localStorage.getItem('employee'));
             const helper = new JwtHelperService();
             this.employee_details = helper.decodeToken(this.employee.access_token);
+            console.log(this.employee_details);
         }
         this.setCompletedSurveys(this.offset, this.limit);
     }

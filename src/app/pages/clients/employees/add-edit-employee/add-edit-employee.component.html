@@ -11,11 +11,11 @@
                 <!--Reactive Form-->
                 <form (ngSubmit)="createEmployee()" [formGroup]="employeeForm" aria-labelledby="title">
                     <div class="alert alert-danger" role="alert"
-                         *ngIf="errorMessage">
+                         *ngIf="errorMessage && !successMessage">
                         {{errorMessage}}
                     </div>
                     <div class="alert alert-success" role="alert"
-                         *ngIf="successMessage">
+                         *ngIf="successMessage && !errorMessage">
                         {{successMessage}}
                     </div>
 

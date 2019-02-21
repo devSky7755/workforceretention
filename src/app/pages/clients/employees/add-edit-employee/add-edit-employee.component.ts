@@ -278,8 +278,6 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             data => {
                 this.successMessage = data.message;
                 this.setEmployee(data);
-                // go to the employee management page
-                this.selectEmployeeManagement.emit();
             },
             err => {
                 const {error} = err;

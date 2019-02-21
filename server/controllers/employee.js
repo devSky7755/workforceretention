@@ -322,7 +322,7 @@ exports.Create = function (req, res, next) {
                             let email = {};
                             // select email depending on client selected email template
                             // if employee is a manager then sent
-                            if (employee.is_manager == '1') {
+                            if (employee.is_manager === '1') {
                                 email = client.emails.find(e => e.email_type === 'manager-report-email');
                             } else if (client.email_template === 'template-one') {
                                 email = client.emails.find(e => e.email_type === 'template-one-email');
@@ -427,7 +427,7 @@ exports.login = function (req, res, next) {
      * check if the username matches any email
      */
 
-    Employee.findOne({email}, 'username email password first_name last_name').then((employee, err) => {
+    Employee.findOne({email}, 'username email password first_name last_name is_manager is_survey').then((employee, err) => {
         if (err) return (new Error("Unable to find employee with the email " + email));
 
         if (!employee) {

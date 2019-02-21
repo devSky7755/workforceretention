@@ -254,6 +254,7 @@ export class ManagerReportComponent implements OnInit {
 
     showChartReport(data) {
         this.completed_surveys = data.completed;
+        this.top_reason_for_leaving_chart_data = [];
         // first get the final question
         // find the top 3 reasons for leaving the exit interview from the final question
 
@@ -311,7 +312,8 @@ export class ManagerReportComponent implements OnInit {
         });
         // now calculate the percentage for each option
         final_question.options.map((option) => {
-            option.percentage = (option.answered / total_points) * 100;
+            option.percentage = ((option.answered / total_points) * 100).toFixed(2);
+            // Percentage upto 2 decimal place
         });
         // now we need to re-arrange options by percentage in the descending order
         final_question.options.sort((a, b) => (a.percentage < b.percentage) ? 1 : -1);
@@ -381,6 +383,7 @@ export class ManagerReportComponent implements OnInit {
             });
         });
         this.single = this.top_reason_for_leaving_chart_data;
+        this.single = this.single.filter(x => parseFloat(x.value) != 0);
         // console.log(this.exit_reason_data_mapper);
         // Solution for reducing the bar width but it's not working
 
