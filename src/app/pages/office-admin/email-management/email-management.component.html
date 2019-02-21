@@ -17,6 +17,14 @@
                 [offset]="offset"
                 [limit]="limit"
                 (page)='onPage($event)'>
+            <ngx-datatable-column name="title">
+                <ng-template let-column="column" ngx-datatable-header-template>
+                    Title
+                </ng-template>
+                <ng-template let-value="value" ngx-datatable-cell-template>
+                    <strong>{{value}}</strong>
+                </ng-template>
+            </ngx-datatable-column>
             <ngx-datatable-column name="fromAddress">
                 <ng-template let-column="column" ngx-datatable-header-template>
                     From Address
@@ -35,7 +43,7 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="id">
                 <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    <span (click)="sort()">Action</span>
+                    <span>Action</span>
                 </ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>
                     <button type="button" (click)="onClickEdit(value)"

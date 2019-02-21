@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {EmployeeService} from "../../../../@core/data/employee.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ClientService} from "../../../../@core/data/client.service";
@@ -13,6 +13,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
 
     @Input() employeeId: string;
     @Input() clientId: string;
+    @Output() selectEmployeeManagement = new EventEmitter();
     min: Date;
     max: Date;
 
@@ -260,6 +261,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             data => {
                 this.successMessage = data.message;
                 this.setEmployee(data);
+                this.selectEmployeeManagement.emit();
             },
             err => {
                 const {error} = err;
@@ -276,6 +278,8 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             data => {
                 this.successMessage = data.message;
                 this.setEmployee(data);
+                // go to the employee management page
+                this.selectEmployeeManagement.emit();
             },
             err => {
                 const {error} = err;

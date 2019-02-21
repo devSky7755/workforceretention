@@ -299,6 +299,10 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         );
     }
 
+    isNullOrEmpty(obj) {
+        return typeof obj === 'undefined' || obj == null;
+    }
+
     updateQuestionAnswer() {
         this.answers.map((answer, index) => {
             answer.options = this.question_answers[index].options;
@@ -326,93 +330,96 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             cat_question.questions.map((question) => {
                 // find the question answer
                 const answer = this.answers.find(a => a.question == question._id);
-                // also checking if the question is not final question
-                if (answer.question_type == this.question_types[0].id && answer.question_type != '7') {
-                    // Rating Radio Buttons
-                    this.survey.rating_labels.map((label, index) => {
-                        const rating_radio_input = <HTMLInputElement>document.getElementById(`rating-radio-label-${question.question_no}-${index}`);
-                        if (answer.options[0] == index) {
-                            // check me
-                            rating_radio_input.checked = true;
+                // check if the answer is undefined or null
+                if (!this.isNullOrEmpty(answer)) {
+                    // also checking if the question is not final question
+                    if (answer.question_type == this.question_types[0].id && answer.question_type != '7') {
+                        // Rating Radio Buttons
+                        this.survey.rating_labels.map((label, index) => {
+                            const rating_radio_input = <HTMLInputElement>document.getElementById(`rating-radio-label-${question.question_no}-${index}`);
+                            if (answer.options[0] == index) {
+                                // check me
+                                rating_radio_input.checked = true;
+                            }
+                        });
+                    } else if (answer.question_type == this.question_types[1].id && answer.question_type != '7') {
+                        // Free Text
+                        const free_text_input = <HTMLInputElement>document.getElementById(`question-comment-${question.question_no}`);
+                        free_text_input.value = answer.options[0];
+                    } else if (answer.question_type == this.question_types[2].id && answer.question_type != '7') {
+                        // Exit Interview - Exit Reasons
+                        question.options.map((option, index) => {
+                            if (option == 'true') {
+                                const simple_radio_input = <HTMLInputElement>document.getElementById(`exit-reason-choice-${question.question_no}-${index}`);
+                                // this will store the index of the checked item
+                                // check if the index is in the answer options
+                                // if the index is in the answer options then check that input
+                                const option_index = '' + index;
+                                if (answer.options.includes(option_index)) {
+                                    simple_radio_input.checked = true;
+                                }
+                            }
+                        });
+                    } else if (answer.question_type == this.question_types[3].id && answer.question_type != '7') {
+                        // Yes / No Radio
+                        const yes_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-yes`);
+                        const no_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-no`);
+                        if (answer.options[0] == '1') {
+                            yes_radio_label.checked = true;
+                        } else {
+                            no_radio_label.checked = true;
                         }
-                    });
-                } else if (answer.question_type == this.question_types[1].id && answer.question_type != '7') {
-                    // Free Text
-                    const free_text_input = <HTMLInputElement>document.getElementById(`question-comment-${question.question_no}`);
-                    free_text_input.value = answer.options[0];
-                } else if (answer.question_type == this.question_types[2].id && answer.question_type != '7') {
-                    // Exit Interview - Exit Reasons
-                    question.options.map((option, index) => {
-                        if (option == 'true') {
-                            const simple_radio_input = <HTMLInputElement>document.getElementById(`exit-reason-choice-${question.question_no}-${index}`);
-                            // this will store the index of the checked item
-                            // check if the index is in the answer options
-                            // if the index is in the answer options then check that input
+                    } else if (answer.question_type == this.question_types[4].id && answer.question_type != '7') {
+                        // Radio Labels
+                        question.options.map((option, index) => {
+                            const radio_label_input = <HTMLInputElement>document.getElementById(`radio-label-${question.question_no}-${index}`);
+                            if (answer.options[0] == index) {
+                                radio_label_input.checked = true;
+                            }
+                        });
+                    } else if (answer.question_type === '7') {
+                        // This is the final question
+                        this.exit_reason_checkbox.map((exit_reason, index) => {
+                            // check if the question.options[index]=='true' or not.
+                            // if true then execute the below functionality
+                            if (question.options[index] == 'true') {
+                                const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
+                                const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
+                                // answer options will contain two values
+                                const first_choice = answer.options[0].split('-');
+                                const second_choice = answer.options[1].split('-');
+                                if (first_choice[0] == '1st') {
+                                    if (first_choice[2] == exit_reason.id) {
+                                        first_choice_radio_input.checked = true;
+                                    }
+
+                                } else {
+                                    if (first_choice[2] == exit_reason.id) {
+                                        second_choice_radio_input.checked = true;
+                                    }
+                                }
+
+                                if (second_choice[0] == '1st') {
+                                    if (second_choice[2] == exit_reason.id) {
+                                        first_choice_radio_input.checked = true;
+                                    }
+                                } else {
+                                    if (second_choice[2] == exit_reason.id) {
+                                        second_choice_radio_input.checked = true;
+                                    }
+                                }
+                            }
+                        });
+                    } else {
+                        // Multiple Choice
+                        question.options.map((option, index) => {
+                            const multiple_choice_input = <HTMLInputElement>document.getElementById(`multiple-choice-${question.question_no}-${index}`);
                             const option_index = '' + index;
                             if (answer.options.includes(option_index)) {
-                                simple_radio_input.checked = true;
+                                multiple_choice_input.checked = true;
                             }
-                        }
-                    });
-                } else if (answer.question_type == this.question_types[3].id && answer.question_type != '7') {
-                    // Yes / No Radio
-                    const yes_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-yes`);
-                    const no_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-no`);
-                    if (answer.options[0] == '1') {
-                        yes_radio_label.checked = true;
-                    } else {
-                        no_radio_label.checked = true;
+                        });
                     }
-                } else if (answer.question_type == this.question_types[4].id && answer.question_type != '7') {
-                    // Radio Labels
-                    question.options.map((option, index) => {
-                        const radio_label_input = <HTMLInputElement>document.getElementById(`radio-label-${question.question_no}-${index}`);
-                        if (answer.options[0] == index) {
-                            radio_label_input.checked = true;
-                        }
-                    });
-                } else if (answer.question_type === '7') {
-                    // This is the final question
-                    this.exit_reason_checkbox.map((exit_reason, index) => {
-                        // check if the question.options[index]=='true' or not.
-                        // if true then execute the below functionality
-                        if (question.options[index] == 'true') {
-                            const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
-                            const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
-                            // answer options will contain two values
-                            const first_choice = answer.options[0].split('-');
-                            const second_choice = answer.options[1].split('-');
-                            if (first_choice[0] == '1st') {
-                                if (first_choice[2] == exit_reason.id) {
-                                    first_choice_radio_input.checked = true;
-                                }
-
-                            } else {
-                                if (first_choice[2] == exit_reason.id) {
-                                    second_choice_radio_input.checked = true;
-                                }
-                            }
-
-                            if (second_choice[0] == '1st') {
-                                if (second_choice[2] == exit_reason.id) {
-                                    first_choice_radio_input.checked = true;
-                                }
-                            } else {
-                                if (second_choice[2] == exit_reason.id) {
-                                    second_choice_radio_input.checked = true;
-                                }
-                            }
-                        }
-                    });
-                } else {
-                    // Multiple Choice
-                    question.options.map((option, index) => {
-                        const multiple_choice_input = <HTMLInputElement>document.getElementById(`multiple-choice-${question.question_no}-${index}`);
-                        const option_index = '' + index;
-                        if (answer.options.includes(option_index)) {
-                            multiple_choice_input.checked = true;
-                        }
-                    });
                 }
             });
         });

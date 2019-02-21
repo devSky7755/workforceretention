@@ -36,7 +36,7 @@ export class ClientService {
 
     updateEmail(clientId, emailId, email): Observable<any> {
         const body = JSON.stringify(email);
-        return this.http.post(this.urlService.baseUrl + `/api/v1/clients/emails/update/${clientId}?emailId=${emailId}`, body);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/clients/emails/update/${clientId}?emailId=${emailId}`, body, httpOptions);
     }
 
     createClient(client, userId): Observable<any> {

@@ -111,6 +111,10 @@ export class EmployeesComponent implements OnInit, OnChanges {
         );
     }
 
+    downloadEmployeeTemplate() {
+        console.log('downloading template...');
+    }
+
     ngOnChanges(changes: SimpleChanges) {
         this.clientId = changes.clientId.currentValue;
         this.page(this.offset, this.limit);

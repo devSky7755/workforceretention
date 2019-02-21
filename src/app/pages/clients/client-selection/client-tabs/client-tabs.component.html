@@ -74,7 +74,7 @@
                     <ngx-employee-details [employeeId]="employeeId" [clientId]="clientId" (editSurvey)="editSurvey($event)"></ngx-employee-details>
                 </div>
                 <div *ngIf="isAddEmployee">
-                    <ngx-add-edit-employee [employeeId]="employeeId" [clientId]="clientId"></ngx-add-edit-employee>
+                    <ngx-add-edit-employee [employeeId]="employeeId" [clientId]="clientId" (selectEmployeeManagement)="showEmployees()"></ngx-add-edit-employee>
                 </div>
                 <div *ngIf="isShowEmployeeTable">
                     <button class="btn btn-success btn-xs" style="float: right" (click)="onClickAddEmployee()">Add

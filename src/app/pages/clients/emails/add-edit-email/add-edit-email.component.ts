@@ -35,10 +35,13 @@ export class AddEditEmailComponent implements OnInit, OnChanges {
 
     createEmail() {
         const email = {
-            fromAddress: this.email.fromAddress,
+            from_address: this.email.fromAddress,
             subject: this.email.subject,
             body: this.email.body
         };
+        console.log(this.email);
+        // ****************** update email ****************
+        console.log(email);
         if (this.emailId) {
             //perform update operation
             this.update(email);

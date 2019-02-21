@@ -122,7 +122,6 @@ exports.Delete = (req, res, next) => {
                 err
             });
         }
-        // The "todo" in this callback function represents the document that was found.
         // It allows you to pass a reference back to the staticPage in case they need a reference for some reason.
         Email.findByIdAndRemove(id, (err, email) => {
             // As always, handle any potential errors:

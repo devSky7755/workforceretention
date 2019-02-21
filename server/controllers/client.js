@@ -260,7 +260,6 @@ exports.FindEmailById = (req, res, next) => {
                 "message": "Client not found"
             })
         }
-        console.log(client);
         // find the subdocument
         const email = client.emails.id(emailId);
         return res.status(200).send({
@@ -275,6 +274,8 @@ exports.UpdateEmail = (req, res, next) => {
     const clientId = req.params.clientId;
     const emailId = req.query.emailId;
     const data = req.body;
+
+    console.log(data);
 
     Client.findById(clientId, (err, client) => {
         if (err) return next(err);

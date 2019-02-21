@@ -427,7 +427,7 @@ exports.login = function (req, res, next) {
      * check if the username matches any email
      */
 
-    Employee.findOne({email}, 'username email password').then((employee, err) => {
+    Employee.findOne({email}, 'username email password first_name last_name').then((employee, err) => {
         if (err) return (new Error("Unable to find employee with the email " + email));
 
         if (!employee) {
