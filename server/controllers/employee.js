@@ -44,6 +44,11 @@ exports.Upload = function (req, res, next) {
             if (!client) {
                 return res.status(404).json({status: false, message: 'Client not found!'})
             }
+            // check the client surveys.
+            // if the client has no survey available then set a error message that No survey assigned to the client yet !
+            if (client.surveys.length === 0) {
+                return next(new Error('No exit interview assigned to the client yet !'))
+            }
             let json = csvToJson.fieldDelimiter(',').getJsonFromCsv(file.path);
             //here get all the organization and organization division and division department
             Organization.find()
@@ -209,7 +214,7 @@ const passwordGenerator = function (employees, client) {
     return Promise.all(employeePromises);
 };
 const findOrganizationByName = function (name, organizations) {
-    let organizationId = null
+    let organizationId = null;
     if (organizations !== null) {
         organizations.map((organization) => {
             if (organization.name.toUpperCase() === name.toUpperCase()) {
@@ -299,6 +304,11 @@ exports.Create = function (req, res, next) {
                         if (err) return next(err);
                         if (!client) {
                             return res.status(404).json({status: false, message: 'Client not found!'})
+                        }
+                        // check the client surveys.
+                        // if the client has no survey available then set a error message that No survey assigned to the client yet !
+                        if (client.surveys.length === 0) {
+                            return next(new Error('No exit interview assigned to the client yet !'))
                         }
                         // here before create the employee check if the employee client has assign surveys. if so then assign that surveys to the employee
                         let clientSurveys = [];
