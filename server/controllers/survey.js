@@ -192,12 +192,8 @@ exports.PrintCompletedSurvey = async (req, res) => {
     // here we will get the url from the request body
     //here we need to configure puppeteer for printing pdf
     const url = req.body.url;
-    const baseUrl = 'http://localhost:8080';
-    const browser = await puppeteer.launch({
-        headless: true,
-        executablePath: '/root/workforceretention/node_modules/puppeteer/.local-chromium/linux-624492/chrome-linux/chrome',
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+    const baseUrl = 'http://skydeveloperonline.com:8080';
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     // here generate a unique name for the file
     const fileName = Date.now() + '_employee_survey.pdf';
