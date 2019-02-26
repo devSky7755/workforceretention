@@ -1,7 +1,7 @@
 <nb-layout>
     <nb-layout-column>
         <ngx-header></ngx-header>
-        <ngx-page-name [pageName]="'Answer your questions'"></ngx-page-name>
+        <ngx-page-name [pageName]="pageName"></ngx-page-name>
         <section class="home-section light-gray">
             <div class="container">
                 <div class="row">
@@ -126,7 +126,8 @@
                                                                 <td style="padding-bottom: 20px">
                                                                     <div class="form__group u-margin-bottom-medium">
                                                                         <div class="form__radio-group">
-                                                                            <input type="radio" class="form__radio-input"
+                                                                            <input type="radio"
+                                                                                   class="form__radio-input"
                                                                                    name="final-1st-choice"
                                                                                    value="{{exit_reason.value}}"
                                                                                    id="final-1st-choice-{{question.question_no}}-{{exit_reason.id}}">
@@ -140,7 +141,8 @@
                                                                 <td style="padding-bottom: 20px">
                                                                     <div class="form__group u-margin-bottom-medium">
                                                                         <div class="form__radio-group">
-                                                                            <input type="radio" class="form__radio-input"
+                                                                            <input type="radio"
+                                                                                   class="form__radio-input"
                                                                                    name="final-2nd-choice"
                                                                                    value="{{exit_reason.value}}"
                                                                                    id="final-2nd-choice-{{question.question_no}}-{{exit_reason.id}}">

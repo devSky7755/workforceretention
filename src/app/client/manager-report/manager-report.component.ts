@@ -51,7 +51,7 @@ export class ManagerReportComponent implements OnInit {
     ];
 
     single = [];
-
+    // view = [700, 400];
     // options
     showXAxis = true;
     showYAxis = true;

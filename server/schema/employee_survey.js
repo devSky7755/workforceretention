@@ -12,6 +12,14 @@ const employeeSurveySchema = new Schema({
         type: Boolean,
         default: false
     },
+    // possible values yes or no
+    completed_online: {
+        type: String
+    },
+    // possible values yes or no
+    completed_admin: {
+        type: String
+    },
     start_date: {
         type: Date
     },

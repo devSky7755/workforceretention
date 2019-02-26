@@ -84,6 +84,8 @@ exports.CreateMany = (req, res, next) => {
                         employee_survey.completed = true;
                         // here we also need to update the employee survey end_date
                         employee_survey.end_date = data.end_date;
+                        employee_survey.completed_online = data.completed_online;
+                        employee_survey.completed_admin = data.completed_admin;
                     }
                 });
                 employee.save().then(() => {

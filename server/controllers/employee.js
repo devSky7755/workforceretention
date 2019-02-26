@@ -398,8 +398,9 @@ exports.Find = (req, res, next) => {
 
 exports.FindById = (req, res, next) => {
     let id = req.params.id;
-
-    Employee.findById(id, (err, employee) => {
+    //don't send the password to the user
+    // -password will eliminate  the password from the response
+    Employee.findById(id, '-password', (err, employee) => {
         if (err) return next(err);
         if (!employee) {
             return res.status(404).json({

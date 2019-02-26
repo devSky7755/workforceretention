@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SurveyService} from "../../@core/data/survey.service";
-import {Route, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {EmployeeService} from "../../@core/data/employee.service";
 import {ReportService} from "../../@core/data/report.service";
 
@@ -53,12 +53,11 @@ export class ReportsComponent implements OnInit {
                 this.organization = res.organization.name;
 
                 this.count = 1;
-                const rows = [{
+                this.completedSurveys = [{
                     reportType: 'Exit Surveys',
                     reportDescription: 'Aggregate data of Completed Exit Interviews, plus Individual Survey Data',
                     completedSurveys: this.totalCompletedSurveys + '   /   ' + this.totalEmployees
                 }];
-                this.completedSurveys = rows;
             }
         );
     }

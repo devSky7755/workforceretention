@@ -3,9 +3,269 @@
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/survey.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/survey.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/core.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/core.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/url.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/1.1f62fb67c4f859a8577b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/10.219c4228e6996ce2b3fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/11.40efe1b8bf1dfad26098.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/12.b76395ab80a069dbd07c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/13.7b3d458d6b3e39f8473c.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/14.8043b1e813766d82f9dc.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/15.e1f170b1692b869a85f3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/16.273faad4306752208292.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/17.4331911b0b9e4c09e7b9.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/18.212a6193e1c7d15c84c4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/19.b6ff555cd0f722110e8f.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/2.126aeb54ddb19ff2148d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/20.42d19ba1e7118a8c3120.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/21.4b0fbad59293fc1a2341.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/21.e7f0d5da8c0a612a2899.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/22.1b7a10287845741ffaa0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/23.9b4d808f0dec8e1ef380.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/24.08d2b63d298787d77710.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/3.6c52bdc62a0b41f5d47b.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/3rdpartylicenses.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/4.80a8ec7964ce6976631d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/6.76cb5d0f906f082019ad.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.2a82f89b0a35ee7f9d45.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.2b8d6922c2c9957356bc.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.44236ad507eddcbfd986.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.4c3b6229efe63a13dbb4.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Black.ab04c7611d94b690aee3.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.1f37c7545ae9f63d2279.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.38d14dd4ff163c34e45b.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.3a99796b2d8592471fcf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.4b7407c6740b8294d97a.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BlackItalic.ad0f284c7113fd0aaf39.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.56a76a220d9c9765946d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.ab96cca26751239828b8.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.ad140ff02a7091257e2b.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.c7f4667b59b9bc95130e.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Bold.c8bcb1cb78f9e45e2bcb.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.355e388740673054493c.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.4b2cc52b05e2a960c4f1.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.a7dce23c0dd99a4afa5c.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.c2e0f75da3677f645034.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-BoldItalic.d23d5bdadc495f12ef69.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.054fa50baa6598a7bf0c.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.183079184d96a491f16e.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.37fbbbad5577a95bdf05.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.8e0860f3581b197e9fa4.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Light.a2b8c641546c0e5a95e2.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.056caeabe95749fe2b97.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.1a9e39e536aed26b863b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.879d940bccbb25f6096e.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.c7b4e746cf8ecbf412fc.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-LightItalic.cdd1c486770034a6122e.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.2741a14e49524efa6059.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.2b4f394ce87ea4e7a68b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.303ded6436dcf7ea7515.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.76cad5ba6b8a38a77fe0.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Medium.c54f2a3ee42d2a58d82f.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.7a49ce79b6089d4d37bf.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.da059a7386fea889c55c.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.eb65fb18d4446e4ac27d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.f10d1f42838680a70ac2.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-MediumItalic.fa183350bf6b814ae552.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.081b11ebaca8ad30fd09.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.6a561d68369fd1fb9768.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.766c8926f6d9061fef24.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.99b14f0da0591e0d7167.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Regular.b2a6341ae7440130ec4b.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.527502d7927a41ca0b6a.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.8add1ba317c27e39b778.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.90dbf902b8d0592e1beb.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.df8e3a9b9aed94341797.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-RegularItalic.f3660f493ea5e5206484.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.790ebf41d0214f5eda4e.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.90d3804f0231704c15cc.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.ba422f71e799f3d29cbf.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.c25fd8d00fd9f570545d.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-Thin.cc85ce37b4256966e6f3.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.11b5cc9584f2c007a229.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.21e9a2e5ed0b0d8d1bb7.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.588293290e86dad97fcf.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.64ca718f48db91b27e8c.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/Roboto-ThinItalic.8a2c1a5de09de8bb2c45.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/data/news.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/alan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/camera4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/cover1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/cover2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/cover3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/eva.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/home-bg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/jack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kitten-corporate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kitten-cosmic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/kitten-default.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/lee.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/nick.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/page_banner.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/square_pattern.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/square_pattern_cosmic.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/images/team.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/layers-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/layers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/marker-icon-2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/marker-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/img/markers/marker-shadow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/leaflet-countries/countries.geo.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/map/world.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/content.inline.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/content.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce-small.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/fonts/tinymce.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/anchor.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/loader.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/object.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/img/trans.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/skin.ie7.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/assets/skins/lightgray/skin.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/common.c4a45e5b9b515d9b77ae.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.246ea8fa6c452b0f3c4f.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.b0aebd744ce7adb780a9.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.bce071e976865da51100.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/data-table.c8c6d300cb7abb9f36e8.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.7a962253b4221d26fc52.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.86eb901a1b6a952ad4c6.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.e98b7075717664dffefd.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100.f60defca0bb5c4a76c36.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.09b8eba1e3ca26851758.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.5d74bcc0fa9041da27ab.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.7fd525ae6ef32ca51c2b.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-100italic.d8d1b8142312dc8661ca.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.459a2b5c4d21445ecaa1.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.6272ec972e113356a7ac.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.9154b96a4e182f3f6027.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200.ae44adae71863b09ecbc.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.3487e875e62e19f8725a.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.3a8391359886bc872041.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.cac790357edeabf496ba.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-200italic.fff0b8fbb6361809277d.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.038973967594a7dab606.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.21d8997134cbc12e5153.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.3f0b3ba8796b6e7fe4bd.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300.e0e37075b606d93a9538.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.2f0f55679e620d222711.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.6ce1566735a3d3667090.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.8d40b499402fd4189be2.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-300italic.a2ca6baedb32297ce871.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.3002b7531096a5092d6e.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.6b1794f1847a277021b4.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.9f16e6ee1e3327b7db3a.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400.d72d248cdbced438c110.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.11510e4de28d62aa3aa5.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.92d1911bd4c5f5ef04f7.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.9e4520097381adbfe70f.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-400italic.d672d50caf856a58828c.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.6596ef88679c21505494.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.6d4c29b8d9640e68f812.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.81d3a72e86d04e574f0d.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500.c616c256d4843cc16357.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.1ac05bd5dc0714e32eac.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.3cb9a625a9283be01425.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.bd17cb2d62c226e06fdb.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-500italic.fe40c45465e6e99f006b.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.bb1d269e07b87773f1a6.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.ca209404a4885958c612.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.e0d97cf7ab8d3d75e34b.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600.ed2ff71bda38119fa682.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.88502b7cff2e54cebf90.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.b0a8187a1614891ec57b.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.b7d2928a52331a7f1f07.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-600italic.e711eccd1fadfcd140a0.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.68cc7fa1f6a3184d73c2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.734067b6563affe65beb.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.7348a6cf42fcb58f0985.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700.d38b55777560c246992c.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.1f6a024d5a00aba4cee1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.262dcaba2aca4a002e46.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.36b975e60be97473a1e6.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-700italic.dfd1344ebc20ecda89bf.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.006e7ec97fc14c6682a8.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.1ae3922dda8cca45438a.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.855ca29bb887be8df4bb.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800.ca084c98b9f30fcf576f.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.0bc59516445e9a658021.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.ba95c7ebbd3ee83362b2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.c989d9d241c710a02bba.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-800italic.e75d9cbb1468c3156c59.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.5f81c4362dcb692ed3d3.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.6eb1c493737303a66b1b.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.81e4c0811095cd6fbffa.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900.c45295dd710f6c155910.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.833cc98e0a75891eebef.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.90bea911b093ad5f0cf2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.951a8bde845d7c17e4de.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/exo-latin-900italic.b64b7ad410228605c1a3.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.42f9fd6acee87559ac0d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.659c4d58b00226541ef9.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.8b7a9afd7b95f62e6ee8.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.b69de69a4ff8ca0abe96.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-brands-400.ec0716ae8aa1ba781a1a.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.0b5e3a5451fc62d9023c.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.0c41971339b9fc5b1cef.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.6493321d567eb0f22bd5.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.b48c48ea8457846a5695.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-regular-400.bdadb6ce95c5a2e7b673.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.4478b4d7022cad174e4c.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.48f54f63d7711d0912a9.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.bcb927a742a8370b7664.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.f29ad0031ad2c1c14b77.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fa-solid-900.fb493903265cad425ccd.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.674f50d287a8c48dc19b.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.912ec66d7572ff821749.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.af7ae505a9eed503f8b8.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.b06871f281fee6b241d6.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/fontawesome-webfont.fee66e712a8a08eef580.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.19e65b89cee273a249fb.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.28df6ee7b407fd8a14b4.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.2c159d0d05473040b53e.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/ionicons.dd4781d1acc57ba4c480.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layers-2x.4f0283c6ce28e888000e.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/layers.a6137456ed160d760698.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.51d70fd20f80b17edf03.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/marker-icon.2273e3d8ad9264b7daa5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.85e45e2f83750a4184af.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.e5b059e952431846f8ab.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.e7b6b47eeafe34432dca.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/nebular.ee79fa432c91db08585f.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/polyfills.5661a9d82e577675cf63.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/runtime.a36cf26d63a690c8f445.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/scripts.db6f6c877546c61ad1c1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.60e5857089e98edd8380.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.944f06f5f65ef84a3a36.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.9a64ef938f9e55a70a4d.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/socicon.a35b65744f557fab5424.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/square_pattern.b7c0827326f8d621b1ed.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/square_pattern_cosmic.a242954570515ecdde9d.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/styles.aba743c48b1aeef6f4a1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/employee.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/schema/employee_survey.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/schema/employee_survey.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/profile/profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/profile/profile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/profile/profile.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/questions/questions.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/questions/questions.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/reports/reports.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/reports/reports.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/office-admin/email-management/add-edit-email/add-edit-email.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/office-admin/email-management/add-edit-email/add-edit-email.component.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -20,28 +280,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/controllers/survey.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="198" column="49" selection-start-line="198" selection-start-column="49" selection-end-line="198" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="600">
-              <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
               <folding>
                 <element signature="e#0#80#0" expanded="true" />
               </folding>
@@ -52,44 +294,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/surveys.js">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
-              <caret line="5" column="67" selection-start-line="5" selection-start-column="67" selection-end-line="5" selection-end-column="67" />
+              <caret line="5" column="17" lean-forward="true" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#103#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/models/client.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sendE</find>
-      <find>$in</find>
       <find>.equ</find>
       <find>assets/images</find>
       <find>(click</find>
@@ -118,6 +332,8 @@
       <find>auth0</find>
       <find>this.employeeService.employee</find>
       <find>single</find>
+      <find>view</find>
+      <find>employee</find>
     </findStrings>
     <replaceStrings>
       <replace>login-form-control</replace>
@@ -125,6 +341,7 @@
       <replace>req.params.id</replace>
       <replace>findOneAndUpdate</replace>
       <replace>findByIdAndUpdate</replace>
+      <replace>employee_details</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -133,23 +350,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/models/employee.js" />
-        <option value="$PROJECT_DIR$/src/app/@core/data/data.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/client/reports/reports.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/client/reports/reports.component.html" />
-        <option value="$PROJECT_DIR$/src/app/client/client-routing.module.ts" />
-        <option value="$PROJECT_DIR$/src/app/client/reports/reports.component.ts" />
-        <option value="$PROJECT_DIR$/server/routes/reports.js" />
         <option value="$PROJECT_DIR$/src/app/@core/data/report.service.ts" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.scss" />
         <option value="$PROJECT_DIR$/src/app/client/client.module.ts" />
-        <option value="$PROJECT_DIR$/server/schema/employee_survey.js" />
-        <option value="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" />
-        <option value="$PROJECT_DIR$/server/controllers/answer.js" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.ts" />
         <option value="$PROJECT_DIR$/server/controllers/report.js" />
-        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/office-admin/office-admin.module.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/article/article.module.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/clients.module.ts" />
@@ -168,7 +373,6 @@
         <option value="$PROJECT_DIR$/src/app/@core/data/client.service.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/office-admin/email-management/email-management.component.html" />
         <option value="$PROJECT_DIR$/server/controllers/email.js" />
-        <option value="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" />
         <option value="$PROJECT_DIR$/src/app/@theme/components/header/header.component.html" />
         <option value="$PROJECT_DIR$/src/app/@theme/components/header/header.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" />
@@ -179,9 +383,22 @@
         <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
-        <option value="$PROJECT_DIR$/server/controllers/employee.js" />
         <option value="$PROJECT_DIR$/server/controllers/survey.js" />
+        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" />
+        <option value="$PROJECT_DIR$/src/app/client/reports/reports.component.ts" />
+        <option value="$PROJECT_DIR$/server/controllers/employee.js" />
+        <option value="$PROJECT_DIR$/src/app/client/profile/profile.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/client/profile/profile.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/client/profile/profile.component.html" />
+        <option value="$PROJECT_DIR$/server/schema/employee_survey.js" />
+        <option value="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" />
+        <option value="$PROJECT_DIR$/server/controllers/answer.js" />
+        <option value="$PROJECT_DIR$/src/app/client/questions/questions.component.html" />
+        <option value="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/office-admin/email-management/add-edit-email/add-edit-email.component.html" />
         <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
       </list>
@@ -213,11 +430,6 @@
             <path>
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
               <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -225,65 +437,6 @@
               <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="@core" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="@core" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="employees" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="employees" type="462c0819:PsiDirectoryNode" />
-              <item name="employee-details" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="clients" type="462c0819:PsiDirectoryNode" />
-              <item name="employees" type="462c0819:PsiDirectoryNode" />
-              <item name="employee-survey" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -456,18 +609,19 @@
       <workItem from="1550751446960" duration="4341000" />
       <workItem from="1550839245230" duration="2126000" />
       <workItem from="1551034121872" duration="763000" />
-      <workItem from="1551085999623" duration="109000" />
+      <workItem from="1551085999623" duration="948000" />
+      <workItem from="1551163832587" duration="8166000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="543482000" />
+    <option name="totallyTimeSpent" value="552487000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29535866" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.278481" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -481,7 +635,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50090414" side_tool="true" weight="0.2132653" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49909583" visible="true" weight="0.2132653" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49909583" visible="true" weight="0.23163265" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -492,80 +646,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/users.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/pages.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="20" lean-forward="true" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/extra-components/progress-bar/progress-bar.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/extra-components/stepper/stepper.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/extra-components/stepper/stepper.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/extra-components/alert/alert.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/extra-components/chat/bot-replies.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/extra-components/accordion/accordion.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/extra-components/accordion/accordion.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/tables/smart-table/smart-table.component.ts" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/tables/smart-table/smart-table.component.html" />
-    <entry file="file://$PROJECT_DIR$/src/app/pages/pages-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="51" column="32" lean-forward="true" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/modal-overlays/modal-overlays-routing.module.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/modal-overlays/tooltip/tooltip.component.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/modal-overlays/tooltip/tooltip.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/modal-overlays/toastr/toastr.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/emails/emails.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="58" column="33" lean-forward="true" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#103#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/data/client.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -677,23 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/employee.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/questions/questions.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4605">
-          <caret line="307" column="46" lean-forward="true" selection-start-line="307" selection-start-column="46" selection-end-line="307" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/employee-survey-download/employee-survey-download.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -720,16 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" column="63" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="35" column="47" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -760,33 +813,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html">
+    <entry file="file://$PROJECT_DIR$/server/controllers/survey.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="112" column="54" selection-start-line="112" selection-start-column="54" selection-end-line="112" selection-end-column="54" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#4;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#5;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3825">
-          <caret line="255" column="48" selection-start-line="255" selection-start-column="48" selection-end-line="255" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
+        <state relative-caret-position="2970">
+          <caret line="198" column="49" selection-start-line="198" selection-start-column="49" selection-end-line="198" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -797,30 +827,223 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.ts">
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/reports/reports.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <caret line="27" column="71" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/reports/reports.component.scss">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="27" column="22" lean-forward="true" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="1" lean-forward="true" selection-end-line="46" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="111" column="46" lean-forward="true" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
           <folding>
             <element signature="e#0#103#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="19" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="114" selection-end-column="18" />
+          <folding>
+            <element signature="n#div#0;n#nb-card#0;n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/employee.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="29" column="49" lean-forward="true" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/models/client.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/survey.js">
+    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="198" column="49" selection-start-line="198" selection-start-column="49" selection-end-line="198" selection-end-column="49" />
+        <state relative-caret-position="45">
+          <caret line="3" column="16" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="76" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#5;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="37" column="64" lean-forward="true" selection-start-line="35" selection-end-line="45" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/profile/profile.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/profile/profile.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="108" column="48" selection-start-line="108" selection-start-column="48" selection-end-line="108" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#11;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#11;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#11;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#0;n#div#11;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2095">
+          <caret line="398" column="28" selection-start-line="398" selection-start-column="28" selection-end-line="398" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/answer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1215">
+          <caret line="81" column="49" lean-forward="true" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/schema/employee_survey.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="32" lean-forward="true" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/answer.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="30" column="96" lean-forward="true" selection-start-line="30" selection-start-column="96" selection-end-line="30" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5325">
+          <caret line="399" column="21" selection-start-line="399" selection-start-column="21" selection-end-line="399" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#118#0" expanded="true" />
+            <element signature="e#14889#15135#0" />
+            <element signature="e#15227#16086#0" />
+            <element signature="e#15342#16066#0" />
+            <element signature="e#16178#16695#0" />
+            <element signature="e#16514#16593#0" />
+            <element signature="e#16787#17215#0" />
+            <element signature="e#19080#19591#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/questions/questions.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="91" column="35" selection-start-line="91" selection-start-column="35" selection-end-line="91" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="124" column="33" lean-forward="true" selection-start-line="124" selection-start-column="33" selection-end-line="124" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/reports/reports.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/profile/profile.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="13" lean-forward="true" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="33" column="50" lean-forward="true" selection-start-line="33" selection-end-line="34" selection-end-column="83" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/questions/questions.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="43" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/office-admin/email-management/add-edit-email/add-edit-email.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="62" lean-forward="true" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/emails/add-edit-email/add-edit-email.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="4" column="98" selection-start-line="4" selection-start-column="98" selection-end-line="4" selection-end-column="98" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
-          <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
           </folding>
@@ -829,8 +1052,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        <state relative-caret-position="75">
+          <caret line="5" column="17" lean-forward="true" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
         </state>
       </provider>
     </entry>

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {SurveyService} from "../../@core/data/survey.service";
 import {AnswerService} from "../../@core/data/answer.service";
 import {EmployeeService} from "../../@core/data/employee.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Component({
     selector: 'ngx-questions',
@@ -19,6 +20,8 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     question_answers = [];
     survey;
     surveyCompleted;
+    pageName;
+    employee_details;
     survey_types = [
         {id: 1, value: 'Exit Interview'}
     ];
@@ -86,6 +89,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
                 private employeeService: EmployeeService,
                 private router: Router) {
         this.survey = {};
+        this.employee_details = {};
     }
 
     ngOnInit() {
@@ -95,12 +99,16 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         if (localStorage.getItem('employee')) {
             // parse the employee object and check the expiration of the login. if the login time is expired
             this.employee = JSON.parse(localStorage.getItem('employee'));
+            const helper = new JwtHelperService();
+            this.employee_details = helper.decodeToken(this.employee.access_token);
         }
         // This would print out the json object which contained
         // all of our query parameters for this particular route.
         this.route.queryParams.subscribe(params => {
             this.surveyCompleted = JSON.parse(params['completed']);
         });
+        // set the pageName here
+        this.pageName = 'Your Exit Interview ' + this.employee_details.first_name + ' ' + this.employee_details.last_name;
         this.getSurvey();
     }
 
@@ -291,7 +299,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     saveQuestionAnswer() {
-        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employee.employee_id).subscribe(
+        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employee.employee_id, 'Yes', 'No').subscribe(
             () => {
                 alert('Exit interview submitted successfully');
                 this.router.navigateByUrl('/client/dashboard');
