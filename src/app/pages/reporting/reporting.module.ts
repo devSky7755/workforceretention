@@ -10,19 +10,23 @@ import {SmartTableService} from '../../@core/data/smart-table.service';
 import {AddEditReportComponent} from './report-files/add-edit-report/add-edit-report.component';
 
 import {ThemeModule} from '../../@theme/theme.module';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations: [DataReportsComponent, ReportFilesComponent, AddEditReportComponent],
-  imports: [
-    CommonModule,
-    ReportingRoutingModule,
-    Ng2SmartTableModule,
-    NbCardModule,
-    ThemeModule
-  ],
-  providers: [
-    SmartTableService,
-  ],
+    declarations: [DataReportsComponent, ReportFilesComponent, AddEditReportComponent],
+    imports: [
+        CommonModule,
+        ReportingRoutingModule,
+        Ng2SmartTableModule,
+        NbCardModule,
+        NgxDatatableModule,
+        FormsModule,
+        ThemeModule
+    ],
+    providers: [
+        SmartTableService,
+    ],
 })
 export class ReportingModule {
 }

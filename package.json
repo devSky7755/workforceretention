@@ -68,6 +68,7 @@
     "core-js": "2.5.1",
     "cors": "^2.8.5",
     "csv-parse": "^4.2.0",
+    "csv-writer": "^1.2.0",
     "csvtojson": "^2.0.8",
     "echarts": "^4.0.2",
     "eva-icons": "^1.1.0",

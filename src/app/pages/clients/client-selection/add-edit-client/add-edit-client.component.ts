@@ -106,7 +106,6 @@ export class AddEditClientComponent implements OnInit {
         this.fileName = file.name;
         this.clientForm.patchValue({image: file});
         this.get('image').updateValueAndValidity();
-        console.log(file);
     }
 
     createForm() {

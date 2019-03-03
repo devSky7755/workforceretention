@@ -2,6 +2,11 @@ const Employee = require('../models/employee');
 const Client = require('../models/client');
 const Survey = require('../models/survey');
 const Answer = require('../models/answer');
+const Report = require('../models/report');
+const path = require('path');
+const mongoose = require('mongoose');
+
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
 exports.ManagerReportDetails = (req, res, next) => {
 
@@ -470,6 +475,396 @@ const employeeQuestionAnswers = (employees) => {
             }
         });
     })
+
+};
+
+exports.Create = function (req, res, next) {
+    const data = req.body;
+    if (typeof req.file !== 'undefined') {
+        data.filename = req.file.filename;
+    }
+    const report = new Report(data);
+    report.save(function (err) {
+        if (err) return next(err);
+        return res.status(200).send({
+            "success": true,
+            "message": "Report successfully created",
+            report
+        })
+    })
+};
+
+exports.Find = (req, res, next) => {
+    const currentReport = Number(req.query.page || 1); //staticReport number
+    const perPage = Number(req.query.perPage || 10); //total items display per staticReport
+    let totalItems; //how many items in the database
+
+    Report.find()
+        .countDocuments()
+        .then(count => {
+            totalItems = count;
+            //This will return a new promise with the posts.
+            return Report.find().populate({
+                path: 'client',
+                model: 'Client',
+            }).skip((currentReport) * perPage)
+                .limit(perPage);
+        }).then(reports => {
+        return res.status(200).json({success: true, reports, totalItems})
+    }).catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err)
+    });
+};
+
+exports.FindById = (req, res, next) => {
+    let id = req.params.id;
+
+    Report.findById(id, (err, report) => {
+        if (err) return next(err);
+        if (!report) {
+            return res.status(404).json({
+                "success": false,
+                "message": "Report not found"
+            })
+        }
+        return res.status(200).send({
+            "success": true,
+            "message": "Data successfully retrieve",
+            report
+        })
+    });
+};
+
+exports.Update = (req, res, next) => {
+    // fetch the request data
+    const data = req.body;
+    let id = req.params.id;
+
+    //Update the report
+    if (typeof req.file !== 'undefined') {
+        data.filename = req.file.filename;
+    }
+
+    // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
+    // Find the existing resource by ID
+    Report.findByIdAndUpdate(
+        // the id of the item to find
+        id,
+        // the change to be made. Mongoose will smartly combine your existing
+        // document with this change, which allows for partial updates too
+        data,
+        // an option that asks mongoose to return the updated version
+        // of the document instead of the pre-updated one.
+        {new: true},
+
+        // the callback function
+        (err, report) => {
+            // Handle any possible database errors
+            if (err) return next(err);
+            if (!report) return res.status(404).json({success: false, message: "Report not found."});
+            return res.send({
+                "success": true,
+                "message": "Record updated successfully",
+                report
+            });
+        }
+    );
+};
+
+exports.Delete = (req, res, next) => {
+    let id = req.params.id;
+
+    const schema = Joi.object({
+        id: Joi.objectId()
+    });
+
+    Joi.validate({id}, schema, (err, value) => {
+        if (err) {
+            // send a 422 error response if validation fails
+            return res.status(422).json({
+                success: false,
+                message: 'Invalid request data',
+                err
+            });
+        }
+        // It allows you to pass a reference back to the staticReport in case they need a reference for some reason.
+        Report.findByIdAndRemove(id, (err, report) => {
+            // As always, handle any potential errors:
+            if (err) return next(err);
+            if (!report) return res.status(404).json({success: false, message: "Report not found."});
+            // We'll create a simple object to send back with a message and the id of the document that was removed
+            // You can really do this however you want, though.
+            return res.send({
+                "success": true,
+                "message": "Record deleted successfully",
+                report
+            });
+        });
+    });
+};
+
+exports.DataOutput = (req, res, next) => {
+    const filter_data = req.body;
+    const filename = Date.now() + '__exit_interview_data.csv';
+    const data_path = path.join(__dirname, '../uploads/' + filename);
+    // header will create dynamically header will have option below
+    // survey_title, client_id, client_name,employee_id, employee_number,employee_FirstName
+    // employee_LastName, employee_title,employee_type, employee_org, employee_div
+    // employee_dept,employee_HireDate,employee_ResignDate, Employee_ExitDate, Employee_Gender,Employee DOB,
+    // survey_id, survey_StartTime, survey_EndTime,
+    // all the survey questions
+
+    const headers = [];
+    // first get the selected survey also populate the survey questions as well
+    Survey.findById(filter_data.survey)
+        .populate([{
+            path: 'questions',
+            model: 'Question',
+            populate: {
+                path: 'answers'
+            }
+        }])
+        .exec(function (err, survey) {
+            if (err) return next(err);
+            // here find the clients
+            // foreach client
+            // get all the client employees who have completed the selected survey as well as employee survey answers
+
+            // here survey has questions
+            // foreach survey questions it has answers
+
+            // build the survey headers
+            headers.push({id: 'survey_title', title: 'Survey Title'});
+            headers.push({id: 'client_id', title: '`client ID`'});
+            headers.push({id: 'client_name', title: 'Client Name'});
+            headers.push({id: 'employee_id', title: 'Employee ID'});
+            headers.push({id: 'employee_firstname', title: 'Employee FirstName'});
+            headers.push({id: 'employee_lastname', title: 'Employee LastName'});
+            headers.push({id: 'employee_position', title: 'Employee Title'});
+            headers.push({id: 'employee_type', title: 'Employee Type'});
+            headers.push({id: 'employee_org', title: 'Employee Org'});
+            headers.push({id: 'employee_div', title: 'Employee Div'});
+            headers.push({id: 'employee_dept', title: 'Employee Dept'});
+            headers.push({id: 'employee_hiredate', title: 'Employee HireDate'});
+            headers.push({id: 'employee_resigndate', title: 'Employee ResignDate'});
+            headers.push({id: 'employee_exitdate', title: 'Employee ExitDate'});
+            headers.push({id: 'employee_gender', title: 'Employee Gender'});
+            headers.push({id: 'employee_dob', title: 'Employee DOB'});
+            headers.push({id: 'survey_id', title: 'Survey ID'});
+            headers.push({id: 'survey_starttime', title: 'Survey StartTime'});
+            headers.push({id: 'survey_endtime', title: 'Survey EndTime'});
+            headers.push({id: 'completed_online', title: 'Completed Online'});
+            headers.push({id: 'completed_admin', title: 'Completed Admin'});
+
+            let question_no = 0;
+            survey.questions.forEach((question) => {
+                question_no++;
+                headers.push({id: question._id, title: `Question ${question_no} - ` + question.title});
+            });
+
+            const csvWriter = createCsvWriter({
+                path: data_path,
+                header: headers
+            });
+
+            //re-arrange data
+            // foreach employee populate the client as well
+            Employee.find({'client': {$in: filter_data.clients}}).populate({
+                path: 'client',
+                model: 'Client'
+            }).populate({
+                path: 'organization',
+                model: 'Organization'
+            }).populate({
+                path: 'division',
+                model: 'Division'
+            }).populate({
+                path: 'department',
+                model: 'Department'
+            }).exec(function (err, employees) {
+                let output_data = [];
+                let filtered_employees = [];
+                // foreach employee there will be a row in the table
+                employees.forEach((employee) => {
+                    // check if the employee has an available survey or not
+                    // check if the employee survey is same as the survey._id
+                    // check if the survey has completed or not
+                    if (filter_data.start_date !== null && filter_data.end_date !== null) {
+                        let start_date = new Date(filter_data.start_date);
+                        let end_date = new Date(filter_data.end_date);
+                        if (employee.surveys[0].start_date >= start_date && employee.surveys[0].end_date <= end_date) {
+                            filtered_employees.push(employee);
+                        }
+                    }
+                    if (filter_data.start_date === null) {
+                        if (filter_data.end_date !== null) {
+                            // convert the date string to date
+                            let end_date = new Date(filter_data.end_date);
+                            if (employee.surveys[0].end_date <= end_date) {
+                                filtered_employees.push(employee);
+                            }
+                        }
+                    }
+                    if (filter_data.end_date === null) {
+                        if (filter_data.start_date !== null) {
+                            // convert the date string to date
+                            let start_date = new Date(filter_data.start_date);
+                            // then check if the date is inside the range
+                            if (employee.surveys[0].start_date >= start_date) {
+                                filtered_employees.push(employee);
+                            }
+                        }
+                    }
+                    if (filter_data.start_date == null && filter_data.end_date == null) {
+                        filtered_employees.push(employee)
+                    }
+
+                    // first check if the filterData.start_date is null or not. if null don't do anything. if not null check if the survey start_date is inside date range
+                    // then check if the filterData.end_date is null or not. if null don't do anything
+                });
+                filtered_employees.forEach((employee) => {
+                    if (employee.surveys.length > 0) {
+                        // now check if the filterData.start_date and filterData.end_date is null or not
+                        let surveyId = mongoose.Types.ObjectId(filter_data.survey);
+                        if (survey._id.equals(surveyId) && employee.surveys[0].completed) {
+                            let data_object = {
+                                survey_title: survey.title,
+                                client_id: employee.client._id,
+                                client_name: employee.client.name,
+                                employee_id: employee._id,
+                                employee_firstname: employee.first_name,
+                                employee_lastname: employee.last_name,
+                                employee_position: employee.position,
+                                employee_type: employee.is_manager === '0' ? 'Employee' : 'Manager',
+                                employee_org: employee.organization === null ? '' : employee.organization.name,
+                                employee_div: employee.division === null ? '' : employee.division.name,
+                                employee_dept: employee.department === null ? '' : employee.department.name,
+                                employee_hiredate: employee.hire_date,
+                                employee_resigndate: employee.resign_date,
+                                employee_exitdate: employee.exit_date,
+                                employee_gender: employee.gender,
+                                employee_dob: employee.date_of_birth,
+                                survey_id: survey._id,
+                                survey_starttime: employee.surveys[0].start_date,
+                                survey_endtime: employee.surveys[0].end_date,
+                                completed_online: employee.surveys[0].completed_online,
+                                completed_admin: employee.surveys[0].completed_admin
+                            };
+                            let answers = [];
+                            // first push all the question answers in the answers array
+                            survey.questions.forEach((question) => {
+                                question.answers.forEach((answer) => {
+                                    answers.push(answer);
+                                })
+                            });
+                            survey.questions.forEach((question) => {
+                                let answer = answers.find(a => a.employee.equals(employee._id) && a.question.equals(question._id));
+                                let question_id = question._id;
+                                // this means the question has first choice and second choice
+                                let exit_reason_checkbox = [
+                                    {id: 1, value: 'Career Opportunities'},
+                                    {id: 2, value: 'Meaningful Work'},
+                                    {id: 3, value: 'Communication'},
+                                    {id: 4, value: 'Effective Leadership'},
+                                    {id: 5, value: 'Induction'},
+                                    {id: 6, value: 'Learning & Development'},
+                                    {id: 7, value: 'Manager'},
+                                    {id: 8, value: 'Pay & Benefits'},
+                                    {id: 9, value: 'Work Conditions'},
+                                    {id: 10, value: 'Being Valued'},
+                                    {id: 11, value: 'Operational'},
+                                    {id: 12, value: 'Restructure'},
+                                ];
+                                if (answer) {
+                                    // we need to do answer processing here.
+                                    // question_types = [
+                                    //     {id: 1, value: 'Rating Radio Buttons'},
+                                    //     {id: 2, value: 'Free Text'},
+                                    //     {id: 3, value: 'Exit Interview - Exit Reasons'},
+                                    //     {id: 4, value: 'Yes / No Radio'},
+                                    //     {id: 5, value: 'Radio Labels'},
+                                    //     {id: 6, value: 'Multiple Choice'},
+                                    // ];
+                                    // console.log(question.type);
+                                    if (question.type === '1' && question.exit_reason !== '13') {
+                                        data_object[question_id] = survey.rating_labels[answer.options[0]];
+                                    } else if (question.type === '2' && question.exit_reason !== '13') {
+                                        data_object[question_id] = answer.options[0];
+                                    } else if (question.type === '3' && question.exit_reason !== '13') {
+                                        let final_answer = '';
+                                        let i = 0;
+                                        question.options.forEach((option, question_index) => {
+                                            if (option === 'true') {
+                                                answer.options.forEach((answer_option) => {
+                                                    if (`${question_index}` === answer_option) {
+                                                        i++;
+                                                        final_answer += i + '. ' + exit_reason_checkbox[question_index].value + '\n'
+                                                    }
+                                                })
+                                            }
+                                        });
+                                        data_object[question_id] = final_answer;
+                                    } else if (question.type === '4' && question.exit_reason !== '13') {
+                                        data_object[question_id] = answer.options[0] === '1' ? 'Yes' : 'No';
+                                    } else if (question.type === '5' && question.exit_reason !== '13') {
+                                        data_object[question_id] = question.options[answer.options[0]];
+                                    } else if (question.type === '6' && question.exit_reason !== '13') {
+                                        let i = 0;
+                                        let final_answer = '';
+                                        answer.options.map((option) => {
+                                            i++;
+                                            final_answer += i + '. ' + question.options[option] + '\n';
+                                        });
+                                        data_object[question_id] = final_answer;
+                                    } else if (question.exit_reason === '13') {
+
+                                        let answer_one = answer.options[0].split('-');
+                                        let answer_two = answer.options[1].split('-');
+                                        let final_answer = '';
+                                        // ********* First Answer ************
+                                        if (answer_one[0] === '1st') {
+                                            final_answer += '1st choice ' + exit_reason_checkbox.find(ex => ex.id == answer_one[2]).value + '\n';
+                                        } else {
+                                            final_answer += '2nd choice ' + exit_reason_checkbox.find(ex => ex.id == answer_one[2]).value + '\n';
+                                        }
+                                        // ********** Second Answer ********
+                                        if (answer_two[0] === '1st') {
+                                            final_answer += '1st choice ' + exit_reason_checkbox.find(ex => ex.id == answer_two[2]).value + '\n';
+                                        } else {
+                                            final_answer += '2nd choice ' + exit_reason_checkbox.find(ex => ex.id == answer_two[2]).value + '\n';
+                                        }
+                                        data_object[question_id] = final_answer;
+                                    }
+                                }
+                            });
+                            output_data.push(data_object);
+                        }
+                    }
+                });
+                if (output_data.length > 0) {
+                    csvWriter
+                        .writeRecords(output_data)
+                        .then(() => {
+                            console.log('The CSV file was written successfully');
+                            return res.status(200).json({
+                                success: true,
+                                message: `Total ${output_data.length} records written successfully`,
+                                length: output_data.length,
+                                filename
+                            })
+                        });
+                } else {
+                    return res.status(200).json({
+                        success: true,
+                        message: 'No records available to write',
+                        length: output_data.length,
+                    })
+                }
+            });
+        });
 
 };
 

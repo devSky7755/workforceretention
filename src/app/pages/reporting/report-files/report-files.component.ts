@@ -1,121 +1,82 @@
 import {Component, OnInit} from '@angular/core';
-
-import {LocalDataSource} from 'ng2-smart-table';
-import {SmartTableService} from '../../../@core/data/smart-table.service';
 import {Router} from '@angular/router';
+import {ReportService} from "../../../@core/data/report.service";
 
 @Component({
-  selector: 'ngx-report-files',
-  templateUrl: './report-files.component.html',
-  styleUrls: ['./report-files.component.scss'],
+    selector: 'ngx-report-files',
+    templateUrl: './report-files.component.html',
+    styleUrls: ['./report-files.component.scss'],
 })
 export class ReportFilesComponent implements OnInit {
 
-  settings = {
-    mode: 'external',
-    hideSubHeader: true,
-    actions: {
-      position: 'right',
-      // edit: false,
-      add: false,
-      // delete: false,
-      //   custom: [{ name: 'ourCustomAction', title: '<i class="nb-compose"></i>' }],
-    },
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      confirmCreate: true,
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-      // confirmSave: false,
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      // confirmDelete: true,
-    },
-    columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-        filter: false,
-      },
-      reportTitle: {
-        title: 'Report Title',
-        type: 'string',
-        filter: false,
+    rows = [];
+    count = 0;
+    offset = 0;
+    limit = 9;
+    reports;
 
-      },
-      clientName: {
-        title: 'Client Name',
-        type: 'string',
-        filter: false,
-
-      },
-      org: {
-        title: 'Org.',
-        type: 'string',
-        filter: false,
-      },
-      div: {
-        title: 'Div.',
-        type: 'string',
-        filter: false,
-      },
-      products: {
-        title: 'Products',
-        type: 'string',
-        filter: false,
-      },
-      dept: {
-        title: 'Dept.',
-        type: 'string',
-        filter: false,
-      },
-      lastUpdate: {
-        title: 'Last Update',
-        type: 'string',
-        filter: false,
-      },
-    },
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
-  constructor(private service: SmartTableService, private router: Router) {
-    const data = this.service.getData();
-    this.source.load(data);
-  }
-
-  onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve();
-    } else {
-      event.confirm.reject();
+    constructor(private router: Router, private reportService: ReportService) {
     }
-  }
 
-  onEditConfirm(event) {
-    console.log(event);
-  }
+    onClickAdd() {
+        this.router.navigateByUrl('/pages/reporting/report-files/add');
+    }
 
-  onAddConfirm(event) {
-    this.router.navigateByUrl('/pages/reporting/report-files/add-edit-report');
-  }
+    ngOnInit() {
+        this.page(this.offset, this.limit);
+    }
 
-  // onCreateConfirm(event) {
-  //   if (window.confirm('Are you sure you want to create?')) {
-  //     event.newData['name'] += ' + added in code';
-  //     event.confirm.resolve(event.newData);
-  //   } else {
-  //     event.confirm.reject();
-  //   }
-  // }
+    /**
+     * Populate the table with new data based on the staticPage number
+     * @param staticPage The staticPage to select
+     */
+    onPage(event) {
+        this.page(event.offset, event.limit);
+    }
 
-  ngOnInit() {
-  }
+    onClickEdit(id) {
+        this.router.navigateByUrl('/pages/reporting/report-files/edit/' + id);
+    }
+
+    onClickDelete(id) {
+        //find the employee name from the rows using
+        const name = this.rows.find(x => x.id === id).title;
+        if (confirm("Are you sure to delete? " + name)) {
+            this.deleteReport(id);
+        }
+    }
+
+    deleteReport(id) {
+        this.reportService.deleteReport(id).subscribe(
+            data => {
+                console.log(data);
+                this.page(this.offset, this.limit);
+            },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    page(offset, limit) {
+        this.reportService.getReports(offset, limit).subscribe(results => {
+                console.log(results);
+                this.count = results.totalItems;
+                this.reports = results.reports;
+                const rows = [];
+                this.reports.map((report) => {
+                    // Modify report role
+                    report.id = report._id;
+                    report.clientName = report.client.name;
+                    rows.push(report);
+                });
+                this.rows = rows;
+
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
+    }
 
 }
