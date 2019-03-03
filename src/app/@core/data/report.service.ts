@@ -21,4 +21,31 @@ export class ReportService {
         const body = JSON.stringify(filterData);
         return this.http.post(this.urlService.baseUrl + `/api/v1/reports/manager/${employeeId}`, body, httpOptions);
     }
+
+    generateReportData(filterData): Observable<any> {
+        const body = JSON.stringify(filterData);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/reports/data-output/`, body, httpOptions);
+    }
+
+    getReports(page, perPage): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + `/api/v1/reports?page=${page}&perPage=${perPage}`);
+    }
+
+    getClientReport(id): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + '/api/v1/reports/' + id);
+    }
+
+    createReport(report): Observable<any> {
+        // const body = JSON.stringify(client);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/reports/`, report);
+    }
+
+    updateReport(report, id): Observable<any> {
+        // const body = JSON.stringify(client);
+        return this.http.put(this.urlService.baseUrl + '/api/v1/reports/' + id, report);
+    }
+
+    deleteReport(id): Observable<any> {
+        return this.http.delete(this.urlService.baseUrl + '/api/v1/reports/' + id);
+    }
 }

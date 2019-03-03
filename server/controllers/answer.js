@@ -104,6 +104,7 @@ exports.UpdateAnswers = (req, res, next) => {
     // find out the answers by the answer ids
     Answer.find({'_id': {$in: answer_ids}}, function (err, answers) {
         if (err) return next(err);
+        console.log(answers);
         answers.forEach((answer, index) => {
             answer.options = data[index].options;
             answer.save();
@@ -224,7 +225,6 @@ exports.FindEmployeeSurveyQuestionsAnswers = (req, res, next) => {
     let employeeId = req.query.employeeId;
     Answer.find({survey: surveyId, employee: employeeId}, (err, answers) => {
         if (err) return next(err);
-        console.log(answers);
         res.json({answers});
     })
 };

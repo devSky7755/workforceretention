@@ -23,7 +23,7 @@ exports.Create = function (req, res, next) {
             })
         })
     })
-}
+};
 
 exports.Find = (req, res, next) => {
     const currentPage = Number(req.query.page || 1); //staticPage number
