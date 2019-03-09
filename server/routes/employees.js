@@ -22,6 +22,8 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
+router.post('/generate-password/:clientId', employeeController.generatePassword);
+
 router.post('/upload/:clientId', upload.single('employees'), employeeController.Upload);
 
 router.post('/login', employeeController.login);

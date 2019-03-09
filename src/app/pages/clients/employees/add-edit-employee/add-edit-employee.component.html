@@ -213,7 +213,7 @@
                     <div class="form__group u-margin-bottom-medium">
                         <label style="padding-top: 5px;padding-right: 42px">Level Manager *</label>
                         <div class="form__radio-group">
-                            <input type="radio" class="form__radio-input" formControlName="is_manager" value="1"
+                            <input type="radio" class="form__radio-input" formControlName="is_manager" (change)="onChangeManager()" value="1"
                                    id="level-manager-yes">
                             <label for="level-manager-yes" class="form__radio-label">
                                 <span class="form__radio-button"></span>
@@ -221,7 +221,7 @@
                             </label>
                         </div>
                         <div class="form__radio-group">
-                            <input type="radio" class="form__radio-input" formControlName="is_manager" value="0"
+                            <input type="radio" class="form__radio-input" formControlName="is_manager" (change)="onChangeManager()" value="0"
                                    id="level-manager-no">
                             <label for="level-manager-no" class="form__radio-label">
                                 <span class="form__radio-button"></span>
@@ -291,6 +291,11 @@
                                 No
                             </label>
                         </div>
+                    </div>
+
+                    <!--Generate Password Button for Re-generating Password-->
+                    <div class="form-group" *ngIf="employeeId">
+                        <button type="button" class="btn btn-primary" (click)="resendPassword()">Resend Password</button>
                     </div>
 
 

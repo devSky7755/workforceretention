@@ -29,6 +29,7 @@ export class EmployeeService {
     getEmployee(id): Observable<any> {
         return this.http.get(this.urlService.baseUrl + '/api/v1/employees/' + id);
     }
+
     getEmployeeDetails(id): Observable<any> {
         return this.http.get(this.urlService.baseUrl + '/api/v1/employees/details/' + id);
     }
@@ -60,5 +61,10 @@ export class EmployeeService {
 
     getEmployeeSurveys(employeeId): Observable<any> {
         return this.http.get(this.urlService.baseUrl + `/api/v1/employees/surveys/${employeeId}`);
+    }
+
+    resendPassword(employeeId, clientId): Observable<any> {
+        const body = JSON.stringify({employeeId});
+        return this.http.post(this.urlService.baseUrl + `/api/v1/employees/generate-password/${clientId}`, body, httpOptions);
     }
 }

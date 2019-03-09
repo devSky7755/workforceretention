@@ -53,10 +53,18 @@ export class ClientSelectionComponent implements OnInit {
 
     onClickDelete(id) {
         //find the employee name from the rows using
-        const name = this.rows.find(x => x.id === id).name;
-        if (confirm("Are you sure to delete " + name)) {
-            this.deleteClient(id);
+        const client = this.rows.find(x => x.id === id);
+        const name = client.name;
+        if (client.employees.length > 0) {
+            if (confirm("There are employees assigned to this Client, are you sure you want to delete ? " + name)) {
+                this.deleteClient(id);
+            }
+        } else {
+            if (confirm("Are you sure to delete " + name)) {
+                this.deleteClient(id);
+            }
         }
+
     }
 
     deleteClient(id) {

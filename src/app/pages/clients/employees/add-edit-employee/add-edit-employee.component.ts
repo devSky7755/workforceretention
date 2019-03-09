@@ -2,7 +2,9 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import {EmployeeService} from "../../../../@core/data/employee.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ClientService} from "../../../../@core/data/client.service";
-import {NbDateService} from "@nebular/theme";
+import {NbDateService, NbGlobalPhysicalPosition, NbGlobalPosition, NbToastrService} from "@nebular/theme";
+import {ToasterConfig} from "angular2-toaster";
+import {NbToastStatus} from "@nebular/theme/components/toastr/model";
 
 @Component({
     selector: 'ngx-add-edit-employee',
@@ -51,9 +53,21 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
 
     // define a employee model
 
+    // ****************** Toaster Configuration ********************
+    config: ToasterConfig;
+
+    index = 1;
+    destroyByClick = true;
+    duration = 2000;
+    hasIcon = true;
+    position: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
+    preventDuplicates = false;
+    status: NbToastStatus = NbToastStatus.SUCCESS;
+
     constructor(private employeeService: EmployeeService,
                 protected dateService: NbDateService<Date>,
-                private clientService: ClientService) {
+                private clientService: ClientService,
+                private toastrService: NbToastrService) {
         this.min = this.dateService.addDay(this.dateService.today(), -5);
         this.max = this.dateService.addDay(this.dateService.today(), 5);
     }
@@ -86,10 +100,10 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             position: new FormControl('',
                 [Validators.required]),
             gender: new FormControl('1'),
-            birth_date: new FormControl(),
-            resignation_date: new FormControl(),
-            hire_date: new FormControl(),
-            exit_date: new FormControl(),
+            birth_date: new FormControl('', Validators.required),
+            resignation_date: new FormControl('', Validators.required),
+            hire_date: new FormControl('', Validators.required),
+            exit_date: new FormControl('', Validators.required),
             is_active: new FormControl('1'),
             is_manager: new FormControl('0'),
             is_report: new FormControl('0'),
@@ -243,16 +257,22 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.get('work_phone').setValue(data.employee.phone);
         this.get('mobile_phone').setValue(data.employee.mobile);
         this.get('occupational_group').setValue(data.employee.occupational_group);
-        this.get('resignation_date').clearValidators();
-        this.get('exit_date').clearValidators();
+        if (this.get('is_manager').value == '1') {
+            this.get('resignation_date').setErrors(null);
+            this.get('exit_date').setErrors(null);
+            this.get('hire_date').setErrors(null);
+            this.get('birth_date').setErrors(null);
+        }
         this.employee.mobile_phone = data.employee.mobile;
         this.employee.work_phone = data.employee.phone;
-
         this.get('email').disable();
-        this.get('hire_date').setValue(this.dateService.parse(data.employee.hire_date, 'en-us'));
-        this.get('birth_date').setValue(this.dateService.parse(data.employee.date_of_birth, 'en-us'));
-        this.get('resignation_date').setValue(this.dateService.parse(data.employee.resign_date, 'en-us'));
-        this.get('exit_date').setValue(this.dateService.parse(data.employee.exit_date, 'en-us'));
+
+        if (this.get('is_manager').value == '0') {
+            this.get('hire_date').setValue(this.dateService.parse(data.employee.hire_date, 'en-us'));
+            this.get('birth_date').setValue(this.dateService.parse(data.employee.date_of_birth, 'en-us'));
+            this.get('resignation_date').setValue(this.dateService.parse(data.employee.resign_date, 'en-us'));
+            this.get('exit_date').setValue(this.dateService.parse(data.employee.exit_date, 'en-us'));
+        }
     }
 
     insert(employee) {
@@ -270,6 +290,24 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         );
     }
 
+    onChangeManager() {
+        // update the validation
+        // remove the validation from the hire_date, resignation_date and exit_date
+        if (this.get('is_manager').value == '1') {
+            // clear the validators
+            this.get('resignation_date').setErrors(null);
+            this.get('exit_date').setErrors(null);
+            this.get('hire_date').setErrors(null);
+            this.get('birth_date').setErrors(null);
+        } else {
+            // add the validators
+            this.get('resignation_date').setErrors([Validators.required]);
+            this.get('exit_date').setErrors([Validators.required]);
+            this.get('hire_date').setErrors([Validators.required]);
+            this.get('birth_date').setErrors([Validators.required]);
+        }
+    }
+
     update(employee) {
         delete employee.password;
         delete employee.confirmPassword;
@@ -284,6 +322,35 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
                 this.errorMessage = error.message;
             }
         );
+    }
+
+    resendPassword() {
+        // end request to the server for resending password to the employee
+        if (this.employeeId != null && this.clientId != null) {
+            this.employeeService.resendPassword(this.employeeId, this.clientId).subscribe(
+                () => {
+                    this.showToast(NbToastStatus.SUCCESS, null, 'Password sent to the employee email !');
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+        }
+    }
+
+    showToast(type: NbToastStatus, title: string, body: string) {
+        const config = {
+            status: type,
+            destroyByClick: this.destroyByClick,
+            duration: this.duration,
+            hasIcon: this.hasIcon,
+            position: this.position,
+            preventDuplicates: this.preventDuplicates,
+        };
+        this.toastrService.show(
+            body,
+            `Employee Password Resend`,
+            config);
     }
 
     ngOnChanges(changes: SimpleChanges) {

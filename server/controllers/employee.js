@@ -519,9 +519,7 @@ exports.token = function (req, res, next) {
 };
 
 /**
- * this is used to request for another token when the other token is about
- * expiring so for next request call the token can be validated as true
- * GET /api/v1/employee/logout
+ * POST /api/v1/employee/logout
  * @param req
  * @param res
  */
@@ -531,6 +529,100 @@ exports.logout = function (req, res) {
         delete refreshTokens[refreshToken]
     }
     return res.status(200).json({success: true})
+};
+
+/**
+ * POST /api/v1/employee/logout
+ * @param req
+ * @param res
+ */
+exports.generatePassword = function (req, res, next) {
+    let clientId = req.params.clientId;
+    let employeeId = req.body.employeeId;
+    // check employee by the employeeId
+    Employee.findById(employeeId, (err, employee) => {
+        if (err) return next(err);
+        if (!employee) {
+            return res.status(404).json({
+                "success": false,
+                "message": "Employee not found"
+            })
+        }
+        // find the client
+        Client.findById(clientId)
+            .populate([{
+                path: 'emails.email'
+            }])
+            .exec(async function (err, client) {
+                if (err) return next(err);
+                if (!client) {
+                    return res.status(404).json({status: false, message: 'Client not found!'})
+                }
+                //before saving the employee to the database. hash password
+                await bcrypt.genSalt(10, function (err, salt) {
+                    if (err) return next(err);
+                    //GENERATE THE PASSWORD HERE
+                    const password = generator.generate({
+                        length: 10,
+                        numbers: true
+                    });
+                    bcrypt.hash(password, salt, async function (err, hash) {
+                        if (err) return next(err);
+                        // send the password to the employee email
+                        // select email depending on client selected email template
+                        employee.password = hash;
+                        employee.save().then(employee => {
+
+                            let from;
+                            let subject;
+                            let body;
+                            let to;
+                            let email = {};
+                            // select email depending on client selected email template
+                            // if employee is a manager then sent
+                            if (employee.is_manager === '1') {
+                                email = client.emails.find(e => e.email_type === 'manager-report-email');
+                            }
+                            else if (client.email_template === 'template-one') {
+                                email = client.emails.find(e => e.email_type === 'template-one-email');
+                            } else {
+                                email = client.emails.find(e => e.email_type === 'template-two-email');
+                            }
+                            //Now send the email to the employee here
+                            // step-1 : first get the email template from the client for creating an employee
+                            from = email.from_address;
+                            subject = email.subject;
+                            body = email.body;
+                            to = employee.email;
+
+                            // step-2 : replace the [client_name] by the client.username
+                            body = body.replace('[client_name]', client.name);
+                            body = body.replace('[client_name]', client.name);
+                            subject = subject.replace('[client_name]', client.name);
+                            body = body.replace('[employee_firstname]', employee.first_name);
+
+                            // step-3 : [employee_username] set the employee email
+                            body = body.replace('[employee_username]', to);
+
+                            // step-4 : [employee_password] set the employee plain password.
+                            body = body.replace('[employee_password]', password);
+                            return helpers.SendEmailToEmployee({from, to, subject, body});
+                        }).then(() => {
+                            return res.status(200).send({
+                                "success": true,
+                                "message": "Employee successfully created",
+                                employee
+                            })
+                        }).catch(err => {
+                            next(err)
+                        });
+
+                    });
+
+                })
+            })
+
+    });
 };
 
 exports.Update = (req, res, next) => {
