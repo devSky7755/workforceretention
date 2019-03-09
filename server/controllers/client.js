@@ -86,7 +86,7 @@ exports.Find = (req, res, next) => {
         .then(count => {
             totalItems = count;
             //This will return a new promise with the posts.
-            return Client.find({}, '-surveys -employees -organizations')
+            return Client.find({}, '-surveys -organizations')
                 .populate({
                     path: 'industry',
                     model: 'Industry',
