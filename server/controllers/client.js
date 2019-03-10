@@ -45,13 +45,13 @@ exports.Create = function (req, res, next) {
             // then check if the email assign_to_client property is true or not.
             // if true then push that email into the emails
             Email.find({}, function (err, emails) {
-               if (err) return next(err);
+                if (err) return next(err);
                 let client_emails = [];
                 emails.forEach((email) => {
-                   if (email.assign_to_client) {
-                       delete email._id;
-                       client_emails.push(email)
-                   }
+                    if (email.assign_to_client) {
+                        delete email._id;
+                        client_emails.push(email)
+                    }
                 });
                 data.emails = client_emails;
 
@@ -197,26 +197,34 @@ exports.Delete = (req, res, next) => {
 
 //RELATIONAL DATA FIND FUNCTIONS
 exports.FindEmployees = (req, res, next) => {
-    // const currentPage = Number(req.query.staticPage || 1); //staticPage number
-    // const perPage = Number(req.query.perPage || 10); //total items display per staticPage
-    // let totalItems; //how many items in the database
+    const currentPage = Number(req.query.page || 1); //staticPage number
+    const perPage = Number(req.query.perPage || 10); //total items display per staticPage
+    let totalItems; //how many items in the database
     const clientId = req.params.clientId;
-
-    // populate options
-    // options: {
-    //     sort:{ },
-    //     skip: 5,
-    //         limit : 10
-    // },
 
     Client.findById(clientId)
         .populate([{
             path: 'employees',
             model: 'Employee',
+            // options: {
+            //     sort: {},
+            //     skip: (currentPage) * perPage,
+            //     limit: perPage
+            // }
         }])
         .exec(function (err, client) {
             if (err) return next(err);
-            return res.status(200).json({success: true, client})
+            // ********** Pagination Logic ********
+            totalItems = client.employees.length;
+            let employees = [];
+            let startIndex = currentPage * perPage;
+            let endIndex = startIndex + perPage;
+            for (let i = startIndex; i < endIndex; i++) {
+                if (typeof client.employees[i] !== 'undefined')
+                    employees.push(client.employees[i]);
+            }
+            // ********** End of Pagination Logic ***********
+            return res.status(200).json({success: true, client, employees, totalItems})
         });
 };
 
