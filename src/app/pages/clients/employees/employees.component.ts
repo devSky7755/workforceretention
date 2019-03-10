@@ -24,7 +24,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     rows = [];
     count = 0;
     offset = 0;
-    limit = 9;
+    limit = 10;
     successMessage;
     errorMessage;
     employees = [];
@@ -94,9 +94,9 @@ export class EmployeesComponent implements OnInit, OnChanges {
         if (this.clientId === null) return;
         this.employeeService.getEmployees(offset, limit, this.clientId).subscribe(results => {
                 const rows = [];
-                this.employees = results.client.employees;
+                this.employees = results.employees;
                 if (this.employees !== null) {
-                    this.count = this.employees.length;
+                    this.count = results.totalItems;
                     this.employees.map((employee) => {
                         employee.id = employee._id;
                         rows.push(employee);

@@ -164,7 +164,7 @@ const passwordGenerator = function (employees, client) {
                         // select email depending on client selected email template
                         //check if the employee is a manager or not
                         // if employee is a manager then sent
-                        if (employee.is_manager == '1') {
+                        if (employee.is_manager === '1') {
                             email = client.emails.find(e => e.email_type === 'manager-report-email');
                         } else if (client.email_template === 'template-one') {
                             email = client.emails.find(e => e.email_type === 'template-one-email');
@@ -519,7 +519,7 @@ exports.token = function (req, res, next) {
 };
 
 /**
- * POST /api/v1/employee/logout
+ * POST /api/v1/employees/logout
  * @param req
  * @param res
  */
@@ -531,8 +531,17 @@ exports.logout = function (req, res) {
     return res.status(200).json({success: true})
 };
 
+const sendReminderEmails = function () {
+    //*********************** STEPS ***************
+    // STEP-1 : Find all the clients
+    // STEP-2 : Check if the client is set for reminder email is on or off
+    // STEP-3 : if client is set for reminder email then find all the employees who are not a manager
+    // STEP-4 : From the employees filtered out the employee who have not completed the survey
+    // STEP-5 : Now Foreach employee send reminder email
+};
+
 /**
- * POST /api/v1/employee/logout
+ * POST /api/v1/employees/generate-password/:clientId
  * @param req
  * @param res
  */
@@ -582,8 +591,7 @@ exports.generatePassword = function (req, res, next) {
                             // if employee is a manager then sent
                             if (employee.is_manager === '1') {
                                 email = client.emails.find(e => e.email_type === 'manager-report-email');
-                            }
-                            else if (client.email_template === 'template-one') {
+                            } else if (client.email_template === 'template-one') {
                                 email = client.emails.find(e => e.email_type === 'template-one-email');
                             } else {
                                 email = client.emails.find(e => e.email_type === 'template-two-email');
