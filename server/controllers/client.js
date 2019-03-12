@@ -354,19 +354,23 @@ exports.AssignSurvey = (req, res, next) => {
 };
 
 const employeeAssignSurvey = (employees, surveyId) => {
+    // here employees is a collection of employee object
+    // but we only need employee ids
+    let employee_ids = [];
+    employees.forEach(employee => {
+        employee_ids.push(employee._id);
+    });
     return new Promise((resolve, reject) => {
         // here employee is the id of the employee.
-        Employee.find({'_id': {$in: employees}}, function (err, docs) {
+        Employee.find({'_id': {$in: employee_ids}}, function (err, docs) {
             if (err) {
                 reject(err)
             } else {
                 docs.forEach((employee) => {
                     let survey = {survey: surveyId, completed: false};
                     //before pushing the survey check if this employee can do survey or not
-                    if (employee.is_survey === '1') {
-                        employee.surveys.push(survey);
-                        employee.save();
-                    }
+                    employee.surveys.push(survey);
+                    employee.save();
                 });
                 resolve(docs)
             }

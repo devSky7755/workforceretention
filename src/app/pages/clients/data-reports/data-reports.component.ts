@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SurveyService} from "../../../@core/data/survey.service";
 import {ClientService} from "../../../@core/data/client.service";
 import {ReportService} from "../../../@core/data/report.service";
@@ -9,10 +9,12 @@ import {URLService} from "../../../@core/data/url.service";
     templateUrl: './data-reports.component.html',
     styleUrls: ['./data-reports.component.scss']
 })
-export class DataReportsComponent implements OnInit {
-    surveys;
+export class DataReportsComponent implements OnInit, OnChanges {
+
+    surveys = [];
     filterData;
-    clients;
+    @Input() clientId: string;
+    clients = [];
     successMessage;
 
     constructor(private surveyService: SurveyService,
@@ -23,22 +25,21 @@ export class DataReportsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getSurveys();
-        this.getClients();
     }
 
-    getSurveys() {
-        this.surveyService.getSurveys(0, 100000).subscribe(
+    getClientSurvey(surveyId) {
+        this.surveyService.getSurvey(surveyId).subscribe(
             res => {
-                this.surveys = res.surveys;
+                this.surveys.push(res.survey);
             }
         );
     }
 
-    getClients() {
-        this.clientService.getClients(0, 100000).subscribe(
+    getClient() {
+        this.clientService.getClient(this.clientId).subscribe(
             res => {
-                this.clients = res.clients;
+                this.clients.push(res.client);
+                this.getClientSurvey(res.client.surveys[0]);
             }
         );
     }
@@ -54,6 +55,7 @@ export class DataReportsComponent implements OnInit {
     }
 
     generateReport() {
+        this.filterData.clients = this.clients;
         if (this.filterData.survey === '') {
             // this means no client is selected
             alert('Please select a survey to generate report data.');
@@ -83,5 +85,13 @@ export class DataReportsComponent implements OnInit {
         a.click();
         a.remove(); // remove the element
     }
+
+    ngOnChanges(changes: SimpleChanges) {
+        this.clientId = changes.clientId.currentValue;
+        if (this.clientId) {
+            this.getClient();
+        }
+    }
+
 
 }

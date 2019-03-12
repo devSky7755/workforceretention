@@ -27,6 +27,7 @@ import {DepartmentsComponent} from './organizations/departments/departments.comp
 import { SurveysComponent } from './surveys/surveys.component';
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 import { EmployeeSurveyComponent } from './employees/employee-survey/employee-survey.component';
+import { DataReportsComponent } from './data-reports/data-reports.component';
 
 @NgModule({
     declarations: [ClientSelectionComponent, AddEditClientComponent,
@@ -43,7 +44,8 @@ import { EmployeeSurveyComponent } from './employees/employee-survey/employee-su
         DepartmentsComponent,
         SurveysComponent,
         EmployeeDetailsComponent,
-        EmployeeSurveyComponent],
+        EmployeeSurveyComponent,
+        DataReportsComponent],
     imports: [
         CommonModule,
         ClientsRoutingModule,

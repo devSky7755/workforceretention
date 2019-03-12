@@ -101,6 +101,7 @@ export class AddEditReportComponent implements OnInit {
         formData.append('is_organization', this.report.is_organization);
         formData.append('is_division', this.report.is_division);
         formData.append('is_department', this.report.is_department);
+        console.log(this.reportId);
         if (this.reportId) {
             this.update(formData);
         } else {
@@ -135,6 +136,41 @@ export class AddEditReportComponent implements OnInit {
         );
     }
 
+    setReportOrgDivDept() {
+        // *************** Organization ******************
+        if (this.report.is_organization) {
+            // this means Reminder Email Send Is ON
+            const level_org_yes = <HTMLInputElement>document.getElementById('level-org-yes');
+            level_org_yes.checked = true;
+        } else {
+            // this means Reminder Email Send is OFF
+            const level_org_no = <HTMLInputElement>document.getElementById('level-org-no');
+            level_org_no.checked = true;
+        }
+
+        // *************** Division ******************
+        if (this.report.is_division) {
+            // this means Reminder Email Send Is ON
+            const level_div_yes = <HTMLInputElement>document.getElementById('level-div-yes');
+            level_div_yes.checked = true;
+        } else {
+            // this means Reminder Email Send is OFF
+            const level_div_no = <HTMLInputElement>document.getElementById('level-div-no');
+            level_div_no.checked = true;
+        }
+
+        // *************** Department ******************
+        if (this.report.is_department) {
+            // this means Reminder Email Send Is ON
+            const level_dept_yes = <HTMLInputElement>document.getElementById('level-dept-yes');
+            level_dept_yes.checked = true;
+        } else {
+            // this means Reminder Email Send is OFF
+            const level_dept_no = <HTMLInputElement>document.getElementById('level-dept-no');
+            level_dept_no.checked = true;
+        }
+    }
+
     setReport(data) {
         this.report.title = data.report.title;
         this.report.description = data.report.description;
@@ -144,6 +180,7 @@ export class AddEditReportComponent implements OnInit {
         this.report.is_department = data.report.is_department;
         this.fileName = data.report.filename;
         this.report.client = data.report.client;
+        this.setReportOrgDivDept();
 
         this.setEditorContent(this.report.description);
 

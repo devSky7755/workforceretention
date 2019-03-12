@@ -466,7 +466,7 @@ exports.login = function (req, res, next) {
             refreshTokens[refreshToken] = email;
 
             let token = jwt.sign(employeeData, config.SECRET, {
-                expiresIn: '30m'
+                expiresIn: '7d'
             });
 
             //return the token here
@@ -502,7 +502,7 @@ exports.token = function (req, res, next) {
             const employeeData = employee.toJSON();
 
             const token = jwt.sign(employeeData, config.SECRET, {
-                expiresIn: '30m'
+                expiresIn: '7d'
             });
             return res.json({access_token: token, refresh_token: refreshToken, employee_id: employee._id});
         }).catch(err => {
@@ -534,11 +534,51 @@ exports.logout = function (req, res) {
 const sendReminderEmails = function () {
     //*********************** STEPS ***************
     // STEP-1 : Find all the clients
-    // STEP-2 : Check if the client is set for reminder email is on or off
-    // STEP-3 : if client is set for reminder email then find all the employees who are not a manager
+    // STEP-2 : Check if the client is set for reminder email is on or off (send_reminder_email value true means on)
+    // STEP-3 : if client is set for reminder email then find all the employees who are not a manager also who's is_survey is 1
     // STEP-4 : From the employees filtered out the employee who have not completed the survey
-    // STEP-5 : Now Foreach employee send reminder email
+    // STEP-5 : Re-arrange data. {client_name :'',employee_firstname:'',employee_lastname,employee_email:'',employee_username:'',reminder_email:emailObject}
+    // STEP-6 : Now Foreach employee send reminder email
+    let employees = [];
+
+    Client.find()
+        .populate({
+            path: 'emails.email'
+        }).populate({
+        path: 'employees',
+        model: 'Employee',
+    })
+        .exec(function (err, clients) {
+            if (err) {
+                console.log(err)
+            } else {
+                clients.forEach((client) => {
+                    // checking the client reminder email is on or off
+                    if (client.send_reminder_email) {
+                        client.employees.forEach((employee) => {
+                            // employee.is_manager === 0 means employee is not a manager
+                            // employee.is_survey === 1 means employee is allow to do survey
+                            // !employee.surveys[0].completed means employee still not completed the assigned survey
+                            if (employee.is_manager === '0' && employee.is_survey === '1' && !employee.surveys[0].completed) {
+                                let employeeObject = {
+                                    client_name: client.name,
+                                    employee_firstname: employee.first_name,
+                                    employee_lastname: employee.last_name,
+                                    employee_username: employee.username,
+                                    employee_email: employee.email,
+                                    reminder_email: client.emails.find(e => e.email_type === 'reminder-email')
+                                };
+                                employees.push(employeeObject);
+                            }
+                        })
+                    }
+                });
+                console.log(employees);
+            }
+        });
 };
+const three_days = 1000 * 60 * 60 * 24 * 3;
+setInterval(sendReminderEmails, three_days);
 
 /**
  * POST /api/v1/employees/generate-password/:clientId
