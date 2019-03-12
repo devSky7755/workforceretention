@@ -65,7 +65,7 @@ exports.login = function (req, res, next) {
             userData.refreshToken = refreshToken;
 
             let token = jwt.sign(userData, config.SECRET, {
-                expiresIn: '1h'
+                expiresIn: '7d'
             });
 
             //return the token here
@@ -106,7 +106,7 @@ exports.token = function (req, res, next) {
             delete userData.links;
 
             const token = jwt.sign(userData, config.SECRET, {
-                expiresIn: '10m'
+                expiresIn: '7d'
             });
             return res.json({token});
         }).catch(err => {

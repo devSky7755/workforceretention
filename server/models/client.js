@@ -36,6 +36,10 @@ const clientSchema = new Schema({
     product: {
         type: Number
     },
+    send_reminder_email: {
+        type: Boolean,
+        default: true
+    },
     turnover: {
         type: Number,
         required: true

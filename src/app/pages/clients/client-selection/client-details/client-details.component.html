@@ -75,6 +75,31 @@
                     </div>
                 </div>
             </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-4"><strong>Reminder Email</strong></div>
+                <div class="col-lg-8">
+                    <!--FULL REPORTING-->
+                    <div class="form__group u-margin-bottom-medium">
+                        <div class="form__radio-group">
+                            <input type="radio" name="reminder-email" class="form__radio-input" value="true"
+                                   id="reminder-email-on" (change)="onChangeReminderEmailStatus($event)">
+                            <label for="reminder-email-on" class="form__radio-label">
+                                <span class="form__radio-button"></span>
+                                ON
+                            </label>
+                        </div>
+                        <div class="form__radio-group">
+                            <input type="radio" name="reminder-email" class="form__radio-input" value="false"
+                                   id="reminder-email-off" (change)="onChangeReminderEmailStatus($event)">
+                            <label for="reminder-email-off" class="form__radio-label">
+                                <span class="form__radio-button"></span>
+                                OFF
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

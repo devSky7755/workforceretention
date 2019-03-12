@@ -64,6 +64,7 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
                 const self = this;
                 setTimeout(function () {
                     self.setEmailTemplate(self.client.email_template);
+                    self.setReminderEmailStatus(self.client.email_template);
                 }, 1000);
 
             }
@@ -75,6 +76,18 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
         element.checked = true;
     }
 
+    setReminderEmailStatus(status) {
+        if (status) {
+            // this means Reminder Email Send Is ON
+            const element_on = <HTMLInputElement>document.getElementById('reminder-email-on');
+            element_on.checked = true;
+        } else {
+            // this means Reminder Email Send is OFF
+            const element_off = <HTMLInputElement>document.getElementById('reminder-email-off');
+            element_off.checked = true;
+        }
+    }
+
     onChangeEmailTemplate(event) {
         // check if client.email_template and event.target.value both are same then no need to update data
         if (this.client.email_template !== event.target.value) {
@@ -82,6 +95,19 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
             this.updateEmailTemplate(event.target.value);
         }
         // update client template
+    }
+
+    onChangeReminderEmailStatus(event) {
+        const reminder_email_status = JSON.parse(event.target.value);
+        if (this.client.send_reminder_email !== reminder_email_status) {
+            // update the reminder email status
+            const client = {send_reminder_email: reminder_email_status};
+            this.clientService.updateClient(client, this.clientId).subscribe(
+                res => {
+                    this.client.send_reminder_email = res.client.email_template;
+                }
+            );
+        }
     }
 
     updateEmailTemplate(template) {
