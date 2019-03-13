@@ -84,30 +84,33 @@ exports.Upload = function (req, res, next) {
                     let allEmployees = await Employee.find();
                     let finalEmployeesArray = checkDuplicateEmployees(allEmployees, employees);
 
-                    await passwordGenerator(finalEmployeesArray, client).then((employeesToUpload) => {
-                        // Save the employees into the database
-                        Employee.insertMany(employeesToUpload, (err, docs) => {
-                            if (err) {
-                                if (err.name === 'BulkWriteError' && err.code === 11000) {
-                                    return next(new Error(`Employee with the email ${err.op.email} already exist`));
-                                } else {
-                                    return next(err);
-                                }
+                    // ****************** here first we need to insert employee then send password **************
+                    // Save the employees into the database
+                    Employee.insertMany(finalEmployeesArray, async (err, docs) => {
+                        if (err) {
+                            if (err.name === 'BulkWriteError' && err.code === 11000) {
+                                return next(new Error(`Employee with the email or username ${err.op.email} already exist`));
+                            } else {
+                                return next(err);
                             }
-                            //After saving the employees insert all the employees id to the
-                            //client employees array
-                            docs.forEach((employee) => {
-                                client.employees.push(employee);
-                            });
-                            //Finally save the client
-                            client.save().then(() => {
-                                return res.status(200).json({
-                                    employees: docs,
-                                    success: true,
-                                    message: `From ${employees.length} employees ${employeesToUpload.length} uploaded and ${employees.length - employeesToUpload.length} skip`
+                        } else {
+                            await passwordGenerator(finalEmployeesArray, client).then((employeesToUpload) => {
+                                //After saving the employees insert all the employees id to the
+                                //client employees array
+                                docs.forEach((employee) => {
+                                    client.employees.push(employee);
                                 });
-                            })
-                        });
+                                //Finally save the client
+                                client.save().then(() => {
+                                    return res.status(200).json({
+                                        employees: docs,
+                                        success: true,
+                                        message: `From ${employees.length} employees ${employeesToUpload.length} uploaded and ${employees.length - employeesToUpload.length} skip`
+                                    });
+                                })
+                            });
+                        }
+
                     })
                 });
         });
@@ -119,7 +122,7 @@ const checkDuplicateEmployees = function (employees, employeesToUpload) {
     //for each employees to upload check if the employee exist in the employees array or not
     employeesToUpload.forEach((employee) => {
         //this line of code is checking if the employee exist with the email
-        let checkedEmployee = employees.find(e => e.email === employee.email);
+        let checkedEmployee = employees.find(e => e.email === employee.email || e.username === employee.username);
         if (!isNullOrEmpty(checkedEmployee)) {
             // if the employee exist with the email then it's eliminating from the final employees to upload array
             finalEmployeesToUpload = finalEmployeesToUpload.filter(fe => fe.email !== employee.email)
@@ -548,37 +551,37 @@ const sendReminderEmails = function () {
         path: 'employees',
         model: 'Employee',
     }).exec(function (err, clients) {
-            if (err) {
-                console.log(err)
-            } else {
-                clients.forEach((client) => {
-                    // checking the client reminder email is on or off
-                    if (client.send_reminder_email) {
-                        client.employees.forEach((employee) => {
-                            // employee.is_manager === 0 means employee is not a manager
-                            // employee.is_survey === 1 means employee is allow to do survey
-                            // !employee.surveys[0].completed means employee still not completed the assigned survey
-                            if (employee.is_manager === '0' && employee.is_survey === '1' && !employee.surveys[0].completed) {
-                                let employeeObject = {
-                                    client_name: client.name,
-                                    employee_firstname: employee.first_name,
-                                    employee_lastname: employee.last_name,
-                                    employee_username: employee.username,
-                                    employee_email: employee.email,
-                                    reminder_email: client.emails.find(e => e.email_type === 'reminder-email')
-                                };
-                                employees.push(employeeObject);
-                            }
-                        })
-                    }
-                });
-                sendReminderEmailsToEmployees(employees).then(
-                    () => {
-                        console.log('Reminder Email Send Successful');
-                    }
-                )
-            }
-        });
+        if (err) {
+            console.log(err)
+        } else {
+            clients.forEach((client) => {
+                // checking the client reminder email is on or off
+                if (client.send_reminder_email) {
+                    client.employees.forEach((employee) => {
+                        // employee.is_manager === 0 means employee is not a manager
+                        // employee.is_survey === 1 means employee is allow to do survey
+                        // !employee.surveys[0].completed means employee still not completed the assigned survey
+                        if (employee.is_manager === '0' && employee.is_survey === '1' && !employee.surveys[0].completed) {
+                            let employeeObject = {
+                                client_name: client.name,
+                                employee_firstname: employee.first_name,
+                                employee_lastname: employee.last_name,
+                                employee_username: employee.username,
+                                employee_email: employee.email,
+                                reminder_email: client.emails.find(e => e.email_type === 'reminder-email')
+                            };
+                            employees.push(employeeObject);
+                        }
+                    })
+                }
+            });
+            sendReminderEmailsToEmployees(employees).then(
+                () => {
+                    console.log('Reminder Email Send Successful');
+                }
+            )
+        }
+    });
 };
 
 const sendReminderEmailsToEmployees = function (employees) {
