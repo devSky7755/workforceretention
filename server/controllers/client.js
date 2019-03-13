@@ -386,7 +386,10 @@ exports.UnAssignSurvey = (req, res, next) => {
 
     //Check if the client is found or not
 
-    Client.findById(clientId).then((client) => {
+    Client.findById(clientId).populate({
+        path: 'employees',
+        model: 'Employee',
+    }).exec((err, client) => {
         client.surveys.map((survey, index) => {
             surveyId = mongoose.Types.ObjectId(surveyId);
             if (survey.equals(surveyId)) {
@@ -394,14 +397,27 @@ exports.UnAssignSurvey = (req, res, next) => {
                 // whoever employee under this client assigned that survey un-assign that survey
             }
         });
-        employeeUnAssignSurvey(client.employees, surveyId).then(
-            (employee) => {
-                client.save();
-            }).then(() => {
-            res.json({client, success: true, message: 'Survey successfully unAssigned'})
-        }).catch(err => {
-            return next(err);
-        });
+        // *************** Checking If any Employees Completed The Survey ***************
+        let completedSurvey = false;
+        for (let i = 0; i < client.employees.length; i++) {
+            if (client.employees[0].surveys[0].completed) {
+                completedSurvey = true;
+                break;
+            }
+        }
+        // *************** If any employee is not completed the survey. then unAssign Survey from client *******
+        if (!completedSurvey) {
+            employeeUnAssignSurvey(client.employees, surveyId).then(
+                () => {
+                    client.save();
+                }).then(() => {
+                return res.json({client, success: true, message: 'Survey successfully unAssigned'})
+            }).catch(err => {
+                return next(err);
+            });
+        } else {
+            return next(new Error('Employee under client ' + client.name + ' already completed assign survey. you are not allowed to unAssign survey'));
+        }
     })
 };
 
