@@ -547,8 +547,7 @@ const sendReminderEmails = function () {
         }).populate({
         path: 'employees',
         model: 'Employee',
-    })
-        .exec(function (err, clients) {
+    }).exec(function (err, clients) {
             if (err) {
                 console.log(err)
             } else {
@@ -573,9 +572,49 @@ const sendReminderEmails = function () {
                         })
                     }
                 });
-                console.log(employees);
+                sendReminderEmailsToEmployees(employees).then(
+                    () => {
+                        console.log('Reminder Email Send Successful');
+                    }
+                )
             }
         });
+};
+
+const sendReminderEmailsToEmployees = function (employees) {
+    console.log(employees);
+    const employeePromises = [];
+    employees.map((employee) => {
+        employeePromises.push(new Promise((resolve, reject) => {
+            // here send the reminder email
+            let from;
+            let subject;
+            let body;
+            let to;
+            let email = employee.reminder_email;
+
+            //Now send the email to the employee here
+            // step-1 : first get the email template from the client for creating an employee
+            from = email.from_address;
+            subject = email.subject;
+            body = email.body;
+            to = employee.email;
+
+            // step-2 : replace the [client_name] by the client.username
+            body = body.replace('[Client Name]', client.name);
+            body = body.replace('[employee_firstname]', employee.first_name);
+
+            // step-3 : [employee_username] set the employee email
+            body = body.replace('[employee_username]', to);
+            helpers.SendEmailToEmployee({from, to, subject, body}).then(
+                () => {
+                    resolve(employee)
+                }).catch((err) => {
+                reject(err)
+            })
+        }))
+    });
+    return Promise.all(employeePromises);
 };
 const three_days = 1000 * 60 * 60 * 24 * 3;
 setInterval(sendReminderEmails, three_days);

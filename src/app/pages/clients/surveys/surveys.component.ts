@@ -54,23 +54,25 @@ export class SurveysComponent implements OnInit, OnChanges {
             data => {
                 this.clientSurveys = data.client.surveys;
                 this.page(this.offset, this.limit);
-                console.log(data);
+            },
+            err => {
+                const {error} = err;
+                alert(error.message);
             }
         );
     }
 
     onClickAssign(surveyId, assigned) {
         if (assigned) {
-            // check if this client employees is completed any survey or not
-            // if any client employees has completed survey that means it's not possible to unAssign the survey
-            // before unAssignSurvey survey get the client employees
-            // foreach employee check if the employee completed the survey or not
-            // if any employee completed the survey then break that loop
-            // then disallow to unAssignSurvey and show an alert message that Employee under client_name already completed the survey
-            // you are not to allowed to unAssign Survey
             this.unAssignSurvey(surveyId);
         } else {
-            this.assignSurvey(surveyId);
+            // check if the client have already assigned survey. we can't assign another survey
+            // this is to make sure we assign a single survey
+            if (!this.assigned) {
+                this.assignSurvey(surveyId);
+            } else {
+                console.log('you are not allowed to assign multiple survey');
+            }
         }
     }
 
