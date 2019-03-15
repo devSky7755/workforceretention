@@ -21,17 +21,25 @@
         [offset]="offset"
         [limit]="limit"
         (page)='onPage($event)'>
-    <ngx-datatable-column name="username">
+    <ngx-datatable-column name="firstName">
         <ng-template let-column="column" ngx-datatable-header-template>
-            Username
+            <a [routerLink]="" (click)="onClickSort('first_name')"> <strong>First Name</strong></a>
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
             <a [routerLink]="" (click)="onClickDetails(row.id)"> <strong>{{value}}</strong></a>
         </ng-template>
     </ngx-datatable-column>
+    <ngx-datatable-column name="lastName">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            <a [routerLink]="" (click)="onClickSort('last_name')"><strong>Last Name</strong></a>
+        </ng-template>
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <strong>{{value}}</strong>
+        </ng-template>
+    </ngx-datatable-column>
     <ngx-datatable-column name="email">
         <ng-template let-column="column" ngx-datatable-header-template>
-            Email
+            <a [routerLink]="" (click)="onClickSort('email')"><strong>Email</strong></a>
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
             <strong>{{value}}</strong>
@@ -39,7 +47,7 @@
     </ngx-datatable-column>
     <ngx-datatable-column name="position">
         <ng-template let-column="column" ngx-datatable-header-template>
-            Position
+            <a [routerLink]="" (click)="onClickSort('position')"><strong>Position</strong></a>
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
             <strong>{{value}}</strong>
@@ -48,7 +56,7 @@
 
     <ngx-datatable-column name="id">
         <ng-template let-column="column" ngx-datatable-header-template>
-            <span>Action</span>
+            <strong>Action</strong>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
             <button type="button" (click)="onClickEdit(value)"

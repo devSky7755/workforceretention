@@ -43,7 +43,7 @@ router.put('/:id',upload.single('image'), clientController.Update);
 router.delete('/:id', clientController.Delete);
 
 //SET UP RELATIONAL ROUTES
-router.get('/employees/:clientId', clientController.FindEmployees);
+router.post('/employees/:clientId', clientController.FindEmployees);
 
 router.get('/surveys/:clientId', clientController.FindSurveys);
 

@@ -201,16 +201,22 @@ exports.FindEmployees = (req, res, next) => {
     const perPage = Number(req.query.perPage || 10); //total items display per staticPage
     let totalItems; //how many items in the database
     const clientId = req.params.clientId;
+    let prop = req.body.prop;
+    let sortProp = {};
+
+    if (typeof prop != 'undefined' && prop != null) {
+        sortProp[prop] = req.body.order
+    } else {
+        sortProp['first_name'] = 'ascending';
+    }
 
     Client.findById(clientId)
         .populate([{
             path: 'employees',
             model: 'Employee',
-            // options: {
-            //     sort: {},
-            //     skip: (currentPage) * perPage,
-            //     limit: perPage
-            // }
+            options: {
+                sort: sortProp,
+            }
         }])
         .exec(function (err, client) {
             if (err) return next(err);

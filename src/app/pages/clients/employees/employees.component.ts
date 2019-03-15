@@ -30,6 +30,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     employees = [];
     @ViewChild('filePicker')
     filePicker: ElementRef;
+    sortProp;
 
     constructor(private employeeService: EmployeeService) {
     }
@@ -90,15 +91,42 @@ export class EmployeesComponent implements OnInit, OnChanges {
             );
     }
 
-    page(offset, limit) {
+    onClickSort(prop) {
+        // we need to short both by ascending and descending order
+        // check if the sortProp is null or undefined. if not then check if the prop is same as sortProp
+        if (this.sortProp != null && typeof this.sortProp != 'undefined') {
+            // check if the key already exist in the sortProp or not
+            // if not exist then sort by ascending order
+            // if already exist then sort by descending order
+            if (prop in this.sortProp) {
+                this.sortProp = null;
+                const sortData = {prop: prop, order: 'descending'};
+                this.page(this.offset, this.limit, sortData);
+            } else {
+                this.sortProp[prop] = prop;
+                const sortData = {prop: prop, order: 'ascending'};
+                this.page(this.offset, this.limit, sortData);
+            }
+        } else {
+            // sort by that property
+            this.sortProp = {};
+            this.sortProp[prop] = prop;
+            const sortData = {prop: prop, order: 'ascending'};
+            this.page(this.offset, this.limit, sortData);
+        }
+    }
+
+    page(offset, limit, sort = {}) {
         if (this.clientId === null) return;
-        this.employeeService.getEmployees(offset, limit, this.clientId).subscribe(results => {
+        this.employeeService.getEmployees(offset, limit, this.clientId, sort).subscribe(results => {
                 const rows = [];
                 this.employees = results.employees;
                 if (this.employees !== null) {
                     this.count = results.totalItems;
                     this.employees.map((employee) => {
                         employee.id = employee._id;
+                        employee.firstName = employee.first_name;
+                        employee.lastName = employee.last_name;
                         rows.push(employee);
                     });
                 }

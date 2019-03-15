@@ -70,6 +70,20 @@ exports.Upload = function (req, res, next) {
                         //here find the department by name
                         json[i].department = findDepartmentByName(json[i].department, organizations);
 
+                        // hire_date, exit_date, resign_date, date_of_birth
+                        if (!isNullOrEmpty(json[i].hire_date)) {
+                            json[i].hire_date = convertDateToUSFormat(json[i].hire_date);
+                        }
+                        if (!isNullOrEmpty(json[i].exit_date)) {
+                            json[i].exit_date = convertDateToUSFormat(json[i].exit_date);
+                        }
+                        if (!isNullOrEmpty(json[i].resign_date)) {
+                            json[i].resign_date = convertDateToUSFormat(json[i].resign_date);
+                        }
+                        if (!isNullOrEmpty(json[i].date_of_birth)) {
+                            json[i].date_of_birth = convertDateToUSFormat(json[i].date_of_birth);
+                        }
+
                         // here before push the json object check if the employee client has assign surveys. if so then assign that surveys to the employee
                         let clientSurveys = [];
                         client.surveys.forEach((survey) => {
@@ -114,6 +128,11 @@ exports.Upload = function (req, res, next) {
                     })
                 });
         });
+};
+
+const convertDateToUSFormat = function (date) {
+    let split_date = date.split('/'); // dd/mm/yyyy (Australian Date Format)
+    return split_date[1] + '/' + split_date[0] + '/' + split_date[2]; // usa formatted date
 };
 
 const checkDuplicateEmployees = function (employees, employeesToUpload) {
