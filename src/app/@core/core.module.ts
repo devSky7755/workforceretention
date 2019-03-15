@@ -44,8 +44,8 @@ export const NB_CORE_PROVIDERS = [
                     class: NbAuthJWTToken,
                     key: 'token', // this parameter tells where to look for the token
                 },
-                // baseEndpoint: '',
-                baseEndpoint: 'http://localhost:8080',
+                baseEndpoint: '',
+                // baseEndpoint: 'http://localhost:8080',
                 login: {
                     endpoint: '/api/v1/auth/login',
                     redirect: {

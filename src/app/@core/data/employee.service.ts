@@ -20,10 +20,10 @@ export class EmployeeService {
     constructor(private http: HttpClient, private urlService: URLService) {
     }
 
-    getEmployees(page, perPage, clientId): Observable<any> {
-
-        return this.http.get(this.urlService.baseUrl +
-            `/api/v1/clients/employees/${clientId}?page=${page}&perPage=${perPage}`);
+    getEmployees(page, perPage, clientId, sort = {}): Observable<any> {
+        const body = JSON.stringify(sort);
+        return this.http.post(this.urlService.baseUrl +
+            `/api/v1/clients/employees/${clientId}?page=${page}&perPage=${perPage}`, body, httpOptions);
     }
 
     getEmployee(id): Observable<any> {

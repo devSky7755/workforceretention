@@ -6,6 +6,10 @@ const cors = require('cors');
 
 const app = express();
 
+// date format is used united states format which is mm/dd/yyyy
+// but we need to use australian date format which is dd/mm/yyyy
+// when uploading employee we need to convert the date from australian format dd/mm/yyyy to united states format mm/dd/yyyy
+
 // ********************************* LIBRARY ******************************
 // Mongoose is used for Connecting to MongoDB Database and Query
 // ngx-charts is used for Charting in Angular
@@ -68,34 +72,9 @@ mongoose.connect(config.MONGO_URI, {
     .catch(error => console.log('could not connect', error));
 mongoose.set('useFindAndModify', false);
 
-
-//Multer File Upload Set UP
-// const fileStorage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cb(null, 'public/images')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, new Date().toISOString() + '_' + file.originalname);
-//     }
-// });
-//
-// //filter the file by it's type
-// const fileFilter = (req, file, cb) => {
-//     if (file.mimetype === 'image/png' || file.mimetype === 'image/png' || file.mimetype === 'image/jpeg') {
-//         cb(null, true)
-//     } else {
-//         cb(null, false)
-//     }
-// };
-
 //body-parser configuration for reading data from request body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false})); // x-www-form-urlencoded
-
-//Multer Middleware for file upload
-// app.use(
-//     multer({storage: fileStorage, fileFilter: fileFilter}).single('image')
-// );
 
 //ENABLE CORS. FOR CROSS ORIGIN RESOURCE SHARING
 app.use(cors());
