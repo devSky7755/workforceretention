@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../../@core/data/report.service";
+import {JwtHelperService} from "@auth0/angular-jwt";
 
 @Component({
     selector: 'ngx-manager-report',
@@ -11,6 +12,7 @@ export class ManagerReportComponent implements OnInit {
     filterData = {start_date: null, end_date: null, level: "", occupational_group: "", gender: "", tenure: ""};
     genders = [{id: "Male", value: "Male"}, {id: "Female", value: "Female"}];
     employee;
+    employee_details;
     completed_surveys = 0;
     organization;
     organizations_divisions_departments = [];
@@ -120,7 +122,10 @@ export class ManagerReportComponent implements OnInit {
         if (localStorage.getItem('employee')) {
             // parse the employee object and check the expiration of the login. if the login time is expired
             this.employee = JSON.parse(localStorage.getItem('employee'));
+            const helper = new JwtHelperService();
+            this.employee_details = helper.decodeToken(this.employee.access_token);
         }
+        console.log(this.employee_details);
         this.getManagerReport();
         this.getManagerDetails();
     }
@@ -144,6 +149,7 @@ export class ManagerReportComponent implements OnInit {
     }
 
     arrangeOrganization() {
+        // check the logged in employee is set to full reporting is yes or not
         const organization = {
             id: this.organization._id,
             class: 'organization',
@@ -387,13 +393,8 @@ export class ManagerReportComponent implements OnInit {
         // console.log(this.exit_reason_data_mapper);
         // Solution for reducing the bar width but it's not working
 
-        // this.exit_reason_data_mapper.map((mapped_reason) => {
-        //     if (mapped_reason.value.length !== 0 && mapped_reason.value.length < 5) {
-        //         for (let i = 0; i < 20; i++) {
-        //             mapped_reason.value.push({name: "", series: [{name: "", value: null}]});
-        //         }
-        //     }
-        // })
+        // What's working
+        // What's not working
     }
 
 }

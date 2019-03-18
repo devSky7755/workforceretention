@@ -17,10 +17,6 @@ const config = require('../config');
 //JSON FILE PARSING LIBRARY
 let csvToJson = require('convert-csv-to-json');
 
-
-//Validation SCHEMA
-const employeeSchema = require('../validation/employee');
-
 // PASSWORD GENERATOR LIBRARY
 const generator = require('generate-password');
 
@@ -100,31 +96,36 @@ exports.Upload = function (req, res, next) {
 
                     // ****************** here first we need to insert employee then send password **************
                     // Save the employees into the database
-                    Employee.insertMany(finalEmployeesArray, async (err, docs) => {
-                        if (err) {
-                            if (err.name === 'BulkWriteError' && err.code === 11000) {
-                                return next(new Error(`Employee with the email or username ${err.op.email} already exist`));
+                    // employee needs a password so first we need to generate password
+                    // after generating password we need to insert the employee
+                    // after inserting employee we need to send password in email
+                    await passwordGenerator(finalEmployeesArray).then((employeesToUpload) => {
+                        Employee.insertMany(employeesToUpload, async (err, docs) => {
+                            if (err) {
+                                if (err.name === 'BulkWriteError' && err.code === 11000) {
+                                    return next(new Error(`Employee with the email or username ${err.op.email} already exist`));
+                                } else {
+                                    return next(err);
+                                }
                             } else {
-                                return next(err);
-                            }
-                        } else {
-                            await passwordGenerator(finalEmployeesArray, client).then((employeesToUpload) => {
-                                //After saving the employees insert all the employees id to the
-                                //client employees array
-                                docs.forEach((employee) => {
-                                    client.employees.push(employee);
-                                });
-                                //Finally save the client
-                                client.save().then(() => {
-                                    return res.status(200).json({
-                                        employees: docs,
-                                        success: true,
-                                        message: `From ${employees.length} employees ${employeesToUpload.length} uploaded and ${employees.length - employeesToUpload.length} skip`
+                                await sendEmailsToEmployees(employeesToUpload, client).then((employeesToUpload) => {
+                                    //After saving the employees insert all the employees id to the
+                                    //client employees array
+                                    docs.forEach((employee) => {
+                                        client.employees.push(employee);
                                     });
-                                })
-                            });
-                        }
+                                    //Finally save the client
+                                    client.save().then(() => {
+                                        return res.status(200).json({
+                                            employees: docs,
+                                            success: true,
+                                            message: `From ${employees.length} employees ${employeesToUpload.length} uploaded and ${employees.length - employeesToUpload.length} skip`
+                                        });
+                                    })
+                                });
+                            }
 
+                        })
                     })
                 });
         });
@@ -158,79 +159,92 @@ const isNullOrEmpty = function (obj) {
 
 
 // This function will generate password as well as send email to employee
-const passwordGenerator = function (employees, client) {
+const passwordGenerator = function (employees) {
     const employeePromises = [];
     employees.map((employee) => {
         employeePromises.push(new Promise((resolve, reject) => {
             //generate salt
             bcrypt.genSalt(10, function (err, salt) {
                 if (err) {
-                    console.log('Something Wrong In Salt Generating');
                     reject(new Error('Something Wrong In Salt Generating'));
                 }
                 //GENERATE THE PASSWORD HERE
                 const password = generator.generate({
-                    length: 10,
+                    length: 6,
                     numbers: true
                 });
                 bcrypt.hash(password, salt, async function (err, hash) {
                     if (err) {
                         reject(new Error("Password can't generate"));
                     } else {
-                        // select email depending on client selected email template
-                        let from;
-                        let subject;
-                        let body;
-                        let to;
-                        let email = {};
-                        // select email depending on client selected email template
-                        //check if the employee is a manager or not
-                        // if employee is a manager then sent
-                        if (employee.is_manager === '1') {
-                            email = client.emails.find(e => e.email_type === 'manager-report-email');
-                        } else if (client.email_template === 'template-one') {
-                            email = client.emails.find(e => e.email_type === 'template-one-email');
-                        } else {
-                            email = client.emails.find(e => e.email_type === 'template-two-email');
-                        }
-                        console.log(email);
-                        // send the password to the employee email
-                        // step-1 : first get the email template from the client for creating an employee
-                        from = email.from_address;
-                        subject = email.subject;
-                        body = email.body;
-                        to = employee.email;
-
-                        // step-2 : replace the [client_name] by the client.username
-                        body = body.replace('[client_name]', client.name);
-                        body = body.replace('[client_name]', client.name);
-                        subject = subject.replace('[client_name]', client.name);
-                        body = body.replace('[employee_firstname]', employee.first_name);
-
-                        // step-3 : [employee_username] set the employee email
-                        body = body.replace('[employee_username]', to);
-
-                        // step-4 : [employee_password] set the employee plain password.
-                        body = body.replace('[employee_password]', password);
-
-                        helpers.SendEmailToEmployee({from, to, subject, body}).then(
-                            () => {
-                                // if the promise full fill this block of code will execute
-                                // assign the hash password to the employee
-                                employee.password = hash;
-                                resolve(employee)
-                            },
-                            //if the promise rejected this code will execute
-                            () => {
-                                // assign the hash password to the employee
-                                employee.password = hash;
-                                resolve(employee)
-                            }
-                        ); // End of Send Email To Employee
+                        // assign the hash password to the employee
+                        employee.password = hash;
+                        employee.original_password = password;
+                        resolve(employee);
                     }
 
                 })//----end of password hashing----
             }) //---end of salt generation----
+        }))
+    });
+    return Promise.all(employeePromises);
+};
+
+const sendEmailsToEmployees = (employees, client) => {
+    const employeePromises = [];
+    employees.map((employee) => {
+        employeePromises.push(new Promise((resolve, reject) => {
+            // select email depending on client selected email template
+            let from;
+            let subject;
+            let body;
+            let to;
+            let email = {};
+            // select email depending on client selected email template
+            //check if the employee is a manager or not
+            // if employee is a manager then sent
+            if (employee.is_manager === '1') {
+                email = client.emails.find(e => e.email_type === 'manager-report-email');
+            } else if (client.email_template === 'template-one') {
+                email = client.emails.find(e => e.email_type === 'template-one-email');
+            } else {
+                email = client.emails.find(e => e.email_type === 'template-two-email');
+            }
+            // send the password to the employee email
+            // step-1 : first get the email template from the client for creating an employee
+            from = email.from_address;
+            subject = email.subject;
+            body = email.body;
+            to = employee.email;
+
+            // step-2 : replace the [client_name] by the client.username
+            body = body.replace('[client_name]', client.name);
+            body = body.replace('[client_name]', client.name);
+            subject = subject.replace('[client_name]', client.name);
+            body = body.replace('[employee_firstname]', employee.first_name);
+
+            // step-3 : [employee_username] set the employee email
+            body = body.replace('[employee_username]', to);
+
+            // step-4 : [employee_password] set the employee plain password.
+            body = body.replace('[employee_password]', employee.original_password);
+            // send email only if is_online is set to 1
+            if (employee.is_online === '1') {
+                helpers.SendEmailToEmployee({from, to, subject, body}).then(
+                    () => {
+                        // if the promise full fill this block of code will execute
+                        // assign the hash password to the employee
+                        resolve(employee)
+                    },
+                    //if the promise rejected this code will execute
+                    () => {
+                        // assign the hash password to the employee
+                        resolve(employee)
+                    }
+                ); // End of Send Email To Employee
+            } else {
+                resolve(employee)
+            }
         }))
     });
     return Promise.all(employeePromises);
@@ -460,7 +474,8 @@ exports.login = function (req, res, next) {
      * check if the username matches any email
      */
 
-    Employee.findOne({email}, 'username email password first_name last_name is_manager is_survey').then((employee, err) => {
+    // here we need to populate the employee organization, employee division and department
+    Employee.findOne({email}, 'username email password first_name last_name is_manager is_survey is_report').then((employee, err) => {
         if (err) return (new Error("Unable to find employee with the email " + email));
 
         if (!employee) {
@@ -512,7 +527,7 @@ exports.token = function (req, res, next) {
     let refreshToken = req.body.refreshToken;
 
     if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] === email)) {
-        Employee.findOne({email}, 'username email').then((employee, err) => {
+        Employee.findOne({email}, 'username email first_name last_name is_manager is_survey is_report').then((employee, err) => {
             if (err) return next(err);
             if (!employee) {
                 const error = new Error("Employee not found, please sign up.");
@@ -580,7 +595,12 @@ const sendReminderEmails = function () {
                         // employee.is_manager === 0 means employee is not a manager
                         // employee.is_survey === 1 means employee is allow to do survey
                         // !employee.surveys[0].completed means employee still not completed the assigned survey
-                        if (employee.is_manager === '0' && employee.is_survey === '1' && !employee.surveys[0].completed) {
+                        // employee.is_online === 1 means employee will complete the survey online
+
+                        // check when the employee is inserted into database employee.createdAt
+                        const employeeCreatedDay = getDay(employee.createdAt, new Date());
+                        if (employee.is_manager === '0' && employee.is_survey === '1' &&
+                            !employee.surveys[0].completed && employee.is_online === '1' && employeeCreatedDay === 5) {
                             let employeeObject = {
                                 client_name: client.name,
                                 employee_firstname: employee.first_name,
@@ -638,8 +658,13 @@ const sendReminderEmailsToEmployees = function (employees) {
     });
     return Promise.all(employeePromises);
 };
-const three_days = 1000 * 60 * 60 * 24 * 3;
-setInterval(sendReminderEmails, three_days);
+const one_day = 86400000;
+setInterval(sendReminderEmails, one_day);
+
+const getDay = (start_date, end_date) => {
+    let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    return Math.round(Math.abs((start_date.getTime() - end_date.getTime()) / (oneDay)));
+};
 
 /**
  * POST /api/v1/employees/generate-password/:clientId

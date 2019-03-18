@@ -24,6 +24,7 @@
                                        placeholder="Organization Name" required>
                             </div>
                             <div class="text-center">
+                                <button type="button" class="btn btn-danger" *ngIf="organizationId" (click)="deleteOrganization(organizationId)">DELETE</button>
                                 <button type="submit" class="btn btn-success" [disabled]="!f.valid">
                                     {{organizationId ? 'UPDATE' : 'SAVE'}}
                                 </button>
