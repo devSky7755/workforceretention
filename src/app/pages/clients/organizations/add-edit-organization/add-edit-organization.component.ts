@@ -38,6 +38,19 @@ export class AddEditOrganizationComponent implements OnInit, OnChanges {
         );
     }
 
+    deleteOrganization(organizationId) {
+        this.organizationService.deleteOrganization(organizationId).subscribe(
+            () => {
+                this.selectOrganization.emit();
+            },
+            err => {
+                const {error} = err;
+                this.errorMessage = error.message;
+                console.log(err);
+            }
+        );
+    }
+
     createOrganization() {
         const organization = {
             name: this.organizationName,
