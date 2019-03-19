@@ -93,6 +93,7 @@ export class ManagerReportComponent implements OnInit {
     tenure_split_chart_data = [];
     age_split_chart_data = [];
 
+    employee_sentiment = [];
     employee_sentiment_working_chart_data = [];
     employee_sentiment_not_working_chart_data = [];
 
@@ -373,6 +374,7 @@ export class ManagerReportComponent implements OnInit {
                 reason.options.map((r) => {
                     calculated_total_percentage += r.percentage;
                 });
+                // calculate the positive percentage, negative percentage, neutrals
                 reason.options.map((r, index) => {
                     if (reason.question_type === '3') {
                         if (JSON.parse(r.label)) { // this will make string "true" to boolean true
@@ -393,8 +395,55 @@ export class ManagerReportComponent implements OnInit {
         // console.log(this.exit_reason_data_mapper);
         // Solution for reducing the bar width but it's not working
 
+        // get all the rating radio button questions
+        // now sort by agree/strongly agree in the descending order
+        // now divide the length of the array by 2
+        // now take first half for what's working
+        // and second half for what's not working
         // What's working
         // What's not working
+        const rating_radio_button_questions = data.response_array.filter(q => q.question_type == 1);
+        // now we need to find the positive_percentage as well as negative percentage
+        const positive_values = ['Strongly Agree', 'Agree'];
+        rating_radio_button_questions.map((question) => {
+            let positive = 0;
+            let negative = 0;
+            let total_answered = 0;
+            question.options.map((option) => {
+                total_answered += option.answered;
+                if (positive_values.findIndex(item => option.label.toLowerCase() === item.toLowerCase()) > -1) {
+                    positive += option.answered;
+                } else {
+                    negative += option.answered;
+                }
+            });
+            const positive_percentage = (positive / total_answered) * 100;
+            const negative_percentage = (negative / total_answered) * 100;
+            const series = [];
+            series.push({name: 'Agreed', value: positive_percentage});
+            series.push({name: 'Disagreed / Neutral', value: negative_percentage});
+            // concatenate exit_reason with exit_reporting_label
+            this.employee_sentiment.push({
+                name: this.exit_reasons.find(ex => ex.id == question.exit_reason).value + ' - ' + question.exit_reporting_label,
+                positive_percentage,
+                negative_percentage,
+                series: series
+            });
+        });
+        // sort by agree/strongly agree in the descending order
+        this.employee_sentiment.sort((a, b) => (a.positive_percentage < b.positive_percentage) ? 1 : ((b.positive_percentage < a.positive_percentage) ? -1 : 0));
+        const sentiment_divider_length = Math.round(this.employee_sentiment.length / 2);
+        for (let i = 0; i < sentiment_divider_length; i++) {
+            this.employee_sentiment_working_chart_data.push(this.employee_sentiment[i]);
+        }
+        for (let i = sentiment_divider_length; i < this.employee_sentiment.length; i++) {
+            this.employee_sentiment_not_working_chart_data.push(this.employee_sentiment[i]);
+        }
+        // console.log("***************** what's working *************");
+        // console.log(this.employee_sentiment_working_chart_data);
+        // console.log("***************** what's not working *************");
+        // console.log(this.employee_sentiment_not_working_chart_data);
+
     }
 
 }

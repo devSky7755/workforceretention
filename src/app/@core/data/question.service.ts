@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {URLService} from "./url.service";
+import {Observable} from "rxjs";
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -26,12 +27,12 @@ export class QuestionService {
         return this.http.post(this.urlService.baseUrl + '/api/v1/questions/' + surveyId, body, httpOptions);
     }
 
-    createManyQuestion(question, surveyId) {
+    createManyQuestion(question, surveyId): Observable<any> {
         const body = JSON.stringify(question);
         return this.http.post(this.urlService.baseUrl + '/api/v1/questions/add-many/' + surveyId, body, httpOptions);
     }
 
-    updateManyQuestion(question, surveyId) {
+    updateManyQuestion(question, surveyId): Observable<any> {
         const body = JSON.stringify(question);
         return this.http.post(this.urlService.baseUrl + '/api/v1/questions/update-many/' + surveyId, body, httpOptions);
     }

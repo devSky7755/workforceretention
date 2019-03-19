@@ -150,6 +150,38 @@
                                 </div>
                             </div>
                         </div>
+                        <div *ngIf="employee_sentiment_working_chart_data.length > 0">
+                            <h2>Employee Sentiment What's Working</h2>
+                            <div style="display: flex; overflow: hidden">
+                                <ngx-charts-bar-horizontal-stacked
+                                        [scheme]="colorScheme"
+                                        [schemeType]="schemaType"
+                                        [results]="employee_sentiment_working_chart_data"
+                                        [gradient]="gradient"
+                                        [xAxis] ="true"
+                                        [showXAxisLabel]="true"
+                                        [yAxis]="true"
+                                        [legend]="true"
+                                        (select)="onSelect($event)">
+                                </ngx-charts-bar-horizontal-stacked>
+                            </div>
+                        </div>
+                        <div *ngIf="employee_sentiment_not_working_chart_data.length > 0">
+                            <h2>Employee Sentiment What's Not Working</h2>
+                            <div style="display: flex; overflow: hidden;">
+                                <ngx-charts-bar-horizontal-stacked
+                                        [scheme]="colorScheme"
+                                        [schemeType]="schemaType"
+                                        [results]="employee_sentiment_not_working_chart_data"
+                                        [gradient]="gradient"
+                                        [xAxis] ="true"
+                                        [showXAxisLabel]="true"
+                                        [yAxis]="true"
+                                        [legend]="true"
+                                        (select)="onSelect($event)">
+                                </ngx-charts-bar-horizontal-stacked>
+                            </div>
+                        </div>
                         <div *ngIf="gender_split_chart_data.length > 0">
                             <h2 class="text-center">Gender Split</h2>
                             <div style="display: flex; overflow: hidden;height: 500px">

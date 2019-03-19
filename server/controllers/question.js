@@ -98,6 +98,20 @@ exports.UpdateSurveyQuestions = (req, res, next) => {
     let delete_question_ids = [];
     let new_questions = [];
     let update_questions = [];
+    // loop through the data array and separate the collections into delete_question_ids, new_questions, update_questions
+    data.forEach((question) => {
+        if (question._id == null) {
+            // This means this is a new question which needs to be inserted
+            delete question._id;
+            new_questions.push(question);
+        } else if (question.deleted) {
+            // this means this question has been deleted so we need to delete from the database as well
+            delete_question_ids.push(question._id);
+        } else {
+            // this means question has been updated
+            update_questions.push(question);
+        }
+    });
 
     //get the survey by the surveyId
     Survey.findById(surveyId, (err, survey) => {
@@ -105,20 +119,6 @@ exports.UpdateSurveyQuestions = (req, res, next) => {
         if (!survey) {
             return res.status(404).json({status: false, message: 'No survey found!'});
         }
-        // loop through the data array and separate the collections into delete_question_ids, new_questions, update_questions
-        data.forEach((question) => {
-            if (question._id == null) {
-                // This means this is a new question which needs to be inserted
-                delete question._id;
-                new_questions.push(question);
-            } else if (question.deleted) {
-                // this means this question has been deleted so we need to delete from the database as well
-                delete_question_ids.push(question._id);
-            } else {
-                // this means question has been updated
-                update_questions.push(question);
-            }
-        });
         DeleteMany(delete_question_ids).then(() => InsertMany(new_questions)).then((questions) => {
             questions.forEach((question) => {
                 survey.questions.push(question);
@@ -129,23 +129,22 @@ exports.UpdateSurveyQuestions = (req, res, next) => {
                 let objId = mongoose.Types.ObjectId(id);
                 survey.questions = survey.questions.filter(sq => !sq.equals(objId));
             });
-            survey.no_of_questions = survey.questions.length;
+            // no of questions will be the survey questions
+            survey.no_of_questions = update_questions.length + new_questions.length;
             survey.save();
         }).then(() => {
             return res.send({success: true, message: 'Survey question successfully updated'})
         }).catch(err => {
             return next(err)
         });
-
-        //
-        // console.log('************** Deleted Items ************');
-        // console.log(delete_question_ids);
-        // console.log('************** Insert Items ************');
-        // console.log(new_questions);
-        // console.log('************** Update Items ************');
-        // console.log(update_questions);
-        // return res.send({success: true});
     })
+    // console.log('************** Deleted Items ************');
+    // console.log(delete_question_ids);
+    // console.log('************** Insert Items ************');
+    // console.log(new_questions);
+    // console.log('************** Update Items ************');
+    // console.log(update_questions);
+    // return res.send({success: true});
 };
 const DeleteMany = function (delete_question_ids) {
     return new Promise((resolve, reject) => {

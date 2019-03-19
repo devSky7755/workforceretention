@@ -388,8 +388,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             delete question.id;
         });
         this.questionService.createManyQuestion(question_array, this.surveyId).subscribe(
-            data => {
-                console.log(data);
+            () => {
                 this.router.navigateByUrl('/pages/surveys/survey-management');
             },
             err => {
@@ -410,7 +409,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             }
         });
         this.questionService.updateManyQuestion(question_array, this.surveyId).subscribe(
-            data => {
+            () => {
                 this.router.navigateByUrl('/pages/surveys/survey-management');
             }
         );
