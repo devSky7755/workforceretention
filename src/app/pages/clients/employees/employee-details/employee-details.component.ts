@@ -19,6 +19,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     @Output() editSurvey = new EventEmitter();
     employee;
     surveyId;
+    employeeSurvey;
     surveyCompleted = false;
 
     constructor(private employeeService: EmployeeService,
@@ -35,11 +36,17 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     }
 
     onEditSurvey() {
-        this.editSurvey.emit({
-            surveyId: this.surveyId,
-            surveyCompleted: this.surveyCompleted,
-            employeeId: this.employeeId
-        });
+        if ((this.employeeSurvey.start_date == null ||
+            typeof this.employeeSurvey.start_date == 'undefined')
+            && !this.surveyCompleted) {
+            this.updateSurveyStartDate();
+        } else {
+            this.editSurvey.emit({
+                surveyId: this.surveyId,
+                surveyCompleted: this.surveyCompleted,
+                employeeId: this.employeeId
+            });
+        }
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -103,6 +110,21 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
         a.remove(); // remove the element
     }
 
+    updateSurveyStartDate() {
+        this.employeeSurvey.start_date = new Date();
+        const employeeSurveys = [];
+        employeeSurveys.push(this.employeeSurvey);
+        const employeeData = {surveys: employeeSurveys};
+        this.employeeService.updateEmployee(employeeData, this.employee._id).subscribe(
+            () => {
+                this.editSurvey.emit({
+                    surveyId: this.surveyId,
+                    surveyCompleted: this.surveyCompleted,
+                    employeeId: this.employeeId
+                });
+            });
+    }
+
     getEmployee() {
         this.employeeService.getEmployee(this.employeeId).subscribe(data => {
                 //set the employee
@@ -110,6 +132,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 if (this.employee.surveys.length > 0) {
                     this.surveyId = this.employee.surveys[0].survey;
                     this.surveyCompleted = this.employee.surveys[0].completed;
+                    this.employeeSurvey = this.employee.surveys[0];
                 }
                 if (this.employee.organization) {
                     this.getOrganization(this.employee.organization);

@@ -361,6 +361,8 @@ export class ManagerReportComponent implements OnInit {
         this.exit_reason_data_mapper.map((mapped_reason) => {
             mapped_reason.value = [];
         });
+        const positive_values = ['Strongly Agree', 'Agree'];
+        const negative_values = ['Disagree', 'Strongly Disagree'];
         final_question.options.map((option) => {
             const mapped_reason = this.exit_reason_data_mapper[option.label_index];
             const filtered_reason = this.response_array.filter(x => x.exit_reason === mapped_reason.exit_reason);
@@ -375,15 +377,37 @@ export class ManagerReportComponent implements OnInit {
                     calculated_total_percentage += r.percentage;
                 });
                 // calculate the positive percentage, negative percentage, neutrals
+                console.log(reason.options);
+                let positive = 0;
+                let negative = 0;
+                let neutral = 0;
+                let total_answered = 0;
                 reason.options.map((r, index) => {
                     if (reason.question_type === '3') {
                         if (JSON.parse(r.label)) { // this will make string "true" to boolean true
                             series.push({name: this.exit_reasons[index].value, value: r.percentage});
                         }
+                    } else if (reason.question_type === '1') {
+                        total_answered += r.answered;
+                        if (positive_values.findIndex(item => r.label.toLowerCase() === item.toLowerCase()) > -1) {
+                            positive += r.answered;
+                        } else if (negative_values.findIndex(item => r.label.toLowerCase() === item.toLowerCase()) > -1) {
+                            negative += r.answered;
+                        } else {
+                            neutral += r.answered;
+                        }
                     } else {
                         series.push({name: r.label, value: r.percentage});
                     }
                 });
+                const positive_percentage = (positive / total_answered) * 100;
+                const negative_percentage = (negative / total_answered) * 100;
+                const neutral_percentage = (neutral / total_answered) * 100;
+                if (reason.question_type === '1') {
+                    series.push({name: 'Agreed', value: positive_percentage});
+                    series.push({name: 'Disagreed', value: negative_percentage});
+                    series.push({name: 'Neutral', value: neutral_percentage});
+                }
                 if (calculated_total_percentage !== 0 && !isNaN(calculated_total_percentage)) {
                     const rearrange_answer = {name: reason.exit_reporting_label, series: series};
                     mapped_reason.value.push(rearrange_answer);
@@ -404,7 +428,6 @@ export class ManagerReportComponent implements OnInit {
         // What's not working
         const rating_radio_button_questions = data.response_array.filter(q => q.question_type == 1);
         // now we need to find the positive_percentage as well as negative percentage
-        const positive_values = ['Strongly Agree', 'Agree'];
         rating_radio_button_questions.map((question) => {
             let positive = 0;
             let negative = 0;

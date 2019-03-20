@@ -744,14 +744,14 @@ exports.DataOutput = (req, res, next) => {
                                 employee_org: employee.organization === null || typeof employee.organization == 'undefined' ? '' : employee.organization.name,
                                 employee_div: employee.division === null || typeof employee.division == 'undefined' ? '' : employee.division.name,
                                 employee_dept: employee.department === null || typeof employee.department == 'undefined' ? '' : employee.department.name,
-                                employee_hiredate: employee.hire_date,
-                                employee_resigndate: employee.resign_date,
-                                employee_exitdate: employee.exit_date,
+                                employee_hiredate: employee.hire_date == null ? '' : format_date(employee.hire_date),
+                                employee_resigndate: employee.resign_date == null ? '' : format_date(employee.resign_date),
+                                employee_exitdate: employee.exit_date == null ? '' : format_date(employee.exit_date),
                                 employee_gender: employee.gender,
-                                employee_dob: employee.date_of_birth,
+                                employee_dob: employee.date_of_birth == null ? '' : format_date(employee.date_of_birth),
                                 survey_id: survey._id,
-                                survey_starttime: employee.surveys[0].start_date,
-                                survey_endtime: employee.surveys[0].end_date,
+                                survey_starttime: employee.surveys[0].start_date == null ? '':format_date(employee.surveys[0].start_date),
+                                survey_endtime: employee.surveys[0].end_date == null ? '':format_date(employee.surveys[0].end_date),
                                 completed_online: employee.surveys[0].completed_online,
                                 completed_admin: employee.surveys[0].completed_admin
                             };
@@ -869,7 +869,19 @@ exports.DataOutput = (req, res, next) => {
         });
 
 };
+const format_date = (date) => {
+    let dd = date.getDate();
+    let mm = date.getMonth() + 1; //January is 0!
 
+    let yyyy = date.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    return dd + '/' + mm + '/' + yyyy;
+};
 const IsNullOrEmpty = (obj) => {
     return typeof obj === 'undefined' || obj == null;
 };
