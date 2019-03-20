@@ -33,7 +33,6 @@ export class DashboardComponent implements OnInit {
             this.employee = JSON.parse(localStorage.getItem('employee'));
             const helper = new JwtHelperService();
             this.employee_details = helper.decodeToken(this.employee.access_token);
-            console.log(this.employee_details);
         }
         this.setCompletedSurveys(this.offset, this.limit);
     }
@@ -77,7 +76,7 @@ export class DashboardComponent implements OnInit {
 
     onClickGoSurvey(surveyId, completed) {
         // update the employee survey start_date
-        if (this.employeeSurvey.start_date == null) {
+        if ((this.employeeSurvey.start_date == null || typeof this.employeeSurvey.start_date == 'undefined') && !this.employeeSurvey.completed) {
             // update survey start date
             this.updateSurveyStartDate(surveyId, completed);
         } else {
@@ -91,13 +90,11 @@ export class DashboardComponent implements OnInit {
         const employeeSurveys = [];
         employeeSurveys.push(this.employeeSurvey);
         const employeeData = {surveys: employeeSurveys};
-        console.log(this.employee.employee_id);
         this.employeeService.updateEmployee(employeeData, this.employee.employee_id).subscribe(
-            (data) => {
+            () => {
                 this.employeeService.surveyCompleted = completed;
                 this.router.navigate(['/client/questions/' + surveyId], {queryParams: {completed: completed}});
-            }
-        );
+            });
     }
 
 }
