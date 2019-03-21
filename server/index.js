@@ -129,7 +129,6 @@ app.get('*', (req, res) => {
 app.use((error, req, res, next) => {
     const status = error.statusCode || 500;
     const message = error.message;
-    console.log(error);
     res.status(status).json({message, success: false})
 });
 
