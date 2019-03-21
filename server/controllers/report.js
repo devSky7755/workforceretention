@@ -115,7 +115,16 @@ exports.ManagerReport = (req, res, next) => {
     // if employee is set to full reporting then we need to find all the employees from the organization who have completed this survey
     // if employee is not access to full reporting then we need to find all the employee under the manager organization who have completed this survey
 
-    Employee.findById(employeeId, (err, employee) => {
+    Employee.findById(employeeId, '-password').populate({
+        path: 'organization',
+        model: 'Organization'
+    }).populate({
+        path: 'division',
+        model: 'Division'
+    }).populate({
+        path: 'department',
+        model: 'Department'
+    }).exec(function (err, employee) {
         if (err) return next(err);
         if (!employee) {
             return res.status(404).json({
@@ -403,6 +412,7 @@ exports.ManagerReport = (req, res, next) => {
                                     survey,
                                     client,
                                     response_array,
+                                    manager: employee,
                                     genders,
                                     ages,
                                     tenures,
@@ -750,8 +760,8 @@ exports.DataOutput = (req, res, next) => {
                                 employee_gender: employee.gender,
                                 employee_dob: employee.date_of_birth == null ? '' : format_date(employee.date_of_birth),
                                 survey_id: survey._id,
-                                survey_starttime: employee.surveys[0].start_date == null ? '':format_date(employee.surveys[0].start_date),
-                                survey_endtime: employee.surveys[0].end_date == null ? '':format_date(employee.surveys[0].end_date),
+                                survey_starttime: employee.surveys[0].start_date == null ? '' : format_date(employee.surveys[0].start_date),
+                                survey_endtime: employee.surveys[0].end_date == null ? '' : format_date(employee.surveys[0].end_date),
                                 completed_online: employee.surveys[0].completed_online,
                                 completed_admin: employee.surveys[0].completed_admin
                             };

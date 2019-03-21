@@ -152,7 +152,7 @@
                         </div>
                         <div *ngIf="employee_sentiment_working_chart_data.length > 0">
                             <h2>Employee Sentiment What's Working</h2>
-                            <div style="display: flex; overflow: hidden">
+                            <div style="display: flex; overflow: hidden;min-height: 500px">
                                 <ngx-charts-bar-horizontal-stacked
                                         [scheme]="colorScheme"
                                         [schemeType]="schemaType"
@@ -168,7 +168,7 @@
                         </div>
                         <div *ngIf="employee_sentiment_not_working_chart_data.length > 0">
                             <h2>Employee Sentiment What's Not Working</h2>
-                            <div style="display: flex; overflow: hidden;">
+                            <div style="display: flex; overflow: hidden;min-height: 500px">
                                 <ngx-charts-bar-horizontal-stacked
                                         [scheme]="colorScheme"
                                         [schemeType]="schemaType"

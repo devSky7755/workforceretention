@@ -19,6 +19,7 @@ export class ManagerReportComponent implements OnInit {
     top_leaving_reasons = [];
     response_array = [];
     leaving_reason_rearranged_array = [];
+    manager;
     exit_reasons = [
         {id: 1, value: 'Career Opportunities'},
         {id: 2, value: 'Meaningful Work'},
@@ -116,6 +117,7 @@ export class ManagerReportComponent implements OnInit {
     ];
 
     constructor(private reportService: ReportService) {
+        this.manager = {};
     }
 
     ngOnInit() {
@@ -126,9 +128,7 @@ export class ManagerReportComponent implements OnInit {
             const helper = new JwtHelperService();
             this.employee_details = helper.decodeToken(this.employee.access_token);
         }
-        console.log(this.employee_details);
         this.getManagerReport();
-        this.getManagerDetails();
     }
 
     getManagerDetails() {
@@ -143,7 +143,8 @@ export class ManagerReportComponent implements OnInit {
     getManagerReport() {
         this.reportService.getReport(this.employee.employee_id, this.filterData).subscribe(
             res => {
-                console.log(res);
+                this.manager = res.manager;
+                this.getManagerDetails();
                 this.showChartReport(res);
             }
         );
@@ -159,6 +160,8 @@ export class ManagerReportComponent implements OnInit {
         this.organizations_divisions_departments.push(organization);
         if (!this.NotNullOrEmpty(this.organization.divisions)) {
             this.organization.divisions.map((division) => {
+                // check if the employee is set to full reporting or not
+                // if employee is not set to full reporting then check if the division is same as employee division
                 const newDivision = {
                     id: this.organization._id + '_' + division._id,
                     name: '\u00A0 --' + division.name,
@@ -377,7 +380,6 @@ export class ManagerReportComponent implements OnInit {
                     calculated_total_percentage += r.percentage;
                 });
                 // calculate the positive percentage, negative percentage, neutrals
-                console.log(reason.options);
                 let positive = 0;
                 let negative = 0;
                 let neutral = 0;
