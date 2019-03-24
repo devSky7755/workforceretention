@@ -19,6 +19,7 @@ export class ReportsComponent implements OnInit {
     organization;
     limit = 9;
     employee;
+    message;
     completedSurveys = [];
 
     constructor(private surveyService: SurveyService,
@@ -47,6 +48,7 @@ export class ReportsComponent implements OnInit {
     setCompletedSurveys(offset, limit) {
         this.reportService.getReportDetails(this.employee.employee_id).subscribe(
             res => {
+                this.message = res.message;
                 this.first_name = res.name;
                 this.totalCompletedSurveys = res.completedSurveys;
                 this.totalEmployees = res.employees;
