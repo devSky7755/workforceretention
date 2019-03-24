@@ -14,7 +14,7 @@ export class ManagerReportComponent implements OnInit {
     employee;
     employee_details;
     completed_surveys = 0;
-    organization;
+    organizations;
     organizations_divisions_departments = [];
     top_leaving_reasons = [];
     response_array = [];
@@ -134,7 +134,7 @@ export class ManagerReportComponent implements OnInit {
     getManagerDetails() {
         this.reportService.getReportDetails(this.employee.employee_id).subscribe(
             res => {
-                this.organization = res.organization;
+                this.organizations = res.organizations;
                 this.arrangeOrganization();
             }
         );
@@ -152,30 +152,36 @@ export class ManagerReportComponent implements OnInit {
 
     arrangeOrganization() {
         // check the logged in employee is set to full reporting is yes or not
-        const organization = {
-            id: this.organization._id,
-            class: 'organization',
-            name: this.organization.name
-        };
-        this.organizations_divisions_departments.push(organization);
-        if (!this.NotNullOrEmpty(this.organization.divisions)) {
-            this.organization.divisions.map((division) => {
-                // check if the employee is set to full reporting or not
-                // if employee is not set to full reporting then check if the division is same as employee division
-                const newDivision = {
-                    id: this.organization._id + '_' + division._id,
-                    name: '\u00A0 --' + division.name,
-                    class: 'division'
+        if (this.manager.is_report === '0') {
+            this.organizations = this.organizations.filter(o => o._id === this.manager.organization._id);
+        }
+        this.organizations_divisions_departments = [];
+        if (!this.NotNullOrEmpty(this.organizations)) {
+            this.organizations.map((org) => {
+                const organization = {
+                    id: org._id,
+                    class: 'organization',
+                    name: org.name
                 };
-                this.organizations_divisions_departments.push(newDivision);
-                if (!this.NotNullOrEmpty(division.departments)) {
-                    division.departments.map((department) => {
-                        const newDepartment = {
-                            id: this.organization._id + '_' + division._id + '_' + department._id,
-                            class: 'department',
-                            name: '\u00A0 \u00A0 ---' + department.name
+                this.organizations_divisions_departments.push(organization);
+                if (!this.NotNullOrEmpty(org.divisions)) {
+                    org.divisions.map((division) => {
+                        const newDivision = {
+                            id: org._id + '_' + division._id,
+                            name: '\u00A0 --' + division.name,
+                            class: 'division'
                         };
-                        this.organizations_divisions_departments.push(newDepartment);
+                        this.organizations_divisions_departments.push(newDivision);
+                        if (!this.NotNullOrEmpty(division.departments)) {
+                            division.departments.map((department) => {
+                                const newDepartment = {
+                                    id: org._id + '_' + division._id + '_' + department._id,
+                                    class: 'department',
+                                    name: '\u00A0 \u00A0 ---' + department.name
+                                };
+                                this.organizations_divisions_departments.push(newDepartment);
+                            });
+                        }
                     });
                 }
             });
@@ -428,6 +434,9 @@ export class ManagerReportComponent implements OnInit {
         // and second half for what's not working
         // What's working
         // What's not working
+        this.employee_sentiment = [];
+        this.employee_sentiment_working_chart_data = [];
+        this.employee_sentiment_not_working_chart_data = [];
         const rating_radio_button_questions = data.response_array.filter(q => q.question_type == 1);
         // now we need to find the positive_percentage as well as negative percentage
         rating_radio_button_questions.map((question) => {

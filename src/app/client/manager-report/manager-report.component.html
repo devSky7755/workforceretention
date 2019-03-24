@@ -86,7 +86,8 @@
                             <button type="button" class="btn btn-primary" (click)="viewReport()">View Report</button>
                         </div>
                         <br>
-                        <h4 class="text-center">There are currently {{completed_surveys}} completed Exit Interviews at this level.</h4>
+                        <h4 class="text-center">There are currently {{completed_surveys}} completed Exit Interviews at
+                            this level.</h4>
                         <br><br>
                         <table width="100%" *ngIf="completed_surveys !== 0">
                             <tr>
@@ -124,106 +125,108 @@
                                 </ngx-charts-bar-vertical>
                             </div>
                         </div>
-                        <div *ngFor="let response of leaving_reason_rearranged_array; let i=index">
-                            <div *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0">
-                                <!--This means this is Career Opportunities Exit Reason-->
-                                <!--Give a title -->
-                                <h2>{{exit_reasons[response.label_index].value}} ( Rank {{i + 1}} )</h2>
-                                <!--Display the chart-->
-                                <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-bar-vertical-stacked
-                                            [scheme]="colorScheme"
-                                            [schemeType]="schemaType"
-                                            [results]="exit_reason_data_mapper[response.label_index].value"
-                                            [gradient]="gradient"
-                                            [xAxis]="showXAxis"
-                                            [yAxis]="showYAxis"
-                                            [legend]="showLegend"
-                                            [showXAxisLabel]="false"
-                                            [showYAxisLabel]="false"
-                                            [showDataLabel]="showDataLabel"
-                                            [xAxisLabel]="xAxisLabel"
-                                            [yAxisLabel]="yAxisLabel"
-                                            (select)="onSelect($event)">
+                        <ng-container *ngIf="completed_surveys !== 0">
+                            <div *ngFor="let response of leaving_reason_rearranged_array; let i=index">
+                                <div *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0">
+                                    <!--This means this is Career Opportunities Exit Reason-->
+                                    <!--Give a title -->
+                                    <h2>{{exit_reasons[response.label_index].value}} ( Rank {{i + 1}} )</h2>
+                                    <!--Display the chart-->
+                                    <div style="display: flex; overflow: hidden;height: 500px">
+                                        <ngx-charts-bar-vertical-stacked
+                                                [scheme]="colorScheme"
+                                                [schemeType]="schemaType"
+                                                [results]="exit_reason_data_mapper[response.label_index].value"
+                                                [gradient]="gradient"
+                                                [xAxis]="showXAxis"
+                                                [yAxis]="showYAxis"
+                                                [legend]="showLegend"
+                                                [showXAxisLabel]="false"
+                                                [showYAxisLabel]="false"
+                                                [showDataLabel]="showDataLabel"
+                                                [xAxisLabel]="xAxisLabel"
+                                                [yAxisLabel]="yAxisLabel"
+                                                (select)="onSelect($event)">
 
-                                    </ngx-charts-bar-vertical-stacked>
+                                        </ngx-charts-bar-vertical-stacked>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div *ngIf="employee_sentiment_working_chart_data.length > 0">
-                            <h2>Employee Sentiment What's Working</h2>
-                            <div style="display: flex; overflow: hidden;min-height: 500px">
-                                <ngx-charts-bar-horizontal-stacked
-                                        [scheme]="colorScheme"
-                                        [schemeType]="schemaType"
-                                        [results]="employee_sentiment_working_chart_data"
-                                        [gradient]="gradient"
-                                        [xAxis] ="true"
-                                        [showXAxisLabel]="true"
-                                        [yAxis]="true"
-                                        [legend]="true"
-                                        (select)="onSelect($event)">
-                                </ngx-charts-bar-horizontal-stacked>
+                            <div *ngIf="employee_sentiment_working_chart_data.length > 0">
+                                <h2>Employee Sentiment What's Working</h2>
+                                <div style="display: flex; overflow: hidden;min-height: 500px">
+                                    <ngx-charts-bar-horizontal-stacked
+                                            [scheme]="colorScheme"
+                                            [schemeType]="schemaType"
+                                            [results]="employee_sentiment_working_chart_data"
+                                            [gradient]="gradient"
+                                            [xAxis]="true"
+                                            [showXAxisLabel]="true"
+                                            [yAxis]="true"
+                                            [legend]="true"
+                                            (select)="onSelect($event)">
+                                    </ngx-charts-bar-horizontal-stacked>
+                                </div>
                             </div>
-                        </div>
-                        <div *ngIf="employee_sentiment_not_working_chart_data.length > 0">
-                            <h2>Employee Sentiment What's Not Working</h2>
-                            <div style="display: flex; overflow: hidden;min-height: 500px">
-                                <ngx-charts-bar-horizontal-stacked
-                                        [scheme]="colorScheme"
-                                        [schemeType]="schemaType"
-                                        [results]="employee_sentiment_not_working_chart_data"
-                                        [gradient]="gradient"
-                                        [xAxis] ="true"
-                                        [showXAxisLabel]="true"
-                                        [yAxis]="true"
-                                        [legend]="true"
-                                        (select)="onSelect($event)">
-                                </ngx-charts-bar-horizontal-stacked>
+                            <div *ngIf="employee_sentiment_not_working_chart_data.length > 0">
+                                <h2>Employee Sentiment What's Not Working</h2>
+                                <div style="display: flex; overflow: hidden;min-height: 500px">
+                                    <ngx-charts-bar-horizontal-stacked
+                                            [scheme]="colorScheme"
+                                            [schemeType]="schemaType"
+                                            [results]="employee_sentiment_not_working_chart_data"
+                                            [gradient]="gradient"
+                                            [xAxis]="true"
+                                            [showXAxisLabel]="true"
+                                            [yAxis]="true"
+                                            [legend]="true"
+                                            (select)="onSelect($event)">
+                                    </ngx-charts-bar-horizontal-stacked>
+                                </div>
                             </div>
-                        </div>
-                        <div *ngIf="gender_split_chart_data.length > 0">
-                            <h2 class="text-center">Gender Split</h2>
-                            <div style="display: flex; overflow: hidden;height: 500px">
-                                <ngx-charts-pie-chart
-                                        [scheme]="colorScheme"
-                                        [schemeType]="schemaType"
-                                        [results]="gender_split_chart_data"
-                                        [gradient]="gradient"
-                                        [labels]="true"
-                                        [legend]="true"
-                                        (select)="onSelect($event)">
-                                </ngx-charts-pie-chart>
+                            <div *ngIf="gender_split_chart_data.length > 0">
+                                <h2 class="text-center">Gender Split</h2>
+                                <div style="display: flex; overflow: hidden;height: 500px">
+                                    <ngx-charts-pie-chart
+                                            [scheme]="colorScheme"
+                                            [schemeType]="schemaType"
+                                            [results]="gender_split_chart_data"
+                                            [gradient]="gradient"
+                                            [labels]="true"
+                                            [legend]="true"
+                                            (select)="onSelect($event)">
+                                    </ngx-charts-pie-chart>
+                                </div>
                             </div>
-                        </div>
-                        <div *ngIf="tenure_split_chart_data.length > 0">
-                            <h2 class="text-center">Tenure Split</h2>
-                            <div style="display: flex; overflow: hidden;height: 500px">
-                                <ngx-charts-pie-chart
-                                        [scheme]="colorScheme"
-                                        [schemeType]="schemaType"
-                                        [results]="tenure_split_chart_data"
-                                        [gradient]="gradient"
-                                        [labels]="true"
-                                        [legend]="true"
-                                        (select)="onSelect($event)">
-                                </ngx-charts-pie-chart>
+                            <div *ngIf="tenure_split_chart_data.length > 0">
+                                <h2 class="text-center">Tenure Split</h2>
+                                <div style="display: flex; overflow: hidden;height: 500px">
+                                    <ngx-charts-pie-chart
+                                            [scheme]="colorScheme"
+                                            [schemeType]="schemaType"
+                                            [results]="tenure_split_chart_data"
+                                            [gradient]="gradient"
+                                            [labels]="true"
+                                            [legend]="true"
+                                            (select)="onSelect($event)">
+                                    </ngx-charts-pie-chart>
+                                </div>
                             </div>
-                        </div>
-                        <div *ngIf="age_split_chart_data.length > 0">
-                            <h2 class="text-center">Age Split</h2>
-                            <div style="display: flex; overflow: hidden;height: 500px">
-                                <ngx-charts-pie-chart
-                                        [scheme]="colorScheme"
-                                        [schemeType]="schemaType"
-                                        [results]="age_split_chart_data"
-                                        [gradient]="gradient"
-                                        [labels]="true"
-                                        [legend]="true"
-                                        (select)="onSelect($event)">
-                                </ngx-charts-pie-chart>
+                            <div *ngIf="age_split_chart_data.length > 0">
+                                <h2 class="text-center">Age Split</h2>
+                                <div style="display: flex; overflow: hidden;height: 500px">
+                                    <ngx-charts-pie-chart
+                                            [scheme]="colorScheme"
+                                            [schemeType]="schemaType"
+                                            [results]="age_split_chart_data"
+                                            [gradient]="gradient"
+                                            [labels]="true"
+                                            [legend]="true"
+                                            (select)="onSelect($event)">
+                                    </ngx-charts-pie-chart>
+                                </div>
                             </div>
-                        </div>
+                        </ng-container>
                     </div>
                     <div class="col-lg-2"></div>
                 </div>

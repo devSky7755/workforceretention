@@ -41,36 +41,57 @@ exports.ManagerReportDetails = (req, res, next) => {
                     "message": "Employee not found"
                 })
             }
-
+            // needs to find the client organizations
             // get the client employees under the manager organization
-            Client.findById(employee.client)
-                .populate([{
-                    path: 'employees',
-                    model: 'Employee',
-                    match: {organization: employee.organization}
-                }])
-                .exec(function (err, client) {
-                    // client.employees contains all the employees
-                    // client.employees.length will be the total length of the
-                    // now foreach employees check who have completed the survey or not
-                    // if completed survey then count that employee
-                    let completedSurveys = 0;
-                    client.employees.forEach((employee) => {
-                        employee.surveys.map((survey) => {
-                            if (survey.completed) {
-                                completedSurveys++;
-                            }
-                        });
+            let message = '';
+            let match = {};
+            if (employee.is_report === '0') {
+                match = {organization: employee.organization};
+            }
+            Client.findById(employee.client).populate({
+                path: 'employees',
+                model: 'Employee',
+                match: match
+            }).populate([{
+                path: 'organizations',
+                model: 'Organization',
+                populate: {
+                    path: 'divisions',
+                    model: 'Division',
+                    populate: {
+                        path: 'departments',
+                        model: 'Department'
+                    }
+                }
+            }]).exec(function (err, client) {
+                // client.employees contains all the employees
+                // client.employees.length will be the total length of the
+                // now foreach employees check who have completed the survey or not
+                // if completed survey then count that employee
+                let completedSurveys = 0;
+                client.employees.forEach((employee) => {
+                    employee.surveys.map((survey) => {
+                        if (survey.completed) {
+                            completedSurveys++;
+                        }
                     });
-                    if (err) return next(err);
-                    return res.status(200).json({
-                        success: true,
-                        name: employee.first_name,
-                        organization: employee.organization,
-                        employees: client.employees.length,
-                        completedSurveys
-                    })
                 });
+                if (err) return next(err);
+                if (employee.is_report === '0') {
+                    message = `${completedSurveys} surveys have been completed by Employees of organization ${employee.organization.name}`;
+                } else {
+                    message = `${completedSurveys} surveys have been completed by Employees under client ${client.name}`;
+                }
+                return res.status(200).json({
+                    success: true,
+                    message: message,
+                    name: employee.first_name,
+                    organizations: client.organizations,
+                    organization: employee.organization,
+                    employees: client.employees.length,
+                    completedSurveys
+                })
+            });
         });
 
 };
@@ -191,6 +212,16 @@ exports.ManagerReport = (req, res, next) => {
                                 filtered_employees = filtered_employees.filter(e => getAge(e.hire_date) > 10);
                             }
                         }
+                        // filter the employees if employee.is_report is 0. that means full reporting set to no
+                        // employee.organization._id.equals(filter_employee.organization)
+                        if (employee.is_report === '0') {
+                            // filter those employees who are not in the same organization
+                            filtered_employees = filtered_employees.filter(fe => employee.organization._id.equals(fe.organization));
+                        }
+                        // filtered_employees.map((fe) => {
+                        //     console.log(employee.organization._id.equals(fe.organization));
+                        //     console.log(`manager organization = ${employee.organization._id} filtered employee organization = ${fe.organization}`)
+                        // });
 
                         // from the filtered employees find out the below things
                         // Gender Split that means we need to find how many employee is Male and how Many is Female
