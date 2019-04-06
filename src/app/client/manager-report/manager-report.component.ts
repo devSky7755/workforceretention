@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../../@core/data/report.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import * as CanvasJS from '../../../assets/canvasjs.min.js';
 
 @Component({
     selector: 'ngx-manager-report',
@@ -477,6 +478,31 @@ export class ManagerReportComponent implements OnInit {
         // console.log(this.employee_sentiment_working_chart_data);
         // console.log("***************** what's not working *************");
         // console.log(this.employee_sentiment_not_working_chart_data);
+        console.log(CanvasJS);
+        const chart = new CanvasJS.Chart('chartContainer', {
+            animationEnabled: true,
+            exportEnabled: true,
+            title: {
+                text: 'Basic Column Chart in Angular'
+            },
+            data: [{
+                type: 'column',
+                dataPoints: [
+                    {y: 71, label: 'Apple'},
+                    {y: 55, label: 'Mango'},
+                    {y: 50, label: 'Orange'},
+                    {y: 65, label: 'Banana'},
+                    {y: 95, label: 'Pineapple'},
+                    {y: 68, label: 'Pears'},
+                    {y: 28, label: 'Grapes'},
+                    {y: 34, label: 'Lychee'},
+                    {y: 14, label: 'Jackfruit'}
+                ]
+            }]
+        });
+        console.log(this.single);
+
+        chart.render();
 
     }
 

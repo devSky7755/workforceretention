@@ -125,6 +125,7 @@
                                 </ngx-charts-bar-vertical>
                             </div>
                         </div>
+                        <!--******************************** ngx-charts implementation *****************************-->
                         <ng-container *ngIf="completed_surveys !== 0">
                             <div *ngFor="let response of leaving_reason_rearranged_array; let i=index">
                                 <div *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0">
@@ -226,6 +227,10 @@
                                     </ngx-charts-pie-chart>
                                 </div>
                             </div>
+                        </ng-container>
+                        <!--********************************* canvasJS chart implementation ***********************-->
+                        <ng-container>
+                            <div id="chartContainer" style="width: 100%; height: 400px;"></div>
                         </ng-container>
                     </div>
                     <div class="col-lg-2"></div>
