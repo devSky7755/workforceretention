@@ -143,7 +143,7 @@
                                                 [yAxis]="showYAxis"
                                                 [legend]="showLegend"
                                                 [showXAxisLabel]="false"
-                                                [showYAxisLabel]="false"
+                                                [showYAxisLabel]="true"
                                                 [showDataLabel]="showDataLabel"
                                                 [xAxisLabel]="xAxisLabel"
                                                 [yAxisLabel]="yAxisLabel"
@@ -162,6 +162,7 @@
                                             [results]="employee_sentiment_working_chart_data"
                                             [gradient]="gradient"
                                             [xAxis]="true"
+                                            [showDataLabel]="true"
                                             [showXAxisLabel]="true"
                                             [yAxis]="true"
                                             [legend]="true"
@@ -229,9 +230,9 @@
                             </div>
                         </ng-container>
                         <!--********************************* canvasJS chart implementation ***********************-->
-                        <ng-container>
-                            <div id="chartContainer" style="width: 100%; height: 400px;"></div>
-                        </ng-container>
+<!--                        <ng-container>-->
+<!--                            <div id="chartContainer" style="width: 100%; height: 400px;"></div>-->
+<!--                        </ng-container>-->
                     </div>
                     <div class="col-lg-2"></div>
                 </div>

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ReportService} from "../../@core/data/report.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import * as CanvasJS from '../../../assets/canvasjs.min.js';
+
+// import * as CanvasJS from '../../../assets/canvasjs.min.js';
 
 @Component({
     selector: 'ngx-manager-report',
@@ -452,8 +453,12 @@ export class ManagerReportComponent implements OnInit {
                     negative += option.answered;
                 }
             });
-            const positive_percentage = (positive / total_answered) * 100;
-            const negative_percentage = (negative / total_answered) * 100;
+            let positive_percentage = 0;
+            let negative_percentage = 0;
+            if (total_answered > 0) {
+                positive_percentage = (positive / total_answered) * 100;
+                negative_percentage = (negative / total_answered) * 100;
+            }
             const series = [];
             series.push({name: 'Agreed', value: positive_percentage});
             series.push({name: 'Disagreed / Neutral', value: negative_percentage});
@@ -461,7 +466,6 @@ export class ManagerReportComponent implements OnInit {
             this.employee_sentiment.push({
                 name: this.exit_reasons.find(ex => ex.id == question.exit_reason).value + ' - ' + question.exit_reporting_label,
                 positive_percentage,
-                negative_percentage,
                 series: series
             });
         });
@@ -474,35 +478,34 @@ export class ManagerReportComponent implements OnInit {
         for (let i = sentiment_divider_length; i < this.employee_sentiment.length; i++) {
             this.employee_sentiment_not_working_chart_data.push(this.employee_sentiment[i]);
         }
-        // console.log("***************** what's working *************");
-        // console.log(this.employee_sentiment_working_chart_data);
-        // console.log("***************** what's not working *************");
-        // console.log(this.employee_sentiment_not_working_chart_data);
-        console.log(CanvasJS);
-        const chart = new CanvasJS.Chart('chartContainer', {
-            animationEnabled: true,
-            exportEnabled: true,
-            title: {
-                text: 'Basic Column Chart in Angular'
-            },
-            data: [{
-                type: 'column',
-                dataPoints: [
-                    {y: 71, label: 'Apple'},
-                    {y: 55, label: 'Mango'},
-                    {y: 50, label: 'Orange'},
-                    {y: 65, label: 'Banana'},
-                    {y: 95, label: 'Pineapple'},
-                    {y: 68, label: 'Pears'},
-                    {y: 28, label: 'Grapes'},
-                    {y: 34, label: 'Lychee'},
-                    {y: 14, label: 'Jackfruit'}
-                ]
-            }]
-        });
-        console.log(this.single);
+        console.log("***************** what's working *************");
+        console.log(this.employee_sentiment_working_chart_data);
+        console.log("***************** what's not working *************");
+        console.log(this.employee_sentiment_not_working_chart_data);
 
-        chart.render();
+
+        // ******************************* Transform the chart data like as CanvasJs Chart ***********************
+
+        // *********************** Top Leaving Reason Chart *************************
+        // this.single.map((reason) => {
+        //     reason.y = parseFloat(reason.value);
+        //     reason.label = reason.name;
+        // });
+        // console.log(this.single);
+        // const top_reason_chart = new CanvasJS.Chart('chartContainer', {
+        //     animationEnabled: true,
+        //     exportEnabled: true,
+        //     // dataPointWidth: 50,
+        //     title: {
+        //         text: 'Basic Column Chart in Angular'
+        //     },
+        //     data: [{
+        //         type: 'column',
+        //         dataPoints: this.single
+        //     }]
+        // });
+        //
+        // top_reason_chart.render();
 
     }
 

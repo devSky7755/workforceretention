@@ -24,10 +24,12 @@
                     <div class="row full-name-inputs">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="firstName"
-                                       name="user-first-name" nbInput fullWidth
-                                       placeholder="First Name" [(ngModel)]="employee.first_name">
-
+                                <div class="input-label">
+                                    <input type="text" class="form-control" formControlName="firstName"
+                                           name="user-first-name" nbInput fullWidth
+                                           placeholder="First Name *" [(ngModel)]="employee.first_name">
+                                    <span>First Name *</span>
+                                </div>
                                 <!--Register Error Here-->
                                 <div class="alert alert-danger" role="alert"
                                      *ngIf="get('firstName').touched && get('firstName').invalid">
@@ -37,9 +39,12 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <input type="text" formControlName="lastName" name="user-last-name"
-                                       class="form-control" nbInput fullWidth
-                                       placeholder="Last Name" [(ngModel)]="employee.last_name">
+                                <div class="input-label">
+                                    <input type="text" formControlName="lastName" name="user-last-name"
+                                           class="form-control" nbInput fullWidth
+                                           placeholder="Last Name" [(ngModel)]="employee.last_name">
+                                    <span>Last Name *</span>
+                                </div>
                                 <!--Register Error Here-->
                                 <div class="alert alert-danger" role="alert"
                                      *ngIf="get('lastName').touched && get('lastName').invalid">
@@ -51,9 +56,12 @@
 
                     <!--USERNAME-->
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="username" name="username"
-                               placeholder="Username *" [disabled]="true"
-                               [(ngModel)]="employee.username">
+                        <div class="input-label">
+                            <input type="text" class="form-control" formControlName="username" name="username"
+                                   placeholder="Username *" [disabled]="true"
+                                   [(ngModel)]="employee.username">
+                            <span>Username *</span>
+                        </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
                              *ngIf="get('username').touched && get('username').invalid">
@@ -63,9 +71,12 @@
 
                     <!--EMAIL ADDRESS-->
                     <div class="form-group">
-                        <input type="email" class="form-control" formControlName="email" name="user-email"
-                               placeholder="Email Address" [disabled]="true"
-                               [(ngModel)]="employee.email">
+                        <div class="input-label">
+                            <input type="email" class="form-control" formControlName="email" name="user-email"
+                                   placeholder="Email Address" [disabled]="true"
+                                   [(ngModel)]="employee.email">
+                            <span>Email Address</span>
+                        </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
                              *ngIf="get('email').touched && get('email').invalid">
@@ -98,31 +109,43 @@
                     <!--DATE OF BIRTH-->
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
-                        <input nbInput fullWidth formControlName="birth_date"
-                               placeholder="Date of Birth"
-                               [nbDatepicker]="birthPicker" [(ngModel)]="employee.birth_date">
+                        <div class="input-label">
+                            <input nbInput fullWidth formControlName="birth_date"
+                                   placeholder="Date of Birth"
+                                   [nbDatepicker]="birthPicker" [(ngModel)]="employee.birth_date">
+                            <span>Date of Birth *</span>
+                        </div>
                         <nb-datepicker #birthPicker></nb-datepicker>
                     </div>
 
                     <!--Work Phone-->
                     <div class="form-group">
-                        <input type="text" formControlName="work_phone"
-                               class="form-control" nbInput fullWidth
-                               placeholder="Work Phone" [(ngModel)]="employee.work_phone">
+                        <div class="input-label">
+                            <input type="text" formControlName="work_phone"
+                                   class="form-control" nbInput fullWidth
+                                   placeholder="Work Phone" [(ngModel)]="employee.work_phone">
+                            <span>Work Phone</span>
+                        </div>
                     </div>
 
                     <!--Mobile Phone-->
                     <div class="form-group">
-                        <input type="text" formControlName="mobile_phone"
-                               class="form-control" nbInput fullWidth
-                               placeholder="Mobile Phone" [(ngModel)]="employee.mobile_phone">
+                        <div class="input-label">
+                            <input type="text" formControlName="mobile_phone"
+                                   class="form-control" nbInput fullWidth
+                                   placeholder="Mobile Phone" [(ngModel)]="employee.mobile_phone">
+                            <span>Mobile Phone</span>
+                        </div>
                     </div>
 
                     <!--POSITION TITLE-->
                     <div class="form-group">
-                        <input type="text" class="form-control" formControlName="position" name="position"
-                               placeholder="Position *" [disabled]="true"
-                               [(ngModel)]="employee.position">
+                        <div class="input-label">
+                            <input type="text" class="form-control" formControlName="position" name="position"
+                                   placeholder="Position *" [disabled]="true"
+                                   [(ngModel)]="employee.position">
+                            <span>Position *</span>
+                        </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
                              *ngIf="get('position').touched && get('position').invalid">
@@ -164,27 +187,36 @@
                     <!--HIRE DATE-->
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
-                        <input nbInput fullWidth formControlName="hire_date"
-                               placeholder="Hire Date"
-                               [nbDatepicker]="hireDatePicker">
+                        <div class="input-label">
+                            <input nbInput fullWidth formControlName="hire_date"
+                                   placeholder="Hire Date"
+                                   [nbDatepicker]="hireDatePicker">
+                            <span>Hire Date</span>
+                        </div>
                         <nb-datepicker #hireDatePicker></nb-datepicker>
                     </div>
 
                     <!--RESIGNATION DATE-->
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
-                        <input nbInput fullWidth formControlName="resignation_date"
-                               placeholder="Resignation Date"
-                               [nbDatepicker]="resignationDatePicker" [(ngModel)]="employee.resignation_date">
+                        <div class="input-label">
+                            <input nbInput fullWidth formControlName="resignation_date"
+                                   placeholder="Resignation Date"
+                                   [nbDatepicker]="resignationDatePicker" [(ngModel)]="employee.resignation_date">
+                            <span>Resignation Date</span>
+                        </div>
                         <nb-datepicker #resignationDatePicker></nb-datepicker>
                     </div>
 
                     <!--EXIT DATE-->
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
-                        <input nbInput fullWidth formControlName="exit_date"
-                               placeholder="Exit Date"
-                               [nbDatepicker]="exitDatePicker" [(ngModel)]="employee.exit_date">
+                        <div class="input-label">
+                            <input nbInput fullWidth formControlName="exit_date"
+                                   placeholder="Exit Date"
+                                   [nbDatepicker]="exitDatePicker" [(ngModel)]="employee.exit_date">
+                            <span>Exit Date</span>
+                        </div>
                         <nb-datepicker #exitDatePicker></nb-datepicker>
                     </div>
 
@@ -213,7 +245,8 @@
                     <div class="form__group u-margin-bottom-medium">
                         <label style="padding-top: 5px;padding-right: 42px">Level Manager *</label>
                         <div class="form__radio-group">
-                            <input type="radio" class="form__radio-input" formControlName="is_manager" (change)="onChangeManager()" value="1"
+                            <input type="radio" class="form__radio-input" formControlName="is_manager"
+                                   (change)="onChangeManager()" value="1"
                                    id="level-manager-yes">
                             <label for="level-manager-yes" class="form__radio-label">
                                 <span class="form__radio-button"></span>
@@ -221,7 +254,8 @@
                             </label>
                         </div>
                         <div class="form__radio-group">
-                            <input type="radio" class="form__radio-input" formControlName="is_manager" (change)="onChangeManager()" value="0"
+                            <input type="radio" class="form__radio-input" formControlName="is_manager"
+                                   (change)="onChangeManager()" value="0"
                                    id="level-manager-no">
                             <label for="level-manager-no" class="form__radio-label">
                                 <span class="form__radio-button"></span>
@@ -295,7 +329,8 @@
 
                     <!--Generate Password Button for Re-generating Password-->
                     <div class="form-group" *ngIf="employeeId">
-                        <button type="button" class="btn btn-primary" (click)="resendPassword()">Resend Password</button>
+                        <button type="button" class="btn btn-primary" (click)="resendPassword()">Resend Password
+                        </button>
                     </div>
 
 

@@ -11,7 +11,6 @@
   background-color: rgba(255, 255, 255, 0.5);
   border-bottom: 3px solid transparent;
   width: 90%;
-  border: none;
   display: block;
   transition: all .3s;
 }
@@ -92,4 +91,45 @@
 
 input[type="file"] {
   visibility: hidden;
+}
+
+.input-label {
+  margin: 20px 0;
+  position: relative;
+  display: block;
+}
+
+span {
+  padding: 10px;
+  pointer-events: none;
+  position: absolute;
+  left: 5px;
+  top: 0;
+  transition: 0.2s;
+  transition-timing-function: ease;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  opacity: 0.5;
+}
+
+input {
+  padding: 10px;
+}
+
+input:focus + span, input:not(:placeholder-shown) + span {
+  opacity: 1;
+  transform: scale(0.75) translateY(-100%) translateX(-30px);
+}
+
+input:placeholder-shown + span {
+  display: none;
+}
+
+/* For IE Browsers*/
+input:focus + span, input:not(:-ms-input-placeholder) + span {
+  opacity: 1;
+  transform: scale(0.75) translateY(-100%) translateX(-30px);
+}
+
+input:-ms-input-placeholder + span {
+  display: none;
 }
