@@ -285,9 +285,12 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     }
 
     updateQuestionAnswer() {
-        this.answers.map((answer, index) => {
-            answer.options = this.question_answers[index].options;
-            // remove everything except the options since options will be updated
+        this.answers.map((answer) => {
+            const selected_question = this.question_answers.find(a => a.question === answer.question);
+            answer.options = selected_question.options;
+            answer.employee = selected_question.employee;
+            answer.question_type = selected_question.question_type;
+            answer.survey = selected_question.survey;
         });
         this.answerService.updateManyAnswer(this.answers).subscribe(
             () => {
@@ -398,6 +401,9 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                             }
                         });
                     }
+                } else {
+                    // set this. this means no answer is given in this answers
+                    this.answers.push({question: question._id, new: true});
                 }
             });
         });

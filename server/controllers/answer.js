@@ -98,20 +98,25 @@ exports.CreateMany = (req, res, next) => {
 exports.UpdateAnswers = (req, res, next) => {
     let data = req.body;
     let answer_ids = [];
+    let new_answers = [];
     data.forEach((answer) => {
-        answer_ids.push(answer._id);
+        if (answer.new) new_answers.push(answer);
+        else answer_ids.push(answer._id);
     });
+    console.log(data);
+    console.log('*************************************************');
     // find out the answers by the answer ids
     Answer.find({'_id': {$in: answer_ids}}, function (err, answers) {
         if (err) return next(err);
-        console.log(answers);
-        answers.forEach((answer, index) => {
-            answer.options = data[index].options;
+        answers.forEach((answer) => {
+            answer.options = data.find(a => a.question == answer.question).options;
             answer.save();
         });
         res.json({success: true, message: "Exit Interview Updated"});
     });
 };
+
+// make a new function for saving the new answers and return a promise when all the answers is save
 
 exports.Find = (req, res, next) => {
     const currentPage = req.query.page || 1; //staticPage number

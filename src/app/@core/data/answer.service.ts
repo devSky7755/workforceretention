@@ -33,8 +33,8 @@ export class AnswerService {
         return this.http.post(this.urlService.baseUrl + `/api/v1/answers/add-many?surveyId=${surveyId}&employeeId=${employeeId}`, body, httpOptions);
     }
 
-    updateManyAnswer(answer): Observable<any> {
-        const body = JSON.stringify(answer);
+    updateManyAnswer(answers): Observable<any> {
+        const body = JSON.stringify(answers);
         return this.http.post(this.urlService.baseUrl + '/api/v1/answers/update-many', body, httpOptions);
     }
 
