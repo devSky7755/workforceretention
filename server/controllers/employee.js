@@ -104,9 +104,8 @@ exports.Upload = function (req, res, next) {
                             if (err) {
                                 if (err.name === 'BulkWriteError' && err.code === 11000) {
                                     return next(new Error(`Employee with the email or username ${err.op.email} already exist`));
-                                } else {
-                                    return next(err);
                                 }
+                                return next(err);
                             } else {
                                 await sendEmailsToEmployees(employeesToUpload, client).then((employeesToUpload) => {
                                     //After saving the employees insert all the employees id to the

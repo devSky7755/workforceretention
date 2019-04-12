@@ -103,20 +103,56 @@ exports.UpdateAnswers = (req, res, next) => {
         if (answer.new) new_answers.push(answer);
         else answer_ids.push(answer._id);
     });
-    console.log(data);
-    console.log('*************************************************');
     // find out the answers by the answer ids
-    Answer.find({'_id': {$in: answer_ids}}, function (err, answers) {
-        if (err) return next(err);
-        answers.forEach((answer) => {
-            answer.options = data.find(a => a.question == answer.question).options;
-            answer.save();
+    updateNewAnswers(new_answers).then(() => {
+        Answer.find({'_id': {$in: answer_ids}}, function (err, answers) {
+            if (err) return next(err);
+            answers.forEach((answer) => {
+                answer.options = data.find(a => mongoose.Types.ObjectId(a.question).equals(answer.question)).options;
+                answer.save();
+            });
+            res.json({success: true, message: "Exit Interview Updated"});
         });
-        res.json({success: true, message: "Exit Interview Updated"});
     });
 };
 
 // make a new function for saving the new answers and return a promise when all the answers is save
+const updateNewAnswers = (new_answers) => {
+    return new Promise((resolve) => {
+        if (new_answers.length > 0) {
+            // this means new question answer available
+            // we need to insert the question answer into the database
+
+            // first insert all the answers into the database
+            // then it will return an an array of answers which is inserted into the database
+            // now from that inserted answers we need to find out the questions id
+            // now by that question_ids we need to find out all the questions
+            // now in the question array we need to push the new answer and save that question
+            Answer.insertMany(new_answers, (err, docs) => {
+                let answers = [];
+                let questions = [];
+
+                docs.forEach((answer) => {
+                    answers.push({id: answer._id, question: answer.question});
+                    questions.push(answer.question);
+                });
+
+                Question.find({'_id': {$in: questions}}, function (err, question_docs) {
+                    if (err) return next(err);
+                    question_docs.forEach((question) => {
+                        question.answers.push(answers.find(a => mongoose.Types.ObjectId(a.question).equals(question._id)).id);
+                        question.save();
+                    });
+                    resolve();
+                })
+            });
+
+        } else {
+            // this means no new question answer available
+            resolve();
+        }
+    })
+};
 
 exports.Find = (req, res, next) => {
     const currentPage = req.query.page || 1; //staticPage number
