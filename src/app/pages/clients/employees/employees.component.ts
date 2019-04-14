@@ -10,6 +10,7 @@ import {
     ViewChild
 } from '@angular/core';
 import {EmployeeService} from "../../../@core/data/employee.service";
+import {URLService} from "../../../@core/data/url.service";
 
 @Component({
     selector: 'ngx-employees',
@@ -21,6 +22,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     @Input() clientId: string;
     @Output() employeeEdit = new EventEmitter();
     @Output() employeeDetails = new EventEmitter();
+    @Output() employeeAdd = new EventEmitter();
     rows = [];
     count = 0;
     offset = 0;
@@ -32,7 +34,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     filePicker: ElementRef;
     sortProp;
 
-    constructor(private employeeService: EmployeeService) {
+    constructor(private employeeService: EmployeeService, private urlService: URLService) {
     }
 
     ngOnInit() {
@@ -139,8 +141,17 @@ export class EmployeesComponent implements OnInit, OnChanges {
         );
     }
 
+    onClickAddEmployee() {
+        this.employeeAdd.emit();
+    }
+
     downloadEmployeeTemplate() {
-        console.log('downloading template...');
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = this.urlService.baseUrl + '/employees.csv';
+        a.click();
+        a.remove(); // remove the element
     }
 
     ngOnChanges(changes: SimpleChanges) {

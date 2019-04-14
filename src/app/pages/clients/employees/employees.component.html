@@ -6,9 +6,15 @@
      *ngIf="errorMessage">
     {{errorMessage}}
 </div>
-<div style="float: left;">
-    <input type="file" #filePicker (change)="onFilePicked($event)">
-    <button type="button" class="btn btn-success btn-xs" (click)="filePicker.click()">Upload Employee</button>
+<div style="float: left; margin-left: 20px">
+    <a [routerLink]="" (click)="downloadEmployeeTemplate()">Click here to download employee upload template</a>
+</div>
+<div style="float: right;">
+    <input style="display: none" type="file" #filePicker (change)="onFilePicked($event)">
+    <button style="margin-right: 10px" type="button" class="btn btn-success btn-xs" (click)="filePicker.click()">Upload
+        Employee
+    </button>
+    <button class="btn btn-success btn-xs" (click)="onClickAddEmployee()">Add Employee</button>
 </div>
 <ngx-datatable
         [rows]="rows"

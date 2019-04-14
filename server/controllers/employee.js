@@ -392,7 +392,12 @@ exports.Create = function (req, res, next) {
 
                             // step-4 : [employee_password] set the employee plain password.
                             body = body.replace('[employee_password]', password);
-                            return helpers.SendEmailToEmployee({from, to, subject, body});
+                            // check if the employee is set to online or not. if set to is_online === '1' only then sent email
+                            if (employee.is_online === '1' || employee.is_manager === '1') {
+                                return helpers.SendEmailToEmployee({from, to, subject, body});
+                            } else {
+                                return Promise.resolve();
+                            }
                         }).then(() => {
                             return res.status(200).send({
                                 "success": true,
