@@ -64,7 +64,7 @@ exports.CreateMany = (req, res, next) => {
 
             // get all the question
             // from the docs extract the answer _id
-
+            if (err) return next(err);
             docs.forEach((answer) => {
                 answers.push(answer._id)
             });

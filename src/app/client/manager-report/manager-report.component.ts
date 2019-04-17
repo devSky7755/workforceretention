@@ -63,7 +63,7 @@ export class ManagerReportComponent implements OnInit {
     gradient = false;
     showLegend = true;
     schemaType = 'ordinal';
-    showDataLabel = false;
+    showDataLabel = true;
     showXAxisLabel = true;
     xAxisLabel = '';
     showYAxisLabel = true;
@@ -72,6 +72,9 @@ export class ManagerReportComponent implements OnInit {
     // colorScheme = {
     //     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
     // };
+    barChartColorSchema = {
+        domain: ['#5AA454', '#C7B42C', '#A10A28']
+    };
     colorScheme = 'night';
 
     onSelect(event) {

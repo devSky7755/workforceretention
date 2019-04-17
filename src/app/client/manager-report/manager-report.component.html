@@ -88,6 +88,9 @@
                         <br>
                         <h4 class="text-center">There are currently {{completed_surveys}} completed Exit Interviews at
                             this level.</h4>
+                        <div class="text-center">
+                            <a routerLink="/">Click here to view print version of this report</a>
+                        </div>
                         <br><br>
                         <table width="100%" *ngIf="completed_surveys !== 0">
                             <tr>
@@ -135,7 +138,7 @@
                                     <!--Display the chart-->
                                     <div style="display: flex; overflow: hidden;height: 500px">
                                         <ngx-charts-bar-vertical-stacked
-                                                [scheme]="colorScheme"
+                                                [scheme]="barChartColorSchema"
                                                 [schemeType]="schemaType"
                                                 [results]="exit_reason_data_mapper[response.label_index].value"
                                                 [gradient]="gradient"
@@ -230,9 +233,9 @@
                             </div>
                         </ng-container>
                         <!--********************************* canvasJS chart implementation ***********************-->
-<!--                        <ng-container>-->
-<!--                            <div id="chartContainer" style="width: 100%; height: 400px;"></div>-->
-<!--                        </ng-container>-->
+                        <!--                        <ng-container>-->
+                        <!--                            <div id="chartContainer" style="width: 100%; height: 400px;"></div>-->
+                        <!--                        </ng-container>-->
                     </div>
                     <div class="col-lg-2"></div>
                 </div>

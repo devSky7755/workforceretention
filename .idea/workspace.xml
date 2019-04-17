@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/public/employees.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/1.5306fe4d10448b79ba8a.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/10.259aa462abcb529a993a.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/11.61cc9b5676bd69f84e5d.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/12.9446631b1ef7b5d5cb94.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/13.824beeeeffcb249ff78d.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/13.219fa952d5ad04b75ae9.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/14.c5403674d975c4d043a1.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/15.f8f88b4f815130dbfce7.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/16.bd54952163f02c77dfd4.js" beforeDir="false" />
@@ -237,14 +236,14 @@
       <change beforePath="$PROJECT_DIR$/dist/ionicons.dd4781d1acc57ba4c480.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/layers-2x.4f0283c6ce28e888000e.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/layers.a6137456ed160d760698.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.0f0fc0dd1d7f4288cd20.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.9c35c71fee4df4b7013e.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/marker-icon.2273e3d8ad9264b7daa5.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.85e45e2f83750a4184af.eot" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.e5b059e952431846f8ab.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.e7b6b47eeafe34432dca.woff" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.ee79fa432c91db08585f.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/polyfills.fce38edb8ff51bf798d3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/runtime.b797ffd5105caba3cdba.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/runtime.bc89cce293accc8e4f24.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/scripts.db6f6c877546c61ad1c1.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/socicon.60e5857089e98edd8380.eot" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/socicon.944f06f5f65ef84a3a36.woff" beforeDir="false" />
@@ -253,10 +252,11 @@
       <change beforePath="$PROJECT_DIR$/dist/square_pattern.b7c0827326f8d621b1ed.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/square_pattern_cosmic.a242954570515ecdde9d.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/styles.aba743c48b1aeef6f4a1.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/employees.csv" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/employees.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/clients.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/clients.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" afterDir="false" />
     </list>
@@ -272,23 +272,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#80#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+              <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -344,7 +332,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/app/pages/reporting/report-files/add-edit-report/add-edit-report.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/reporting/report-files/report-files.component.scss" />
         <option value="$PROJECT_DIR$/src/app/pages/reporting/report-files/report-files.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-selection.component.ts" />
@@ -378,21 +365,22 @@
         <option value="$PROJECT_DIR$/src/app/client/reports/reports.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/reports/reports.component.html" />
         <option value="$PROJECT_DIR$/server/controllers/report.js" />
-        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.html" />
-        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/reporting/data-reports/data-reports.component.ts" />
         <option value="$PROJECT_DIR$/src/app/@theme/components/footer/footer.component.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/data/answer.service.ts" />
         <option value="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" />
-        <option value="$PROJECT_DIR$/server/controllers/answer.js" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.scss" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" />
         <option value="$PROJECT_DIR$/server/index.js" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" />
         <option value="$PROJECT_DIR$/server/controllers/employee.js" />
+        <option value="$PROJECT_DIR$/server/public/employees.csv" />
+        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" />
+        <option value="$PROJECT_DIR$/server/controllers/answer.js" />
         <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
       </list>
@@ -414,13 +402,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
               <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
@@ -448,10 +452,71 @@
               <item name="@core" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="clients" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="clients" type="462c0819:PsiDirectoryNode" />
+              <item name="employees" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="clients" type="462c0819:PsiDirectoryNode" />
+              <item name="employees" type="462c0819:PsiDirectoryNode" />
+              <item name="employee-details" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="clients" type="462c0819:PsiDirectoryNode" />
+              <item name="surveys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="surveys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+              <item name="surveys" type="462c0819:PsiDirectoryNode" />
+              <item name="survey-management" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -660,12 +725,15 @@
       <workItem from="1554994327304" duration="670000" />
       <workItem from="1555014114084" duration="5995000" />
       <workItem from="1555070433091" duration="4655000" />
-      <workItem from="1555268757476" duration="4128000" />
+      <workItem from="1555268757476" duration="4609000" />
+      <workItem from="1555346934620" duration="2381000" />
+      <workItem from="1555428651968" duration="479000" />
+      <workItem from="1555523419004" duration="4443000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="732655000" />
+    <option name="totallyTimeSpent" value="740439000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -696,37 +764,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/routes/clients.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/client.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="43" column="24" lean-forward="true" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/employee.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="23" column="42" lean-forward="true" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/employee.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="71" column="16" lean-forward="true" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/authentication/authentication.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -906,31 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="52" lean-forward="true" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
-            <element signature="n#div#4;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
-            <element signature="n#div#5;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="2" lean-forward="true" selection-start-line="10" selection-start-column="2" selection-end-line="10" selection-end-column="2" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package-lock.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -992,48 +1004,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/answer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="141" column="33" lean-forward="true" selection-start-line="141" selection-start-column="33" selection-end-line="141" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.scss">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2205">
-          <caret line="147" column="32" lean-forward="true" selection-start-line="147" selection-start-column="32" selection-end-line="147" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/public/employees.csv">
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="83" selection-start-line="2" selection-start-column="83" selection-end-line="2" selection-end-column="83" />
-        </state>
-      </provider>
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#2;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1079,9 +1051,95 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/public/employees.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+          <column index="6" width="100" />
+          <column index="7" width="100" />
+          <column index="8" width="100" />
+          <column index="9" width="100" />
+          <column index="10" width="100" />
+          <column index="11" width="100" />
+          <column index="12" width="100" />
+          <column index="13" width="100" />
+          <column index="14" width="100" />
+          <column index="15" width="100" />
+          <column index="16" width="100" />
+          <column index="17" width="100" />
+          <column index="18" width="100" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="50" selection-start-line="2" selection-start-column="50" selection-end-line="2" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/models/employee.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/surveys/survey-management/survey-management.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-204" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/surveys/surveys.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-172" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/answer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="66" column="38" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#div#3;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="136" column="41" lean-forward="true" selection-start-line="136" selection-start-column="41" selection-end-line="136" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2865">
+          <caret line="191" column="15" lean-forward="true" selection-start-line="191" selection-start-column="15" selection-end-line="191" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
+        <state relative-caret-position="437">
           <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
@@ -1089,10 +1147,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2595">
+          <caret line="173" column="38" lean-forward="true" selection-start-line="173" selection-start-column="38" selection-end-line="173" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#div#3;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+            <element signature="n#div#4;n#ng-container#0;n#div#1;n#div#0;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="82" column="60" lean-forward="true" selection-start-line="81" selection-end-line="84" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

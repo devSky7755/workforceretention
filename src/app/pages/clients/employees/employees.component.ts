@@ -129,10 +129,16 @@ export class EmployeesComponent implements OnInit, OnChanges {
                         employee.id = employee._id;
                         employee.firstName = employee.first_name;
                         employee.lastName = employee.last_name;
+                        employee.exitDate = employee.exit_date;
+                        employee.manager = employee.is_manager;
+                        employee.active = employee.is_active;
+                        employee.isSurvey = employee.is_survey;
+                        employee.completed = employee.surveys[0].completed;
                         rows.push(employee);
                     });
                 }
                 this.rows = rows;
+                console.log(this.rows);
 
             },
             (err) => {

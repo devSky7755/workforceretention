@@ -9,12 +9,12 @@
 <div style="float: left; margin-left: 20px">
     <a [routerLink]="" (click)="downloadEmployeeTemplate()">Click here to download employee upload template</a>
 </div>
-<div style="float: right;">
+<div style="float: right;margin-bottom: 10px">
     <input style="display: none" type="file" #filePicker (change)="onFilePicked($event)">
-    <button style="margin-right: 10px" type="button" class="btn btn-success btn-xs" (click)="filePicker.click()">Upload
-        Employee
-    </button>
-    <button class="btn btn-success btn-xs" (click)="onClickAddEmployee()">Add Employee</button>
+    <button style="margin-right: 10px" type="button" class="btn btn-outline-primary" (click)="filePicker.click()">Upload Employee</button>
+    <button class="btn btn-outline-primary" (click)="onClickAddEmployee()">Add Employee</button>
+    <input type="text" class="form-control" style="display: inline-block;width: 300px;margin-left: 20px" placeholder="Enter name or email"/>
+    <button type="button" class="btn btn-outline-primary"><i class="fa fa-search fa-7x" aria-hidden="true"></i></button>
 </div>
 <ngx-datatable
         [rows]="rows"
@@ -43,20 +43,68 @@
             <strong>{{value}}</strong>
         </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="email">
-        <ng-template let-column="column" ngx-datatable-header-template>
-            <a [routerLink]="" (click)="onClickSort('email')"><strong>Email</strong></a>
-        </ng-template>
-        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-            <strong>{{value}}</strong>
-        </ng-template>
-    </ngx-datatable-column>
     <ngx-datatable-column name="position">
         <ng-template let-column="column" ngx-datatable-header-template>
             <a [routerLink]="" (click)="onClickSort('position')"><strong>Position</strong></a>
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
             <strong>{{value}}</strong>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <!--Show the employee is a manager or not, exit_date, Active, surveys, completed-->
+    <ngx-datatable-column name="manager">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            <a [routerLink]="" (click)="onClickSort('manager')"><strong>Manager</strong></a>
+        </ng-template>
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <i class="fa fa-check-square-o" aria-hidden="true"
+               *ngIf="value == '1'"></i>
+            <i class="fa fa-times" aria-hidden="true"
+               *ngIf="value == '0'"></i>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="active">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            <a [routerLink]="" (click)="onClickSort('active')"><strong>Active</strong></a>
+        </ng-template>
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <i class="fa fa-check-square-o" aria-hidden="true"
+               *ngIf="value == '1'"></i>
+            <i class="fa fa-times" aria-hidden="true"
+               *ngIf="value == '0'"></i>
+        </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="isSurvey">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            <a [routerLink]="" (click)="onClickSort('is_survey')"><strong>Surveys</strong></a>
+        </ng-template>
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <i class="fa fa-check-square-o" aria-hidden="true"
+               *ngIf="value == '1'"></i>
+            <i class="fa fa-times" aria-hidden="true"
+               *ngIf="value == '0'"></i>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="completed">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            <strong>Completed</strong>
+        </ng-template>
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <i class="fa fa-check-square-o" aria-hidden="true"
+               *ngIf="value == '1'"></i>
+            <i class="fa fa-times" aria-hidden="true"
+               *ngIf="value == '0'"></i>
+        </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="exitDate">
+        <ng-template let-column="column" ngx-datatable-header-template>
+            <a [routerLink]="" (click)="onClickSort('exit_date')"><strong>Exit</strong></a>
+        </ng-template>
+        <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <strong>{{value | date}}</strong>
         </ng-template>
     </ngx-datatable-column>
 

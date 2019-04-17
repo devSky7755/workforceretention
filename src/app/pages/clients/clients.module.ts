@@ -28,6 +28,7 @@ import { SurveysComponent } from './surveys/surveys.component';
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 import { EmployeeSurveyComponent } from './employees/employee-survey/employee-survey.component';
 import { DataReportsComponent } from './data-reports/data-reports.component';
+import {CellModule} from "ng2-smart-table/components/cell/cell.module";
 
 @NgModule({
     declarations: [ClientSelectionComponent, AddEditClientComponent,
@@ -55,7 +56,8 @@ import { DataReportsComponent } from './data-reports/data-reports.component';
         FormsModule,
         ReactiveFormsModule,
         NbActionsModule,
-        NbTabsetModule
+        NbTabsetModule,
+        CellModule
     ],
     providers: [
         SmartTableService,
