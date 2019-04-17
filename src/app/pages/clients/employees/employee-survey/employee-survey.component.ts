@@ -167,7 +167,8 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                 } else if (question.type == this.question_types[1].id && cat_question.exit_reason !== 'Final Question') {
                     // Free Text
                     const free_text_input = <HTMLInputElement>document.getElementById(`question-comment-${question.question_no}`);
-                    options.push(free_text_input.value);
+                    const comment = free_text_input.value === '' ? ' ' : free_text_input.value;
+                    options.push(comment);
                 } else if (question.type == this.question_types[2].id && cat_question.exit_reason !== 'Final Question') {
                     let valid = false;
                     // Exit Interview - Exit Reasons

@@ -55,6 +55,7 @@ exports.CreateMany = (req, res, next) => {
     data.answers.forEach((answer) => {
         questions.push(answer.question);
     });
+    console.log(data.answers);
     Employee.findById(employeeId, (err, employee) => {
 
         if (err) return next(err);
