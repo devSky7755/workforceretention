@@ -32,7 +32,8 @@
             <li *ngIf="isAuth" class="client-logo">
                 <!-- Show the client logo here -->
                 <a>
-                    <img src="images/client/{{employeeService.clientImage}}" class="profile-image" width="100%">
+                    <img *ngIf="employeeService.clientImage!==''" src="images/client/{{employeeService.clientImage}}"
+                         class="profile-image" width="100%">
                 </a>
             </li>
 

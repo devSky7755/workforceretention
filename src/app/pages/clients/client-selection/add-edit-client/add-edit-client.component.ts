@@ -228,7 +228,11 @@ export class AddEditClientComponent implements OnInit {
         // Finally set the Id of the Client
         this.clientId = data.client._id;
         //API is returning client industry object which contain industry name and _id
-        this.client.industry = data.client.industry;
+        if (typeof data.client.industry._id !== 'undefined') {
+            this.client.industry = data.client.industry._id;
+        } else {
+            this.client.industry = data.client.industry;
+        }
     }
 
     getCountries() {
