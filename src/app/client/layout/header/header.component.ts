@@ -3,6 +3,7 @@ import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {EmployeeService} from "../../../@core/data/employee.service";
 import {JwtHelperService} from '@auth0/angular-jwt';
+import {ClientService} from "../../../@core/data/client.service";
 
 
 @Component({
@@ -14,7 +15,9 @@ export class HeaderComponent implements OnInit {
     isAuth: boolean = false;
     authSubscription: Subscription;
 
-    constructor(private router: Router, private employeeService: EmployeeService) {
+    constructor(private router: Router,
+                private employeeService: EmployeeService,
+                private clientService: ClientService) {
     }
 
     ngOnInit() {
@@ -31,11 +34,25 @@ export class HeaderComponent implements OnInit {
                 this.logout();
             } else {
                 this.isAuth = true;
+                if (this.employeeService.clientImage === '') {
+                    const decodedToken = helper.decodeToken(employee.access_token);
+                    this.getClient(decodedToken.client);
+                }
             }
         }
         this.authSubscription = this.employeeService.authChange.subscribe(authStatus => {
             this.isAuth = authStatus;
         });
+    }
+
+    getClient(client_id) {
+        // here get the client and set the image
+        this.clientService.getClient(client_id).subscribe(
+            res => {
+                console.log(res);
+                this.employeeService.clientImage = res.client.image;
+            }
+        );
     }
 
     logout() {

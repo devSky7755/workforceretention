@@ -26,7 +26,7 @@ ul, ol {
 
 header {
   width: 100%;
-  height: 70px;
+  height: 150px;
   background: #2d8ac7;
   display: flex;
   position: relative;
@@ -49,14 +49,16 @@ header nav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin-top: 40px;
 }
 
 header nav .logo {
   color: #fff;
   font-size: 2em;
   text-transform: uppercase;
-  padding: 20px 20px 10px 20px;
+  padding: 0;
+  margin-top: -10px;
   text-decoration: none;
 }
 
@@ -147,4 +149,8 @@ nav li:hover ul {
   top: -10px;
   width: 100px;
   position: relative;
+}
+.client-logo{
+  margin-top: -40px;
+  width: 150px;
 }

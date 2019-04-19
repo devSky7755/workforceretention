@@ -29,7 +29,12 @@
                     </ul>
                 </a>
             </li>
-
+            <li *ngIf="isAuth" class="client-logo">
+                <!-- Show the client logo here -->
+                <a>
+                    <img src="images/client/{{employeeService.clientImage}}" class="profile-image" width="100%">
+                </a>
+            </li>
 
             <!--Here set-up a list which will show only if the user is logged in-->
             <!--List will have a circle image avatar-->

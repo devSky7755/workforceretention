@@ -21,6 +21,7 @@ export class AuthenticationComponent implements OnInit {
     // use reactive form approach for handling form
     ngOnInit() {
         this.createForm();
+        // here check if the employee already logged in then redirect the user to the dashboard page
     }
 
     // validator function

@@ -12,6 +12,7 @@ export class EmployeeService {
     authChange = new Subject<boolean>();
     employee;
     surveyCompleted = false;
+    clientImage = '';
 
     isAuth() {
         return this.employee != null;

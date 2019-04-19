@@ -479,7 +479,7 @@ exports.login = function (req, res, next) {
      */
 
     // here we need to populate the employee organization, employee division and department
-    Employee.findOne({email}, 'username email password first_name last_name is_manager is_survey is_report').then((employee, err) => {
+    Employee.findOne({email}, 'username email password first_name last_name is_manager is_survey is_report client').then((employee, err) => {
         if (err) return (new Error("Unable to find employee with the email " + email));
 
         if (!employee) {
@@ -531,7 +531,7 @@ exports.token = function (req, res, next) {
     let refreshToken = req.body.refreshToken;
 
     if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] === email)) {
-        Employee.findOne({email}, 'username email first_name last_name is_manager is_survey is_report').then((employee, err) => {
+        Employee.findOne({email}, 'username email first_name last_name is_manager is_survey is_report client').then((employee, err) => {
             if (err) return next(err);
             if (!employee) {
                 const error = new Error("Employee not found, please sign up.");
