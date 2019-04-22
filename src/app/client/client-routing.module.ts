@@ -10,6 +10,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {EmployeeSurveyDownloadComponent} from "./employee-survey-download/employee-survey-download.component";
 import {ManagerReportComponent} from "./manager-report/manager-report.component";
 import {ReportsComponent} from "./reports/reports.component";
+import {ManagerReportPdfComponent} from "./manager-report-pdf/manager-report-pdf.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
     {path: 'report', component: ReportsComponent},
     {path: 'employee-survey', component: EmployeeSurveyDownloadComponent},
     {path: 'questions/:id', component: QuestionsComponent},
-    {path: 'manager-report', component: ManagerReportComponent}
+    {path: 'manager-report', component: ManagerReportComponent},
+    {path: 'manager-report-pdf', component: ManagerReportPdfComponent}
 ];
 
 @NgModule({

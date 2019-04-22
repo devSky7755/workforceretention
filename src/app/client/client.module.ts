@@ -21,6 +21,7 @@ import { EmployeeSurveyDownloadComponent } from './employee-survey-download/empl
 import { ManagerReportComponent } from './manager-report/manager-report.component';
 import { ReportsComponent } from './reports/reports.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
+import { ManagerReportPdfComponent } from './manager-report-pdf/manager-report-pdf.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
         ProfileComponent,
         EmployeeSurveyDownloadComponent,
         ManagerReportComponent,
-        ReportsComponent
+        ReportsComponent,
+        ManagerReportPdfComponent
     ],
     imports: [
         CommonModule,
