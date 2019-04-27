@@ -15,6 +15,7 @@ export class ManagerReportComponent implements OnInit {
     genders = [{id: "Male", value: "Male"}, {id: "Female", value: "Female"}];
     employee;
     employee_details;
+    client;
     completed_surveys = 0;
     organizations;
     organizations_divisions_departments = [];
@@ -123,6 +124,7 @@ export class ManagerReportComponent implements OnInit {
 
     constructor(private reportService: ReportService) {
         this.manager = {};
+        this.client = {};
     }
 
     ngOnInit() {
@@ -274,241 +276,284 @@ export class ManagerReportComponent implements OnInit {
 // ]
 
     showChartReport(data) {
-        this.completed_surveys = data.completed;
-        this.top_reason_for_leaving_chart_data = [];
-        // first get the final question
-        // find the top 3 reasons for leaving the exit interview from the final question
+        this.client = data.client;
 
-        //***************Gender Calculation***************
-        this.gender_split_chart_data = data.genders;
-        // from gender data calculate percentage
-        let total = 0;
-        this.gender_split_chart_data.map((g) => {
-            total += g.value;
-        });
-        if (total !== 0) {
-            this.gender_split_chart_data.map((g) => {
-                g.value = (g.value / total) * 100;
-            });
-        } else {
-            this.gender_split_chart_data = [];
-        }
-        //****************Age Calculation******************
-        //from ages data calculate percentage
-        this.age_split_chart_data = data.ages;
-        total = 0;
-        this.age_split_chart_data.map((a) => {
-            total += a.value;
-        });
-        if (total !== 0) {
-            this.age_split_chart_data.map((a) => {
-                a.value = (a.value / total) * 100;
-            });
-        } else {
-            this.age_split_chart_data = [];
-        }
+        // *************************************** Aggregate Data Only Filtering ***************************
+        // check if the filterData.level !== ""
+        // check the selected level is organization or division or department
+        // if the selected level is organization check res.client.org_mgt === '0' 0 means aggregate data only
+        // if the selected level is division check res.client.div_mgt === '0'
+        // if the selected level is department check res.client.dept_mgt === '0'
 
-        //*****************Tenure Calculation****************
-        this.tenure_split_chart_data = data.tenures;
-        total = 0;
-        this.tenure_split_chart_data.map((t) => {
-            total += t.value;
-        });
-        if (total !== 0) {
-            this.tenure_split_chart_data.map((t) => {
-                t.value = (t.value / total) * 100;
-            });
-        } else {
-            this.tenure_split_chart_data = [];
-        }
-
-        this.response_array = data.response_array;
-        const final_question = data.response_array.find(ex => ex.exit_reason === '13');
-        // Percentage Calculation
-        // total points = 45
-        // Career Opportunities Percentage = (12 /45) * 100 = 26.66 %
-        let total_points = 0;
-        final_question.options.map((option) => {
-            total_points += option.answered;
-        });
-        // now calculate the percentage for each option
-        final_question.options.map((option) => {
-            option.percentage = ((option.answered / total_points) * 100).toFixed(2);
-            // Percentage upto 2 decimal place
-        });
-        // now we need to re-arrange options by percentage in the descending order
-        final_question.options.sort((a, b) => (a.percentage < b.percentage) ? 1 : -1);
-        this.leaving_reason_rearranged_array = final_question.options;
-        // now we can take the first three items and insert it into the top_leaving_reasons array
-        this.top_leaving_reasons = [];
-        if (final_question.options.length > 3) {
-            // this means there are more than 3 items so we can take the first 3 items
-            this.top_leaving_reasons.push(final_question.options[0], final_question.options[1], final_question.options[2]);
-        }
-        final_question.options.map((option) => {
-            const result = {name: this.exit_reasons[option.label_index].value, value: option.percentage};
-            this.top_reason_for_leaving_chart_data.push(result);
-        });
-
-        // foreach answer in the response_array find out the percentage
-        this.response_array.map((answer) => {
-            if (answer.exit_reason !== '13') {
-                // we already find out the percentage for final question. so we don't need to do this again
-                total_points = 0;
-                answer.options.map((option) => {
-                    total_points += option.answered;
-                });
-                // now calculate the percentage for each option
-                answer.options.map((option) => {
-                    option.percentage = (option.answered / total_points) * 100;
-                });
+        // if the selected option is aggregate data only then we should check how many employees completed the survey
+        // if this.completed_surveys is less than 5 we should not display the chart report
+        let show_data = true;
+        const message = "To assure anonymity, at least 5 surveys must be completed at this level before you can view these reports";
+        if (this.filterData.level !== "") {
+            // split the level with _ then we will understand the selected level is organization or division or department
+            const split_level = this.filterData.level.split('_');
+            if (split_level.length === 1) {
+                // selected level is an organization
+                if (this.client.org_mgt === 0) {
+                    if (data.completed < 5) {
+                        show_data = false;
+                    }
+                }
+            } else if (split_level.length === 2) {
+                // selected level is division level
+                if (this.client.div_mgt === 0) {
+                    if (data.completed < 5) {
+                        show_data = false;
+                    }
+                }
+            } else if (split_level.length === 3) {
+                // selected level is department level
+                if (this.client.dept_mgt === 0) {
+                    if (data.completed < 5) {
+                        show_data = false;
+                    }
+                }
             }
-        });
+        }
+        if (show_data) {
+            this.completed_surveys = data.completed;
+            this.top_reason_for_leaving_chart_data = [];
+            // first get the final question
+            // find the top 3 reasons for leaving the exit interview from the final question
 
-        // Now loop through the final question options and find out exit reason by the label_index
-        // after finding the exit reason find out all the answers by the exit reason
-        // for example exit reason is 3 (communication). so find out all the answers which exit_reason is 3
-        // finally rearrange the data like as the above structure
-
-
-        // make empty the exit_reason_data_mapper array. so that later time when we click on view report button don't duplicate data
-        this.exit_reason_data_mapper.map((mapped_reason) => {
-            mapped_reason.value = [];
-        });
-        const positive_values = ['Strongly Agree', 'Agree'];
-        const negative_values = ['Disagree', 'Strongly Disagree'];
-        final_question.options.map((option) => {
-            const mapped_reason = this.exit_reason_data_mapper[option.label_index];
-            const filtered_reason = this.response_array.filter(x => x.exit_reason === mapped_reason.exit_reason);
-            filtered_reason.map((reason) => {
-                // name
-                // series
-                const series = [];
-                // calculate the total percentage. if total percentage is zero that means nobody answered this question
-                // so we don't need to push the object into the array
-                let calculated_total_percentage = 0;
-                reason.options.map((r) => {
-                    calculated_total_percentage += r.percentage;
+            //***************Gender Calculation***************
+            this.gender_split_chart_data = data.genders;
+            // from gender data calculate percentage
+            let total = 0;
+            this.gender_split_chart_data.map((g) => {
+                total += g.value;
+            });
+            if (total !== 0) {
+                this.gender_split_chart_data.map((g) => {
+                    g.value = (g.value / total) * 100;
                 });
-                // calculate the positive percentage, negative percentage, neutrals
-                let positive = 0;
-                let negative = 0;
-                let neutral = 0;
-                let total_answered = 0;
-                reason.options.map((r, index) => {
-                    if (reason.question_type === '3') {
-                        if (JSON.parse(r.label)) { // this will make string "true" to boolean true
-                            series.push({name: this.exit_reasons[index].value, value: r.percentage});
-                        }
-                    } else if (reason.question_type === '1') {
-                        total_answered += r.answered;
-                        if (positive_values.findIndex(item => r.label.toLowerCase() === item.toLowerCase()) > -1) {
-                            positive += r.answered;
-                        } else if (negative_values.findIndex(item => r.label.toLowerCase() === item.toLowerCase()) > -1) {
-                            negative += r.answered;
+            } else {
+                this.gender_split_chart_data = [];
+            }
+            //****************Age Calculation******************
+            //from ages data calculate percentage
+            this.age_split_chart_data = data.ages;
+            total = 0;
+            this.age_split_chart_data.map((a) => {
+                total += a.value;
+            });
+            if (total !== 0) {
+                this.age_split_chart_data.map((a) => {
+                    a.value = (a.value / total) * 100;
+                });
+            } else {
+                this.age_split_chart_data = [];
+            }
+
+            //*****************Tenure Calculation****************
+            this.tenure_split_chart_data = data.tenures;
+            total = 0;
+            this.tenure_split_chart_data.map((t) => {
+                total += t.value;
+            });
+            if (total !== 0) {
+                this.tenure_split_chart_data.map((t) => {
+                    t.value = (t.value / total) * 100;
+                });
+            } else {
+                this.tenure_split_chart_data = [];
+            }
+
+            this.response_array = data.response_array;
+            const final_question = data.response_array.find(ex => ex.exit_reason === '13');
+            // Percentage Calculation
+            // total points = 45
+            // Career Opportunities Percentage = (12 /45) * 100 = 26.66 %
+            let total_points = 0;
+            final_question.options.map((option) => {
+                total_points += option.answered;
+            });
+            // now calculate the percentage for each option
+            final_question.options.map((option) => {
+                option.percentage = ((option.answered / total_points) * 100).toFixed(2);
+                // Percentage upto 2 decimal place
+            });
+            // now we need to re-arrange options by percentage in the descending order
+            final_question.options.sort((a, b) => (a.percentage < b.percentage) ? 1 : -1);
+            this.leaving_reason_rearranged_array = final_question.options;
+            // now we can take the first three items and insert it into the top_leaving_reasons array
+            this.top_leaving_reasons = [];
+            if (final_question.options.length > 3) {
+                // this means there are more than 3 items so we can take the first 3 items
+                this.top_leaving_reasons.push(final_question.options[0], final_question.options[1], final_question.options[2]);
+            }
+            final_question.options.map((option) => {
+                const result = {name: this.exit_reasons[option.label_index].value, value: option.percentage};
+                this.top_reason_for_leaving_chart_data.push(result);
+            });
+
+            // foreach answer in the response_array find out the percentage
+            this.response_array.map((answer) => {
+                if (answer.exit_reason !== '13') {
+                    // we already find out the percentage for final question. so we don't need to do this again
+                    total_points = 0;
+                    answer.options.map((option) => {
+                        total_points += option.answered;
+                    });
+                    // now calculate the percentage for each option
+                    answer.options.map((option) => {
+                        option.percentage = (option.answered / total_points) * 100;
+                    });
+                }
+            });
+
+            // Now loop through the final question options and find out exit reason by the label_index
+            // after finding the exit reason find out all the answers by the exit reason
+            // for example exit reason is 3 (communication). so find out all the answers which exit_reason is 3
+            // finally rearrange the data like as the above structure
+
+
+            // make empty the exit_reason_data_mapper array. so that later time when we click on view report button don't duplicate data
+            this.exit_reason_data_mapper.map((mapped_reason) => {
+                mapped_reason.value = [];
+            });
+            const positive_values = ['Strongly Agree', 'Agree'];
+            const negative_values = ['Disagree', 'Strongly Disagree'];
+            final_question.options.map((option) => {
+                const mapped_reason = this.exit_reason_data_mapper[option.label_index];
+                const filtered_reason = this.response_array.filter(x => x.exit_reason === mapped_reason.exit_reason);
+                filtered_reason.map((reason) => {
+                    // name
+                    // series
+                    const series = [];
+                    // calculate the total percentage. if total percentage is zero that means nobody answered this question
+                    // so we don't need to push the object into the array
+                    let calculated_total_percentage = 0;
+                    reason.options.map((r) => {
+                        calculated_total_percentage += r.percentage;
+                    });
+                    // calculate the positive percentage, negative percentage, neutrals
+                    let positive = 0;
+                    let negative = 0;
+                    let neutral = 0;
+                    let total_answered = 0;
+                    reason.options.map((r, index) => {
+                        if (reason.question_type === '3') {
+                            if (JSON.parse(r.label)) { // this will make string "true" to boolean true
+                                series.push({name: this.exit_reasons[index].value, value: r.percentage});
+                            }
+                        } else if (reason.question_type === '1') {
+                            total_answered += r.answered;
+                            if (positive_values.findIndex(item => r.label.toLowerCase() === item.toLowerCase()) > -1) {
+                                positive += r.answered;
+                            } else if (negative_values.findIndex(item => r.label.toLowerCase() === item.toLowerCase()) > -1) {
+                                negative += r.answered;
+                            } else {
+                                neutral += r.answered;
+                            }
                         } else {
-                            neutral += r.answered;
+                            series.push({name: r.label, value: r.percentage});
                         }
-                    } else {
-                        series.push({name: r.label, value: r.percentage});
+                    });
+                    const positive_percentage = (positive / total_answered) * 100;
+                    const negative_percentage = (negative / total_answered) * 100;
+                    const neutral_percentage = (neutral / total_answered) * 100;
+                    if (reason.question_type === '1') {
+                        series.push({name: 'Agreed', value: positive_percentage});
+                        series.push({name: 'Disagreed', value: negative_percentage});
+                        series.push({name: 'Neutral', value: neutral_percentage});
+                    }
+                    if (calculated_total_percentage !== 0 && !isNaN(calculated_total_percentage)) {
+                        const rearrange_answer = {name: reason.exit_reporting_label, series: series};
+                        mapped_reason.value.push(rearrange_answer);
                     }
                 });
-                const positive_percentage = (positive / total_answered) * 100;
-                const negative_percentage = (negative / total_answered) * 100;
-                const neutral_percentage = (neutral / total_answered) * 100;
-                if (reason.question_type === '1') {
-                    series.push({name: 'Agreed', value: positive_percentage});
-                    series.push({name: 'Disagreed', value: negative_percentage});
-                    series.push({name: 'Neutral', value: neutral_percentage});
-                }
-                if (calculated_total_percentage !== 0 && !isNaN(calculated_total_percentage)) {
-                    const rearrange_answer = {name: reason.exit_reporting_label, series: series};
-                    mapped_reason.value.push(rearrange_answer);
-                }
             });
-        });
-        this.single = this.top_reason_for_leaving_chart_data;
-        this.single = this.single.filter(x => parseFloat(x.value) != 0);
-        // console.log(this.exit_reason_data_mapper);
-        // Solution for reducing the bar width but it's not working
+            this.single = this.top_reason_for_leaving_chart_data;
+            this.single = this.single.filter(x => parseFloat(x.value) != 0);
+            // console.log(this.exit_reason_data_mapper);
+            // Solution for reducing the bar width but it's not working
 
-        // get all the rating radio button questions
-        // now sort by agree/strongly agree in the descending order
-        // now divide the length of the array by 2
-        // now take first half for what's working
-        // and second half for what's not working
-        // What's working
-        // What's not working
-        this.employee_sentiment = [];
-        this.employee_sentiment_working_chart_data = [];
-        this.employee_sentiment_not_working_chart_data = [];
-        const rating_radio_button_questions = data.response_array.filter(q => q.question_type == 1);
-        // now we need to find the positive_percentage as well as negative percentage
-        rating_radio_button_questions.map((question) => {
-            let positive = 0;
-            let negative = 0;
-            let total_answered = 0;
-            question.options.map((option) => {
-                total_answered += option.answered;
-                if (positive_values.findIndex(item => option.label.toLowerCase() === item.toLowerCase()) > -1) {
-                    positive += option.answered;
-                } else {
-                    negative += option.answered;
+            // get all the rating radio button questions
+            // now sort by agree/strongly agree in the descending order
+            // now divide the length of the array by 2
+            // now take first half for what's working
+            // and second half for what's not working
+            // What's working
+            // What's not working
+            this.employee_sentiment = [];
+            this.employee_sentiment_working_chart_data = [];
+            this.employee_sentiment_not_working_chart_data = [];
+            const rating_radio_button_questions = data.response_array.filter(q => q.question_type == 1);
+            // now we need to find the positive_percentage as well as negative percentage
+            rating_radio_button_questions.map((question) => {
+                let positive = 0;
+                let negative = 0;
+                let total_answered = 0;
+                question.options.map((option) => {
+                    total_answered += option.answered;
+                    if (positive_values.findIndex(item => option.label.toLowerCase() === item.toLowerCase()) > -1) {
+                        positive += option.answered;
+                    } else {
+                        negative += option.answered;
+                    }
+                });
+                let positive_percentage = 0;
+                let negative_percentage = 0;
+                if (total_answered > 0) {
+                    positive_percentage = (positive / total_answered) * 100;
+                    negative_percentage = (negative / total_answered) * 100;
                 }
+                const series = [];
+                series.push({name: 'Agreed', value: positive_percentage});
+                series.push({name: 'Disagreed / Neutral', value: negative_percentage});
+                // concatenate exit_reason with exit_reporting_label
+                this.employee_sentiment.push({
+                    name: this.exit_reasons.find(ex => ex.id == question.exit_reason).value + ' - ' + question.exit_reporting_label,
+                    positive_percentage,
+                    series: series
+                });
             });
-            let positive_percentage = 0;
-            let negative_percentage = 0;
-            if (total_answered > 0) {
-                positive_percentage = (positive / total_answered) * 100;
-                negative_percentage = (negative / total_answered) * 100;
+            // sort by agree/strongly agree in the descending order
+            this.employee_sentiment.sort((a, b) => (a.positive_percentage < b.positive_percentage) ? 1 : ((b.positive_percentage < a.positive_percentage) ? -1 : 0));
+            const sentiment_divider_length = Math.round(this.employee_sentiment.length / 2);
+            for (let i = 0; i < sentiment_divider_length; i++) {
+                this.employee_sentiment_working_chart_data.push(this.employee_sentiment[i]);
             }
-            const series = [];
-            series.push({name: 'Agreed', value: positive_percentage});
-            series.push({name: 'Disagreed / Neutral', value: negative_percentage});
-            // concatenate exit_reason with exit_reporting_label
-            this.employee_sentiment.push({
-                name: this.exit_reasons.find(ex => ex.id == question.exit_reason).value + ' - ' + question.exit_reporting_label,
-                positive_percentage,
-                series: series
-            });
-        });
-        // sort by agree/strongly agree in the descending order
-        this.employee_sentiment.sort((a, b) => (a.positive_percentage < b.positive_percentage) ? 1 : ((b.positive_percentage < a.positive_percentage) ? -1 : 0));
-        const sentiment_divider_length = Math.round(this.employee_sentiment.length / 2);
-        for (let i = 0; i < sentiment_divider_length; i++) {
-            this.employee_sentiment_working_chart_data.push(this.employee_sentiment[i]);
+            for (let i = sentiment_divider_length; i < this.employee_sentiment.length; i++) {
+                this.employee_sentiment_not_working_chart_data.push(this.employee_sentiment[i]);
+            }
+            console.log("***************** what's working *************");
+            console.log(this.employee_sentiment_working_chart_data);
+            console.log("***************** what's not working *************");
+            console.log(this.employee_sentiment_not_working_chart_data);
+
+
+            // ******************************* Transform the chart data like as CanvasJs Chart ***********************
+
+            // *********************** Top Leaving Reason Chart *************************
+            // this.single.map((reason) => {
+            //     reason.y = parseFloat(reason.value);
+            //     reason.label = reason.name;
+            // });
+            // console.log(this.single);
+            // const top_reason_chart = new CanvasJS.Chart('chartContainer', {
+            //     animationEnabled: true,
+            //     exportEnabled: true,
+            //     // dataPointWidth: 50,
+            //     title: {
+            //         text: 'Basic Column Chart in Angular'
+            //     },
+            //     data: [{
+            //         type: 'column',
+            //         dataPoints: this.single
+            //     }]
+            // });
+            //
+            // top_reason_chart.render();
+        } else {
+            alert(message);
         }
-        for (let i = sentiment_divider_length; i < this.employee_sentiment.length; i++) {
-            this.employee_sentiment_not_working_chart_data.push(this.employee_sentiment[i]);
-        }
-        console.log("***************** what's working *************");
-        console.log(this.employee_sentiment_working_chart_data);
-        console.log("***************** what's not working *************");
-        console.log(this.employee_sentiment_not_working_chart_data);
-
-
-        // ******************************* Transform the chart data like as CanvasJs Chart ***********************
-
-        // *********************** Top Leaving Reason Chart *************************
-        // this.single.map((reason) => {
-        //     reason.y = parseFloat(reason.value);
-        //     reason.label = reason.name;
-        // });
-        // console.log(this.single);
-        // const top_reason_chart = new CanvasJS.Chart('chartContainer', {
-        //     animationEnabled: true,
-        //     exportEnabled: true,
-        //     // dataPointWidth: 50,
-        //     title: {
-        //         text: 'Basic Column Chart in Angular'
-        //     },
-        //     data: [{
-        //         type: 'column',
-        //         dataPoints: this.single
-        //     }]
-        // });
-        //
-        // top_reason_chart.render();
 
     }
 
