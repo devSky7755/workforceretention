@@ -62,9 +62,9 @@ exports.Upload = function (req, res, next) {
                         //here find the organization by name
                         json[i].organization = findOrganizationByName(json[i].organization, organizations);
                         //here find the division by name
-                        // json[i].division = findDivisionByName(json[i].division, organizations);
+                        json[i].division = findDivisionByName(json[i].division, organizations);
                         // here find the department by name
-                        // json[i].department = findDepartmentByName(json[i].department, organizations);
+                        json[i].department = findDepartmentByName(json[i].department, organizations);
 
                         // hire_date, exit_date, resign_date, date_of_birth
                         if (!isNullOrEmpty(json[i].hire_date)) {

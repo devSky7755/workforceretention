@@ -130,8 +130,6 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.clientService.getClientOrganizations(this.clientId).subscribe(
             data => {
                 this.organizations = data.client.organizations;
-                console.log('********* Organization ********');
-                console.log(this.organizations);
                 this.setOrganizations(this.organizations);
             },
             err => {
@@ -210,8 +208,6 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         } else {
             employee['organization'] = split_organization[0];
         }
-        console.log(split_organization);
-
         if (this.employeeForm.valid) {
             // check if the pageId is null or not. if null then insert else update
             if (this.employeeId) {
@@ -224,7 +220,6 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     }
 
     setEmployee(data) {
-        console.log(data);
         this.initialEmailAddress = data.employee.email;
         this.employee.email = data.employee.email;
 
@@ -265,7 +260,6 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         }
         this.employee.mobile_phone = data.employee.mobile;
         this.employee.work_phone = data.employee.phone;
-        this.get('email').disable();
 
         if (this.get('is_manager').value == '0') {
             this.get('hire_date').setValue(this.dateService.parse(data.employee.hire_date, 'en-us'));
@@ -311,7 +305,6 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     update(employee) {
         delete employee.password;
         delete employee.confirmPassword;
-        delete employee.email;
         this.employeeService.updateEmployee(employee, this.employeeId).subscribe(
             data => {
                 this.successMessage = data.message;

@@ -26,7 +26,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     rows = [];
     count = 0;
     offset = 0;
-    limit = 10;
+    limit = 50;
     successMessage;
     errorMessage;
     employees = [];
