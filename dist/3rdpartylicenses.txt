@@ -217,10 +217,10 @@ TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF TH
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-socicon
+typeface-exo
 MIT
 
-typeface-exo
+socicon
 MIT
 
 @fortawesome/fontawesome-free
