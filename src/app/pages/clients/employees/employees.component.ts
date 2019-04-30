@@ -33,6 +33,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     @ViewChild('filePicker')
     filePicker: ElementRef;
     sortProp;
+    filterValue = '';
 
     constructor(private employeeService: EmployeeService, private urlService: URLService) {
     }
@@ -93,6 +94,11 @@ export class EmployeesComponent implements OnInit, OnChanges {
             );
     }
 
+    onFilter() {
+        const sortData = {filterValue: this.filterValue};
+        this.page(this.offset, this.limit, sortData);
+    }
+
     onClickSort(prop) {
         // we need to short both by ascending and descending order
         // check if the sortProp is null or undefined. if not then check if the prop is same as sortProp
@@ -102,18 +108,18 @@ export class EmployeesComponent implements OnInit, OnChanges {
             // if already exist then sort by descending order
             if (prop in this.sortProp) {
                 this.sortProp = null;
-                const sortData = {prop: prop, order: 'descending'};
+                const sortData = {prop: prop, order: 'descending', filterValue: this.filterValue};
                 this.page(this.offset, this.limit, sortData);
             } else {
                 this.sortProp[prop] = prop;
-                const sortData = {prop: prop, order: 'ascending'};
+                const sortData = {prop: prop, order: 'ascending', filterValue: this.filterValue};
                 this.page(this.offset, this.limit, sortData);
             }
         } else {
             // sort by that property
             this.sortProp = {};
             this.sortProp[prop] = prop;
-            const sortData = {prop: prop, order: 'ascending'};
+            const sortData = {prop: prop, order: 'ascending', filterValue: this.filterValue};
             this.page(this.offset, this.limit, sortData);
         }
     }
@@ -138,7 +144,6 @@ export class EmployeesComponent implements OnInit, OnChanges {
                     });
                 }
                 this.rows = rows;
-                console.log(this.rows);
 
             },
             (err) => {

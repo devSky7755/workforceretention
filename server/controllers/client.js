@@ -202,6 +202,7 @@ exports.FindEmployees = (req, res, next) => {
     let totalItems; //how many items in the database
     const clientId = req.params.clientId;
     let prop = req.body.prop;
+    let filterValue = req.body.filterValue;
     let sortProp = {};
 
     if (typeof prop != 'undefined' && prop != null) {
@@ -216,6 +217,12 @@ exports.FindEmployees = (req, res, next) => {
             model: 'Employee',
             options: {
                 sort: sortProp,
+                match: {
+                    $or: [
+                        {"first_name": {$regex: new RegExp(filterValue, "i")}},
+                        {"last_name": {$regex: new RegExp(filterValue, "i")}},
+                        {"email": {$regex: new RegExp(filterValue, "i")}}]
+                }
             }
         }])
         .exec(function (err, client) {

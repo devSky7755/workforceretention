@@ -11,10 +11,13 @@
 </div>
 <div style="float: right;margin-bottom: 10px">
     <input style="display: none" type="file" #filePicker (change)="onFilePicked($event)">
-    <button style="margin-right: 10px" type="button" class="btn btn-outline-primary" (click)="filePicker.click()">Upload Employee</button>
+    <button style="margin-right: 10px" type="button" class="btn btn-outline-primary" (click)="filePicker.click()">Upload
+        Employee
+    </button>
     <button class="btn btn-outline-primary" (click)="onClickAddEmployee()">Add Employee</button>
-    <input type="text" class="form-control" style="display: inline-block;width: 300px;margin-left: 20px" placeholder="Enter name or email"/>
-    <button type="button" class="btn btn-outline-primary"><i class="fa fa-search fa-7x" aria-hidden="true"></i></button>
+    <input type="text" class="form-control" style="display: inline-block;width: 300px;margin-left: 20px"
+           name="filter-input" [(ngModel)]="filterValue" (ngModelChange)="onFilter()" placeholder="Enter name or email"/>
+<!--    <button type="button" class="btn btn-outline-primary" (click)="onFilter()"><i class="fa fa-search fa-7x" aria-hidden="true"></i></button>-->
 </div>
 <ngx-datatable
         [rows]="rows"

@@ -8,7 +8,7 @@
       <change beforePath="$PROJECT_DIR$/dist/11.e6f42ef2b9b1bbe61c4d.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/12.2112239940bbfca2509d.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/13.7b3d458d6b3e39f8473c.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/14.2dccb325aeafb0b005e8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/14.a6454851caff95fe0245.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/15.563105d4b9c082128749.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/16.99e14e07db2f2ee6c11c.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/17.829c1042b9b364a8998e.js" beforeDir="false" />
@@ -237,14 +237,14 @@
       <change beforePath="$PROJECT_DIR$/dist/ionicons.dd4781d1acc57ba4c480.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/layers-2x.4f0283c6ce28e888000e.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/layers.a6137456ed160d760698.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.4ecbe0e664b9419292d2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.ae78712e4184a23f6794.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/marker-icon.2273e3d8ad9264b7daa5.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.85e45e2f83750a4184af.eot" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.e5b059e952431846f8ab.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.e7b6b47eeafe34432dca.woff" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/nebular.ee79fa432c91db08585f.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/polyfills.5661a9d82e577675cf63.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/runtime.d6fcdf7d559d9b748698.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/runtime.032c60ed73394679e171.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/scripts.db6f6c877546c61ad1c1.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/socicon.60e5857089e98edd8380.eot" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/socicon.944f06f5f65ef84a3a36.woff" beforeDir="false" />
@@ -253,9 +253,9 @@
       <change beforePath="$PROJECT_DIR$/dist/square_pattern.b7c0827326f8d621b1ed.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/square_pattern_cosmic.a242954570515ecdde9d.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/styles.aba743c48b1aeef6f4a1.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/controllers/employee.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/employee.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/employees.csv" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/employees.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/controllers/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/controllers/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/@core/data/employee.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/@core/data/employee.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -270,11 +270,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="44" column="78" selection-start-line="44" selection-start-column="78" selection-end-line="44" selection-end-column="78" />
+            <state relative-caret-position="600">
+              <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
               <folding>
                 <element signature="e#0#80#0" expanded="true" />
               </folding>
@@ -282,11 +282,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -304,10 +304,45 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
+        <entry file="file://$PROJECT_DIR$/server/controllers/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+            <state relative-caret-position="453">
+              <caret line="220" column="26" selection-start-line="220" selection-start-column="26" selection-end-line="220" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="427">
+              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#1;n#div#3;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="97" column="56" selection-start-line="97" selection-start-column="56" selection-end-line="97" selection-end-column="56" />
+              <folding>
+                <element signature="e#0#164#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/@core/data/employee.service.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -409,7 +444,6 @@
         <option value="$PROJECT_DIR$/src/app/pages/clients/surveys/surveys.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.html" />
         <option value="$PROJECT_DIR$/server/routes/clients.js" />
-        <option value="$PROJECT_DIR$/server/controllers/client.js" />
         <option value="$PROJECT_DIR$/src/app/client/profile/profile.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/add-edit-organization/add-edit-organization.component.html" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/organizations/add-edit-organization/add-edit-organization.component.ts" />
@@ -429,14 +463,12 @@
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/client-tabs/client-tabs.component.html" />
         <option value="$PROJECT_DIR$/server/index.js" />
         <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.html" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" />
         <option value="$PROJECT_DIR$/server/controllers/answer.js" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-survey/employee-survey.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/questions/questions.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/authentication/authentication.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/@core/data/employee.service.ts" />
         <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/client-selection/add-edit-client/add-edit-client.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.html" />
@@ -445,9 +477,12 @@
         <option value="$PROJECT_DIR$/src/app/client/manager-report-pdf/manager-report-pdf.component.scss" />
         <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts" />
-        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" />
         <option value="$PROJECT_DIR$/server/public/employees.csv" />
         <option value="$PROJECT_DIR$/server/controllers/employee.js" />
+        <option value="$PROJECT_DIR$/src/app/@core/data/employee.service.ts" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts" />
+        <option value="$PROJECT_DIR$/server/controllers/client.js" />
+        <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html" />
         <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
       </list>
@@ -469,6 +504,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -480,12 +516,6 @@
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
               <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
-              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
-              <item name="server" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
@@ -542,7 +572,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -767,12 +796,14 @@
       <workItem from="1556315984271" duration="5149000" />
       <workItem from="1556388084890" duration="102000" />
       <workItem from="1556435800192" duration="1586000" />
-      <workItem from="1556475337092" duration="675000" />
+      <workItem from="1556475337092" duration="1117000" />
+      <workItem from="1556567249689" duration="366000" />
+      <workItem from="1556616855159" duration="2170000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="761293000" />
+    <option name="totallyTimeSpent" value="764271000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -924,18 +955,6 @@
         <state relative-caret-position="-172" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="6" lean-forward="true" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#div#3;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/questions/questions.component.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -1011,13 +1030,6 @@
           <folding>
             <element signature="e#0#103#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/employee.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1109,29 +1121,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="399" column="50" selection-start-line="399" selection-start-column="23" selection-end-line="399" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="56" column="36" lean-forward="true" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#164#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/public/employees.csv">
-      <provider editor-type-id="csv-text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="85" selection-start-line="2" selection-start-column="85" selection-end-line="2" selection-end-column="85" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="csv-table-editor">
         <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
           <column index="0" width="100" />
@@ -1157,14 +1147,16 @@
           <column index="20" width="100" />
         </state>
       </provider>
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="85" selection-start-line="2" selection-start-column="85" selection-end-line="2" selection-end-column="85" />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts">
+    <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#103#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2070">
+          <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1198,27 +1190,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/employee.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="62" column="34" selection-start-line="62" selection-start-column="34" selection-end-line="62" selection-end-column="34" />
+        <state relative-caret-position="280">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/add-edit-employee/add-edit-employee.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        <state relative-caret-position="390">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#103#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="97" column="56" selection-start-line="97" selection-start-column="56" selection-end-line="97" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#164#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/controllers/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="220" column="26" selection-start-line="220" selection-start-column="26" selection-end-line="220" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/pages/clients/employees/employees.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="427">
+          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#1;n#div#3;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="44" column="78" selection-start-line="44" selection-start-column="78" selection-end-line="44" selection-end-column="78" />
+        <state relative-caret-position="600">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>
