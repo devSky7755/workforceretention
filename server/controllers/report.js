@@ -69,7 +69,11 @@ exports.ManagerReportDetails = (req, res, next) => {
                 // now foreach employees check who have completed the survey or not
                 // if completed survey then count that employee
                 let completedSurveys = 0;
+                let totalEmployees = 0;
                 client.employees.forEach((employee) => {
+                    if (employee.is_manager === '0') {
+                        totalEmployees++;
+                    }
                     employee.surveys.map((survey) => {
                         if (survey.completed) {
                             completedSurveys++;
@@ -88,7 +92,7 @@ exports.ManagerReportDetails = (req, res, next) => {
                     name: employee.first_name,
                     organizations: client.organizations,
                     organization: employee.organization,
-                    employees: client.employees.length,
+                    employees: totalEmployees,
                     completedSurveys
                 })
             });
@@ -772,7 +776,8 @@ exports.DataOutput = (req, res, next) => {
                     if (employee.surveys.length > 0) {
                         // now check if the filterData.start_date and filterData.end_date is null or not
                         let surveyId = mongoose.Types.ObjectId(filter_data.survey);
-                        if (survey._id.equals(surveyId) && employee.surveys[0].completed) {
+                        // if (survey._id.equals(surveyId) && employee.surveys[0].completed) {
+                        if (survey._id.equals(surveyId) && employee.is_manager === '0') {
                             let data_object = {
                                 survey_title: survey.title,
                                 client_id: employee.client._id,
