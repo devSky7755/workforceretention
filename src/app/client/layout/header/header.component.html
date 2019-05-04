@@ -1,42 +1,45 @@
 <header>
     <nav style="display: flex;">
         <h1 class="logo">
-            <a routerLink="/client/home">Workforce</a>
+            <a routerLink="/client/home">
+                <img src="assets/images/logo.png" width="90%">
+            </a>
         </h1>
         <ul>
-<!--            <li><a routerLink="/client/home" routerLinkActive="active">Home</a></li>-->
-<!--            <li><a routerLink="/client/product" routerLinkActive="active">Products & Services</a></li>-->
-<!--            <li><a routerLink="/client/contact" routerLinkActive="active">Contact</a></li>-->
-            <li *ngIf="!isAuth"><a routerLink="/client/login" routerLinkActive="active">Login</a></li>
-            <li *ngIf="isAuth" class="main-menu-list">
+            <li class="main-menu-list">
                 <a class="menu" href="#">
                     <div class="dropdown-image">
-<!--                        <img src="/assets/images/jack.png" class="rounded-circle profile-image" width="40%">-->
+                        <!--                        <img src="/assets/images/jack.png" class="rounded-circle profile-image" width="40%">-->
                         <i class="hamburger-menu">☰</i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item">
+                        <li class="dropdown-item"><a routerLink="/client/home" routerLinkActive="active">Home</a></li>
+                        <li class="dropdown-item" *ngIf="isAuth">
                             <a routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
                         </li>
-                        <li class="dropdown-item">
+                        <li class="dropdown-item" *ngIf="isAuth">
                             <a routerLink="/client/report" routerLinkActive="active">Report</a>
                         </li>
-                        <li class="dropdown-item">
+                        <li class="dropdown-item" *ngIf="isAuth">
                             <a routerLink="/client/profile" routerLinkActive="active">Profile</a>
                         </li>
-                        <li class="dropdown-item">
+                        <li class="dropdown-item"><a routerLink="/client/flexible-options" routerLinkActive="active">Flexible Options</a></li>
+                        <li class="dropdown-item"><a routerLink="/client/about-us" routerLinkActive="active">About Us</a></li>
+                        <li class="dropdown-item"><a routerLink="/client/contact" routerLinkActive="active">Contact Us</a></li>
+                        <li *ngIf="!isAuth" class="dropdown-item"><a routerLink="/client/login" routerLinkActive="active">Login</a></li>
+                        <li class="dropdown-item" *ngIf="isAuth">
                             <a routerLink="" (click)="logout()">Logout</a>
                         </li>
                     </ul>
                 </a>
             </li>
-<!--            <li *ngIf="isAuth" class="client-logo">-->
-<!--                &lt;!&ndash; Show the client logo here &ndash;&gt;-->
-<!--                <a>-->
-<!--                    <img *ngIf="employeeService.clientImage!==''" src="images/client/{{employeeService.clientImage}}"-->
-<!--                         class="profile-image" width="100%">-->
-<!--                </a>-->
-<!--            </li>-->
+            <!--            <li *ngIf="isAuth" class="client-logo">-->
+            <!--                &lt;!&ndash; Show the client logo here &ndash;&gt;-->
+            <!--                <a>-->
+            <!--                    <img *ngIf="employeeService.clientImage!==''" src="images/client/{{employeeService.clientImage}}"-->
+            <!--                         class="profile-image" width="100%">-->
+            <!--                </a>-->
+            <!--            </li>-->
 
             <!--Here set-up a list which will show only if the user is logged in-->
             <!--List will have a circle image avatar-->

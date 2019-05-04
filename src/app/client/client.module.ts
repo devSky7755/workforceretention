@@ -22,6 +22,8 @@ import { ManagerReportComponent } from './manager-report/manager-report.componen
 import { ReportsComponent } from './reports/reports.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { ManagerReportPdfComponent } from './manager-report-pdf/manager-report-pdf.component';
+import { FlexibleOptionsComponent } from './flexible-options/flexible-options.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +41,9 @@ import { ManagerReportPdfComponent } from './manager-report-pdf/manager-report-p
         EmployeeSurveyDownloadComponent,
         ManagerReportComponent,
         ReportsComponent,
-        ManagerReportPdfComponent
+        ManagerReportPdfComponent,
+        FlexibleOptionsComponent,
+        AboutComponent
     ],
     imports: [
         CommonModule,

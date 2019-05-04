@@ -11,6 +11,8 @@ import {EmployeeSurveyDownloadComponent} from "./employee-survey-download/employ
 import {ManagerReportComponent} from "./manager-report/manager-report.component";
 import {ReportsComponent} from "./reports/reports.component";
 import {ManagerReportPdfComponent} from "./manager-report-pdf/manager-report-pdf.component";
+import {FlexibleOptionsComponent} from "./flexible-options/flexible-options.component";
+import {AboutComponent} from "./about/about.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -24,7 +26,9 @@ const routes: Routes = [
     {path: 'employee-survey', component: EmployeeSurveyDownloadComponent},
     {path: 'questions/:id', component: QuestionsComponent},
     {path: 'manager-report', component: ManagerReportComponent},
-    {path: 'manager-report-pdf', component: ManagerReportPdfComponent}
+    {path: 'manager-report-pdf', component: ManagerReportPdfComponent},
+    {path: 'flexible-options', component: FlexibleOptionsComponent},
+    {path: 'about-us', component: AboutComponent}
 ];
 
 @NgModule({
