@@ -45,3 +45,16 @@ nb-layout-column {
   background-color: #f0f0f5;
   color: #3f51b5;
 }
+.container-fluid{
+  background-size: cover;
+  width: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/contact.jpeg");
+  position: relative;
+  padding-bottom: 20px;
+}
+.contact-logo{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 250px;
+}
