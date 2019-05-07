@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ReportService} from "../../@core/data/report.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
@@ -121,6 +121,10 @@ export class ManagerReportComponent implements OnInit {
         {exit_reason: '14', value: this.operational_chart_data},
         {exit_reason: '15', value: this.restructure_chart_data}
     ];
+
+    @ViewChild('agePieChart') basicPieChart;
+    @ViewChild('chartWrapperDiv') chartWrapper;
+    textArray = [];
 
     constructor(private reportService: ReportService) {
         this.manager = {};
@@ -551,10 +555,87 @@ export class ManagerReportComponent implements OnInit {
             // });
             //
             // top_reason_chart.render();
+            setTimeout(() => {
+                this.showVerticalChartPercentage('');
+                this.showPieChartPercentage(this.basicPieChart);
+            }, 3000);
         } else {
             alert(message);
         }
 
+    }
+
+    showVerticalChartPercentage(chart) {
+        console.log(this.chartWrapper.nativeElement.childNodes);
+        // let node = chart.chartElement.nativeElement;
+        // let svg;
+        // for (let i = 0; i < 5; i++) {
+        //     if (i === 3) {
+        //         // this is the pie chart svg
+        //         svg = node.childNodes[0];
+        //     }
+        //     // at the end of this loop, the node should contain all slices in its children node
+        //     node = node.childNodes[0];
+        // }
+        // console.log(svg);
+    }
+
+    pieDataTotal = 100;
+
+    showPieChartPercentage(chart) {
+        let node = chart.chartElement.nativeElement;
+        let svg;
+        for (let i = 0; i < 5; i++) {
+            if (i === 3) {
+                // this is the pie chart svg
+                svg = node.childNodes[0];
+            }
+            // at the end of this loop, the node should contain all slices in its children node
+            node = node.childNodes[0];
+        }
+        // clear the previous text if any
+        this.textArray.forEach(i => {
+            if (svg.childNodes[1]) {
+                svg.removeChild(svg.childNodes[1]);
+            }
+        });
+        // get all the slices
+        const slices: HTMLCollection = node.children;
+        for (let i = 0; i < slices.length; i++) {
+            // calculate the percentage
+            const value = this.age_split_chart_data[i].value;
+            const percent = Math.floor((value / this.pieDataTotal) * 100);
+            if (percent > 10) {
+                const text = this.generateText(slices.item(i), percent);
+                this.textArray.push(text);
+                svg.append(text);
+            }
+        }
+        // this is a timeout, less redraw on div resize
+    }
+
+    private generateText(g, value) {
+        // get boundaries
+        const bbox = g.getBBox();
+        let x = bbox.x + bbox.width / 2;
+        let y = bbox.y + bbox.height / 2;
+        // create text element
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        // sometimes the text draw on the center of the pie, like when 60%
+        // adjust it slightly
+        if (x <= 10 && x >= 0) {
+            x = 50;
+        }
+        if (y <= 10 && y >= 0) {
+            y = 50;
+        }
+
+        text.setAttribute('x', '' + x);
+        text.setAttribute('y', '' + y);
+        text.setAttribute('fill', 'white');
+        text.textContent = value + '%';
+        text.setAttribute('text-anchor', 'middle');
+        return text;
     }
 
 }
