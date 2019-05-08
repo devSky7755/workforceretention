@@ -60,11 +60,23 @@ exports.Upload = function (req, res, next) {
                     if (err) return next(err);
                     for (let i = 0; i < json.length; i++) {
                         //here find the organization by name
+                        // console.log('BEFORE ORGANIZATION');
+                        // console.log(organizations);
                         json[i].organization = findOrganizationByName(json[i].organization, organizations);
+                        // console.log('AFTER ORGANIZATION');
+                        // console.log(organizations);
                         //here find the division by name
+                        // console.log('BEFORE DIVISION');
+                        // console.log(organizations);
                         json[i].division = findDivisionByName(json[i].division, organizations);
+                        // console.log('AFTER DIVISION');
+                        // console.log(organizations);
                         // here find the department by name
+                        // console.log('BEFORE DEPARTMENT');
+                        // console.log(organizations);
                         json[i].department = findDepartmentByName(json[i].department, organizations);
+                        // console.log('AFTER DEPARTMENT');
+                        // console.log(organizations);
 
                         // hire_date, exit_date, resign_date, date_of_birth
                         if (!isNullOrEmpty(json[i].hire_date)) {
@@ -89,6 +101,7 @@ exports.Upload = function (req, res, next) {
                         json[i].surveys = clientSurveys;
                         json[i].client = clientId;
                         employees.push(json[i]);
+                        // console.log(json[i]);
                     }
                     //before generating password we need to checkout if employee exist with the given email
                     let allEmployees = await Employee.find();
@@ -250,9 +263,10 @@ const sendEmailsToEmployees = (employees, client) => {
 };
 const findOrganizationByName = function (name, organizations) {
     let organizationId = null;
+    let trimmedOrganization = name.trim();
     if (organizations !== null) {
         organizations.map((organization) => {
-            if (organization.name.toUpperCase() === name.toUpperCase()) {
+            if (organization.name.toUpperCase() === trimmedOrganization.toUpperCase()) {
                 organizationId = organization._id;
             }
         })
@@ -261,10 +275,11 @@ const findOrganizationByName = function (name, organizations) {
 };
 const findDivisionByName = function (name, organizations) {
     let divisionId = null;
+    let trimmedDivision = name.trim();
     organizations.map((organization) => {
         if (organization.divisions !== null && typeof organization.divisions !== 'undefined') {
             organization.divisions.map((division) => {
-                if (division.name.toUpperCase() === name.toUpperCase()) {
+                if (division.name.toUpperCase() === trimmedDivision.toUpperCase()) {
                     divisionId = division._id;
                 }
             })
@@ -273,15 +288,17 @@ const findDivisionByName = function (name, organizations) {
     return divisionId;
 };
 
-const findDepartmentByName = function (name, organizations) {
+const findDepartmentByName = function (deptName, organizations) {
     let departmentId = null;
+    let trimmedDepartment = deptName.trim();
     organizations.map((organization) => {
         if (organization.divisions !== null && typeof organization.divisions !== 'undefined') {
             organization.divisions.map((division) => {
                 if (division.departments !== null && typeof division.departments !== 'undefined') {
                     division.departments.map((department) => {
-                        if (department.name.toUpperCase() === name.toUpperCase()) {
+                        if (department.name.toUpperCase() === trimmedDepartment.toUpperCase()) {
                             departmentId = department._id;
+                            console.log(trimmedDepartment);
                         }
                     })
                 }

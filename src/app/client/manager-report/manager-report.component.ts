@@ -64,7 +64,7 @@ export class ManagerReportComponent implements OnInit {
     gradient = false;
     showLegend = true;
     schemaType = 'ordinal';
-    showDataLabel = true;
+    showDataLabel = false;
     showXAxisLabel = true;
     xAxisLabel = '';
     showYAxisLabel = true;
@@ -122,8 +122,10 @@ export class ManagerReportComponent implements OnInit {
         {exit_reason: '15', value: this.restructure_chart_data}
     ];
 
-    @ViewChild('agePieChart') basicPieChart;
-    @ViewChild('chartWrapperDiv') chartWrapper;
+    @ViewChild('agePieChart') agePieChart;
+    @ViewChild('tenurePieChart') tenurePieChart;
+    @ViewChild('genderPieChart') genderPieChart;
+    @ViewChild('topReasonVerticalChart') topReasonVerticalChart;
     textArray = [];
 
     constructor(private reportService: ReportService) {
@@ -556,8 +558,12 @@ export class ManagerReportComponent implements OnInit {
             //
             // top_reason_chart.render();
             setTimeout(() => {
-                this.showVerticalChartPercentage('');
-                this.showPieChartPercentage(this.basicPieChart);
+                // top reason vertical chart percentage calculation
+                this.showVerticalChartPercentage(this.topReasonVerticalChart, this.single);
+                // age separator pie chart percentage calculation
+                this.showPieChartPercentage(this.agePieChart, this.age_split_chart_data);
+                this.showPieChartPercentage(this.tenurePieChart, this.tenure_split_chart_data);
+                this.showPieChartPercentage(this.genderPieChart, this.gender_split_chart_data);
             }, 3000);
         } else {
             alert(message);
@@ -565,24 +571,12 @@ export class ManagerReportComponent implements OnInit {
 
     }
 
-    showVerticalChartPercentage(chart) {
-        console.log(this.chartWrapper.nativeElement.childNodes);
-        // let node = chart.chartElement.nativeElement;
-        // let svg;
-        // for (let i = 0; i < 5; i++) {
-        //     if (i === 3) {
-        //         // this is the pie chart svg
-        //         svg = node.childNodes[0];
-        //     }
-        //     // at the end of this loop, the node should contain all slices in its children node
-        //     node = node.childNodes[0];
-        // }
-        // console.log(svg);
-    }
-
-    pieDataTotal = 100;
-
-    showPieChartPercentage(chart) {
+    // ****************************** TOP REASON SIMPLE CHART PERCENTAGE CALCULATION *************************************
+    showVerticalChartPercentage(chart, dataArray) {
+        let verticalDataTotal = 0;
+        dataArray.map((data) => {
+            verticalDataTotal += parseFloat(data.value);
+        });
         let node = chart.chartElement.nativeElement;
         let svg;
         for (let i = 0; i < 5; i++) {
@@ -591,7 +585,10 @@ export class ManagerReportComponent implements OnInit {
                 svg = node.childNodes[0];
             }
             // at the end of this loop, the node should contain all slices in its children node
-            node = node.childNodes[0];
+            if (i !== 4 && i !== 5) {
+                node = node.childNodes[0];
+            }
+            // console.log(node);
         }
         // clear the previous text if any
         this.textArray.forEach(i => {
@@ -603,18 +600,19 @@ export class ManagerReportComponent implements OnInit {
         const slices: HTMLCollection = node.children;
         for (let i = 0; i < slices.length; i++) {
             // calculate the percentage
-            const value = this.age_split_chart_data[i].value;
-            const percent = Math.floor((value / this.pieDataTotal) * 100);
-            if (percent > 10) {
-                const text = this.generateText(slices.item(i), percent);
-                this.textArray.push(text);
-                svg.append(text);
+            const value = typeof dataArray[i] !== 'undefined' ? parseFloat(dataArray[i].value) : -1000;
+            if (value !== -1000) {
+                const percent = Math.floor((value / verticalDataTotal) * 100);
+                if (percent > 10) {
+                    const text = this.generateSimpleVerticalChartText(slices.item(i), percent);
+                    this.textArray.push(text);
+                    svg.append(text);
+                }
             }
         }
-        // this is a timeout, less redraw on div resize
     }
 
-    private generateText(g, value) {
+    generateSimpleVerticalChartText(g, value) {
         // get boundaries
         const bbox = g.getBBox();
         let x = bbox.x + bbox.width / 2;
@@ -623,6 +621,7 @@ export class ManagerReportComponent implements OnInit {
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         // sometimes the text draw on the center of the pie, like when 60%
         // adjust it slightly
+        // console.log('x = ' + x + ' y = ' + y);
         if (x <= 10 && x >= 0) {
             x = 50;
         }
@@ -630,6 +629,73 @@ export class ManagerReportComponent implements OnInit {
             y = 50;
         }
 
+        text.setAttribute('x', '' + x);
+        text.setAttribute('y', '' + y);
+        text.setAttribute('fill', 'white');
+        text.textContent = value + '%';
+        text.setAttribute('text-anchor', 'middle');
+        return text;
+    }
+
+    showPieChartPercentage(chart, dataArray) {
+        // from dataArray find out the pieDataTotal
+        let pieDataTotal = 0;
+        dataArray.map((data) => {
+            pieDataTotal += data.value;
+        });
+        let node = chart.chartElement.nativeElement;
+        // console.log(node);
+        let svg;
+        for (let i = 0; i < 5; i++) {
+            if (i === 3) {
+                // this is the pie chart svg
+                svg = node.childNodes[0];
+            }
+            // at the end of this loop, the node should contain all slices in its children node
+            node = node.childNodes[0];
+        }
+        // console.log(node);
+        // clear the previous text if any
+        this.textArray.forEach(i => {
+            if (svg.childNodes[1]) {
+                svg.removeChild(svg.childNodes[1]);
+            }
+        });
+        // get all the slices
+        const slices: HTMLCollection = node.children;
+        for (let i = 0; i < slices.length; i++) {
+            // calculate the percentage
+            const value = dataArray[i].value;
+            const percent = Math.floor((value / pieDataTotal) * 100);
+            if (percent > 10) {
+                const text = this.generatePieChartText(slices.item(i), percent);
+                this.textArray.push(text);
+                svg.append(text);
+            }
+        }
+        // this is a timeout, less redraw on div resize
+    }
+
+    private generatePieChartText(g, value) {
+        // get boundaries
+        const bbox = g.getBBox();
+        let x = bbox.x + bbox.width / 2;
+        let y = bbox.y + bbox.height / 2;
+        // create text element
+        const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        // sometimes the text draw on the center of the pie, like when 60%
+        // adjust it slightly
+        // console.log('x = ' + x + ' y = ' + y);
+        if (x <= 10 && x >= 0) {
+            x = 50;
+        }
+        if (y <= 10 && y >= 0) {
+            y = 50;
+        }
+        if (x <= 0)
+            x += 50;
+        else
+            x -= 50;
         text.setAttribute('x', '' + x);
         text.setAttribute('y', '' + y);
         text.setAttribute('fill', 'white');
