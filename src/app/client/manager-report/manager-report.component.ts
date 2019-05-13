@@ -295,30 +295,22 @@ export class ManagerReportComponent implements OnInit {
         // if this.completed_surveys is less than 5 we should not display the chart report
         let show_data = true;
         const message = "To assure anonymity, at least 5 surveys must be completed at this level before you can view these reports";
-        if (this.filterData.level !== "") {
-            // split the level with _ then we will understand the selected level is organization or division or department
-            const split_level = this.filterData.level.split('_');
-            if (split_level.length === 1) {
-                // selected level is an organization
-                if (this.client.org_mgt === 0) {
-                    if (data.completed < 5) {
-                        show_data = false;
-                    }
-                }
-            } else if (split_level.length === 2) {
-                // selected level is division level
-                if (this.client.div_mgt === 0) {
-                    if (data.completed < 5) {
-                        show_data = false;
-                    }
-                }
-            } else if (split_level.length === 3) {
-                // selected level is department level
-                if (this.client.dept_mgt === 0) {
-                    if (data.completed < 5) {
-                        show_data = false;
-                    }
-                }
+
+        if (this.client.org_mgt === 0) {
+            if (data.completed < 5) {
+                show_data = false;
+            }
+        }
+        // selected level is division level
+        if (this.client.div_mgt === 0) {
+            if (data.completed < 5) {
+                show_data = false;
+            }
+        }
+        // selected level is department level
+        if (this.client.dept_mgt === 0) {
+            if (data.completed < 5) {
+                show_data = false;
             }
         }
         if (show_data) {
