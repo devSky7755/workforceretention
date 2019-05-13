@@ -266,7 +266,7 @@ const findOrganizationByName = function (name, organizations) {
     let trimmedOrganization = name.trim();
     if (organizations !== null) {
         organizations.map((organization) => {
-            if (organization.name.toUpperCase() === trimmedOrganization.toUpperCase()) {
+            if (organization.name.trim().toUpperCase() === trimmedOrganization.toUpperCase()) {
                 organizationId = organization._id;
             }
         })
@@ -279,7 +279,7 @@ const findDivisionByName = function (name, organizations) {
     organizations.map((organization) => {
         if (organization.divisions !== null && typeof organization.divisions !== 'undefined') {
             organization.divisions.map((division) => {
-                if (division.name.toUpperCase() === trimmedDivision.toUpperCase()) {
+                if (division.name.trim().toUpperCase() === trimmedDivision.toUpperCase()) {
                     divisionId = division._id;
                 }
             })
@@ -288,17 +288,16 @@ const findDivisionByName = function (name, organizations) {
     return divisionId;
 };
 
-const findDepartmentByName = function (deptName, organizations) {
+const findDepartmentByName = function (name, organizations) {
     let departmentId = null;
-    let trimmedDepartment = deptName.trim();
+    let trimmedDepartment = name.trim();
     organizations.map((organization) => {
         if (organization.divisions !== null && typeof organization.divisions !== 'undefined') {
             organization.divisions.map((division) => {
                 if (division.departments !== null && typeof division.departments !== 'undefined') {
                     division.departments.map((department) => {
-                        if (department.name.toUpperCase() === trimmedDepartment.toUpperCase()) {
+                        if (department.name.trim().toUpperCase() === trimmedDepartment.toUpperCase()) {
                             departmentId = department._id;
-                            console.log(trimmedDepartment);
                         }
                     })
                 }
