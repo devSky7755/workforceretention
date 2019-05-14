@@ -58,8 +58,8 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
 
     index = 1;
     destroyByClick = true;
-    duration = 2000;
-    hasIcon = true;
+    duration = 3000;
+    hasIcon = false;
     position: NbGlobalPosition = NbGlobalPhysicalPosition.TOP_RIGHT;
     preventDuplicates = false;
     status: NbToastStatus = NbToastStatus.SUCCESS;
@@ -205,8 +205,11 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         } else if (split_organization.length === 2) {
             employee['organization'] = split_organization[0];
             employee['division'] = split_organization[1];
+            employee['department'] = null;
         } else {
             employee['organization'] = split_organization[0];
+            employee['division'] = null;
+            employee['department'] = null;
         }
         if (this.employeeForm.valid) {
             // check if the pageId is null or not. if null then insert else update
@@ -274,12 +277,14 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.employeeService.createEmployee(employee, this.clientId).subscribe(
             data => {
                 this.successMessage = data.message;
+                this.showToast(NbToastStatus.SUCCESS, null, data.message);
                 this.setEmployee(data);
                 this.selectEmployeeManagement.emit();
             },
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
+                this.showToast(NbToastStatus.DANGER, null, error.message);
             }
         );
     }
@@ -308,11 +313,13 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.employeeService.updateEmployee(employee, this.employeeId).subscribe(
             data => {
                 this.successMessage = data.message;
+                this.showToast(NbToastStatus.SUCCESS, null, data.message);
                 this.setEmployee(data);
             },
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
+                this.showToast(NbToastStatus.DANGER, null, error.message);
             }
         );
     }
@@ -325,7 +332,8 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
                     this.showToast(NbToastStatus.SUCCESS, null, 'Password sent to the employee email !');
                 },
                 err => {
-                    console.log(err);
+                    const {error} = err;
+                    this.showToast(NbToastStatus.DANGER, null, error.message);
                 }
             );
         }
@@ -342,7 +350,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         };
         this.toastrService.show(
             body,
-            `Employee Password Resend`,
+            title,
             config);
     }
 
