@@ -556,7 +556,7 @@ export class ManagerReportComponent implements OnInit {
                 this.showPieChartPercentage(this.agePieChart, this.age_split_chart_data);
                 this.showPieChartPercentage(this.tenurePieChart, this.tenure_split_chart_data);
                 this.showPieChartPercentage(this.genderPieChart, this.gender_split_chart_data);
-            }, 3000);
+            }, 1000);
         } else {
             alert(message);
         }
@@ -589,7 +589,7 @@ export class ManagerReportComponent implements OnInit {
             }
         });
         // get all the slices
-        const slices: HTMLCollection = node.children;
+        const slices: HTMLCollection = svg.childNodes[4].children;
         for (let i = 0; i < slices.length; i++) {
             // calculate the percentage
             const value = typeof dataArray[i] !== 'undefined' ? parseFloat(dataArray[i].value) : -1000;
@@ -599,6 +599,7 @@ export class ManagerReportComponent implements OnInit {
                     const text = this.generateSimpleVerticalChartText(slices.item(i), percent);
                     this.textArray.push(text);
                     svg.append(text);
+                    // console.log(svg.childNodes[4].childNodes[i]);
                 }
             }
         }

@@ -619,10 +619,18 @@ const sendReminderEmails = function () {
 
                         // check when the employee is inserted into database employee.createdAt
                         const employeeCreatedDay = getDay(employee.createdAt, new Date());
-                        if (employee.is_manager === '0' && employee.is_survey === '1' &&
-                            !employee.surveys[0].completed && employee.is_online === '1' && employeeCreatedDay === 5) {
+                        // && employeeCreatedDay === 5
+                        if (employee.is_manager === '0' &&
+                            employee.is_survey === '1' &&
+                            !employee.surveys[0].completed &&
+                            employee.is_online === '1' &&
+                            employee.is_active === '1' &&
+                            !employee.is_send_reminder_email &&
+                            employeeCreatedDay === 5) {
+
                             let employeeObject = {
                                 client_name: client.name,
+                                employee_id: employee._id,
                                 employee_firstname: employee.first_name,
                                 employee_lastname: employee.last_name,
                                 employee_username: employee.username,
@@ -636,6 +644,17 @@ const sendReminderEmails = function () {
             });
             sendReminderEmailsToEmployees(employees).then(
                 () => {
+                    // employees has property employee_id. so first we need to find out the employees by their id
+                    // then we need to update the property is_send_reminder_email to true
+                    employees.forEach((employee) => {
+                        Employee.findByIdAndUpdate(
+                            employee.employee_id,
+                            {is_send_reminder_email: true},
+                            {new: true},
+                            (err, employee) => {
+                                console.log(employee);
+                            });
+                    });
                     console.log('Reminder Email Send Successful');
                 }
             )
@@ -644,7 +663,6 @@ const sendReminderEmails = function () {
 };
 
 const sendReminderEmailsToEmployees = function (employees) {
-    console.log(employees);
     const employeePromises = [];
     employees.map((employee) => {
         employeePromises.push(new Promise((resolve, reject) => {
@@ -663,11 +681,12 @@ const sendReminderEmailsToEmployees = function (employees) {
             to = employee.email;
 
             // step-2 : replace the [client_name] by the client.username
-            body = body.replace('[Client Name]', client.name);
+            body = body.replace('[Client Name]', employee.client_name);
             body = body.replace('[employee_firstname]', employee.first_name);
 
             // step-3 : [employee_username] set the employee email
             body = body.replace('[employee_username]', to);
+
             helpers.SendEmailToEmployee({from, to, subject, body}).then(
                 () => {
                     resolve(employee)
@@ -678,8 +697,11 @@ const sendReminderEmailsToEmployees = function (employees) {
     });
     return Promise.all(employeePromises);
 };
-const one_day = 86400000;
-setInterval(sendReminderEmails, one_day);
+// check within every 3 hours
+// const one_day = 86400000;
+// const five_minute = 300000;
+const three_hours = 10800000;
+setInterval(sendReminderEmails, three_hours);
 
 const getDay = (start_date, end_date) => {
     let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds

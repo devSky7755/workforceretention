@@ -77,13 +77,17 @@ const employeeSchema = new Schema({
         type: String,
         required: true
     },
+    is_send_reminder_email: {
+        type: Boolean,
+        default: false
+    },
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     // the employee under the client
     client: {
-      type: Schema.Types.ObjectId,
-      ref: 'Client'
+        type: Schema.Types.ObjectId,
+        ref: 'Client'
     },
     organization: {
         type: Schema.Types.ObjectId,
