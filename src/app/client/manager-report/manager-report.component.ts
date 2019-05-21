@@ -608,19 +608,11 @@ export class ManagerReportComponent implements OnInit {
     generateSimpleVerticalChartText(g, value) {
         // get boundaries
         const bbox = g.getBBox();
-        let x = bbox.x + bbox.width / 2;
-        let y = bbox.y + bbox.height / 2;
+        const x = bbox.x + bbox.width / 2;
+        const y = bbox.y + bbox.height / 2;
         // create text element
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         // sometimes the text draw on the center of the pie, like when 60%
-        // adjust it slightly
-        // console.log('x = ' + x + ' y = ' + y);
-        if (x <= 10 && x >= 0) {
-            x = 50;
-        }
-        if (y <= 10 && y >= 0) {
-            y = 50;
-        }
 
         text.setAttribute('x', '' + x);
         text.setAttribute('y', '' + y);
