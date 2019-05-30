@@ -6,6 +6,10 @@
   padding: 80px 0;
 }
 
+html, body {
+  scroll-behavior: smooth;
+}
+
 body {
   height: 100%;
 }
@@ -243,7 +247,6 @@ nb-card:hover {
   }
 }
 
-
 // Parallax design
 .pimg1, .pimg2, .pimg3, .pimg4, .pimg5 {
   position: relative;
@@ -319,6 +322,7 @@ nb-card:hover {
   width: 450px;
   text-align: center;
   left: 10%;
+  z-index: 10;
   //clip-path: polygon(25% 2%, 100% 0%, 99% 99%, 0% 100%);
 }
 
@@ -337,6 +341,7 @@ nb-card:hover {
   width: 350px;
   text-align: left;
   left: 20%;
+  z-index: 10;
 }
 
 .ptext-section-3 {
@@ -344,6 +349,7 @@ nb-card:hover {
   width: 350px;
   text-align: center;
   right: 30%;
+  z-index: 10;
 }
 
 .ptext .pborder {
@@ -358,4 +364,78 @@ nb-card:hover {
   .pimg1, .pimg2, .pimg3 {
     background-attachment: scroll;
   }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.parallax-image {
+  padding-top: 50%;
+  position: relative;
+  height: 500px;
+}
+
+.parallax-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+.bottom {
+  height: 500px;
+  background: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+#parallax-section-1 {
+  top: 100px;
+}
+
+#parallax-section-1 .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)) /* top, transparent red */
+}
+
+.content-slide {
+  background: #fff;
+  padding: 50px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+#content6 {
+  background: rgb(30, 70, 98);
+  color: #fff;
+}
+
+.footer-div {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.footer-menu {
+  display: flex;
+  list-style: none;
+  color: #000;
+}
+
+.footer-menu li {
+  padding: 10px;
+  flex: 1 1 auto;
+}
+
+.footer-menu li a {
+  color: #000;
+  font-size: 18px;
 }
