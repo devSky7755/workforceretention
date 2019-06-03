@@ -33,7 +33,9 @@ header {
   border-bottom: 10px solid rgb(77, 176, 232);
   z-index: 9999;
   align-items: center;
+  top: 0;
   flex-direction: column;
+  transform: translate3d(0,0,0);
 }
 
 header:before {

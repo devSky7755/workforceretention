@@ -6,14 +6,6 @@
   padding: 80px 0;
 }
 
-html, body {
-  scroll-behavior: smooth;
-}
-
-body {
-  height: 100%;
-}
-
 .light-gray {
   background: rgba(0, 0, 0, 0.024);
 }
@@ -374,7 +366,7 @@ body {
 .parallax-image {
   padding-top: 50%;
   position: relative;
-  height: 500px;
+  height: 400px;
 }
 
 .parallax-image img {
@@ -394,6 +386,7 @@ body {
 
 #parallax-section-1 {
   top: 100px;
+  height: 400px;
 }
 
 #parallax-section-1 .layer {
@@ -417,6 +410,7 @@ body {
 #content6 {
   background: rgb(30, 70, 98);
   color: #fff;
+  top: -110px;
 }
 
 .footer-div {
@@ -438,4 +432,35 @@ body {
 .footer-menu li a {
   color: #000;
   font-size: 18px;
+}
+
+
+
+
+// Design similar to skout.com
+.slide-header.landing-background-solid {
+  background-image: url(/assets/images/blur_homepage.png);
+  background-position: top center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.slide {
+  width: 100%;
+}
+.slide-header{
+  height: 450px;
+}
+.slide-1 {
+  background-image: url(/assets/images/contact.jpeg);
+  background-position: top center;
+  background-attachment: fixed;
+  height: 480px;
+  background-size: cover;
+}
+.slide-2{
+  background-image: url("/assets/images/home-banner-2.jpeg");
+  background-position: top center;
+  background-attachment: fixed;
+  height: 480px;
+  background-size: cover;
 }
