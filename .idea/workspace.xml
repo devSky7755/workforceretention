@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/client/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/home/home.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/client/home/home.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/home/home.component.scss" afterDir="false" />
     </list>
@@ -20,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+            <state relative-caret-position="380">
+              <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
               <folding>
                 <element signature="e#0#80#0" expanded="true" />
               </folding>
@@ -38,56 +39,41 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="336" column="1" lean-forward="true" selection-start-line="336" selection-start-column="1" selection-end-line="336" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1648">
-              <caret line="126" column="31" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
+            <state relative-caret-position="87">
+              <caret line="118" column="80" selection-start-line="118" selection-start-column="80" selection-end-line="118" selection-end-column="80" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-                <element signature="e#6400#6406#0" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#1;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#2;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-                <element signature="e#6731#6737#0" expanded="true" />
-                <element signature="e#6737#6743#0" expanded="true" />
-                <element signature="e#6743#6749#0" expanded="true" />
-                <element signature="e#6749#6755#0" expanded="true" />
-                <element signature="e#6755#6761#0" expanded="true" />
-                <element signature="e#6761#6767#0" expanded="true" />
-                <element signature="e#6767#6773#0" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#2;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#3;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-                <element signature="e#7101#7107#0" expanded="true" />
-                <element signature="e#7107#7113#0" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#3;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-                <element signature="e#7546#7552#0" expanded="true" />
-                <element signature="e#7552#7558#0" expanded="true" />
-                <element signature="e#7558#7564#0" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#1;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-                <element signature="e#8220#8226#0" expanded="true" />
-                <element signature="e#8226#8232#0" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#2;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#3;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#div#3;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="716" column="24" selection-start-line="716" selection-start-column="24" selection-end-line="716" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -203,7 +189,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -585,12 +571,13 @@
       <workItem from="1558983783020" duration="40000" />
       <workItem from="1559155087594" duration="2511000" />
       <workItem from="1559202983046" duration="7525000" />
-      <workItem from="1559542243183" duration="9805000" />
+      <workItem from="1559542243183" duration="10261000" />
+      <workItem from="1559580691367" duration="1628000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="865810000" />
+    <option name="totallyTimeSpent" value="867894000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -876,8 +863,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
+        <state relative-caret-position="380">
+          <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
           <folding>
             <element signature="e#0#80#0" expanded="true" />
           </folding>
@@ -893,39 +880,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1648">
-          <caret line="126" column="31" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
+        <state relative-caret-position="87">
+          <caret line="118" column="80" selection-start-line="118" selection-start-column="80" selection-end-line="118" selection-end-column="80" />
           <folding>
             <element signature="n#style#0;n#div#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="e#6400#6406#0" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#1;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#2;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="e#6731#6737#0" expanded="true" />
-            <element signature="e#6737#6743#0" expanded="true" />
-            <element signature="e#6743#6749#0" expanded="true" />
-            <element signature="e#6749#6755#0" expanded="true" />
-            <element signature="e#6755#6761#0" expanded="true" />
-            <element signature="e#6761#6767#0" expanded="true" />
-            <element signature="e#6767#6773#0" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#2;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#3;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="e#7101#7107#0" expanded="true" />
-            <element signature="e#7107#7113#0" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#3;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="e#7546#7552#0" expanded="true" />
-            <element signature="e#7552#7558#0" expanded="true" />
-            <element signature="e#7558#7564#0" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#1;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
-            <element signature="e#8220#8226#0" expanded="true" />
-            <element signature="e#8226#8232#0" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#2;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#3;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#div#3;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
@@ -936,8 +908,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="336" column="1" lean-forward="true" selection-start-line="336" selection-start-column="1" selection-end-line="336" selection-end-column="1" />
+        <state relative-caret-position="272">
+          <caret line="716" column="24" selection-start-line="716" selection-start-column="24" selection-end-line="716" selection-end-column="24" />
         </state>
       </provider>
     </entry>

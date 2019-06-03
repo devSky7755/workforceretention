@@ -318,15 +318,15 @@ nb-card:hover {
   //clip-path: polygon(25% 2%, 100% 0%, 99% 99%, 0% 100%);
 }
 
-.section-icon1-div {
-  position: relative;
-}
-
-.section-icon1 {
-  position: absolute;
-  top: -10%;
-  left: 0;
-}
+//.section-icon1-div {
+//  position: relative;
+//}
+//
+//.section-icon1 {
+//  position: absolute;
+//  top: -10%;
+//  left: 0;
+//}
 
 .ptext-section-2 {
   top: 40%;
@@ -412,6 +412,7 @@ body {
   color: #fff;
   top: -150px;
 }
+
 @media (min-width: 1439px) {
 
   #content6 {
@@ -444,38 +445,40 @@ body {
 }
 
 
-
-
 // Design similar to skout.com
 .slide-header.landing-background-solid {
   background-image: url(/assets/images/blur_homepage.png);
   background-position: top center;
   background-attachment: fixed;
   background-size: cover;
-  transform: translate(0,0);
+  transform: translate(0, 0);
 }
+
 .slide {
   width: 100%;
 }
-.slide-header{
+
+.slide-header {
   height: 450px;
 }
+
 .slide-1 {
   background-image: url(/assets/images/contact.jpeg);
   background-position: top center;
   background-attachment: fixed;
   height: 480px;
   background-size: cover;
-  transform: translate(0,0);
+  transform: translate(0, 0);
 
 }
-.slide-2{
+
+.slide-2 {
   background-image: url("/assets/images/home-banner-2.jpeg");
   background-position: top center;
   background-attachment: fixed;
   height: 480px;
   background-size: cover;
-  transform: translate(0,0);
+  transform: translate(0, 0);
 
 }
 
@@ -485,6 +488,7 @@ body {
   position: relative;
   color: red;
 }
+
 .background_fill:before {
   background-color: white;
   background-size: cover;
@@ -496,7 +500,6 @@ body {
   width: 100%;
   height: 100%;
 }
-
 
 
 // New Parallax Design using Clipping path
@@ -642,6 +645,7 @@ header {
   height: 100%;
   top: 100px;
 }
+
 .moment-image3 {
   background: #666 url(/assets/images/home-banner-2.jpeg) 50% 50%;
   position: fixed;
@@ -650,6 +654,7 @@ header {
   height: 100%;
   top: 100px;
 }
+
 .moment-image4 {
   background: #666 url(/assets/images/computer_graph.jpeg) 50% 50%;
   position: fixed;
@@ -667,6 +672,7 @@ header {
   height: 100%;
   top: 100px;
 }
+
 .moment-image6 {
   background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) 50% 50%;
   position: fixed;
@@ -675,6 +681,20 @@ header {
   height: 100%;
   top: 100px;
 }
+
+.section-div {
+  display: flex;
+  margin: 0 auto;
+  max-width: 800px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section-div-text {
+  flex: 0 70%;
+}
+
 footer {
   position: relative;
   background: #333;
@@ -684,4 +704,34 @@ footer {
 footer p {
   color: #fff;
   margin: 1em 2em;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  .section-div {
+    flex-direction: column;
+  }
+  .footer-menu {
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  .section-div {
+    flex-direction: column;
+  }
+  .footer-menu {
+    flex-direction: column;
+    margin: 0 auto;
+    align-items: center;
+  }
+
 }
