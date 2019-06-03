@@ -329,7 +329,7 @@ nb-card:hover {
 }
 
 .ptext-section-2 {
-  top: 30%;
+  top: 40%;
   width: 350px;
   text-align: left;
   left: 20%;
@@ -410,7 +410,16 @@ body {
 #content6 {
   background: rgb(30, 70, 98);
   color: #fff;
-  top: -110px;
+  top: -150px;
+}
+@media (min-width: 1439px) {
+
+  #content6 {
+    background: rgb(30, 70, 98);
+    color: #fff;
+    top: -110px;
+  }
+
 }
 
 .footer-div {
@@ -443,6 +452,7 @@ body {
   background-position: top center;
   background-attachment: fixed;
   background-size: cover;
+  transform: translate(0,0);
 }
 .slide {
   width: 100%;
@@ -456,6 +466,8 @@ body {
   background-attachment: fixed;
   height: 480px;
   background-size: cover;
+  transform: translate(0,0);
+
 }
 .slide-2{
   background-image: url("/assets/images/home-banner-2.jpeg");
@@ -463,4 +475,213 @@ body {
   background-attachment: fixed;
   height: 480px;
   background-size: cover;
+  transform: translate(0,0);
+
+}
+
+
+.background_fill {
+  overflow: hidden;
+  position: relative;
+  color: red;
+}
+.background_fill:before {
+  background-color: white;
+  background-size: cover;
+  z-index: 3;
+  content: " ";
+  position: fixed;
+  background: url('/assets/images/home-banner-2.jpeg') no-repeat center center;
+  will-change: transform;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+// New Parallax Design using Clipping path
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #f6f6f6;
+  margin: 0 0 0;
+  padding: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  height: 100px;
+  top: 0;
+}
+
+#top {
+  background: #fff;
+  height: 100px;
+}
+
+#top h1 {
+  margin: 1em 0 0 1em;
+  float: left;
+}
+
+#top ul {
+  margin: 2.5em 2em 0 0;
+  padding: 0;
+  list-style: none;
+  float: right;
+}
+
+#top ul li {
+  float: left;
+  margin: 0 0 0 1em;
+  font-size: 1em;
+}
+
+#top ul li a {
+  color: #000;
+}
+
+#video {
+  min-height: 100%;
+  background-color: #666;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+#video video {
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#video h1 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  color: #fff;
+  width: 50%;
+  height: 1em;
+  text-align: center;
+}
+
+#video-spacer {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#content {
+  position: relative;
+}
+
+#static-wrap {
+  position: static;
+}
+
+.moment {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  height: 450px;
+  background: #f6f6f6;
+}
+
+.moment h1 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  color: #fff;
+  width: 50%;
+  height: 1em;
+  text-align: center;
+}
+
+.moment-clipper {
+  position: absolute;
+  clip: rect(auto, auto, auto, auto);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.moment-image {
+  background: #666 url(/assets/images/blur_homepage.png) no-repeat 50% 50%;
+  background-size: cover;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 100px;
+}
+
+.moment-image2 {
+  background: #666 url(/assets/images/contact.jpeg) 50% 50%;
+  position: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: 100px;
+}
+.moment-image3 {
+  background: #666 url(/assets/images/home-banner-2.jpeg) 50% 50%;
+  position: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: 100px;
+}
+.moment-image4 {
+  background: #666 url(/assets/images/computer_graph.jpeg) 50% 50%;
+  position: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: 100px;
+}
+
+.moment-image5 {
+  background: #666 url(/assets/images/stock_image.jpg) 50% 50%;
+  position: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: 100px;
+}
+.moment-image6 {
+  background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) 50% 50%;
+  position: fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  top: 100px;
+}
+footer {
+  position: relative;
+  background: #333;
+  overflow: hidden;
+}
+
+footer p {
+  color: #fff;
+  margin: 1em 2em;
 }
