@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap');
+
 /deep/ body {
   overflow-y: scroll !important;
 }
@@ -311,7 +313,6 @@ nb-card:hover {
 
 .ptext-section-1 {
   top: 40%;
-  width: 450px;
   text-align: center;
   left: 10%;
   z-index: 10;
@@ -330,9 +331,8 @@ nb-card:hover {
 
 .ptext-section-2 {
   top: 40%;
-  width: 350px;
   text-align: left;
-  left: 20%;
+  left: 10%;
   z-index: 10;
 }
 
@@ -350,6 +350,8 @@ nb-card:hover {
 
 .ptext .pborder.trans {
   background-color: transparent;
+  font-size: 48px;
+  font-family: 'Nunito', sans-serif;
 }
 
 @media(max-width: 568px) {
@@ -629,7 +631,7 @@ header {
 }
 
 .moment-image {
-  background: #666 url(/assets/images/blur_homepage.png) no-repeat 50% 50%;
+  background: #666 url(/assets/images/blur_homepage.png) no-repeat top;
   background-size: cover;
   position: fixed;
   width: 100%;
@@ -709,12 +711,17 @@ footer p {
 @media (min-width: 481px) and (max-width: 767px) {
 
   .section-div {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .footer-menu {
     flex-direction: column;
     margin: 0 auto;
     align-items: center;
+  }
+  .ptext .pborder.trans {
+    background-color: transparent;
+    font-size: 30px;
+    font-family: 'Nunito', sans-serif;
   }
 }
 
@@ -726,12 +733,17 @@ footer p {
 @media (min-width: 320px) and (max-width: 480px) {
 
   .section-div {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .footer-menu {
     flex-direction: column;
     margin: 0 auto;
     align-items: center;
+  }
+  .ptext .pborder.trans {
+    background-color: transparent;
+    font-size: 30px;
+    font-family: 'Nunito', sans-serif;
   }
 
 }

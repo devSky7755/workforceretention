@@ -55,7 +55,7 @@ header nav {
   transform: translateY(-50%);
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
 }
@@ -170,4 +170,25 @@ nav ul li a {
 .client-logo {
   margin-top: -40px;
   width: 150px;
+}
+header nav .logo a img{
+  height: 150px;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  header nav .logo a img{
+    height: 100px;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+  header nav .logo a img{
+    height: 100px;
+  }
 }
