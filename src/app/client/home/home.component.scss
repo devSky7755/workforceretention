@@ -412,17 +412,7 @@ body {
 #content6 {
   background: rgb(30, 70, 98);
   color: #fff;
-  top: -150px;
-}
-
-@media (min-width: 1439px) {
-
-  #content6 {
-    background: rgb(30, 70, 98);
-    color: #fff;
-    top: -110px;
-  }
-
+  top: 0;
 }
 
 .footer-div {
@@ -640,16 +630,15 @@ header {
 }
 
 .moment-image2 {
-  background: #666 url(/assets/images/contact.jpeg) 50% 50%;
+  background: #666 url(/assets/images/contact.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
   height: 100%;
   top: 100px;
 }
-
 .moment-image3 {
-  background: #666 url(/assets/images/home-banner-2.jpeg) 50% 50%;
+  background: #666 url(/assets/images/home-banner-2.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -658,7 +647,7 @@ header {
 }
 
 .moment-image4 {
-  background: #666 url(/assets/images/computer_graph.jpeg) 50% 50%;
+  background: #666 url(/assets/images/computer_graph.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -667,7 +656,7 @@ header {
 }
 
 .moment-image5 {
-  background: #666 url(/assets/images/stock_image.jpg) 50% 50%;
+  background: #666 url(/assets/images/stock_image.jpg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -676,7 +665,7 @@ header {
 }
 
 .moment-image6 {
-  background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) 50% 50%;
+  background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -723,6 +712,13 @@ footer p {
     font-size: 30px;
     font-family: 'Nunito', sans-serif;
   }
+  .moment{
+    height: 300px;
+  }
+  .ptext-section-3{
+    left: 10%;
+    right: 0;
+  }
 }
 
 /*
@@ -744,6 +740,13 @@ footer p {
     background-color: transparent;
     font-size: 30px;
     font-family: 'Nunito', sans-serif;
+  }
+  .moment{
+    height: 300px;
+  }
+  .ptext-section-3{
+    left: 0;
+    right: 0;
   }
 
 }
