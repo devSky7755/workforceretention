@@ -1,18 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap');
+
 .home-section {
   padding: 80px 0;
   position: relative;
-  top: 100px;
 }
 
 .light-gray {
   background: rgba(0, 0, 0, 0.024);
 }
+
 .nb-card-color {
   background: #fff !important;
   padding: 10px;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   border-top: 2px solid #000;
 }
+
 nb-card:hover {
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   border-top: 2px solid #3f51b5;
@@ -22,14 +25,17 @@ nb-card:hover {
 .nb-card-header {
   color: #000;
 }
+
 .description {
   color: #616161;
   line-height: 1.5rem;
 }
+
 .alert-danger {
   background: rgba(0, 0, 0, 0.4) !important;
   color: red;
 }
+
 //re-writing global css
 /deep/ nb-layout .layout {
   background-color: #fff !important;
@@ -39,22 +45,69 @@ nb-layout-column {
   padding: 0 !important;
 }
 
-/deep/ .nb-theme-cosmic .form-control{
+/deep/ .nb-theme-cosmic .form-control {
   background-color: #fff;
   border: 1px solid #342e73;
 }
-/deep/ .nb-theme-cosmic .form-control:focus{
+
+/deep/ .nb-theme-cosmic .form-control:focus {
   background-color: #f0f0f5;
   color: #3f51b5;
 }
-.container-fluid{
+
+.container-fluid {
   background-size: cover;
   width: 100%;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/contact-us.jpeg");
+  height: 450px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/contact-us.jpeg");
+  background-position: right center;
   position: relative;
   padding-bottom: 20px;
 }
-.contact-logo{
+
+.image-text {
+  position: absolute;
+  font-size: 36px;
+  background-color: transparent;
+  font-family: 'Nunito', sans-serif;
+  top: 50%;
+  left: 10%;
+  color: #ffffff;
+}
+
+.section-div {
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-control {
+  color: #000000;
+  border: 1px solid #2d8ac7 !important;
+}
+
+.form-container1 {
+  flex-basis: 25%;
+  padding: 5px;
+}
+
+.form-container2 {
+  flex-basis: 25%;
+  padding: 5px;
+}
+
+.form-container3 {
+  flex-basis: 50%;
+  padding: 5px;
+}
+
+.contact-logo {
   position: absolute;
   top: 0;
   right: 0;

@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d5efe92f-0609-4573-a630-d01477f70f62" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/images/contact-us.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/images/flexible-options.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/contact/contact.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/contact/contact.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/client/contact/contact.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/contact/contact.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/client/home/home.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/home/home.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/contact/contact.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/contact/contact.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.scss" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/dist/" />
@@ -21,40 +22,77 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+            <state relative-caret-position="60">
+              <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-end-line="6" selection-end-column="18" />
               <folding>
-                <element signature="e#0#80#0" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#1;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h6#0;n#div#1;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#textarea#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
+        <entry file="file://$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.ts">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="356">
+              <caret line="145" column="111" lean-forward="true" selection-start-line="145" selection-start-column="111" selection-end-line="145" selection-end-column="111" />
+              <folding>
+                <element signature="n#div#0;n#section#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+                <element signature="n#div#1;n#section#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+                <element signature="n#div#0;n#section#2;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.scss">
+        <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="463">
-              <caret line="748" column="13" selection-start-line="748" selection-start-column="13" selection-end-line="748" selection-end-column="13" />
+            <state relative-caret-position="1890">
+              <caret line="126" column="31" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#span#0;n#div#0;n#section#0;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#span#0;n#div#0;n#section#1;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#span#0;n#div#0;n#section#2;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#span#0;n#div#0;n#section#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#1;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#2;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#2;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#3;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#3;n#div#1;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#0;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#1;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#1;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#2;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#2;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#div#3;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#div#3;n#div#2;n#div#4;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#1;n#div#0;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.scss">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+            <state relative-caret-position="435">
+              <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -63,7 +101,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logout</find>
       <find>auth/logout</find>
       <find>Add Employee</find>
       <find>auth0</find>
@@ -93,6 +130,7 @@
       <find>nbtoast</find>
       <find>border</find>
       <find>trans</find>
+      <find>sec</find>
     </findStrings>
     <replaceStrings>
       <replace>login-form-control</replace>
@@ -110,7 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/controllers/question.js" />
         <option value="$PROJECT_DIR$/src/app/@core/data/question.service.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/clients/employees/employee-details/employee-details.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/dashboard/dashboard.component.ts" />
@@ -146,13 +183,10 @@
         <option value="$PROJECT_DIR$/server/controllers/employee.js" />
         <option value="$PROJECT_DIR$/src/app/client/manager-report/manager-report.component.ts" />
         <option value="$PROJECT_DIR$/src/app/pages/surveys/survey-management/questions/add-edit-question/add-edit-question.component.html" />
-        <option value="$PROJECT_DIR$/src/app/client/contact/contact.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/about/about.component.html" />
-        <option value="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.html" />
         <option value="$PROJECT_DIR$/angular.json" />
         <option value="$PROJECT_DIR$/src/app/client/home/home.component.ts" />
         <option value="$PROJECT_DIR$/src/app/client/about/about.component.scss" />
-        <option value="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.scss" />
         <option value="$PROJECT_DIR$/src/app/client/authentication/authentication.component.html" />
         <option value="$PROJECT_DIR$/src/app/@core/data/url.service.ts" />
         <option value="$PROJECT_DIR$/src/app/@core/core.module.ts" />
@@ -160,7 +194,11 @@
         <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/layout/header/header.component.scss" />
         <option value="$PROJECT_DIR$/src/app/client/home/home.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/client/contact/contact.component.ts" />
+        <option value="$PROJECT_DIR$/src/app/client/contact/contact.component.html" />
         <option value="$PROJECT_DIR$/src/app/client/contact/contact.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.scss" />
+        <option value="$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.html" />
       </list>
     </option>
   </component>
@@ -213,6 +251,28 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="contact" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="flexible-options" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workforceretention" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workforceretention" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -487,12 +547,15 @@
       <workItem from="1559580691367" duration="2329000" />
       <workItem from="1559658564502" duration="2332000" />
       <workItem from="1559784268854" duration="314000" />
-      <workItem from="1559788391193" duration="737000" />
+      <workItem from="1559788391193" duration="1462000" />
+      <workItem from="1560071657939" duration="3000" />
+      <workItem from="1560105006041" duration="1036000" />
+      <workItem from="1560132341431" duration="13150000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="871978000" />
+    <option name="totallyTimeSpent" value="886892000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -532,19 +595,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/controllers/report.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="23" lean-forward="true" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/controllers/survey.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/question.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/controllers/employee.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
@@ -633,20 +683,6 @@
     <entry file="file://$PROJECT_DIR$/src/assets/images/hamburger_menu.svg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="33" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="33" lean-forward="true" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/images/logo_square.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -717,13 +753,6 @@
     <entry file="file://$PROJECT_DIR$/src/assets/images/cover1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/about/about.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -732,13 +761,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/about/about.component.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
@@ -769,10 +791,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#80#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="126" column="31" lean-forward="true" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
+        <state relative-caret-position="1890">
+          <caret line="126" column="31" selection-start-line="126" selection-start-column="31" selection-end-line="126" selection-end-column="31" />
           <folding>
             <element signature="n#style#0;n#div#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#span#0;n#div#0;n#section#0;n#div#0;n#div#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
@@ -801,34 +840,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/core.module.ts">
+    <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="53" column="22" selection-start-line="53" selection-start-column="22" selection-end-line="53" selection-end-column="22" />
+        <state relative-caret-position="60">
+          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-end-line="6" selection-end-column="18" />
           <folding>
-            <element signature="e#0#80#0" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#1;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h6#0;n#div#1;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#textarea#0;n#div#0;n#div#2;n#div#0;n#form#0;n#div#1;n#section#0;n#nb-layout-column#0;n#nb-layout#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/@core/data/url.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/assets/images/flexible-options.jpeg">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="748" column="13" selection-start-line="748" selection-start-column="13" selection-end-line="748" selection-end-column="13" />
+        <state relative-caret-position="174">
+          <caret line="684" column="4" selection-start-line="684" selection-start-column="1" selection-end-line="684" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/home/home.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="47" column="17" lean-forward="true" selection-start-line="47" selection-start-column="17" selection-end-line="47" selection-end-column="17" />
+        <state relative-caret-position="118">
+          <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/contact/contact.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="27" column="38" lean-forward="true" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.ts">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="142" column="18" selection-start-line="142" selection-start-column="18" selection-end-line="142" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/client/flexible-options/flexible-options.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="145" column="111" lean-forward="true" selection-start-line="145" selection-start-column="111" selection-end-line="145" selection-end-column="111" />
+          <folding>
+            <element signature="n#div#0;n#section#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+            <element signature="n#div#1;n#section#1;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+            <element signature="n#div#0;n#section#2;n#nb-layout-column#0;n#nb-layout#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>

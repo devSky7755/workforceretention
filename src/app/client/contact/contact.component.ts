@@ -8,7 +8,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class ContactComponent implements OnInit {
 
-    email = {name: '', from_email: '', subject: '', message: ''};
+    email = {name: '', from_email: '', subject: '', organization: '', message: ''};
     contactForm: FormGroup;
 
     constructor() {
@@ -31,7 +31,8 @@ export class ContactComponent implements OnInit {
                 Validators.pattern("[^ @]*@[^ @]*")
             ]),
             subject: new FormControl('', [Validators.required]),
-            message: new FormControl('', [Validators.required])
+            message: new FormControl('', [Validators.required]),
+            organization: new FormControl('', [Validators.required])
         });
     }
 

@@ -1,18 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap');
+
 .home-section {
   padding: 80px 0;
   position: relative;
-  top: 100px;
+  height: 100vh;
 }
 
 .light-gray {
   background: rgba(0, 0, 0, 0.024);
 }
+
 .nb-card-color {
   background: #fff !important;
   padding: 10px;
   box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
   border-top: 2px solid #000;
 }
+
 nb-card:hover {
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   border-top: 2px solid #3f51b5;
@@ -22,10 +26,12 @@ nb-card:hover {
 .nb-card-header {
   color: #000;
 }
+
 .description {
   color: #616161;
   line-height: 1.5rem;
 }
+
 //#2f296b
 //re-writing global css
 /deep/ nb-layout .layout {
@@ -35,45 +41,180 @@ nb-card:hover {
 nb-layout-column {
   padding: 0 !important;
 }
-.about-description{
+
+.about-description {
   color: #000000;
   font-size: 1.2rem;
   line-height: 1.7rem;
   word-spacing: 2px;
 }
-.short-logo{
+
+.short-logo {
   position: relative;
 }
-.short-logo img{
+
+.short-logo img {
   position: absolute;
   bottom: 0;
   left: 0;
 }
-.long-logo{
+
+.long-logo {
   text-align: right;
 }
-.graph-img{
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url("assets/images/computer_graph.jpeg");
+
+.container-fluid {
+  background-size: cover;
+  width: 100%;
+  height: 500px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/flexible-options.jpeg");
+  background-position: top;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.image-text {
+  position: absolute;
+  font-size: 36px;
+  background-color: transparent;
+  font-family: 'Nunito', sans-serif;
+  top: 50%;
+  left: 10%;
+  color: #1e4662;
+}
+
+.graph-img {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/computer_graph.jpeg");
   width: 100%;
   height: 500px;
   background-size: cover;
 }
-.reporting-image{
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),url("assets/images/reporting.jpeg");
+
+.reporting-image {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/reporting.jpeg");
   width: 100%;
   height: 500px;
   background-size: cover;
   position: relative;
 }
-.reporting-header{
+
+.section-div-text {
+  max-width: 900px;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  color: #000000;
+  margin: 30px auto 0;
+}
+
+.reporting-header {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.reporting-logo{
+
+.reporting-logo {
   position: absolute;
   top: 0;
   right: 0;
   height: 250px;
+}
+
+.section1 {
+  background-color: #1e4662;
+  height: 250px;
+  margin: 20px;
+}
+
+.section2 {
+  background-color: #53bdf9;
+  height: 250px;
+  margin: 40px 20px 20px;
+}
+.section4{
+  background-color: #999999;
+  height: 250px;
+  margin: 40px 20px 20px;
+}
+
+.section-container {
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+.section-container1 {
+  height: 210px;
+  flex-basis: 25%;
+  margin-right: 50px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.section-container2 {
+  height: 210px;
+  flex-basis: 33.33%;
+}
+
+.section-container3 {
+  height: 210px;
+  flex-basis: 33.33%;
+}
+
+.section-arrow {
+  clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 40%;
+  right: -10%;
+}
+
+.section-marker {
+  position: absolute;
+  width: 50px;
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 50%;
+  vertical-align: middle;
+  line-height: 50px;
+  top: -40px;
+  left: -30px;
+  height: 50px;
+}
+
+.marker1 {
+  background-color: #1e4662;
+}
+
+.marker2 {
+  background-color: #53bdf9;
+}
+
+.marker3 {
+  background-color: #1e4662;
+}
+
+.marker4 {
+  background-color: #999999;
+}
+
+.ul-marker {
+  color: #ffffff;
+}
+
+.scroll-next-page {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+  font-family: 'Nunito', sans-serif;
+  font-style: italic;
+  color: #2e68a3;
+}
+
+h1, h2, h3, p {
+  font-family: 'Nunito', sans-serif;
+  color: #000000;
 }
