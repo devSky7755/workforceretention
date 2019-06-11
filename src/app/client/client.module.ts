@@ -24,6 +24,8 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
 import { ManagerReportPdfComponent } from './manager-report-pdf/manager-report-pdf.component';
 import { FlexibleOptionsComponent } from './flexible-options/flexible-options.component';
 import { AboutComponent } from './about/about.component';
+import {RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings} from "ng-recaptcha";
+import {RecaptchaFormsModule} from "ng-recaptcha/forms";
 
 @NgModule({
     declarations: [
@@ -56,7 +58,15 @@ import { AboutComponent } from './about/about.component';
         ReactiveFormsModule,
         NbDatepickerModule,
         NgxChartsModule,
-    ]
+        RecaptchaModule,
+        RecaptchaFormsModule,
+    ],
+    providers: [{
+        provide: RECAPTCHA_SETTINGS,
+        useValue: {
+            siteKey: '6LdKKKgUAAAAAAeeeUSsJ9VonY93gUZlIpYU3Qp8',
+        } as RecaptchaSettings,
+    }]
 })
 export class ClientModule {
 }

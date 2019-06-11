@@ -3,7 +3,7 @@
 .home-section {
   padding: 80px 0;
   position: relative;
-  height: 100vh;
+  height: 65vh;
 }
 
 .light-gray {
@@ -149,16 +149,19 @@ nb-layout-column {
   margin-right: 50px;
   background-color: #ffffff;
   position: relative;
+  padding-top: 10px;
 }
 
 .section-container2 {
   height: 210px;
   flex-basis: 33.33%;
+  padding-top: 20px;
 }
 
 .section-container3 {
   height: 210px;
   flex-basis: 33.33%;
+  padding-top: 20px;
 }
 
 .section-arrow {
@@ -201,8 +204,9 @@ nb-layout-column {
   background-color: #999999;
 }
 
-.ul-marker {
+.ul-marker li{
   color: #ffffff;
+  font-size: 16px;
 }
 
 .scroll-next-page {
@@ -214,7 +218,7 @@ nb-layout-column {
   color: #2e68a3;
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p,li {
   font-family: 'Nunito', sans-serif;
   color: #000000;
 }

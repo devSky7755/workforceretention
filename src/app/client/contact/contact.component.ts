@@ -32,11 +32,17 @@ export class ContactComponent implements OnInit {
             ]),
             subject: new FormControl('', [Validators.required]),
             message: new FormControl('', [Validators.required]),
-            organization: new FormControl('', [Validators.required])
+            organization: new FormControl('', [Validators.required]),
+            recaptchaReactive: new FormControl(null, Validators.required)
         });
     }
 
     sendEmail() {
+        if (!this.contactForm.valid) {
+            alert('Invalid form data');
+        } else {
+            alert('success');
+        }
     }
 
 }

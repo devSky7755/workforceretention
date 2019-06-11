@@ -86,7 +86,13 @@ nb-layout-column {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-
+.form-container-captcha {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 .form-control {
   color: #000000;
   border: 1px solid #2d8ac7 !important;
