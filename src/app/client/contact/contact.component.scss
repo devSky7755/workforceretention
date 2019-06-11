@@ -86,6 +86,7 @@ nb-layout-column {
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
 .form-container-captcha {
   display: flex;
   flex-direction: row;
@@ -93,6 +94,7 @@ nb-layout-column {
   justify-content: center;
   align-items: center;
 }
+
 .form-control {
   color: #000000;
   border: 1px solid #2d8ac7 !important;
@@ -118,4 +120,22 @@ nb-layout-column {
   top: 0;
   right: 0;
   height: 250px;
+}
+
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .form-container {
+    flex-direction: column;
+  }
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .form-container {
+    flex-direction: column;
+  }
 }
