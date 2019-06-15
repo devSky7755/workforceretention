@@ -67,7 +67,7 @@ nb-layout-column {
 
 .image-text {
   position: absolute;
-  font-size: 36px;
+  font-size: 48px;
   background-color: transparent;
   font-family: 'Nunito', sans-serif;
   top: 50%;
@@ -127,6 +127,12 @@ nb-layout-column {
   .form-container {
     flex-direction: column;
   }
+  .container-fluid {
+    background-position: left;
+  }
+  .image-text {
+    font-size: 30px;
+  }
 }
 
 /*
@@ -137,5 +143,11 @@ nb-layout-column {
 @media (min-width: 320px) and (max-width: 480px) {
   .form-container {
     flex-direction: column;
+  }
+  .container-fluid {
+    background-position: left;
+  }
+  .image-text {
+    font-size: 30px;
   }
 }

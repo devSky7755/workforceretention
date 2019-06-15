@@ -75,7 +75,7 @@ nb-layout-column {
 
 .image-text {
   position: absolute;
-  font-size: 36px;
+  font-size: 48px;
   background-color: transparent;
   font-family: 'Nunito', sans-serif;
   top: 50%;
@@ -246,11 +246,19 @@ h1, h2, h3, p, li {
   }
   .section-container1 {
     margin-right: 0;
-    padding-left:10px ;
+    padding-left: 10px;
     padding-right: 10px;
   }
   .section-container2 {
     padding-top: 40px;
+  }
+  .image-text {
+    font-size: 30px;
+    color: #ffffff;
+  }
+  .container-fluid {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/flexible-options.jpeg");
+    background-position: 80%;
   }
 }
 
@@ -281,11 +289,51 @@ h1, h2, h3, p, li {
   }
   .section-container1 {
     margin-right: 0;
-    padding-left:10px ;
+    padding-left: 10px;
     padding-right: 10px;
   }
   .section-container2 {
     padding-top: 40px;
   }
+  .image-text {
+    font-size: 30px;
+    color: #ffffff;
+  }
+  .container-fluid {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/flexible-options.jpeg");
+    background-position: 80%;
+  }
 
+}
+
+// Media query for ipad
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) { /* STYLES GO HERE */
+  .home-section {
+    height: auto;
+    padding: 20px 0;
+  }
+  .section1 {
+    height: 400px;
+  }
+  .section2 {
+    height: 400px;
+  }
+  .section4 {
+    height: 400px;
+  }
+
+  .section-container1 {
+    height: 300px;
+  }
+  .section-arrow {
+    right: -30%;
+  }
+}
+
+
+// Media query for ipad pro
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) { /* STYLES GO HERE */
+  .section-arrow {
+    right: -20%;
+  }
 }
