@@ -9,8 +9,6 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit, AfterContentInit {
 
-    currentYear = new Date().getFullYear();
-
     constructor() {
     }
 

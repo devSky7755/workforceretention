@@ -30,7 +30,7 @@ export class ContactComponent implements OnInit {
                 Validators.required,
                 Validators.pattern("[^ @]*@[^ @]*")
             ]),
-            subject: new FormControl('', [Validators.required]),
+            subject: new FormControl('' ),
             message: new FormControl('', [Validators.required]),
             organization: new FormControl('', [Validators.required]),
             recaptchaReactive: new FormControl(null, Validators.required)
