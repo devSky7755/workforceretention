@@ -211,6 +211,7 @@ nb-layout-column {
 .ul-marker li {
   color: #ffffff;
   font-size: 16px;
+  margin-bottom: 10px;
 }
 
 .scroll-next-page {
@@ -263,6 +264,9 @@ h1, h2, h3, p, li {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/flexible-options.jpeg");
     background-position: 80%;
   }
+  .about-description {
+    padding: 20px;
+  }
 }
 
 /*
@@ -306,6 +310,9 @@ h1, h2, h3, p, li {
   .container-fluid {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/flexible-options.jpeg");
     background-position: 80%;
+  }
+  .about-description {
+    padding: 20px;
   }
 
 }
