@@ -273,6 +273,7 @@ h1, h2, h3, p, li {
 @media (min-width: 320px) and (max-width: 480px) {
   .home-section {
     height: auto;
+    padding: 10px 0;
   }
   .section-container {
     flex-direction: column;
