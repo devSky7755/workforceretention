@@ -35,7 +35,7 @@ header {
   align-items: center;
   top: 0;
   flex-direction: column;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0, 0, 0);
 }
 
 header:before {
@@ -171,13 +171,22 @@ nav ul li a {
   margin-top: -40px;
   width: 150px;
 }
-header nav .logo a img{
+
+header nav .logo a img {
   height: 150px;
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
-  header nav .logo a img{
+  header nav .logo a img {
     height: 100px;
+  }
+  .dropdown-image {
+    position: absolute;
+    top: -30%;
+    right: -100%;
+  }
+  .dropdown-menu {
+    left: -160px;
   }
 }
 
@@ -188,7 +197,15 @@ header nav .logo a img{
 
 @media (min-width: 320px) and (max-width: 480px) {
 
-  header nav .logo a img{
+  header nav .logo a img {
     height: 100px;
+  }
+  .dropdown-image {
+    position: absolute;
+    top: -30%;
+    right: -100%;
+  }
+  .dropdown-menu {
+    left: -160px;
   }
 }
