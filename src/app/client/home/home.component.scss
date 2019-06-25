@@ -749,3 +749,35 @@ footer p {
   }
 
 }
+
+// Re-write css for microsoft edge browser
+
+@supports (-ms-ime-align: auto) {
+  .moment-clipper{
+    height: 0;
+  }
+  .moment1{
+    background: #666 url(/assets/images/blur_homepage.png) no-repeat top;
+    background-size: cover;
+  }
+  .moment2{
+    background: #666 url(/assets/images/contact.jpeg) top;
+    background-size: cover;
+  }
+  .moment3{
+    background: #666 url(/assets/images/home-banner-2.jpeg) center;
+    background-size: cover;
+  }
+  .moment4{
+    background: #666 url(/assets/images/computer_graph.jpeg) top;
+    background-size: cover;
+  }
+  .moment5{
+    background: #666 url(/assets/images/stock_image.jpg) top;
+    background-size: cover;
+  }
+  .moment6{
+    background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) top;
+    background-size: cover;
+  }
+}
