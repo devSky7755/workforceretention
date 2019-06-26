@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ReportService} from "../../@core/data/report.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 
-// import * as CanvasJS from '../../../assets/canvasjs.min.js';
+import * as CanvasJS from '../../../assets/canvasjs.min.js';
 
 @Component({
     selector: 'ngx-manager-report',
@@ -530,25 +530,25 @@ export class ManagerReportComponent implements OnInit {
             // ******************************* Transform the chart data like as CanvasJs Chart ***********************
 
             // *********************** Top Leaving Reason Chart *************************
-            // this.single.map((reason) => {
-            //     reason.y = parseFloat(reason.value);
-            //     reason.label = reason.name;
-            // });
-            // console.log(this.single);
-            // const top_reason_chart = new CanvasJS.Chart('chartContainer', {
-            //     animationEnabled: true,
-            //     exportEnabled: true,
-            //     // dataPointWidth: 50,
-            //     title: {
-            //         text: 'Basic Column Chart in Angular'
-            //     },
-            //     data: [{
-            //         type: 'column',
-            //         dataPoints: this.single
-            //     }]
-            // });
-            //
-            // top_reason_chart.render();
+            this.single.map((reason) => {
+                reason.y = parseFloat(reason.value);
+                reason.label = reason.name;
+            });
+            console.log(this.single);
+            const top_reason_chart = new CanvasJS.Chart('chartContainer', {
+                animationEnabled: true,
+                exportEnabled: true,
+                // dataPointWidth: 50,
+                title: {
+                    text: 'Basic Column Chart in Angular'
+                },
+                data: [{
+                    type: 'column',
+                    dataPoints: this.single
+                }]
+            });
+
+            top_reason_chart.render();
             setTimeout(() => {
                 // top reason vertical chart percentage calculation
                 this.showVerticalChartPercentage(this.topReasonVerticalChart, this.single);
