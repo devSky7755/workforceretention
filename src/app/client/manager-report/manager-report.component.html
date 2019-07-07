@@ -101,7 +101,7 @@
                         <!--DISPLAY ALL THE CHART BELOW-->
                         <!--FIRST CHART TOP REASONS FOR LEAVING - PERCENTAGE DISTRIBUTION-->
                         <div *ngIf="completed_surveys !== 0" class="mt-5">
-                            <!-- <h2>Top Reasons for Leaving - Percentage Distribution</h2> -->
+                            <h2 class="text-center mb-3">Top Reasons for Leaving - Percentage Distribution</h2>
                             <!-- <div style="display: flex; overflow: hidden;height: 500px">
                                 <ngx-charts-bar-vertical #topReasonVerticalChart [scheme]="colorScheme"
                                     [schemeType]="schemaType" [results]="single" [gradient]="gradient"
@@ -121,7 +121,8 @@
                                     class="mt-5">
                                     <!--This means this is Career Opportunities Exit Reason-->
                                     <!--Give a title -->
-                                    <!-- <h2>{{exit_reasons[response.label_index].value}} ( Rank {{i + 1}} )</h2> -->
+                                    <h2 class="text-center mb-3">{{exit_reasons[response.label_index].value}} ( Rank
+                                        {{i + 1}} )</h2>
                                     <!--Display the chart-->
                                     <!-- <div style="display: flex; overflow: hidden;height: 500px">
                                         <ngx-charts-bar-vertical-stacked [scheme]="barChartColorSchema"
@@ -138,8 +139,8 @@
                                 </div>
                             </div>
                             <div *ngIf="employee_sentiment_working_chart_data.length > 0" class="mt-5">
-                                <!-- <h2>Employee Sentiment What's Working</h2>
-                                <div style="display: flex; overflow: hidden;min-height: 500px">
+                                <h2 class="text-center mb-3">Employee Sentiment What's Working</h2>
+                                <!-- <div style="display: flex; overflow: hidden;min-height: 500px">
                                     <ngx-charts-bar-horizontal-stacked [scheme]="colorScheme" [schemeType]="schemaType"
                                         [results]="employee_sentiment_working_chart_data" [gradient]="gradient"
                                         [xAxis]="true" [showDataLabel]="true" [showXAxisLabel]="true" [yAxis]="true"
@@ -149,8 +150,8 @@
                                 <div id="employeeSentimentChart" style="width: 100%; min-height: 400px;"></div>
                             </div>
                             <div *ngIf="employee_sentiment_not_working_chart_data.length > 0" class="mt-5">
-                                <!-- <h2>Employee Sentiment What's Not Working</h2>
-                                <div style="display: flex; overflow: hidden;min-height: 500px">
+                                <h2 class="text-center mb-3">Employee Sentiment What's Not Working</h2>
+                                <!-- <div style="display: flex; overflow: hidden;min-height: 500px">
                                     <ngx-charts-bar-horizontal-stacked [scheme]="colorScheme" [schemeType]="schemaType"
                                         [results]="employee_sentiment_not_working_chart_data" [gradient]="gradient"
                                         [xAxis]="true" [showXAxisLabel]="true" [yAxis]="true" [legend]="true"
@@ -160,36 +161,36 @@
                                 <div id="employeeSentimentNotChart" style="width: 100%; min-height: 400px;"></div>
                             </div>
                             <div *ngIf="gender_split_chart_data.length > 0" class="mt-5">
-                                <!-- <h2 class="text-center">Gender Split</h2>
-                                <div style="display: flex; overflow: hidden;height: 500px">
+                                <h2 class="text-center mb-3">Gender Split</h2>
+                                <!-- <div style="display: flex; overflow: hidden;height: 500px">
                                     <ngx-charts-pie-chart #genderPieChart [scheme]="colorScheme"
                                         [schemeType]="schemaType" [results]="gender_split_chart_data"
                                         [gradient]="gradient" [labels]="true" [legend]="true"
                                         (select)="onSelect($event)">
                                     </ngx-charts-pie-chart>
                                 </div> -->
-                                <div id="genderChart" style="height: 370px; width: 100%;"></div>
+                                <div id="genderChart" class="mx-auto" style="height: 500px; width: 100%;"></div>
                             </div>
                             <div *ngIf="tenure_split_chart_data.length > 0" class="mt-5">
-                                <!-- <h2 class="text-center">Tenure Split</h2>
-                                <div style="display: flex; overflow: hidden;height: 500px">
+                                <h2 class="text-center mb-3">Tenure Split</h2>
+                                <!-- <div style="display: flex; overflow: hidden;height: 500px">
                                     <ngx-charts-pie-chart #tenurePieChart [scheme]="colorScheme"
                                         [schemeType]="schemaType" [results]="tenure_split_chart_data"
                                         [gradient]="gradient" [labels]="true" [legend]="true"
                                         (select)="onSelect($event)">
                                     </ngx-charts-pie-chart>
                                 </div> -->
-                                <div id="tenureChart" style="height: 370px; width: 100%;"></div>
+                                <div id="tenureChart" class="mx-auto" style="height: 500px; width: 100%;"></div>
                             </div>
                             <div *ngIf="age_split_chart_data.length > 0" class="mt-5">
-                                <!-- <h2 class="text-center">Age Split</h2>
-                                <div style="display: flex; overflow: hidden;height: 500px">
+                                <h2 class="text-center mb-3">Age Split</h2>
+                                <!-- <div style="display: flex; overflow: hidden;height: 500px">
                                     <ngx-charts-pie-chart #agePieChart [scheme]="colorScheme" [schemeType]="schemaType"
                                         [results]="age_split_chart_data" [gradient]="gradient" [labels]="true"
                                         [legend]="true" (select)="onSelect($event)">
                                     </ngx-charts-pie-chart>
                                 </div> -->
-                                <div id="ageChart" style="height: 370px; width: 100%;"></div>
+                                <div id="ageChart" class="mx-auto" style="height: 500px; width:100%;"></div>
                             </div>
                         </div>
                     </div>

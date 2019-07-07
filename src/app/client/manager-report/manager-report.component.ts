@@ -674,6 +674,32 @@ export class ManagerReportComponent implements OnInit {
                 "#519f75",
                 "#f4bbe7"
             ]);
+        CanvasJS.addColorSet("sentimentColorSets",
+            [
+                "#99cc66",
+                "orange",
+                "#6699cc",
+                "#2e97e0",
+                "#b02ee0",
+                "#e02e75",
+                "#5ce02e",
+                "#e0b02e",
+                "#519f75",
+                "#f4bbe7"
+            ])
+        CanvasJS.addColorSet("pieColorSets",
+            [
+                "#99cc66",
+                "orange",
+                "#6699cc",
+                "#2e97e0",
+                "#b02ee0",
+                "#e02e75",
+                "#5ce02e",
+                "#e0b02e",
+                "#519f75",
+                "#f4bbe7"
+            ])
     }
 
     showTopReasonChart() {
@@ -682,10 +708,10 @@ export class ManagerReportComponent implements OnInit {
             animationEnabled: true,
             exportEnabled: true,
             backgroundColor: '#f9f9f9',
-            title: {
-                text: 'Top Reasons for Leaving - Percentage Distribution',
-                margin: this.titleMargin
-            },
+            // title: {
+            //     text: 'Top Reasons for Leaving - Percentage Distribution',
+            //     margin: this.titleMargin
+            // },
             axisY: {
                 title: "Percentage Distribution (%)",
                 gridDashType: "dot"
@@ -707,10 +733,10 @@ export class ManagerReportComponent implements OnInit {
                 animationEnabled: true,
                 exportEnabled: true,
                 backgroundColor: '#f9f9f9',
-                title: {
-                    text: this.exit_reasons[response.label_index].value + ' ( Rank ' + (index + 1) + ' )',
-                    margin: this.titleMargin
-                },
+                // title: {
+                //     text: this.exit_reasons[response.label_index].value + ' ( Rank ' + (index + 1) + ' )',
+                //     margin: this.titleMargin
+                // },
                 axisY: {
                     suffix: "%",
                     gridDashType: "dot"
@@ -730,14 +756,14 @@ export class ManagerReportComponent implements OnInit {
     }
     showEswcdStackedChart() {
         var eswcdChart = new CanvasJS.Chart("employeeSentimentChart", {
-            colorSet: "stackColorSets",
+            colorSet: "sentimentColorSets",
             animationEnabled: true,
             exportEnabled: true,
             backgroundColor: '#f9f9f9',
-            title: {
-                text: "Employee Sentiment What's Working",
-                margin: this.titleMargin
-            },
+            // title: {
+            //     text: "Employee Sentiment What's Working",
+            //     margin: this.titleMargin
+            // },
             axisY: {
                 suffix: "%",
                 gridDashType: "dot"
@@ -756,14 +782,14 @@ export class ManagerReportComponent implements OnInit {
     }
     showEsnwcdStackedChart() {
         var esnwcdChart = new CanvasJS.Chart("employeeSentimentNotChart", {
-            colorSet: "stackColorSets",
+            colorSet: "sentimentColorSets",
             animationEnabled: true,
             exportEnabled: true,
             backgroundColor: '#f9f9f9',
-            title: {
-                text: "Employee Sentiment What's Not Working",
-                margin: this.titleMargin
-            },
+            // title: {
+            //     text: "Employee Sentiment What's Not Working",
+            //     margin: this.titleMargin
+            // },
             axisY: {
                 suffix: "%",
                 gridDashType: "dot"
@@ -782,14 +808,14 @@ export class ManagerReportComponent implements OnInit {
     }
     showGenderChart() {
         var genderChart = new CanvasJS.Chart("genderChart", {
-            colorSet: "stackColorSets",
+            colorSet: "pieColorSets",
             animationEnabled: true,
             exportEnabled: true,
             backgroundColor: '#f9f9f9',
-            title: {
-                text: "Gender Split",
-                margin: this.titleMargin
-            },
+            // title: {
+            //     text: "Gender Split",
+            //     margin: this.titleMargin
+            // },
             axisY: {
                 suffix: "%",
                 gridDashType: "dot"
@@ -815,14 +841,14 @@ export class ManagerReportComponent implements OnInit {
     }
     showTenureChart() {
         var tenureChart = new CanvasJS.Chart("tenureChart", {
-            colorSet: "stackColorSets",
+            colorSet: "pieColorSets",
             animationEnabled: true,
             exportEnabled: true,
             backgroundColor: '#f9f9f9',
-            title: {
-                text: "Tenure Split",
-                margin: this.titleMargin
-            },
+            // title: {
+            //     text: "Tenure Split",
+            //     margin: this.titleMargin
+            // },
             axisY: {
                 suffix: "%",
                 gridDashType: "dot"
@@ -848,14 +874,14 @@ export class ManagerReportComponent implements OnInit {
     }
     showAgeChart() {
         var ageChart = new CanvasJS.Chart("ageChart", {
-            colorSet: "stackColorSets",
+            colorSet: "pieColorSets",
             animationEnabled: true,
             exportEnabled: true,
             backgroundColor: '#f9f9f9',
-            title: {
-                text: "Age Split",
-                margin: this.titleMargin
-            },
+            // title: {
+            //     text: "Age Split",
+            //     margin: this.titleMargin
+            // },
             axisY: {
                 suffix: "%",
                 gridDashType: "dot"
