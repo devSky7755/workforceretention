@@ -1,7 +1,8 @@
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class URLService {
-    baseUrl = isDevMode() ? 'http://localhost:8080' : ''
+    baseUrl = !environment.production ? 'http://localhost:8080' : ''
     // baseUrl = '';
 }
