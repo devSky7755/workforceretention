@@ -1,12 +1,12 @@
-import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
-import {NbSecurityModule, NbRoleProvider} from '@nebular/security';
-import {of as observableOf} from 'rxjs';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf, isDevMode } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
+import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
+import { of as observableOf } from 'rxjs';
 
-import {throwIfAlreadyLoaded} from './module-import-guard';
-import {DataModule} from './data/data.module';
-import {AnalyticsService} from './utils/analytics.service';
+import { throwIfAlreadyLoaded } from './module-import-guard';
+import { DataModule } from './data/data.module';
+import { AnalyticsService } from './utils/analytics.service';
 
 const socialLinks = [
     {
@@ -44,8 +44,7 @@ export const NB_CORE_PROVIDERS = [
                     class: NbAuthJWTToken,
                     key: 'token', // this parameter tells where to look for the token
                 },
-                baseEndpoint: '',
-                // baseEndpoint: 'http://localhost:8080',
+                baseEndpoint: isDevMode() ? 'http://localhost:8080' : '',
                 login: {
                     endpoint: '/api/v1/auth/login',
                     redirect: {

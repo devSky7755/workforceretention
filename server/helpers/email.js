@@ -1,15 +1,17 @@
 const nodemailer = require('nodemailer');
+const checkEnv = require('./check_env')
+
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'firestoreangular0@gmail.com',
-        pass: 'nipamonalisa1'
+        user: checkEnv.isLiveServer ? 'firestoreangular0@gmail.com' : 'snow930123@gmail.com',
+        pass: checkEnv.isLiveServer ? 'nipamonalisa1' : 'cdmxjtcbeuqdzkjq'
     }
 });
 
 exports.sendEmail = function (req, res, next) {
     //Extract the from to subject and email body from the request
-    const {from, to, subject, body} = req.body;
+    const { from, to, subject, body } = req.body;
 
     const mailOptions = {
         from: from,
@@ -34,7 +36,7 @@ exports.sendEmail = function (req, res, next) {
 
 
 exports.SendEmailToEmployee = function (email) {
-    const {from, to, subject, body} = email;
+    const { from, to, subject, body } = email;
     const mailOptions = {
         from: from,
         to: to,
@@ -44,6 +46,7 @@ exports.SendEmailToEmployee = function (email) {
     return new Promise(function (resolve, reject) {
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
+                console.log(error)
                 reject(error)
             } else {
                 console.log(info);

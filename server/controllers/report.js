@@ -82,7 +82,8 @@ exports.ManagerReportDetails = (req, res, next) => {
                 });
                 if (err) return next(err);
                 if (employee.is_report === '0') {
-                    message = `${completedSurveys} surveys have been completed by Employees of organization ${employee.organization.name}`;
+                    console.log(employee)
+                    message = `${completedSurveys} surveys have been completed by Employees of organization ${employee.organization && employee.organization.name}`;
                 } else {
                     message = `${completedSurveys} surveys have been completed by Employees under client ${client.name}`;
                 }

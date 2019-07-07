@@ -74,14 +74,14 @@ mongoose.set('useFindAndModify', false);
 
 //body-parser configuration for reading data from request body
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false})); // x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false })); // x-www-form-urlencoded
 
 //ENABLE CORS. FOR CROSS ORIGIN RESOURCE SHARING
 app.use(cors());
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/',express.static(path.join(__dirname, 'public')));
+app.use('/', express.static(path.join(__dirname, 'public')));
 
 //SET UP ROUTES
 app.use('/api/v1/auth', authRoutes);
@@ -130,7 +130,7 @@ app.get('*', (req, res) => {
 app.use((error, req, res, next) => {
     const status = error.statusCode || 500;
     const message = error.message;
-    res.status(status).json({message, success: false})
+    res.status(status).json({ message, success: false })
 });
 
 

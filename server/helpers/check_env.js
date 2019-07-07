@@ -1,0 +1,1 @@
+exports.isLiveServer = process.env.USERNAME != 'sea93'

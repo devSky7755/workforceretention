@@ -36,7 +36,7 @@ exports.Create = function (req, res, next) {
             if (err) return next(err);
             if (!user) {
                 //set error that employee not found
-                return res.status(404).json({status: false, message: 'No employee found!'})
+                return res.status(404).json({ status: false, message: 'No employee found!' })
             }
             // before creating the client. set the client emails
             // so that later time can edit that email
@@ -95,13 +95,13 @@ exports.Find = (req, res, next) => {
                 .skip((currentPage) * perPage)
                 .limit(perPage);
         }).then(clients => {
-        return res.status(200).json({success: true, clients, totalItems})
-    }).catch(err => {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err)
-    });
+            return res.status(200).json({ success: true, clients, totalItems })
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
 };
 
 exports.FindById = (req, res, next) => {
@@ -112,7 +112,7 @@ exports.FindById = (req, res, next) => {
         model: 'Industry'
     }).exec(function (err, client) {
         if (err) return next(err);
-        return res.status(200).json({success: true, "message": "Data successfully retrieve", client})
+        return res.status(200).json({ success: true, "message": "Data successfully retrieve", client })
     });
 };
 
@@ -124,35 +124,46 @@ exports.Update = (req, res, next) => {
     if (typeof req.file !== 'undefined') {
         data.image = req.file.filename;
     }
-
-    //Update the employee
-
-    // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
-    // Find the existing resource by ID
-    Client.findByIdAndUpdate(
-        // the id of the item to find
-        id,
-        // the change to be made. Mongoose will smartly combine your existing
-        // document with this change, which allows for partial updates too
-        data,
-        // an option that asks mongoose to return the updated version
-        // of the document instead of the pre-updated one.
-        {new: true},
-
-        // the callback function
-        (err, client) => {
-            // Handle any possible database errors
-            if (err) return next(err);
-            if (!client) {
-                return res.status(404).json({success: false, message: "Client not found."});
+    Email.find({}, function (err, emails) {
+        if (err) return next(err);
+        let client_emails = [];
+        emails.forEach((email) => {
+            if (email.assign_to_client) {
+                delete email._id;
+                client_emails.push(email)
             }
-            return res.send({
-                "success": true,
-                "message": "Record updated successfully",
-                client
-            });
-        }
-    );
+        });
+        data.emails = client_emails;
+        
+        //Update the employee
+
+        // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
+        // Find the existing resource by ID
+        Client.findByIdAndUpdate(
+            // the id of the item to find
+            id,
+            // the change to be made. Mongoose will smartly combine your existing
+            // document with this change, which allows for partial updates too
+            data,
+            // an option that asks mongoose to return the updated version
+            // of the document instead of the pre-updated one.
+            { new: true },
+
+            // the callback function
+            (err, client) => {
+                // Handle any possible database errors
+                if (err) return next(err);
+                if (!client) {
+                    return res.status(404).json({ success: false, message: "Client not found." });
+                }
+                return res.send({
+                    "success": true,
+                    "message": "Record updated successfully",
+                    client
+                });
+            }
+        );
+    });
 };
 
 exports.Delete = (req, res, next) => {
@@ -162,7 +173,7 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({id}, schema, (err, value) => {
+    Joi.validate({ id }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({
@@ -176,13 +187,13 @@ exports.Delete = (req, res, next) => {
         Client.findByIdAndRemove(id, (err, client) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!client) return res.status(404).json({success: false, message: "Client not found."});
+            if (!client) return res.status(404).json({ success: false, message: "Client not found." });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
 
             // now find all the employees under this client and delete them as well
             // since without the client employee should not exist
-            Employee.deleteMany({_id: {$in: client.employees}}, function (err) {
+            Employee.deleteMany({ _id: { $in: client.employees } }, function (err) {
                 if (err) return next(err);
                 return res.send({
                     "success": true,
@@ -219,9 +230,9 @@ exports.FindEmployees = (req, res, next) => {
                 sort: sortProp,
                 match: {
                     $or: [
-                        {"first_name": {$regex: new RegExp(filterValue, "i")}},
-                        {"last_name": {$regex: new RegExp(filterValue, "i")}},
-                        {"email": {$regex: new RegExp(filterValue, "i")}}]
+                        { "first_name": { $regex: new RegExp(filterValue, "i") } },
+                        { "last_name": { $regex: new RegExp(filterValue, "i") } },
+                        { "email": { $regex: new RegExp(filterValue, "i") } }]
                 }
             }
         }])
@@ -237,7 +248,7 @@ exports.FindEmployees = (req, res, next) => {
                     employees.push(client.employees[i]);
             }
             // ********** End of Pagination Logic ***********
-            return res.status(200).json({success: true, client, employees, totalItems})
+            return res.status(200).json({ success: true, client, employees, totalItems })
         });
 };
 
@@ -253,7 +264,7 @@ exports.FindSurveys = (req, res, next) => {
         }])
         .exec(function (err, client) {
             if (err) return next(err);
-            return res.status(200).json({success: true, client})
+            return res.status(200).json({ success: true, client })
         });
 };
 exports.FindEmails = (req, res, next) => {
@@ -265,7 +276,7 @@ exports.FindEmails = (req, res, next) => {
         }])
         .exec(function (err, client) {
             if (err) return next(err);
-            return res.status(200).json({success: true, client})
+            return res.status(200).json({ success: true, client })
         });
 };
 exports.FindEmailById = (req, res, next) => {
@@ -341,7 +352,7 @@ exports.FindOrganizations = (req, res, next) => {
         })
         .exec(function (err, client) {
             if (err) return next(err);
-            return res.status(200).json({success: true, client})
+            return res.status(200).json({ success: true, client })
         });
 };
 
@@ -359,10 +370,10 @@ exports.AssignSurvey = (req, res, next) => {
             (employees) => {
                 client.save()
             }).then(() => {
-            res.json({client, success: true, message: 'Survey successfully assigned'})
-        }).catch(err => {
-            return next(err);
-        });
+                res.json({ client, success: true, message: 'Survey successfully assigned' })
+            }).catch(err => {
+                return next(err);
+            });
     })
 };
 
@@ -375,12 +386,12 @@ const employeeAssignSurvey = (employees, surveyId) => {
     });
     return new Promise((resolve, reject) => {
         // here employee is the id of the employee.
-        Employee.find({'_id': {$in: employee_ids}}, function (err, docs) {
+        Employee.find({ '_id': { $in: employee_ids } }, function (err, docs) {
             if (err) {
                 reject(err)
             } else {
                 docs.forEach((employee) => {
-                    let survey = {survey: surveyId, completed: false};
+                    let survey = { survey: surveyId, completed: false };
                     //before pushing the survey check if this employee can do survey or not
                     employee.surveys.push(survey);
                     employee.save();
@@ -424,10 +435,10 @@ exports.UnAssignSurvey = (req, res, next) => {
                 () => {
                     client.save();
                 }).then(() => {
-                return res.json({client, success: true, message: 'Survey successfully unAssigned'})
-            }).catch(err => {
-                return next(err);
-            });
+                    return res.json({ client, success: true, message: 'Survey successfully unAssigned' })
+                }).catch(err => {
+                    return next(err);
+                });
         } else {
             return next(new Error('Employee under client ' + client.name + ' already completed assign survey. you are not allowed to unAssign survey'));
         }
@@ -438,7 +449,7 @@ const employeeUnAssignSurvey = (employees, surveyId) => {
     return new Promise((resolve, reject) => {
         // here employee is the id of the employee.
         Employee.find({
-            '_id': {$in: employees}
+            '_id': { $in: employees }
         }, function (err, docs) {
             if (err) {
                 reject(err)
