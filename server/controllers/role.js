@@ -1,5 +1,5 @@
 const Role = require('../models/role');
-
+const User = require('../models/user')
 //Validation Library
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -41,13 +41,13 @@ exports.Find = (req, res, next) => {
                 .skip((currentPage) * perPage)
                 .limit(perPage);
         }).then(roles => {
-        return res.status(200).json({success: true, roles, totalItems})
-    }).catch(err => {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err)
-    });
+            return res.status(200).json({ success: true, roles, totalItems })
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
 };
 
 exports.FindById = (req, res, next) => {
@@ -60,11 +60,49 @@ exports.FindById = (req, res, next) => {
             error.statusCode = 404;
             return next(error);
         }
+        // role.permissions = role.permissions.filter(permission => {
+        //     return !['Products', 'Articles', 'Links'].includes(permission.table_name)
+        // });
         return res.status(200).send({
             "success": true,
             "message": "Data successfully retrieve",
             role
         })
+    });
+};
+
+exports.FindByUserId = (req, res, next) => {
+    let id = req.params.id;
+
+    User.findById(id).populate({ path: 'role', model: 'Role' }).then((user, err) => {
+        if (err) throw new Error("Unable to find user");
+        if (!user) {
+            const error = new Error("User not found, please sign up.");
+            error.statusCode = 401;
+            throw error
+        }
+
+        if (!user.role) {
+            const error = new Error("User not found, please sign up.");
+            error.statusCode = 401;
+            throw error
+            // return res.status(200).send({
+            //     "success": true,
+            //     "message": "Data successfully retrieve",
+            //     "role": "super_admin"
+            // })
+        }
+
+        user.role.permissions = user.role.permissions.filter(permission => {
+            return permission.has_access
+        });
+        return res.status(200).send({
+            "success": true,
+            "message": "Data successfully retrieve",
+            "role": user.role
+        })
+    }).catch(err => {
+        next(err)
     });
 };
 
@@ -85,7 +123,7 @@ exports.Update = (req, res, next) => {
         data,
         // an option that asks mongoose to return the updated version
         // of the document instead of the pre-updated one.
-        {new: true},
+        { new: true },
 
         // the callback function
         (err, role) => {
@@ -96,6 +134,9 @@ exports.Update = (req, res, next) => {
                 error.statusCode = 404;
                 return next(error);
             }
+            // role.permissions = role.permissions.filter(permission => {
+            //     return !['Products', 'Articles', 'Links'].includes(permission.table_name)
+            // });
             return res.send({
                 "success": true,
                 "message": "Record updated successfully",
@@ -112,7 +153,7 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({id}, schema, (err, value) => {
+    Joi.validate({ id }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({

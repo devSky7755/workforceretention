@@ -1,23 +1,22 @@
 // themes - our custom or/and out of the box themes
-@import 'themes';
+@import "themes";
 
 // framework component themes (styles tied to theme variables)
-@import '~@nebular/theme/styles/globals';
-@import '~@nebular/auth/styles/all';
-@import '~@nebular/bootstrap/styles/globals';
+@import "~@nebular/theme/styles/globals";
+@import "~@nebular/auth/styles/all";
+@import "~@nebular/bootstrap/styles/globals";
 // ...
 
 // global app font size
-@import './font-size';
+@import "./font-size";
 
 // loading progress bar theme
-@import './pace.theme';
+@import "./pace.theme";
 
-@import './bootstrap-rtl';
+@import "./bootstrap-rtl";
 
 // install the framework and custom global styles
 @include nb-install() {
-
   // framework global styles
   @include nb-theme-global();
   @include nb-auth-global();
@@ -31,4 +30,56 @@
     border-radius: 50%; // TODO: quickfix for https://github.com/akveo/nebular/issues/275
   }
   @include bootstrap-rtl();
-};
+}
+
+.nb-theme-corporate nb-layout .layout nb-layout-header nav {
+  background: white;
+  a {
+    color: #2a2a2a;
+  }
+}
+
+.nb-theme-corporate .header-container .logo {
+  border-left: 1px solid #ebeef2 !important;
+}
+
+.nb-theme-corporate nb-card-header {
+  color: black;
+}
+
+.ngx-datatable .datatable-header .datatable-header-cell {
+  color: #0072b1 !important;
+}
+
+.ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {
+  border-bottom-color: #e2e2e2 !important;
+}
+
+.ngx-datatable .datatable-header {
+  border-bottom-color: #a5a5a5 !important;
+}
+
+.nb-theme-corporate nb-tabset nb-tab {
+  font-family: Exo !important;
+}
+
+.nb-theme-corporate nb-layout .layout {
+  font-family: Exo !important;
+}
+
+.form__radio-button::after {
+  background-color: #50cab2 !important;
+}
+
+.nb-theme-corporate nb-layout .layout nb-layout-header nav a:focus,
+.nb-theme-corporate nb-layout .layout nb-layout-header nav a:active,
+.nb-theme-corporate nb-layout .layout nb-layout-header nav a:hover {
+  color: #79cfef;
+}
+.nb-theme-corporate nb-layout .layout nb-layout-header.fixed ~ .layout-container {
+  padding-top: 7.75rem !important;
+  min-height: 100vh;
+}
+.nb-theme-corporate nb-layout .layout nb-layout-header nav {
+  height: 7.75rem !important;
+}

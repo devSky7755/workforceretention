@@ -7,17 +7,8 @@
   </nb-card-header>
 
   <nb-card-body>
-    <ngx-datatable
-            [rows]="rows"
-            [columnMode]="'force'"
-            [headerHeight]="40"
-            [footerHeight]="50"
-            [rowHeight]="'auto'"
-            [externalPaging]="true"
-            [count]="count"
-            [offset]="offset"
-            [limit]="limit"
-            (page)='onPage($event)'>
+    <ngx-datatable [rows]="rows" [columnMode]="'force'" [headerHeight]="40" [footerHeight]="50" [rowHeight]="'auto'"
+      [externalPaging]="true" [count]="count" [offset]="offset" [limit]="limit" (page)='onPage($event)'>
       <ngx-datatable-column name="title">
         <ng-template let-column="column" ngx-datatable-header-template>
           Survey Title
@@ -39,18 +30,21 @@
           <span>Action</span>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
-          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Survey" (click)="onClickEdit(value)"
-                  style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: #fff">
+          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"
+            (click)="onClickEdit(value)"
+            style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: black;">
             <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 22px"></i>
           </button>
           <!--Survey Clone Button-->
-          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Clone Survey" (click)="onClickCloneSurvey(value)"
-                  style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: #fff;">
+          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Clone Survey"
+            (click)="onClickCloneSurvey(value)"
+            style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: black;">
             <i class="fa fa-clone" aria-hidden="true"></i>
           </button>
           <!--Survey Delete Button-->
-          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Survey" (click)="onClickDelete(value)"
-                  style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: #fff;">
+          <button type="button" data-toggle="tooltip" data-placement="bottom" title="Delete Survey"
+            (click)="onClickDelete(value)" *ngIf="permission.is_delete"
+            style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: black;">
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </button>
         </ng-template>

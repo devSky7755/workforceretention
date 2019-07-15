@@ -7,26 +7,19 @@
                     <div class="col-lg-8">
 
                         <form #f="ngForm" (ngSubmit)="createRole()">
-                            <div class="alert alert-danger" role="alert"
-                                 *ngIf="errorMessage">
+                            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
                                 {{errorMessage}}
                             </div>
-                            <div class="alert alert-success" role="alert"
-                                 *ngIf="successMessage">
+                            <div class="alert alert-success" role="alert" *ngIf="successMessage">
                                 {{successMessage}}
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" [(ngModel)]="roleName" name="role-name"
-                                       placeholder="Role Name" required>
+                                    placeholder="Role Name" required>
                             </div>
                             <!--CREATE THE PERMISSION TABLE HERE-->
-                            <ngx-datatable
-                                    [rows]="rows"
-                                    [columnMode]="'force'"
-                                    [headerHeight]="40"
-                                    [footerHeight]="50"
-                                    [rowHeight]="'auto'"
-                                    [count]="count">
+                            <ngx-datatable [rows]="rows" [columnMode]="'force'" [headerHeight]="40" [footerHeight]="50"
+                                [rowHeight]="'auto'" [count]="count">
                                 <ngx-datatable-column name="tableName">
                                     <ng-template let-column="column" ngx-datatable-header-template>
                                         Table Name
@@ -35,7 +28,15 @@
                                         <strong>{{value}}</strong>
                                     </ng-template>
                                 </ngx-datatable-column>
-                                <ngx-datatable-column name="tableRead">
+                                <ngx-datatable-column name="tableAccess">
+                                    <ng-template let-column="column" ngx-datatable-header-template>
+                                        Accessible
+                                    </ng-template>
+                                    <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                                        <nb-checkbox [value]="value" (change)="hasAccess(rowIndex)"></nb-checkbox>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <!-- <ngx-datatable-column name="tableRead">
                                     <ng-template let-column="column" ngx-datatable-header-template>
                                         Read
                                     </ng-template>
@@ -58,13 +59,13 @@
                                     <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                                         <nb-checkbox [value]="value" (change)="isUpdate(rowIndex)"></nb-checkbox>
                                     </ng-template>
-                                </ngx-datatable-column>
+                                </ngx-datatable-column> -->
                                 <ngx-datatable-column name="tableDelete">
                                     <ng-template let-column="column" ngx-datatable-header-template>
                                         Delete
                                     </ng-template>
                                     <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                                        <nb-checkbox [value]="value" (change)="isDelete(rowIndex)"></nb-checkbox>
+                                        <nb-checkbox [value]="value" [disabled]="hasAccessible(rowIndex)" (change)="isDelete(rowIndex)"></nb-checkbox>
                                     </ng-template>
                                 </ngx-datatable-column>
                             </ngx-datatable>

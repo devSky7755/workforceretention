@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {NbMenuService, NbSidebarService} from '@nebular/theme';
-import {UserService} from '../../../@core/data/users.service';
-import {AnalyticsService} from '../../../@core/utils/analytics.service';
-import {LayoutService} from '../../../@core/data/layout.service';
+import { NbMenuService, NbSidebarService } from '@nebular/theme';
+import { UserService } from '../../../@core/data/users.service';
+import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import { LayoutService } from '../../../@core/data/layout.service';
 
 @Component({
     selector: 'ngx-header',
@@ -17,15 +18,15 @@ export class HeaderComponent implements OnInit {
     user: any;
 
     userMenu = [
-        {title: 'Profile'},
-        {title: 'Log out', link: '/auth/logout'}
+        { title: 'Profile' },
+        { title: 'Log out', link: '/auth/logout' }
     ];
 
-    constructor(private sidebarService: NbSidebarService,
-                private menuService: NbMenuService,
-                private userService: UserService,
-                private analyticsService: AnalyticsService,
-                private layoutService: LayoutService) {
+    constructor(private router: Router, private sidebarService: NbSidebarService,
+        private menuService: NbMenuService,
+        private userService: UserService,
+        private analyticsService: AnalyticsService,
+        private layoutService: LayoutService) {
     }
 
     ngOnInit() {
@@ -47,7 +48,7 @@ export class HeaderComponent implements OnInit {
     }
 
     goToHome() {
-        this.menuService.navigateHome();
+        this.router.navigateByUrl('/pages/home');
     }
 
     startSearch() {

@@ -558,13 +558,14 @@ export class ManagerReportComponent implements OnInit {
                 });
             });
             // sort by agree/strongly agree in the descending order
-            this.employee_sentiment.sort((a, b) => (a.positive_percentage < b.positive_percentage) ? 1 : ((b.positive_percentage < a.positive_percentage) ? -1 : 0));
+            this.employee_sentiment.sort((a, b) => (parseFloat(a.positive_percentage) < parseFloat(b.positive_percentage)) ? 1 : ((parseFloat(b.positive_percentage) < parseFloat(a.positive_percentage)) ? -1 : 0));
             const sentiment_divider_length = Math.round(this.employee_sentiment.length / 2);
             for (let i = 0; i < sentiment_divider_length; i++) {
                 this.employee_sentiment_working_chart_data.push(this.employee_sentiment[i]);
             }
             this.eswcdCanvasData = []
             if (this.employee_sentiment_working_chart_data.length > 0) {
+                this.employee_sentiment_working_chart_data = this.employee_sentiment_working_chart_data.reverse()
                 for (let i = 0; i < this.employee_sentiment_working_chart_data[0].series.length; i++) {
                     let canvasData = {
                         type: "stackedBar100",
@@ -692,13 +693,13 @@ export class ManagerReportComponent implements OnInit {
                 "#99cc66",
                 "orange",
                 "#6699cc",
-                "#2e97e0",
+                "#f4bbe7",
                 "#b02ee0",
                 "#e02e75",
                 "#5ce02e",
                 "#e0b02e",
                 "#519f75",
-                "#f4bbe7"
+                "#2e97e0"
             ])
     }
 
@@ -833,7 +834,7 @@ export class ManagerReportComponent implements OnInit {
                 showInLegend: true,
                 startAngle: 240,
                 yValueFormatString: "##0.00\"%\"",
-                indexLabel: "{label} {y}",
+                indexLabel: "{y}",
                 dataPoints: this.gender_split_chart_data
             }]
         });
@@ -866,7 +867,7 @@ export class ManagerReportComponent implements OnInit {
                 showInLegend: true,
                 startAngle: 240,
                 yValueFormatString: "##0.00\"%\"",
-                indexLabel: "{label} {y}",
+                indexLabel: "{y}",
                 dataPoints: this.tenure_split_chart_data
             }]
         });
@@ -899,7 +900,7 @@ export class ManagerReportComponent implements OnInit {
                 showInLegend: true,
                 startAngle: 240,
                 yValueFormatString: "##0.00\"%\"",
-                indexLabel: "{label} {y}",
+                indexLabel: "{y}",
                 dataPoints: this.age_split_chart_data
             }]
         });

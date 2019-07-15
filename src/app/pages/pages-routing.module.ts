@@ -9,7 +9,7 @@ const routes: Routes = [{
     path: '',
     component: PagesComponent,
     children: [ {
-        path: 'dashboard',
+        path: 'home',
         component: DashboardComponent,
     }, {
         path: 'products',
@@ -52,7 +52,7 @@ const routes: Routes = [{
         loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
     }, {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'home',
         pathMatch: 'full',
     }, {
         path: '**',

@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {SurveyService} from "../../../@core/data/survey.service";
-import {NbTokenService} from "@nebular/auth";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SurveyService } from "../../../@core/data/survey.service";
+import { NbTokenService } from "@nebular/auth";
+import { RolePermissionService } from '../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-survey-management',
@@ -15,8 +16,9 @@ export class SurveyManagementComponent implements OnInit {
     limit = 9;
     surveys;
     user;
+    permission;
 
-    constructor(private router: Router, private surveyService: SurveyService, private tokenService: NbTokenService) {
+    constructor(private router: Router, private surveyService: SurveyService, private tokenService: NbTokenService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     onClickAdd() {
@@ -24,6 +26,7 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.permission = this.rolePermissionSerivce.getRolePermission('Surveys')
         // call the refresh token here
         this.tokenService.get()
             .subscribe(token => {
@@ -73,19 +76,19 @@ export class SurveyManagementComponent implements OnInit {
 
     page(offset, limit) {
         this.surveyService.getSurveys(offset, limit).subscribe(results => {
-                this.count = results.totalItems;
-                this.surveys = results.surveys;
-                const rows = [];
-                this.surveys.map((survey) => {
-                    // Modify article role
-                    survey.id = survey._id;
-                    survey.noOfQuestion = survey.no_of_questions;
-                    rows.push(survey);
-                });
-                this.rows = rows;
-                console.log(this.rows);
+            this.count = results.totalItems;
+            this.surveys = results.surveys;
+            const rows = [];
+            this.surveys.map((survey) => {
+                // Modify article role
+                survey.id = survey._id;
+                survey.noOfQuestion = survey.no_of_questions;
+                rows.push(survey);
+            });
+            this.rows = rows;
+            console.log(this.rows);
 
-            },
+        },
             (err) => {
                 console.log(err);
             }

@@ -1,8 +1,8 @@
 <nb-layout>
     <nb-layout-column>
         <ngx-header></ngx-header>
-        <section class="home-section light-gray">
-            <div class="container">
+        <section class="home-section light-gray" *ngIf="employee_details.is_report == '1'">
+            <div class="container mt-5">
                 <div class="row">
                     <!--Incomplete Surveys-->
                     <div class="col-lg-1"></div>
@@ -15,17 +15,9 @@
                         <!--Show the Assign surveys-->
                         <br>
                         <p class="text-center">The following survey reporting options are available to you</p>
-                        <ngx-datatable
-                                [rows]="completedSurveys"
-                                [columnMode]="'force'"
-                                [headerHeight]="40"
-                                [footerHeight]="50"
-                                [rowHeight]="'auto'"
-                                [externalPaging]="true"
-                                [count]="count"
-                                [offset]="offset"
-                                [limit]="limit"
-                                (page)='onChangeCompletedSurveys($event)'>
+                        <ngx-datatable [rows]="completedSurveys" [columnMode]="'force'" [headerHeight]="40"
+                            [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="count"
+                            [offset]="offset" [limit]="limit" (page)='onChangeCompletedSurveys($event)'>
                             <ngx-datatable-column name="reportType">
                                 <ng-template let-column="column" ngx-datatable-header-template>
                                     Report Type
@@ -55,8 +47,7 @@
                                     <span>Action</span>
                                 </ng-template>
                                 <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-                                    <button type="button" class="btn btn-primary"
-                                            (click)="onClickGoReport()">
+                                    <button type="button" class="btn btn-primary" (click)="onClickGoReport()">
                                         GO
                                     </button>
                                 </ng-template>

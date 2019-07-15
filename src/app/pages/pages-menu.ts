@@ -1,38 +1,38 @@
-import {NbMenuItem} from '@nebular/theme';
+import { NbMenuItem } from '@nebular/theme';
 
 // @ts-ignore
 // @ts-ignore
 // @ts-ignore
 export const MENU_ITEMS: NbMenuItem[] =
     [
-        {
-            title: 'Products',
-            icon: 'nb-lightbulb',
-            children: [
-                {
-                    title: 'Product Management',
-                    link: 'products/product-management',
-                },
-                {
-                    title: 'Static Pages',
-                    link: 'products/static-pages',
-                },
-                {
-                    title: 'Box Management',
-                    link: 'products/box-management',
-                }
-            ],
-        },
-        {
-            title: 'Articles',
-            icon: 'nb-compose',
-            children: [
-                {
-                    title: 'Articles Management',
-                    link: 'articles/article-management',
-                },
-            ],
-        },
+        // {
+        //     title: 'Products',
+        //     icon: 'nb-lightbulb',
+        //     children: [
+        //         {
+        //             title: 'Product Management',
+        //             link: 'products/product-management',
+        //         },
+        //         {
+        //             title: 'Static Pages',
+        //             link: 'products/static-pages',
+        //         },
+        //         {
+        //             title: 'Box Management',
+        //             link: 'products/box-management',
+        //         }
+        //     ],
+        // },
+        // {
+        //     title: 'Articles',
+        //     icon: 'nb-compose',
+        //     children: [
+        //         {
+        //             title: 'Articles Management',
+        //             link: 'articles/article-management',
+        //         },
+        //     ],
+        // },
         {
             title: 'Clients',
             icon: 'nb-person',
@@ -71,20 +71,20 @@ export const MENU_ITEMS: NbMenuItem[] =
                 },
             ],
         },
-        {
-            title: 'Links',
-            icon: 'nb-shuffle',
-            children: [
-                {
-                    title: 'Link Management',
-                    link: 'links/link-management',
-                },
-                {
-                    title: 'Category Management',
-                    link: 'links/category-management',
-                },
-            ],
-        },
+        // {
+        //     title: 'Links',
+        //     icon: 'nb-shuffle',
+        //     children: [
+        //         {
+        //             title: 'Link Management',
+        //             link: 'links/link-management',
+        //         },
+        //         {
+        //             title: 'Category Management',
+        //             link: 'links/category-management',
+        //         },
+        //     ],
+        // },
         {
             title: 'Office Admin',
             icon: 'nb-power-circled',

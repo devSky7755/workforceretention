@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {SurveyService} from "../../@core/data/survey.service";
-import {Router} from "@angular/router";
-import {EmployeeService} from "../../@core/data/employee.service";
-import {ReportService} from "../../@core/data/report.service";
+import { Component, OnInit } from '@angular/core';
+import { SurveyService } from "../../@core/data/survey.service";
+import { Router } from "@angular/router";
+import { EmployeeService } from "../../@core/data/employee.service";
+import { ReportService } from "../../@core/data/report.service";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
     selector: 'ngx-reports',
@@ -21,11 +22,13 @@ export class ReportsComponent implements OnInit {
     employee;
     message;
     completedSurveys = [];
+    employee_details;
 
     constructor(private surveyService: SurveyService,
-                private router: Router,
-                private employeeService: EmployeeService,
-                private reportService: ReportService) {
+        private router: Router,
+        private employeeService: EmployeeService,
+        private reportService: ReportService) {
+        this.employee_details = {};
     }
 
     ngOnInit() {
@@ -33,6 +36,8 @@ export class ReportsComponent implements OnInit {
         if (localStorage.getItem('employee')) {
             // parse the employee object and check the expiration of the login. if the login time is expired
             this.employee = JSON.parse(localStorage.getItem('employee'));
+            const helper = new JwtHelperService();
+            this.employee_details = helper.decodeToken(this.employee.access_token);
         }
         this.setCompletedSurveys(this.offset, this.limit);
     }

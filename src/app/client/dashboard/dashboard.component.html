@@ -2,7 +2,7 @@
     <nb-layout-column>
         <ngx-header></ngx-header>
         <section class="home-section light-gray">
-            <div class="container">
+            <div class="container mt-5">
                 <div class="row">
                     <!--Incomplete Surveys-->
                     <div class="col-lg-1"></div>
@@ -10,19 +10,11 @@
                         <!--Here design three box-->
                         <!--Show the Assign surveys-->
                         <div *ngIf="employee_details.is_survey == '1'">
-                            <h1 style="color: #000;">YOUR EXIT INTERVIEW
-                                -- {{employee_details.first_name}} {{employee_details.last_name}}</h1>
-                            <ngx-datatable
-                                    [rows]="completedSurveys"
-                                    [columnMode]="'force'"
-                                    [headerHeight]="40"
-                                    [footerHeight]="50"
-                                    [rowHeight]="'auto'"
-                                    [externalPaging]="true"
-                                    [count]="count"
-                                    [offset]="offset"
-                                    [limit]="limit"
-                                    (page)='onChangeCompletedSurveys($event)'>
+                            <h1 style="color: #000;">Your Exit Interview
+                                - {{employee_details.first_name}} {{employee_details.last_name}}</h1>
+                            <ngx-datatable [rows]="completedSurveys" [columnMode]="'force'" [headerHeight]="40"
+                                [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="count"
+                                [offset]="offset" [limit]="limit" (page)='onChangeCompletedSurveys($event)'>
                                 <ngx-datatable-column name="title">
                                     <ng-template let-column="column" ngx-datatable-header-template>
                                         Survey Title
@@ -53,7 +45,7 @@
                                     </ng-template>
                                     <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
                                         <button type="button" class="btn btn-primary"
-                                                (click)="onClickGoSurvey(value,row.completed)">
+                                            (click)="onClickGoSurvey(value,row.completed)">
                                             GO
                                         </button>
                                     </ng-template>

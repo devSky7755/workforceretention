@@ -26,6 +26,7 @@ import { FlexibleOptionsComponent } from './flexible-options/flexible-options.co
 import { AboutComponent } from './about/about.component';
 import {RECAPTCHA_SETTINGS, RecaptchaModule, RecaptchaSettings} from "ng-recaptcha";
 import {RecaptchaFormsModule} from "ng-recaptcha/forms";
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 @NgModule({
     declarations: [
@@ -60,6 +61,7 @@ import {RecaptchaFormsModule} from "ng-recaptcha/forms";
         NgxChartsModule,
         RecaptchaModule,
         RecaptchaFormsModule,
+        SlickCarouselModule
     ],
     providers: [{
         provide: RECAPTCHA_SETTINGS,

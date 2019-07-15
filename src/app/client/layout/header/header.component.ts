@@ -14,6 +14,7 @@ import {ClientService} from "../../../@core/data/client.service";
 export class HeaderComponent implements OnInit {
     isAuth: boolean = false;
     authSubscription: Subscription;
+    employee_details;
 
     constructor(private router: Router,
                 private employeeService: EmployeeService,
@@ -30,6 +31,7 @@ export class HeaderComponent implements OnInit {
             const helper = new JwtHelperService();
             // const decodedToken = helper.decodeToken(employee.access_token);
             // console.log(decodedToken);
+            this.employee_details = helper.decodeToken(employee.access_token);
             if (helper.isTokenExpired(employee.access_token)) {
                 this.logout();
             } else {

@@ -1,6 +1,13 @@
-@import '../../styles/themes';
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
+@import "../../styles/themes";
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~@nebular/theme/styles/global/breakpoints";
+
+.logo-header {
+  height: 14.75rem;
+  position: absolute;
+  top: -3.5rem;
+  margin-left: -3rem;
+}
 
 @include nb-install-component() {
   display: flex;
@@ -42,7 +49,6 @@
       i {
         display: block;
       }
-
     }
 
     .logo {
@@ -107,9 +113,9 @@
       animation-name: pulse-light;
 
       &::after {
-        content: ' ';
+        content: " ";
         // hack to be able to set border-radius
-        background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+        background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
         border-radius: 50%;
         pointer-events: none;
 
@@ -154,7 +160,6 @@
   }
 
   @include media-breakpoint-down(md) {
-
     nb-action:not(.toggle-layout) {
       border: none;
     }
@@ -177,14 +182,12 @@
   }
 
   @include media-breakpoint-down(sm) {
-
     nb-user /deep/ .user-name {
       display: none;
     }
   }
 
   @include media-breakpoint-down(is) {
-
     .header-container {
       .logo {
         font-size: 1.25rem;

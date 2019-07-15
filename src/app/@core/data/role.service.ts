@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {URLService} from "./url.service";
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { URLService } from "./url.service";
+import { Observable } from "rxjs";
 
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
@@ -20,6 +20,10 @@ export class RoleService {
 
     getRole(id): Observable<any> {
         return this.http.get(this.urlService.baseUrl + '/api/v1/roles/' + id);
+    }
+
+    getRoleByUserId(userid): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + '/api/v1/roles/by_user/' + userid);
     }
 
     createRole(role): Observable<any> {

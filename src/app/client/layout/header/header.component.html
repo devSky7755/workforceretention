@@ -14,23 +14,24 @@
                     </div>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item"><a routerLink="/client/home" routerLinkActive="active">Home</a></li>
-                        <li class="dropdown-item" *ngIf="isAuth">
+                        <li class="dropdown-item" *ngIf="isAuth && employee_details && employee_details.is_survey == 1">
                             <a routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
                         </li>
-                        <li class="dropdown-item" *ngIf="isAuth">
+                        <li class="dropdown-item" *ngIf="isAuth && employee_details.is_report == 1">
                             <a routerLink="/client/report" routerLinkActive="active">Report</a>
                         </li>
                         <li class="dropdown-item" *ngIf="isAuth">
                             <a routerLink="/client/profile" routerLinkActive="active">Profile</a>
                         </li>
-                        <li class="dropdown-item"><a routerLink="/client/flexible-options" routerLinkActive="active">Flexible
-                            Options</a></li>
+                        <li class="dropdown-item"><a routerLink="/client/flexible-options"
+                                routerLinkActive="active">Flexible
+                                Options</a></li>
                         <li class="dropdown-item"><a routerLink="/client/about-us" routerLinkActive="active">About
-                            Us</a></li>
+                                Us</a></li>
                         <li class="dropdown-item"><a routerLink="/client/contact" routerLinkActive="active">Contact
-                            Us</a></li>
+                                Us</a></li>
                         <li *ngIf="!isAuth" class="dropdown-item"><a routerLink="/client/login"
-                                                                     routerLinkActive="active">Login</a></li>
+                                routerLinkActive="active">Login</a></li>
                         <li class="dropdown-item" *ngIf="isAuth">
                             <a routerLink="" (click)="logout()">Logout</a>
                         </li>

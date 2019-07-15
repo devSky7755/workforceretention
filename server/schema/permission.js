@@ -11,18 +11,22 @@ const permissionSchema = new Schema({
         type: String,
         required: true,
     },
-    is_read: {
+    has_access: {
         type: Boolean,
         required: true
     },
-    is_write: {
-        type: Boolean,
-        required: true
-    },
-    is_update: {
-        type: Boolean,
-        required: true
-    },
+    // is_read: {
+    //     type: Boolean,
+    //     required: true
+    // },
+    // is_write: {
+    //     type: Boolean,
+    //     required: true
+    // },
+    // is_update: {
+    //     type: Boolean,
+    //     required: true
+    // },
     is_delete: {
         type: Boolean,
         required: true

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap");
 
 /deep/ body {
   overflow-y: scroll !important;
@@ -15,7 +15,7 @@
 .nb-card-color {
   background: #fff !important;
   padding: 10px;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border-top: 2px solid #000;
 }
 
@@ -34,7 +34,6 @@ nb-layout-column {
 nb-card:hover {
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   border-top: 2px solid #3f51b5;
-
 }
 
 .nb-card-header {
@@ -47,7 +46,7 @@ nb-card:hover {
 }
 
 .home-cta {
-  background: url('/assets/images/home-bg.jpg') no-repeat center center;
+  background: url("/assets/images/home-bg.jpg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -70,7 +69,8 @@ nb-card:hover {
 }
 
 .home-banner-two {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/home-banner-2.jpeg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("assets/images/home-banner-2.jpeg");
   width: 100%;
   height: 500px;
   background-size: cover;
@@ -85,7 +85,8 @@ nb-card:hover {
 }
 
 .home-banner-three {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/home-banner-3.jpeg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("assets/images/home-banner-3.jpeg");
   width: 100%;
   height: 800px;
   background-size: cover;
@@ -100,7 +101,6 @@ nb-card:hover {
   left: 40%;
   transform: translate(-10%, -40%);
 }
-
 
 // Slider css
 .testimonial-slider {
@@ -156,8 +156,8 @@ nb-card:hover {
 .testimonial-slider q {
   display: inline-block;
   font: normal 700 50px / 1.25 "Raleway", Helvetica, Arial, Verdana, sans-serif;
-  letter-spacing: .5pt;
-  text-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  letter-spacing: 0.5pt;
+  text-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   max-width: 35ch;
 }
 
@@ -169,79 +169,111 @@ nb-card:hover {
 
 /* KEYFRAME DECLARATIONS */
 @keyframes fade-animation-1 {
-  0%, 25%, 100% {
-    opacity: 0
+  0%,
+  25%,
+  100% {
+    opacity: 0;
   }
-  3%, 22% {
+  3%,
+  22% {
     opacity: 1;
   }
 }
 
 @keyframes fade-animation-2 {
-  0%, 25%, 50%, 100% {
-    opacity: 0
+  0%,
+  25%,
+  50%,
+  100% {
+    opacity: 0;
   }
-  28%, 47% {
+  28%,
+  47% {
     opacity: 1;
   }
 }
 
 @keyframes fade-animation-3 {
-  0%, 50%, 75%, 100% {
-    opacity: 0
+  0%,
+  50%,
+  75%,
+  100% {
+    opacity: 0;
   }
-  53%, 72% {
+  53%,
+  72% {
     opacity: 1;
   }
 }
 
 @keyframes fade-animation-4 {
-  0%, 75%, 100% {
-    opacity: 0
+  0%,
+  75%,
+  100% {
+    opacity: 0;
   }
-  78%, 97% {
+  78%,
+  97% {
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fade-animation-1 {
-  0%, 25%, 100% {
-    opacity: 0
+  0%,
+  25%,
+  100% {
+    opacity: 0;
   }
-  3%, 22% {
+  3%,
+  22% {
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fade-animation-2 {
-  0%, 25%, 50%, 100% {
-    opacity: 0
+  0%,
+  25%,
+  50%,
+  100% {
+    opacity: 0;
   }
-  28%, 47% {
+  28%,
+  47% {
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fade-animation-3 {
-  0%, 50%, 75%, 100% {
-    opacity: 0
+  0%,
+  50%,
+  75%,
+  100% {
+    opacity: 0;
   }
-  53%, 72% {
+  53%,
+  72% {
     opacity: 1;
   }
 }
 
 @-webkit-keyframes fade-animation-4 {
-  0%, 75%, 100% {
-    opacity: 0
+  0%,
+  75%,
+  100% {
+    opacity: 0;
   }
-  78%, 97% {
+  78%,
+  97% {
     opacity: 1;
   }
 }
 
 // Parallax design
-.pimg1, .pimg2, .pimg3, .pimg4, .pimg5 {
+.pimg1,
+.pimg2,
+.pimg3,
+.pimg4,
+.pimg5 {
   position: relative;
   //opacity: 0.70;
   background-position: center;
@@ -262,22 +294,26 @@ nb-card:hover {
 }
 
 .pimg2 {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/images/AdobeStock.jpeg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/assets/images/AdobeStock.jpeg");
   min-height: 400px;
 }
 
 .pimg3 {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/images/home-banner-2.jpeg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/assets/images/home-banner-2.jpeg");
   min-height: 400px;
 }
 
 .pimg4 {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/images/computer_graph.jpeg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/assets/images/computer_graph.jpeg");
   min-height: 400px;
 }
 
 .pimg5 {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/assets/images/stock_image.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/assets/images/stock_image.jpg");
   min-height: 400px;
 }
 
@@ -350,11 +386,13 @@ nb-card:hover {
 .ptext .pborder.trans {
   background-color: transparent;
   font-size: 48px;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
-@media(max-width: 568px) {
-  .pimg1, .pimg2, .pimg3 {
+@media (max-width: 568px) {
+  .pimg1,
+  .pimg2,
+  .pimg3 {
     background-attachment: scroll;
   }
 }
@@ -397,7 +435,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)) /* top, transparent red */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)); /* top, transparent red */
 }
 
 .content-slide {
@@ -435,7 +473,6 @@ body {
   font-size: 18px;
 }
 
-
 // Design similar to skout.com
 .slide-header.landing-background-solid {
   background-image: url(/assets/images/blur_homepage.png);
@@ -460,7 +497,6 @@ body {
   height: 480px;
   background-size: cover;
   transform: translate(0, 0);
-
 }
 
 .slide-2 {
@@ -470,9 +506,7 @@ body {
   height: 480px;
   background-size: cover;
   transform: translate(0, 0);
-
 }
-
 
 .background_fill {
   overflow: hidden;
@@ -486,12 +520,11 @@ body {
   z-index: 3;
   content: " ";
   position: fixed;
-  background: url('/assets/images/home-banner-2.jpeg') no-repeat center center;
+  background: url("/assets/images/home-banner-2.jpeg") no-repeat center center;
   will-change: transform;
   width: 100%;
   height: 100%;
 }
-
 
 // New Parallax Design using Clipping path
 html,
@@ -696,8 +729,12 @@ footer p {
   margin: 1em 2em;
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
+.carousel {
+  font-size: 14px;
+  padding: 0 20px;
+}
 
+@media (min-width: 481px) and (max-width: 767px) {
   .section-div {
     flex-direction: column-reverse;
   }
@@ -709,12 +746,12 @@ footer p {
   .ptext .pborder.trans {
     background-color: transparent;
     font-size: 30px;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
-  .moment{
+  .moment {
     height: 300px;
   }
-  .ptext-section-3{
+  .ptext-section-3 {
     left: 10%;
     right: 0;
   }
@@ -726,7 +763,6 @@ footer p {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-
   .section-div {
     flex-direction: column-reverse;
   }
@@ -738,45 +774,44 @@ footer p {
   .ptext .pborder.trans {
     background-color: transparent;
     font-size: 30px;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
   }
-  .moment{
+  .moment {
     height: 300px;
   }
-  .ptext-section-3{
+  .ptext-section-3 {
     left: 0;
     right: 0;
   }
-
 }
 
 // Re-write css for microsoft edge browser
 
 @supports (-ms-ime-align: auto) {
-  .moment-clipper{
+  .moment-clipper {
     height: 0;
   }
-  .moment1{
+  .moment1 {
     background: #666 url(/assets/images/blur_homepage.png) no-repeat top;
     background-size: cover;
   }
-  .moment2{
+  .moment2 {
     background: #666 url(/assets/images/contact.jpeg) top;
     background-size: cover;
   }
-  .moment3{
+  .moment3 {
     background: #666 url(/assets/images/home-banner-2.jpeg) center;
     background-size: cover;
   }
-  .moment4{
+  .moment4 {
     background: #666 url(/assets/images/computer_graph.jpeg) top;
     background-size: cover;
   }
-  .moment5{
+  .moment5 {
     background: #666 url(/assets/images/stock_image.jpg) top;
     background-size: cover;
   }
-  .moment6{
+  .moment6 {
     background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) top;
     background-size: cover;
   }

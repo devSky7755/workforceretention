@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
-import {ClientService} from "../../../@core/data/client.service";
-import {NbMenuService} from "@nebular/theme";
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ClientService } from "../../../@core/data/client.service";
+import { NbMenuService } from "@nebular/theme";
+import { RolePermissionService } from '../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-client-selection',
@@ -15,20 +16,21 @@ export class ClientSelectionComponent implements OnInit {
     limit = 10;
     clients;
     products = [
-        {id: 1, name: 'Exit Interview'},
+        { id: 1, name: 'Exit Interview' },
     ];
     workforces = [
-        {id: 0, value: 'Less than 100'},
-        {id: 1, value: '100 - 249'},
-        {id: 2, value: '250 - 499'},
-        {id: 3, value: '500 - 999'},
-        {id: 4, value: '1,000 - 4,999'},
-        {id: 5, value: '5,000 +'}
+        { id: 0, value: 'Less than 100' },
+        { id: 1, value: '100 - 249' },
+        { id: 2, value: '250 - 499' },
+        { id: 3, value: '500 - 999' },
+        { id: 4, value: '1,000 - 4,999' },
+        { id: 5, value: '5,000 +' }
     ];
+    permission;
 
     // Table Column Client Name, Client Industry, Client Employees, Products
 
-    constructor(private clientService: ClientService, private router: Router, private menuService: NbMenuService) {
+    constructor(private clientService: ClientService, private router: Router, private menuService: NbMenuService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     onClickAdd() {
@@ -37,6 +39,7 @@ export class ClientSelectionComponent implements OnInit {
 
     ngOnInit() {
         this.page(this.offset, this.limit);
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     /**
@@ -81,23 +84,23 @@ export class ClientSelectionComponent implements OnInit {
 
     page(offset, limit) {
         this.clientService.getClients(offset, limit).subscribe(data => {
-                this.count = data.totalItems;
-                this.clients = data.clients;
-                const rows = [];
-                this.clients.map((client) => {
-                    console.log(client);
-                    // Modify staticPage role
-                    client.id = client._id;
-                    console.log(client.industry !== null);
-                    client.industryName = typeof client.industry === 'undefined' || client.industry == null ?
-                        '' : client.industry.name;
-                    client.product = this.products.find(p => p.id === client.product).name;
-                    client.workforce = this.workforces.find(w => w.id === client.workforce).value;
-                    rows.push(client);
-                });
-                this.rows = rows;
-                console.log(this.clients);
-            },
+            this.count = data.totalItems;
+            this.clients = data.clients;
+            const rows = [];
+            this.clients.map((client) => {
+                console.log(client);
+                // Modify staticPage role
+                client.id = client._id;
+                console.log(client.industry !== null);
+                client.industryName = typeof client.industry === 'undefined' || client.industry == null ?
+                    '' : client.industry.name;
+                client.product = this.products.find(p => p.id === client.product).name;
+                client.workforce = this.workforces.find(w => w.id === client.workforce).value;
+                rows.push(client);
+            });
+            this.rows = rows;
+            console.log(this.clients);
+        },
             (err) => {
                 console.log(err);
             }

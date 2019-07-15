@@ -19,19 +19,19 @@ const config = require('../config');
 
 exports.login = function (req, res, next) {
 
-    const {email, password} = req.body;
+    const { email, password } = req.body;
     /**
      * this is param checking if they are provided
      */
     if (!password || !email) {
-        return res.status(422).send({errors: [{title: 'Data missing!', detail: 'Provide email and password!'}]});
+        return res.status(422).send({ errors: [{ title: 'Data missing!', detail: 'Provide email and password!' }] });
     }
 
     /**
      * check if the username matches any email
      */
 
-    User.findOne({email}).then((user, err) => {
+    User.findOne({ email }).populate({ path: 'role' }).then((user, err) => {
         if (err) throw new Error("Unable to find user with the email " + email);
 
         if (!user) {
@@ -69,7 +69,7 @@ exports.login = function (req, res, next) {
             });
 
             //return the token here
-            res.json({token});
+            res.json({ token });
         });
     }).catch(err => {
         next(err)
@@ -89,7 +89,7 @@ exports.token = function (req, res, next) {
     let refreshToken = req.body.refreshToken;
 
     if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] === email)) {
-        User.findOne({email}).then((user, err) => {
+        User.findOne({ email }).then((user, err) => {
             if (err) return next(err);
             if (!user) {
                 const error = new Error("User not found, please sign up.");
@@ -108,7 +108,7 @@ exports.token = function (req, res, next) {
             const token = jwt.sign(userData, config.SECRET, {
                 expiresIn: '7d'
             });
-            return res.json({token});
+            return res.json({ token });
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -134,6 +134,6 @@ exports.logout = function (req, res) {
     if (refreshToken in refreshTokens) {
         delete refreshTokens[refreshToken]
     }
-    return res.status(200).json({success: true})
+    return res.status(200).json({ success: true })
 };
 

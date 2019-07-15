@@ -9,8 +9,9 @@ import {
     SimpleChanges,
     ViewChild
 } from '@angular/core';
-import {EmployeeService} from "../../../@core/data/employee.service";
-import {URLService} from "../../../@core/data/url.service";
+import { EmployeeService } from "../../../@core/data/employee.service";
+import { URLService } from "../../../@core/data/url.service";
+import { RolePermissionService } from '../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-employees',
@@ -34,11 +35,13 @@ export class EmployeesComponent implements OnInit, OnChanges {
     filePicker: ElementRef;
     sortProp;
     filterValue = '';
+    permission;
 
-    constructor(private employeeService: EmployeeService, private urlService: URLService) {
+    constructor(private employeeService: EmployeeService, private urlService: URLService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     ngOnInit() {
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     /**
@@ -50,7 +53,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     }
 
     onClickEdit(employeeId) {
-        this.employeeEdit.emit({employeeId});
+        this.employeeEdit.emit({ employeeId });
     }
 
     onClickDelete(employeeId) {
@@ -62,7 +65,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     }
 
     onClickDetails(id) {
-        this.employeeDetails.emit({employeeId: id});
+        this.employeeDetails.emit({ employeeId: id });
     }
 
     deleteEmployee(employeeId) {
@@ -88,14 +91,14 @@ export class EmployeesComponent implements OnInit, OnChanges {
                     this.page(this.offset, this.limit);
                 },
                 err => {
-                    const {error} = err;
+                    const { error } = err;
                     this.errorMessage = error.message;
                 }
             );
     }
 
     onFilter() {
-        const sortData = {filterValue: this.filterValue};
+        const sortData = { filterValue: this.filterValue };
         this.page(this.offset, this.limit, sortData);
     }
 
@@ -108,18 +111,18 @@ export class EmployeesComponent implements OnInit, OnChanges {
             // if already exist then sort by descending order
             if (prop in this.sortProp) {
                 this.sortProp = null;
-                const sortData = {prop: prop, order: 'descending', filterValue: this.filterValue};
+                const sortData = { prop: prop, order: 'descending', filterValue: this.filterValue };
                 this.page(this.offset, this.limit, sortData);
             } else {
                 this.sortProp[prop] = prop;
-                const sortData = {prop: prop, order: 'ascending', filterValue: this.filterValue};
+                const sortData = { prop: prop, order: 'ascending', filterValue: this.filterValue };
                 this.page(this.offset, this.limit, sortData);
             }
         } else {
             // sort by that property
             this.sortProp = {};
             this.sortProp[prop] = prop;
-            const sortData = {prop: prop, order: 'ascending', filterValue: this.filterValue};
+            const sortData = { prop: prop, order: 'ascending', filterValue: this.filterValue };
             this.page(this.offset, this.limit, sortData);
         }
     }
@@ -127,25 +130,25 @@ export class EmployeesComponent implements OnInit, OnChanges {
     page(offset, limit, sort = {}) {
         if (this.clientId === null) return;
         this.employeeService.getEmployees(offset, limit, this.clientId, sort).subscribe(results => {
-                const rows = [];
-                this.employees = results.employees;
-                if (this.employees !== null) {
-                    this.count = results.totalItems;
-                    this.employees.map((employee) => {
-                        employee.id = employee._id;
-                        employee.firstName = employee.first_name;
-                        employee.lastName = employee.last_name;
-                        employee.exitDate = employee.exit_date;
-                        employee.manager = employee.is_manager;
-                        employee.active = employee.is_active;
-                        employee.isSurvey = employee.is_survey;
-                        employee.completed = employee.surveys[0].completed;
-                        rows.push(employee);
-                    });
-                }
-                this.rows = rows;
+            const rows = [];
+            this.employees = results.employees;
+            if (this.employees !== null) {
+                this.count = results.totalItems;
+                this.employees.map((employee) => {
+                    employee.id = employee._id;
+                    employee.firstName = employee.first_name;
+                    employee.lastName = employee.last_name;
+                    employee.exitDate = employee.exit_date;
+                    employee.manager = employee.is_manager;
+                    employee.active = employee.is_active;
+                    employee.isSurvey = employee.is_survey;
+                    employee.completed = employee.surveys[0].completed;
+                    rows.push(employee);
+                });
+            }
+            this.rows = rows;
 
-            },
+        },
             (err) => {
                 console.log(err);
             }

@@ -6978,6 +6978,13 @@ ngx-echarts@^4.0.1:
   dependencies:
     tslib "^1.9.0"
 
+ngx-slick-carousel@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/ngx-slick-carousel/-/ngx-slick-carousel-0.4.4.tgz#9608c995ec40ff6cc89b1755aa08ab08cc5486ea"
+  integrity sha512-z/cu8CL7LlUaqtImxC595V644efgjHTdQ9+u3AqL/igQYSELRryENGVH0jyPZuJSpSNvi52I2HGeifPsEd7bkg==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -9046,6 +9053,11 @@ sliced@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
   integrity sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
+
+slick-carousel@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/slick-carousel/-/slick-carousel-1.8.1.tgz#a4bfb29014887bb66ce528b90bd0cda262cc8f8d"
+  integrity sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==
 
 smart-buffer@4.0.2:
   version "4.0.2"

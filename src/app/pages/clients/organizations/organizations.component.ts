@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Router} from "@angular/router";
-import {IndustryService} from "../../../@core/data/industry.service";
-import {ClientService} from "../../../@core/data/client.service";
-import {OrganizationService} from "../../../@core/data/organization.service";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from "@angular/router";
+import { IndustryService } from "../../../@core/data/industry.service";
+import { ClientService } from "../../../@core/data/client.service";
+import { OrganizationService } from "../../../@core/data/organization.service";
+import { RolePermissionService } from '../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-organizations',
@@ -28,14 +29,16 @@ export class OrganizationsComponent implements OnInit, OnChanges {
     limit = 1000;
     organizations;
     organizations_divisions_departments = [];
+    permission;
 
     constructor(private router: Router,
-                private industryService: IndustryService,
-                private clientService: ClientService,
-                private organizationService: OrganizationService) {
+        private industryService: IndustryService,
+        private clientService: ClientService,
+        private organizationService: OrganizationService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     ngOnInit() {
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     onClickAdd() {
@@ -43,23 +46,23 @@ export class OrganizationsComponent implements OnInit, OnChanges {
     }
 
     onClickEdit(organizationId) {
-        this.organizationEdit.emit({organizationId});
+        this.organizationEdit.emit({ organizationId });
     }
 
     onClickAddDivision(organizationId) {
-        this.onAddDivision.emit({organizationId});
+        this.onAddDivision.emit({ organizationId });
     }
 
     onClickEditDivision(divisionId) {
-        this.divisionEdit.emit({divisionId});
+        this.divisionEdit.emit({ divisionId });
     }
 
     onClickAddDepartment(divisionId) {
-        this.onAddDepartment.emit({divisionId});
+        this.onAddDepartment.emit({ divisionId });
     }
 
     onClickEditDepartment(departmentId) {
-        this.departmentEdit.emit({departmentId});
+        this.departmentEdit.emit({ departmentId });
     }
 
     onClickDelete(id) {
@@ -138,9 +141,9 @@ export class OrganizationsComponent implements OnInit, OnChanges {
 
     page(offset, limit) {
         this.clientService.getClientOrganizations(this.clientId).subscribe(results => {
-                this.organizations = results.client.organizations;
-                this.setOrganizations(this.organizations);
-            },
+            this.organizations = results.client.organizations;
+            this.setOrganizations(this.organizations);
+        },
             (err) => {
                 console.log(err);
             }
