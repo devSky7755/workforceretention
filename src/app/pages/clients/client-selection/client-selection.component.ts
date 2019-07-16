@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ClientService } from "../../../@core/data/client.service";
 import { NbMenuService } from "@nebular/theme";
 import { RolePermissionService } from '../../../common/role/role_permission.service'
+import { NbAuthService, NbTokenService } from '@nebular/auth';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
     selector: 'ngx-client-selection',
@@ -10,6 +12,7 @@ import { RolePermissionService } from '../../../common/role/role_permission.serv
     styleUrls: ['./client-selection.component.scss'],
 })
 export class ClientSelectionComponent implements OnInit {
+    logoutResult;
     rows = [];
     count = 0;
     offset = 0;
@@ -30,7 +33,7 @@ export class ClientSelectionComponent implements OnInit {
 
     // Table Column Client Name, Client Industry, Client Employees, Products
 
-    constructor(private clientService: ClientService, private router: Router, private menuService: NbMenuService, private rolePermissionSerivce: RolePermissionService) {
+    constructor(private authService: AuthService, private clientService: ClientService, private router: Router, private menuService: NbMenuService, private rolePermissionSerivce: RolePermissionService, private tokenService: NbTokenService) {
     }
 
     onClickAdd() {
@@ -83,28 +86,46 @@ export class ClientSelectionComponent implements OnInit {
     }
 
     page(offset, limit) {
-        this.clientService.getClients(offset, limit).subscribe(data => {
-            this.count = data.totalItems;
-            this.clients = data.clients;
-            const rows = [];
-            this.clients.map((client) => {
-                console.log(client);
-                // Modify staticPage role
-                client.id = client._id;
-                console.log(client.industry !== null);
-                client.industryName = typeof client.industry === 'undefined' || client.industry == null ?
-                    '' : client.industry.name;
-                client.product = this.products.find(p => p.id === client.product).name;
-                client.workforce = this.workforces.find(w => w.id === client.workforce).value;
-                rows.push(client);
-            });
-            this.rows = rows;
-            console.log(this.clients);
-        },
-            (err) => {
-                console.log(err);
-            }
-        );
+        this.tokenService.get()
+            .subscribe(token => {
+                let payload = token.getPayload()
+                if (!payload || !payload._id) {
+                    this.logout(payload)
+                }
+                this.clientService.getClients(offset, limit, payload._id).subscribe(data => {
+                    this.count = data.totalItems;
+                    this.clients = data.clients;
+                    const rows = [];
+                    this.clients.map((client) => {
+                        console.log(client);
+                        // Modify staticPage role
+                        client.id = client._id;
+                        console.log(client.industry !== null);
+                        client.industryName = typeof client.industry === 'undefined' || client.industry == null ?
+                            '' : client.industry.name;
+                        client.product = this.products.find(p => p.id === client.product).name;
+                        client.workforce = this.workforces.find(w => w.id === client.workforce).value;
+                        rows.push(client);
+                    });
+                    this.rows = rows;
+                    console.log(this.clients);
+                },
+                    (err) => {
+                        console.log(err);
+                    }
+                );
+            })
+    }
+
+    logout(payload) {
+        this.authService.logout(payload)
+            .subscribe(result => {
+                this.logoutResult = result
+                if (this.logoutResult.success) {
+                    localStorage.removeItem('auth_app_token');
+                    this.router.navigateByUrl('/auth/login');
+                }
+            })
     }
 
 }

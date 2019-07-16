@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {RoleService} from "../../../../@core/data/role.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../../../@core/data/users.service";
-import {ActivatedRoute} from "@angular/router";
-import {ClientService} from "../../../../@core/data/client.service";
+import { Component, OnInit } from '@angular/core';
+import { RoleService } from "../../../../@core/data/role.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { UserService } from "../../../../@core/data/users.service";
+import { ActivatedRoute } from "@angular/router";
+import { ClientService } from "../../../../@core/data/client.service";
 
 @Component({
     selector: 'ngx-add-edit-user',
@@ -12,21 +12,28 @@ import {ClientService} from "../../../../@core/data/client.service";
 })
 export class AddEditUserComponent implements OnInit {
 
-    user = {first_name: '', last_name: '', email: '', role: '', username: ''};
+    user = { first_name: '', last_name: '', email: '', role: '', username: '', clients: [] };
     roles = [];
     userId;
     initialEmailAddress;
     successMessage;
     clients;
-    clientId;
-    userClients = [];
+    dropdownSettings = {
+        singleSelection: false,
+        idField: '_id',
+        textField: 'name',
+        selectAllText: 'Select All',
+        unSelectAllText: 'UnSelect All',
+        itemsShowLimit: 8,
+        allowSearchFilter: true
+    };
 
     // define a employee model
 
     constructor(private roleService: RoleService,
-                private userService: UserService,
-                private route: ActivatedRoute,
-                private clientService: ClientService) {
+        private userService: UserService,
+        private route: ActivatedRoute,
+        private clientService: ClientService) {
     }
 
     ngOnInit() {
@@ -42,6 +49,49 @@ export class AddEditUserComponent implements OnInit {
     }
 
     userForm: FormGroup;
+
+    getUser() {
+        this.userService.getUser(this.userId).subscribe(data => {
+            this.setUser(data);
+            //set the employee
+        },
+            err => {
+                console.log(err);
+            }
+        );
+    }
+
+    setUser(data) {
+        this.initialEmailAddress = data.user.email;
+        this.user.email = data.user.email;
+        //split username
+        this.user.username = data.user.username;
+        this.user.first_name = data.user.first_name;
+        this.user.last_name = data.user.last_name;
+        this.user.role = typeof data.user.role !== 'undefined' || data.user.role !== null ? data.user.role : '';
+        this.userId = data.user._id;
+        this.user.clients =
+            typeof data.user.clients !== 'undefined' &&
+                data.user.clients !== null ?
+                data.user.clients : [];
+        this.get('email').disable();
+    }
+
+    findUserClients() {
+        console.log(this.userId);
+        this.userService.getUserClients(this.userId).subscribe(
+            data => {
+                console.log(data.users);
+                this.user.clients = data.users.clients;
+            },
+            err => {
+                console.log(err);
+            },
+            () => {
+                console.log('completed');
+            }
+        );
+    }
 
     // validator function
     get(controlName) {
@@ -63,9 +113,9 @@ export class AddEditUserComponent implements OnInit {
             ),
             role: new FormControl('',
                 [Validators.required]),
-            client: new FormControl()
+            clients: new FormControl()
         });
-        this.userForm.controls['role'].setValue('', {onlySelf: true});
+        this.userForm.controls['role'].setValue('', { onlySelf: true });
     }
 
     getRoles() {
@@ -94,34 +144,7 @@ export class AddEditUserComponent implements OnInit {
     }
 
     addClient() {
-        console.log(this.clientId);
-    }
-
-    findUserClients() {
-        console.log(this.userId);
-        this.userService.getUserClients(this.userId).subscribe(
-            data => {
-                console.log(data.users);
-                this.userClients = data.users.clients;
-            },
-            err => {
-                console.log(err);
-            },
-            () => {
-                console.log('completed');
-            }
-        );
-    }
-
-    getUser() {
-        this.userService.getUser(this.userId).subscribe(data => {
-                this.setUser(data);
-                //set the employee
-            },
-            err => {
-                console.log(err);
-            }
-        );
+        console.log(this.get('clients').value);
     }
 
     createUser() {
@@ -137,22 +160,6 @@ export class AddEditUserComponent implements OnInit {
 
     }
 
-    setUser(data) {
-        this.initialEmailAddress = data.user.email;
-        this.user.email = data.user.email;
-        //split username
-        this.user.username = data.user.username;
-        this.user.first_name = data.user.first_name;
-        this.user.last_name = data.user.last_name;
-        this.user.role = typeof data.user.role !== 'undefined' || data.user.role !== null ? data.user.role : '';
-        this.userId = data.user._id;
-        this.userClients =
-            typeof data.user.clients !== 'undefined' &&
-            data.user.clients !== null ?
-                data.user.clients : [];
-        this.get('email').disable();
-    }
-
     insert() {
         const user = {
             first_name: this.get('name').get('firstName').value,
@@ -160,7 +167,7 @@ export class AddEditUserComponent implements OnInit {
             email: this.get('email').value,
             username: this.get('username').value,
             role: this.get('role').value,
-            clients: this.userClients
+            clients: this.user.clients
         };
         this.userService.createUser(user).subscribe(
             data => {
@@ -168,8 +175,8 @@ export class AddEditUserComponent implements OnInit {
                 this.setUser(data);
             },
             err => {
-                const {error} = err;
-                this.userForm.setErrors({'message': error.message});
+                const { error } = err;
+                this.userForm.setErrors({ 'message': error.message });
             }
         );
     }
@@ -180,7 +187,7 @@ export class AddEditUserComponent implements OnInit {
             last_name: this.get('name').get('lastName').value,
             role: this.get('role').value,
             username: this.get('username').value,
-            clients: this.userClients
+            clients: this.user.clients
         };
         this.userService.updateUser(user, this.userId).subscribe(
             data => {
@@ -188,8 +195,8 @@ export class AddEditUserComponent implements OnInit {
                 this.setUser(data);
             },
             err => {
-                const {error} = err;
-                this.userForm.setErrors({'message': error.message});
+                const { error } = err;
+                this.userForm.setErrors({ 'message': error.message });
             }
         );
     }

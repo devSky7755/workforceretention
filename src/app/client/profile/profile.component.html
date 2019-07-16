@@ -1,8 +1,8 @@
 <nb-layout>
     <nb-layout-column>
         <ngx-header></ngx-header>
-        <ngx-page-name [pageName]="'PROFILE'"></ngx-page-name>
-        <section class="home-section light-gray">
+        <!-- <ngx-page-name [pageName]=""></ngx-page-name> -->
+        <section class="home-section light-gray" style="margin-top: 100px;">
             <div class="container">
                 <div class="row">
                     <!--Incomplete Surveys-->
@@ -14,7 +14,8 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-4"><strong>Employee Name</strong></div>
-                                    <div class="col-lg-5">{{employee_details.first_name}} {{employee_details.last_name}}</div>
+                                    <div class="col-lg-5">{{employee_details.first_name}} {{employee_details.last_name}}
+                                    </div>
                                 </div>
                                 <br>
                                 <!--No Of employees-->
@@ -61,9 +62,9 @@
                                     <div class="col-lg-4"><strong>Level Manager</strong></div>
                                     <div class="col-lg-5">
                                         <i class="fa fa-check-square-o" aria-hidden="true"
-                                           *ngIf="employee_details.is_manager == '1'"></i>
+                                            *ngIf="employee_details.is_manager == '1'"></i>
                                         <i class="fa fa-times" aria-hidden="true"
-                                           *ngIf="employee_details.is_manager == '0'"></i>
+                                            *ngIf="employee_details.is_manager == '0'"></i>
                                     </div>
                                 </div>
                                 <br>
@@ -72,9 +73,9 @@
                                     <div class="col-lg-4"><strong>Surveys</strong></div>
                                     <div class="col-lg-5">
                                         <i class="fa fa-check-square-o" aria-hidden="true"
-                                           *ngIf="employee_details.is_survey == '1'"></i>
+                                            *ngIf="employee_details.is_survey == '1'"></i>
                                         <i class="fa fa-times" aria-hidden="true"
-                                           *ngIf="employee_details.is_survey == '0'"></i>
+                                            *ngIf="employee_details.is_survey == '0'"></i>
                                     </div>
                                 </div>
                                 <br>
@@ -83,9 +84,9 @@
                                     <div class="col-lg-4"><strong>Online</strong></div>
                                     <div class="col-lg-5">
                                         <i class="fa fa-check-square-o" aria-hidden="true"
-                                           *ngIf="employee_details.is_online == '1'"></i>
+                                            *ngIf="employee_details.is_online == '1'"></i>
                                         <i class="fa fa-times" aria-hidden="true"
-                                           *ngIf="employee_details.is_online == '0'"></i>
+                                            *ngIf="employee_details.is_online == '0'"></i>
 
                                     </div>
                                 </div>
@@ -95,9 +96,9 @@
                                     <div class="col-lg-4"><strong>Full Reports</strong></div>
                                     <div class="col-lg-5">
                                         <i class="fa fa-check-square-o" aria-hidden="true"
-                                           *ngIf="employee_details.is_report == '1'"></i>
+                                            *ngIf="employee_details.is_report == '1'"></i>
                                         <i class="fa fa-times" aria-hidden="true"
-                                           *ngIf="employee_details.is_report == '0'"></i>
+                                            *ngIf="employee_details.is_report == '0'"></i>
                                     </div>
                                 </div>
                                 <br>
@@ -105,24 +106,22 @@
                                     <div class="col-lg-12">
                                         <h4>Change Password</h4>
                                         <hr>
-                                        <span>Leave the following fields blank if you do not wish to change your password.</span>
+                                        <span>Leave the following fields blank if you do not wish to change your
+                                            password.</span>
                                         <br><br>
                                         <div class="form-group" style="max-width: 450px">
-                                            <input type="password" class="form-control"
-                                                   name="old-password"
-                                                   placeholder="Old Password" required>
+                                            <input type="password" class="form-control" name="old-password"
+                                                placeholder="Old Password" required>
                                             <!--Register Error Here-->
                                         </div>
                                         <div class="form-group" style="max-width: 450px">
-                                            <input type="password" class="form-control"
-                                                   name="new-password"
-                                                   placeholder="New Password" required>
+                                            <input type="password" class="form-control" name="new-password"
+                                                placeholder="New Password" required>
                                             <!--Register Error Here-->
                                         </div>
                                         <div class="form-group" style="max-width: 450px">
-                                            <input type="password" class="form-control"
-                                                   name="confirm-password"
-                                                   placeholder="Re-Enter Password" required>
+                                            <input type="password" class="form-control" name="confirm-password"
+                                                placeholder="Re-Enter Password" required>
                                             <!--Register Error Here-->
                                         </div>
                                         <div class="form-group" style="max-width: 450px">

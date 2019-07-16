@@ -76,7 +76,7 @@
     </ngx-datatable-column>
     <ngx-datatable-column name="completed">
         <ng-template let-column="column" ngx-datatable-header-template>
-            <strong>Completed</strong>
+            <strong style="color: #5dcfe3">Completed</strong>
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
             <i class="fa fa-check-square-o" aria-hidden="true" *ngIf="value == '1'"></i>
@@ -94,7 +94,7 @@
 
     <ngx-datatable-column name="id">
         <ng-template let-column="column" ngx-datatable-header-template>
-            <strong>Action</strong>
+            <strong style="color: #5dcfe3">Action</strong>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
             <button type="button" (click)="onClickEdit(value)"

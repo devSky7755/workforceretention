@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
-import {Router} from "@angular/router";
-import {EmployeeService} from "../../../@core/data/employee.service";
-import {JwtHelperService} from '@auth0/angular-jwt';
-import {ClientService} from "../../../@core/data/client.service";
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
+import { EmployeeService } from "../../../@core/data/employee.service";
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { ClientService } from "../../../@core/data/client.service";
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -15,10 +16,12 @@ export class HeaderComponent implements OnInit {
     isAuth: boolean = false;
     authSubscription: Subscription;
     employee_details;
+    clientImage = null
+    baseUrl = !environment.production ? 'http://localhost:8080' : ''
 
     constructor(private router: Router,
-                private employeeService: EmployeeService,
-                private clientService: ClientService) {
+        private employeeService: EmployeeService,
+        private clientService: ClientService) {
     }
 
     ngOnInit() {
@@ -36,6 +39,7 @@ export class HeaderComponent implements OnInit {
                 this.logout();
             } else {
                 this.isAuth = true;
+                this.clientImage = this.baseUrl + '/images/client/' + (this.employeeService.clientImage || '')
                 if (this.employeeService.clientImage === '') {
                     const decodedToken = helper.decodeToken(employee.access_token);
                     this.getClient(decodedToken.client);
@@ -53,6 +57,7 @@ export class HeaderComponent implements OnInit {
             res => {
                 console.log(res);
                 this.employeeService.clientImage = res.client.image;
+                this.clientImage = this.baseUrl + '/images/client/' + (this.employeeService.clientImage || '')
             }
         );
     }

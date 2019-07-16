@@ -79,29 +79,71 @@ exports.Create = function (req, res, next) {
 exports.Find = (req, res, next) => {
     const currentPage = Number(req.query.page || 1); //staticPage number
     const perPage = Number(req.query.perPage || 10); //total items display per staticPage
+    const userId = req.query.userId || '';
     let totalItems; //how many items in the database
-
-    Client.find()
-        .countDocuments()
-        .then(count => {
-            totalItems = count;
-            //This will return a new promise with the posts.
-            return Client.find({}, '-surveys -organizations')
-                .populate({
-                    path: 'industry',
-                    model: 'Industry',
-                    select: 'name'
-                })
-                .skip((currentPage) * perPage)
-                .limit(perPage);
-        }).then(clients => {
-            return res.status(200).json({ success: true, clients, totalItems })
-        }).catch(err => {
-            if (!err.statusCode) {
-                err.statusCode = 500;
+    if (userId) {
+        let populate = {
+            path: 'clients', model: 'Client', populate: {
+                path: 'industry',
+                model: 'Industry',
+                select: 'name'
             }
-            next(err)
-        });
+        }
+        User.findById(userId, '-password -surveys -links')
+            .populate(populate).then(user => {
+                if (!user) {
+                    return res.status(404).json({
+                        "success": false,
+                        "message": "User not found"
+                    })
+                }
+                totalItems = user.clients.length;
+                User.findById(userId, '-password -surveys -links')
+                    .populate({
+                        ...populate, ...{
+                            options: {
+                                skip: (currentPage) * perPage,
+                                limit: perPage
+                            }
+                        }
+                    }).then(user => {
+                        return res.status(200).json({ success: true, 'clients': user.clients, totalItems })
+                    }).catch(err => {
+                        if (!err.statusCode) {
+                            err.statusCode = 500;
+                        }
+                        next(err)
+                    });
+            }).catch(err => {
+                if (!err.statusCode) {
+                    err.statusCode = 500;
+                }
+                next(err)
+            });
+    }
+    else {
+        Client.find()
+            .countDocuments()
+            .then(count => {
+                totalItems = count;
+                //This will return a new promise with the posts.
+                return Client.find({}, '-surveys -organizations')
+                    .populate({
+                        path: 'industry',
+                        model: 'Industry',
+                        select: 'name'
+                    })
+                    .skip((currentPage) * perPage)
+                    .limit(perPage);
+            }).then(clients => {
+                return res.status(200).json({ success: true, clients, totalItems })
+            }).catch(err => {
+                if (!err.statusCode) {
+                    err.statusCode = 500;
+                }
+                next(err)
+            });
+    }
 };
 
 exports.FindById = (req, res, next) => {
@@ -134,7 +176,7 @@ exports.Update = (req, res, next) => {
             }
         });
         data.emails = client_emails;
-        
+
         //Update the employee
 
         // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
