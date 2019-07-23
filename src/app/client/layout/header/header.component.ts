@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from "rxjs";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd } from "@angular/router";
 import { EmployeeService } from "../../../@core/data/employee.service";
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ClientService } from "../../../@core/data/client.service";
 import { environment } from '../../../../environments/environment';
-
+import 'rxjs/add/operator/filter';
 
 @Component({
     selector: 'ngx-header',
@@ -18,10 +18,17 @@ export class HeaderComponent implements OnInit {
     employee_details;
     clientImage = null
     baseUrl = !environment.production ? 'http://localhost:8080' : ''
+    isDefaultLogo = false
 
     constructor(private router: Router,
         private employeeService: EmployeeService,
         private clientService: ClientService) {
+        router.events.filter((event: any) => event instanceof NavigationEnd).subscribe(event => {
+            let defaultLogoUrl = ['/client/login']
+            if (defaultLogoUrl.includes(event.url)) {
+                this.isDefaultLogo = true
+            }
+        });
     }
 
     ngOnInit() {

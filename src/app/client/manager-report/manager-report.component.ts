@@ -402,8 +402,12 @@ export class ManagerReportComponent implements OnInit {
             // now we can take the first three items and insert it into the top_leaving_reasons array
             this.top_leaving_reasons = [];
             if (final_question.options.length > 3) {
+                for (let i = 0; i < 3; i++) {
+                    if (final_question.options[i].answered == 0) continue
+                    this.top_leaving_reasons.push(final_question.options[i])
+                }
                 // this means there are more than 3 items so we can take the first 3 items
-                this.top_leaving_reasons.push(final_question.options[0], final_question.options[1], final_question.options[2]);
+                // this.top_leaving_reasons.push(final_question.options[0], final_question.options[1], final_question.options[2]);
             }
             final_question.options.map((option) => {
                 const result = { name: this.exit_reasons[option.label_index].value, value: option.percentage };

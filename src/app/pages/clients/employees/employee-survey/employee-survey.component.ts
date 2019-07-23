@@ -1,7 +1,8 @@
-import {AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {SurveyService} from "../../../../@core/data/survey.service";
-import {AnswerService} from "../../../../@core/data/answer.service";
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { SurveyService } from "../../../../@core/data/survey.service";
+import { AnswerService } from "../../../../@core/data/answer.service";
+import { RolePermissionService } from '../../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-employee-survey',
@@ -22,58 +23,59 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     question_answers = [];
     survey;
     survey_types = [
-        {id: 1, value: 'Exit Interview'}
+        { id: 1, value: 'Exit Interview' }
     ];
     ratings = [
-        {id: 2, value: '1-2'},
-        {id: 3, value: '1-3'},
-        {id: 4, value: '1-4'},
-        {id: 5, value: '1-5'},
-        {id: 6, value: '1-6'},
-        {id: 7, value: '1-7'},
-        {id: 8, value: '1-8'},
-        {id: 9, value: '1-9'},
-        {id: 10, value: '1-10'}
+        { id: 2, value: '1-2' },
+        { id: 3, value: '1-3' },
+        { id: 4, value: '1-4' },
+        { id: 5, value: '1-5' },
+        { id: 6, value: '1-6' },
+        { id: 7, value: '1-7' },
+        { id: 8, value: '1-8' },
+        { id: 9, value: '1-9' },
+        { id: 10, value: '1-10' }
     ];
     question_types = [
-        {id: 1, value: 'Rating Radio Buttons'},
-        {id: 2, value: 'Free Text'},
-        {id: 3, value: 'Exit Interview - Exit Reasons'},
-        {id: 4, value: 'Yes / No Radio'},
-        {id: 5, value: 'Radio Labels'},
-        {id: 6, value: 'Multiple Choice'},
+        { id: 1, value: 'Rating Radio Buttons' },
+        { id: 2, value: 'Free Text' },
+        { id: 3, value: 'Exit Interview - Exit Reasons' },
+        { id: 4, value: 'Yes / No Radio' },
+        { id: 5, value: 'Radio Labels' },
+        { id: 6, value: 'Multiple Choice' },
     ];
     exit_reason_checkbox = [
-        {id: 1, value: 'Career Opportunities'},
-        {id: 2, value: 'Meaningful Work'},
-        {id: 3, value: 'Communication'},
-        {id: 4, value: 'Effective Leadership'},
-        {id: 5, value: 'Induction'},
-        {id: 6, value: 'Learning & Development'},
-        {id: 7, value: 'Manager'},
-        {id: 8, value: 'Pay & Benefits'},
-        {id: 9, value: 'Work Conditions'},
-        {id: 10, value: 'Being Valued'},
-        {id: 11, value: 'Operational'},
-        {id: 12, value: 'Restructure'},
+        { id: 1, value: 'Career Opportunities' },
+        { id: 2, value: 'Meaningful Work' },
+        { id: 3, value: 'Communication' },
+        { id: 4, value: 'Effective Leadership' },
+        { id: 5, value: 'Induction' },
+        { id: 6, value: 'Learning & Development' },
+        { id: 7, value: 'Manager' },
+        { id: 8, value: 'Pay & Benefits' },
+        { id: 9, value: 'Work Conditions' },
+        { id: 10, value: 'Being Valued' },
+        { id: 11, value: 'Operational' },
+        { id: 12, value: 'Restructure' },
     ];
     exit_reason = [
-        {id: 11, value: 'Initial Question'},
-        {id: 10, value: 'Being Valued'},
-        {id: 1, value: 'Career Opportunities'},
-        {id: 15, value: 'Restructure'},
-        {id: 3, value: 'Communication'},
-        {id: 5, value: 'Induction'},
-        {id: 4, value: 'Effective Leadership'},
-        {id: 6, value: 'Learning & Development'},
-        {id: 7, value: 'Manager'},
-        {id: 2, value: 'Meaningful Work'},
-        {id: 14, value: 'Operational'},
-        {id: 8, value: 'Pay & Benefits'},
-        {id: 9, value: 'Work Conditions'},
-        {id: 13, value: 'Final Question'},
-        {id: 12, value: 'Custom Questions'}
+        { id: 11, value: 'Initial Question' },
+        { id: 10, value: 'Being Valued' },
+        { id: 1, value: 'Career Opportunities' },
+        { id: 15, value: 'Restructure' },
+        { id: 3, value: 'Communication' },
+        { id: 5, value: 'Induction' },
+        { id: 4, value: 'Effective Leadership' },
+        { id: 6, value: 'Learning & Development' },
+        { id: 7, value: 'Manager' },
+        { id: 2, value: 'Meaningful Work' },
+        { id: 14, value: 'Operational' },
+        { id: 8, value: 'Pay & Benefits' },
+        { id: 9, value: 'Work Conditions' },
+        { id: 13, value: 'Final Question' },
+        { id: 12, value: 'Custom Questions' }
     ];
+    permission;
     // we need to rearrange questions by exit_reason
     // after rearrange we need to display questions step by step
     // another way we can display all the questions together
@@ -83,12 +85,13 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     // question type yes_no radio buttons that means it will show two radio buttons
     // question type exit_interview exit_reason that means it will show the selected checkbox
     constructor(private route: ActivatedRoute,
-                private surveyService: SurveyService,
-                private answerService: AnswerService) {
+        private surveyService: SurveyService,
+        private answerService: AnswerService, private rolePermissionSerivce: RolePermissionService) {
         this.survey = {};
     }
 
     ngOnInit() {
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     getSurvey() {
@@ -131,7 +134,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                 }
                 // if both same then push the question into the categorical_questions array
             });
-            this.categorical_questions.push({exit_reason: reason.value, questions: categorical_questions});
+            this.categorical_questions.push({ exit_reason: reason.value, questions: categorical_questions });
         });
     }
 
@@ -252,7 +255,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                         errors.push(question.question_no);
                     }
                 }
-                const answer = {options: options, question: question._id, question_type: question.type};
+                const answer = { options: options, question: question._id, question_type: question.type };
                 this.question_answers.push(answer);
             });
         });
@@ -404,7 +407,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                     }
                 } else {
                     // set this. this means no answer is given in this answers
-                    this.answers.push({question: question._id, new: true});
+                    this.answers.push({ question: question._id, new: true });
                 }
             });
         });

@@ -1,5 +1,5 @@
-import {ExtraOptions, RouterModule, Routes} from '@angular/router';
-import {NgModule} from '@angular/core';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 import {
     NbAuthComponent,
     NbLoginComponent,
@@ -7,9 +7,9 @@ import {
     NbRequestPasswordComponent,
     NbResetPasswordComponent,
 } from '@nebular/auth';
-import {AuthGuard} from './auth-guard.service';
-import {LogoutComponent} from './auth/logout/logout.component';
-import {LoginComponent} from './auth/login/login.component';
+import { AuthGuard } from './auth-guard.service';
+import { LogoutComponent } from './auth/logout/logout.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
     {
@@ -27,16 +27,16 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: NbLoginComponent,
+                component: LoginComponent,
             },
             {
                 path: 'login',
                 component: LoginComponent,
             },
-            {
-                path: 'register',
-                component: NbRegisterComponent,
-            },
+            // {
+            //     path: 'register',
+            //     component: NbRegisterComponent,
+            // },
             {
                 path: 'logout',
                 component: LogoutComponent,
@@ -51,8 +51,9 @@ const routes: Routes = [
             }
         ],
     },
-    {path: '', redirectTo: 'client', pathMatch: 'full'},
-    {path: '**', redirectTo: 'client'},
+    { path: '', redirectTo: 'client', pathMatch: 'full' },
+    { path: 'register', redirectTo: 'auth/login', pathMatch: 'full' },
+    { path: '**', redirectTo: 'client' },
 ];
 
 const config: ExtraOptions = {

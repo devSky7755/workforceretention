@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {ClientService} from "../../../../@core/data/client.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { ClientService } from "../../../../@core/data/client.service";
+import { RolePermissionService } from '../../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-client-tabs',
@@ -33,8 +34,9 @@ export class ClientTabsComponent implements OnInit {
     isShowOrganization = true;
     isShowDivision = false;
     isShowDepartment = false;
+    permission;
 
-    constructor(private route: ActivatedRoute, private clientService: ClientService) {
+    constructor(private route: ActivatedRoute, private clientService: ClientService, private rolePermissionSerivce: RolePermissionService) {
         this.client = {};
     }
 
@@ -122,11 +124,11 @@ export class ClientTabsComponent implements OnInit {
     }
 
     addDivisionButtonClicked() {
-        this.onClickAddDivision({organizationId: this.organizationId});
+        this.onClickAddDivision({ organizationId: this.organizationId });
     }
 
     addDepartmentButtonClicked() {
-        this.onClickAddDepartment({divisionId: this.divisionId});
+        this.onClickAddDepartment({ divisionId: this.divisionId });
     }
 
     onClickAddDepartment(event) {
@@ -222,12 +224,13 @@ export class ClientTabsComponent implements OnInit {
     ngOnInit() {
         this.clientId = this.route.snapshot.paramMap.get('id');
         this.getClient();
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     getClient() {
         this.clientService.getClient(this.clientId).subscribe(data => {
-                this.client = data.client;
-            },
+            this.client = data.client;
+        },
             err => {
                 console.log(err);
             }

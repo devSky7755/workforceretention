@@ -43,23 +43,23 @@
                                     <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
                                         <nb-checkbox [value]="value" (change)="isRead(rowIndex)"></nb-checkbox>
                                     </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="tableWrite">
-                                    <ng-template let-column="column" ngx-datatable-header-template>
-                                        Write
-                                    </ng-template>
-                                    <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                                        <nb-checkbox [value]="value" (change)="isWrite(rowIndex)"></nb-checkbox>
-                                    </ng-template>
-                                </ngx-datatable-column>
+                                </ngx-datatable-column> -->
                                 <ngx-datatable-column name="tableUpdate">
                                     <ng-template let-column="column" ngx-datatable-header-template>
                                         Update
                                     </ng-template>
                                     <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-                                        <nb-checkbox [value]="value" (change)="isUpdate(rowIndex)"></nb-checkbox>
+                                        <nb-checkbox [value]="value" [disabled]="hasAccessible(rowIndex)" (change)="isUpdate(rowIndex)"></nb-checkbox>
                                     </ng-template>
-                                </ngx-datatable-column> -->
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="tableAdd">
+                                    <ng-template let-column="column" ngx-datatable-header-template>
+                                        Add
+                                    </ng-template>
+                                    <ng-template let-value="value" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+                                        <nb-checkbox [value]="value" [disabled]="hasAccessible(rowIndex)" (change)="isAdd(rowIndex)"></nb-checkbox>
+                                    </ng-template>
+                                </ngx-datatable-column>
                                 <ngx-datatable-column name="tableDelete">
                                     <ng-template let-column="column" ngx-datatable-header-template>
                                         Delete

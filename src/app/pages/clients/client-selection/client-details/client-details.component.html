@@ -58,7 +58,8 @@
                     <div class="form__group u-margin-bottom-medium">
                         <div class="form__radio-group">
                             <input type="radio" name="interview-type" class="form__radio-input" value="template-one"
-                                   id="template-one" (change)="onChangeEmailTemplate($event)">
+                                [disabled]="!permission.is_update" id="template-one"
+                                (change)="onChangeEmailTemplate($event)">
                             <label for="template-one" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Phone Interview
@@ -66,7 +67,8 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" name="interview-type" class="form__radio-input" value="template-two"
-                                   id="template-two" (change)="onChangeEmailTemplate($event)">
+                                [disabled]="!permission.is_update" id="template-two"
+                                (change)="onChangeEmailTemplate($event)">
                             <label for="template-two" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Online Survey
@@ -83,7 +85,8 @@
                     <div class="form__group u-margin-bottom-medium">
                         <div class="form__radio-group">
                             <input type="radio" name="reminder-email" class="form__radio-input" value="true"
-                                   id="reminder-email-on" (change)="onChangeReminderEmailStatus($event)">
+                                [disabled]="!permission.is_update" id="reminder-email-on"
+                                (change)="onChangeReminderEmailStatus($event)">
                             <label for="reminder-email-on" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 ON
@@ -91,7 +94,8 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" name="reminder-email" class="form__radio-input" value="false"
-                                   id="reminder-email-off" (change)="onChangeReminderEmailStatus($event)">
+                                [disabled]="!permission.is_update" id="reminder-email-off"
+                                (change)="onChangeReminderEmailStatus($event)">
                             <label for="reminder-email-off" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 OFF

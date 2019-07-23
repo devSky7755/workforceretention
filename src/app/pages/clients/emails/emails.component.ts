@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Router} from "@angular/router";
-import {IndustryService} from "../../../@core/data/industry.service";
-import {ClientService} from "../../../@core/data/client.service";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Router } from "@angular/router";
+import { IndustryService } from "../../../@core/data/industry.service";
+import { ClientService } from "../../../@core/data/client.service";
+import { RolePermissionService } from '../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-emails',
@@ -16,13 +17,15 @@ export class EmailsComponent implements OnInit, OnChanges {
     offset = 0;
     limit = 5;
     emails;
+    permission;
 
     constructor(private router: Router,
-                private industryService: IndustryService,
-                private clientService: ClientService) {
+        private industryService: IndustryService,
+        private clientService: ClientService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     ngOnInit() {
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     onClickAdd() {
@@ -30,7 +33,7 @@ export class EmailsComponent implements OnInit, OnChanges {
     }
 
     onClickEdit(emailId) {
-        this.emailEdit.emit({emailId});
+        this.emailEdit.emit({ emailId });
     }
 
     /**
@@ -43,18 +46,18 @@ export class EmailsComponent implements OnInit, OnChanges {
 
     page(offset, limit) {
         this.clientService.getClientEmails(this.clientId).subscribe(results => {
-                this.emails = results.client.emails;
-                this.count = this.emails.length;
-                const rows = [];
-                this.emails.map((email) => {
-                    email.id = email._id;
-                    email.fromAddress = email.from_address;
-                    rows.push(email);
-                });
-                this.rows = rows;
-                console.log(this.rows);
+            this.emails = results.client.emails;
+            this.count = this.emails.length;
+            const rows = [];
+            this.emails.map((email) => {
+                email.id = email._id;
+                email.fromAddress = email.from_address;
+                rows.push(email);
+            });
+            this.rows = rows;
+            console.log(this.rows);
 
-            },
+        },
             (err) => {
                 console.log(err);
             }

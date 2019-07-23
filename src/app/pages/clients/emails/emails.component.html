@@ -38,7 +38,7 @@
       <span>Action</span>
     </ng-template>
     <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-      <button type="button" (click)="onClickEdit(value)" *ngIf="row.editable"
+      <button type="button" (click)="onClickEdit(value)" *ngIf="row.editable && permission.is_update"
               style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: black">
         <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 22px"></i></button>
     </ng-template>

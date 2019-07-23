@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ClientService} from "../../../../@core/data/client.service";
 import {CountryService} from "../../../../@core/data/country.service";
+import { RolePermissionService } from '../../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-client-details',
@@ -31,12 +32,14 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
         {id: 0, name: 'Aggregate Data Only'},
         {id: 1, name: 'Individual + Aggregate Data'},
     ];
+    permission;
 
-    constructor(private clientService: ClientService, private countryService: CountryService) {
+    constructor(private clientService: ClientService, private countryService: CountryService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     ngOnInit() {
         this.client = {};
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     getClient() {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ReportService} from "../../../@core/data/report.service";
+import { RolePermissionService } from '../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-report-files',
@@ -14,8 +15,9 @@ export class ReportFilesComponent implements OnInit {
     offset = 0;
     limit = 9;
     reports;
+    permission;
 
-    constructor(private router: Router, private reportService: ReportService) {
+    constructor(private router: Router, private reportService: ReportService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     onClickAdd() {
@@ -24,6 +26,7 @@ export class ReportFilesComponent implements OnInit {
 
     ngOnInit() {
         this.page(this.offset, this.limit);
+        this.permission = this.rolePermissionSerivce.getRolePermission('Reporting')
     }
 
     /**

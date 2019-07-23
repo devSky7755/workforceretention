@@ -6,7 +6,9 @@
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
             <div *ngIf="row.isOrganization">
-                <a [routerLink]="" (click)="onClickEdit(row.id)"> <strong>{{row.name}}</strong></a>
+                <a [routerLink]="" *ngIf="permission.is_update" (click)="onClickEdit(row.id)">
+                    <strong>{{row.name}}</strong></a>
+                <strong *ngIf="!permission.is_update">{{row.name}}</strong>
             </div>
         </ng-template>
     </ngx-datatable-column>
@@ -16,10 +18,12 @@
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
             <div *ngIf="row.isDivision">
-                <a [routerLink]="" (click)="onClickEditDivision(row.id)"> <strong>{{row.name}}</strong></a>
+                <a [routerLink]="" *ngIf="permission.is_update" (click)="onClickEditDivision(row.id)">
+                    <strong>{{row.name}}</strong></a>
+                <strong *ngIf="!permission.is_update">{{row.name}}</strong>
             </div>
             <div *ngIf="row.isOrganization">
-                <button type="button" (click)="onClickAddDivision(row.id)"
+                <button type="button" *ngIf="permission.is_add" (click)="onClickAddDivision(row.id)"
                     style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: black">
                     <i class="fa fa-plus" aria-hidden="true" style="font-size: 22px"></i></button>
             </div>
@@ -31,10 +35,12 @@
         </ng-template>
         <ng-template let-row="row" ngx-datatable-cell-template>
             <div *ngIf="row.isDepartment">
-                <a [routerLink]="" (click)="onClickEditDepartment(row.id)"> <strong>{{row.name}}</strong></a>
+                <a [routerLink]="" *ngIf="permission.is_update" (click)="onClickEditDepartment(row.id)">
+                    <strong>{{row.name}}</strong></a>
+                <strong *ngIf="!permission.is_update">{{row.name}}</strong>
             </div>
             <div *ngIf="row.isDivision">
-                <button type="button" (click)="onClickAddDepartment(row.id)"
+                <button type="button" *ngIf="permission.is_add" (click)="onClickAddDepartment(row.id)"
                     style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: black">
                     <i class="fa fa-plus" aria-hidden="true" style="font-size: 22px"></i></button>
             </div>

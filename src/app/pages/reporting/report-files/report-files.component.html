@@ -2,7 +2,7 @@
     <nb-card-header>
         <nb-card-body>
             Report Files
-            <button class="btn btn-success btn-xs" style="float: right" (click)="onClickAdd()">Add Report</button>
+            <button class="btn btn-success btn-xs" style="float: right" *ngIf="permission.is_add" (click)="onClickAdd()">Add Report</button>
         </nb-card-body>
     </nb-card-header>
 
@@ -47,10 +47,10 @@
                     <span (click)="sort()">Action</span>
                 </ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    <button type="button" (click)="onClickEdit(value)"
+                    <button type="button" (click)="onClickEdit(value)"  *ngIf="permission.is_update"
                             style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: black">
                         <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 22px"></i></button>
-                    <button type="button" (click)="onClickDelete(value)"
+                    <button type="button" (click)="onClickDelete(value)"  *ngIf="permission.is_delete"
                             style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: black;">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>

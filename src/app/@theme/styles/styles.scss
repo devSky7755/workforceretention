@@ -84,8 +84,11 @@
   height: 7.75rem !important;
 }
 
-.nb-theme-corporate nb-sidebar {
-  z-index: 10001 !important;
+.nb-theme-corporate nb-sidebar .main-container.main-container-fixed {
+  z-index: 1041 !important;
+}
+.nb-theme-corporate .cdk-overlay-container {
+  z-index: 1042;
 }
 
 .form__radio-button {
@@ -111,4 +114,13 @@
 }
 .ngx-datatable .datatable-footer .datatable-pager .pager li a {
   color: #1e8ece !important;
+}
+
+nb-auth {
+  nb-layout-column {
+    padding-top: 110px !important;
+    nb-card {
+      height: calc(100vh - 2.5rem - 110px) !important;
+    }
+  }
 }

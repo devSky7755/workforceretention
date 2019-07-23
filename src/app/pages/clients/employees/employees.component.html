@@ -5,14 +5,17 @@
     {{errorMessage}}
 </div>
 <div style="float: left; margin-left: 20px">
-    <a [routerLink]="" (click)="downloadEmployeeTemplate()">Click here to download employee upload template</a>
+    <a [routerLink]="" *ngIf="permission.is_add" (click)="downloadEmployeeTemplate()">Click here to download employee
+        upload template</a>
 </div>
 <div style="float: right;margin-bottom: 10px">
     <input style="display: none" type="file" #filePicker (change)="onFilePicked($event)">
-    <button style="margin-right: 10px" type="button" class="btn btn-outline-primary" (click)="filePicker.click()">Upload
+    <button style="margin-right: 10px" type="button" class="btn btn-outline-primary" *ngIf="permission.is_add"
+        (click)="filePicker.click()">Upload
         Employee
     </button>
-    <button class="btn btn-outline-primary" (click)="onClickAddEmployee()">Add Employee</button>
+    <button class="btn btn-outline-primary" *ngIf="permission.is_add" (click)="onClickAddEmployee()">Add
+        Employee</button>
     <input type="text" class="form-control" style="display: inline-block;width: 300px;margin-left: 20px"
         name="filter-input" [(ngModel)]="filterValue" (ngModelChange)="onFilter()" placeholder="Enter name or email" />
     <!--    <button type="button" class="btn btn-outline-primary" (click)="onFilter()"><i class="fa fa-search fa-7x" aria-hidden="true"></i></button>-->
@@ -97,7 +100,7 @@
             <strong style="color: #5dcfe3">Action</strong>
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
-            <button type="button" (click)="onClickEdit(value)"
+            <button type="button" (click)="onClickEdit(value)" *ngIf="permission.is_update"
                 style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: black">
                 <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 22px"></i></button>
             <button type="button" (click)="onClickDelete(value)" *ngIf="permission.is_delete"

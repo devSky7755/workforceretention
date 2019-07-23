@@ -23,12 +23,12 @@ export class AddEditPermissionComponent implements OnInit {
 
     ngOnInit() {
         this.rolePermissions = [
-            { "table_name": "Office Admin", "has_access": false, "is_delete": false },
+            { "table_name": "Office Admin", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
             // {"table_name": "Products", "is_read": false, "is_write": false, "is_update": false, "is_delete": false},
             // {"table_name": "Articles", "is_read": false, "is_write": false, "is_update": false, "is_delete": false},
-            { "table_name": "Surveys", "has_access": false, "is_delete": false },
-            { "table_name": "Clients", "has_access": false, "is_delete": false },
-            { "table_name": "Reporting", "has_access": false, "is_delete": false },
+            { "table_name": "Surveys", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
+            { "table_name": "Clients", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
+            { "table_name": "Reporting", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
             // {"table_name": "Links", "is_read": false, "is_write": false, "is_update": false, "is_delete": false}
         ];
         this.roleId = this.route.snapshot.paramMap.get('id');
@@ -56,7 +56,12 @@ export class AddEditPermissionComponent implements OnInit {
     hasAccess(rowIndex) {
         this.rolePermissions[rowIndex].has_access = !this.rolePermissions[rowIndex].has_access;
         if (!this.rolePermissions[rowIndex].has_access) {
+            this.rolePermissions[rowIndex].is_update = false
+            this.rolePermissions[rowIndex].is_add = false
             this.rolePermissions[rowIndex].is_delete = false
+
+            this.rolePermissions[rowIndex].tableUpdate = false
+            this.rolePermissions[rowIndex].tableAdd = false
             this.rolePermissions[rowIndex].tableDelete = false
         }
     }
@@ -64,21 +69,18 @@ export class AddEditPermissionComponent implements OnInit {
     hasAccessible(rowIndex) {
         return !this.rolePermissions[rowIndex].has_access
     }
-    // isRead(rowIndex) {
-    //     this.rolePermissions[rowIndex].is_read = !this.rolePermissions[rowIndex].is_read;
-    // }
 
-    // isUpdate(rowIndex) {
-    //     this.rolePermissions[rowIndex].is_update = !this.rolePermissions[rowIndex].is_update;
-    // }
+    isUpdate(rowIndex) {
+        this.rolePermissions[rowIndex].is_update = !this.rolePermissions[rowIndex].is_update;
+    }
+
+    isAdd(rowIndex) {
+        this.rolePermissions[rowIndex].is_add = !this.rolePermissions[rowIndex].is_add;
+    }
 
     isDelete(rowIndex) {
         this.rolePermissions[rowIndex].is_delete = !this.rolePermissions[rowIndex].is_delete;
     }
-
-    // isWrite(rowIndex) {
-    //     this.rolePermissions[rowIndex].is_write = !this.rolePermissions[rowIndex].is_write;
-    // }
 
     page() {
         const rows = [];
@@ -86,9 +88,8 @@ export class AddEditPermissionComponent implements OnInit {
             // This is done only because of _ underscore is not supported by ngx-datatable
             permission.tableName = permission.table_name;
             permission.tableAccess = permission.has_access;
-            // permission.tableRead = permission.is_read;
-            // permission.tableWrite = permission.is_write;
-            // permission.tableUpdate = permission.is_update;
+            permission.tableUpdate = permission.has_access ? permission.is_update : false;
+            permission.tableAdd = permission.has_access ? permission.is_add : false;
             permission.tableDelete = permission.has_access ? permission.is_delete : false;
             rows.push(permission);
         });
@@ -99,9 +100,8 @@ export class AddEditPermissionComponent implements OnInit {
         this.rolePermissions.map((permission) => {
             delete permission.tableName;
             delete permission.tableAccess;
-            // delete permission.tableRead;
-            // delete permission.tableWrite;
-            // delete permission.tableUpdate;
+            delete permission.tableUpdate;
+            delete permission.tableAdd;
             delete permission.tableDelete;
         });
         const role = {
@@ -154,6 +154,11 @@ export class AddEditPermissionComponent implements OnInit {
 
     setResult(data) {
         this.role = data.role;
+        this.role.permissions.forEach(permission => {
+            permission.is_update = permission.is_update ? permission.is_update : false;
+            permission.is_add = permission.is_add ? permission.is_add : false;
+            permission.is_delete = permission.is_delete ? permission.is_delete : false;
+        });
         this.rolePermissions = this.role.permissions;
         this.roleName = this.role.name;
         this.roleId = this.role._id;

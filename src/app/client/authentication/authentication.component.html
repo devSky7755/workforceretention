@@ -9,23 +9,22 @@
                     <i class="fa fa-key" aria-hidden="true"></i>
                 </div>
                 <div class="login-title">
-                    EMPLOYEE LOGIN
+                    LOGIN
                 </div>
 
                 <div class="login-form">
                     <div class="login-form">
                         <form (ngSubmit)="login()" [formGroup]="employeeForm">
-                            <div class="alert alert-danger" role="alert"
-                                 *ngIf="errorMessage">
+                            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
                                 {{errorMessage}}
                             </div>
                             <div class="form-group">
                                 <label class="form-control-label" for="email">EMAIL</label>
                                 <input type="email" class="form-control" formControlName="email"
-                                       [(ngModel)]="employee.email" id="email">
+                                    [(ngModel)]="employee.email" id="email">
                                 <!--Register Error Here-->
                                 <div class="alert alert-danger" role="alert"
-                                     *ngIf="get('email').touched && get('email').invalid">
+                                    *ngIf="get('email').touched && get('email').invalid">
                                     <div *ngIf="get('email').errors.required"> Email is required</div>
                                     <div *ngIf="get('email').errors.pattern">Invalid email address</div>
                                 </div>
@@ -33,10 +32,10 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="password">PASSWORD</label>
                                 <input type="password" class="form-control" formControlName="password"
-                                       [(ngModel)]="employee.password" id="password">
+                                    [(ngModel)]="employee.password" id="password">
                                 <!--Register Error Here-->
                                 <div class="alert alert-danger" role="alert"
-                                     *ngIf="get('password').touched && get('password').invalid">
+                                    *ngIf="get('password').touched && get('password').invalid">
                                     Password is required
                                 </div>
                             </div>
@@ -46,7 +45,7 @@
                                 </div>
                                 <div class="col-lg-6 login-btm login-button">
                                     <button type="submit" class="btn btn-outline-primary"
-                                            [disabled]="!employeeForm.valid">LOGIN
+                                        [disabled]="!employeeForm.valid">LOGIN
                                     </button>
                                 </div>
                             </div>

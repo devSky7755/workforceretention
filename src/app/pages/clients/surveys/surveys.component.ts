@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SurveyService} from "../../../@core/data/survey.service";
 import {ClientService} from "../../../@core/data/client.service";
+import { RolePermissionService } from '../../../common/role/role_permission.service'
 
 @Component({
     selector: 'ngx-surveys',
@@ -20,11 +21,13 @@ export class SurveysComponent implements OnInit, OnChanges {
     survey_types = [
         {id: 1, value: 'Exit Interview'}
     ];
+    permission;
 
-    constructor(private surveyService: SurveyService, private clientService: ClientService) {
+    constructor(private surveyService: SurveyService, private clientService: ClientService, private rolePermissionSerivce: RolePermissionService) {
     }
 
     ngOnInit() {
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
     }
 
     onPage(event) {

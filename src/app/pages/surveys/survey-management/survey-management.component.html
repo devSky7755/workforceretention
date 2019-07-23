@@ -2,7 +2,8 @@
   <nb-card-header>
     <nb-card-body>
       Surveys
-      <button class="btn btn-success btn-xs" style="float: right" (click)="onClickAdd()">Add Survey</button>
+      <button class="btn btn-success btn-xs" style="float: right" *ngIf="permission.is_add" (click)="onClickAdd()">Add
+        Survey</button>
     </nb-card-body>
   </nb-card-header>
 
@@ -31,13 +32,13 @@
         </ng-template>
         <ng-template let-value="value" ngx-datatable-cell-template>
           <button type="button" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"
-            (click)="onClickEdit(value)"
+            *ngIf="permission.is_update" (click)="onClickEdit(value)"
             style="font-size: 18px;background-color: transparent;border:none; cursor: pointer;color: black;">
             <i class="fa fa-pencil-square-o" aria-hidden="true" style="font-size: 22px"></i>
           </button>
           <!--Survey Clone Button-->
           <button type="button" data-toggle="tooltip" data-placement="bottom" title="Clone Survey"
-            (click)="onClickCloneSurvey(value)"
+            (click)="onClickCloneSurvey(value)" *ngIf="permission.is_add"
             style="font-size: 22px;background-color: transparent;border:none;cursor: pointer;color: black;">
             <i class="fa fa-clone" aria-hidden="true"></i>
           </button>

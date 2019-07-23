@@ -15,49 +15,53 @@
 
                 <!--ORGANIZATION GROUP-->
                 <div *ngIf="isAddOrganization">
-                    <ngx-add-edit-organization (selectOrganization)="selectOrganization()" [organizationId]="organizationId"
-                                               [clientId]="clientId"></ngx-add-edit-organization>
+                    <ngx-add-edit-organization (selectOrganization)="selectOrganization()"
+                        [organizationId]="organizationId" [clientId]="clientId"></ngx-add-edit-organization>
                 </div>
                 <div *ngIf="isShowOrganization">
-                    <button class="btn btn-success btn-xs" style="float: right" (click)="onClickAddOrganization()">Add
+                    <button class="btn btn-success btn-xs" style="float: right" *ngIf="permission.is_add"
+                        (click)="onClickAddOrganization()">Add
                         Organization
                     </button>
                     <ngx-organizations (onAddDivision)="onClickAddDivision($event)"
-                                       (departmentEdit)="editDepartment($event)"
-                                       (divisionEdit)="editDivision($event)"
-                                       (onAddDepartment)="onClickAddDepartment($event)"
-                                       [clientId]="clientId"
-                                       (organizationEdit)="editOrganization($event)"></ngx-organizations>
+                        (departmentEdit)="editDepartment($event)" (divisionEdit)="editDivision($event)"
+                        (onAddDepartment)="onClickAddDepartment($event)" [clientId]="clientId"
+                        (organizationEdit)="editOrganization($event)"></ngx-organizations>
                 </div>
                 <!--ORGANIZATION GROUP-->
 
                 <!--DIVISION GROUP-->
                 <div *ngIf="isAddDivision">
-                    <ngx-add-edit-division (selectDivision)="selectDivision()" [divisionId]="divisionId" [organizationId]="organizationId"></ngx-add-edit-division>
+                    <ngx-add-edit-division (selectDivision)="selectDivision()" [divisionId]="divisionId"
+                        [organizationId]="organizationId"></ngx-add-edit-division>
                 </div>
                 <div *ngIf="isShowDivision">
-                    <i class="icon nb-arrow-thin-left" (click)="selectOrganization()" style="font-size: 50px;cursor: pointer;color: #00d977" ></i>
-                    <button class="btn btn-success btn-xs" style="float: right" (click)="addDivisionButtonClicked()">Add
+                    <i class="icon nb-arrow-thin-left" *ngIf="permission.is_add" (click)="selectOrganization()"
+                        style="font-size: 50px;cursor: pointer;color: #00d977"></i>
+                    <button class="btn btn-success btn-xs" *ngIf="permission.is_add" style="float: right"
+                        (click)="addDivisionButtonClicked()">Add
                         Divisions
                     </button>
-                    <ngx-divisions
-                            [organizationId]="organizationId"
-                            (divisionEdit)="editDivision($event)"
-                            (onAddDepartment)="onClickAddDepartment($event)"
-                            (onViewDepartment)="onClickViewDepartment($event)"></ngx-divisions>
+                    <ngx-divisions [organizationId]="organizationId" (divisionEdit)="editDivision($event)"
+                        (onAddDepartment)="onClickAddDepartment($event)"
+                        (onViewDepartment)="onClickViewDepartment($event)"></ngx-divisions>
                 </div>
                 <!--DIVISION GROUP END-->
 
                 <!--DEPARTMENT GROUP-->
                 <div *ngIf="isAddDepartment">
-                    <ngx-add-edit-department (selectDepartment)="selectDepartment()" [divisionId]="divisionId" [departmentId]="departmentId"></ngx-add-edit-department>
+                    <ngx-add-edit-department (selectDepartment)="selectDepartment()" [divisionId]="divisionId"
+                        [departmentId]="departmentId"></ngx-add-edit-department>
                 </div>
                 <div *ngIf="isShowDepartment">
-                    <i class="icon nb-arrow-thin-left" (click)="selectDivision()" style="font-size: 50px;cursor: pointer;color: #00d977" ></i>
-                    <button class="btn btn-success btn-xs" style="float: right" (click)="addDepartmentButtonClicked()">Add
+                    <i class="icon nb-arrow-thin-left" *ngIf="permission.is_add" (click)="selectDivision()"
+                        style="font-size: 50px;cursor: pointer;color: #00d977"></i>
+                    <button class="btn btn-success btn-xs" style="float: right" *ngIf="permission.is_add"
+                        (click)="addDepartmentButtonClicked()">Add
                         Department
                     </button>
-                    <ngx-departments (departmentEdit)="editDepartment($event)" [divisionId]="divisionId"></ngx-departments>
+                    <ngx-departments (departmentEdit)="editDepartment($event)" [divisionId]="divisionId">
+                    </ngx-departments>
                 </div>
                 <!--DEPARTMENT GROUP-->
 
@@ -68,16 +72,22 @@
                 <!--Show the Client Information Here-->
                 <br><br>
                 <div *ngIf="isShowEmployeeSurvey">
-                    <ngx-employee-survey [employeeId]="employeeId" [surveyCompleted]="surveyCompleted" [surveyId]="surveyId" [clientId]="clientId" (showEmployee)="showEmployees()"></ngx-employee-survey>
+                    <ngx-employee-survey [employeeId]="employeeId" [surveyCompleted]="surveyCompleted"
+                        [surveyId]="surveyId" [clientId]="clientId" (showEmployee)="showEmployees()">
+                    </ngx-employee-survey>
                 </div>
                 <div *ngIf="showEmployeeDetails">
-                    <ngx-employee-details [employeeId]="employeeId" [clientId]="clientId" (editSurvey)="editSurvey($event)"></ngx-employee-details>
+                    <ngx-employee-details [employeeId]="employeeId" [clientId]="clientId"
+                        (editSurvey)="editSurvey($event)"></ngx-employee-details>
                 </div>
                 <div *ngIf="isAddEmployee">
-                    <ngx-add-edit-employee [employeeId]="employeeId" [clientId]="clientId" (selectEmployeeManagement)="showEmployees()"></ngx-add-edit-employee>
+                    <ngx-add-edit-employee [employeeId]="employeeId" [clientId]="clientId"
+                        (selectEmployeeManagement)="showEmployees()"></ngx-add-edit-employee>
                 </div>
                 <div *ngIf="isShowEmployeeTable">
-                    <ngx-employees [clientId]="clientId" (employeeEdit)="editEmployee($event)" (employeeAdd)="onClickAddEmployee()" (employeeDetails)="onClickEmployeeDetails($event)"></ngx-employees>
+                    <ngx-employees [clientId]="clientId" (employeeEdit)="editEmployee($event)"
+                        (employeeAdd)="onClickAddEmployee()" (employeeDetails)="onClickEmployeeDetails($event)">
+                    </ngx-employees>
                 </div>
             </nb-tab>
             <nb-tab tabTitle="Surveys" tabIcon="nb-person" responsive>

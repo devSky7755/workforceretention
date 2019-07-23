@@ -46,7 +46,7 @@ exports.ManagerReportDetails = (req, res, next) => {
             let message = '';
             let match = {};
             if (employee.is_report === '0') {
-                match = {organization: employee.organization};
+                match = { organization: employee.organization };
             }
             Client.findById(employee.client).populate({
                 path: 'employees',
@@ -103,7 +103,7 @@ exports.ManagerReportDetails = (req, res, next) => {
 
 exports.ManagerReport = (req, res, next) => {
 
-    const {start_date, end_date, level, occupational_group, gender, tenure} = req.body;
+    const { start_date, end_date, level, occupational_group, gender, tenure } = req.body;
     let employeeId = req.params.id;
 
     let filter_object = {};
@@ -242,8 +242,8 @@ exports.ManagerReport = (req, res, next) => {
                                 female++
                             }
                         });
-                        genders.push({name: "Male", value: male});
-                        genders.push(({name: 'Female', value: female}));
+                        genders.push({ name: "Male", value: male });
+                        genders.push(({ name: 'Female', value: female }));
 
 
                         let ages = [];
@@ -268,10 +268,10 @@ exports.ManagerReport = (req, res, next) => {
                             }
                         });
 
-                        ages.push({name: "< 25", value: less_than_twenty_five});
-                        ages.push({name: "25 - 34", value: twenty_five_to_thirty_fourth});
-                        ages.push({name: "35 - 50", value: thirty_five_to_fifty});
-                        ages.push({name: "50 >", value: greater_than_fifty});
+                        ages.push({ name: "< 25", value: less_than_twenty_five });
+                        ages.push({ name: "25 - 34", value: twenty_five_to_thirty_fourth });
+                        ages.push({ name: "35 - 50", value: thirty_five_to_fifty });
+                        ages.push({ name: "50 >", value: greater_than_fifty });
 
                         let tenures = [];
                         // calculate tenures
@@ -300,11 +300,11 @@ exports.ManagerReport = (req, res, next) => {
                             }
                         });
 
-                        tenures.push({name: '< 1 year', value: less_than_one_year});
-                        tenures.push({name: '1 - 2 years', value: one_to_two_year});
-                        tenures.push({name: '3 - 5 years', value: three_to_five_year});
-                        tenures.push({name: '6 - 10 years', value: six_to_ten_year});
-                        tenures.push({name: '> 10 years', value: greater_than_ten_year});
+                        tenures.push({ name: '< 1 year', value: less_than_one_year });
+                        tenures.push({ name: '1 - 2 years', value: one_to_two_year });
+                        tenures.push({ name: '3 - 5 years', value: three_to_five_year });
+                        tenures.push({ name: '6 - 10 years', value: six_to_ten_year });
+                        tenures.push({ name: '> 10 years', value: greater_than_ten_year });
 
                         const response_array = [];
 
@@ -432,7 +432,10 @@ exports.ManagerReport = (req, res, next) => {
                                                 let first_choice_index = '1st-choice-' + (option.label_index + 1);
                                                 let second_choice_index = '2nd-choice-' + (option.label_index + 1);
 
-                                                if (answer.options.includes(first_choice_index) || answer.options.includes(second_choice_index)) {
+                                                if (answer.options.includes(first_choice_index)) {
+                                                    option.answered = option.answered + 2;
+                                                }
+                                                if (answer.options.includes(second_choice_index)) {
                                                     option.answered = option.answered + 1;
                                                 }
                                             });
@@ -515,7 +518,7 @@ const employeeQuestionAnswers = (employees) => {
         employees.forEach((employee) => {
             employee_ids.push(employee._id);
         });
-        Answer.find({employee: {$in: employee_ids}}, function (err, docs) {
+        Answer.find({ employee: { $in: employee_ids } }, function (err, docs) {
             if (err) {
                 reject(err);
             } else {
@@ -558,13 +561,13 @@ exports.Find = (req, res, next) => {
             }).skip((currentReport) * perPage)
                 .limit(perPage);
         }).then(reports => {
-        return res.status(200).json({success: true, reports, totalItems})
-    }).catch(err => {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err)
-    });
+            return res.status(200).json({ success: true, reports, totalItems })
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
 };
 
 exports.FindById = (req, res, next) => {
@@ -606,13 +609,13 @@ exports.Update = (req, res, next) => {
         data,
         // an option that asks mongoose to return the updated version
         // of the document instead of the pre-updated one.
-        {new: true},
+        { new: true },
 
         // the callback function
         (err, report) => {
             // Handle any possible database errors
             if (err) return next(err);
-            if (!report) return res.status(404).json({success: false, message: "Report not found."});
+            if (!report) return res.status(404).json({ success: false, message: "Report not found." });
             return res.send({
                 "success": true,
                 "message": "Record updated successfully",
@@ -629,7 +632,7 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({id}, schema, (err, value) => {
+    Joi.validate({ id }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({
@@ -642,7 +645,7 @@ exports.Delete = (req, res, next) => {
         Report.findByIdAndRemove(id, (err, report) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!report) return res.status(404).json({success: false, message: "Report not found."});
+            if (!report) return res.status(404).json({ success: false, message: "Report not found." });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
             return res.send({
@@ -685,32 +688,32 @@ exports.DataOutput = (req, res, next) => {
             // foreach survey questions it has answers
 
             // build the survey headers
-            headers.push({id: 'survey_title', title: 'Survey Title'});
-            headers.push({id: 'client_id', title: '`client ID`'});
-            headers.push({id: 'client_name', title: 'Client Name'});
-            headers.push({id: 'employee_id', title: 'Employee ID'});
-            headers.push({id: 'employee_firstname', title: 'Employee FirstName'});
-            headers.push({id: 'employee_lastname', title: 'Employee LastName'});
-            headers.push({id: 'employee_position', title: 'Employee Title'});
-            headers.push({id: 'employee_type', title: 'Employee Type'});
-            headers.push({id: 'employee_org', title: 'Employee Org'});
-            headers.push({id: 'employee_div', title: 'Employee Div'});
-            headers.push({id: 'employee_dept', title: 'Employee Dept'});
-            headers.push({id: 'employee_hiredate', title: 'Employee HireDate'});
-            headers.push({id: 'employee_resigndate', title: 'Employee ResignDate'});
-            headers.push({id: 'employee_exitdate', title: 'Employee ExitDate'});
-            headers.push({id: 'employee_gender', title: 'Employee Gender'});
-            headers.push({id: 'employee_dob', title: 'Employee DOB'});
-            headers.push({id: 'survey_id', title: 'Survey ID'});
-            headers.push({id: 'survey_starttime', title: 'Survey StartTime'});
-            headers.push({id: 'survey_endtime', title: 'Survey EndTime'});
-            headers.push({id: 'completed_online', title: 'Completed Online'});
-            headers.push({id: 'completed_admin', title: 'Completed Admin'});
+            headers.push({ id: 'survey_title', title: 'Survey Title' });
+            headers.push({ id: 'client_id', title: '`client ID`' });
+            headers.push({ id: 'client_name', title: 'Client Name' });
+            headers.push({ id: 'employee_id', title: 'Employee ID' });
+            headers.push({ id: 'employee_firstname', title: 'Employee FirstName' });
+            headers.push({ id: 'employee_lastname', title: 'Employee LastName' });
+            headers.push({ id: 'employee_position', title: 'Employee Title' });
+            headers.push({ id: 'employee_type', title: 'Employee Type' });
+            headers.push({ id: 'employee_org', title: 'Employee Org' });
+            headers.push({ id: 'employee_div', title: 'Employee Div' });
+            headers.push({ id: 'employee_dept', title: 'Employee Dept' });
+            headers.push({ id: 'employee_hiredate', title: 'Employee HireDate' });
+            headers.push({ id: 'employee_resigndate', title: 'Employee ResignDate' });
+            headers.push({ id: 'employee_exitdate', title: 'Employee ExitDate' });
+            headers.push({ id: 'employee_gender', title: 'Employee Gender' });
+            headers.push({ id: 'employee_dob', title: 'Employee DOB' });
+            headers.push({ id: 'survey_id', title: 'Survey ID' });
+            headers.push({ id: 'survey_starttime', title: 'Survey StartTime' });
+            headers.push({ id: 'survey_endtime', title: 'Survey EndTime' });
+            headers.push({ id: 'completed_online', title: 'Completed Online' });
+            headers.push({ id: 'completed_admin', title: 'Completed Admin' });
 
             let question_no = 0;
             survey.questions.forEach((question) => {
                 question_no++;
-                headers.push({id: question._id, title: `Question ${question_no} - ` + question.title});
+                headers.push({ id: question._id, title: `Question ${question_no} - ` + question.title });
             });
 
             const csvWriter = createCsvWriter({
@@ -720,7 +723,7 @@ exports.DataOutput = (req, res, next) => {
 
             //re-arrange data
             // foreach employee populate the client as well
-            Employee.find({'client': {$in: filter_data.clients}}).populate({
+            Employee.find({ 'client': { $in: filter_data.clients } }).populate({
                 path: 'client',
                 model: 'Client'
             }).populate({
@@ -814,18 +817,18 @@ exports.DataOutput = (req, res, next) => {
                                 let question_id = question._id;
                                 // this means the question has first choice and second choice
                                 let exit_reason_checkbox = [
-                                    {id: 1, value: 'Career Opportunities'},
-                                    {id: 2, value: 'Meaningful Work'},
-                                    {id: 3, value: 'Communication'},
-                                    {id: 4, value: 'Effective Leadership'},
-                                    {id: 5, value: 'Induction'},
-                                    {id: 6, value: 'Learning & Development'},
-                                    {id: 7, value: 'Manager'},
-                                    {id: 8, value: 'Pay & Benefits'},
-                                    {id: 9, value: 'Work Conditions'},
-                                    {id: 10, value: 'Being Valued'},
-                                    {id: 11, value: 'Operational'},
-                                    {id: 12, value: 'Restructure'},
+                                    { id: 1, value: 'Career Opportunities' },
+                                    { id: 2, value: 'Meaningful Work' },
+                                    { id: 3, value: 'Communication' },
+                                    { id: 4, value: 'Effective Leadership' },
+                                    { id: 5, value: 'Induction' },
+                                    { id: 6, value: 'Learning & Development' },
+                                    { id: 7, value: 'Manager' },
+                                    { id: 8, value: 'Pay & Benefits' },
+                                    { id: 9, value: 'Work Conditions' },
+                                    { id: 10, value: 'Being Valued' },
+                                    { id: 11, value: 'Operational' },
+                                    { id: 12, value: 'Restructure' },
                                 ];
                                 if (answer) {
                                     // we need to do answer processing here.

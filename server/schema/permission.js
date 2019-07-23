@@ -19,14 +19,14 @@ const permissionSchema = new Schema({
     //     type: Boolean,
     //     required: true
     // },
-    // is_write: {
-    //     type: Boolean,
-    //     required: true
-    // },
-    // is_update: {
-    //     type: Boolean,
-    //     required: true
-    // },
+    is_update: {
+        type: Boolean,
+        required: true
+    },
+    is_add: {
+        type: Boolean,
+        required: true
+    },
     is_delete: {
         type: Boolean,
         required: true
