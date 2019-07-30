@@ -81,7 +81,8 @@
                         <h4 class="text-center">There are currently {{completed_surveys}} completed Exit Interviews at
                             this level.</h4>
                         <div class="text-center">
-                            <a routerLink="/">Click here to view print version of this report</a>
+                            <a [routerLink]="" (click)="onDownloadPdf()">Click here to view print version of this
+                                report</a>
                         </div>
                         <br><br>
                         <table width="100%" *ngIf="completed_surveys !== 0">

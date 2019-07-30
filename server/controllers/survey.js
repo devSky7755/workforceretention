@@ -29,7 +29,7 @@ exports.Create = function (req, res, next) {
         User.findById(userId, (err, user) => {
             if (err) return next(err);
             if (!user) {
-                return res.status(404).json({status: false, message: 'No user found!'})
+                return res.status(404).json({ status: false, message: 'No user found!' })
             }
             data.user = userId;
             const survey = new Survey(data);
@@ -82,7 +82,7 @@ exports.Clone = (req, res, next) => {
             User.findById(userId, (err, user) => {
                 if (err) return next(err);
                 if (!user) {
-                    return res.status(404).json({status: false, message: 'No user found!'})
+                    return res.status(404).json({ status: false, message: 'No user found!' })
                 }
                 // create a new survey object
                 const survey_object = new Survey(new_survey);
@@ -160,13 +160,13 @@ exports.Find = (req, res, next) => {
                 .skip((currentPage) * perPage)
                 .limit(perPage);
         }).then(surveys => {
-        return res.status(200).json({success: true, surveys, totalItems})
-    }).catch(err => {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err)
-    });
+            return res.status(200).json({ success: true, surveys, totalItems })
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
 };
 
 exports.FindById = (req, res, next) => {
@@ -192,7 +192,8 @@ exports.PrintCompletedSurvey = async (req, res) => {
     // here we will get the url from the request body
     //here we need to configure puppeteer for printing pdf
     const url = req.body.url;
-    const baseUrl = 'http://skydeveloperonline.com:8080';
+    const baseUrl = req.protocol + '://' + req.get('host')
+    console.log(baseUrl + url)
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     // here generate a unique name for the file
@@ -203,10 +204,10 @@ exports.PrintCompletedSurvey = async (req, res) => {
         format: 'A4',
         printBackground: true
     };
-    await page.goto(baseUrl + url, {waitUntil: 'networkidle2'});
+    await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
     await page.pdf(options);
     await browser.close();
-    res.json({fileName: fileName});
+    res.json({ fileName: fileName });
 };
 
 exports.Update = (req, res, next) => {
@@ -226,13 +227,13 @@ exports.Update = (req, res, next) => {
         data,
         // an option that asks mongoose to return the updated version
         // of the document instead of the pre-updated one.
-        {new: true},
+        { new: true },
 
         // the callback function
         (err, survey) => {
             // Handle any possible database errors
             if (err) return next(err);
-            if (!survey) return res.status(404).json({success: false, message: "Survey not found."});
+            if (!survey) return res.status(404).json({ success: false, message: "Survey not found." });
             return res.send({
                 "success": true,
                 "message": "Record updated successfully",
@@ -249,7 +250,7 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({id}, schema, (err, value) => {
+    Joi.validate({ id }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({
@@ -263,7 +264,7 @@ exports.Delete = (req, res, next) => {
         Survey.findByIdAndRemove(id, (err, survey) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!survey) return res.status(404).json({success: false, message: "Survey not found."});
+            if (!survey) return res.status(404).json({ success: false, message: "Survey not found." });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
             return res.send({
@@ -289,7 +290,7 @@ exports.SurveyQuestions = (req, res, next) => {
         }])
         .exec(function (err, survey) {
             if (err) return next(err);
-            return res.status(200).json({success: true, survey})
+            return res.status(200).json({ success: true, survey })
         });
 };
 //
@@ -313,16 +314,20 @@ exports.SurveyWithQuestionAnswer = (req, res, next) => {
                     response_object.answers = answers;
                     return findEmployee(employeeId)
                 }).then((employee) => {
-                response_object.success = true;
-                response_object.employee = employee;
-                return res.status(200).json(response_object);
-            })
+                    response_object.success = true;
+                    response_object.employee = employee;
+                    return res.status(200).json(response_object);
+                })
         });
 };
 
 const findEmployee = function (employeeId) {
     return new Promise((resolve, reject) => {
-        Employee.findById(employeeId, (err, employee) => {
+        Employee.findById(employeeId).populate({
+            path: 'client',
+            model: 'Client',
+            select: 'image'
+        }).exec(function (err, employee) {
             if (err) {
                 reject(err);
             } else {
@@ -334,7 +339,7 @@ const findEmployee = function (employeeId) {
 
 const surveyQuestionAnswer = function (surveyId, employeeId) {
     return new Promise((resolve, reject) => {
-        Answer.find({survey: surveyId, employee: employeeId}, (err, answers) => {
+        Answer.find({ survey: surveyId, employee: employeeId }, (err, answers) => {
             if (err) {
                 reject(err);
             } else {
@@ -358,6 +363,6 @@ exports.SurveyQuestionsAnswers = (req, res, next) => {
         }])
         .exec(function (err, survey) {
             if (err) return next(err);
-            return res.status(200).json({success: true, survey})
+            return res.status(200).json({ success: true, survey })
         });
 };

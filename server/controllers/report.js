@@ -7,6 +7,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const Joi = require('joi');
+const puppeteer = require('puppeteer');
 
 const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
@@ -919,6 +920,32 @@ exports.DataOutput = (req, res, next) => {
         });
 
 };
+
+
+exports.DownloadManagerReport = async (req, res) => {
+    // here we will get the url from the request body
+    //here we need to configure puppeteer for printing pdf
+    const url = req.body.url;
+    // const baseUrl = req.protocol + '://' + req.get('host')
+    const baseUrl = "http://localhost:4200"
+    console.log(baseUrl + url)
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    // here generate a unique name for the file
+    const fileName = Date.now() + '_manager_report.pdf';
+    const filePath = path.join(__dirname, '../pdf/' + fileName);
+    const options = {
+        path: filePath,
+        format: 'A4',
+        printBackground: true,
+        margin: { top: 80, left: 0, right: 0, bottom: 80 },
+    };
+    await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
+    await page.pdf(options);
+    await browser.close();
+    res.json({ fileName: fileName });
+};
+
 const format_date = (date) => {
     let dd = date.getDate();
     let mm = date.getMonth() + 1; //January is 0!

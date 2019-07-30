@@ -457,7 +457,11 @@ exports.FindById = (req, res, next) => {
     let id = req.params.id;
     //don't send the password to the user
     // -password will eliminate  the password from the response
-    Employee.findById(id, '-password', (err, employee) => {
+    Employee.findById(id, '-password').populate({
+        path: 'client',
+        model: 'Client',
+        select: 'image'
+    }).exec((err, employee) => {
         if (err) return next(err);
         if (!employee) {
             return res.status(404).json({

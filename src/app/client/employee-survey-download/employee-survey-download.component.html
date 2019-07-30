@@ -1,5 +1,14 @@
 <nb-layout>
     <nb-layout-column>
+        <header>
+            <nav style="display: flex;">
+                <h1 class="logo ml-3">
+                    <a routerLink="/client/home">
+                        <img [src]="clientImage" alt="" style="height: 80px;">
+                    </a>
+                </h1>
+            </nav>
+        </header>
         <section class="home-section light-gray">
             <div class="container">
                 <div class="row">
@@ -49,7 +58,7 @@
                                 <h4>{{cat_question.exit_reason}}</h4>
                                 <br>
                                 <div *ngFor="let question of cat_question.questions; let q_index=index"
-                                     class="individual-question-box">
+                                    class="individual-question-box">
                                     <h6>{{question.question_no}}. {{question.title}}</h6>
 
                                     <div *ngIf="question.type==1 && cat_question.exit_reason !='Final Question'">
@@ -65,11 +74,13 @@
                                                     <tr>
                                                         <td *ngFor="let option of survey.rating_labels; let rating_index=index"
                                                             style="padding-bottom: 10px; padding-top: 10px">
-                                                            <div *ngIf="cat_question.answers[q_index].options[0] == rating_index">
+                                                            <div
+                                                                *ngIf="cat_question.answers[q_index].options[0] == rating_index">
                                                                 <!--Marked Sign-->
                                                                 <i class="fa fa-check-square-o" aria-hidden="true"></i>
                                                             </div>
-                                                            <div *ngIf="cat_question.answers[q_index].options[0] != rating_index">
+                                                            <div
+                                                                *ngIf="cat_question.answers[q_index].options[0] != rating_index">
                                                                 <!--Marked Sign-->
                                                                 <i>-</i>
                                                             </div>
@@ -92,10 +103,10 @@
                                         <div class="container">
                                             <div class="boxes">
                                                 <div *ngFor="let option of question.options; let multiple_choice_index=index"
-                                                     class="multiple-choice-input">
+                                                    class="multiple-choice-input">
                                                     <ng-container *ngIf="option=='true'">
                                                         <ng-container
-                                                                *ngFor="let answer of cat_question.answers[q_index].options">
+                                                            *ngFor="let answer of cat_question.answers[q_index].options">
                                                             <!--Here check if the multiple_choice_index==answer then show that label-->
                                                             <ng-container *ngIf="multiple_choice_index==answer">
                                                                 {{exit_reason_checkbox[multiple_choice_index].value}}
@@ -122,9 +133,9 @@
                                         <div class="container">
                                             <div class="form__group u-margin-bottom-medium">
                                                 <div class="form__radio-group"
-                                                     *ngFor="let option of question.options; let radio_label_index=index">
+                                                    *ngFor="let option of question.options; let radio_label_index=index">
                                                     <ng-container
-                                                            *ngIf="cat_question.answers[q_index].options[0] == radio_label_index">
+                                                        *ngIf="cat_question.answers[q_index].options[0] == radio_label_index">
                                                         {{option}}
                                                     </ng-container>
                                                 </div>
@@ -137,9 +148,9 @@
                                         <div class="container">
                                             <div class="boxes">
                                                 <div *ngFor="let option of question.options; let multiple_choice_index=index"
-                                                     class="multiple-choice-input">
+                                                    class="multiple-choice-input">
                                                     <ng-container
-                                                            *ngFor="let answer of cat_question.answers[q_index].options">
+                                                        *ngFor="let answer of cat_question.answers[q_index].options">
                                                         <!--Here check if the multiple_choice_index==answer then show that label-->
                                                         <ng-container *ngIf="multiple_choice_index==answer">
                                                             {{option}}
@@ -157,32 +168,32 @@
                                             <div *ngFor="let exit_reason of exit_reason_checkbox">
                                                 <!--1st choice-->
                                                 <ng-container
-                                                        *ngIf="cat_question.answers[q_index].choice_labels[0]=='1st'">
+                                                    *ngIf="cat_question.answers[q_index].choice_labels[0]=='1st'">
                                                     <ng-container
-                                                            *ngIf="cat_question.answers[q_index].choices[0] == exit_reason.id">
+                                                        *ngIf="cat_question.answers[q_index].choices[0] == exit_reason.id">
                                                         <label>1<sup>st</sup> Choice </label> - {{exit_reason.value}}
                                                     </ng-container>
                                                 </ng-container>
                                                 <ng-container
-                                                        *ngIf="cat_question.answers[q_index].choice_labels[1]=='1st'">
+                                                    *ngIf="cat_question.answers[q_index].choice_labels[1]=='1st'">
                                                     <ng-container
-                                                            *ngIf="cat_question.answers[q_index].choices[1] == exit_reason.id">
+                                                        *ngIf="cat_question.answers[q_index].choices[1] == exit_reason.id">
                                                         <label>1<sup>st</sup> Choice </label> - {{exit_reason.value}}
                                                     </ng-container>
                                                 </ng-container>
 
                                                 <!--2nd choice-->
                                                 <ng-container
-                                                        *ngIf="cat_question.answers[q_index].choice_labels[0]=='2nd'">
+                                                    *ngIf="cat_question.answers[q_index].choice_labels[0]=='2nd'">
                                                     <ng-container
-                                                            *ngIf="cat_question.answers[q_index].choices[0] == exit_reason.id">
+                                                        *ngIf="cat_question.answers[q_index].choices[0] == exit_reason.id">
                                                         <label>2<sup>nd</sup> Choice </label> - {{exit_reason.value}}
                                                     </ng-container>
                                                 </ng-container>
                                                 <ng-container
-                                                        *ngIf="cat_question.answers[q_index].choice_labels[1]=='2nd'">
+                                                    *ngIf="cat_question.answers[q_index].choice_labels[1]=='2nd'">
                                                     <ng-container
-                                                            *ngIf="cat_question.answers[q_index].choices[1] == exit_reason.id">
+                                                        *ngIf="cat_question.answers[q_index].choices[1] == exit_reason.id">
                                                         <label>2<sup>nd</sup> Choice</label> - {{exit_reason.value}}
                                                     </ng-container>
                                                 </ng-container>

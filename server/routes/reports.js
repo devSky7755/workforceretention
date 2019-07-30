@@ -43,4 +43,6 @@ router.put('/:id', upload.single('file'), reportController.Update);
 // delete a file
 router.delete('/:id', reportController.Delete);
 
+router.post('/download-manager-report', reportController.DownloadManagerReport);
+
 module.exports = router;

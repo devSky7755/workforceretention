@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {AnswerService} from "../../@core/data/answer.service";
-import {SurveyService} from "../../@core/data/survey.service";
-import {NbSpinnerService} from "@nebular/theme";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from "@angular/router";
+import { AnswerService } from "../../@core/data/answer.service";
+import { SurveyService } from "../../@core/data/survey.service";
+import { NbSpinnerService } from "@nebular/theme";
+import { environment } from '../../../environments/environment';
 
 @Component({
     selector: 'ngx-employee-survey-download',
@@ -11,6 +12,8 @@ import {NbSpinnerService} from "@nebular/theme";
 })
 export class EmployeeSurveyDownloadComponent implements OnInit {
 
+    clientImage = null
+    baseUrl = !environment.production ? 'http://localhost:8080' : ''
     surveyCompleted = false;
     employeeId;
     employee;
@@ -20,56 +23,56 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
     answers = [];
     categorical_questions = [];
     exit_reason_checkbox = [
-        {id: 1, value: 'Career Opportunities'},
-        {id: 2, value: 'Meaningful Work'},
-        {id: 3, value: 'Communication'},
-        {id: 4, value: 'Effective Leadership'},
-        {id: 5, value: 'Induction'},
-        {id: 6, value: 'Learning & Development'},
-        {id: 7, value: 'Manager'},
-        {id: 8, value: 'Pay & Benefits'},
-        {id: 9, value: 'Work Conditions'},
-        {id: 10, value: 'Being Valued'},
-        {id: 11, value: 'Operational'},
-        {id: 12, value: 'Restructure'},
+        { id: 1, value: 'Career Opportunities' },
+        { id: 2, value: 'Meaningful Work' },
+        { id: 3, value: 'Communication' },
+        { id: 4, value: 'Effective Leadership' },
+        { id: 5, value: 'Induction' },
+        { id: 6, value: 'Learning & Development' },
+        { id: 7, value: 'Manager' },
+        { id: 8, value: 'Pay & Benefits' },
+        { id: 9, value: 'Work Conditions' },
+        { id: 10, value: 'Being Valued' },
+        { id: 11, value: 'Operational' },
+        { id: 12, value: 'Restructure' },
     ];
     exit_reason = [
-        {id: 11, value: 'Initial Question'},
-        {id: 10, value: 'Being Valued'},
-        {id: 1, value: 'Career Opportunities'},
-        {id: 15, value: 'Restructure'},
-        {id: 3, value: 'Communication'},
-        {id: 5, value: 'Induction'},
-        {id: 4, value: 'Effective Leadership'},
-        {id: 6, value: 'Learning & Development'},
-        {id: 7, value: 'Manager'},
-        {id: 2, value: 'Meaningful Work'},
-        {id: 14, value: 'Operational'},
-        {id: 8, value: 'Pay & Benefits'},
-        {id: 9, value: 'Work Conditions'},
-        {id: 13, value: 'Final Question'},
-        {id: 12, value: 'Custom Questions'}
+        { id: 11, value: 'Initial Question' },
+        { id: 10, value: 'Being Valued' },
+        { id: 1, value: 'Career Opportunities' },
+        { id: 15, value: 'Restructure' },
+        { id: 3, value: 'Communication' },
+        { id: 5, value: 'Induction' },
+        { id: 4, value: 'Effective Leadership' },
+        { id: 6, value: 'Learning & Development' },
+        { id: 7, value: 'Manager' },
+        { id: 2, value: 'Meaningful Work' },
+        { id: 14, value: 'Operational' },
+        { id: 8, value: 'Pay & Benefits' },
+        { id: 9, value: 'Work Conditions' },
+        { id: 13, value: 'Final Question' },
+        { id: 12, value: 'Custom Questions' }
     ];
     survey_types = [
-        {id: 1, value: 'Exit Interview'}
+        { id: 1, value: 'Exit Interview' }
     ];
     ratings = [
-        {id: 2, value: '1-2'},
-        {id: 3, value: '1-3'},
-        {id: 4, value: '1-4'},
-        {id: 5, value: '1-5'},
-        {id: 6, value: '1-6'},
-        {id: 7, value: '1-7'},
-        {id: 8, value: '1-8'},
-        {id: 9, value: '1-9'},
-        {id: 10, value: '1-10'}
+        { id: 2, value: '1-2' },
+        { id: 3, value: '1-3' },
+        { id: 4, value: '1-4' },
+        { id: 5, value: '1-5' },
+        { id: 6, value: '1-6' },
+        { id: 7, value: '1-7' },
+        { id: 8, value: '1-8' },
+        { id: 9, value: '1-9' },
+        { id: 10, value: '1-10' }
     ];
 
     // if question type is Rating Radio Buttons, Exit Interview - Exit Reasons (display like as it is),
     constructor(private route: ActivatedRoute,
-                private answerService: AnswerService,
-                private surveyService: SurveyService,
-                private spinnerService: NbSpinnerService) {
+        private answerService: AnswerService,
+        private surveyService: SurveyService,
+        private spinnerService: NbSpinnerService) {
         this.survey = {};
         this.employee = {};
     }
@@ -110,6 +113,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
         this.survey.rating_label = this.ratings.find(r => r.id == this.survey.rating_scale).value;
         this.answers = data.answers;
         this.employee = data.employee;
+        this.clientImage = this.employee.client.image ? this.baseUrl + '/images/client/' + this.employee.client.image : 'assets/images/logo_transparent.png'
         this.questionArrange();
     }
 

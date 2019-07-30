@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ReportService } from "../../@core/data/report.service";
 import { JwtHelperService } from "@auth0/angular-jwt";
+import { URLService } from "../../@core/data/url.service";
 
 import * as CanvasJS from '../../../assets/canvasjs.min.js';
 
@@ -130,7 +131,8 @@ export class ManagerReportComponent implements OnInit {
     @ViewChild('topReasonVerticalChart') topReasonVerticalChart;
     textArray = [];
 
-    constructor(private reportService: ReportService) {
+    constructor(private reportService: ReportService,
+        private urlService: URLService) {
         this.manager = {};
         this.client = {};
     }
@@ -909,5 +911,28 @@ export class ManagerReportComponent implements OnInit {
             }]
         });
         ageChart.render()
+    }
+
+    onDownloadPdf() {
+        // here we have employee details
+        // we need to build a url with this employee details which we will send to the server
+        const url = `/#/client/manager-report-pdf?employeeId=${this.employee.employee_id}&start_date=${this.filterData.start_date}&end_date=${this.filterData.end_date}&level=${this.filterData.level}&occupational_group=${this.filterData.occupational_group}&gender=${this.filterData.gender}&tenure=${this.filterData.tenure}`;
+        // window.open(url, '_blank');
+        this.reportService.downloadManagerReport({ url }).subscribe(
+            res => {
+                // here we will get the name of the file
+                const fileName = res.fileName;
+                this.download(fileName);
+            }
+        );
+    }
+
+    download(fileName) {
+        const a = document.createElement('a');
+        document.body.appendChild(a);
+        a.setAttribute('style', 'display: none');
+        a.href = this.urlService.baseUrl + '/server/pdf/' + fileName;
+        a.click();
+        a.remove(); // remove the element
     }
 }
