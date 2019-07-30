@@ -194,7 +194,7 @@ exports.PrintCompletedSurvey = async (req, res) => {
     const url = req.body.url;
     const baseUrl = req.protocol + '://' + req.get('host')
     console.log(baseUrl + url)
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     // here generate a unique name for the file
     const fileName = Date.now() + '_employee_survey.pdf';

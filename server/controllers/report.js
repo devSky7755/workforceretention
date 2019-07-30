@@ -929,7 +929,7 @@ exports.DownloadManagerReport = async (req, res) => {
     // const baseUrl = req.protocol + '://' + req.get('host')
     const baseUrl = "http://localhost:4200"
     console.log(baseUrl + url)
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     // here generate a unique name for the file
     const fileName = Date.now() + '_manager_report.pdf';
