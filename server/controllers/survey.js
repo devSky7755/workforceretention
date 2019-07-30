@@ -204,7 +204,7 @@ exports.PrintCompletedSurvey = async (req, res) => {
         format: 'A4',
         printBackground: true
     };
-    await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
+    await page.goto(baseUrl + url, { waitUntil: 'networkidle0' });
     await page.pdf(options);
     await browser.close();
     res.json({ fileName: fileName });

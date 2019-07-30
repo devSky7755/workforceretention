@@ -940,7 +940,7 @@ exports.DownloadManagerReport = async (req, res) => {
         printBackground: true,
         margin: { top: 80, left: 0, right: 0, bottom: 80 },
     };
-    await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
+    await page.goto(baseUrl + url, { waitUntil: 'networkidle0' });
     await page.pdf(options);
     await browser.close();
     res.json({ fileName: fileName });
