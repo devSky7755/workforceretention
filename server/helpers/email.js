@@ -1,13 +1,26 @@
 const nodemailer = require('nodemailer');
+const smtpTransport = require("nodemailer-smtp-transport");
 const checkEnv = require('./check_env')
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: checkEnv.isLiveServer ? 'firestoreangular0@gmail.com' : 'snow930123@gmail.com',
-        pass: checkEnv.isLiveServer ? 'nipamonalisa1' : 'cdmxjtcbeuqdzkjq'
-    }
-});
+let transporter = null
+if (!checkEnv.isLiveServer) {
+    transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: checkEnv.isLiveServer ? 'firestoreangular0@gmail.com' : 'snow930123@gmail.com',
+            pass: checkEnv.isLiveServer ? 'nipamonalisa1' : 'cdmxjtcbeuqdzkjq'
+        }
+    });
+} else {
+    transporter = nodemailer.createTransport(smtpTransport({
+        host: 'smtp.anchor.net.au',
+        port: 587,
+        auth: {
+            user: "workforc",
+            pass: "hannah333"
+        }
+    }));
+}
 
 exports.sendEmail = function (req, res, next) {
     //Extract the from to subject and email body from the request

@@ -94,6 +94,7 @@
     "ngx-slick-carousel": "^0.4.4",
     "node-sass": "^4.11.0",
     "nodemailer": "^4.7.0",
+    "nodemailer-smtp-transport": "^2.7.4",
     "normalize.css": "6.0.0",
     "pace-js": "1.0.2",
     "puppeteer": "^1.18.1",
