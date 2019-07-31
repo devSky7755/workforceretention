@@ -926,10 +926,10 @@ exports.DownloadManagerReport = async (req, res) => {
     // here we will get the url from the request body
     //here we need to configure puppeteer for printing pdf
     const url = req.body.url;
-    // const baseUrl = req.protocol + '://' + req.get('host')
-    const baseUrl = "http://localhost:4200"
+    const baseUrl = req.protocol + '://' + req.get('host')
+    // const baseUrl = "http://localhost:4200"
     console.log(baseUrl + url)
-    const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
     // here generate a unique name for the file
     const fileName = Date.now() + '_manager_report.pdf';
@@ -940,7 +940,7 @@ exports.DownloadManagerReport = async (req, res) => {
         printBackground: true,
         margin: { top: 80, left: 0, right: 0, bottom: 80 },
     };
-    await page.goto(baseUrl + url, { waitUntil: 'networkidle0' });
+    await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
     await page.pdf(options);
     await browser.close();
     res.json({ fileName: fileName });
