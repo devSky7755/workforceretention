@@ -302,7 +302,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     saveQuestionAnswer() {
         this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employee.employee_id, 'Yes', 'No').subscribe(
             () => {
-                alert('Exit interview submitted successfully');
+                alert('Thank you for taking the time to complete your online exit interview');
                 this.router.navigateByUrl('/client/dashboard');
             }
         );
@@ -322,7 +322,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         });
         this.answerService.updateManyAnswer(this.answers).subscribe(
             () => {
-                alert('Exit interview updated');
+                alert('Thank you for taking the time to complete your online exit interview');
                 this.router.navigateByUrl('/client/dashboard');
             }
         );

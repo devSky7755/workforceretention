@@ -66,7 +66,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     providers: [{
         provide: RECAPTCHA_SETTINGS,
         useValue: {
-            siteKey: '6LdKKKgUAAAAAAeeeUSsJ9VonY93gUZlIpYU3Qp8',
+            siteKey: '6LfR6bAUAAAAAE4j7BVcMf9sBNn9tMar-Mfbg4cH',
         } as RecaptchaSettings,
     }]
 })

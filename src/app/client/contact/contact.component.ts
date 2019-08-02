@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { ContactService } from "../../@core/data/contact.service";
+
 
 @Component({
     selector: 'ngx-contact',
@@ -8,10 +10,10 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class ContactComponent implements OnInit {
 
-    email = {name: '', from_email: '', subject: '', organization: '', message: ''};
+    email = { name: '', from_email: '', subject: '', organization: '', message: '' };
     contactForm: FormGroup;
 
-    constructor() {
+    constructor(private contactService: ContactService) {
     }
 
     ngOnInit() {
@@ -30,7 +32,7 @@ export class ContactComponent implements OnInit {
                 Validators.required,
                 Validators.pattern("[^ @]*@[^ @]*")
             ]),
-            subject: new FormControl('' ),
+            subject: new FormControl(''),
             message: new FormControl('', [Validators.required]),
             organization: new FormControl('', [Validators.required]),
             recaptchaReactive: new FormControl(null, Validators.required)
@@ -41,7 +43,22 @@ export class ContactComponent implements OnInit {
         if (!this.contactForm.valid) {
             alert('Invalid form data');
         } else {
-            alert('success');
+            let param = {
+                name: this.get('name').value,
+                email: this.get('email').value,
+                subject: this.get('subject').value,
+                message: this.get('message').value,
+                organization: this.get('organization').value,
+            }
+
+            this.contactService.sendEmail(param).subscribe(
+                data => {
+                    alert('Success')
+                },
+                err => {
+                    console.log(err);
+                }
+            );
         }
     }
 

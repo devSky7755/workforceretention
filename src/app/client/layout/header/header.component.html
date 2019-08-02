@@ -1,7 +1,7 @@
 <header>
     <nav style="display: flex;">
         <h1 class="logo ml-3">
-            <a routerLink="/client/home">
+            <a [routerLink]="routerLink">
                 <img *ngIf="!isAuth || isDefaultLogo" src="assets/images/logo_transparent.png">
                 <img *ngIf="isAuth && !isDefaultLogo" [src]="clientImage" alt="" style="height: 88px;">
             </a>
@@ -14,7 +14,7 @@
                         <i class="hamburger-menu"><img src="/assets/images/hamburger_menu.svg"></i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a routerLink="/client/home" routerLinkActive="active">Home</a></li>
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/home" routerLinkActive="active">Home</a></li>
                         <li class="dropdown-item" *ngIf="isAuth && employee_details && employee_details.is_survey == 1">
                             <a routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
                         </li>
@@ -24,12 +24,12 @@
                         <li class="dropdown-item" *ngIf="isAuth">
                             <a routerLink="/client/profile" routerLinkActive="active">Profile</a>
                         </li>
-                        <li class="dropdown-item"><a routerLink="/client/flexible-options"
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/flexible-options"
                                 routerLinkActive="active">Flexible
                                 Options</a></li>
-                        <li class="dropdown-item"><a routerLink="/client/about-us" routerLinkActive="active">About
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/about-us" routerLinkActive="active">About
                                 Us</a></li>
-                        <li class="dropdown-item"><a routerLink="/client/contact" routerLinkActive="active">Contact
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/contact" routerLinkActive="active">Contact
                                 Us</a></li>
                         <li *ngIf="!isAuth" class="dropdown-item"><a routerLink="/client/login"
                                 routerLinkActive="active">Login</a></li>

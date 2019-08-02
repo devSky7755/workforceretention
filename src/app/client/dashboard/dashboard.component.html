@@ -5,8 +5,8 @@
             <div class="container mt-5">
                 <div class="row">
                     <!--Incomplete Surveys-->
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
                         <!--Here design three box-->
                         <!--Show the Assign surveys-->
                         <div *ngIf="employee_details.is_survey == '1'">
@@ -15,22 +15,22 @@
                             <ngx-datatable [rows]="completedSurveys" [columnMode]="'force'" [headerHeight]="40"
                                 [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="count"
                                 [offset]="offset" [limit]="limit" (page)='onChangeCompletedSurveys($event)'>
-                                <ngx-datatable-column name="title">
+                                <!-- <ngx-datatable-column name="title">
                                     <ng-template let-column="column" ngx-datatable-header-template>
                                         Survey Title
                                     </ng-template>
                                     <ng-template let-value="value" ngx-datatable-cell-template>
                                         <strong>{{value}}</strong>
                                     </ng-template>
-                                </ngx-datatable-column>
-                                <ngx-datatable-column name="description">
+                                </ngx-datatable-column> -->
+                                <!-- <ngx-datatable-column name="description">
                                     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                                         <span>Survey Description</span>
                                     </ng-template>
                                     <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                                         <div [innerHTML]="value"></div>
                                     </ng-template>
-                                </ngx-datatable-column>
+                                </ngx-datatable-column> -->
                                 <ngx-datatable-column name="noOfQuestion">
                                     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                                         <span># Questions</span>

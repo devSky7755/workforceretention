@@ -44,6 +44,7 @@ const config = require('./config');
 // Routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
+const contactRoutes = require('./routes/contact');
 const questionRoutes = require('./routes/questions');
 const answerRoutes = require('./routes/answer');
 const articleRoutes = require('./routes/articles');
@@ -86,6 +87,7 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 //SET UP ROUTES
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/contact', contactRoutes);
 app.use('/api/v1/clients', clientRoutes);
 app.use('/api/v1/surveys', surveyRoutes);
 app.use('/api/v1/questions', questionRoutes);

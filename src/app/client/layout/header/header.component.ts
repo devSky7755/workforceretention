@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
     clientImage = null
     baseUrl = !environment.production ? 'http://localhost:8080' : ''
     isDefaultLogo = false
+    routerLink = '/client/home'
 
     constructor(private router: Router,
         private employeeService: EmployeeService,
@@ -46,6 +47,11 @@ export class HeaderComponent implements OnInit {
                 this.logout();
             } else {
                 this.isAuth = true;
+                if (this.employee_details && this.employee_details.is_survey == 1) {
+                    this.routerLink = '/client/dashboard'
+                } else if (this.employee_details && this.employee_details.is_report == 1) {
+                    this.routerLink = '/client/report'
+                }
                 this.clientImage = this.baseUrl + '/images/client/' + (this.employeeService.clientImage || '')
                 if (this.employeeService.clientImage === '') {
                     const decodedToken = helper.decodeToken(employee.access_token);

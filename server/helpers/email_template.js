@@ -52,3 +52,24 @@ exports.UserEmailPasswordTemplate = {
     subject: "[Workforce Retention - Web Office] New user notification",
     body: "Dear [user_firstname],'\r\n\r\nYour details have been entered into the Office database for the Workforce Retention Web Office and you will soon able to access some website administration functions. \n\nYour User Profile is;\n\nFull Name: [user_firstname] [user_lastname]\nEmail: [user_email]\nLogon Username: [user_username]\nLogon Password: [user_password]\n\nWorkforce Retention Web Office: http://www.workforceretention.com.au/office\n\nIt is recommended that you change your password the first time you login to something that is easier for you to remember.\n\nPasswords and other User Profile details can be changed by clicking on your User Name in the top right-hand corner of the website Office menu-bar.\n\nIf you have any problems with the site please do not hesitate to email me: enquiries@workforceretention.com.au\n\n"
 };
+
+
+// *************** Below Email will sent when new contacts is submitted ***************
+exports.ContactEmailTemplate = {
+    from_address: 'enquiries@workforceretention.com.au',
+    editable: false,
+    subject: "[Workforce Retention - Web Office] Contact US",
+    body: `
+    Dear [name], <br><br>
+    Thank you for getting in touch! <br><br>    
+    One of our team will be in contact with you within the next 24 hours.<br><br>    
+    Hope you’re having a wonderful day. <br><br>    
+    Warm wishes, <br><br>    
+    Angeline <br>
+    Director & Founder <br>
+    Workforce Retention <br>
+    <img src="http://54.252.134.98/assets/images/logo_transparent.png" style="height:150px;" height="150">
+    `
+};
+
+

@@ -55,6 +55,7 @@ export class PagesComponent {
                                 permission.table_name == item.title
                             )
                         })
+                        // let menu = MENU_ITEMS
                         this.menu = menu
                     },
                     err => {
