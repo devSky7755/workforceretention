@@ -9,7 +9,7 @@ const schema = Joi.object().keys({
 
     // email is required
     // email must be a valid email string
-    email: Joi.string().email().min(4).max(32).required(),
+    email: Joi.string().email().min(4).max(60).required(),
 
     // name is required
     message: Joi.string().required(),

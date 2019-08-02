@@ -53,7 +53,7 @@ export class ContactComponent implements OnInit {
 
             this.contactService.sendEmail(param).subscribe(
                 data => {
-                    alert('Success')
+                    alert('The message was sent successfully.')
                 },
                 err => {
                     console.log(err);

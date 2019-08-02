@@ -58,11 +58,11 @@ exports.UserEmailPasswordTemplate = {
 exports.ContactEmailTemplate = {
     from_address: 'enquiries@workforceretention.com.au',
     editable: false,
-    subject: "[Workforce Retention - Web Office] Contact US",
+    subject: "Thanks for getting in touch",
     body: `
     Dear [name], <br><br>
     Thank you for getting in touch! <br><br>    
-    One of our team will be in contact with you within the next 24 hours.<br><br>    
+    One of our team will be in contact with you within the next 24 hours.<br><br>
     Hope you’re having a wonderful day. <br><br>    
     Warm wishes, <br><br>    
     Angeline <br>
