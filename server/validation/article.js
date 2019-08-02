@@ -1,11 +1,12 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
+const any = Joi.any();
 
 // define the validation schema
 const schema = Joi.object().keys({
 
     // name is required
-    title: Joi.string().min(4).required(),
+    title: Joi.string().required(),
 
     subtitle: Joi.string().required(),
 
@@ -15,11 +16,10 @@ const schema = Joi.object().keys({
 
     description: Joi.string().required(),
 
-    user: Joi.objectId(),
-    box_1: Joi.objectId(),
-    box_2: Joi.objectId(),
-    box_3: Joi.objectId(),
-    order: Joi.number().integer()
+    publish_date: Joi.date().allow(''),
 
+    image: any,
+
+    user: Joi.objectId(),
 });
 module.exports = schema;

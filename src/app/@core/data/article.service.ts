@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {URLService} from "./url.service";
-import {Observable} from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { URLService } from "./url.service";
+import { Observable } from "rxjs";
 
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
@@ -23,13 +23,13 @@ export class ArticleService {
     }
 
     createArticle(article, userId): Observable<any> {
-        const body = JSON.stringify(article);
-        return this.http.post(this.urlService.baseUrl + `/api/v1/articles/${userId}`, body, httpOptions);
+        // const body = JSON.stringify(article);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/articles/${userId}`, article);
     }
 
     updateArticle(article, id): Observable<any> {
-        const body = JSON.stringify(article);
-        return this.http.put(this.urlService.baseUrl + '/api/v1/articles/' + id, body, httpOptions);
+        // const body = JSON.stringify(article);
+        return this.http.put(this.urlService.baseUrl + '/api/v1/articles/' + id, article);
     }
 
     deleteArticle(id): Observable<any> {

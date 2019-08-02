@@ -12,8 +12,6 @@ const MIME_TYPE_MAP = {
 
 };
 
-//http://localhost:8080/images/client/44115915_346503469228786_8386942939963588608_n-1545031334273.jpg
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../public/images/client/'))

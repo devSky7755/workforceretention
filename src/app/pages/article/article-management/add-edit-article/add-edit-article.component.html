@@ -3,78 +3,95 @@
         <nb-card>
             <nb-card-header>Add Article</nb-card-header>
             <nb-card-body>
-                <form #f="ngForm" (ngSubmit)="createArticle()">
+                <form [formGroup]="articleForm" (ngSubmit)="createArticle()">
                     <!--Show the error and success message here-->
-                    <div class="alert alert-danger" role="alert"
-                         *ngIf="errorMessage">
+                    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
                         {{errorMessage}}
                     </div>
-                    <div class="alert alert-success" role="alert"
-                         *ngIf="successMessage">
+                    <div class="alert alert-success" role="alert" *ngIf="successMessage">
                         {{successMessage}}
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" name="article-title" [(ngModel)]="article.title" nbInput fullWidth
-                                       placeholder="Article Title *">
+                                <input type="text" class="form-control" formControlName="title" name="article-title"
+                                    [(ngModel)]="article.title" nbInput fullWidth placeholder="Article Title *">
+                                <!--Article Create Error Here-->
+                                <div class="alert alert-danger" role="alert"
+                                    *ngIf="get('title').touched && get('title').invalid">
+                                    Title is required *
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="article-sub-title" [(ngModel)]="article.subtitle" nbInput
-                                       fullWidth
-                                       placeholder="Article Sub-title *">
+                                <input type="text" class="form-control" formControlName="subtitle"
+                                    name="article-sub-title" [(ngModel)]="article.subtitle" nbInput fullWidth
+                                    placeholder="Article Sub-title *">
+                                <!--Article Create Error Here-->
+                                <div class="alert alert-danger" role="alert"
+                                    *ngIf="get('subtitle').touched && get('subtitle').invalid">
+                                    Subtitle is required *
+                                </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" name="article-author" [(ngModel)]="article.author" nbInput fullWidth
-                                       placeholder="Article Author *">
+                                <input type="text" class="form-control" formControlName="author" name="article-author"
+                                    [(ngModel)]="article.author" nbInput fullWidth placeholder="Article Author *">
+                                <!--Article Create Error Here-->
+                                <div class="alert alert-danger" role="alert"
+                                    *ngIf="get('author').touched && get('author').invalid">
+                                    Author is required *
+                                </div>
                             </div>
                             <div class="form-group">
                                 <!--<nb-card-header>Common Datepicker</nb-card-header>-->
-                                <input name="publish-date" nbInput fullWidth
-                                       placeholder="Publication Date"
-                                       [nbDatepicker]="formpicker">
+                                <input name="publish-date" [(ngModel)]="article.publish_date" nbInput fullWidth
+                                    [ngModelOptions]="{standalone: true}" placeholder="Publication Date"
+                                    [nbDatepicker]="formpicker">
                                 <nb-datepicker #formpicker></nb-datepicker>
                             </div>
                             <div class="form-group">
-                                <select class="form-control" [(ngModel)]="article.box_1"
-                                        name="article-call-out-box-1" required>
-                                    <option value="">Select Call-out Box 1 *</option>
-                                    <option *ngFor="let box of boxes" value="{{box._id}}">{{box.title}}</option>
-                                </select>
+                                <input type="text" class="form-control" formControlName="keywords"
+                                    name="article-keywords" [(ngModel)]="article.keywords" nbInput fullWidth
+                                    placeholder="Article Keywords *">
+                                <!--Article Create Error Here-->
+                                <div class="alert alert-danger" role="alert"
+                                    *ngIf="get('keywords').touched && get('keywords').invalid">
+                                    Keyword is required *
+                                </div>
                             </div>
+                            <!--Post the image selection here-->
                             <div class="form-group">
-                                <select class="form-control" [(ngModel)]="article.box_2"
-                                        name="article-call-out-box-2" required>
-                                    <option value="">Select Call-out Box 2 *</option>
-                                    <option *ngFor="let box of boxes" value="{{box._id}}">{{box.title}}</option>
-                                </select>
+                                <div class="row">
+                                    <div class="col-lg-8" style="padding-right: 0;margin-right: 0">
+                                        <input type="text" class="form-control" formControlName="fileName" disabled
+                                            [(ngModel)]="fileName">
+                                    </div>
+                                    <div class="col-lg-3" style="padding-left: 0;margin-left: 0">
+                                        <button type="button" class="btn btn-outline-primary"
+                                            (click)="imagePicker.click()">Browse Image
+                                        </button>
+                                    </div>
+                                </div>
+                                <input type="file" (change)="onFilePicked($event)" #imagePicker class="form-control"
+                                    formControlName="imagePath" name="article-image" nbInput fullWidth
+                                    placeholder="Article Image">
                             </div>
-                            <div class="form-group">
-                                <select class="form-control" [(ngModel)]="article.box_3"
-                                        name="article-call-out-box-3" required>
-                                    <option value="">Select Call-out Box 3 *</option>
-                                    <option *ngFor="let box of boxes" value="{{box._id}}">{{box.title}}</option>
-                                </select>
+                            <div class="text-center" style="max-width: 200px;max-height: 200px"
+                                *ngIf="articleId && imageSrc !==''">
+                                <img [src]="imageSrc" width="70%" alt="Article Image">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" name="article-keywords" [(ngModel)]="article.keywords" nbInput
-                                       fullWidth
-                                       placeholder="Article Keywords *">
-                            </div>
-                            <div class="form-group">
                                 <nb-card-header
-                                        style=" padding-top: 10px; padding-bottom: 10px; font-size: 1rem">
+                                    style="padding-top: 10px; padding-bottom: 10px; font-size: 1rem; display: block">
                                     Article Text *
                                 </nb-card-header>
-                                <ngx-tiny-mce (editorKeyup)="getEditorContent($event)"
-                                              ngDefaultControl></ngx-tiny-mce>
+                                <ngx-tiny-mce (editorKeyup)="getEditorContent($event)" ngDefaultControl></ngx-tiny-mce>
                             </div>
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success" [disabled]="!articleForm.valid">
                             {{articleId ? 'UPDATE' : 'SAVE'}}
                         </button>
                     </div>

@@ -68,7 +68,7 @@ exports.ContactEmailTemplate = {
     Angeline <br>
     Director & Founder <br>
     Workforce Retention <br>
-    <img src="http://54.252.134.98/assets/images/logo_no_space.png" style="height:150px;" height="150">
+    <img src="http://54.252.134.98/assets/images/logo_no_space.png" style="height:100px;" height="100">
     `
 };
 

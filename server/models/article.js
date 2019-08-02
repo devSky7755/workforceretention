@@ -14,33 +14,23 @@ const articleSchema = new Schema({
         type: String,
         required: true
     },
-    keywords:{
-      type:String
+    keywords: {
+        type: String
     },
     description: {
         type: String,
         required: true
     },
-    order:{
-      type: Number,
-      default: 0
+    publish_date: {
+        type: Date,
     },
-    box_1: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    box_2: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    box_3: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
+    image: {
+        type: String
     },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
-}, {timestamps: true});
+    },
+}, { timestamps: true });
 
 module.exports = mongoose.model('Article', articleSchema);

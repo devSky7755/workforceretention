@@ -9,7 +9,10 @@ const articleSchema = require('../validation/article');
 
 exports.Create = function (req, res, next) {
     const data = req.body;
-    const userId = req.params.clientId;
+    const userId = req.params.userId;
+    if (typeof req.file !== 'undefined') {
+        data.image = req.file.filename;
+    }
 
     console.log(userId);
     Joi.validate(data, articleSchema, (err, value) => {
@@ -22,7 +25,7 @@ exports.Create = function (req, res, next) {
         User.findById(userId, (err, user) => {
             if (err) return next(err);
             if (!user) {
-                return res.status(404).json({status: false, message: 'No employee found!'})
+                return res.status(404).json({ status: false, message: 'No employee found!' })
             }
             const article = new Article(data);
             article.save().then(article => {
@@ -55,13 +58,13 @@ exports.Find = (req, res, next) => {
                 .skip((currentPage) * perPage)
                 .limit(perPage);
         }).then(articles => {
-        return res.status(200).json({success: true, articles, totalItems})
-    }).catch(err => {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err)
-    });
+            return res.status(200).json({ success: true, articles, totalItems })
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
 };
 
 exports.FindById = (req, res, next) => {
@@ -88,6 +91,10 @@ exports.Update = (req, res, next) => {
     const data = req.body;
     let id = req.params.id;
 
+    if (typeof req.file !== 'undefined') {
+        data.image = req.file.filename;
+    }
+
     //Update the employee
 
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
@@ -100,13 +107,13 @@ exports.Update = (req, res, next) => {
         data,
         // an option that asks mongoose to return the updated version
         // of the document instead of the pre-updated one.
-        {new: true},
+        { new: true },
 
         // the callback function
         (err, article) => {
             // Handle any possible database errors
             if (err) return next(err);
-            if (!article) return res.status(404).json({success: false, message: "Article not found."});
+            if (!article) return res.status(404).json({ success: false, message: "Article not found." });
             return res.send({
                 "success": true,
                 "message": "Record updated successfully",
@@ -123,7 +130,7 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({id}, schema, (err, value) => {
+    Joi.validate({ id }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({
@@ -137,7 +144,7 @@ exports.Delete = (req, res, next) => {
         Article.findByIdAndRemove(id, (err, article) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!article) return res.status(404).json({success: false, message: "Article not found."});
+            if (!article) return res.status(404).json({ success: false, message: "Article not found." });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
             return res.send({

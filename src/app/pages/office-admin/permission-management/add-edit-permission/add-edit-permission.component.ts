@@ -25,7 +25,7 @@ export class AddEditPermissionComponent implements OnInit {
         this.rolePermissions = [
             { "table_name": "Office Admin", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
             // {"table_name": "Products", "is_read": false, "is_write": false, "is_update": false, "is_delete": false},
-            // {"table_name": "Articles", "is_read": false, "is_write": false, "is_update": false, "is_delete": false},
+            { "table_name": "Articles", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
             { "table_name": "Surveys", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
             { "table_name": "Clients", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
             { "table_name": "Reporting", "has_access": false, "is_update": false, "is_add": false, "is_delete": false },
@@ -159,7 +159,20 @@ export class AddEditPermissionComponent implements OnInit {
             permission.is_add = permission.is_add ? permission.is_add : false;
             permission.is_delete = permission.is_delete ? permission.is_delete : false;
         });
-        this.rolePermissions = this.role.permissions;
+        this.rolePermissions.forEach((element, index) => {
+            let rolePermission = this.role.permissions.find((permission) => {
+                return permission.table_name == element.table_name
+            });
+            if (rolePermission) {
+                this.rolePermissions[index] = rolePermission
+            } else {
+                this.rolePermissions[index].is_update = false;
+                this.rolePermissions[index].is_add = false;
+                this.rolePermissions[index].is_delete = false;
+                this.rolePermissions[index].has_access = false
+            }
+        });
+        // this.rolePermissions = this.role.permissions;
         this.roleName = this.role.name;
         this.roleId = this.role._id;
         this.page();
