@@ -14,8 +14,8 @@ export class ArticleService {
     }
 
     // TODO: observables
-    getArticles(page, perPage): Observable<any> {
-        return this.http.get(this.urlService.baseUrl + `/api/v1/articles?page=${page}&perPage=${perPage}`);
+    getArticles(page, perPage, published = false): Observable<any> {
+        return this.http.get(this.urlService.baseUrl + `/api/v1/articles?page=${page}&perPage=${perPage}&published=${published}`);
     }
 
     getArticle(id): Observable<any> {

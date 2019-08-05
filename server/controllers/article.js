@@ -47,14 +47,19 @@ exports.Create = function (req, res, next) {
 exports.Find = (req, res, next) => {
     const currentPage = Number(req.query.page || 1); //staticPage number
     const perPage = Number(req.query.perPage || 10); //total items display per staticPage
+    const published = req.query.published == 'true'; // true: filter after publish date, false: all items
     let totalItems; //how many items in the database
-
-    Article.find()
+    let param = {}
+    if (published) {
+        param = { $or: [{ "publish_date": { "$lte": new Date() } }, { "publish_date": { "$in": [null, ''] } }] }
+    }
+    Article.find(param)
         .countDocuments()
         .then(count => {
             totalItems = count;
             //This will return a new promise with the posts.
-            return Article.find()
+            return Article.find(param)
+                .sort('-createdAt')
                 .skip((currentPage) * perPage)
                 .limit(perPage);
         }).then(articles => {

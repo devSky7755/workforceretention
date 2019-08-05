@@ -1,0 +1,22 @@
+<nb-layout>
+  <nb-layout-column *ngIf="article">
+    <ngx-header></ngx-header>
+    <section class="home-section">
+      <div class="container-fluid"
+        [ngStyle]="{backgroundImage: ' linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(' + article.imageSrc + ')'}">
+        <a (click)="goBack()" class="w-blog-return">
+          <fa-icon [icon]="faArrowLeft"></fa-icon> Return
+          to site
+        </a>
+        <span class="image-text">{{article.title}}</span>
+      </div>
+      <br>
+      <div class="container text-left mt-3">
+        <div class="w-post-date">
+          {{article.createdAt | date}}
+        </div>
+        <div class="w-post-description" [innerHTML]="article.description"></div>
+      </div>
+    </section>
+  </nb-layout-column>
+</nb-layout>

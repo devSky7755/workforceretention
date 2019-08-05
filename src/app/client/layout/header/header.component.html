@@ -14,7 +14,8 @@
                         <i class="hamburger-menu"><img src="/assets/images/hamburger_menu.svg"></i>
                     </div>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/home" routerLinkActive="active">Home</a></li>
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/home"
+                                routerLinkActive="active">Home</a></li>
                         <li class="dropdown-item" *ngIf="isAuth && employee_details && employee_details.is_survey == 1">
                             <a routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
                         </li>
@@ -27,10 +28,14 @@
                         <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/flexible-options"
                                 routerLinkActive="active">Flexible
                                 Options</a></li>
-                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/about-us" routerLinkActive="active">About
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/about-us"
+                                routerLinkActive="active">About
                                 Us</a></li>
-                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/contact" routerLinkActive="active">Contact
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/contact"
+                                routerLinkActive="active">Contact
                                 Us</a></li>
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/blogs"
+                                routerLinkActive="active">Blog</a></li>
                         <li *ngIf="!isAuth" class="dropdown-item"><a routerLink="/client/login"
                                 routerLinkActive="active">Login</a></li>
                         <li class="dropdown-item" *ngIf="isAuth">

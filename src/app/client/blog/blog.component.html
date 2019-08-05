@@ -1,0 +1,46 @@
+<nb-layout>
+  <nb-layout-column>
+    <ngx-header></ngx-header>
+    <section class="home-section">
+      <div class="container-fluid">
+        <span class="image-text">My Blogs</span>
+      </div>
+      <br>
+      <div class="container text-left mt-3">
+        <div class="list-group">
+          <div class="list-group-item list-group-item-action flex-column align-items-start mb-4 w-post"
+            *ngFor="let post of articles">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="w-post-title">
+                  <a [routerLink]="post.link">
+                    {{post.title}}
+                  </a>
+                </div>
+                <div class="w-post-date"><small>{{post.createdAt | timeAgo}}</small></div>
+                <div class="w-post-excerpt mb-1">
+                  <p>{{post.excerpt}}</p>
+                </div>
+                <a [routerLink]="post.link" class="w-post-more"><small>Read more...</small></a>
+              </div>
+              <div class="col-md-5 w-post-avatar-container">
+                <a [routerLink]="post.link">
+                  <div class="w-post-avatar" [ngStyle]="{background: 'url(' + post.imageSrc + ')'}">
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nav-blogs float-right" style="padding-right: 15px;">
+          <button *ngIf="hasPrev" class="btn btn-outline-primary mr-3" (click)="prevBlog()">
+            &lt;&lt;
+          </button>
+          <button *ngIf="hasNext" class="btn btn-outline-primary" (click)="nextBlog()">
+            &gt;&gt;
+          </button>
+        </div>
+      </div>
+    </section>
+  </nb-layout-column>
+</nb-layout>

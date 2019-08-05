@@ -97,7 +97,7 @@ export class AddEditArticleComponent implements OnInit {
         this.article.author = data.article.author;
         this.article.keywords = data.article.keywords;
         this.article.description = data.article.description;
-        this.article.publish_date = this.dateService.parse(data.article.publish_date, 'en-us');
+        this.article.publish_date = data.article.publish_date ? this.dateService.parse(data.article.publish_date, 'en-us') : '';
         this.setEditorContent(this.article.description);
         this.articleForm.patchValue({ description: this.article.description });
 
