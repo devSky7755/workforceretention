@@ -11,7 +11,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { NbCardModule, NbDatepickerModule, NbLayoutModule } from "@nebular/theme";
+import { NbCardModule, NbDatepickerModule, NbLayoutModule, NbPopoverModule } from "@nebular/theme";
 import { PageNameComponent } from './page-name/page-name.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -31,6 +31,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { BlogComponent } from './blog/blog.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
+import { RequestAQuoteComponent } from './request-a-quote/request-a-quote.component';
 
 @NgModule({
     declarations: [
@@ -53,7 +54,8 @@ import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
         AboutComponent,
         BlogComponent,
         TimeAgoPipe,
-        BlogDetailComponent
+        BlogDetailComponent,
+        RequestAQuoteComponent
     ],
     imports: [
         CommonModule,
@@ -69,7 +71,8 @@ import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
         RecaptchaModule,
         RecaptchaFormsModule,
         SlickCarouselModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        NbPopoverModule
     ],
     providers: [{
         provide: RECAPTCHA_SETTINGS,

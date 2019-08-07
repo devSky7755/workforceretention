@@ -17,7 +17,7 @@
                         <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/home"
                                 routerLinkActive="active">Home</a></li>
                         <li class="dropdown-item" *ngIf="isAuth && employee_details && employee_details.is_survey == 1">
-                            <a routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
+                            <a routerLink="/client/dashboard" routerLinkActive="active">Home</a>
                         </li>
                         <li class="dropdown-item" *ngIf="isAuth && employee_details.is_report == 1">
                             <a routerLink="/client/report" routerLinkActive="active">Report</a>
@@ -36,6 +36,8 @@
                                 Us</a></li>
                         <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/blogs"
                                 routerLinkActive="active">Blog</a></li>
+                        <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/request-a-quote"
+                                routerLinkActive="active">Request a Quote</a></li>
                         <li *ngIf="!isAuth" class="dropdown-item"><a routerLink="/client/login"
                                 routerLinkActive="active">Login</a></li>
                         <li class="dropdown-item" *ngIf="isAuth">

@@ -15,6 +15,7 @@ import { ReportsComponent } from "./reports/reports.component";
 import { ManagerReportPdfComponent } from "./manager-report-pdf/manager-report-pdf.component";
 import { FlexibleOptionsComponent } from "./flexible-options/flexible-options.component";
 import { AboutComponent } from "./about/about.component";
+import { RequestAQuoteComponent } from './request-a-quote/request-a-quote.component'
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
     { path: 'manager-report', component: ManagerReportComponent },
     { path: 'manager-report-pdf', component: ManagerReportPdfComponent },
     { path: 'flexible-options', component: FlexibleOptionsComponent },
-    { path: 'about-us', component: AboutComponent }
+    { path: 'about-us', component: AboutComponent },
+    { path: 'request-a-quote', component: RequestAQuoteComponent },
 ];
 
 @NgModule({

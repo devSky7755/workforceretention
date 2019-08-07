@@ -1,20 +1,19 @@
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
-
+@import "~@swimlane/ngx-datatable/release/index.css";
+@import "~@swimlane/ngx-datatable/release/themes/material.css";
+@import "~@swimlane/ngx-datatable/release/assets/icons.css";
 
 :host ::ng-deep .datatable-icon-prev::before {
-  content: '<<';
+  content: "<<";
 }
 :host ::ng-deep .datatable-icon-left::before {
-  content: '<';
+  content: "<";
 }
 
 :host ::ng-deep .datatable-icon-right::before {
-  content: '>';
+  content: ">";
 }
 :host ::ng-deep .datatable-icon-skip::before {
-  content: '>>';
+  content: ">>";
 }
 :host ::ng-deep .ngx-datatable {
   width: 100%;
@@ -48,10 +47,12 @@
 :host ::ng-deep .ngx-datatable.scroll-vertical {
   height: 70vh;
 }
-:host ::ng-deep .ngx-datatable:not(.cell-selection) .datatable-body-row:hover, :host ::ng-deep .ngx-datatable:not(.cell-selection) .datatable-body-row:hover .datatable-row-group {
+:host ::ng-deep .ngx-datatable:not(.cell-selection) .datatable-body-row:hover,
+:host ::ng-deep .ngx-datatable:not(.cell-selection) .datatable-body-row:hover .datatable-row-group {
   transition: background 200ms linear;
 }
-:host ::ng-deep .ngx-datatable.cell-selection .datatable-body-cell:hover, :host ::ng-deep .ngx-datatable.cell-selection .datatable-body-cell:hover .datatable-row-group {
+:host ::ng-deep .ngx-datatable.cell-selection .datatable-body-cell:hover,
+:host ::ng-deep .ngx-datatable.cell-selection .datatable-body-cell:hover .datatable-row-group {
   transition: background 200ms linear;
 }
 :host ::ng-deep .ngx-datatable .empty-row {
@@ -267,13 +268,13 @@
   box-sizing: border-box;
   padding: 10px 0;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox] {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"] {
   position: relative;
   margin: 0 1rem 0 0;
   cursor: pointer;
   outline: none;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox]:before {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"]:before {
   transition: all 200ms ease-in-out;
   content: "";
   position: absolute;
@@ -283,14 +284,14 @@
   height: 1rem;
   border: 2px solid #f2f2f2;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox]:checked:before {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"]:checked:before {
   transform: rotate(-45deg);
   height: 0.5rem;
   border-color: #009688;
   border-top-style: none;
   border-right-style: none;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox]:after {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"]:after {
   content: "";
   position: absolute;
   top: 0;
@@ -313,4 +314,8 @@
     opacity: 0;
     transform: translateX(-50%) scale(0, 1);
   }
+}
+
+:host ::ng-deep .datatable-footer .page-count {
+  display: none;
 }

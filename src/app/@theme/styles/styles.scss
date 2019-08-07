@@ -128,3 +128,36 @@ nb-auth {
 .form__radio-button::after {
   background-color: #3896cc !important;
 }
+
+.nb-theme-corporate .btn.btn-outline-primary {
+  border: 2px solid #3ab8e8 !important;
+}
+
+.nb-theme-corporate .btn.btn-primary {
+  background-color: #3ab8e8;
+}
+
+.nb-theme-corporate .btn.btn-primary:hover,
+.nb-theme-corporate .btn.btn-primary.hover {
+  background-color: #5ab8e8;
+}
+.nb-theme-corporate .btn.btn-primary:active,
+.nb-theme-corporate .btn.btn-primary.active,
+.nb-theme-corporate .btn.btn-primary:active:focus {
+  background-color: #5ab8e8;
+}
+.nb-theme-corporate .btn.btn-primary:focus,
+.nb-theme-corporate .btn.btn-primary.focus {
+  background-color: #5ab8e8;
+}
+
+.nb-theme-corporate .btn.btn-outline-primary:hover,
+.nb-theme-corporate .btn.btn-outline-primary.hover {
+  background-color: #3ab8e8 !important;
+}
+
+.nb-theme-corporate nb-tabset .tabset .tab a::before {
+  background: #3ab8e8;
+  background-image: -webkit-gradient(linear, left top, right top, from(#1e8ece), to(#3ab8e8));
+  background-image: linear-gradient(to right, #35b8e8, #3ab8e8);
+}

@@ -49,7 +49,7 @@ export const CORPORATE_THEME = {
       xAxisTextColor: '#2a2a2a',
       yAxisSplitLine: '#ebeef2',
 
-      itemBorderColor: '#73a1ff',
+      itemBorderColor: '#3ab8e8',
       lineStyle: 'solid',
       lineWidth: '4',
       lineGradFrom: '#bdc4cd',
@@ -154,7 +154,7 @@ export const CORPORATE_THEME = {
       axisTextColor: '#b2bac2',
       yAxisSplitLine: 'rgba(161, 161 ,229, 0.2)',
 
-      itemBorderColor: '#73a1ff',
+      itemBorderColor: '#3ab8e8',
       lineStyle: 'solid',
       lineWidth: '4',
 
@@ -227,11 +227,11 @@ export const CORPORATE_THEME = {
       axisTextColor: '#b2bac2',
       yAxisSplitLine: 'rgba(161, 161 ,229, 0.2)',
 
-      itemBorderColor: '#73a1ff',
+      itemBorderColor: '#3ab8e8',
       lineStyle: 'dotted',
       lineWidth: '6',
-      lineGradFrom: '#73a1ff',
-      lineGradTo: '#73a1ff',
+      lineGradFrom: '#3ab8e8',
+      lineGradTo: '#3ab8e8',
       lineShadow: 'rgba(0, 0, 0, 0)',
 
       areaGradFrom: 'rgba(146, 181, 252, 1)',

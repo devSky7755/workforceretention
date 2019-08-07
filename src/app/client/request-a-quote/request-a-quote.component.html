@@ -1,0 +1,302 @@
+<nb-layout>
+  <nb-layout-column>
+    <ngx-header></ngx-header>
+    <section class="home-section">
+      <div class="container-fluid">
+        <span class="image-text">Request a Quote</span>
+      </div>
+      <br>
+      <div class="container text-left mt-3">
+        <div class="text-center">
+          <h2 style="color: #000;">Get an estimate of the cost</h2>
+        </div>
+        <form [formGroup]="quoteForm" class="mt-4">
+          <div class="form-container">
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="name" [(ngModel)]="quote.name" name="name"
+                  required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert" *ngIf="get('name').touched && get('name').invalid">
+                  Name is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Position</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="position" [(ngModel)]="quote.position"
+                  name="position" required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert" *ngIf="get('position').touched && get('position').invalid">
+                  position is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Organisational Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="org_name" [(ngModel)]="quote.org_name"
+                  name="org_name" required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert" *ngIf="get('org_name').touched && get('org_name').invalid">
+                  Organisational Name is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Your Email</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="email" [(ngModel)]="quote.email" name="email"
+                  required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert" *ngIf="get('email').touched && get('email').invalid">
+                  Your Email is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Contact Number</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="contact_number"
+                  [(ngModel)]="quote.contact_number" name="contact_number" required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="get('contact_number').touched && get('contact_number').invalid">
+                  Contact Number is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Workforce Size</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="workforce_size"
+                  [(ngModel)]="quote.workforce_size" name="workforce_size" required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="get('workforce_size').touched && get('workforce_size').invalid">
+                  Workforce Size is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Current Employee Turnover ( approx )</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="cur_employee_turnover"
+                  [(ngModel)]="quote.cur_employee_turnover" name="cur_employee_turnover" required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="get('cur_employee_turnover').touched && get('cur_employee_turnover').invalid">
+                  Current Employee Turnover is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Confidential / Non Confidential Program</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" formControlName="confidential" [(ngModel)]="quote.confidential"
+                  name="confidential" required>
+                <!--Register Error Here-->
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="get('confidential').touched && get('confidential').invalid">
+                  Confidential / Non Confidential Program is required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-5">
+            <h5 style="color: #000; font-weight: 600"><i>As we provide flexible options to suit your business, please
+                help
+                us provide you with a more accurate estimate of the cost by indicating what kind of service would most
+                suit your needs.</i>
+            </h5>
+            <div class="row mt-4">
+              <div class="col-sm-9"></div>
+              <div class="col-sm-3" style="color: black; font-weight: bold;">
+                Quote required?
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-sm-9 text-left">
+                <div class="f-option-label">License to Workforce Retentions Exit Interview Platform <i
+                    [nbPopover]="licenseRequiredPopover" nbPopoverPlacement="bottom"
+                    class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i></div>
+                The prodvides the ability to administer exit interviews via our cloud platform.
+                <ng-template #licenseRequiredPopover>
+                  <div class="f-option-popover">
+                    - Workforce Retention design the custom exit interview with you and build it into the platform <br>
+                    - Organisations levels are set up to enable you to view results for different parts of your
+                    organisation. <br>
+                    - Ability to send online exit interviews to exiting employees ( pre or post departure ) <br>
+                    - Flexibility in updating auto-emails sent to employees <br>
+                    - View exiting employees individual reports upon completion <br>
+                    - View charts ranked by 'top reasons for leaving' <br>
+                    - Filter charts by division, gender, tenure or position level <br>
+                    - Provide report access to business leaders or HR with ability to limit the divisions they can see
+                    <br>
+                    - Download full extracts of the data at any time. <br>
+                    - Use the platform to conduct Face to Face interviews <br>
+                  </div>
+                </ng-template>
+              </div>
+              <div class="col-sm-3 mt-2">
+                <div class="form__group u-margin-bottom-medium">
+                  <div class="form__radio-group">
+                    <input type="radio" name="license-required-status" class="form__radio-input" value="true"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.license_required_status"
+                      id="license-required-status-on">
+                    <label for="license-required-status-on" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form__radio-group">
+                    <input type="radio" name="license-required-status" class="form__radio-input" value="false" checked
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.license_required_status"
+                      id="license-required-status-off">
+                    <label for="license-required-status-off" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-sm-9 text-left">
+                <div class="f-option-label">Expert Phone Interviews <i [nbPopover]="phoneInterviewWithPlatformPopover"
+                    nbPopoverPlacement="bottom" class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i>
+                </div>
+                Includes the scheduling and provision of expert phone exit interview and report pls all Platform
+                inclusions
+                <ng-template #phoneInterviewWithPlatformPopover>
+                  <div class="f-option-popover">
+                    - Includes 30-60 minute expert phone exit interview<br>
+                    - Exiting employee is contacted to schedule interview ( up to 3 attempts to contact, admin charge
+                    only for decline )<br>
+                    - Exit Interview report completed and send via email<br>
+                    - Ability to view status of exit interview completion via the platform<br>
+                    - Ability to allow exiting employee to complete the interview online if they prefer not to have a
+                    phone interview (admin charge only)<br>
+                    - Includes all the features of the platform including download all the exit interview data or
+                    viewing charts.<br>
+                  </div>
+                </ng-template>
+              </div>
+              <div class="col-sm-3 mt-2">
+                <div class="form__group u-margin-bottom-medium">
+                  <div class="form__radio-group">
+                    <input type="radio" name="phone-interview-with-platform-status" class="form__radio-input"
+                      value="true" [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="quote.phone_interview_with_platform_status"
+                      id="phone-interview-with-platform-status-on">
+                    <label for="phone-interview-with-platform-status-on" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form__radio-group">
+                    <input type="radio" name="phone-interview-with-platform-status" class="form__radio-input"
+                      value="false" checked [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="quote.phone_interview_with_platform_status"
+                      id="phone-interview-with-platform-status-off">
+                    <label for="phone-interview-with-platform-status-off" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-sm-9 text-left">
+                <div class="f-option-label">Expert Phone Interviews WITHOUT Platform <i
+                    [nbPopover]="phoneInterviewWithoutPlatformPopover" nbPopoverPlacement="bottom"
+                    class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i>
+                </div>
+                Some organisation just want individual phone interviews expertly conducted. Please indicate if you are
+                only interested in the cost of phone interviews, without the platform.
+                <ng-template #phoneInterviewWithoutPlatformPopover>
+                  <div class="f-option-popover">
+                    Some organisation just want individual phone interviews expertly conducted.<br>
+                  </div>
+                </ng-template>
+              </div>
+              <div class="col-sm-3 mt-2">
+                <div class="form__group u-margin-bottom-medium">
+                  <div class="form__radio-group">
+                    <input type="radio" name="phone-interview-without-platform-status-on" class="form__radio-input"
+                      value="true" [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="quote.phone_interview_without_platform_status"
+                      id="phone-interview-without-platform-status-on">
+                    <label for="phone-interview-without-platform-status-on" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form__radio-group">
+                    <input type="radio" name="phone-interview-without-platform-status-off" class="form__radio-input"
+                      value="false" checked [ngModelOptions]="{standalone: true}"
+                      [(ngModel)]="quote.phone_interview_without_platform_status"
+                      id="phone-interview-without-platform-status-off">
+                    <label for="phone-interview-without-platform-status-off" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-sm-9 text-left">
+                <div class="f-option-label">Comprehensive Exit Reports <i [nbPopover]="exitReportPopover"
+                    nbPopoverPlacement="bottom" class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i>
+                </div>
+                The comprehensive reports are separate to the online charting that is included in the platform
+                <ng-template #exitReportPopover>
+                  <div class="f-option-popover">
+                    Full analysis of the quantitative and qualitative data and insights on themes and trends. Quarterly
+                    is recommended for most organisations. <br>
+                  </div>
+                </ng-template>
+              </div>
+              <div class="col-sm-3 mt-2">
+                <div class="form__group u-margin-bottom-medium">
+                  <div class="form__radio-group">
+                    <input type="radio" name="exit-report-status" class="form__radio-input" value="true"
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.exit_report_status"
+                      id="exit-report-status-on">
+                    <label for="exit-report-status-on" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form__radio-group">
+                    <input type="radio" name="exit-report-status" class="form__radio-input" value="false" checked
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.exit_report_status"
+                      id="exit-report-status-off">
+                    <label for="exit-report-status-off" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="form-container-captcha mt-5">
+            <re-captcha formControlName="recaptchaReactive"></re-captcha>
+          </div>
+          <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!quoteForm.valid"
+              (click)="requestAQuote()">Request A Quote
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </nb-layout-column>
+</nb-layout>
