@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {SurveyService} from "../../@core/data/survey.service";
-import {Router} from "@angular/router";
-import {EmployeeService} from "../../@core/data/employee.service";
-import {JwtHelperService} from "@auth0/angular-jwt";
+import { Component, OnInit } from '@angular/core';
+import { SurveyService } from "../../@core/data/survey.service";
+import { Router } from "@angular/router";
+import { EmployeeService } from "../../@core/data/employee.service";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 @Component({
     selector: 'ngx-dashboard',
@@ -20,8 +20,8 @@ export class DashboardComponent implements OnInit {
     employeeSurvey;
 
     constructor(private surveyService: SurveyService,
-                private router: Router,
-                private employeeService: EmployeeService) {
+        private router: Router,
+        private employeeService: EmployeeService) {
         this.employee = {};
         this.employee_details = {};
     }
@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit {
                     employeeSurvey.description = employeeSurvey.survey.description;
                     employeeSurvey.title = employeeSurvey.survey.title;
                     employeeSurvey.noOfQuestion = employeeSurvey.survey.no_of_questions;
+                    employeeSurvey.status = employeeSurvey.completed ? "Completed" : employeeSurvey.start_date ? "In Progress" : "Not Started"
                     this.survey_start_date = employeeSurvey.start_date;
 
                     //completed, survey, start_date and end_date
@@ -65,7 +66,8 @@ export class DashboardComponent implements OnInit {
                         completed: employeeSurvey.completed,
                         survey: employeeSurvey.survey._id,
                         start_date: employeeSurvey.start_date,
-                        end_date: employeeSurvey.end_date
+                        end_date: employeeSurvey.end_date,
+                        status: employeeSurvey.status
                     };
                     rows.push(employeeSurvey);
                 });
@@ -81,7 +83,7 @@ export class DashboardComponent implements OnInit {
             this.updateSurveyStartDate(surveyId, completed);
         } else {
             this.employeeService.surveyCompleted = completed;
-            this.router.navigate(['/client/questions/' + surveyId], {queryParams: {completed: completed}});
+            this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed } });
         }
     }
 
@@ -89,11 +91,11 @@ export class DashboardComponent implements OnInit {
         this.employeeSurvey.start_date = new Date();
         const employeeSurveys = [];
         employeeSurveys.push(this.employeeSurvey);
-        const employeeData = {surveys: employeeSurveys};
+        const employeeData = { surveys: employeeSurveys };
         this.employeeService.updateEmployee(employeeData, this.employee.employee_id).subscribe(
             () => {
                 this.employeeService.surveyCompleted = completed;
-                this.router.navigate(['/client/questions/' + surveyId], {queryParams: {completed: completed}});
+                this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed } });
             });
     }
 

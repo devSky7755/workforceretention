@@ -39,6 +39,14 @@
                                         <strong>{{value}}</strong>
                                     </ng-template>
                                 </ngx-datatable-column>
+                                <ngx-datatable-column name="status">
+                                    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                                        <span>Status</span>
+                                    </ng-template>
+                                    <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                                        <div [innerHTML]="value"></div>
+                                    </ng-template>
+                                </ngx-datatable-column>
                                 <ngx-datatable-column name="id">
                                     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                                         <span>Action</span>

@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
                 if (this.employee_details && this.employee_details.is_survey == 1) {
                     this.routerLink = '/client/dashboard'
                 } else if (this.employee_details && this.employee_details.is_report == 1) {
-                    this.routerLink = '/client/report'
+                    this.routerLink = '/client/manager-report'
                 }
                 this.clientImage = this.baseUrl + '/images/client/' + (this.employeeService.clientImage || '')
                 if (this.employeeService.clientImage === '') {
