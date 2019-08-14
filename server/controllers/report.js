@@ -710,6 +710,8 @@ exports.DataOutput = (req, res, next) => {
             headers.push({ id: 'survey_endtime', title: 'Survey EndTime' });
             headers.push({ id: 'completed_online', title: 'Completed Online' });
             headers.push({ id: 'completed_admin', title: 'Completed Admin' });
+            headers.push({ id: 'date_birth', title: 'Date of Birth' });
+            headers.push({ id: 'last_completed_at', title: 'Last Completed Time' });
 
             let question_no = 0;
             survey.questions.forEach((question) => {
@@ -804,7 +806,9 @@ exports.DataOutput = (req, res, next) => {
                                 survey_starttime: employee.surveys[0].start_date == null ? '' : format_date(employee.surveys[0].start_date),
                                 survey_endtime: employee.surveys[0].end_date == null ? '' : format_date(employee.surveys[0].end_date),
                                 completed_online: employee.surveys[0].completed_online,
-                                completed_admin: employee.surveys[0].completed_admin
+                                completed_admin: employee.surveys[0].completed_admin,
+                                date_birth: employee.date_of_birth == null ? '' : format_date(employee.date_of_birth),
+                                last_completed_at: !employee.surveys[0].completed_online || !employee.surveys[0].completed_admin || employee.surveys[0].end_date == null ? '' : format_date_time(employee.surveys[0].end_date),
                             };
                             let answers = [];
                             // first push all the question answers in the answers array
@@ -959,6 +963,24 @@ const format_date = (date) => {
     }
     return dd + '/' + mm + '/' + yyyy;
 };
+
+const format_date_time = (date) => {
+    let hh = date.getHours()
+    let mi = date.getMinutes()
+    let ss = date.getSeconds()
+    let dd = date.getDate();
+    let mm = date.getMonth() + 1; //January is 0!
+
+    let yyyy = date.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    return dd + '/' + mm + '/' + yyyy + ' ' + hh + ':' + mi + ':' + ss;
+};
+
 const IsNullOrEmpty = (obj) => {
     return typeof obj === 'undefined' || obj == null;
 };

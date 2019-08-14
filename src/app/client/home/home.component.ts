@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, AfterContentInit {
                 if (this.employee_details && this.employee_details.is_survey == 1) {
                     routerLink = '/client/dashboard'
                 } else if (this.employee_details && this.employee_details.is_report == 1) {
-                    routerLink = '/client/report'
+                    routerLink = '/client/manager-report'
                 }
                 if (routerLink != '') {
                     this.router.navigateByUrl(routerLink);

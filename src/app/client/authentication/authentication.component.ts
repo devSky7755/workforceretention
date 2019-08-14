@@ -61,7 +61,7 @@ export class AuthenticationComponent implements OnInit {
                 // else redirect to the dashboard page where survey will display
                 if (decodedToken.is_manager == '1') {
                     // this means the employee is a manager
-                    this.router.navigateByUrl('/client/report');
+                    this.router.navigateByUrl('/client/manager-report');
                 } else {
                     this.router.navigateByUrl('/client/dashboard');
 

@@ -23,8 +23,17 @@ const generator = require('generate-password');
 //LOAD EMAIL TEMPLATES
 const helpers = require('../helpers/email');
 const refreshTokens = {};
-
-
+const occupationalMatch = {
+    'Not Classified': 1,
+    'Managers': 2,
+    'Professionals': 3,
+    'Technicians and Trade Workers': 4,
+    'Community and Personal Service Workers': 5,
+    'Clerical and Administrative Workers': 6,
+    'Sales Workers': 7,
+    'Machinery Operators and Drivers': 8,
+    'Labourers': 9
+}
 exports.Upload = function (req, res, next) {
     let file = req.file;
     const employees = [];
@@ -99,6 +108,11 @@ exports.Upload = function (req, res, next) {
                             let employeeSurvey = { survey: survey, completed: false, start_date: null, end_date: null };
                             clientSurveys.push(employeeSurvey);
                         });
+                        if (json[i].occupational_group.trim() in occupationalMatch) {
+                            json[i].occupational_group = occupationalMatch[json[i].occupational_group.trim()]
+                        } else {
+                            json[i].occupational_group = 1
+                        }
                         json[i].surveys = clientSurveys;
                         json[i].client = clientId;
                         employees.push(json[i]);
@@ -243,6 +257,7 @@ const sendEmailsToEmployees = (employees, client) => {
             body = body.replace('[employee_password]', employee.original_password);
             // send email only if is_online is set to 1
             if (employee.is_online === '1') {
+
                 helpers.SendEmailToEmployee({ from, to, subject, body }).then(
                     () => {
                         // if the promise full fill this block of code will execute

@@ -1,7 +1,7 @@
 first_name,last_name,username,email,gender,date_of_birth,phone,mobile,hire_date,resign_date,exit_date,occupational_group,position,is_active,is_manager,is_report,is_survey,is_online,organization,division,department
-James,John,jamesjohn,sea930320@hotmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,3,CEO,1,0,0,1,1,organization name,division name,department name
-LaLa,Li,lalali,tdp6264@yandex.com,Male,17/01/1995,1932976181,1932976181,10/10/2017,10/10/2018,15/10/2018,2,CEO,1,1,1,0,1,organization name,division name,department name
-Angel,Poh,angelpoh,snow930123@gmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,3,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
-Adam,Poh,adampoh,georgiytampko002@gmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,3,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
-Adrigos,John,jamesjohn,skydevonline@hotmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,3,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
-Loe,John,jamesjohn,joshua900515@outlook.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,3,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
+James,John,jamesjohn,sea930320@hotmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,Managers ,CEO,1,0,0,1,1,organization name,division name,department name
+LaLa,Li,lalali,tdp6264@yandex.com,Male,17/01/1995,1932976181,1932976181,10/10/2017,10/10/2018,15/10/2018,Professionals ,CEO,1,1,1,0,1,organization name,division name,department name
+Angel,Poh,angelpoh,snow930123@gmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,Technicians and Trade Workers,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
+Adam,Poh,adampoh,georgiytampko002@gmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,Community and Personal Service Workers,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
+Adrigos,John,jamesjohn,skydevonline@hotmail.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,Clerical and Administrative Workers,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
+Loe,John,jamesjohn,joshua900515@outlook.com,Male,20/11/1995,1932976181,1932976181,10/1/2017,10/1/2018,10/2/2018,Labourers 2,CEO,1,0,0,1,1,Org-1,Div-1,Dept-1
