@@ -775,6 +775,9 @@ export class ManagerReportComponent implements OnInit {
                 suffix: "%",
                 gridDashType: "dot"
             },
+            axisX: {                
+                labelMaxWidth: 500,
+            },
             toolTip: {
                 shared: true
             },
@@ -800,6 +803,9 @@ export class ManagerReportComponent implements OnInit {
             axisY: {
                 suffix: "%",
                 gridDashType: "dot"
+            },
+            axisX: {                
+                labelMaxWidth: 500,
             },
             toolTip: {
                 shared: true

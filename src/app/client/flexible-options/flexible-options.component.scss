@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,700&display=swap");
 
 .home-section {
-  padding: 80px 0;
-  position: relative;
-  height: 65vh;
+  padding-top: 100px;
 }
 
 .light-gray {
@@ -13,14 +11,13 @@
 .nb-card-color {
   background: #fff !important;
   padding: 10px;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border-top: 2px solid #000;
 }
 
 nb-card:hover {
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   border-top: 2px solid #3f51b5;
-
 }
 
 .nb-card-header {
@@ -63,301 +60,216 @@ nb-layout-column {
   text-align: right;
 }
 
-.container-fluid {
-  background-size: cover;
-  width: 100%;
-  height: 500px;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/flexible-options.jpeg");
-  background-position: top;
-  position: relative;
-  padding-bottom: 20px;
-}
-
-.image-text {
-  position: absolute;
-  font-size: 48px;
-  text-align: center;
-  background-color: transparent;
-  font-family: 'Nunito', sans-serif;
-  top: 40%;
-  left: 10%;
-  color: #1e4662;
-}
-
-.graph-img {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/computer_graph.jpeg");
-  width: 100%;
-  height: 500px;
-  background-size: cover;
-}
-
-.reporting-image {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("assets/images/reporting.jpeg");
-  width: 100%;
-  height: 500px;
-  background-size: cover;
-  position: relative;
-}
-
-.section-div-text {
-  max-width: 900px;
-  text-align: center;
-  font-family: 'Nunito', sans-serif;
-  color: #000000;
-  margin: 30px auto 0;
-}
-
-.reporting-header {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.reporting-logo {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 250px;
-}
-
-.section1 {
-  background-color: #1e4662;
-  height: 250px;
-  margin: 20px;
-}
-
-.section2 {
-  background-color: #53bdf9;
-  height: 250px;
-  margin: 40px 20px 20px;
-}
-
-.section4 {
-  background-color: #999999;
-  height: 250px;
-  margin: 40px 20px 20px;
-}
-
-.section-container {
-  display: flex;
-  padding: 20px;
-  flex-wrap: wrap;
-}
-
-.section-container1 {
-  height: 210px;
-  flex-basis: 25%;
-  margin-right: 50px;
-  background-color: #ffffff;
-  position: relative;
-  padding-top: 10px;
-}
-
-.section-container2 {
-  height: 210px;
-  flex-basis: 33.33%;
-  padding-top: 20px;
-  padding-right: 10px;
-}
-
-.section-container3 {
-  height: 210px;
-  flex-basis: 33.33%;
-  padding-top: 20px;
-}
-
-.section-arrow {
-  clip-path: polygon(0% 20%, 60% 20%, 60% 0%, 100% 50%, 60% 100%, 60% 80%, 0% 80%);
-  width: 50px;
-  height: 50px;
-  background-color: #ffffff;
-  position: absolute;
-  top: 40%;
-  right: -10%;
-}
-
-.section-marker {
-  position: absolute;
-  width: 50px;
-  text-align: center;
-  font-size: 24px;
-  color: #ffffff;
-  font-weight: bold;
-  border-radius: 50%;
-  vertical-align: middle;
-  line-height: 50px;
-  top: -40px;
-  left: -30px;
-  height: 50px;
-}
-
-.marker1 {
-  background-color: #1e4662;
-}
-
-.marker2 {
-  background-color: #53bdf9;
-}
-
-.marker3 {
-  background-color: #1e4662;
-}
-
-.marker4 {
-  background-color: #999999;
-}
-
-.ul-marker li {
-  color: #ffffff;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.scroll-next-page {
-  position: absolute;
-  bottom: 5%;
-  left: 5%;
-  font-family: 'Nunito', sans-serif;
-  font-style: italic;
-  color: #2e68a3;
-}
-
-h1, h2, h3, p, li {
-  font-family: 'Nunito', sans-serif;
+h1,
+h2,
+h3,
+p,
+li {
+  font-family: "Nunito", sans-serif;
   color: #000000;
 }
 
-@media (min-width: 481px) and (max-width: 767px) {
-  .home-section {
-    height: auto;
-  }
-  .section-container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .section1, .section2, .section4 {
-    height: auto;
-  }
-  .section-marker {
-    left: 40%;
-  }
-  .section-arrow {
-    top: 95%;
-    right: 40%;
-    transform: rotate(90deg);
-  }
-  .section-container1 {
-    margin-right: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .section-container2 {
-    padding-top: 40px;
-  }
-  .section-container3 {
-    padding-top: 0;
-  }
-  .section-container1, .section-container2, .section-container3 {
-    height: auto;
-  }
-  .image-text {
+.home-section {
+  color: black;
+
+  .fo-title {
     font-size: 30px;
-    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+    margin-top: 30px;
   }
-  .container-fluid {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/flexible-options.jpeg");
-    background-position: 80%;
+
+  .fo-title-bottom {
+    width: 450px;
+    border-top: 1px solid rgba(0, 0, 0, 0.4);
   }
-  .about-description {
-    padding: 20px;
+
+  .fo-description {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .fo-option-panel {
+    margin-top: 120px;
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+
+    .fo-option-title1 {
+      font-size: 22px;
+      height: 75px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      display: table;
+      width: 100%;
+      div {
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: 600;
+      }
+    }
+    .fo-option-subtitle1 {
+      padding: 20px 0;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      position: relative;
+      height: 86px;
+    }
+    .fo-option-title2 {
+      padding: 15px 0;
+      font-size: 18px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    }
+    .fo-option-list1 {
+      padding: 30px 0 20px;
+      text-align: left;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      height: 225px;
+      ul li {
+        line-height: 20px;
+      }
+    }
+    .fo-option-list2 {
+      padding: 30px 0 20px;
+      text-align: left;
+      font-size: 13px;
+      height: 144px;
+      ul li {
+        line-height: 20px;
+      }
+    }
+    .fo-option-view-ex {
+      padding: 16px;
+      color: black;
+      position: absolute;
+      background: #4db0e8;
+      width: calc(100% - 30px);
+      left: 10px;
+      margin-top: -16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .fo-option-view-ex:hover {
+      background: #5db6e9;
+    }
+
+    .fo-down {
+      position: absolute;
+      left: calc(50% - 6px);
+      bottom: 5px;
+    }
+
+    .fo-option-extra {
+      padding: 16px;
+      color: black;
+      position: absolute;
+      background: #4db0e8;
+      width: calc(100% - 30px);
+      top: 40px;
+      left: 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+  .fo-license {
+    background: #333333;
+    color: white;
+    .fo-option-title1,
+    .fo-option-subtitle1,
+    .fo-option-title2,
+    .fo-option-list1 {
+      border-bottom: 1px solid white;
+    }
+    .fo-option-list1 ul li,
+    .fo-option-list2 ul li {
+      color: white;
+    }
+  }
+  .fo-phone-without-platform {
+    background: #f1f1f1;
+    border: 0px;
+  }
+  .fo-request-quote {
+    margin-top: 90px;
+    padding: 50px 20px;
+    background: #f1f1f1;
+    height: 350px;
+    border-radius: 2px;
   }
 }
-
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
 */
 
-@media (min-width: 320px) and (max-width: 480px) {
-  .home-section {
-    height: auto;
-    padding: 10px 0;
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .fo-option-list2 {
+    height: 180px !important;
   }
-  .section-container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  .fo-option-list2 {
+    height: 180px !important;
   }
-  .section1, .section2, .section4 {
-    height: auto;
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .fo-option-extra {
+    top: 80px !important;
   }
-  .section-marker {
-    left: 40%;
+  .fo-title-bottom {
+    width: 80% !important;
   }
-  .section-arrow {
-    top: 95%;
-    right: 40%;
-    transform: rotate(90deg);
-  }
-  .section-container1 {
-    margin-right: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .section-container2 {
-    padding-top: 40px;
-  }
-  .section-container3 {
-    padding-top: 0;
-  }
+}
 
-  .image-text {
-    font-size: 30px;
-    color: #ffffff;
+@media (max-width: 767px) {
+  .fo-option-panel {
+    margin-top: 50px !important;
   }
-  .section-container1, .section-container2, .section-container3 {
-    height: auto;
+  .fo-option-extra {
+    top: 20px !important;
   }
-  .container-fluid {
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("assets/images/flexible-options.jpeg");
-    background-position: 80%;
+  .fo-phone-with-platform {
+    margin-top: 80px !important;
+    .fo-option-extra {
+      top: 50px !important;
+    }
   }
-  .about-description {
-    padding: 20px;
+  .fo-title-bottom {
+    width: 80% !important;
   }
+}
 
+@media (max-width: 480px) {
+  .fo-option-panel {
+    margin-top: 50px !important;
+  }
+  .fo-option-extra {
+    top: 20px !important;
+  }
+  .fo-phone-with-platform {
+    margin-top: 80px !important;
+    .fo-option-extra {
+      top: 50px !important;
+    }
+  }
+  .fo-title-bottom {
+    width: 80% !important;
+  }
+  .fo-option-list2 {
+    height: 180px !important;
+  }
+  .fo-request-quote {
+    height: 400px !important;
+  }
 }
 
 // Media query for ipad
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) { /* STYLES GO HERE */
-  .home-section {
-    height: auto;
-    padding: 20px 0;
-  }
-  .section1 {
-    height: 400px;
-  }
-  .section2 {
-    height: 400px;
-  }
-  .section4 {
-    height: 400px;
-  }
-
-  .section-container1 {
-    height: 300px;
-  }
-  .section-arrow {
-    right: -30%;
-  }
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
 }
 
-
 // Media query for ipad pro
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) { /* STYLES GO HERE */
-  .section-arrow {
-    right: -20%;
-  }
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
 }
