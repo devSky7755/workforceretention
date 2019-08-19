@@ -19,6 +19,7 @@ import { LayoutService } from './layout.service';
 import { AnswerService } from "./answer.service";
 import { SurveyService } from "./survey.service";
 import { ContactService } from "./contact.service";
+import { RequestAQuoteService } from "./requestaquote.service"
 import { QuestionService } from "./question.service";
 import { RoleService } from "./role.service";
 import { URLService } from "./url.service";
@@ -60,6 +61,7 @@ const SERVICES = [
     //*** OUR OWN SERVICE *****
     SurveyService,
     ContactService,
+    RequestAQuoteService,
     QuestionService,
     AnswerService,
     RoleService,

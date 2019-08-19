@@ -6,9 +6,13 @@
         <span class="image-text">Request a Quote</span>
       </div>
       <br>
-      <div class="container container-rq text-left mt-3">
+      <div class="container container-rq text-left mt-5">
         <div class="text-center">
           <h2 style="color: #000;">Get an estimate of the cost</h2>
+          <h5 style="color: #000; font-weight: 600; max-width: 700px; margin: 30px auto 50px;"><i>As we provide flexible
+              options to suit each business, please provide us with some details and preferences to suit your business.
+              This will help get you started.</i>
+          </h5>
         </div>
         <form [formGroup]="quoteForm" class="mt-4">
           <div class="form-container">
@@ -83,7 +87,7 @@
             <div class="form-group row">
               <label class="col-sm-4 col-form-label">Current Employee Turnover ( approx )</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" formControlName="cur_employee_turnover"
+                <input type="number" class="form-control" formControlName="cur_employee_turnover"
                   [(ngModel)]="quote.cur_employee_turnover" name="cur_employee_turnover" required>
                 <!--Register Error Here-->
                 <div class="alert alert-danger" role="alert"
@@ -93,25 +97,31 @@
               </div>
             </div>
             <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Confidential / Non Confidential Program</label>
+              <label class="col-sm-4 col-form-label">Confidential Program</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" formControlName="confidential" [(ngModel)]="quote.confidential"
-                  name="confidential" required>
-                <!--Register Error Here-->
-                <div class="alert alert-danger" role="alert"
-                  *ngIf="get('confidential').touched && get('confidential').invalid">
-                  Confidential / Non Confidential Program is required
+                <div class="form__group u-margin-bottom-medium">
+                  <div class="form__radio-group" style="width: 120px; margin-left: calc(50% - 120px);">
+                    <input type="radio" name="confidential" class="form__radio-input" value=1
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.confidential" id="confidential-on">
+                    <label for="confidential-on" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form__radio-group" style="width: 120px;">
+                    <input type="radio" name="confidential" class="form__radio-input" value=0 checked
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.confidential" id="confidential-off">
+                    <label for="confidential-off" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      No
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="text-center mt-5">
-            <h5 style="color: #000; font-weight: 600"><i>As we provide flexible options to suit your business, please
-                help
-                us provide you with a more accurate estimate of the cost by indicating what kind of service would most
-                suit your needs.</i>
-            </h5>
             <div class="row mt-4">
               <div class="col-sm-9"></div>
               <div class="col-sm-3" style="color: black; font-weight: bold;">
@@ -144,7 +154,7 @@
               <div class="col-sm-3 mt-2">
                 <div class="form__group u-margin-bottom-medium">
                   <div class="form__radio-group">
-                    <input type="radio" name="license-required-status" class="form__radio-input" value="true"
+                    <input type="radio" name="license-required-status" class="form__radio-input" value=1
                       [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.license_required_status"
                       id="license-required-status-on">
                     <label for="license-required-status-on" class="form__radio-label">
@@ -153,7 +163,7 @@
                     </label>
                   </div>
                   <div class="form__radio-group">
-                    <input type="radio" name="license-required-status" class="form__radio-input" value="false" checked
+                    <input type="radio" name="license-required-status" class="form__radio-input" value=0 checked
                       [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.license_required_status"
                       id="license-required-status-off">
                     <label for="license-required-status-off" class="form__radio-label">
@@ -188,9 +198,8 @@
               <div class="col-sm-3 mt-2">
                 <div class="form__group u-margin-bottom-medium">
                   <div class="form__radio-group">
-                    <input type="radio" name="phone-interview-with-platform-status" class="form__radio-input"
-                      value="true" [ngModelOptions]="{standalone: true}"
-                      [(ngModel)]="quote.phone_interview_with_platform_status"
+                    <input type="radio" name="phone-interview-with-platform-status" class="form__radio-input" value=1
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.phone_interview_with_platform_status"
                       id="phone-interview-with-platform-status-on">
                     <label for="phone-interview-with-platform-status-on" class="form__radio-label">
                       <span class="form__radio-button"></span>
@@ -198,8 +207,8 @@
                     </label>
                   </div>
                   <div class="form__radio-group">
-                    <input type="radio" name="phone-interview-with-platform-status" class="form__radio-input"
-                      value="false" checked [ngModelOptions]="{standalone: true}"
+                    <input type="radio" name="phone-interview-with-platform-status" class="form__radio-input" value=0
+                      checked [ngModelOptions]="{standalone: true}"
                       [(ngModel)]="quote.phone_interview_with_platform_status"
                       id="phone-interview-with-platform-status-off">
                     <label for="phone-interview-with-platform-status-off" class="form__radio-label">
@@ -228,7 +237,7 @@
                 <div class="form__group u-margin-bottom-medium">
                   <div class="form__radio-group">
                     <input type="radio" name="phone-interview-without-platform-status-on" class="form__radio-input"
-                      value="true" [ngModelOptions]="{standalone: true}"
+                      value=1 [ngModelOptions]="{standalone: true}"
                       [(ngModel)]="quote.phone_interview_without_platform_status"
                       id="phone-interview-without-platform-status-on">
                     <label for="phone-interview-without-platform-status-on" class="form__radio-label">
@@ -238,7 +247,7 @@
                   </div>
                   <div class="form__radio-group">
                     <input type="radio" name="phone-interview-without-platform-status-off" class="form__radio-input"
-                      value="false" checked [ngModelOptions]="{standalone: true}"
+                      value=0 checked [ngModelOptions]="{standalone: true}"
                       [(ngModel)]="quote.phone_interview_without_platform_status"
                       id="phone-interview-without-platform-status-off">
                     <label for="phone-interview-without-platform-status-off" class="form__radio-label">
@@ -265,7 +274,7 @@
               <div class="col-sm-3 mt-2">
                 <div class="form__group u-margin-bottom-medium">
                   <div class="form__radio-group">
-                    <input type="radio" name="exit-report-status" class="form__radio-input" value="true"
+                    <input type="radio" name="exit-report-status" class="form__radio-input" value=1
                       [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.exit_report_status"
                       id="exit-report-status-on">
                     <label for="exit-report-status-on" class="form__radio-label">
@@ -274,7 +283,7 @@
                     </label>
                   </div>
                   <div class="form__radio-group">
-                    <input type="radio" name="exit-report-status" class="form__radio-input" value="false" checked
+                    <input type="radio" name="exit-report-status" class="form__radio-input" value=0 checked
                       [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.exit_report_status"
                       id="exit-report-status-off">
                     <label for="exit-report-status-off" class="form__radio-label">

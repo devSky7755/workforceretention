@@ -1,4 +1,4 @@
-
+const checkEnv = require('./check_env')
 
 // there are 4 types of client email
 // ************** Client Email *********
@@ -54,7 +54,7 @@ exports.UserEmailPasswordTemplate = {
 };
 
 
-// *************** Below Email will sent when new contacts is submitted ***************
+// *************** Below Email will be sent when new contacts is submitted ***************
 exports.ContactEmailTemplate = {
     from_address: 'enquiries@workforceretention.com.au',
     editable: false,
@@ -72,4 +72,51 @@ exports.ContactEmailTemplate = {
     `
 };
 
+
+
+// *************** Below Email will be sent to enquiries when new quotation is submitted ***************
+exports.QuotationEmailTemplate = {
+    to_address: checkEnv.isLiveServer ? 'enquiries@workforceretention.com.au' : 'sky930320@gmail.com',
+    editable: false,
+    subject: "Received a Quotation",
+    body: `
+        <div style="margin-bottom: 10px;">
+            Name: [name-val]
+        </div>
+        <div style="margin-bottom: 10px;">
+            Position: [position-val]
+        </div>
+        <div style="margin-bottom: 10px;">
+            Organisational Name: [org_name-val]
+        </div>
+        <div style="margin-bottom: 10px;">
+            Email: [email-val]
+        </div>
+        <div style="margin-bottom: 10px;">
+            Contact Number: [contact_number-val]
+        </div>
+        <div style="margin-bottom: 10px;">
+            Workforce Size: [workforce_size-val]
+        </div>
+        <div style="margin-bottom: 10px;">
+            Current Employee Turnover ( approx ): [cur_employee_turnover-val]
+        </div>
+        <div style="margin-bottom: 40px;"> 
+            [confidential]
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div style="width:60%; float:left; height: 30px;">
+            </div> 
+            <div style="width: 40%; text-align:center; float:left;">
+                <b>Quote required?</b>
+            </div> 
+        </div>
+        
+        [license_required_status]
+        [phone_interview_with_platform_status]
+        [phone_interview_without_platform_status]
+        [exit_report_status]
+    `
+};
 

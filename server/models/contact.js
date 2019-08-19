@@ -4,14 +4,14 @@ const Schema = mongoose.Schema;
 const contactSchema = new Schema({
     name: {
         type: String,
-        required: 'Name is required'
+        required: true,
     },
     email: {
         type: String,
         min: [4, 'Too short, min is 4 characters'],
-        max: [32, 'Too long, max is 32 characters'],
+        max: [72, 'Too long, max is 72 characters'],
         lowercase: true,
-        required: 'Email is required',
+        required: true,
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
     },
     subject: {
@@ -19,11 +19,11 @@ const contactSchema = new Schema({
     },
     message: {
         type: String,
-        required: 'Message is required'
+        required: true,
     },
     organization: {
         type: String,
-        required: 'Organization is required'
+        required: true,
     },
 }, { timestamps: true });
 

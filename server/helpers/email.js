@@ -96,3 +96,28 @@ exports.ReplyEmailForContactUs = function (email) {
         });
     })
 };
+
+
+exports.RequestAQuoteEmail = function (email) {
+    const { from, to, subject, body } = email;
+    const mailOptions = {
+        from: from,
+        to: to,
+        subject: subject,
+        html: body
+    };
+    return new Promise(function (resolve, reject) {
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error)
+                reject(error)
+            } else {
+                console.log(info);
+                resolve({
+                    "success": true,
+                    "message": "Email successfully sent!",
+                })
+            }
+        });
+    })
+};

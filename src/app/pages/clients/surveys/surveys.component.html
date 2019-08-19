@@ -30,7 +30,7 @@
             <span>Action</span>
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-            <button type="button" class="btn btn-xs btn-success" *ngIf="permission.is_update"
+            <button type="button" class="btn btn-xs btn-success"
                 (click)="onClickAssign(value,row.assigned)">{{row.assigned ? 'Unassign' : 'Assign'}}</button>
         </ng-template>
     </ngx-datatable-column>
