@@ -4,6 +4,7 @@
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
                 <form (ngSubmit)="onSubmitAnswer()">
+                    <h2 class="mb-3">{{employeeName}}</h2>
                     <div *ngFor="let cat_question of categorical_questions">
                         <div class="question-box" *ngIf="cat_question.questions.length > 0">
                             <h4

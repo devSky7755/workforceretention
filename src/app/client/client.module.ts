@@ -32,6 +32,7 @@ import { BlogComponent } from './blog/blog.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { RequestAQuoteComponent } from './request-a-quote/request-a-quote.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
     declarations: [
@@ -55,7 +56,8 @@ import { RequestAQuoteComponent } from './request-a-quote/request-a-quote.compon
         BlogComponent,
         TimeAgoPipe,
         BlogDetailComponent,
-        RequestAQuoteComponent
+        RequestAQuoteComponent,
+        PrivacyComponent
     ],
     imports: [
         CommonModule,

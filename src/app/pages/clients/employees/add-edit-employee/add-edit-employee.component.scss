@@ -1,3 +1,8 @@
+/deep/ .nb-theme-corporate nb-toast.success {
+  border-color: #5dcfe3;
+  color: white;
+  background: #3ab8e8;
+}
 .form__group:not(:last-child) {
   margin-bottom: 2rem;
 }
@@ -12,7 +17,7 @@
   border-bottom: 3px solid transparent;
   width: 90%;
   display: block;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .form__input:focus {
@@ -33,9 +38,9 @@
   font-size: 1.2rem;
   font-weight: 700;
   margin-left: 2rem;
-  margin-top: .7rem;
+  margin-top: 0.7rem;
   display: block;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .form__input:placeholder-shown + .form__label {
@@ -68,7 +73,7 @@
   display: inline-block;
   position: absolute;
   left: 0;
-  top: -.4rem;
+  top: -0.4rem;
 }
 
 .form__radio-button::after {
@@ -82,7 +87,7 @@
   transform: translate(-50%, -50%);
   background-color: #fff;
   opacity: 0;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
@@ -115,7 +120,8 @@ input {
   padding: 10px;
 }
 
-input:focus + span, input:not(:placeholder-shown) + span {
+input:focus + span,
+input:not(:placeholder-shown) + span {
   opacity: 1;
   transform: scale(0.75) translateY(-100%) translateX(-30px);
 }
@@ -125,7 +131,8 @@ input:placeholder-shown + span {
 }
 
 /* For IE Browsers*/
-input:focus + span, input:not(:-ms-input-placeholder) + span {
+input:focus + span,
+input:not(:-ms-input-placeholder) + span {
   opacity: 1;
   transform: scale(0.75) translateY(-100%) translateX(-30px);
 }

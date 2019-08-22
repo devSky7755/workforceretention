@@ -9,9 +9,7 @@
       <div class="container container-rq text-left mt-5">
         <div class="text-center">
           <h2 style="color: #000;">Get an estimate of the cost</h2>
-          <h5 style="color: #000; font-weight: 600; max-width: 700px; margin: 30px auto 50px;"><i>As we provide flexible
-              options to suit each business, please provide us with some details and preferences to suit your business.
-              This will help get you started.</i>
+          <h5 style="color: #000; font-weight: 600; max-width: 700px; margin: 30px auto 50px;"><i>As we provide flexible options to suit each business, please submit some details and preferences below to help us get started on some pricing options for you. </i>
           </h5>
         </div>
         <form [formGroup]="quoteForm" class="mt-4">
@@ -96,38 +94,9 @@
                 </div>
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-sm-4 col-form-label">Confidential Program</label>
-              <div class="col-sm-8">
-                <div class="form__group u-margin-bottom-medium">
-                  <div class="form__radio-group" style="width: 120px; margin-left: calc(50% - 120px);">
-                    <input type="radio" name="confidential" class="form__radio-input" value=1
-                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.confidential" id="confidential-on">
-                    <label for="confidential-on" class="form__radio-label">
-                      <span class="form__radio-button"></span>
-                      Yes
-                    </label>
-                  </div>
-                  <div class="form__radio-group" style="width: 120px;">
-                    <input type="radio" name="confidential" class="form__radio-input" value=0 checked
-                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.confidential" id="confidential-off">
-                    <label for="confidential-off" class="form__radio-label">
-                      <span class="form__radio-button"></span>
-                      No
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div class="text-center mt-5">
-            <div class="row mt-4">
-              <div class="col-sm-9"></div>
-              <div class="col-sm-3" style="color: black; font-weight: bold;">
-                Quote required?
-              </div>
-            </div>
             <div class="row mt-3">
               <div class="col-sm-9 text-left">
                 <div class="f-option-label">License to Workforce Retentions Exit Interview Platform <i
@@ -287,6 +256,33 @@
                       [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.exit_report_status"
                       id="exit-report-status-off">
                     <label for="exit-report-status-off" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-sm-9 text-left">
+                <div class="f-option-label">
+                  Confidential Program
+                </div>
+              </div>
+              <div class="col-sm-3 mt-2">
+                <div class="form__group u-margin-bottom-medium">
+                  <div class="form__radio-group">
+                    <input type="radio" name="confidential" class="form__radio-input" value=1
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.confidential" id="confidential-on">
+                    <label for="confidential-on" class="form__radio-label">
+                      <span class="form__radio-button"></span>
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form__radio-group">
+                    <input type="radio" name="confidential" class="form__radio-input" value=0 checked
+                      [ngModelOptions]="{standalone: true}" [(ngModel)]="quote.confidential" id="confidential-off">
+                    <label for="confidential-off" class="form__radio-label">
                       <span class="form__radio-button"></span>
                       No
                     </label>

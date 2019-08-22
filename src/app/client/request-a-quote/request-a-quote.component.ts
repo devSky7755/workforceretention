@@ -78,7 +78,7 @@ export class RequestAQuoteComponent implements OnInit {
 
     this.requestAQuoteService.submitQuotation(param).subscribe(
       data => {
-        alert('The quotation was sent successfully.')
+        alert('Your request for a quote has been sent.')
       },
       err => {
         console.log(err);

@@ -16,6 +16,7 @@ import { ManagerReportPdfComponent } from "./manager-report-pdf/manager-report-p
 import { FlexibleOptionsComponent } from "./flexible-options/flexible-options.component";
 import { AboutComponent } from "./about/about.component";
 import { RequestAQuoteComponent } from './request-a-quote/request-a-quote.component'
+import { PrivacyComponent } from "./privacy/privacy.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
     { path: 'manager-report-pdf', component: ManagerReportPdfComponent },
     { path: 'flexible-options', component: FlexibleOptionsComponent },
     { path: 'about-us', component: AboutComponent },
+    { path: 'privacy', component: PrivacyComponent },
     { path: 'request-a-quote', component: RequestAQuoteComponent },
 ];
 

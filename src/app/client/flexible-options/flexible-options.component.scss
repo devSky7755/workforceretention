@@ -86,7 +86,9 @@ li {
   }
 
   .fo-description {
-    max-width: 800px;
+    max-width: 720px;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
     margin: auto;
   }
 
@@ -111,33 +113,36 @@ li {
     }
     .fo-option-subtitle1 {
       padding: 20px 0;
-      font-size: 12px;
+      font-size: 1.1rem;
+      line-height: 1.5rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.4);
       position: relative;
-      height: 86px;
+      height: 100px;
     }
     .fo-option-title2 {
       padding: 15px 0;
-      font-size: 18px;
+      font-size: 1.5rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.4);
     }
     .fo-option-list1 {
       padding: 30px 0 20px;
       text-align: left;
-      font-size: 13px;
+      font-size: 1.2rem;
       border-bottom: 1px solid rgba(0, 0, 0, 0.4);
       height: 225px;
       ul li {
-        line-height: 20px;
+        line-height: 1.5rem;
+        font-size: 1rem;
       }
     }
     .fo-option-list2 {
       padding: 30px 0 20px;
       text-align: left;
-      font-size: 13px;
-      height: 144px;
+      font-size: 1.2rem;
+      height: 150px;
       ul li {
-        line-height: 20px;
+        line-height: 1.5rem;
+        font-size: 1rem;
       }
     }
     .fo-option-view-ex {
@@ -168,10 +173,9 @@ li {
       position: absolute;
       background: #4db0e8;
       width: calc(100% - 30px);
-      top: 40px;
+      top: 70px;
       left: 15px;
       font-size: 16px;
-      cursor: pointer;
     }
   }
   .fo-license {
@@ -196,23 +200,55 @@ li {
     margin-top: 90px;
     padding: 50px 20px;
     background: #f1f1f1;
-    height: 350px;
     border-radius: 2px;
   }
+}
+
+.btn-quote {
+  margin-top: 50px;
+  width: 345px;
+  border-radius: 5px;
+  cursor: pointer !important;
 }
 /*
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
 */
+@media (min-width: 1400px) and (max-width: 1599px) {
+  .btn-quote {
+    width: 300px !important;
+  }
 
-@media (min-width: 1200px) and (max-width: 1399px) {
+  .fo-option-subtitle1 {
+    height: 120px !important;
+  }
   .fo-option-list2 {
-    height: 180px !important;
+    height: 195px !important;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .fo-option-subtitle1 {
+    height: 130px !important;
+  }
+  .fo-option-list2 {
+    height: 220px !important;
+  }
+  .btn-quote {
+    width: 255px !important;
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
+  .fo-option-subtitle1 {
+    height: 140px !important;
+  }
+  .fo-option-list1 {
+    height: 272px !important;
+  }
   .fo-option-list2 {
-    height: 180px !important;
+    height: 230px !important;
+  }
+  .btn-quote {
+    width: 210px !important;
   }
 }
 @media (min-width: 768px) and (max-width: 992px) {
@@ -221,6 +257,9 @@ li {
   }
   .fo-title-bottom {
     width: 80% !important;
+  }
+  .btn-quote {
+    width: 330px !important;
   }
 }
 
@@ -231,7 +270,8 @@ li {
   .fo-option-extra {
     top: 20px !important;
   }
-  .fo-phone-with-platform {
+  .fo-phone-with-platform,
+  .fo-phone-analysis-reporting {
     margin-top: 80px !important;
     .fo-option-extra {
       top: 50px !important;
@@ -242,6 +282,12 @@ li {
   }
 }
 
+@media (max-width: 575px) {
+  .btn-quote {
+    width: 250px !important;
+  }
+}
+
 @media (max-width: 480px) {
   .fo-option-panel {
     margin-top: 50px !important;
@@ -249,7 +295,8 @@ li {
   .fo-option-extra {
     top: 20px !important;
   }
-  .fo-phone-with-platform {
+  .fo-phone-with-platform,
+  .fo-phone-analysis-reporting {
     margin-top: 80px !important;
     .fo-option-extra {
       top: 50px !important;

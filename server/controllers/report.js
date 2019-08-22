@@ -186,10 +186,12 @@ exports.ManagerReport = (req, res, next) => {
                         filtered_employees = filtered_employees.filter(e => e.surveys[0].completed === true); // this will filter all the employees who have completed the survey
                         // also filter the employees by completed survey start_date and end_date
                         if (!IsNullOrEmpty(start_date) && start_date !== '') {
-                            filtered_employees = filtered_employees.filter(e => e.surveys[0].start_date >= new Date(start_date));
+                            // filtered_employees = filtered_employees.filter(e => e.surveys[0].start_date >= new Date(start_date));
+                            filtered_employees = filtered_employees.filter(e => e.exit_date >= new Date(start_date));
                         }
                         if (!IsNullOrEmpty(end_date) && end_date !== '') {
-                            filtered_employees = filtered_employees.filter(e => e.surveys[0].end_date <= new Date(end_date));
+                            // filtered_employees = filtered_employees.filter(e => e.surveys[0].end_date <= new Date(end_date));
+                            filtered_employees = filtered_employees.filter(e => e.exit_date <= new Date(end_date));
                         }
                         // filter the employees by tenure
                         // tenures = [
@@ -747,7 +749,10 @@ exports.DataOutput = (req, res, next) => {
                     if (filter_data.start_date !== null && filter_data.end_date !== null) {
                         let start_date = new Date(filter_data.start_date);
                         let end_date = new Date(filter_data.end_date);
-                        if (employee.surveys[0].start_date >= start_date && employee.surveys[0].end_date <= end_date) {
+                        // if (employee.surveys[0].start_date >= start_date && employee.surveys[0].end_date <= end_date) {
+                        //     filtered_employees.push(employee);
+                        // }
+                        if (employee.exit_date >= start_date && employee.exit_date <= end_date) {
                             filtered_employees.push(employee);
                         }
                     }
@@ -755,7 +760,10 @@ exports.DataOutput = (req, res, next) => {
                         if (filter_data.end_date !== null) {
                             // convert the date string to date
                             let end_date = new Date(filter_data.end_date);
-                            if (employee.surveys[0].end_date <= end_date) {
+                            // if (employee.surveys[0].end_date <= end_date) {
+                            //     filtered_employees.push(employee);
+                            // }
+                            if (employee.exit_date <= end_date) {
                                 filtered_employees.push(employee);
                             }
                         }
@@ -765,7 +773,10 @@ exports.DataOutput = (req, res, next) => {
                             // convert the date string to date
                             let start_date = new Date(filter_data.start_date);
                             // then check if the date is inside the range
-                            if (employee.surveys[0].start_date >= start_date) {
+                            // if (employee.surveys[0].start_date >= start_date) {
+                            //     filtered_employees.push(employee);
+                            // }
+                            if (employee.exit_date >= start_date) {
                                 filtered_employees.push(employee);
                             }
                         }

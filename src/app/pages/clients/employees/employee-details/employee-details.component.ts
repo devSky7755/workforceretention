@@ -18,6 +18,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     @Input() clientId: string;
     @Output() editSurvey = new EventEmitter();
     employee;
+    employeeName;
     surveyId;
     employeeSurvey;
     surveyCompleted = false;
@@ -46,7 +47,8 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 surveyId: this.surveyId,
                 surveyCompleted: this.surveyCompleted,
                 employeeId: this.employeeId,
-                surveyStatus: this.surveyStatus
+                surveyStatus: this.surveyStatus,
+                employeeName: this.employeeName
             });
         }
     }
@@ -123,7 +125,8 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                     surveyId: this.surveyId,
                     surveyCompleted: this.surveyCompleted,
                     employeeId: this.employeeId,
-                    surveyStatus: this.surveyStatus
+                    surveyStatus: this.surveyStatus,
+                    employeeName: this.employeeName
                 });
             });
     }
@@ -136,6 +139,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 this.surveyId = this.employee.surveys[0].survey;
                 this.surveyCompleted = this.employee.surveys[0].completed;
                 this.employeeSurvey = this.employee.surveys[0];
+                this.employeeName = (this.employee.first_name ? this.employee.first_name : "") + " " + (this.employee.last_name ? this.employee.last_name : "")
                 this.surveyStatus = this.employee.surveys[0].completed ? "Completed" : this.employee.surveys[0].start_date ? "In Progress" : "Not Started"
             }
             if (this.employee.organization) {

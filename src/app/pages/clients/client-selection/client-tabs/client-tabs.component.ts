@@ -19,6 +19,7 @@ export class ClientTabsComponent implements OnInit {
     departmentId;
     surveyCompleted;
     surveyStatus;
+    employeeName;
     surveyId;
 
     //IS ADD EDIT Variable is used to display the Form for editing
@@ -175,6 +176,7 @@ export class ClientTabsComponent implements OnInit {
         this.surveyId = event.surveyId;
         this.surveyCompleted = event.surveyCompleted;
         this.surveyStatus = event.surveyStatus;
+        this.employeeName = event.employeeName;
         this.isAddEmployee = false;
         this.isShowEmployeeSurvey = true;
         this.isShowEmployeeTable = false;

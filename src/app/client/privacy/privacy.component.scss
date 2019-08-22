@@ -31,7 +31,7 @@ nb-card:hover {
 }
 
 .alert-danger {
-  //   background: rgba(0, 0, 0, 0.4) !important;
+  // background: rgba(0, 0, 0, 0.4) !important;
   color: red;
 }
 
@@ -59,27 +59,29 @@ nb-layout-column {
   width: 100%;
   height: 450px;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("assets/images/AdobeStock_261253784.jpeg");
-  background-position: center top;
+    url("assets/images/privacy.jpeg");
+  background-position: right center;
   position: relative;
   padding-bottom: 20px;
-  background-position: 0% 50%;
 }
 
-/deep/ .container-rq {
-  // max-width: 1140px !important;
+/deep/ .container {
+  max-width: 1140px;
+}
+.p-text {
+  font-size: 1.2rem;
+  line-height: 1.7rem;
+  color: black;
 }
 
 .image-text {
   position: absolute;
   font-size: 48px;
+  background-color: transparent;
   font-family: "Nunito", sans-serif;
   top: calc(50% - 30px);
-  right: 20%;
-  color: #1668a8;
-  background: rgba(255, 255, 255, 0.64);
-  padding: 10px 20px;
-  font-weight: 600;
+  left: 10%;
+  color: #ffffff;
 }
 
 .section-div {
@@ -109,89 +111,8 @@ nb-layout-column {
   }
   .container-fluid {
     background-position: left;
-    height: 300px;
   }
   .image-text {
     font-size: 30px;
-    right: auto !important;
   }
-}
-
-.form-container-captcha {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.form__radio-group {
-  width: 50%;
-  display: inline-block;
-}
-
-.form__radio-label {
-  font-size: 1rem;
-  cursor: pointer;
-  position: relative;
-  padding-left: 3rem;
-}
-
-.form__radio-input {
-  display: none;
-}
-
-.form__radio-button {
-  height: 2rem;
-  width: 2rem;
-  border: 5px solid #00d977;
-  border-radius: 50%;
-  display: inline-block;
-  position: absolute;
-  left: 0;
-  top: -0.4rem;
-}
-
-.form__radio-button::after {
-  content: "";
-  height: 1rem;
-  width: 1rem;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-
-.form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
-  opacity: 1;
-}
-
-.f-option-label {
-  color: black;
-  font-weight: bold;
-  margin-bottom: 3px;
-  border-left: 3px solid #4db0e8;
-  padding-left: 10px;
-}
-
-.f-option-popover {
-  color: black;
-  padding: 10px;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-  color: #0a3f54;
-}
-
-/deep/ ::ng-deep .nb-theme-corporate nb-popover {
-  border: 2px solid #4db0e8 !important;
-}
-
-/deep/ ::ng-deep .nb-theme-corporate nb-popover .arrow {
-  border-bottom: 11px solid #4db0e8 !important;
 }

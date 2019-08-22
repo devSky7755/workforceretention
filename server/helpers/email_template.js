@@ -98,25 +98,15 @@ exports.QuotationEmailTemplate = {
         <div style="margin-bottom: 10px;">
             Workforce Size: [workforce_size-val]
         </div>
-        <div style="margin-bottom: 10px;">
+        <div style="margin-bottom: 40px;">
             Current Employee Turnover ( approx ): [cur_employee_turnover-val]
-        </div>
-        <div style="margin-bottom: 40px;"> 
-            [confidential]
-        </div>
-
-        <div style="margin-bottom: 10px;">
-            <div style="width:60%; float:left; height: 30px;">
-            </div> 
-            <div style="width: 40%; text-align:center; float:left;">
-                <b>Quote required?</b>
-            </div> 
         </div>
         
         [license_required_status]
         [phone_interview_with_platform_status]
         [phone_interview_without_platform_status]
         [exit_report_status]
+        [confidential]
     `
 };
 

@@ -10,15 +10,6 @@
             <div class="col-lg-10">
                 <!--Reactive Form-->
                 <form (ngSubmit)="createEmployee()" [formGroup]="employeeForm" aria-labelledby="title">
-                    <div class="alert alert-danger" role="alert"
-                         *ngIf="errorMessage && !successMessage">
-                        {{errorMessage}}
-                    </div>
-                    <div class="alert alert-success" role="alert"
-                         *ngIf="successMessage && !errorMessage">
-                        {{successMessage}}
-                    </div>
-
                     <!--FIRST NAME-->
                     <!--LAST NAME-->
                     <div class="row full-name-inputs">
@@ -26,13 +17,13 @@
                             <div class="form-group">
                                 <div class="input-label">
                                     <input type="text" class="form-control" formControlName="firstName"
-                                           name="user-first-name" nbInput fullWidth
-                                           placeholder="First Name *" [(ngModel)]="employee.first_name">
+                                        name="user-first-name" nbInput fullWidth placeholder="First Name *"
+                                        [(ngModel)]="employee.first_name">
                                     <span>First Name *</span>
                                 </div>
                                 <!--Register Error Here-->
                                 <div class="alert alert-danger" role="alert"
-                                     *ngIf="get('firstName').touched && get('firstName').invalid">
+                                    *ngIf="get('firstName').touched && get('firstName').invalid">
                                     FirstName is required
                                 </div>
                             </div>
@@ -41,13 +32,13 @@
                             <div class="form-group">
                                 <div class="input-label">
                                     <input type="text" formControlName="lastName" name="user-last-name"
-                                           class="form-control" nbInput fullWidth
-                                           placeholder="Last Name" [(ngModel)]="employee.last_name">
+                                        class="form-control" nbInput fullWidth placeholder="Last Name"
+                                        [(ngModel)]="employee.last_name">
                                     <span>Last Name *</span>
                                 </div>
                                 <!--Register Error Here-->
                                 <div class="alert alert-danger" role="alert"
-                                     *ngIf="get('lastName').touched && get('lastName').invalid">
+                                    *ngIf="get('lastName').touched && get('lastName').invalid">
                                     LastName is required
                                 </div>
                             </div>
@@ -58,13 +49,12 @@
                     <div class="form-group">
                         <div class="input-label">
                             <input type="text" class="form-control" formControlName="username" name="username"
-                                   placeholder="Username *" [disabled]="true"
-                                   [(ngModel)]="employee.username">
+                                placeholder="Username *" [disabled]="true" [(ngModel)]="employee.username">
                             <span>Username *</span>
                         </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
-                             *ngIf="get('username').touched && get('username').invalid">
+                            *ngIf="get('username').touched && get('username').invalid">
                             <div *ngIf="get('username').errors.required"> Username is required</div>
                         </div>
                     </div>
@@ -73,13 +63,12 @@
                     <div class="form-group">
                         <div class="input-label">
                             <input type="email" class="form-control" formControlName="email" name="user-email"
-                                   placeholder="Email Address" [disabled]="true"
-                                   [(ngModel)]="employee.email">
+                                placeholder="Email Address" [disabled]="true" [(ngModel)]="employee.email">
                             <span>Email Address</span>
                         </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
-                             *ngIf="get('email').touched && get('email').invalid">
+                            *ngIf="get('email').touched && get('email').invalid">
                             <div *ngIf="get('email').errors.required"> Email is required</div>
                             <div *ngIf="get('email').errors.pattern">Invalid email address</div>
                         </div>
@@ -90,7 +79,7 @@
                         <label style="padding-top: 5px;padding-right: 20px">Employee Gender *</label>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="gender"
-                                   [(ngModel)]="employee.gender" value="Male" id="employee-gender-male">
+                                [(ngModel)]="employee.gender" value="Male" id="employee-gender-male">
                             <label for="employee-gender-male" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Male
@@ -98,7 +87,7 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="gender"
-                                   [(ngModel)]="employee.gender" value="Female" id="employee-gender-female">
+                                [(ngModel)]="employee.gender" value="Female" id="employee-gender-female">
                             <label for="employee-gender-female" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Female
@@ -110,9 +99,8 @@
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
                         <div class="input-label">
-                            <input nbInput fullWidth formControlName="birth_date"
-                                   placeholder="Date of Birth"
-                                   [nbDatepicker]="birthPicker" [(ngModel)]="employee.birth_date">
+                            <input nbInput fullWidth formControlName="birth_date" placeholder="Date of Birth"
+                                [nbDatepicker]="birthPicker" [(ngModel)]="employee.birth_date">
                             <span>Date of Birth *</span>
                         </div>
                         <nb-datepicker #birthPicker></nb-datepicker>
@@ -121,9 +109,8 @@
                     <!--Work Phone-->
                     <div class="form-group">
                         <div class="input-label">
-                            <input type="text" formControlName="work_phone"
-                                   class="form-control" nbInput fullWidth
-                                   placeholder="Work Phone" [(ngModel)]="employee.work_phone">
+                            <input type="text" formControlName="work_phone" class="form-control" nbInput fullWidth
+                                placeholder="Work Phone" [(ngModel)]="employee.work_phone">
                             <span>Work Phone</span>
                         </div>
                     </div>
@@ -131,9 +118,8 @@
                     <!--Mobile Phone-->
                     <div class="form-group">
                         <div class="input-label">
-                            <input type="text" formControlName="mobile_phone"
-                                   class="form-control" nbInput fullWidth
-                                   placeholder="Mobile Phone" [(ngModel)]="employee.mobile_phone">
+                            <input type="text" formControlName="mobile_phone" class="form-control" nbInput fullWidth
+                                placeholder="Mobile Phone" [(ngModel)]="employee.mobile_phone">
                             <span>Mobile Phone</span>
                         </div>
                     </div>
@@ -142,13 +128,12 @@
                     <div class="form-group">
                         <div class="input-label">
                             <input type="text" class="form-control" formControlName="position" name="position"
-                                   placeholder="Position *" [disabled]="true"
-                                   [(ngModel)]="employee.position">
+                                placeholder="Position *" [disabled]="true" [(ngModel)]="employee.position">
                             <span>Position *</span>
                         </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
-                             *ngIf="get('position').touched && get('position').invalid">
+                            *ngIf="get('position').touched && get('position').invalid">
                             <div *ngIf="get('position').errors.required"> Email is required</div>
                         </div>
                     </div>
@@ -156,15 +141,15 @@
                     <!--ORGANIZATION LEVEL-->
                     <div class="form-group">
                         <select class="form-control" formControlName="organization" [(ngModel)]="employee.organization"
-                                name="user-role">
+                            name="user-role">
                             <option value="">Select Organization</option>
                             <option *ngFor="let organization of organizations_divisions_departments"
-                                    value="{{organization.id}}">
+                                value="{{organization.id}}">
                                 {{organization.name}}</option>
                         </select>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
-                             *ngIf="get('organization').touched && get('organization').invalid">
+                            *ngIf="get('organization').touched && get('organization').invalid">
                             Organization is required
                         </div>
                     </div>
@@ -172,15 +157,13 @@
                     <!--occupational_group-->
                     <div class="form-group">
                         <select class="form-control" formControlName="occupational_group"
-                                [(ngModel)]="employee.occupational_group"
-                                name="user-role">
+                            [(ngModel)]="employee.occupational_group" name="user-role">
                             <option value="">Select Occupational Group *</option>
-                            <option *ngFor="let occ of occupations"
-                                    value="{{occ.id}}">{{occ.value}}</option>
+                            <option *ngFor="let occ of occupations" value="{{occ.id}}">{{occ.value}}</option>
                         </select>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
-                             *ngIf="get('occupational_group').touched && get('occupational_group').invalid">
+                            *ngIf="get('occupational_group').touched && get('occupational_group').invalid">
                             Occupational Group is required *
                         </div>
                     </div>
@@ -188,9 +171,8 @@
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
                         <div class="input-label">
-                            <input nbInput fullWidth formControlName="hire_date"
-                                   placeholder="Hire Date"
-                                   [nbDatepicker]="hireDatePicker">
+                            <input nbInput fullWidth formControlName="hire_date" placeholder="Hire Date"
+                                [nbDatepicker]="hireDatePicker">
                             <span>Hire Date</span>
                         </div>
                         <nb-datepicker #hireDatePicker></nb-datepicker>
@@ -200,9 +182,8 @@
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
                         <div class="input-label">
-                            <input nbInput fullWidth formControlName="resignation_date"
-                                   placeholder="Resignation Date"
-                                   [nbDatepicker]="resignationDatePicker" [(ngModel)]="employee.resignation_date">
+                            <input nbInput fullWidth formControlName="resignation_date" placeholder="Resignation Date"
+                                [nbDatepicker]="resignationDatePicker" [(ngModel)]="employee.resignation_date">
                             <span>Resignation Date</span>
                         </div>
                         <nb-datepicker #resignationDatePicker></nb-datepicker>
@@ -212,9 +193,8 @@
                     <div class="form-group">
                         <!--<nb-card-header>Common Datepicker</nb-card-header>-->
                         <div class="input-label">
-                            <input nbInput fullWidth formControlName="exit_date"
-                                   placeholder="Exit Date"
-                                   [nbDatepicker]="exitDatePicker" [(ngModel)]="employee.exit_date">
+                            <input nbInput fullWidth formControlName="exit_date" placeholder="Exit Date"
+                                [nbDatepicker]="exitDatePicker" [(ngModel)]="employee.exit_date">
                             <span>Exit Date</span>
                         </div>
                         <nb-datepicker #exitDatePicker></nb-datepicker>
@@ -225,7 +205,7 @@
                         <label style="padding-top: 5px;padding-right: 30px">Employee Active *</label>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_active" value="1"
-                                   id="employee-active-yes">
+                                id="employee-active-yes">
                             <label for="employee-active-yes" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Yes
@@ -233,7 +213,7 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_active" value="0"
-                                   id="employee-active-no">
+                                id="employee-active-no">
                             <label for="employee-active-no" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 No
@@ -246,8 +226,7 @@
                         <label style="padding-top: 5px;padding-right: 42px">Level Manager *</label>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_manager"
-                                   (change)="onChangeManager()" value="1"
-                                   id="level-manager-yes">
+                                (change)="onChangeManager()" value="1" id="level-manager-yes">
                             <label for="level-manager-yes" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Yes
@@ -255,8 +234,7 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_manager"
-                                   (change)="onChangeManager()" value="0"
-                                   id="level-manager-no">
+                                (change)="onChangeManager()" value="0" id="level-manager-no">
                             <label for="level-manager-no" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 No
@@ -269,7 +247,7 @@
                         <label style="padding-top: 5px;padding-right: 47px">Full Reporting *</label>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_report" value="1"
-                                   id="full-reporting-yes">
+                                id="full-reporting-yes">
                             <label for="full-reporting-yes" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Yes
@@ -277,7 +255,7 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_report" value="0"
-                                   id="full-reporting-no">
+                                id="full-reporting-no">
                             <label for="full-reporting-no" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 No
@@ -290,7 +268,7 @@
                         <label style="padding-top: 5px;padding-right: 20px">Employee Surveys *</label>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_survey" value="1"
-                                   id="employee-surveys-yes">
+                                id="employee-surveys-yes">
                             <label for="employee-surveys-yes" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Yes
@@ -298,7 +276,7 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_survey" value="0"
-                                   id="employee-surveys-no">
+                                id="employee-surveys-no">
                             <label for="employee-surveys-no" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 No
@@ -311,7 +289,7 @@
                         <label style="padding-top: 5px;padding-right: 62px">Online User *</label>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_online" value="1"
-                                   id="online-user-yes">
+                                id="online-user-yes">
                             <label for="online-user-yes" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 Yes
@@ -319,7 +297,7 @@
                         </div>
                         <div class="form__radio-group">
                             <input type="radio" class="form__radio-input" formControlName="is_online" value="0"
-                                   id="online-user-no">
+                                id="online-user-no">
                             <label for="online-user-no" class="form__radio-label">
                                 <span class="form__radio-button"></span>
                                 No
@@ -333,6 +311,12 @@
                         </button>
                     </div>
 
+                    <div class="alert alert-danger my-3" role="alert" *ngIf="errorMessage && !successMessage">
+                        {{errorMessage}}
+                    </div>
+                    <div class="alert alert-success my-3" role="alert" *ngIf="successMessage && !errorMessage">
+                        {{successMessage}}
+                    </div>
 
                     <div class="text-center">
                         <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-success">

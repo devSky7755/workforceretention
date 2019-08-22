@@ -14,6 +14,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     @Input() surveyId: string;
     @Input() clientId: string;
     @Input() employeeId: string;
+    @Input() employeeName: string;
     @Input() surveyCompleted: string;
     @Input() surveyStatus: string;
 
@@ -426,6 +427,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
 
         this.surveyId = changes.surveyId.currentValue;
         this.employeeId = changes.employeeId.currentValue;
+        this.employeeName = changes.employeeName.currentValue;
         this.clientId = changes.clientId.currentValue;
         this.surveyCompleted = changes.surveyCompleted.currentValue;
         this.surveyStatus = changes.surveyStatus.currentValue;
