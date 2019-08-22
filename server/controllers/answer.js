@@ -26,7 +26,7 @@ exports.Create = function (req, res, next) {
         Question.findById(questionId, (err, question) => {
             if (err) return next(err);
             if (!question) {
-                return res.status(404).json({status: false, message: 'No employee found!'})
+                return res.status(404).json({ status: false, message: 'No employee found!' })
             }
             const answer = new Answer(data);
             answer.save().then(answer => {
@@ -49,6 +49,7 @@ exports.CreateMany = (req, res, next) => {
     let data = req.body;
     let surveyId = req.query.surveyId;
     let employeeId = req.query.employeeId;
+    let isComplete = req.query.isComplete;
     // after save the answer
     // mark the survey as complete
     let questions = [];
@@ -70,7 +71,7 @@ exports.CreateMany = (req, res, next) => {
                 answers.push(answer._id)
             });
 
-            Question.find({'_id': {$in: questions}}, function (err, question_docs) {
+            Question.find({ '_id': { $in: questions } }, function (err, question_docs) {
                 if (err) return next(err);
 
                 question_docs.forEach((question, index) => {
@@ -82,21 +83,27 @@ exports.CreateMany = (req, res, next) => {
                 employee.surveys.forEach((employee_survey) => {
                     surveyId = mongoose.Types.ObjectId(surveyId);
                     if (employee_survey.survey.equals(surveyId)) {
-                        employee_survey.completed = true;
+                        employee_survey.completed = isComplete == 1 ? true : false;
                         // here we also need to update the employee survey end_date
-                        employee_survey.end_date = data.end_date;
-                        employee_survey.completed_online = data.completed_online;
-                        employee_survey.completed_admin = data.completed_admin;
+                        // var aestTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
+                        employee_survey.end_date = isComplete == 1 ? new Date() : null;
+                        employee_survey.completed_online = isComplete == 1 ? data.completed_online : 'No';
+                        employee_survey.completed_admin = isComplete == 1 ? data.completed_admin : 'No';
                     }
                 });
                 employee.save().then(() => {
-                    res.json({message: "Exit Interview submitted successfully", success: true})
+                    res.json({ message: "Exit Interview submitted successfully", success: true })
                 })
             })
         });
     });
 };
 exports.UpdateAnswers = (req, res, next) => {
+    let surveyId = req.query.surveyId;
+    let isComplete = req.query.isComplete;
+    let employeeId = req.query.employeeId;
+    let isOnline = req.query.isOnline;
+    let isAdmin = req.query.isAdmin;
     let data = req.body;
     let answer_ids = [];
     let new_answers = [];
@@ -106,13 +113,33 @@ exports.UpdateAnswers = (req, res, next) => {
     });
     // find out the answers by the answer ids
     updateNewAnswers(new_answers).then(() => {
-        Answer.find({'_id': {$in: answer_ids}}, function (err, answers) {
+        Answer.find({ '_id': { $in: answer_ids } }, function (err, answers) {
             if (err) return next(err);
             answers.forEach((answer) => {
                 answer.options = data.find(a => mongoose.Types.ObjectId(a.question).equals(answer.question)).options;
                 answer.save();
             });
-            res.json({success: true, message: "Exit Interview Updated"});
+            Employee.findById(employeeId, (err, employee) => {
+                if (err) return next(err);
+                employee.surveys.forEach((employee_survey) => {
+                    surveyId = mongoose.Types.ObjectId(surveyId);
+                    if (employee_survey.survey.equals(surveyId)) {
+                        employee_survey.completed = isComplete == 1 ? true : false;
+                        // here we also need to update the employee survey end_date
+                        // var aestTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
+                        employee_survey.end_date = isComplete == 1 ? new Date() : null;
+                        if (isOnline == 'Yes') {
+                            employee_survey.completed_online = isComplete == 1 ? isOnline : 'No';
+                        }
+                        if (isAdmin == 'Yes') {
+                            employee_survey.completed_admin = isComplete == 1 ? isAdmin : 'No';
+                        }
+                    }
+                });
+                employee.save().then(() => {
+                    res.json({ success: true, message: "Exit Interview Updated" });
+                })
+            });
         });
     });
 };
@@ -134,11 +161,11 @@ const updateNewAnswers = (new_answers) => {
                 let questions = [];
 
                 docs.forEach((answer) => {
-                    answers.push({id: answer._id, question: answer.question});
+                    answers.push({ id: answer._id, question: answer.question });
                     questions.push(answer.question);
                 });
 
-                Question.find({'_id': {$in: questions}}, function (err, question_docs) {
+                Question.find({ '_id': { $in: questions } }, function (err, question_docs) {
                     if (err) return next(err);
                     question_docs.forEach((question) => {
                         question.answers.push(answers.find(a => mongoose.Types.ObjectId(a.question).equals(question._id)).id);
@@ -169,10 +196,10 @@ exports.Find = (req, res, next) => {
                 .skip((currentPage - 1) * perPage)
                 .limit(perPage);
         }).then(answers => {
-        return res.status(200).json({success: true, answers, totalItems})
-    }).catch(err => {
-        next(err)
-    });
+            return res.status(200).json({ success: true, answers, totalItems })
+        }).catch(err => {
+            next(err)
+        });
 };
 
 exports.FindById = (req, res, next) => {
@@ -211,13 +238,13 @@ exports.Update = (req, res, next) => {
         data,
         // an option that asks mongoose to return the updated version
         // of the document instead of the pre-updated one.
-        {new: true},
+        { new: true },
 
         // the callback function
         (err, answer) => {
             // Handle any possible database errors
             if (err) return next(err);
-            if (!answer) return res.status(404).json({success: false, message: "Answer not found."});
+            if (!answer) return res.status(404).json({ success: false, message: "Answer not found." });
             return res.send({
                 "success": true,
                 "message": "Record updated successfully",
@@ -234,7 +261,7 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({id}, schema, (err, value) => {
+    Joi.validate({ id }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             res.status(422).json({
@@ -248,7 +275,7 @@ exports.Delete = (req, res, next) => {
         Answer.findByIdAndRemove(id, (err, answer) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!answer) return res.status(404).json({success: false, message: "Answer not found."});
+            if (!answer) return res.status(404).json({ success: false, message: "Answer not found." });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
             return res.send({
@@ -265,9 +292,9 @@ exports.Delete = (req, res, next) => {
 exports.FindEmployeeSurveyQuestionsAnswers = (req, res, next) => {
     let surveyId = req.query.surveyId;
     let employeeId = req.query.employeeId;
-    Answer.find({survey: surveyId, employee: employeeId}, (err, answers) => {
+    Answer.find({ survey: surveyId, employee: employeeId }, (err, answers) => {
         if (err) return next(err);
-        res.json({answers});
+        res.json({ answers });
     })
 };
 

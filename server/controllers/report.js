@@ -83,7 +83,6 @@ exports.ManagerReportDetails = (req, res, next) => {
                 });
                 if (err) return next(err);
                 if (employee.is_report === '0') {
-                    console.log(employee)
                     message = `${completedSurveys} surveys have been completed by Employees of organization ${employee.organization && employee.organization.name}`;
                 } else {
                     message = `${completedSurveys} surveys have been completed by Employees under client ${client.name}`;
@@ -710,7 +709,6 @@ exports.DataOutput = (req, res, next) => {
             headers.push({ id: 'survey_endtime', title: 'Survey EndTime' });
             headers.push({ id: 'completed_online', title: 'Completed Online' });
             headers.push({ id: 'completed_admin', title: 'Completed Admin' });
-            headers.push({ id: 'date_birth', title: 'Date of Birth' });
             headers.push({ id: 'last_completed_at', title: 'Last Completed Time' });
 
             let question_no = 0;
@@ -807,7 +805,6 @@ exports.DataOutput = (req, res, next) => {
                                 survey_endtime: employee.surveys[0].end_date == null ? '' : format_date(employee.surveys[0].end_date),
                                 completed_online: employee.surveys[0].completed_online,
                                 completed_admin: employee.surveys[0].completed_admin,
-                                date_birth: employee.date_of_birth == null ? '' : format_date(employee.date_of_birth),
                                 last_completed_at: !employee.surveys[0].completed_online || !employee.surveys[0].completed_admin || employee.surveys[0].end_date == null ? '' : format_date_time(employee.surveys[0].end_date),
                             };
                             let answers = [];
@@ -847,9 +844,9 @@ exports.DataOutput = (req, res, next) => {
                                     // ];
                                     // console.log(question.type);
                                     if (question.type === '1' && question.exit_reason !== '13') {
-                                        data_object[question_id] = survey.rating_labels[answer.options[0]];
+                                        data_object[question_id] = escapeSpecialChars(survey.rating_labels[answer.options[0]]);
                                     } else if (question.type === '2' && question.exit_reason !== '13') {
-                                        data_object[question_id] = answer.options[0];
+                                        data_object[question_id] = escapeSpecialChars(answer.options[0]);
                                     } else if (question.type === '3' && question.exit_reason !== '13') {
                                         let final_answer = '';
                                         let i = 0;
@@ -863,11 +860,11 @@ exports.DataOutput = (req, res, next) => {
                                                 })
                                             }
                                         });
-                                        data_object[question_id] = final_answer;
+                                        data_object[question_id] = escapeSpecialChars(final_answer);
                                     } else if (question.type === '4' && question.exit_reason !== '13') {
                                         data_object[question_id] = answer.options[0] === '1' ? 'Yes' : 'No';
                                     } else if (question.type === '5' && question.exit_reason !== '13') {
-                                        data_object[question_id] = question.options[answer.options[0]];
+                                        data_object[question_id] = escapeSpecialChars(question.options[answer.options[0]]);
                                     } else if (question.type === '6' && question.exit_reason !== '13') {
                                         let i = 0;
                                         let final_answer = '';
@@ -875,7 +872,7 @@ exports.DataOutput = (req, res, next) => {
                                             i++;
                                             final_answer += i + '. ' + question.options[option] + '\n';
                                         });
-                                        data_object[question_id] = final_answer;
+                                        data_object[question_id] = escapeSpecialChars(final_answer);
                                     } else if (question.exit_reason === '13') {
 
                                         let answer_one = answer.options[0].split('-');
@@ -893,7 +890,7 @@ exports.DataOutput = (req, res, next) => {
                                         } else {
                                             final_answer += '2nd choice ' + exit_reason_checkbox.find(ex => ex.id == answer_two[2]).value + '\n';
                                         }
-                                        data_object[question_id] = final_answer;
+                                        data_object[question_id] = escapeSpecialChars(final_answer);
                                     }
                                 }
                             });
@@ -950,7 +947,14 @@ exports.DownloadManagerReport = async (req, res) => {
     res.json({ fileName: fileName });
 };
 
+const escapeSpecialChars = (str) => {
+    str = str.replace(/’/g, "'")
+    return str
+}
+
 const format_date = (date) => {
+    date = new Date(date).toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
+    date = new Date(date)
     let dd = date.getDate();
     let mm = date.getMonth() + 1; //January is 0!
 
@@ -965,6 +969,8 @@ const format_date = (date) => {
 };
 
 const format_date_time = (date) => {
+    date = new Date(date).toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
+    date = new Date(date)
     let hh = date.getHours()
     let mi = date.getMinutes()
     let ss = date.getSeconds()

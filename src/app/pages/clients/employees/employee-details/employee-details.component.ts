@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {EmployeeService} from "../../../../@core/data/employee.service";
-import {OrganizationService} from "../../../../@core/data/organization.service";
-import {DivisionService} from "../../../../@core/data/division.service";
-import {DepartmentService} from "../../../../@core/data/department.service";
-import {Router} from "@angular/router";
-import {URLService} from "../../../../@core/data/url.service";
-import {SurveyService} from "../../../../@core/data/survey.service";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { EmployeeService } from "../../../../@core/data/employee.service";
+import { OrganizationService } from "../../../../@core/data/organization.service";
+import { DivisionService } from "../../../../@core/data/division.service";
+import { DepartmentService } from "../../../../@core/data/department.service";
+import { Router } from "@angular/router";
+import { URLService } from "../../../../@core/data/url.service";
+import { SurveyService } from "../../../../@core/data/survey.service";
 
 @Component({
     selector: 'ngx-employee-details',
@@ -21,14 +21,15 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     surveyId;
     employeeSurvey;
     surveyCompleted = false;
+    surveyStatus = 'Not Started'
 
     constructor(private employeeService: EmployeeService,
-                private organizationService: OrganizationService,
-                private divisionService: DivisionService,
-                private departmentService: DepartmentService,
-                private router: Router,
-                private urlService: URLService,
-                private surveyService: SurveyService) {
+        private organizationService: OrganizationService,
+        private divisionService: DivisionService,
+        private departmentService: DepartmentService,
+        private router: Router,
+        private urlService: URLService,
+        private surveyService: SurveyService) {
         this.employee = {};
     }
 
@@ -44,7 +45,8 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
             this.editSurvey.emit({
                 surveyId: this.surveyId,
                 surveyCompleted: this.surveyCompleted,
-                employeeId: this.employeeId
+                employeeId: this.employeeId,
+                surveyStatus: this.surveyStatus
             });
         }
     }
@@ -92,7 +94,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
         // we need to build a url with this employee details which we will send to the server
         const url = `/#/client/employee-survey?completed=${this.surveyCompleted}&employeeId=${this.employeeId}&surveyId=${this.surveyId}`;
         // window.open(url, '_blank');
-        this.surveyService.downloadCompletedSurvey({url}).subscribe(
+        this.surveyService.downloadCompletedSurvey({ url }).subscribe(
             res => {
                 // here we will get the name of the file
                 const fileName = res.fileName;
@@ -114,30 +116,32 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
         this.employeeSurvey.start_date = new Date();
         const employeeSurveys = [];
         employeeSurveys.push(this.employeeSurvey);
-        const employeeData = {surveys: employeeSurveys};
+        const employeeData = { surveys: employeeSurveys };
         this.employeeService.updateEmployee(employeeData, this.employee._id).subscribe(
             () => {
                 this.editSurvey.emit({
                     surveyId: this.surveyId,
                     surveyCompleted: this.surveyCompleted,
-                    employeeId: this.employeeId
+                    employeeId: this.employeeId,
+                    surveyStatus: this.surveyStatus
                 });
             });
     }
 
     getEmployee() {
         this.employeeService.getEmployee(this.employeeId).subscribe(data => {
-                //set the employee
-                this.employee = data.employee;
-                if (this.employee.surveys.length > 0) {
-                    this.surveyId = this.employee.surveys[0].survey;
-                    this.surveyCompleted = this.employee.surveys[0].completed;
-                    this.employeeSurvey = this.employee.surveys[0];
-                }
-                if (this.employee.organization) {
-                    this.getOrganization(this.employee.organization);
-                }
-            },
+            //set the employee
+            this.employee = data.employee;
+            if (this.employee.surveys.length > 0) {
+                this.surveyId = this.employee.surveys[0].survey;
+                this.surveyCompleted = this.employee.surveys[0].completed;
+                this.employeeSurvey = this.employee.surveys[0];
+                this.surveyStatus = this.employee.surveys[0].completed ? "Completed" : this.employee.surveys[0].start_date ? "In Progress" : "Not Started"
+            }
+            if (this.employee.organization) {
+                this.getOrganization(this.employee.organization);
+            }
+        },
             err => {
                 console.log(err);
             }

@@ -18,6 +18,7 @@ export class ClientTabsComponent implements OnInit {
     divisionId;
     departmentId;
     surveyCompleted;
+    surveyStatus;
     surveyId;
 
     //IS ADD EDIT Variable is used to display the Form for editing
@@ -35,6 +36,7 @@ export class ClientTabsComponent implements OnInit {
     isShowDivision = false;
     isShowDepartment = false;
     permission;
+    isSuperAdmin = false;
 
     constructor(private route: ActivatedRoute, private clientService: ClientService, private rolePermissionSerivce: RolePermissionService) {
         this.client = {};
@@ -172,6 +174,7 @@ export class ClientTabsComponent implements OnInit {
     editSurvey(event) {
         this.surveyId = event.surveyId;
         this.surveyCompleted = event.surveyCompleted;
+        this.surveyStatus = event.surveyStatus;
         this.isAddEmployee = false;
         this.isShowEmployeeSurvey = true;
         this.isShowEmployeeTable = false;
@@ -224,7 +227,10 @@ export class ClientTabsComponent implements OnInit {
     ngOnInit() {
         this.clientId = this.route.snapshot.paramMap.get('id');
         this.getClient();
+        let officePermssion = this.rolePermissionSerivce.getRolePermission('Office Admin')
+        this.isSuperAdmin = officePermssion && officePermssion.has_access && officePermssion.is_add && officePermssion.is_delete && officePermssion.is_update;
         this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
+        console.log(this.permission)
     }
 
     getClient() {

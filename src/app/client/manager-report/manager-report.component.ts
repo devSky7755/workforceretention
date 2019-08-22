@@ -35,8 +35,8 @@ export class ManagerReportComponent implements OnInit {
         { id: 8, value: 'Pay & Benefits' },
         { id: 9, value: 'Work Conditions' },
         { id: 10, value: 'Being Valued' },
-        { id: 11, value: 'Operational' },
-        { id: 12, value: 'Restructure' },
+        { id: 14, value: 'Operational' },
+        { id: 15, value: 'Restructure' },
     ];
     tenures = [
         { id: 1, value: "< 1 year" },

@@ -17,6 +17,17 @@
   overflow-y: scroll !important;
 }
 
+/deep/ .cdk-global-overlay-wrapper {
+  background: rgba(0, 0, 0, 0.2) !important;
+  .cdk-overlay-pane {
+    position: absolute !important;
+    top: 110px;
+    right: 110px;
+    .nb-card-header {
+      background: #eeeeee !important;
+    }
+  }
+}
 nb-layout-column {
   padding: 0 !important;
 }

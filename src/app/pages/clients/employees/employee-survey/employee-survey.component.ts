@@ -15,6 +15,8 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     @Input() clientId: string;
     @Input() employeeId: string;
     @Input() surveyCompleted: string;
+    @Input() surveyStatus: string;
+
     @Output() showEmployee = new EventEmitter();
     employee;
     questions = [];
@@ -25,6 +27,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     survey_types = [
         { id: 1, value: 'Exit Interview' }
     ];
+    is_complete_submit = 0;
     ratings = [
         { id: 2, value: '1-2' },
         { id: 3, value: '1-3' },
@@ -260,27 +263,25 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
             });
         });
         // save the answer to the database
-        if (errors.length > 0) {
-            alert('Please select an option for question -> ' + errors[0]);
+        if (errors.length == 0) {
+            // alert('Please select an option for question -> ' + errors[0]);
+            this.is_complete_submit = 1
+        }
+
+        this.question_answers.map((answer) => {
+            answer.employee = this.employeeId;
+            answer.survey = this.surveyId;
+        });
+
+        if (this.surveyStatus != "Not Started") {
+            this.updateQuestionAnswer();
         } else {
-            // this means no error
-            // send the answer to the server
-            // since here is list of answers server needs to handle list of answer
-            // foreach answer set the employee. so that in server we need to do less processing
-            this.question_answers.map((answer) => {
-                answer.employee = this.employeeId;
-                answer.survey = this.surveyId;
-            });
-            if (this.surveyCompleted) {
-                this.updateQuestionAnswer();
-            } else {
-                this.saveQuestionAnswer();
-            }
+            this.saveQuestionAnswer();
         }
     }
 
     saveQuestionAnswer() {
-        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employeeId, 'No', 'Yes').subscribe(
+        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employeeId, 'No', 'Yes', this.is_complete_submit).subscribe(
             () => {
                 alert('Exit interview submitted successfully');
                 this.showEmployee.emit();
@@ -296,7 +297,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
             answer.question_type = selected_question.question_type;
             answer.survey = selected_question.survey;
         });
-        this.answerService.updateManyAnswer(this.answers).subscribe(
+        this.answerService.updateManyAnswer(this.answers, this.surveyId, this.employeeId, 'No', 'Yes', this.is_complete_submit).subscribe(
             () => {
                 alert('Exit interview updated');
                 this.showEmployee.emit();
@@ -371,26 +372,31 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                                 const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
                                 const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
                                 // answer options will contain two values
-                                const first_choice = answer.options[0].split('-');
-                                const second_choice = answer.options[1].split('-');
-                                if (first_choice[0] == '1st') {
-                                    if (first_choice[2] == exit_reason.id) {
-                                        first_choice_radio_input.checked = true;
-                                    }
 
-                                } else {
-                                    if (first_choice[2] == exit_reason.id) {
-                                        second_choice_radio_input.checked = true;
+                                if (answer.options.length > 0) {
+                                    const first_choice = answer.options[0].split('-');
+                                    if (first_choice[0] == '1st') {
+                                        if (first_choice[2] == exit_reason.id) {
+                                            first_choice_radio_input.checked = true;
+                                        }
+
+                                    } else {
+                                        if (first_choice[2] == exit_reason.id) {
+                                            second_choice_radio_input.checked = true;
+                                        }
                                     }
                                 }
 
-                                if (second_choice[0] == '1st') {
-                                    if (second_choice[2] == exit_reason.id) {
-                                        first_choice_radio_input.checked = true;
-                                    }
-                                } else {
-                                    if (second_choice[2] == exit_reason.id) {
-                                        second_choice_radio_input.checked = true;
+                                if (answer.options.length > 1) {
+                                    const second_choice = answer.options[1].split('-');
+                                    if (second_choice[0] == '1st') {
+                                        if (second_choice[2] == exit_reason.id) {
+                                            first_choice_radio_input.checked = true;
+                                        }
+                                    } else {
+                                        if (second_choice[2] == exit_reason.id) {
+                                            second_choice_radio_input.checked = true;
+                                        }
                                     }
                                 }
                             }
@@ -422,12 +428,13 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
         this.employeeId = changes.employeeId.currentValue;
         this.clientId = changes.clientId.currentValue;
         this.surveyCompleted = changes.surveyCompleted.currentValue;
+        this.surveyStatus = changes.surveyStatus.currentValue;
         if (typeof this.surveyId !== 'undefined' && this.surveyId !== null) {
             this.getSurvey();
         }
         // here check if the survey was previously completed or not.
         // if the survey was previously completed then set the answer
-        if (this.surveyCompleted) {
+        if (this.surveyStatus != "Not Started") {
             const self = this;
             setTimeout(function () {
                 self.setQuestionAnswer();

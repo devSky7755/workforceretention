@@ -185,5 +185,16 @@
                 </div>
             </div>
         </section>
+        <ng-template #confirmDlg let-data let-ref="dialogRef">
+            <nb-card>
+                <nb-card-header>Would you like to submit your exit interview?</nb-card-header>
+                <nb-card-footer class="m">
+                    <div class="m-auto text-center">
+                        <button class="btn btn-outline-primary mr-2" (click)="confirmComplete(true)">Yes</button>
+                        <button class="btn btn-outline-info" (click)="confirmComplete(false)">No</button>
+                    </div>
+                </nb-card-footer>
+            </nb-card>
+        </ng-template>
     </nb-layout-column>
 </nb-layout>

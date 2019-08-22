@@ -11,7 +11,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { NbCardModule, NbDatepickerModule, NbLayoutModule, NbPopoverModule } from "@nebular/theme";
+import { NbCardModule, NbDatepickerModule, NbLayoutModule, NbPopoverModule, NbDialogModule  } from "@nebular/theme";
 import { PageNameComponent } from './page-name/page-name.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -72,7 +72,8 @@ import { RequestAQuoteComponent } from './request-a-quote/request-a-quote.compon
         RecaptchaFormsModule,
         SlickCarouselModule,
         FontAwesomeModule,
-        NbPopoverModule
+        NbPopoverModule,
+        NbDialogModule.forRoot(),
     ],
     providers: [{
         provide: RECAPTCHA_SETTINGS,
