@@ -60,7 +60,7 @@ exports.Create = function (req, res, next) {
                     user.clients.push(client);
                     user.save(); //This will return another promise
                 }).then(() => {
-                    //Here create The Client Email template for sending employee username and password
+                    //Here create The Client Email template for sending employee id and password
 
                     return res.status(200).send({
                         "success": true,

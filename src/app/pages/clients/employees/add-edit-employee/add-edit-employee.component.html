@@ -45,17 +45,18 @@
                         </div>
                     </div>
 
-                    <!--USERNAME-->
+                    <!--EMPLOYEE ID-->
                     <div class="form-group">
                         <div class="input-label">
-                            <input type="text" class="form-control" formControlName="username" name="username"
-                                placeholder="Username *" [disabled]="true" [(ngModel)]="employee.username">
-                            <span>Username *</span>
+                            <input type="text" class="form-control" formControlName="employee_id" name="employee_id"
+                                placeholder="Employee ID *" [disabled]="true" [(ngModel)]="employee.employee_id">
+                            <span>Employee ID *</span>
                         </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
-                            *ngIf="get('username').touched && get('username').invalid">
-                            <div *ngIf="get('username').errors.required"> Username is required</div>
+                            *ngIf="get('employee_id').touched && get('employee_id').invalid">
+                            <div *ngIf="get('employee_id').errors.required"> Employee ID is required</div>
+                            <div *ngIf="get('employee_id').errors.pattern"> Employee ID must be 6 to 32 alphanumeric characters </div>
                         </div>
                     </div>
 

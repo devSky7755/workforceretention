@@ -30,7 +30,7 @@
               <div class="form-group">
                 <!--<nb-card-header>Common Datepicker</nb-card-header>-->
                 <input nbInput fullWidth name="start-date"
-                       placeholder="Start Date" style="max-width: 550px"
+                       placeholder="From Exit Date" style="max-width: 550px"
                        [nbDatepicker]="startDatePicker" [(ngModel)]="filterData.start_date">
                 <nb-datepicker #startDatePicker></nb-datepicker>
               </div>
@@ -39,7 +39,7 @@
               <div class="form-group">
                 <!--<nb-card-header>Common Datepicker</nb-card-header>-->
                 <input nbInput fullWidth name="end-date"
-                       placeholder="End Date" style="max-width: 550px"
+                       placeholder="To Exit Date" style="max-width: 550px"
                        [nbDatepicker]="endDatePicker" [(ngModel)]="filterData.end_date">
                 <nb-datepicker #endDatePicker></nb-datepicker>
               </div>

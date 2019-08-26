@@ -58,7 +58,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
 
     onClickDelete(employeeId) {
         //find the employee name from the rows using
-        const name = this.rows.find(x => x.id === employeeId).username;
+        const name = this.rows.find(x => x.id === employeeId).employee_id;
         if (confirm("Are you sure to delete " + name)) {
             this.deleteEmployee(employeeId);
         }

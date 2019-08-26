@@ -54,10 +54,9 @@ exports.UserEmailPasswordTemplate = {
 };
 
 
-// *************** Below Email will be sent when new contacts is submitted ***************
-exports.ContactEmailTemplate = {
+// *************** Below Email will be sent to user when new contact is submitted ***************
+exports.ReplyContactEmailTemplate = {
     from_address: 'enquiries@workforceretention.com.au',
-    editable: false,
     subject: "Thanks for getting in touch",
     body: `
     Dear [name], <br><br>
@@ -65,19 +64,50 @@ exports.ContactEmailTemplate = {
     One of our team will be in contact with you within the next 24 hours.<br><br>
     Hope you’re having a wonderful day. <br><br>    
     Warm wishes, <br><br>    
-    Angeline <br>
+    <b>Angeline</b> <br>
     Director & Founder <br>
     Workforce Retention <br>
+    P. +61 410 665 306 <br>
     <img src="http://54.252.134.98/assets/images/logo_no_space.png" style="height:100px;" height="100">
+    `
+};
+
+// *************** Below Email will be sent to enquiries when new contact is submitted ***************
+exports.ContactEmailTemplate = {
+    to_address: checkEnv.isLiveServer ? 'enquiries@workforceretention.com.au' : 'sky930320@gmail.com',
+    subject: "Received a New Message",
+    body: `
+    Name: [name] <br>
+    Email: [email] <br>
+    Organization: [organization] <br>
+    Phone: [phone] <br> <br>
+    "[message]"
     `
 };
 
 
 
+// *************** Below Email will be sent to user when new quotation is submitted ***************
+exports.ReplyQuotationEmailTemplate = {
+    from_address: 'enquiries@workforceretention.com.au',
+    subject: "Thanks for submitting a quote request",
+    body: `
+    Dear [name], <br><br>
+    Thank you for submitting a quote request! We’ll be in contact within 48 hours with information on how we can support your business along with an estimate of the cost, based on your preferences. <br><br>    
+    We value being flexible and adaptive to best suit your needs. After you receive the quote, please know it’s just a start to give you an idea. We’d love to have a chat and get a better understanding of how we can build a program that best suits the needs of your business. <br><br>
+    Hope you’re having a wonderful day. <br><br>
+    Warm wishes, <br><br>
+    <b>Angeline</b> <br>
+    Director & Founder <br>
+    Workforce Retention <br>
+    P. +61 410 665 306 <br>
+    <img src="http://54.252.134.98/assets/images/logo_no_space.png" style="height:100px;" height="100">
+    `
+};
+
 // *************** Below Email will be sent to enquiries when new quotation is submitted ***************
 exports.QuotationEmailTemplate = {
     to_address: checkEnv.isLiveServer ? 'enquiries@workforceretention.com.au' : 'sky930320@gmail.com',
-    editable: false,
     subject: "Received a Quotation",
     body: `
         <div style="margin-bottom: 10px;">

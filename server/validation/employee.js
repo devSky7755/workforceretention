@@ -13,7 +13,7 @@ const schema = Joi.object().keys({
     email: Joi.string().email().min(4).max(32).required(),
 
     // name is required
-    username: Joi.string().min(4).max(32).required(),
+    employee_id: Joi.string().min(6).max(32).required(),
 
     // accepts alphanumeric strings at least 7 characters long
     // password is required

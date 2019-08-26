@@ -1,4 +1,5 @@
 const Employee = require('../models/employee');
+const EmployeeSchema = require('../validation/employee')
 
 //RELATIONAL MODEL
 const Client = require('../models/client');
@@ -131,7 +132,7 @@ exports.Upload = function (req, res, next) {
                         Employee.insertMany(employeesToUpload, async (err, docs) => {
                             if (err) {
                                 if (err.name === 'BulkWriteError' && err.code === 11000) {
-                                    return next(new Error(`Employee with the email or username ${err.op.email} already exist`));
+                                    return next(new Error(`Employee with the email or employee id ${err.op.email} already exist`));
                                 }
                                 return next(err);
                             } else {
@@ -169,7 +170,7 @@ const checkDuplicateEmployees = function (employees, employeesToUpload) {
     //for each employees to upload check if the employee exist in the employees array or not
     employeesToUpload.forEach((employee) => {
         //this line of code is checking if the employee exist with the email
-        let checkedEmployee = employees.find(e => e.email === employee.email || e.username === employee.username);
+        let checkedEmployee = employees.find(e => e.email === employee.email || e.employee_id === employee.employee_id || !/[A-Za-z0-9]{6,32}/.test(employee.employee_id));
         if (!isNullOrEmpty(checkedEmployee)) {
             // if the employee exist with the email then it's eliminating from the final employees to upload array
             finalEmployeesToUpload = finalEmployeesToUpload.filter(fe => fe.email !== employee.email)
@@ -244,7 +245,7 @@ const sendEmailsToEmployees = (employees, client) => {
             body = email.body;
             to = employee.email;
 
-            // step-2 : replace the [client_name] by the client.username
+            // step-2 : replace the [client_name] by the client.name
             body = body.replace('[client_name]', client.name);
             body = body.replace('[client_name]', client.name);
             subject = subject.replace('[client_name]', client.name);
@@ -322,22 +323,29 @@ const findDepartmentByName = function (name, organizations) {
     });
     return departmentId;
 };
+
 exports.Create = function (req, res, next) {
     const data = req.body;
-    const { email } = req.body;
+    const { email, employee_id } = req.body;
     const clientId = req.params.clientId;
 
     if (!email) {
         return res.status(422).send({ success: false, message: 'Email address is required!' });
     }
 
+    if (!employee_id) {
+        return res.status(422).send({ success: false, message: 'Employee id is required!' });
+    } else if (!/[A-Za-z0-9]{6,32}/.test(employee_id)) {
+        return res.status(422).send({ success: false, message: 'Employee ID must be 6 to 32 alphanumeric characters' });
+    }
+
     Employee.findOne({ email }, async (err, existingUser) => {
         if (err) return next(err);
         if (existingUser) {
-            if (existingUser.username === data.username) {
+            if (existingUser.employee_id === data.employee_id) {
                 return res.status(422).send({
                     success: false,
-                    message: 'Employee with this username already exist!'
+                    message: 'Employee with this employee id already exist!'
 
                 });
             }
@@ -413,7 +421,7 @@ exports.Create = function (req, res, next) {
                             body = email.body;
                             to = employee.email;
 
-                            // step-2 : replace the [client_name] by the client.username
+                            // step-2 : replace the [client_name] by the client.name
                             body = body.replace('[client_name]', client.name);
                             body = body.replace('[client_name]', client.name);
                             subject = subject.replace('[client_name]', client.name);
@@ -515,7 +523,7 @@ exports.login = function (req, res, next) {
      */
 
     // here we need to populate the employee organization, employee division and department
-    Employee.findOne({ email }, 'username email password first_name last_name is_manager is_survey is_report client').then((employee, err) => {
+    Employee.findOne({ email }, 'employee_id email password first_name last_name is_manager is_survey is_report client').then((employee, err) => {
         if (err) return (new Error("Unable to find employee with the email " + email));
 
         if (!employee) {
@@ -567,7 +575,7 @@ exports.token = function (req, res, next) {
     let refreshToken = req.body.refreshToken;
 
     if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] === email)) {
-        Employee.findOne({ email }, 'username email first_name last_name is_manager is_survey is_report client').then((employee, err) => {
+        Employee.findOne({ email }, 'employee_id email first_name last_name is_manager is_survey is_report client').then((employee, err) => {
             if (err) return next(err);
             if (!employee) {
                 const error = new Error("Employee not found, please sign up.");
@@ -575,7 +583,7 @@ exports.token = function (req, res, next) {
                 return next(error);
             }
 
-            // on employee we only need to set employee username, password and email
+            // on employee we only need to set employee employee_id, password and email
             const employeeData = employee.toJSON();
 
             const token = jwt.sign(employeeData, config.SECRET, {
@@ -614,7 +622,7 @@ const sendReminderEmails = function () {
     // STEP-2 : Check if the client is set for reminder email is on or off (send_reminder_email value true means on)
     // STEP-3 : if client is set for reminder email then find all the employees who are not a manager also who's is_survey is 1
     // STEP-4 : From the employees filtered out the employee who have not completed the survey
-    // STEP-5 : Re-arrange data. {client_name :'',employee_firstname:'',employee_lastname,employee_email:'',employee_username:'',reminder_email:emailObject}
+    // STEP-5 : Re-arrange data. {client_name :'',employee_firstname:'',employee_lastname,employee_email:'',employee_id:'',reminder_email:emailObject}
     // STEP-6 : Now Foreach employee send reminder email
     let employees = [];
 
@@ -653,7 +661,7 @@ const sendReminderEmails = function () {
                                     employee_id: employee._id,
                                     employee_firstname: employee.first_name,
                                     employee_lastname: employee.last_name,
-                                    employee_username: employee.username,
+                                    employee_employee_id: employee.employee_id,
                                     employee_email: employee.email,
                                     reminder_email: client.emails.find(e => e.email_type === 'reminder-email')
                                 };
@@ -700,7 +708,7 @@ const sendReminderEmailsToEmployees = function (employees) {
             body = email.body;
             to = employee.email;
 
-            // step-2 : replace the [client_name] by the client.username
+            // step-2 : replace the [client_name] by the client.name
             body = body.replace('[Client Name]', employee.client_name);
             body = body.replace('[employee_firstname]', employee.first_name);
 
@@ -791,7 +799,7 @@ exports.generatePassword = function (req, res, next) {
                             body = email.body;
                             to = employee.email;
 
-                            // step-2 : replace the [client_name] by the client.username
+                            // step-2 : replace the [client_name] by the client.name
                             body = body.replace('[client_name]', client.name);
                             body = body.replace('[client_name]', client.name);
                             subject = subject.replace('[client_name]', client.name);
@@ -828,6 +836,8 @@ exports.Update = (req, res, next) => {
 
     //Update the employee
 
+    // Joi.validate(data, EmployeeSchema, (err, value) => {
+    // if (err) return next(err);
     // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
     Employee.findByIdAndUpdate(
@@ -842,6 +852,9 @@ exports.Update = (req, res, next) => {
 
         // the callback function
         (err, employee) => {
+            if (err && err.name === 'MongoError' && err.code === 11000) {
+                return next(new Error(`Employee with the email or employee id already exist`));
+            }
             // Handle any possible database errors
             if (err) return next(err);
             if (!employee) return res.status(404).json({ success: false, message: "Employee not found." });
@@ -852,6 +865,7 @@ exports.Update = (req, res, next) => {
             });
         }
     );
+    // })
 };
 
 exports.Delete = (req, res, next) => {

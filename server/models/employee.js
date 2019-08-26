@@ -9,9 +9,11 @@ const employeeSchema = new Schema({
     last_name: {
         type: String
     },
-    username: {
+    employee_id: {
         type: String,
-        required: true
+        required: 'Employee ID is required',
+        unique: 'Employee ID already exist',
+        match: [/^[a-z0-9]{6,32}$/]
     },
     email: {
         type: String,

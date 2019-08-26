@@ -23,7 +23,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         first_name: '', last_name: '',
         email: '',
         organization: '',
-        username: '',
+        employee_id: '',
         position: '',
         hire_date: '',
         resignation_date: '',
@@ -95,8 +95,10 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             ]),
             organization: new FormControl('',
                 [Validators.required]),
-            username: new FormControl('',
-                [Validators.required]),
+            employee_id: new FormControl('', [
+                Validators.required,
+                Validators.pattern("[A-Za-z0-9]{6,32}")
+            ]),
             position: new FormControl('',
                 [Validators.required]),
             gender: new FormControl('1'),
@@ -179,7 +181,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             first_name: this.get('firstName').value,
             last_name: this.get('lastName').value,
             email: this.get('email').value,
-            username: this.get('username').value,
+            employee_id: this.get('employee_id').value,
             position: this.get('position').value,
             is_active: this.get('is_active').value,
             is_survey: this.get('is_survey').value,
@@ -229,7 +231,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.employee.first_name = data.employee.first_name;
         this.employee.last_name = data.employee.last_name;
         this.employee.position = data.employee.position;
-        this.employee.username = data.employee.username;
+        this.employee.employee_id = data.employee.employee_id;
         this.employeeId = data.employee._id;
         //SET THE VALUE;
 

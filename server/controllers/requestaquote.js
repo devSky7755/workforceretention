@@ -18,6 +18,11 @@ exports.Create = function (req, res, next) {
     let subject = email_template.QuotationEmailTemplate.subject;
     let body = email_template.QuotationEmailTemplate.body;
 
+    const replyFrom = email_template.ReplyQuotationEmailTemplate.from_address;
+    let replySubject = email_template.ReplyQuotationEmailTemplate.subject;
+    let replyBody = email_template.ReplyQuotationEmailTemplate.body;
+    let replyTo = data.email;
+
     Joi.validate(data, requestaquoteSchema, (err, value) => {
         if (err) return next(err);
         const raq = new Requestaquote(data);
@@ -35,7 +40,11 @@ exports.Create = function (req, res, next) {
                 body = body.replace('[phone_interview_with_platform_status]', radioTemplate(raq.phone_interview_with_platform_status, 'Expert Phone Interviews'));
                 body = body.replace('[phone_interview_without_platform_status]', radioTemplate(raq.phone_interview_without_platform_status, 'Expert Phone Interviews WITHOUT Platform'));
                 body = body.replace('[exit_report_status]', radioTemplate(raq.exit_report_status, 'Comprehensive Exit Reports'));
-                helpers.RequestAQuoteEmail({ from, to, subject, body })
+                helpers.SendNormalEmail({ from, to, subject, body })
+            })
+            .then(() => {
+                replyBody = replyBody.replace('[name]', data.name);
+                helpers.SendNormalEmail({ 'from': replyFrom, 'to': replyTo, 'subject': replySubject, 'body': replyBody })
             })
             .then(() => {
                 return res.status(200).send({
@@ -43,7 +52,8 @@ exports.Create = function (req, res, next) {
                     "message": "Quotation successfully created",
                     raq
                 })
-            }).catch(err => {
+            })
+            .catch(err => {
                 next(err)
             });
     })
