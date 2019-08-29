@@ -19,10 +19,10 @@ export class RequestAQuoteComponent implements OnInit {
     workforce_size: '',
     cur_employee_turnover: '',
     confidential: '0',
-    license_required_status: '0',
-    phone_interview_with_platform_status: '0',
+    license_required_status: '1',
+    phone_interview_with_platform_status: '1',
     phone_interview_without_platform_status: '0',
-    exit_report_status: '0'
+    exit_report_status: '1'
   }
   constructor(private requestAQuoteService: RequestAQuoteService) { }
 
@@ -34,9 +34,13 @@ export class RequestAQuoteComponent implements OnInit {
   }
 
   initRadioBtns() {
-    let element_offs = ['confidential-off', 'license-required-status-off', 'phone-interview-with-platform-status-off', 'phone-interview-without-platform-status-off', 'exit-report-status-off']
+    let element_offs = ['confidential-off', 'phone-interview-without-platform-status-off']
+    let element_ons = ['license-required-status-on', 'phone-interview-with-platform-status-on', 'exit-report-status-on']
     element_offs.forEach(element_off => {
       (<HTMLInputElement>document.getElementById(element_off)).checked = true;
+    });
+    element_ons.forEach(element_on => {
+      (<HTMLInputElement>document.getElementById(element_on)).checked = true;
     });
   }
 

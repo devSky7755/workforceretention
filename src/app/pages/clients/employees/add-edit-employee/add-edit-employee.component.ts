@@ -96,8 +96,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             organization: new FormControl('',
                 [Validators.required]),
             employee_id: new FormControl('', [
-                Validators.required,
-                Validators.pattern("[A-Za-z0-9]{6,32}")
+                Validators.pattern("[A-Za-z0-9]{0,32}")
             ]),
             position: new FormControl('',
                 [Validators.required]),

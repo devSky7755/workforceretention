@@ -7,9 +7,10 @@
 .container-fluid {
   background-size: cover;
   width: 100%;
-  height: 500px;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), url(/assets/images/about-img.jpeg);
-  background-position: top;
+  height: 450px;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url(/assets/images/about-img.jpeg);
+  background-position: 0% 50%;
   position: relative;
   padding-bottom: 20px;
 }
@@ -18,9 +19,9 @@
   position: absolute;
   font-size: 48px;
   background-color: transparent;
-  font-family: 'Nunito', sans-serif;
-  top: 50%;
-  right: 10%;
+  font-family: "Nunito", sans-serif;
+  top: calc(50% - 30px);
+  right: 20%;
   color: #ffffff;
 }
 
@@ -28,9 +29,11 @@
   width: 80%;
 }
 
+.container {
+  max-width: 1000px;
+}
 .flex-container {
   display: flex;
-  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -42,8 +45,12 @@
   flex-basis: 30%;
 }
 
-h1, h2, h3, p, li {
-  font-family: 'Nunito', sans-serif;
+h1,
+h2,
+h3,
+p,
+li {
+  font-family: "Nunito", sans-serif;
   color: #000000;
 }
 
@@ -54,14 +61,13 @@ h1, h2, h3, p, li {
 .nb-card-color {
   background: #fff !important;
   padding: 10px;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   border-top: 2px solid #000;
 }
 
 nb-card:hover {
   box-shadow: 0 10px 16px rgba(0, 0, 0, 0.2);
   border-top: 2px solid #3f51b5;
-
 }
 
 .nb-card-header {
@@ -83,7 +89,8 @@ nb-layout-column {
   padding: 0 !important;
 }
 
-.about-description {
+.about-description,
+.about-workforce {
   color: #000000;
   font-size: 1.2rem;
   line-height: 1.7rem;
@@ -103,9 +110,49 @@ nb-layout-column {
 .long-logo {
   text-align: right;
 }
-
+.clients-logo {
+  .pybar {
+    width: 250px;
+  }
+  .blacktown {
+    width: 200px;
+  }
+  .perpetual {
+    width: 300px;
+  }
+  .amp {
+    width: 300px;
+  }
+  .para {
+    width: 200px;
+  }
+  .arnotts {
+    width: 250px;
+  }
+  .coffs {
+    width: 200px;
+  }
+  .abbott {
+    width: 300px;
+  }
+  .campbells {
+    width: 300px;
+  }
+  .lexisnexis {
+    width: 300px;
+  }
+  .allens {
+    width: 300px;
+  }
+  .sofico {
+    width: 300px;
+  }
+}
 
 @media (min-width: 481px) and (max-width: 767px) {
+  .container-fluid {
+    background-position: left;
+  }
   .home-section {
     height: auto;
   }
@@ -113,12 +160,15 @@ nb-layout-column {
     flex-direction: column-reverse;
   }
   .section-heading {
-    text-align: center;
-    margin-top: 20px;
   }
-  .about-description {
+  .about-description,
+  .about-workforce {
     margin-left: 10px;
     margin-right: 10px;
+  }
+  .image-text {
+    font-size: 30px;
+    top: calc(50% - 18px);
   }
 }
 
@@ -138,20 +188,31 @@ nb-layout-column {
     text-align: center;
     margin-top: 20px;
   }
-  .about-description {
+  .about-description,
+  .about-workforce {
     margin-left: 10px;
     margin-right: 10px;
   }
-
+  .container-fluid {
+    background-position: left;
+    height: 300px;
+  }
+  .image-text {
+    font-size: 30px;
+    top: calc(50% - 18px);
+    right: auto !important;
+  }
 }
 
 // Media query for ipad
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) { /* STYLES GO HERE */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* STYLES GO HERE */
   .home-section {
     height: auto;
     padding: 20px 0;
   }
-  .about-description {
+  .about-description,
+  .about-workforce {
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -160,7 +221,7 @@ nb-layout-column {
   }
 }
 
-
 // Media query for ipad pro
-@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) { /* STYLES GO HERE */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+  /* STYLES GO HERE */
 }

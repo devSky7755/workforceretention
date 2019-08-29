@@ -747,6 +747,9 @@ export class ManagerReportPdfComponent implements OnInit {
         title: "Percentage Distribution (%)",
         gridDashType: "dot"
       },
+      axisX: {
+          labelAngle: -80,
+      },
       data: [{
         type: 'column',
         indexLabel: "{y}%",

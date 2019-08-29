@@ -723,6 +723,9 @@ export class ManagerReportComponent implements OnInit {
                 title: "Percentage Distribution (%)",
                 gridDashType: "dot"
             },
+            axisX: {
+                labelAngle: -80,
+            },
             data: [{
                 type: 'column',
                 indexLabel: "{y}%",
@@ -775,7 +778,7 @@ export class ManagerReportComponent implements OnInit {
                 suffix: "%",
                 gridDashType: "dot"
             },
-            axisX: {                
+            axisX: {
                 labelMaxWidth: 500,
             },
             toolTip: {
@@ -804,7 +807,7 @@ export class ManagerReportComponent implements OnInit {
                 suffix: "%",
                 gridDashType: "dot"
             },
-            axisX: {                
+            axisX: {
                 labelMaxWidth: 500,
             },
             toolTip: {

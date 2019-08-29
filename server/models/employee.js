@@ -11,14 +11,18 @@ const employeeSchema = new Schema({
     },
     employee_id: {
         type: String,
-        required: 'Employee ID is required',
-        unique: 'Employee ID already exist',
-        match: [/^[a-z0-9]{6,32}$/]
+        match: [/^[a-z0-9]{0,32}$/],
+        required: false,
+        index: {
+            unique: true,
+            partialFilterExpression: { employee_id: { $type: 'string' } },
+        },
+        default: null,
     },
     email: {
         type: String,
         min: [4, 'Too short, min is 4 characters'],
-        max: [32, 'Too long, max is 32 characters'],
+        max: [64, 'Too long, max is 64 characters'],
         unique: true,
         lowercase: true,
         required: 'Email is required',
@@ -104,6 +108,6 @@ const employeeSchema = new Schema({
         ref: 'Department'
     },
     surveys: [employeeSurveySchema]
-}, {timestamps: true});
+}, { timestamps: true });
 
 module.exports = mongoose.model('Employee', employeeSchema);

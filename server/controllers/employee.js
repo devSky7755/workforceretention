@@ -116,6 +116,7 @@ exports.Upload = function (req, res, next) {
                         }
                         json[i].surveys = clientSurveys;
                         json[i].client = clientId;
+                        json[i].employee_id = json[i].employee_id ? json[i].employee_id : null;
                         employees.push(json[i]);
                         // console.log(json[i]);
                     }
@@ -131,6 +132,7 @@ exports.Upload = function (req, res, next) {
                     await passwordGenerator(finalEmployeesArray).then((employeesToUpload) => {
                         Employee.insertMany(employeesToUpload, async (err, docs) => {
                             if (err) {
+                                console.log(err)
                                 if (err.name === 'BulkWriteError' && err.code === 11000) {
                                     return next(new Error(`Employee with the email or employee id ${err.op.email} already exist`));
                                 }
@@ -170,12 +172,14 @@ const checkDuplicateEmployees = function (employees, employeesToUpload) {
     //for each employees to upload check if the employee exist in the employees array or not
     employeesToUpload.forEach((employee) => {
         //this line of code is checking if the employee exist with the email
-        let checkedEmployee = employees.find(e => e.email === employee.email || e.employee_id === employee.employee_id || !/[A-Za-z0-9]{6,32}/.test(employee.employee_id));
+        let checkedEmployee = employees.find(e => e.email === employee.email || employee.employee_id && (e.employee_id === employee.employee_id || !/[A-Za-z0-9]{0,32}/.test(employee.employee_id) || employee.employee_id.length < 4));
+
         if (!isNullOrEmpty(checkedEmployee)) {
             // if the employee exist with the email then it's eliminating from the final employees to upload array
             finalEmployeesToUpload = finalEmployeesToUpload.filter(fe => fe.email !== employee.email)
         }
     });
+
     return finalEmployeesToUpload;
     // if exist in the employees array then eliminate that employee
 };
@@ -326,23 +330,22 @@ const findDepartmentByName = function (name, organizations) {
 
 exports.Create = function (req, res, next) {
     const data = req.body;
-    const { email, employee_id } = req.body;
+    const { email } = req.body;
     const clientId = req.params.clientId;
+    data.employee_id = data.employee_id ? data.employee_id : null
 
     if (!email) {
         return res.status(422).send({ success: false, message: 'Email address is required!' });
     }
 
-    if (!employee_id) {
-        return res.status(422).send({ success: false, message: 'Employee id is required!' });
-    } else if (!/[A-Za-z0-9]{6,32}/.test(employee_id)) {
-        return res.status(422).send({ success: false, message: 'Employee ID must be 6 to 32 alphanumeric characters' });
+    if (!/[A-Za-z0-9]{0,32}/.test(data.employee_id) || data.employee_id && data.employee_id.length < 4) {
+        return res.status(422).send({ success: false, message: 'Employee ID should be 4 to 32 alphanumeric characters' });
     }
 
     Employee.findOne({ email }, async (err, existingUser) => {
         if (err) return next(err);
         if (existingUser) {
-            if (existingUser.employee_id === data.employee_id) {
+            if (data.employee_id && existingUser.employee_id === data.employee_id) {
                 return res.status(422).send({
                     success: false,
                     message: 'Employee with this employee id already exist!'

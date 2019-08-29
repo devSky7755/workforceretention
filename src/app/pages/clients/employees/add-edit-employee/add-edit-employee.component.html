@@ -54,9 +54,12 @@
                         </div>
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
-                            *ngIf="get('employee_id').touched && get('employee_id').invalid">
-                            <div *ngIf="get('employee_id').errors.required"> Employee ID is required</div>
-                            <div *ngIf="get('employee_id').errors.pattern"> Employee ID must be 6 to 32 alphanumeric characters </div>
+                            *ngIf="get('employee_id').touched && get('employee_id').invalid || get('employee_id').value!='' && get('employee_id').value.length<4">
+                            <!-- <div *ngIf="get('employee_id').errors.required"> Employee ID is required</div> -->
+                            <div
+                                *ngIf="get('employee_id').value!='' && get('employee_id').value.length<4 || get('employee_id').errors.pattern">
+                                Employee ID should be 4 to 32 alphanumeric
+                                characters </div>
                         </div>
                     </div>
 
@@ -320,7 +323,7 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" [disabled]="!employeeForm.valid" class="btn btn-success">
+                        <button type="submit" [disabled]="!employeeForm.valid || get('employee_id').value!='' && get('employee_id').value.length<4" class="btn btn-success">
                             {{employeeId ? 'UPDATE' : 'SAVE'}}
                         </button>
                     </div>
