@@ -25,6 +25,10 @@ const employeeSurveySchema = new Schema({
     },
     end_date: {
         type: Date
+    },
+    exit_reason_cur_step: {
+        type: Number,
+        default: 11
     }
 });
 

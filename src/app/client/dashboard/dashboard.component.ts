@@ -67,7 +67,8 @@ export class DashboardComponent implements OnInit {
                         survey: employeeSurvey.survey._id,
                         start_date: employeeSurvey.start_date,
                         end_date: employeeSurvey.end_date,
-                        status: employeeSurvey.status
+                        status: employeeSurvey.status,
+                        exit_reason_cur_step: employeeSurvey.exit_reason_cur_step ? employeeSurvey.exit_reason_cur_step : 11
                     };
                     rows.push(employeeSurvey);
                 });
@@ -83,7 +84,7 @@ export class DashboardComponent implements OnInit {
             this.updateSurveyStartDate(surveyId, completed);
         } else {
             this.employeeService.surveyCompleted = completed;
-            this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed, status: this.employeeSurvey.status } });
+            this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed, status: this.employeeSurvey.status, exit_reason_cur_step: this.employeeSurvey.exit_reason_cur_step } });
         }
     }
 
@@ -95,7 +96,7 @@ export class DashboardComponent implements OnInit {
         this.employeeService.updateEmployee(employeeData, this.employee.employee_id).subscribe(
             () => {
                 this.employeeService.surveyCompleted = completed;
-                this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed, status: this.employeeSurvey.status } });
+                this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed, status: this.employeeSurvey.status, exit_reason_cur_step: this.employeeSurvey.exit_reason_cur_step } });
             });
     }
 

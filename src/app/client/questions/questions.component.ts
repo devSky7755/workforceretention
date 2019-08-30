@@ -19,7 +19,11 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     surveyId;
     employee;
     questions = [];
+    steps_count = 0;
     categorical_questions = [];
+    cur_categorical_questions = null;
+    cur_step = 11;
+
     answers = [];
     question_answers = [];
     is_complete_submit = 0;
@@ -81,6 +85,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         { id: 13, value: 'Final Question' },
         { id: 12, value: 'Custom Questions' }
     ];
+    exit_reason_ids = [];
     // we need to rearrange questions by exit_reason
     // after rearrange we need to display questions step by step
     // another way we can display all the questions together
@@ -100,6 +105,8 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.exit_reason_ids = this.exit_reason.map(e => e.id)
+        this.cur_categorical_questions = null
         this.surveyId = this.route.snapshot.paramMap.get('id');
         // here parse the employee
         // check the localStorage. if get the user id then set isAuth to true
@@ -114,7 +121,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         this.route.queryParams.subscribe(params => {
             this.surveyCompleted = JSON.parse(params['completed']);
             this.surveyStatus = params['status'];
-            console.log(this.surveyStatus)
+            this.cur_step = params['exit_reason_cur_step'];
         });
         // set the pageName here
         this.pageName = 'Your Exit Interview ' + this.employee_details.first_name + ' ' + this.employee_details.last_name;
@@ -149,7 +156,8 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
 
     questionArrange() {
         let question_no = 1;
-        this.exit_reason.map((reason) => {
+        let step_no = 1;
+        this.exit_reason.map((reason, index) => {
             //now we need to loop through questions
             const categorical_questions = [];
             this.questions.map((question) => {
@@ -161,8 +169,17 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
                 }
                 // if both same then push the question into the categorical_questions array
             });
-            this.categorical_questions.push({ exit_reason: reason.value, questions: categorical_questions });
+            if (categorical_questions.length == 0) {
+                return;
+            }
+            let val = { exit_reason: reason.value, questions: categorical_questions, step_no: step_no }
+            this.categorical_questions.push(val);
+            if (this.exit_reason_ids.indexOf(this.cur_step) <= index && !this.cur_categorical_questions) {
+                this.cur_categorical_questions = val
+            }
+            step_no++
         });
+        this.steps_count = step_no - 1;
     }
 
     onSubmitAnswer() {

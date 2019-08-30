@@ -1,7 +1,6 @@
 .home-section {
   padding: 80px 0;
   position: relative;
-  height: 65vh;
 }
 
 .container-fluid {
@@ -153,9 +152,6 @@ nb-layout-column {
   .container-fluid {
     background-position: left;
   }
-  .home-section {
-    height: auto;
-  }
   .flex-container {
     flex-direction: column-reverse;
   }
@@ -178,9 +174,6 @@ nb-layout-column {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-  .home-section {
-    height: auto;
-  }
   .flex-container {
     flex-direction: column-reverse;
   }
@@ -208,7 +201,6 @@ nb-layout-column {
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   /* STYLES GO HERE */
   .home-section {
-    height: auto;
     padding: 20px 0;
   }
   .about-description,
