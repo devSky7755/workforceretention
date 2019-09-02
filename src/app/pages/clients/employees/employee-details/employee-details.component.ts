@@ -94,7 +94,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     onDownloadPdf() {
         // here we have employee details
         // we need to build a url with this employee details which we will send to the server
-        const url = `/#/client/employee-survey?completed=${this.surveyCompleted}&employeeId=${this.employeeId}&surveyId=${this.surveyId}`;
+        const url = `/client/employee-survey?completed=${this.surveyCompleted}&employeeId=${this.employeeId}&surveyId=${this.surveyId}`;
         // window.open(url, '_blank');
         this.surveyService.downloadCompletedSurvey({ url }).subscribe(
             res => {
@@ -109,7 +109,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
         const a = document.createElement('a');
         document.body.appendChild(a);
         a.setAttribute('style', 'display: none');
-        a.href = this.urlService.baseUrl + '/server/pdf/' + fileName;
+        a.href = this.urlService.baseUrl + '/download/server/pdf/' + fileName;
         a.click();
         a.remove(); // remove the element
     }

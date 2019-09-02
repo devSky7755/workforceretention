@@ -1,6 +1,6 @@
-import {Component, OnDestroy, AfterViewInit, Output, EventEmitter, ElementRef, OnInit} from '@angular/core';
-import {TinyMceService} from "../../../@core/data/tiny-mce.service";
-import {Subscription} from "rxjs";
+import { Component, OnDestroy, AfterViewInit, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
+import { TinyMceService } from "../../../@core/data/tiny-mce.service";
+import { Subscription } from "rxjs";
 
 @Component({
     selector: 'ngx-simple-tiny-mce',
@@ -22,7 +22,7 @@ export class SimpleTinyMCEComponent implements OnInit, OnDestroy, AfterViewInit 
             selector: '',
             target: this.host.nativeElement,
             plugins: ['link', 'paste', 'table'],
-            skin_url: 'assets/skins/lightgray',
+            skin_url: '/assets/skins/lightgray',
             setup: editor => {
                 this.editor = editor;
                 editor.on('keyup change', () => {

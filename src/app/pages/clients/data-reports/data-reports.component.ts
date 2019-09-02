@@ -1,8 +1,8 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {SurveyService} from "../../../@core/data/survey.service";
-import {ClientService} from "../../../@core/data/client.service";
-import {ReportService} from "../../../@core/data/report.service";
-import {URLService} from "../../../@core/data/url.service";
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { SurveyService } from "../../../@core/data/survey.service";
+import { ClientService } from "../../../@core/data/client.service";
+import { ReportService } from "../../../@core/data/report.service";
+import { URLService } from "../../../@core/data/url.service";
 
 @Component({
     selector: 'ngx-data-reports',
@@ -18,10 +18,10 @@ export class DataReportsComponent implements OnInit, OnChanges {
     successMessage;
 
     constructor(private surveyService: SurveyService,
-                private clientService: ClientService,
-                private reportService: ReportService,
-                private urlService: URLService) {
-        this.filterData = {survey: '', start_date: null, end_date: null, clients: []};
+        private clientService: ClientService,
+        private reportService: ReportService,
+        private urlService: URLService) {
+        this.filterData = { survey: '', start_date: null, end_date: null, clients: [] };
     }
 
     ngOnInit() {
@@ -81,7 +81,7 @@ export class DataReportsComponent implements OnInit, OnChanges {
         const a = document.createElement('a');
         document.body.appendChild(a);
         a.setAttribute('style', 'display: none');
-        a.href = this.urlService.baseUrl + '/server/uploads/' + fileName;
+        a.href = this.urlService.baseUrl + '/download/server/uploads/' + fileName;
         a.click();
         a.remove(); // remove the element
     }
