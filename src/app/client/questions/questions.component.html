@@ -2,7 +2,7 @@
     <nb-layout-column>
         <ngx-header></ngx-header>
         <ngx-page-name [pageName]="pageName"></ngx-page-name>
-        <section class="home-section light-gray">
+        <section class="home-section light-gray survey-question">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-1"></div>
@@ -16,7 +16,8 @@
                                     <br>
                                     <div *ngFor="let question of cat_question.questions;"
                                         class="individual-question-box">
-                                        <h6>{{question.question_no}}. {{question.title}}</h6>
+                                        <h6 style="font-weight: 700 !important;">{{question.question_no}}.
+                                            {{question.title}}</h6>
 
                                         <div *ngIf="question.type==1 && cat_question.exit_reason !='Final Question'">
                                             <!--OPTIONS-->
@@ -39,8 +40,8 @@
 
                                         <div *ngIf="question.type==2 && cat_question.exit_reason !='Final Question'">
                                             <div class="form-group">
-                                                <textarea class="form-control form__input" rows="4"
-                                                    id="question-comment-{{question.question_no}}"></textarea>
+                                                <textarea class="form-control form__input" style="font-size:1rem;"
+                                                    rows="4" id="question-comment-{{question.question_no}}"></textarea>
                                             </div>
                                         </div>
 
@@ -115,11 +116,10 @@
                                             </div>
                                         </div>
 
-                                        <div *ngIf="cat_question.exit_reason == 'Final Question'">
+                                        <div *ngIf="cat_question.exit_reason == 'Final Question'"
+                                            style="padding: 10px 0">
                                             <div class="row">
                                                 <div class="col-lg-6">
-
-
                                                     <table width="100%">
                                                         <tr>
                                                             <th>Exit Reason</th>
@@ -131,7 +131,7 @@
                                                             <ng-container *ngIf="question.options[i] == 'true'">
                                                                 <td>{{exit_reason.value}}</td>
                                                                 <td style="padding-bottom: 20px">
-                                                                    <div class="form__group u-margin-bottom-medium">
+                                                                    <div class="form__group u-margin-bottom-medium p-0">
                                                                         <div class="form__radio-group">
                                                                             <input type="radio"
                                                                                 class="form__radio-input"
@@ -147,7 +147,7 @@
                                                                     </div>
                                                                 </td>
                                                                 <td style="padding-bottom: 20px">
-                                                                    <div class="form__group u-margin-bottom-medium">
+                                                                    <div class="form__group p-0 u-margin-bottom-medium">
                                                                         <div class="form__radio-group">
                                                                             <input type="radio"
                                                                                 class="form__radio-input"

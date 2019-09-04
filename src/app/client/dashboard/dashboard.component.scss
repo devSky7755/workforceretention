@@ -340,3 +340,16 @@ nb-layout-column {
   width: 60%;
   margin: auto;
 }
+
+.survey-instruction {
+  .inst-title {
+    color: #0072b1 !important;
+    padding: 0.5rem 1.2rem;
+    border-bottom: 1px solid #a5a5a5;
+    line-height: 1.625;
+    height: 40px;
+  }
+  p {
+    line-height: 25px;
+  }
+}

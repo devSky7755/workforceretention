@@ -40,7 +40,7 @@ h6 {
   color: #000;
 }
 .home-section {
-  padding: 80px 0;
+  padding: 20px 0;
 }
 .light-gray {
   background: rgba(0, 0, 0, 0.024);
@@ -221,4 +221,10 @@ table tr:nth-child(odd) {
 table th {
   color: white;
   background-color: black;
+}
+
+.survey-question {
+  .u-margin-bottom-medium {
+    padding: 10px 0;
+  }
 }

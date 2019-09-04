@@ -7,7 +7,7 @@ const schema = Joi.object().keys({
     // name is required
     title: Joi.string().min(4).required(),
 
-    description: Joi.string().required(),
+    // description: Joi.string().required(),
 
     instruction: Joi.string().required(),
 

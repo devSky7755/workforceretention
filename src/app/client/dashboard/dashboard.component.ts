@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
                     employeeSurvey.title = employeeSurvey.survey.title;
                     employeeSurvey.noOfQuestion = employeeSurvey.survey.no_of_questions;
                     employeeSurvey.status = employeeSurvey.completed ? "Completed" : employeeSurvey.start_date ? "In Progress" : "Not Started"
+                    employeeSurvey.instruction = employeeSurvey.survey.instruction
                     this.survey_start_date = employeeSurvey.start_date;
 
                     //completed, survey, start_date and end_date
@@ -67,7 +68,8 @@ export class DashboardComponent implements OnInit {
                         survey: employeeSurvey.survey._id,
                         start_date: employeeSurvey.start_date,
                         end_date: employeeSurvey.end_date,
-                        status: employeeSurvey.status
+                        status: employeeSurvey.status,
+                        instruction: employeeSurvey.instruction
                     };
                     rows.push(employeeSurvey);
                 });
