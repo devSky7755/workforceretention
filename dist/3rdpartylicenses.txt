@@ -223,9 +223,6 @@ MIT
 socicon
 MIT
 
-font-awesome
-(OFL-1.1 AND MIT)
-
 @fortawesome/fontawesome-free
 (CC-BY-4.0 AND OFL-1.1 AND MIT)
 Font Awesome Free License
@@ -263,6 +260,9 @@ trademarks does not indicate endorsement of the trademark holder by Font
 Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
+
+font-awesome
+(OFL-1.1 AND MIT)
 
 roboto-fontface
 Apache-2.0

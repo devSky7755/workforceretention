@@ -67,7 +67,7 @@ export class ClientDetailsComponent implements OnInit, OnChanges {
                 const self = this;
                 setTimeout(function () {
                     self.setEmailTemplate(self.client.email_template);
-                    self.setReminderEmailStatus(self.client.email_template);
+                    self.setReminderEmailStatus(self.client.send_reminder_email);
                 }, 1000);
 
             }
