@@ -38,6 +38,8 @@ router.get('/', employeeController.Find);
 
 router.get('/:id', employeeController.FindById);
 
+router.put('/password/:id', employeeController.changePassword);
+
 router.put('/:id', employeeController.Update);
 
 router.delete('/:id', employeeController.Delete);

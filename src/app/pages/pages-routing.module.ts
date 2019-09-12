@@ -55,6 +55,9 @@ const routes: Routes = [{
         redirectTo: 'home',
         pathMatch: 'full',
     }, {
+        path: 'profile',
+        loadChildren: './profile/profile.module#ProfileModule',
+    }, {
         path: '**',
         component: NotFoundComponent,
     }],

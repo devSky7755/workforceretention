@@ -566,7 +566,8 @@ export class ManagerReportComponent implements OnInit {
             // sort by agree/strongly agree in the descending order
             this.employee_sentiment.sort((a, b) => (parseFloat(a.positive_percentage) < parseFloat(b.positive_percentage)) ? 1 : ((parseFloat(b.positive_percentage) < parseFloat(a.positive_percentage)) ? -1 : 0));
             const sentiment_divider_length = Math.round(this.employee_sentiment.length / 2);
-            for (let i = 0; i < sentiment_divider_length; i++) {
+            for (let i = 0; i < Math.min(sentiment_divider_length, 10); i++) {
+                // if (i > 9) break;
                 this.employee_sentiment_working_chart_data.push(this.employee_sentiment[i]);
             }
             this.eswcdCanvasData = []
@@ -596,7 +597,7 @@ export class ManagerReportComponent implements OnInit {
                     this.eswcdCanvasData.push(canvasData)
                 }
             }
-            for (let i = sentiment_divider_length; i < this.employee_sentiment.length; i++) {
+            for (let i = sentiment_divider_length; i < Math.min(this.employee_sentiment.length, sentiment_divider_length + 10); i++) {
                 this.employee_sentiment_not_working_chart_data.push(this.employee_sentiment[i]);
             }
             this.esnwcdCanvasData = []

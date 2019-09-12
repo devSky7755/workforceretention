@@ -36,6 +36,17 @@ export class UserService {
         const body = JSON.stringify(user);
         return this.http.put(this.urlService.baseUrl + '/api/v1/users/' + id, body, httpOptions);
     }
+
+    updateUserProfile(user, id): Observable<any> {
+        const body = JSON.stringify(user);
+        return this.http.put(this.urlService.baseUrl + '/api/v1/users/profile/' + id, body, httpOptions);
+    }
+
+    changePassword(password, id): Observable<any> {
+        const body = JSON.stringify(password);
+        return this.http.put(this.urlService.baseUrl + '/api/v1/users/password/' + id, body, httpOptions);
+    }
+
     deleteUser(id): Observable<any> {
         return this.http.delete(this.urlService.baseUrl + '/api/v1/users/' + id);
     }

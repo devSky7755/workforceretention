@@ -63,7 +63,8 @@
                                 <div class="inst-title">
                                     <span>Survey Instruction</span>
                                 </div>
-                                <p style="padding: 0.5rem 1.2rem;" [innerHTML]="employeeSurvey.instruction"></p>
+                                <p style="padding: 0.5rem 1.2rem;" *ngIf="employeeSurvey"
+                                    [innerHTML]="employeeSurvey.instruction"></p>
                             </div>
                         </div>
                         <div *ngIf="employee_details.is_survey == '0'">

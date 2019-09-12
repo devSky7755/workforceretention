@@ -101,34 +101,61 @@
                                             *ngIf="employee_details.is_report == '0'"></i>
                                     </div>
                                 </div>
-                                <br>
+                                <br><br>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h4>Change Password</h4>
                                         <hr>
-                                        <span>Leave the following fields blank if you do not wish to change your
-                                            password.</span>
-                                        <br><br>
-                                        <div class="form-group" style="max-width: 450px">
-                                            <input type="password" class="form-control" name="old-password"
-                                                placeholder="Old Password" required>
-                                            <!--Register Error Here-->
-                                        </div>
-                                        <div class="form-group" style="max-width: 450px">
-                                            <input type="password" class="form-control" name="new-password"
-                                                placeholder="New Password" required>
-                                            <!--Register Error Here-->
-                                        </div>
-                                        <div class="form-group" style="max-width: 450px">
-                                            <input type="password" class="form-control" name="confirm-password"
-                                                placeholder="Re-Enter Password" required>
-                                            <!--Register Error Here-->
-                                        </div>
-                                        <div class="form-group" style="max-width: 450px">
-                                            <div class="text-center">
-                                                <input type="button" class="btn btn-primary" value="Change Password">
+                                        <!-- <span>Leave the following fields blank if you do not wish to change your
+                                            password.</span> -->
+                                        <form (ngSubmit)="changePassword()" [formGroup]="passwordForm"
+                                            aria-labelledby="title">
+                                            <div class="alert alert-danger" role="alert"
+                                                *ngIf="passwordForm.errors && passwordForm.errors.message">
+                                                {{passwordForm.errors.message}}
                                             </div>
-                                        </div>
+                                            <div class="alert alert-success" role="alert"
+                                                *ngIf="successMessage">
+                                                {{successMessage}}
+                                            </div>
+                                            <div class="form-group" style="max-width: 450px">
+                                                <input type="password" class="form-control"
+                                                    formControlName="oldPassword" name="old-password"
+                                                    placeholder="Old Password" required>
+                                                <!--Register Error Here-->
+                                                <div class="alert alert-danger" role="alert"
+                                                    *ngIf="get('oldPassword').touched && get('oldPassword').invalid">
+                                                    Old Password is required
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style="max-width: 450px">
+                                                <input type="password" class="form-control" name="new-password"
+                                                    formControlName="newPassword" placeholder="New Password" required>
+                                                <!--Register Error Here-->
+                                                <div class="alert alert-danger" role="alert"
+                                                    *ngIf="get('newPassword').touched && get('newPassword').invalid">
+                                                    Type at least 8 characters
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style="max-width: 450px">
+                                                <input type="password" class="form-control" name="confirm-password"
+                                                    formControlName="newPasswordConfirmation"
+                                                    placeholder="Re-Enter Password" required>
+                                                <!--Register Error Here-->
+                                                <div class="alert alert-danger" role="alert"
+                                                    *ngIf="passwordForm.hasError('notSame')">
+                                                    Passwords do not match
+                                                </div>
+                                            </div>
+                                            <div class="form-group" style="max-width: 450px">
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary"
+                                                        [disabled]="!passwordForm.valid">
+                                                        Change Password
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                                 <br><br>

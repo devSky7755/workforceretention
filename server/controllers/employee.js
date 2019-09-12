@@ -1,5 +1,6 @@
 const Employee = require('../models/employee');
 const EmployeeSchema = require('../validation/employee')
+const mongoose = require('mongoose');
 
 //RELATIONAL MODEL
 const Client = require('../models/client');
@@ -737,6 +738,102 @@ setInterval(sendReminderEmails, three_hours);
 const getDay = (start_date, end_date) => {
     let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
     return Math.round(Math.abs((start_date.getTime() - end_date.getTime()) / (oneDay)));
+};
+
+exports.changePassword = (req, res, next) => {
+    let employeeId = mongoose.Types.ObjectId(req.params.id);
+    let { old_password, new_password, clientId } = req.body
+
+    //check if request body has old_password
+    if (!old_password || !new_password) {
+        return res.status(422).send({ errors: [{ title: 'Data missing!', detail: 'Input correct data!' }] });
+    }
+
+    // check employee by the employeeId
+    Employee.findById(employeeId, async (err, employee) => {
+        if (err) return next(err);
+        if (!employee) {
+            return res.status(404).json({
+                "success": false,
+                "message": "Employee not found"
+            })
+        }
+        await bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.compare(old_password, employee.password, function (error, matched) {
+                if (error) return next(error);
+                if (!matched) {
+                    const error = new Error("Invalid Old password.");
+                    error.statusCode = 400;
+                    return next(error)
+                }
+                // find the client
+                Client.findById(clientId)
+                    .populate([{
+                        path: 'emails.email'
+                    }])
+                    .exec(async function (err, client) {
+                        if (err) return next(err);
+                        if (!client) {
+                            return res.status(404).json({ status: false, message: 'Client not found!' })
+                        }
+                        //before saving the employee to the database. hash password
+                        if (err) return next(err);
+
+                        bcrypt.hash(new_password, salt, async function (err, hash) {
+                            if (err) return next(err);
+                            // send the password to the employee email
+                            // select email depending on client selected email template
+                            employee.password = hash;
+                            employee.save().then(employee => {
+
+                                let from;
+                                let subject;
+                                let body;
+                                let to;
+                                let email = {};
+                                // select email depending on client selected email template
+                                // if employee is a manager then sent
+                                if (employee.is_manager === '1') {
+                                    email = client.emails.find(e => e.email_type === 'manager-report-email');
+                                } else if (client.email_template === 'template-one') {
+                                    email = client.emails.find(e => e.email_type === 'template-one-email');
+                                } else {
+                                    email = client.emails.find(e => e.email_type === 'template-two-email');
+                                }
+                                //Now send the email to the employee here
+                                // step-1 : first get the email template from the client for creating an employee
+                                from = email.from_address;
+                                subject = email.subject;
+                                body = email.body;
+                                to = employee.email;
+
+                                // step-2 : replace the [client_name] by the client.name
+                                body = body.replace('[client_name]', client.name);
+                                body = body.replace('[client_name]', client.name);
+                                subject = subject.replace('[client_name]', client.name);
+                                body = body.replace('[employee_firstname]', employee.first_name);
+
+                                // step-3 : [employee_username] set the employee email
+                                body = body.replace('[employee_username]', to);
+
+                                // step-4 : [employee_password] set the employee plain password.
+                                body = body.replace('[employee_password]', new_password);
+                                return helpers.SendEmailToEmployee({ from, to, subject, body });
+                            }).then(() => {
+                                return res.status(200).send({
+                                    "success": true,
+                                    "message": "Password successfully updated",
+                                    employee
+                                })
+                            }).catch(err => {
+                                next(err)
+                            });
+
+                        });
+                    })
+            });
+        })
+    })
 };
 
 /**
