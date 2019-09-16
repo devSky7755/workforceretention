@@ -786,45 +786,44 @@ exports.changePassword = (req, res, next) => {
                             employee.password = hash;
                             employee.save().then(employee => {
 
-                                let from;
-                                let subject;
-                                let body;
-                                let to;
-                                let email = {};
-                                // select email depending on client selected email template
-                                // if employee is a manager then sent
-                                if (employee.is_manager === '1') {
-                                    email = client.emails.find(e => e.email_type === 'manager-report-email');
-                                } else if (client.email_template === 'template-one') {
-                                    email = client.emails.find(e => e.email_type === 'template-one-email');
-                                } else {
-                                    email = client.emails.find(e => e.email_type === 'template-two-email');
-                                }
-                                //Now send the email to the employee here
-                                // step-1 : first get the email template from the client for creating an employee
-                                from = email.from_address;
-                                subject = email.subject;
-                                body = email.body;
-                                to = employee.email;
-
-                                // step-2 : replace the [client_name] by the client.name
-                                body = body.replace('[client_name]', client.name);
-                                body = body.replace('[client_name]', client.name);
-                                subject = subject.replace('[client_name]', client.name);
-                                body = body.replace('[employee_firstname]', employee.first_name);
-
-                                // step-3 : [employee_username] set the employee email
-                                body = body.replace('[employee_username]', to);
-
-                                // step-4 : [employee_password] set the employee plain password.
-                                body = body.replace('[employee_password]', new_password);
-                                return helpers.SendEmailToEmployee({ from, to, subject, body });
-                            }).then(() => {
                                 return res.status(200).send({
                                     "success": true,
                                     "message": "Password successfully updated",
                                     employee
                                 })
+                                // let from;
+                                // let subject;
+                                // let body;
+                                // let to;
+                                // let email = {};
+                                // // select email depending on client selected email template
+                                // // if employee is a manager then sent
+                                // if (employee.is_manager === '1') {
+                                //     email = client.emails.find(e => e.email_type === 'manager-report-email');
+                                // } else if (client.email_template === 'template-one') {
+                                //     email = client.emails.find(e => e.email_type === 'template-one-email');
+                                // } else {
+                                //     email = client.emails.find(e => e.email_type === 'template-two-email');
+                                // }
+                                // //Now send the email to the employee here
+                                // // step-1 : first get the email template from the client for creating an employee
+                                // from = email.from_address;
+                                // subject = email.subject;
+                                // body = email.body;
+                                // to = employee.email;
+
+                                // // step-2 : replace the [client_name] by the client.name
+                                // body = body.replace('[client_name]', client.name);
+                                // body = body.replace('[client_name]', client.name);
+                                // subject = subject.replace('[client_name]', client.name);
+                                // body = body.replace('[employee_firstname]', employee.first_name);
+
+                                // // step-3 : [employee_username] set the employee email
+                                // body = body.replace('[employee_username]', to);
+
+                                // // step-4 : [employee_password] set the employee plain password.
+                                // body = body.replace('[employee_password]', new_password);
+                                // return helpers.SendEmailToEmployee({ from, to, subject, body });
                             }).catch(err => {
                                 next(err)
                             });

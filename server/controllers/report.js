@@ -885,23 +885,24 @@ exports.DataOutput = (req, res, next) => {
                                         });
                                         data_object[question_id] = escapeSpecialChars(final_answer);
                                     } else if (question.exit_reason === '13') {
-
-                                        let answer_one = answer.options[0].split('-');
-                                        let answer_two = answer.options[1].split('-');
-                                        let final_answer = '';
-                                        // ********* First Answer ************
-                                        if (answer_one[0] === '1st') {
-                                            final_answer += '1st choice ' + exit_reason_checkbox.find(ex => ex.id == answer_one[2]).value + '\n';
-                                        } else {
-                                            final_answer += '2nd choice ' + exit_reason_checkbox.find(ex => ex.id == answer_one[2]).value + '\n';
+                                        if (answer.options.length > 2) {
+                                            let answer_one = answer.options[0].split('-');
+                                            let answer_two = answer.options[1].split('-');
+                                            let final_answer = '';
+                                            // ********* First Answer ************
+                                            if (answer_one[0] === '1st') {
+                                                final_answer += '1st choice ' + exit_reason_checkbox.find(ex => ex.id == answer_one[2]).value + '\n';
+                                            } else {
+                                                final_answer += '2nd choice ' + exit_reason_checkbox.find(ex => ex.id == answer_one[2]).value + '\n';
+                                            }
+                                            // ********** Second Answer ********
+                                            if (answer_two[0] === '1st') {
+                                                final_answer += '1st choice ' + exit_reason_checkbox.find(ex => ex.id == answer_two[2]).value + '\n';
+                                            } else {
+                                                final_answer += '2nd choice ' + exit_reason_checkbox.find(ex => ex.id == answer_two[2]).value + '\n';
+                                            }
+                                            data_object[question_id] = escapeSpecialChars(final_answer);
                                         }
-                                        // ********** Second Answer ********
-                                        if (answer_two[0] === '1st') {
-                                            final_answer += '1st choice ' + exit_reason_checkbox.find(ex => ex.id == answer_two[2]).value + '\n';
-                                        } else {
-                                            final_answer += '2nd choice ' + exit_reason_checkbox.find(ex => ex.id == answer_two[2]).value + '\n';
-                                        }
-                                        data_object[question_id] = escapeSpecialChars(final_answer);
                                     }
                                 }
                             });
@@ -960,7 +961,9 @@ exports.DownloadManagerReport = async (req, res) => {
 };
 
 const escapeSpecialChars = (str) => {
-    str = str.replace(/’/g, "'")
+    if (str) {
+        str = str.replace(/’/g, "'")
+    } else ""
     return str
 }
 
