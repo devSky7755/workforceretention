@@ -955,7 +955,7 @@ exports.DownloadManagerReport = async (req, res) => {
     await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
     await page.pdf(options);
     await browser.close();
-    fs.chmodSync(filePath, 0o755);
+    fs.chmodSync(filePath, 0o777);
     res.json({ fileName: fileName });
 };
 
