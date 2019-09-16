@@ -5,7 +5,7 @@ const Answer = require('../models/answer');
 const Report = require('../models/report');
 const path = require('path');
 const mongoose = require('mongoose');
-
+const fs = require('fs');
 const Joi = require('joi');
 const puppeteer = require('puppeteer');
 
@@ -955,6 +955,7 @@ exports.DownloadManagerReport = async (req, res) => {
     await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
     await page.pdf(options);
     await browser.close();
+    fs.chmodSync(filePath, 0o755);
     res.json({ fileName: fileName });
 };
 
