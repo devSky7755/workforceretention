@@ -98,6 +98,7 @@ exports.CreateMany = (req, res, next) => {
         });
     });
 };
+
 exports.UpdateAnswers = (req, res, next) => {
     let surveyId = req.query.surveyId;
     let isComplete = req.query.isComplete;
@@ -108,8 +109,11 @@ exports.UpdateAnswers = (req, res, next) => {
     let answer_ids = [];
     let new_answers = [];
     data.forEach((answer) => {
-        if (answer.new) new_answers.push(answer);
-        else answer_ids.push(answer._id);
+        if (answer.new) {
+            if (answer.employee) {
+                new_answers.push(answer);
+            }
+        } else answer_ids.push(answer._id);
     });
     // find out the answers by the answer ids
     updateNewAnswers(new_answers).then(() => {

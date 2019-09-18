@@ -9,7 +9,7 @@ declare var $: any;
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterContentInit {
-    slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "autoplay": true, "dots": true, "autoplaySpeed": 8000 };
+    slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "autoplay": true, "dots": true, "autoplaySpeed": 12000 };
     employee_details;
     constructor(private router: Router) {
     }

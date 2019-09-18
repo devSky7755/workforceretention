@@ -41,7 +41,6 @@ export class BlogComponent implements OnInit {
         article.link = '/client/blog/' + article._id
         return article
       })
-      console.log(this.articles)
     },
       (err) => {
         console.log(err);

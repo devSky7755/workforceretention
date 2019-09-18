@@ -111,44 +111,60 @@ nb-layout-column {
 }
 .clients-logo {
   .pybar {
-    width: 250px;
+    width: 125px;
   }
   .blacktown {
     width: 200px;
   }
   .perpetual {
-    width: 300px;
+    width: 150px;
   }
   .amp {
-    width: 300px;
+    width: 150px;
   }
   .para {
-    width: 200px;
+    width: 100px;
   }
   .arnotts {
     width: 250px;
   }
   .coffs {
-    width: 200px;
+    width: 100px;
   }
   .abbott {
     width: 300px;
   }
   .campbells {
-    width: 300px;
+    width: 100px;
   }
   .lexisnexis {
-    width: 300px;
+    width: 100px;
   }
   .allens {
-    width: 300px;
+    width: 150px;
+    margin-top: -25px;
   }
   .sofico {
-    width: 300px;
+    width: 150px;
+    margin-top: -25px;
   }
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
+  .clients-logo {
+    .allens {
+      margin-top: 0px;
+    }
+    .sofico {
+      margin-top: 0px;
+    }
+    .campbells {
+      width: 150px;
+    }
+    .lexisnexis {
+      width: 150px;
+    }
+  }
   .container-fluid {
     background-position: left;
   }
@@ -174,6 +190,23 @@ nb-layout-column {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
+  .clients-logo {
+    .campbells {
+      width: 150px;
+    }
+    .lexisnexis {
+      width: 150px;
+    }
+    .allens {
+      margin-top: 0px;
+    }
+    .sofico {
+      margin-top: 0px;
+    }
+  }
+  .home-section {
+    height: auto;
+  }
   .flex-container {
     flex-direction: column-reverse;
   }

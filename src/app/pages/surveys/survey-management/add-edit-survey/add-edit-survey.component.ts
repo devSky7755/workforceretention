@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {CountryService} from "../../../../@core/data/country.service";
-import {IndustryService} from "../../../../@core/data/industry.service";
-import {NbTokenService} from "@nebular/auth";
-import {TinyMceService} from "../../../../@core/data/tiny-mce.service";
-import {BoxService} from "../../../../@core/data/box.service";
-import {PageService} from "../../../../@core/data/page.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {SurveyService} from "../../../../@core/data/survey.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { CountryService } from "../../../../@core/data/country.service";
+import { IndustryService } from "../../../../@core/data/industry.service";
+import { NbTokenService } from "@nebular/auth";
+import { TinyMceService } from "../../../../@core/data/tiny-mce.service";
+import { BoxService } from "../../../../@core/data/box.service";
+import { PageService } from "../../../../@core/data/page.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { SurveyService } from "../../../../@core/data/survey.service";
 
 @Component({
     selector: 'ngx-add-edit-survey',
@@ -29,18 +29,18 @@ export class AddEditSurveyComponent implements OnInit {
         rating_scale: ''
     };
     survey_types = [
-        {id: 1, value: 'Exit Interview'}
+        { id: 1, value: 'Exit Interview' }
     ];
     ratings = [
-        {id: 2, value: '1-2'},
-        {id: 3, value: '1-3'},
-        {id: 4, value: '1-4'},
-        {id: 5, value: '1-5'},
-        {id: 6, value: '1-6'},
-        {id: 7, value: '1-7'},
-        {id: 8, value: '1-8'},
-        {id: 9, value: '1-9'},
-        {id: 10, value: '1-10'}
+        { id: 2, value: '1-2' },
+        { id: 3, value: '1-3' },
+        { id: 4, value: '1-4' },
+        { id: 5, value: '1-5' },
+        { id: 6, value: '1-6' },
+        { id: 7, value: '1-7' },
+        { id: 8, value: '1-8' },
+        { id: 9, value: '1-9' },
+        { id: 10, value: '1-10' }
     ];
     surveyId;
     boxes;
@@ -48,14 +48,14 @@ export class AddEditSurveyComponent implements OnInit {
     user;
 
     constructor(private route: ActivatedRoute,
-                private countryService: CountryService,
-                private industryService: IndustryService,
-                private tokenService: NbTokenService,
-                private surveyService: SurveyService,
-                private router: Router,
-                private tinyMCEService: TinyMceService,
-                private boxService: BoxService,
-                private pageService: PageService) {
+        private countryService: CountryService,
+        private industryService: IndustryService,
+        private tokenService: NbTokenService,
+        private surveyService: SurveyService,
+        private router: Router,
+        private tinyMCEService: TinyMceService,
+        private boxService: BoxService,
+        private pageService: PageService) {
     }
 
     ngOnInit() {
@@ -89,18 +89,18 @@ export class AddEditSurveyComponent implements OnInit {
         });
     }
 
-    getSurveyDescription($event) {
-        this.survey.description = $event;
-    }
+    // getSurveyDescription($event) {
+    //     this.survey.description = $event;
+    // }
 
     getSurveyInstruction($event) {
         this.survey.instruction = $event;
     }
 
-    setEditorContent(description) {
-        //this is used for set the page_text;
-        this.tinyMCEService.contentChange.next(description);
-    }
+    // setEditorContent(description) {
+    //     //this is used for set the page_text;
+    //     this.tinyMCEService.contentChange.next(description);
+    // }
 
     setSimpleEditorContent(instruction) {
         //This is used for set the home_text
@@ -112,7 +112,7 @@ export class AddEditSurveyComponent implements OnInit {
             //create a new staticPage object instance
             const survey = {
                 title: this.get('title').value,
-                description: this.survey.description,
+                // description: this.survey.description,
                 instruction: this.survey.instruction,
                 no_of_questions: this.get('no_of_questions').value,
                 survey_type: this.get('survey_type').value,
@@ -134,8 +134,8 @@ export class AddEditSurveyComponent implements OnInit {
                 this.router.navigateByUrl('/pages/surveys/survey-management/details/' + data.survey._id);
             },
             err => {
-                const {error} = err;
-                this.surveyForm.setErrors({'message': error.message});
+                const { error } = err;
+                this.surveyForm.setErrors({ 'message': error.message });
             }
         );
     }
@@ -148,32 +148,32 @@ export class AddEditSurveyComponent implements OnInit {
                 this.router.navigateByUrl('/pages/surveys/survey-management/details/' + data.survey._id);
             },
             err => {
-                const {error} = err;
-                this.surveyForm.setErrors({'message': error.message});
+                const { error } = err;
+                this.surveyForm.setErrors({ 'message': error.message });
             }
         );
     }
 
     getSurvey() {
         this.surveyService.getSurvey(this.surveyId).subscribe(data => {
-                this.setPage(data);
-            },
+            this.setPage(data);
+        },
             err => {
-                const {error} = err;
-                this.surveyForm.setErrors({'message': error.message});
+                const { error } = err;
+                this.surveyForm.setErrors({ 'message': error.message });
             }
         );
     }
 
     setPage(data) {
         this.survey.title = data.survey.title;
-        this.survey.description = data.survey.description;
+        // this.survey.description = data.survey.description;
         this.survey.instruction = data.survey.instruction;
         this.survey.no_of_questions = data.survey.no_of_questions;
         this.survey.survey_type = data.survey.survey_type;
         this.survey.rating_scale = data.survey.rating_scale;
 
-        this.setEditorContent(this.survey.description);
+        // this.setEditorContent(this.survey.description);
         this.setSimpleEditorContent(this.survey.instruction);
         this.get('no_of_questions').disable();
         // Finally set the Id of the Page

@@ -1,6 +1,6 @@
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-
+const mongoose = require('mongoose');
 //Validation Library
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
@@ -150,6 +150,89 @@ exports.FindById = (req, res, next) => {
             }
             next(err)
         });
+};
+
+exports.UpdateProfile = (req, res, next) => {
+    // fetch the request data
+    const data = req.body;
+    let id = mongoose.Types.ObjectId(req.params.id);
+    // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
+    // Find the existing resource by ID
+    User.findByIdAndUpdate(
+        // the id of the item to find
+        id,
+        // the change to be made. Mongoose will smartly combine your existing
+        // document with this change, which allows for partial updates too
+        { $set: data },
+        // an option that asks mongoose to return the updated version
+        // of the document instead of the pre-updated one.
+        { upsert: true, new: true })
+        .then(user => {
+            return res.send({
+                "success": true,
+                "message": "Profile updated successfully",
+                user
+            });
+        }).catch(err => {
+            // Handle any possible database errors
+            if (err) return next(err);
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
+};
+
+exports.changePassword = (req, res, next) => {
+    let id = mongoose.Types.ObjectId(req.params.id);
+    let { old_password, new_password } = req.body
+
+    //check if request body has old_password
+    if (!old_password || !new_password) {
+        return res.status(422).send({ errors: [{ title: 'Data missing!', detail: 'Input correct data!' }] });
+    }
+
+    /**
+     * check if the old_password matches
+     */
+
+    User.findById(id).populate({ path: 'role' }).then(async (user, err) => {
+        if (err) throw new Error("Unable to find user");
+
+        if (!user) {
+            const error = new Error("User not found, please sign up.");
+            error.statusCode = 401;
+            throw error
+        }
+
+        await bcrypt.genSalt(10, function (err, salt) {
+            if (err) return next(err);
+            bcrypt.compare(old_password, user.password, function (error, matched) {
+                if (error) return next(error);
+                if (!matched) {
+                    const error = new Error("Invalid Old password.");
+                    error.statusCode = 400;
+                    return next(error)
+                }
+                bcrypt.hash(new_password, salt, async function (err, hash) {
+                    if (err) return next(err);
+                    // Store hash in your password DB.
+                    // Update the password of the data
+                    user.password = hash
+                    user.save((err) => {
+                        if (err) return next(err);
+                        return res.status(200).send({
+                            "success": true,
+                            "message": "Password successfully changed",
+                            user
+                        })
+                    });
+                })
+            });
+        })
+    }).catch(err => {
+        next(err)
+    });
 };
 
 exports.Update = (req, res, next) => {

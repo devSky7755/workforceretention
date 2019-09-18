@@ -13,7 +13,7 @@ import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
     {
-        path: 'client',
+        path: '',
         loadChildren: 'app/client/client.module#ClientModule'
     },
     {
@@ -51,13 +51,13 @@ const routes: Routes = [
             }
         ],
     },
-    { path: '', redirectTo: 'client', pathMatch: 'full' },
+    { path: 'client', redirectTo: '', pathMatch: 'prefix' },
     { path: 'register', redirectTo: 'auth/login', pathMatch: 'full' },
-    { path: '**', redirectTo: 'client' },
+    { path: '**', redirectTo: '' },
 ];
 
 const config: ExtraOptions = {
-    useHash: true,
+    useHash: false,
 };
 
 @NgModule({

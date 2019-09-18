@@ -115,7 +115,7 @@ const appPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(appPath));
 
 // This route is for downloading file
-app.get('/:file(*)', function (req, res) { // this routes all types of file
+app.get('/download/:file(*)', function (req, res) { // this routes all types of file
 
     const file = req.params.file;
 

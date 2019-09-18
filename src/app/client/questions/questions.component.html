@@ -2,15 +2,15 @@
     <nb-layout-column>
         <ngx-header></ngx-header>
         <ngx-page-name [pageName]="pageName"></ngx-page-name>
-        <section class="home-section light-gray">
+        <section class="home-section light-gray survey-question">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-10">
-                        <form (ngSubmit)="onSubmitAnswer()">
+                        <form (ngSubmit)="onSubmitAnswer()" *ngIf="cur_categorical_questions">
                             <!-- <div *ngFor="let cat_question of categorical_questions"> -->
                             <!-- <div class="question-box" *ngIf="cat_question.questions.length > 0"> -->
-                            <div class="question-box" *ngIf="cur_categorical_questions">
+                            <div class="question-box">
                                 <h4
                                     *ngIf="!['Initial Question', 'Final Question', 'Custom Questions'].includes(cur_categorical_questions.exit_reason)">
                                     {{cur_categorical_questions.exit_reason}}</h4>
@@ -19,7 +19,8 @@
                                     class="individual-question-box">
                                     <h6>{{question.question_no}}. {{question.title}}</h6>
 
-                                    <div *ngIf="question.type==1 && cur_categorical_questions.exit_reason !='Final Question'">
+                                    <div
+                                        *ngIf="question.type==1 && cur_categorical_questions.exit_reason !='Final Question'">
                                         <!--OPTIONS-->
                                         <div class="form__group u-margin-bottom-medium">
                                             <div class="form__radio-group"
@@ -38,14 +39,16 @@
                                         </div>
                                     </div>
 
-                                    <div *ngIf="question.type==2 && cur_categorical_questions.exit_reason !='Final Question'">
+                                    <div
+                                        *ngIf="question.type==2 && cur_categorical_questions.exit_reason !='Final Question'">
                                         <div class="form-group">
                                             <textarea class="form-control form__input" rows="4"
                                                 id="question-comment-{{question.question_no}}"></textarea>
                                         </div>
                                     </div>
 
-                                    <div *ngIf="question.type==3 && cur_categorical_questions.exit_reason !='Final Question'">
+                                    <div
+                                        *ngIf="question.type==3 && cur_categorical_questions.exit_reason !='Final Question'">
                                         <!--Here only show the selected item-->
                                         <div class="boxes">
                                             <div *ngFor="let option of question.options; let multiple_choice_index=index"
@@ -60,7 +63,8 @@
                                         </div>
                                     </div>
 
-                                    <div *ngIf="question.type==4 && cur_categorical_questions.exit_reason !='Final Question'">
+                                    <div
+                                        *ngIf="question.type==4 && cur_categorical_questions.exit_reason !='Final Question'">
                                         <div class="form__group u-margin-bottom-medium">
                                             <div class="form__radio-group">
                                                 <input type="radio" class="form__radio-input"
@@ -85,7 +89,8 @@
                                         </div>
                                     </div>
 
-                                    <div *ngIf="question.type==5 && cur_categorical_questions.exit_reason !='Final Question'">
+                                    <div
+                                        *ngIf="question.type==5 && cur_categorical_questions.exit_reason !='Final Question'">
                                         <!--OPTIONS-->
                                         <div class="form__group u-margin-bottom-medium">
                                             <div class="form__radio-group"
@@ -93,8 +98,7 @@
                                                 <input type="radio" class="form__radio-input" value="1"
                                                     name="radio-label-{{question.question_no}}"
                                                     id="radio-label-{{question.question_no}}-{{radio_label_index}}">
-                                                <label
-                                                    for="radio-label-{{question.question_no}}-{{radio_label_index}}"
+                                                <label for="radio-label-{{question.question_no}}-{{radio_label_index}}"
                                                     class="form__radio-label">
                                                     <span class="form__radio-button"></span>
                                                     {{option}}
@@ -104,7 +108,8 @@
 
                                     </div>
 
-                                    <div *ngIf="question.type==6 && cur_categorical_questions.exit_reason !='Final Question'">
+                                    <div
+                                        *ngIf="question.type==6 && cur_categorical_questions.exit_reason !='Final Question'">
                                         <div class="boxes">
                                             <div *ngFor="let option of question.options; let multiple_choice_index=index"
                                                 class="multiple-choice-input">
@@ -127,15 +132,13 @@
                                                         <th>1<sup>st</sup> Choice</th>
                                                         <th>2<sup>nd</sup> Choice</th>
                                                     </tr>
-                                                    <tr
-                                                        *ngFor="let exit_reason of exit_reason_checkbox; let i=index">
+                                                    <tr *ngFor="let exit_reason of exit_reason_checkbox; let i=index">
                                                         <ng-container *ngIf="question.options[i] == 'true'">
                                                             <td>{{exit_reason.value}}</td>
                                                             <td style="padding-bottom: 20px">
                                                                 <div class="form__group u-margin-bottom-medium">
                                                                     <div class="form__radio-group">
-                                                                        <input type="radio"
-                                                                            class="form__radio-input"
+                                                                        <input type="radio" class="form__radio-input"
                                                                             name="final-1st-choice"
                                                                             value="{{exit_reason.value}}"
                                                                             id="final-1st-choice-{{question.question_no}}-{{exit_reason.id}}">
@@ -150,8 +153,7 @@
                                                             <td style="padding-bottom: 20px">
                                                                 <div class="form__group u-margin-bottom-medium">
                                                                     <div class="form__radio-group">
-                                                                        <input type="radio"
-                                                                            class="form__radio-input"
+                                                                        <input type="radio" class="form__radio-input"
                                                                             name="final-2nd-choice"
                                                                             value="{{exit_reason.value}}"
                                                                             id="final-2nd-choice-{{question.question_no}}-{{exit_reason.id}}">
@@ -176,8 +178,15 @@
                             </div>
                             <!-- </div> -->
                             <div class="text-center">
+                                <button class="btn btn-primary" *ngIf="cur_categorical_questions.step_no > 1"
+                                    (click)="goPrevious()">
+                                    Previous
+                                </button>
                                 <button class="btn btn-primary" type="submit">
-                                    {{answers.length > 0 ? 'Update' : 'Submit'}}
+                                    {{cur_categorical_questions.step_no == steps_count ? 'Submit Survey' : 'Save for Later'}}
+                                </button>
+                                <button class="btn btn-primary" *ngIf="hasNext()" (click)="goNext()">
+                                    Next
                                 </button>
                             </div>
                         </form>

@@ -19,7 +19,7 @@
                 </div>
                 <div class="w-post-date"><small>{{post.createdAt | timeAgo}}</small></div>
                 <div class="w-post-excerpt mb-1">
-                  <p>{{post.excerpt}}</p>
+                  <p [innerHTML]="post.excerpt"></p>
                 </div>
                 <a [routerLink]="post.link" class="w-post-more"><small>Read more...</small></a>
               </div>

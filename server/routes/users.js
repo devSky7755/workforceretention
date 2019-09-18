@@ -12,6 +12,10 @@ router.get('/', userController.Find);
 
 router.get('/:id', userController.FindById);
 
+router.put('/profile/:id', userController.UpdateProfile);
+
+router.put('/password/:id', userController.changePassword);
+
 router.put('/:id', userController.Update);
 
 router.delete('/:id', userController.Delete);

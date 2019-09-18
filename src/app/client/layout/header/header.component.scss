@@ -173,12 +173,12 @@ nav ul li a {
 }
 
 header nav .logo a img {
-  height: 150px;
+  height: 88px;
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
   header nav .logo a img {
-    height: 100px;
+    height: 50px;
   }
   .dropdown-image {
     position: absolute;
@@ -198,7 +198,7 @@ header nav .logo a img {
 @media (min-width: 320px) and (max-width: 480px) {
 
   header nav .logo a img {
-    height: 100px;
+    height: 30px;
   }
   .dropdown-image {
     position: absolute;
