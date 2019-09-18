@@ -50,6 +50,7 @@ exports.CreateMany = (req, res, next) => {
     let surveyId = req.query.surveyId;
     let employeeId = req.query.employeeId;
     let isComplete = req.query.isComplete;
+    let exit_reason_id = req.query.exit_reason_id
     // after save the answer
     // mark the survey as complete
     let questions = [];
@@ -87,6 +88,9 @@ exports.CreateMany = (req, res, next) => {
                         // here we also need to update the employee survey end_date
                         // var aestTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
                         employee_survey.end_date = isComplete == 1 ? new Date() : null;
+                        if (exit_reason_id) {
+                            employee_survey.exit_reason_cur_step = exit_reason_id
+                        }
                         employee_survey.completed_online = isComplete == 1 ? data.completed_online : 'No';
                         employee_survey.completed_admin = isComplete == 1 ? data.completed_admin : 'No';
                     }
@@ -105,6 +109,7 @@ exports.UpdateAnswers = (req, res, next) => {
     let employeeId = req.query.employeeId;
     let isOnline = req.query.isOnline;
     let isAdmin = req.query.isAdmin;
+    let exit_reason_id = req.query.exit_reason_id
     let data = req.body;
     let answer_ids = [];
     let new_answers = [];
@@ -132,6 +137,9 @@ exports.UpdateAnswers = (req, res, next) => {
                         // here we also need to update the employee survey end_date
                         // var aestTime = new Date().toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
                         employee_survey.end_date = isComplete == 1 ? new Date() : null;
+                        if (exit_reason_id) {
+                            employee_survey.exit_reason_cur_step = exit_reason_id
+                        }
                         if (isOnline == 'Yes') {
                             employee_survey.completed_online = isComplete == 1 ? isOnline : 'No';
                         }

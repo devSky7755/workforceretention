@@ -178,14 +178,16 @@
                             </div>
                             <!-- </div> -->
                             <div class="text-center">
-                                <button class="btn btn-primary" *ngIf="cur_categorical_questions.step_no > 1"
-                                    (click)="goPrevious()">
+                                <button class="btn btn-info mr-3" type="button"
+                                    *ngIf="cur_categorical_questions.step_no > 1"
+                                    (click)="goPrevious(); $event.preventDefault()">
                                     Previous
                                 </button>
-                                <button class="btn btn-primary" type="submit">
-                                    {{cur_categorical_questions.step_no == steps_count ? 'Submit Survey' : 'Save for Later'}}
+                                <button class="btn btn-primary" type="submit" *ngIf="!surveyCompleted">
+                                    {{cur_categorical_questions.step_no == steps_count ? 'submit' : 'save and continue'}}
                                 </button>
-                                <button class="btn btn-primary" *ngIf="hasNext()" (click)="goNext()">
+                                <button class="btn btn-primary" type="button" *ngIf="surveyCompleted && cur_categorical_questions.step_no < steps_count"
+                                    (click)="goNext(); $event.preventDefault()">
                                     Next
                                 </button>
                             </div>
@@ -200,8 +202,8 @@
                 <nb-card-header>Would you like to submit your exit interview?</nb-card-header>
                 <nb-card-footer class="m">
                     <div class="m-auto text-center">
-                        <button class="btn btn-outline-primary mr-2" (click)="confirmComplete(true)">Yes</button>
-                        <button class="btn btn-outline-info" (click)="confirmComplete(false)">No</button>
+                        <button class="btn btn-outline-primary mr-2" (click)="confirmComplete(true)">Ok</button>
+                        <button class="btn btn-outline-info" (click)="confirmComplete(false)">Cancel</button>
                     </div>
                 </nb-card-footer>
             </nb-card>

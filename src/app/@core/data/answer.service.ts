@@ -27,16 +27,16 @@ export class AnswerService {
         return this.http.post(this.urlService.baseUrl + '/api/v1/answers', body, httpOptions);
     }
 
-    createManyAnswer(answer, surveyId, employeeId, completed_online, completed_admin, is_complete_submit = 0): Observable<any> {        
+    createManyAnswer(answer, surveyId, employeeId, completed_online, completed_admin, is_complete_submit = 0, exit_reason_id=''): Observable<any> {        
         var aestTime = new Date().toLocaleString("en-US", {timeZone: "Australia/Brisbane"});
         const data = { end_date: new Date(aestTime), answers: answer, completed_online, completed_admin };
         const body = JSON.stringify(data);
-        return this.http.post(this.urlService.baseUrl + `/api/v1/answers/add-many?surveyId=${surveyId}&isComplete=${is_complete_submit}&employeeId=${employeeId}`, body, httpOptions);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/answers/add-many?surveyId=${surveyId}&isComplete=${is_complete_submit}&employeeId=${employeeId}&exit_reason_id=${exit_reason_id}`, body, httpOptions);
     }
 
-    updateManyAnswer(answers, surveyId, employeeId, completed_online, completed_admin, is_complete_submit = 0): Observable<any> {
+    updateManyAnswer(answers, surveyId, employeeId, completed_online, completed_admin, is_complete_submit = 0, exit_reason_id=''): Observable<any> {
         const body = JSON.stringify(answers);
-        return this.http.post(this.urlService.baseUrl + `/api/v1/answers/update-many?surveyId=${surveyId}&isComplete=${is_complete_submit}&isOnline=${completed_online}&isAdmin=${completed_admin}&employeeId=${employeeId}`, body, httpOptions);
+        return this.http.post(this.urlService.baseUrl + `/api/v1/answers/update-many?surveyId=${surveyId}&isComplete=${is_complete_submit}&isOnline=${completed_online}&isAdmin=${completed_admin}&employeeId=${employeeId}&exit_reason_id=${exit_reason_id}`, body, httpOptions);
     }
 
     getEmployeeSurveyAnswer(employeeId, surveyId): Observable<any> {

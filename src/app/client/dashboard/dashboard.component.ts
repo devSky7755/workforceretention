@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
             this.updateSurveyStartDate(surveyId, completed);
         } else {
             this.employeeService.surveyCompleted = completed;
-            this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed, status: this.employeeSurvey.status, exit_reason_cur_step: this.employeeSurvey.exit_reason_cur_step } });
+            this.router.navigate(['/client/questions/' + surveyId]);
         }
     }
 
@@ -98,7 +98,7 @@ export class DashboardComponent implements OnInit {
         this.employeeService.updateEmployee(employeeData, this.employee.employee_id).subscribe(
             () => {
                 this.employeeService.surveyCompleted = completed;
-                this.router.navigate(['/client/questions/' + surveyId], { queryParams: { completed: completed, status: this.employeeSurvey.status, exit_reason_cur_step: this.employeeSurvey.exit_reason_cur_step } });
+                this.router.navigate(['/client/questions/' + surveyId]);
             });
     }
 

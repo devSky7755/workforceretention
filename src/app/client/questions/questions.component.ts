@@ -24,10 +24,12 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     cur_categorical_questions = null;
     cur_step = 11;
     last_step = 11;
+    cur_section_step = null
 
     answers = [];
     question_answers = [];
     is_complete_submit = 0;
+    employeeSurvey;
     survey;
     surveyCompleted;
     surveyStatus = 'Not Started'
@@ -107,8 +109,8 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.exit_reason_ids = this.exit_reason.map(e => e.id)
-        this.cur_categorical_questions = null
         this.surveyId = this.route.snapshot.paramMap.get('id');
+        this.cur_section_step = null
         // here parse the employee
         // check the localStorage. if get the user id then set isAuth to true
         if (localStorage.getItem('employee')) {
@@ -117,25 +119,33 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             const helper = new JwtHelperService();
             this.employee_details = helper.decodeToken(this.employee.access_token);
         }
-        // This would print out the json object which contained
-        // all of our query parameters for this particular route.
-        this.route.queryParams.subscribe(params => {
-            this.surveyCompleted = JSON.parse(params['completed']);
-            this.surveyStatus = params['status'];
-            this.cur_step = params['exit_reason_cur_step'];
-        });
         // set the pageName here
         this.pageName = 'Your Exit Interview ' + this.employee_details.first_name + ' ' + this.employee_details.last_name;
         this.getSurvey();
     }
 
     getSurvey() {
-        this.surveyService.getSurveyQuestions(this.surveyId).subscribe(
+        this.employeeSurvey = null
+        this.employeeService.getEmployeeSurveys(this.employee.employee_id).subscribe(
             data => {
-                this.setPage(data);
-            },
-            err => {
-                console.log(err);
+                data.surveys.map((employeeSurvey) => {
+                    if (employeeSurvey.survey._id == this.surveyId) {
+                        this.employeeSurvey = employeeSurvey
+                    }
+                });
+                if (this.employeeSurvey) {
+                    this.surveyCompleted = this.employeeSurvey.completed
+                    this.surveyStatus = this.employeeSurvey.completed ? "Completed" : this.employeeSurvey.start_date ? "In Progress" : "Not Started"
+                    this.cur_step = this.employeeSurvey.exit_reason_cur_step ? parseInt(this.employeeSurvey.exit_reason_cur_step) : 11;
+                    this.surveyService.getSurveyQuestions(this.surveyId).subscribe(
+                        data => {
+                            this.setPage(data);
+                        },
+                        err => {
+                            console.log(err);
+                        }
+                    );
+                }
             }
         );
     }
@@ -156,6 +166,8 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     questionArrange() {
+        this.categorical_questions = []
+        this.cur_categorical_questions = null
         let question_no = 1;
         let step_no = 1;
         this.exit_reason.map((reason, index) => {
@@ -175,33 +187,154 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             }
             let val = { exit_reason: reason.value, exit_reason_id: reason.id, questions: categorical_questions, step_no: step_no }
             this.categorical_questions.push(val);
-            if (this.exit_reason_ids.indexOf(this.cur_step) <= index && !this.cur_categorical_questions) {
+            let cur_step = this.cur_section_step || this.cur_step
+            if (this.exit_reason_ids.indexOf(cur_step) <= index && !this.cur_categorical_questions) {
                 this.cur_categorical_questions = val
             }
             step_no++
             this.last_step = reason.id
         });
         this.steps_count = step_no - 1;
+        console.log(this.cur_step)
         console.log(this.steps_count)
         console.log(this.last_step)
         console.log(this.categorical_questions)
         console.log(this.cur_categorical_questions)
+
+        if (this.surveyStatus != "Not Started") {
+            this.setQuestionAnswer();
+        }
     }
 
-    hasNext() {
-        return this.cur_categorical_questions && this.exit_reason_ids.indexOf(this.cur_categorical_questions.exit_reason_id) < this.exit_reason_ids.indexOf(this.cur_step)
+    setQuestionAnswer() {
+        this.answerService.getEmployeeSurveyAnswer(this.employee.employee_id, this.surveyId).subscribe(
+            data => {
+                this.answers = data.answers;
+                this.setAnswer();
+            });
+    }
+
+    setAnswer() {
+        this.cur_categorical_questions.questions.map((question) => {
+            // find the question answer
+            const answer = this.answers.find(a => a.question == question._id);
+            // check if the answer is undefined or null
+            if (!this.isNullOrEmpty(answer)) {
+                // also checking if the question is not final question
+                if (answer.question_type == this.question_types[0].id && answer.question_type != '7') {
+                    // Rating Radio Buttons
+                    this.survey.rating_labels.map((label, index) => {
+                        const rating_radio_input = <HTMLInputElement>document.getElementById(`rating-radio-label-${question.question_no}-${index}`);
+                        if (answer.options[0] == index) {
+                            // check me
+                            rating_radio_input.checked = true;
+                        }
+                    });
+                } else if (answer.question_type == this.question_types[1].id && answer.question_type != '7') {
+                    // Free Text
+                    const free_text_input = <HTMLInputElement>document.getElementById(`question-comment-${question.question_no}`);
+                    free_text_input.value = answer.options[0];
+                } else if (answer.question_type == this.question_types[2].id && answer.question_type != '7') {
+                    // Exit Interview - Exit Reasons
+                    question.options.map((option, index) => {
+                        if (option == 'true') {
+                            const simple_radio_input = <HTMLInputElement>document.getElementById(`exit-reason-choice-${question.question_no}-${index}`);
+                            // this will store the index of the checked item
+                            // check if the index is in the answer options
+                            // if the index is in the answer options then check that input
+                            const option_index = '' + index;
+                            if (answer.options.includes(option_index)) {
+                                simple_radio_input.checked = true;
+                            }
+                        }
+                    });
+                } else if (answer.question_type == this.question_types[3].id && answer.question_type != '7') {
+                    // Yes / No Radio
+                    const yes_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-yes`);
+                    const no_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-no`);
+                    if (answer.options[0] == '1') {
+                        yes_radio_label.checked = true;
+                    } else {
+                        no_radio_label.checked = true;
+                    }
+                } else if (answer.question_type == this.question_types[4].id && answer.question_type != '7') {
+                    // Radio Labels
+                    question.options.map((option, index) => {
+                        const radio_label_input = <HTMLInputElement>document.getElementById(`radio-label-${question.question_no}-${index}`);
+                        if (answer.options[0] == index) {
+                            radio_label_input.checked = true;
+                        }
+                    });
+                } else if (answer.question_type === '7') {
+                    // This is the final question
+                    this.exit_reason_checkbox.map((exit_reason, index) => {
+                        // check if the question.options[index]=='true' or not.
+                        // if true then execute the below functionality
+                        if (question.options[index] == 'true') {
+                            const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
+                            const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
+                            // answer options will contain two values
+                            if (answer.options.length > 0) {
+                                const first_choice = answer.options[0].split('-');
+                                if (first_choice[0] == '1st') {
+                                    if (first_choice[2] == exit_reason.id) {
+                                        first_choice_radio_input.checked = true;
+                                    }
+
+                                } else {
+                                    if (first_choice[2] == exit_reason.id) {
+                                        second_choice_radio_input.checked = true;
+                                    }
+                                }
+                            }
+
+                            if (answer.options.length > 1) {
+                                const second_choice = answer.options[1].split('-');
+                                if (second_choice[0] == '1st') {
+                                    if (second_choice[2] == exit_reason.id) {
+                                        first_choice_radio_input.checked = true;
+                                    }
+                                } else {
+                                    if (second_choice[2] == exit_reason.id) {
+                                        second_choice_radio_input.checked = true;
+                                    }
+                                }
+                            }
+                        }
+                    });
+                } else {
+                    // Multiple Choice
+                    question.options.map((option, index) => {
+                        const multiple_choice_input = <HTMLInputElement>document.getElementById(`multiple-choice-${question.question_no}-${index}`);
+                        const option_index = '' + index;
+                        if (answer.options.includes(option_index)) {
+                            multiple_choice_input.checked = true;
+                        }
+                    });
+                }
+            } else {
+                // set this. this means no answer is given in this answers
+                this.answers.push({ question: question._id, new: true });
+            }
+        });
     }
 
     goPrevious() {
+        this.cur_section_step = this.prevCategoricalQuestions().exit_reason_id
+        this.getSurvey()
     }
 
     goNext() {
+        this.cur_section_step = this.nextCategoricalQuestions().exit_reason_id
+        this.getSurvey()
     }
 
     onSubmitAnswer() {
+        if (this.surveyCompleted) {
+            return
+        }
         // validate answer
         const errors = [];
-        this.is_complete_submit = this.surveyCompleted ? 1 : 0
         this.question_answers = [];
         // render answer
         // foreach question there will have an answer
@@ -331,10 +464,13 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             return
         }
         // save the answer to the database
-        if (errors.length == 0 && !this.surveyCompleted && this.cur_step == this.last_step) {
+        let cur_step = this.cur_section_step || this.cur_step
+        if (errors.length == 0 && cur_step == this.last_step) {
             // alert('Please select an option for question -> ' + errors[0]);
             this.confirmRef = this.dialogService.open(this.confirm, { hasBackdrop: false });
             return;
+        } else {
+            this.is_complete_submit = 0
         }
 
         console.log(this.question_answers)
@@ -346,29 +482,66 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     confirmComplete(val) {
-        if (val)
+        if (val) {
             this.is_complete_submit = 1
-
-        if (this.surveyStatus != "Not Started") {
-            this.updateQuestionAnswer();
-        } else {
-            this.saveQuestionAnswer();
+            if (this.surveyStatus != "Not Started") {
+                this.updateQuestionAnswer();
+            } else {
+                this.saveQuestionAnswer();
+            }
         }
-
+        this.is_complete_submit = 0
         if (this.confirmRef)
             this.confirmRef.close()
     }
 
+    prevCategoricalQuestions() {
+        let index = this.categorical_questions.findIndex((cat_questions) => {
+            return cat_questions.exit_reason_id == this.cur_categorical_questions.exit_reason_id
+        })
+        if (this.categorical_questions[index - 1]) {
+            return this.categorical_questions[index - 1]
+        } else {
+            return this.cur_categorical_questions
+        }
+    }
+
+    nextCategoricalQuestions() {
+        let index = this.categorical_questions.findIndex((cat_questions) => {
+            return cat_questions.exit_reason_id == this.cur_categorical_questions.exit_reason_id
+        })
+        if (this.categorical_questions[index + 1]) {
+            return this.categorical_questions[index + 1]
+        } else {
+            return this.cur_categorical_questions
+        }
+    }
+
+    nextStopCategoricalQuestions() {
+        let index = this.categorical_questions.findIndex((cat_questions) => {
+            return cat_questions.exit_reason_id == this.cur_step
+        })
+        if (this.cur_categorical_questions.exit_reason_id != this.cur_step) {
+            return this.categorical_questions[index]
+        }
+        if (this.categorical_questions[index + 1]) {
+            return this.categorical_questions[index + 1]
+        } else {
+            return this.categorical_questions[this.steps_count - 1]
+        }
+    }
+
     saveQuestionAnswer() {
-        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employee.employee_id, 'Yes', 'No', this.is_complete_submit).subscribe(
+        let next_exit_reason_id = this.nextStopCategoricalQuestions().exit_reason_id
+        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employee.employee_id, 'Yes', 'No', this.is_complete_submit, next_exit_reason_id).subscribe(
             () => {
                 if (this.is_complete_submit) {
                     alert('Thank you for taking the time to complete your online exit interview');
                 } else {
                     alert('Your updates have been saved');
                 }
-                this.setQuestionAnswer()
-                // this.router.navigateByUrl('/client/dashboard');
+                this.cur_section_step = this.nextCategoricalQuestions().exit_reason_id
+                this.getSurvey()
             }
         );
     }
@@ -378,6 +551,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
     }
 
     updateQuestionAnswer() {
+        let next_exit_reason_id = this.nextStopCategoricalQuestions().exit_reason_id
         this.answers.map((answer) => {
             const selected_question = this.question_answers.find(a => a.question === answer.question);
             if (!selected_question) return
@@ -387,143 +561,22 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             answer.survey = selected_question.survey;
         });
         console.log(this.answers);
-        // this.answerService.updateManyAnswer(this.answers, this.surveyId, this.employee.employee_id, 'Yes', 'No', this.is_complete_submit).subscribe(
-        //     () => {
-        //         if (this.is_complete_submit) {
-        //             alert('Thank you for taking the time to complete your online exit interview');
-        //         } else {
-        //             alert('Your updates have been saved');
-        //         }
-        //         this.setQuestionAnswer()
-        //         // this.router.navigateByUrl('/client/dashboard');
-        //     }
-        // );
-    }
-
-    setQuestionAnswer() {
-        this.answerService.getEmployeeSurveyAnswer(this.employee.employee_id, this.surveyId).subscribe(
-            data => {
-                this.answers = data.answers;
-                this.setAnswer();
-            });
-    }
-
-    setAnswer() {
-        this.categorical_questions.map((cat_question) => {
-            // foreach question there will have an answer
-            cat_question.questions.map((question) => {
-                // find the question answer
-                const answer = this.answers.find(a => a.question == question._id);
-                // check if the answer is undefined or null
-                if (!this.isNullOrEmpty(answer)) {
-                    // also checking if the question is not final question
-                    if (answer.question_type == this.question_types[0].id && answer.question_type != '7') {
-                        // Rating Radio Buttons
-                        this.survey.rating_labels.map((label, index) => {
-                            const rating_radio_input = <HTMLInputElement>document.getElementById(`rating-radio-label-${question.question_no}-${index}`);
-                            if (answer.options[0] == index) {
-                                // check me
-                                rating_radio_input.checked = true;
-                            }
-                        });
-                    } else if (answer.question_type == this.question_types[1].id && answer.question_type != '7') {
-                        // Free Text
-                        const free_text_input = <HTMLInputElement>document.getElementById(`question-comment-${question.question_no}`);
-                        free_text_input.value = answer.options[0];
-                    } else if (answer.question_type == this.question_types[2].id && answer.question_type != '7') {
-                        // Exit Interview - Exit Reasons
-                        question.options.map((option, index) => {
-                            if (option == 'true') {
-                                const simple_radio_input = <HTMLInputElement>document.getElementById(`exit-reason-choice-${question.question_no}-${index}`);
-                                // this will store the index of the checked item
-                                // check if the index is in the answer options
-                                // if the index is in the answer options then check that input
-                                const option_index = '' + index;
-                                if (answer.options.includes(option_index)) {
-                                    simple_radio_input.checked = true;
-                                }
-                            }
-                        });
-                    } else if (answer.question_type == this.question_types[3].id && answer.question_type != '7') {
-                        // Yes / No Radio
-                        const yes_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-yes`);
-                        const no_radio_label = <HTMLInputElement>document.getElementById(`radio-${question.question_no}-no`);
-                        if (answer.options[0] == '1') {
-                            yes_radio_label.checked = true;
-                        } else {
-                            no_radio_label.checked = true;
-                        }
-                    } else if (answer.question_type == this.question_types[4].id && answer.question_type != '7') {
-                        // Radio Labels
-                        question.options.map((option, index) => {
-                            const radio_label_input = <HTMLInputElement>document.getElementById(`radio-label-${question.question_no}-${index}`);
-                            if (answer.options[0] == index) {
-                                radio_label_input.checked = true;
-                            }
-                        });
-                    } else if (answer.question_type === '7') {
-                        // This is the final question
-                        this.exit_reason_checkbox.map((exit_reason, index) => {
-                            // check if the question.options[index]=='true' or not.
-                            // if true then execute the below functionality
-                            if (question.options[index] == 'true') {
-                                const first_choice_radio_input = <HTMLInputElement>document.getElementById(`final-1st-choice-${question.question_no}-${exit_reason.id}`);
-                                const second_choice_radio_input = <HTMLInputElement>document.getElementById(`final-2nd-choice-${question.question_no}-${exit_reason.id}`);
-                                // answer options will contain two values
-                                if (answer.options.length > 0) {
-                                    const first_choice = answer.options[0].split('-');
-                                    if (first_choice[0] == '1st') {
-                                        if (first_choice[2] == exit_reason.id) {
-                                            first_choice_radio_input.checked = true;
-                                        }
-
-                                    } else {
-                                        if (first_choice[2] == exit_reason.id) {
-                                            second_choice_radio_input.checked = true;
-                                        }
-                                    }
-                                }
-
-                                if (answer.options.length > 1) {
-                                    const second_choice = answer.options[1].split('-');
-                                    if (second_choice[0] == '1st') {
-                                        if (second_choice[2] == exit_reason.id) {
-                                            first_choice_radio_input.checked = true;
-                                        }
-                                    } else {
-                                        if (second_choice[2] == exit_reason.id) {
-                                            second_choice_radio_input.checked = true;
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    } else {
-                        // Multiple Choice
-                        question.options.map((option, index) => {
-                            const multiple_choice_input = <HTMLInputElement>document.getElementById(`multiple-choice-${question.question_no}-${index}`);
-                            const option_index = '' + index;
-                            if (answer.options.includes(option_index)) {
-                                multiple_choice_input.checked = true;
-                            }
-                        });
-                    }
+        this.answerService.updateManyAnswer(this.answers, this.surveyId, this.employee.employee_id, 'Yes', 'No', this.is_complete_submit, next_exit_reason_id).subscribe(
+            () => {
+                if (this.is_complete_submit) {
+                    alert('Thank you for taking the time to complete your online exit interview');
                 } else {
-                    // set this. this means no answer is given in this answers
-                    this.answers.push({ question: question._id, new: true });
+                    alert('Your updates have been saved');
                 }
-            });
-        });
+                this.cur_section_step = this.nextCategoricalQuestions().exit_reason_id
+                this.getSurvey()
+            }
+        );
     }
+
 
     ngAfterViewInit() {
         // here check if the survey was previously completed or not.
         // if the survey was previously completed then set the answer
-        if (this.surveyStatus != "Not Started") {
-            const self = this;
-            setTimeout(function () {
-                self.setQuestionAnswer();
-            }, 1000);
-        }
     }
 }
