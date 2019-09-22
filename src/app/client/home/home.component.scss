@@ -734,6 +734,19 @@ footer p {
   padding: 0 20px;
 }
 
+/deep/ .carousel-logo {
+  .img-logo {
+    width: 60%;
+    margin: auto;
+  }
+  .slick-prev,
+  .slick-next {
+    background: #4db0e8 !important;
+    height: 25px !important;
+    width: 25px !important;
+  }
+}
+
 @media (min-width: 481px) and (max-width: 767px) {
   .section-div {
     flex-direction: column-reverse;
