@@ -24,6 +24,15 @@ export class RequestAQuoteComponent implements OnInit {
     phone_interview_without_platform_status: '0',
     exit_report_status: '1'
   }
+
+  collapse = {
+    license: true,
+    phone_interview: true,
+    phone_interview_without: true,
+    exit_report: true,
+    confidential: true
+  }
+  
   constructor(private requestAQuoteService: RequestAQuoteService) { }
 
   ngOnInit() {

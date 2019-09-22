@@ -7,6 +7,12 @@
                 <div class="row">
                     <div class="col-lg-1"></div>
                     <div class="col-lg-10">
+                        <p *ngIf="steps_count && steps_count > 0">
+                            <ngb-progressbar showValue="true" [striped]="true"
+                                [value]="(cur_categorical_questions.step_no / steps_count * 100.0).toFixed(2)">
+                                <b>{{cur_categorical_questions.step_no + ' of ' + steps_count}}</b>...
+                            </ngb-progressbar>
+                        </p>
                         <form (ngSubmit)="onSubmitAnswer()" *ngIf="cur_categorical_questions">
                             <!-- <div *ngFor="let cat_question of categorical_questions"> -->
                             <!-- <div class="question-box" *ngIf="cat_question.questions.length > 0"> -->
@@ -186,7 +192,8 @@
                                 <button class="btn btn-primary" type="submit" *ngIf="!surveyCompleted">
                                     {{cur_categorical_questions.step_no == steps_count ? 'submit' : 'save and continue'}}
                                 </button>
-                                <button class="btn btn-primary" type="button" *ngIf="surveyCompleted && cur_categorical_questions.step_no < steps_count"
+                                <button class="btn btn-primary" type="button"
+                                    *ngIf="surveyCompleted && cur_categorical_questions.step_no < steps_count"
                                     (click)="goNext(); $event.preventDefault()">
                                     Next
                                 </button>

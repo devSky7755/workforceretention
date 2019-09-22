@@ -54,7 +54,7 @@
                                     <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
                                         <button type="button" class="btn btn-primary"
                                             (click)="onClickGoSurvey(value,row.completed)">
-                                            {{row.completed?"Update":row.start_date ? "Continue":"Start"}}
+                                            {{row.completed?"View":row.start_date ? "Continue":"Start"}}
                                         </button>
                                     </ng-template>
                                 </ngx-datatable-column>

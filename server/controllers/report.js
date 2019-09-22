@@ -248,6 +248,28 @@ exports.ManagerReport = (req, res, next) => {
                         genders.push(({ name: 'Female', value: female }));
 
 
+                        let occupations = [
+                            { id: 1, name: 'Not Classified', value: 0 },
+                            { id: 2, name: 'Managers', value: 0 },
+                            { id: 3, name: 'Professionals', value: 0 },
+                            { id: 4, name: 'Technicians and Trade Workers', value: 0 },
+                            { id: 5, name: 'Community and Personal Service Workers', value: 0 },
+                            { id: 6, name: 'Clerical and Administrative Workers', value: 0 },
+                            { id: 7, name: 'Sales Workers', value: 0 },
+                            { id: 8, name: 'Machinery Operators and Drivers', value: 0 },
+                            { id: 9, name: 'Labourers', value: 0 },
+                        ]
+
+                        filtered_employees.forEach((e) => {
+                            // calculate age
+                            if (!IsNullOrEmpty(e.occupational_group)) {
+                                let occupation = occupations.find(o => { return o.id == e.occupational_group })
+                                if (occupation) {
+                                    occupation.value++
+                                }
+                            }
+                        });
+
                         let ages = [];
                         // Calculate Age
                         let less_than_twenty_five = 0;
@@ -457,6 +479,7 @@ exports.ManagerReport = (req, res, next) => {
                                     genders,
                                     ages,
                                     tenures,
+                                    occupations,
                                     completed: filtered_employees.length
                                 })
                             });

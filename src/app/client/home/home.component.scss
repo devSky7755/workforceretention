@@ -792,11 +792,12 @@ footer p {
     height: 0;
   }
   .moment1 {
-    background: #666 url(/assets/images/blur_homepage.png) no-repeat top;
+    background: #666 url(/assets/images/contact.jpeg) no-repeat top;
     background-size: cover;
   }
   .moment2 {
-    background: #666 url(/assets/images/contact.jpeg) top;
+    background: #666 url(/assets/images/second_image.jpeg);
+    background-position-y: 25%;
     background-size: cover;
   }
   .moment3 {

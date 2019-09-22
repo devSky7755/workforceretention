@@ -100,6 +100,7 @@ export class ManagerReportComponent implements OnInit {
     gender_split_chart_data = [];
     tenure_split_chart_data = [];
     age_split_chart_data = [];
+    occupation_split_chart_data = []
 
     employee_sentiment = [];
     employee_sentiment_working_chart_data = [];
@@ -124,11 +125,6 @@ export class ManagerReportComponent implements OnInit {
         { exit_reason: '15', value: this.restructure_chart_data, canvasData: [] }
     ];
     titleMargin = 20
-
-    @ViewChild('agePieChart') agePieChart;
-    @ViewChild('tenurePieChart') tenurePieChart;
-    @ViewChild('genderPieChart') genderPieChart;
-    @ViewChild('topReasonVerticalChart') topReasonVerticalChart;
     textArray = [];
 
     constructor(private reportService: ReportService,
@@ -381,6 +377,26 @@ export class ManagerReportComponent implements OnInit {
                 })
             } else {
                 this.tenure_split_chart_data = [];
+            }
+
+
+            //*****************Occupation Calculation****************
+            this.occupation_split_chart_data = data.occupations;
+            total = 0;
+            this.occupation_split_chart_data.map((t) => {
+                total += t.value;
+            });
+            if (total !== 0) {
+                this.occupation_split_chart_data.map((t) => {
+                    t.value = (t.value / total) * 100;
+                    t.label = t.name
+                    t.y = t.value
+                });
+                this.occupation_split_chart_data = this.occupation_split_chart_data.filter((t) => {
+                    return t.value != 0
+                })
+            } else {
+                this.occupation_split_chart_data = [];
             }
 
             this.response_array = data.response_array;
@@ -648,6 +664,7 @@ export class ManagerReportComponent implements OnInit {
                 this.showGenderChart()
                 this.showTenureChart()
                 this.showAgeChart()
+                this.showOccupationChart()
             }, 200);
         } else {
             alert(message);
@@ -888,6 +905,39 @@ export class ManagerReportComponent implements OnInit {
             }]
         });
         tenureChart.render()
+    }
+    showOccupationChart() {
+        var occupationChart = new CanvasJS.Chart("occupationChart", {
+            colorSet: "pieColorSets",
+            animationEnabled: true,
+            exportEnabled: true,
+            backgroundColor: '#f9f9f9',
+            // title: {
+            //     text: "Tenure Split",
+            //     margin: this.titleMargin
+            // },
+            axisY: {
+                suffix: "%",
+                gridDashType: "dot"
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                reversed: true,
+                verticalAlign: "center",
+                horizontalAlign: "right"
+            },
+            data: [{
+                type: "pie",
+                showInLegend: true,
+                startAngle: 240,
+                yValueFormatString: "##0.00\"%\"",
+                indexLabel: "{y}",
+                dataPoints: this.occupation_split_chart_data
+            }]
+        });
+        occupationChart.render()
     }
     showAgeChart() {
         var ageChart = new CanvasJS.Chart("ageChart", {

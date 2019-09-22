@@ -9,7 +9,9 @@
       <div class="container container-rq text-left mt-5">
         <div class="text-center">
           <h2 style="color: #000;">Get an estimate of the cost</h2>
-          <h5 style="color: #000; font-weight: 600; max-width: 700px; margin: 30px auto 50px;"><i>As we provide flexible options to suit each business, please submit some details and preferences below to help us get started on some pricing options for you. </i>
+          <h5 style="color: #000; font-weight: 600; max-width: 700px; margin: 30px auto 50px;"><i>As we provide flexible
+              options to suit each business, please submit some details and preferences below to help us get started on
+              some pricing options for you. </i>
           </h5>
         </div>
         <form [formGroup]="quoteForm" class="mt-4">
@@ -99,26 +101,26 @@
           <div class="text-center mt-5">
             <div class="row mt-3">
               <div class="col-sm-9 text-left">
-                <div class="f-option-label">License to Workforce Retentions Exit Interview Platform <i
-                    [nbPopover]="licenseRequiredPopover" nbPopoverPlacement="bottom"
-                    class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i></div>
-                The prodvides the ability to administer exit interviews via our cloud platform.
-                <ng-template #licenseRequiredPopover>
-                  <div class="f-option-popover">
-                    - Workforce Retention design the custom exit interview with you and build it into the platform <br>
-                    - Organisations levels are set up to enable you to view results for different parts of your
-                    organisation. <br>
-                    - Ability to send online exit interviews to exiting employees ( pre or post departure ) <br>
-                    - Flexibility in updating auto-emails sent to employees <br>
-                    - View exiting employees individual reports upon completion <br>
-                    - View charts ranked by 'top reasons for leaving' <br>
-                    - Filter charts by division, gender, tenure or position level <br>
-                    - Provide report access to business leaders or HR with ability to limit the divisions they can see
-                    <br>
-                    - Download full extracts of the data at any time. <br>
-                    - Use the platform to conduct Face to Face interviews <br>
-                  </div>
-                </ng-template>
+                <div class="f-option-label">License to Workforce Retentions Exit Interview Platform
+                  <span class="cursor-pointer" (click)="collapse.license = !collapse.license"
+                    [attr.aria-expanded]="!collapse.license" aria-controls="licenseRequiredCollapse">
+                    {{collapse.license ? '[+]':'[-]'}}
+                  </span></div>
+                The provides the ability to administer exit interviews via our cloud platform.
+                <div id="licenseRequiredCollapse" [ngbCollapse]="collapse.license">
+                  - Workforce Retention design the custom exit interview with you and build it into the platform <br>
+                  - Organisations levels are set up to enable you to view results for different parts of your
+                  organisation. <br>
+                  - Ability to send online exit interviews to exiting employees ( pre or post departure ) <br>
+                  - Flexibility in updating auto-emails sent to employees <br>
+                  - View exiting employees individual reports upon completion <br>
+                  - View charts ranked by 'top reasons for leaving' <br>
+                  - Filter charts by division, gender, tenure or position level <br>
+                  - Provide report access to business leaders or HR with ability to limit the divisions they can see
+                  <br>
+                  - Download full extracts of the data at any time. <br>
+                  - Use the platform to conduct Face to Face interviews <br>
+                </div>
               </div>
               <div class="col-sm-3 mt-2">
                 <div class="form__group u-margin-bottom-medium">
@@ -145,24 +147,25 @@
             </div>
             <div class="row mt-3">
               <div class="col-sm-9 text-left">
-                <div class="f-option-label">Expert Phone Interviews <i [nbPopover]="phoneInterviewWithPlatformPopover"
-                    nbPopoverPlacement="bottom" class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i>
+                <div class="f-option-label">Expert Phone Interviews
+                  <span class="cursor-pointer" (click)="collapse.phone_interview = !collapse.phone_interview"
+                    [attr.aria-expanded]="!collapse.phone_interview" aria-controls="phoneInterviewWithPlatformCollapse">
+                    {{collapse.phone_interview ? '[+]':'[-]'}}
+                  </span>
                 </div>
                 Includes the scheduling and provision of expert phone exit interview and report pls all Platform
                 inclusions
-                <ng-template #phoneInterviewWithPlatformPopover>
-                  <div class="f-option-popover">
-                    - Includes 30-60 minute expert phone exit interview<br>
-                    - Exiting employee is contacted to schedule interview ( up to 3 attempts to contact, admin charge
-                    only for decline )<br>
-                    - Exit Interview report completed and send via email<br>
-                    - Ability to view status of exit interview completion via the platform<br>
-                    - Ability to allow exiting employee to complete the interview online if they prefer not to have a
-                    phone interview (admin charge only)<br>
-                    - Includes all the features of the platform including download all the exit interview data or
-                    viewing charts.<br>
-                  </div>
-                </ng-template>
+                <div id="phoneInterviewWithPlatformCollapse" [ngbCollapse]="collapse.phone_interview">
+                  - Includes 30-60 minute expert phone exit interview<br>
+                  - Exiting employee is contacted to schedule interview ( up to 3 attempts to contact, admin charge
+                  only for decline )<br>
+                  - Exit Interview report completed and send via email<br>
+                  - Ability to view status of exit interview completion via the platform<br>
+                  - Ability to allow exiting employee to complete the interview online if they prefer not to have a
+                  phone interview (admin charge only)<br>
+                  - Includes all the features of the platform including download all the exit interview data or
+                  viewing charts.<br>
+                </div>
               </div>
               <div class="col-sm-3 mt-2">
                 <div class="form__group u-margin-bottom-medium">
@@ -190,17 +193,19 @@
             </div>
             <div class="row mt-3">
               <div class="col-sm-9 text-left">
-                <div class="f-option-label">Expert Phone Interviews WITHOUT Platform <i
-                    [nbPopover]="phoneInterviewWithoutPlatformPopover" nbPopoverPlacement="bottom"
-                    class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i>
+                <div class="f-option-label">Expert Phone Interviews WITHOUT Platform
+                  <span class="cursor-pointer"
+                    (click)="collapse.phone_interview_without = !collapse.phone_interview_without"
+                    [attr.aria-expanded]="!collapse.phone_interview_without"
+                    aria-controls="phoneInterviewWithoutPlatformCollapse">
+                    {{collapse.phone_interview_without ? '[+]':'[-]'}}
+                  </span>
                 </div>
                 Some organisation just want individual phone interviews expertly conducted. Please indicate if you are
                 only interested in the cost of phone interviews, without the platform.
-                <ng-template #phoneInterviewWithoutPlatformPopover>
-                  <div class="f-option-popover">
-                    Some organisation just want individual phone interviews expertly conducted.<br>
-                  </div>
-                </ng-template>
+                <div id="phoneInterviewWithoutPlatformCollapse" [ngbCollapse]="collapse.phone_interview_without">
+                  Some organisation just want individual phone interviews expertly conducted.<br>
+                </div>
               </div>
               <div class="col-sm-3 mt-2">
                 <div class="form__group u-margin-bottom-medium">
@@ -229,16 +234,17 @@
             </div>
             <div class="row mt-3">
               <div class="col-sm-9 text-left">
-                <div class="f-option-label">Comprehensive Exit Reports <i [nbPopover]="exitReportPopover"
-                    nbPopoverPlacement="bottom" class="fa fa-question-circle-o cursor-pointer" aria-hidden="true"></i>
+                <div class="f-option-label">Comprehensive Exit Reports
+                  <span class="cursor-pointer" (click)="collapse.exit_report = !collapse.exit_report"
+                    [attr.aria-expanded]="!collapse.exit_report" aria-controls="exitReportCollapse">
+                    {{collapse.exit_report ? '[+]':'[-]'}}
+                  </span>
                 </div>
                 The comprehensive reports are separate to the online charting that is included in the platform
-                <ng-template #exitReportPopover>
-                  <div class="f-option-popover">
-                    Full analysis of the quantitative and qualitative data and insights on themes and trends. Quarterly
-                    is recommended for most organisations. <br>
-                  </div>
-                </ng-template>
+                <div id="exitReportCollapse" [ngbCollapse]="collapse.exit_report">
+                  Full analysis of the quantitative and qualitative data and insights on themes and trends. Quarterly
+                  is recommended for most organisations. <br>
+                </div>
               </div>
               <div class="col-sm-3 mt-2">
                 <div class="form__group u-margin-bottom-medium">

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ClientRoutingModule } from './client-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
@@ -11,7 +11,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { NbCardModule, NbDatepickerModule, NbLayoutModule, NbPopoverModule, NbDialogModule  } from "@nebular/theme";
+import { NbCardModule, NbDatepickerModule, NbLayoutModule, NbPopoverModule, NbDialogModule } from "@nebular/theme";
 import { PageNameComponent } from './page-name/page-name.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -60,6 +60,7 @@ import { PrivacyComponent } from './privacy/privacy.component';
         PrivacyComponent
     ],
     imports: [
+        NgbModule,
         CommonModule,
         ClientRoutingModule,
         FlexLayoutModule,

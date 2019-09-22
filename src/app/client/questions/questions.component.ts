@@ -489,8 +489,9 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             } else {
                 this.saveQuestionAnswer();
             }
+        } else {
+            this.is_complete_submit = 0
         }
-        this.is_complete_submit = 0
         if (this.confirmRef)
             this.confirmRef.close()
     }
@@ -537,11 +538,12 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             () => {
                 if (this.is_complete_submit) {
                     alert('Thank you for taking the time to complete your online exit interview');
+                    this.router.navigateByUrl('/client/dashboard');
+                    return
                 } else {
-                    alert('Your updates have been saved');
+                    this.cur_section_step = this.nextCategoricalQuestions().exit_reason_id
+                    this.getSurvey()
                 }
-                this.cur_section_step = this.nextCategoricalQuestions().exit_reason_id
-                this.getSurvey()
             }
         );
     }
@@ -560,16 +562,16 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             answer.question_type = selected_question.question_type;
             answer.survey = selected_question.survey;
         });
-        console.log(this.answers);
         this.answerService.updateManyAnswer(this.answers, this.surveyId, this.employee.employee_id, 'Yes', 'No', this.is_complete_submit, next_exit_reason_id).subscribe(
             () => {
                 if (this.is_complete_submit) {
                     alert('Thank you for taking the time to complete your online exit interview');
+                    this.router.navigateByUrl('/client/dashboard');
+                    return
                 } else {
-                    alert('Your updates have been saved');
+                    this.cur_section_step = this.nextCategoricalQuestions().exit_reason_id
+                    this.getSurvey()
                 }
-                this.cur_section_step = this.nextCategoricalQuestions().exit_reason_id
-                this.getSurvey()
             }
         );
     }

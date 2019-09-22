@@ -156,37 +156,21 @@
                                 </div> -->
                 <div id="employeeSentimentNotChart" style="width: 100%; min-height: 400px;"></div>
               </div>
-              <div *ngIf="gender_split_chart_data.length > 0" class="mt-5">
+              <div *ngIf="gender_split_chart_data.length > 0">
                 <h2 class="text-center mb-3">Gender Split</h2>
-                <!-- <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-pie-chart #genderPieChart [scheme]="colorScheme"
-                                        [schemeType]="schemaType" [results]="gender_split_chart_data"
-                                        [gradient]="gradient" [labels]="true" [legend]="true"
-                                        (select)="onSelect($event)">
-                                    </ngx-charts-pie-chart>
-                                </div> -->
-                <div id="genderChart" class="mx-auto" style="height: 500px; width: 100%;"></div>
+                <div id="genderChart" class="mx-auto" style="height: 400px; width: 100%;"></div>
               </div>
-              <div *ngIf="tenure_split_chart_data.length > 0" class="mt-5">
+              <div *ngIf="tenure_split_chart_data.length > 0">
                 <h2 class="text-center mb-3">Tenure Split</h2>
-                <!-- <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-pie-chart #tenurePieChart [scheme]="colorScheme"
-                                        [schemeType]="schemaType" [results]="tenure_split_chart_data"
-                                        [gradient]="gradient" [labels]="true" [legend]="true"
-                                        (select)="onSelect($event)">
-                                    </ngx-charts-pie-chart>
-                                </div> -->
-                <div id="tenureChart" class="mx-auto" style="height: 500px; width: 100%;"></div>
+                <div id="tenureChart" class="mx-auto" style="height: 400px; width: 100%;"></div>
               </div>
-              <div *ngIf="age_split_chart_data.length > 0" class="mt-5">
+              <div *ngIf="age_split_chart_data.length > 0">
                 <h2 class="text-center mb-3">Age Split</h2>
-                <!-- <div style="display: flex; overflow: hidden;height: 500px">
-                                    <ngx-charts-pie-chart #agePieChart [scheme]="colorScheme" [schemeType]="schemaType"
-                                        [results]="age_split_chart_data" [gradient]="gradient" [labels]="true"
-                                        [legend]="true" (select)="onSelect($event)">
-                                    </ngx-charts-pie-chart>
-                                </div> -->
-                <div id="ageChart" class="mx-auto" style="height: 500px; width:100%;"></div>
+                <div id="ageChart" class="mx-auto" style="height: 400px; width:100%;"></div>
+              </div>
+              <div *ngIf="occupation_split_chart_data.length > 0">
+                <h2 class="text-center mb-3">Occupation Split</h2>
+                <div id="occupationChart" class="mx-auto" style="height: 400px; width:100%;"></div>
               </div>
             </div>
           </div>
