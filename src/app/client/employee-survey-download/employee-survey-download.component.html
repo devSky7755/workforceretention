@@ -164,7 +164,7 @@
                                     <div *ngIf="cat_question.exit_reason == 'Final Question'">
                                         <!--Here Display The Selected Item-->
                                         <!--Here Display both first choice and second choice-->
-                                        <div class="container">
+                                        <div class="container" style="color: #696969;">
                                             <div *ngFor="let exit_reason of exit_reason_checkbox">
                                                 <!--1st choice-->
                                                 <ng-container
@@ -197,7 +197,6 @@
                                                         <label>2<sup>nd</sup> Choice</label> - {{exit_reason.value}}
                                                     </ng-container>
                                                 </ng-container>
-
                                             </div>
                                         </div>
                                     </div>

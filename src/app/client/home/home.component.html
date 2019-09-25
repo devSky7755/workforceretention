@@ -95,6 +95,12 @@
                 </div>
 
                 <section class="moment moment4">
+                    <div class="ptext ptext-section-2">
+                        <span class="pborder trans">
+                            <span class="ptext-line-1">POWERFUL</span><br><span style="color: #000000">DATA
+                                ANALYSIS</span>
+                        </span>
+                    </div>
                     <div class="moment-clipper">
                         <div class="moment-image4"></div>
                     </div>
@@ -115,7 +121,7 @@
                     </div>
                 </div>
                 <section class="moment moment5">
-                    <div class="ptext ptext-section-2">
+                    <div class="ptext ptext-section-2 get_in_touch">
                         <span class="pborder trans">
                             <a routerLink="/client/contact" style="color: #ffffff">Get In Touch <br>Today</a>
                         </span>
@@ -135,19 +141,19 @@
                         <div class="col-md-4">
                             <i class="fa fa-check-circle" style="font-size:36px;color:#55bdf9"></i>
                             <span
-                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;">No
+                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;" class="ben-text">No
                                 lock-in contracts</span>
                         </div>
                         <div class="col-md-4">
                             <i class="fa fa-check-circle" style="font-size:36px;color:#55bdf9"></i>
                             <span
-                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;">Insightful
+                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;" class="ben-text">Insightful
                                 reporting</span>
                         </div>
                         <div class="col-md-4">
                             <i class="fa fa-check-circle" style="font-size:36px;color:#55bdf9"></i>
                             <span
-                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;">High
+                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;" class="ben-text">High
                                 participation</span>
                         </div>
                     </div>
@@ -155,19 +161,19 @@
                         <div class="col-md-4">
                             <i class="fa fa-check-circle" style="font-size:36px;color:#55bdf9"></i>
                             <span
-                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;">Flexible
+                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;" class="ben-text">Flexible
                                 programs</span>
                         </div>
                         <div class="col-md-4">
                             <i class="fa fa-check-circle" style="font-size:36px;color:#55bdf9"></i>
                             <span
-                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;">Easy-to-use
+                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;" class="ben-text">Easy-to-use
                                 platform</span>
                         </div>
                         <div class="col-md-4">
                             <i class="fa fa-check-circle" style="font-size:36px;color:#55bdf9"></i>
                             <span
-                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;">Over
+                                style="position: relative; top: -17px; font-size: 20px; color: black; margin-left: 15px;" class="ben-text">Over
                                 10 years exp.</span>
                         </div>
                     </div>
@@ -224,6 +230,21 @@
                         <div class="moment-image6"></div>
                     </div>
                 </section>
+                <div id="content7" class="content-slide">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-10">
+                            <div class="text-left">
+                                <h4><b>Clients we have partnered with</b></h4>
+                            </div>
+                            <ngx-slick-carousel class="carousel-logo" #slickModal="slick-carousel"
+                                [config]="slideLogoConfig">
+                                <div ngxSlickItem *ngFor="let slide of logoSlides" class="slide">
+                                    <img src="{{ slide.img }}" alt="" class="img-logo">
+                                </div>
+                            </ngx-slick-carousel>
+                        </div>
+                    </div>
+                </div>
                 <div id="content6" class="content-slide">
                     <div class="row justify-content-md-center">
                         <div class="col-md-6">
@@ -241,21 +262,6 @@
                                 </div>
                             </ngx-slick-carousel>
 
-                        </div>
-                    </div>
-                </div>
-                <div id="content7" class="content-slide">
-                    <div class="row justify-content-md-center">
-                        <div class="col-md-10">
-                            <div class="text-left">
-                                <h4><b>Clients we have partnered with</b></h4>
-                            </div>
-                            <ngx-slick-carousel class="carousel-logo" #slickModal="slick-carousel"
-                                [config]="slideLogoConfig">
-                                <div ngxSlickItem *ngFor="let slide of logoSlides" class="slide">
-                                    <img src="{{ slide.img }}" alt="" class="img-logo">
-                                </div>
-                            </ngx-slick-carousel>
                         </div>
                     </div>
                 </div>

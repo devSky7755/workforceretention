@@ -29,6 +29,9 @@ const employeeSurveySchema = new Schema({
     exit_reason_cur_step: {
         type: Number,
         default: 11
+    },
+    last_edit: {
+        type: String
     }
 });
 

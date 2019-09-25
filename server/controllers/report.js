@@ -735,6 +735,7 @@ exports.DataOutput = (req, res, next) => {
             headers.push({ id: 'completed_online', title: 'Completed Online' });
             headers.push({ id: 'completed_admin', title: 'Completed Admin' });
             headers.push({ id: 'last_completed_at', title: 'Last Completed Time' });
+            headers.push({ id: 'last_edit', title: 'Last User' });
 
             let question_no = 0;
             survey.questions.forEach((question) => {
@@ -840,6 +841,7 @@ exports.DataOutput = (req, res, next) => {
                                 completed_online: employee.surveys[0].completed_online,
                                 completed_admin: employee.surveys[0].completed_admin,
                                 last_completed_at: !employee.surveys[0].completed_online || !employee.surveys[0].completed_admin || employee.surveys[0].end_date == null ? '' : format_date_time(employee.surveys[0].end_date),
+                                last_edit: employee.surveys[0].last_edit
                             };
                             let answers = [];
                             // first push all the question answers in the answers array

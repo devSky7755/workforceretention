@@ -110,6 +110,7 @@ exports.UpdateAnswers = (req, res, next) => {
     let isOnline = req.query.isOnline;
     let isAdmin = req.query.isAdmin;
     let exit_reason_id = req.query.exit_reason_id
+    let last_edit = req.query.last_edit
     let data = req.body;
     let answer_ids = [];
     let new_answers = [];
@@ -145,6 +146,9 @@ exports.UpdateAnswers = (req, res, next) => {
                         }
                         if (isAdmin == 'Yes') {
                             employee_survey.completed_admin = isComplete == 1 ? isAdmin : 'No';
+                        }
+                        if (last_edit) {
+                            employee_survey.last_edit = last_edit;
                         }
                     }
                 });

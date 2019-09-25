@@ -106,7 +106,7 @@
                     [attr.aria-expanded]="!collapse.license" aria-controls="licenseRequiredCollapse">
                     {{collapse.license ? '[+]':'[-]'}}
                   </span></div>
-                The provides the ability to administer exit interviews via our cloud platform.
+                This provides the ability to administer exit interviews via our cloud platform.
                 <div id="licenseRequiredCollapse" [ngbCollapse]="collapse.license">
                   - Workforce Retention design the custom exit interview with you and build it into the platform <br>
                   - Organisations levels are set up to enable you to view results for different parts of your
@@ -201,7 +201,7 @@
                     {{collapse.phone_interview_without ? '[+]':'[-]'}}
                   </span>
                 </div>
-                Some organisation just want individual phone interviews expertly conducted. Please indicate if you are
+                Please indicate if you are
                 only interested in the cost of phone interviews, without the platform.
                 <div id="phoneInterviewWithoutPlatformCollapse" [ngbCollapse]="collapse.phone_interview_without">
                   Some organisation just want individual phone interviews expertly conducted.<br>
@@ -273,6 +273,15 @@
               <div class="col-sm-9 text-left">
                 <div class="f-option-label">
                   Confidential Program
+                  <span class="cursor-pointer" (click)="collapse.confidential = !collapse.confidential"
+                    [attr.aria-expanded]="!collapse.confidential" aria-controls="confidentialCollapse">
+                    {{collapse.confidential ? '[+]':'[-]'}}
+                  </span>
+                </div>
+                <div id="confidentialCollapse" [ngbCollapse]="collapse.confidential">
+                  To encourage richer candour, our programs can accomodate full confidentiality. Organisations can still
+                  enjoy insights via the platform chart package and full comprehensive reports. Information is
+                  aggregated and summarised so that individual responses are not recognised.
                 </div>
               </div>
               <div class="col-sm-3 mt-2">

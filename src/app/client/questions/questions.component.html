@@ -9,8 +9,7 @@
                     <div class="col-lg-10">
                         <p *ngIf="steps_count && steps_count > 0">
                             <ngb-progressbar showValue="true" [striped]="true"
-                                [value]="(cur_categorical_questions.step_no / steps_count * 100.0).toFixed(2)">
-                                <b>{{cur_categorical_questions.step_no + ' of ' + steps_count}}</b>...
+                                [value]="((cur_categorical_questions.step_no - 1) / steps_count * 100.0).toFixed(0)">
                             </ngb-progressbar>
                         </p>
                         <form (ngSubmit)="onSubmitAnswer()" *ngIf="cur_categorical_questions">

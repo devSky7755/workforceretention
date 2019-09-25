@@ -200,6 +200,7 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         console.log(this.last_step)
         console.log(this.categorical_questions)
         console.log(this.cur_categorical_questions)
+        window.scroll(0,0);
 
         if (this.surveyStatus != "Not Started") {
             this.setQuestionAnswer();

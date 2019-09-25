@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { SurveyService } from "../../../../@core/data/survey.service";
 import { AnswerService } from "../../../../@core/data/answer.service";
 import { RolePermissionService } from '../../../../common/role/role_permission.service'
+import { NbTokenService } from "@nebular/auth";
 
 @Component({
     selector: 'ngx-employee-survey',
@@ -19,6 +20,8 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     @Input() surveyStatus: string;
 
     @Output() showEmployee = new EventEmitter();
+
+    user
     employee;
     questions = [];
     categorical_questions = [];
@@ -90,12 +93,21 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     // question type exit_interview exit_reason that means it will show the selected checkbox
     constructor(private route: ActivatedRoute,
         private surveyService: SurveyService,
+        private tokenService: NbTokenService,
         private answerService: AnswerService, private rolePermissionSerivce: RolePermissionService) {
         this.survey = {};
     }
 
     ngOnInit() {
         this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
+        this.loadUser()
+    }
+
+    loadUser() {
+        this.tokenService.get()
+            .subscribe(token => {
+                this.user = token.getPayload()
+            });
     }
 
     getSurvey() {
@@ -282,7 +294,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     }
 
     saveQuestionAnswer() {
-        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employeeId, 'No', 'Yes', this.is_complete_submit).subscribe(
+        this.answerService.createManyAnswer(this.question_answers, this.surveyId, this.employeeId, 'No', 'Yes', this.is_complete_submit, '', this.user.email).subscribe(
             () => {
                 alert('Exit interview submitted successfully');
                 this.showEmployee.emit();
@@ -298,7 +310,7 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
             answer.question_type = selected_question.question_type;
             answer.survey = selected_question.survey;
         });
-        this.answerService.updateManyAnswer(this.answers, this.surveyId, this.employeeId, 'No', 'Yes', this.is_complete_submit).subscribe(
+        this.answerService.updateManyAnswer(this.answers, this.surveyId, this.employeeId, 'No', 'Yes', this.is_complete_submit, '', this.user.email).subscribe(
             () => {
                 alert('Exit interview updated');
                 this.showEmployee.emit();

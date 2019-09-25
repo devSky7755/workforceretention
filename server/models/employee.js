@@ -11,7 +11,7 @@ const employeeSchema = new Schema({
     },
     employee_id: {
         type: String,
-        match: [/^[a-z0-9]{0,32}$/],
+        match: [/^[a-z0-9A-Z_]{0,32}$/],
         required: false,
         index: {
             unique: true,

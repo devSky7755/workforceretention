@@ -134,7 +134,6 @@ export class OrganizationsComponent implements OnInit, OnChanges {
                 }
             });
         }
-        console.log(this.organizations_divisions_departments);
         this.count = this.organizations_divisions_departments.length;
         this.rows = this.organizations_divisions_departments;
     }

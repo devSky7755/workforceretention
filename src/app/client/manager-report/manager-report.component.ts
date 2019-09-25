@@ -858,6 +858,7 @@ export class ManagerReportComponent implements OnInit {
                 shared: true
             },
             legend: {
+                maxWidth: 150,
                 reversed: true,
                 verticalAlign: "center",
                 horizontalAlign: "right"
@@ -868,7 +869,8 @@ export class ManagerReportComponent implements OnInit {
                 startAngle: 240,
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
-                dataPoints: this.gender_split_chart_data
+                dataPoints: this.gender_split_chart_data,
+                radius: 100
             }]
         });
         genderChart.render()
@@ -891,6 +893,7 @@ export class ManagerReportComponent implements OnInit {
                 shared: true
             },
             legend: {
+                maxWidth: 150,
                 reversed: true,
                 verticalAlign: "center",
                 horizontalAlign: "right"
@@ -901,7 +904,8 @@ export class ManagerReportComponent implements OnInit {
                 startAngle: 240,
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
-                dataPoints: this.tenure_split_chart_data
+                dataPoints: this.tenure_split_chart_data,
+                radius: 100
             }]
         });
         tenureChart.render()
@@ -924,6 +928,7 @@ export class ManagerReportComponent implements OnInit {
                 shared: true
             },
             legend: {
+                maxWidth: 150,
                 reversed: true,
                 verticalAlign: "center",
                 horizontalAlign: "right"
@@ -934,7 +939,8 @@ export class ManagerReportComponent implements OnInit {
                 startAngle: 240,
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
-                dataPoints: this.occupation_split_chart_data
+                dataPoints: this.occupation_split_chart_data,
+                radius: 100
             }]
         });
         occupationChart.render()
@@ -957,6 +963,7 @@ export class ManagerReportComponent implements OnInit {
                 shared: true
             },
             legend: {
+                maxWidth: 150,
                 reversed: true,
                 verticalAlign: "center",
                 horizontalAlign: "right"
@@ -967,7 +974,8 @@ export class ManagerReportComponent implements OnInit {
                 startAngle: 240,
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
-                dataPoints: this.age_split_chart_data
+                dataPoints: this.age_split_chart_data,
+                radius: 100
             }]
         });
         ageChart.render()

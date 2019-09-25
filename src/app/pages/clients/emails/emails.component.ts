@@ -55,7 +55,6 @@ export class EmailsComponent implements OnInit, OnChanges {
                 rows.push(email);
             });
             this.rows = rows;
-            console.log(this.rows);
 
         },
             (err) => {

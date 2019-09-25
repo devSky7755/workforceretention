@@ -47,7 +47,7 @@
                                         <div [innerHTML]="value"></div>
                                     </ng-template>
                                 </ngx-datatable-column>
-                                <ngx-datatable-column name="id">
+                                <ngx-datatable-column name="id" *ngIf="!employeeSurvey.completed">
                                     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                                         <span>Action</span>
                                     </ng-template>
