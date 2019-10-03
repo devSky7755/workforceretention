@@ -45,13 +45,13 @@ exports.Find = (req, res, next) => {
                 .skip((currentPage) * perPage)
                 .limit(perPage);
         }).then(emails => {
-        return res.status(200).json({success: true, emails, totalItems})
-    }).catch(err => {
-        if (!err.statusCode) {
-            err.statusCode = 500;
-        }
-        next(err)
-    });
+            return res.status(200).json({ success: true, emails, totalItems })
+        }).catch(err => {
+            if (!err.statusCode) {
+                err.statusCode = 500;
+            }
+            next(err)
+        });
 };
 
 exports.FindById = (req, res, next) => {
@@ -90,18 +90,35 @@ exports.Update = (req, res, next) => {
         data,
         // an option that asks mongoose to return the updated version
         // of the document instead of the pre-updated one.
-        {new: true},
+        { new: true },
 
         // the callback function
         (err, email) => {
             // Handle any possible database errors
             if (err) return next(err);
-            if (!email) return res.status(404).json({success: false, message: "Email not found"});
-            return res.send({
-                "success": true,
-                "message": "Record updated successfully",
-                email
-            });
+            if (!email) return res.status(404).json({ success: false, message: "Email not found" });
+            if (email.assign_to_client) {
+                delete email._id;
+                Client.find({}, (err, clients) => {
+                    if (err) return next(err);
+                    clients.forEach((client) => {
+                        const clientEmail = client.emails.find(ele => ele.email_type == email.email_type)
+                        clientEmail.set(email)
+                        client.save();
+                    });
+                    return res.send({
+                        "success": true,
+                        "message": "Record updated successfully",
+                        email
+                    });
+                });
+            } else {
+                return res.send({
+                    "success": true,
+                    "message": "Record updated successfully",
+                    email
+                });
+            }
         }
     );
 };
@@ -113,7 +130,7 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({id}, schema, (err, value) => {
+    Joi.validate({ id }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({
@@ -126,7 +143,7 @@ exports.Delete = (req, res, next) => {
         Email.findByIdAndRemove(id, (err, email) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!email) return res.status(404).json({success: false, message: "Email not found."});
+            if (!email) return res.status(404).json({ success: false, message: "Email not found." });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
             return res.send({

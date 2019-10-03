@@ -620,7 +620,7 @@ exports.logout = function (req, res) {
     return res.status(200).json({ success: true })
 };
 
-const sendReminderEmails = function () {
+exports.sendReminderEmails = function (req, res, next) {
     //*********************** STEPS ***************
     // STEP-1 : Find all the clients
     // STEP-2 : Check if the client is set for reminder email is on or off (send_reminder_email value true means on)
@@ -639,6 +639,9 @@ const sendReminderEmails = function () {
         }).exec(function (err, clients) {
             if (err) {
                 console.log(err)
+                return res.status(404).json({
+                    "success": false
+                })
             } else {
                 clients.forEach((client) => {
                     // checking the client reminder email is on or off
@@ -658,7 +661,7 @@ const sendReminderEmails = function () {
                                 employee.is_online === '1' &&
                                 employee.is_active === '1' &&
                                 !employee.is_send_reminder_email &&
-                                employeeCreatedDay === 5) {
+                                employeeCreatedDay >= 5) {
 
                                 let employeeObject = {
                                     client_name: client.name,
@@ -684,15 +687,32 @@ const sendReminderEmails = function () {
                                 { is_send_reminder_email: true },
                                 { new: true },
                                 (err, employee) => {
-                                    console.log(employee);
+                                    if (err) {
+                                        return next(err)
+                                    }
                                 });
                         });
                         console.log('Reminder Email Send Successful');
+                        return res.status(200).send({
+                            "success": true,
+                            "message": "Reminder Email Send Successful"
+                        });
                     }
-                )
+                ).catch(err => {
+                    console.log(err)
+                    return res.status(404).json({
+                        "success": false
+                    })
+                });
             }
         });
 };
+
+/**
+ * GET /api/v1/employees/send-reminder-email
+ * @param req
+ * @param res
+ */
 
 const sendReminderEmailsToEmployees = function (employees) {
     const employeePromises = [];
@@ -710,11 +730,11 @@ const sendReminderEmailsToEmployees = function (employees) {
             from = email.from_address;
             subject = email.subject;
             body = email.body;
-            to = employee.email;
+            to = employee.employee_email;
 
             // step-2 : replace the [client_name] by the client.name
-            body = body.replace('[Client Name]', employee.client_name);
-            body = body.replace('[employee_firstname]', employee.first_name);
+            body = body.replace('[client_name]', employee.client_name);
+            body = body.replace('[employee_firstname]', employee.employee_firstname);
 
             // step-3 : [employee_username] set the employee email
             body = body.replace('[employee_username]', to);
@@ -732,8 +752,8 @@ const sendReminderEmailsToEmployees = function (employees) {
 // check within every 3 hours
 // const one_day = 86400000;
 // const five_minute = 300000;
-const three_hours = 10800000;
-setInterval(sendReminderEmails, three_hours);
+// const three_hours = 10800000;
+// setInterval(sendReminderEmails, three_hours);
 
 const getDay = (start_date, end_date) => {
     let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds

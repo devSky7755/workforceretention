@@ -344,6 +344,7 @@ exports.FindEmailById = (req, res, next) => {
     });
     // if id is same then return that subdocument
 };
+
 exports.UpdateEmail = (req, res, next) => {
     const clientId = req.params.clientId;
     const emailId = req.query.emailId;

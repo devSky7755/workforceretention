@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage: storage});
+const upload = multer({ storage: storage });
 
 router.post('/generate-password/:clientId', employeeController.generatePassword);
 
@@ -36,6 +36,9 @@ router.post('/:clientId', employeeController.Create);
 
 router.get('/', employeeController.Find);
 
+// SEND REMINDER EMAIL
+router.get('/send-reminder-email', employeeController.sendReminderEmails);
+
 router.get('/:id', employeeController.FindById);
 
 router.put('/password/:id', employeeController.changePassword);
@@ -48,6 +51,5 @@ router.delete('/:id', employeeController.Delete);
 router.get('/surveys/:employeeId', employeeController.FindSurveys);
 
 // router.get('/details/:employeeId', employeeController.FindEmployeeDetails);
-
 
 module.exports = router;
