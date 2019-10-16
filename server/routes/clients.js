@@ -36,7 +36,7 @@ router.get('/unAssignSurvey', authMiddleware.validateToken, clientController.UnA
 
 router.get('/', authMiddleware.validateToken, clientController.Find);
 
-router.get('/:id', clientController.FindById);
+router.get('/:id', authMiddleware.validateToken, clientController.FindById);
 
 router.put('/:id', authMiddleware.validateToken, upload.single('image'), clientController.Update);
 

@@ -63,6 +63,7 @@ exports.login = function (req, res, next) {
 
             //save the refreshToken inside the userData
             userData.refreshToken = refreshToken;
+            userData.login_type = "client"
 
             let token = jwt.sign(userData, config.SECRET, {
                 expiresIn: '7d'
@@ -104,6 +105,7 @@ exports.token = function (req, res, next) {
             delete userData.password;
             delete userData.clients;
             delete userData.links;
+            userData.login_type = "client"
 
             const token = jwt.sign(userData, config.SECRET, {
                 expiresIn: '7d'

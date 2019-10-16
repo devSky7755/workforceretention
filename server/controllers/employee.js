@@ -554,6 +554,7 @@ exports.login = function (req, res, next) {
             let refreshToken = uuidv4();
             refreshTokens[refreshToken] = email;
 
+            employeeData.login_type = "employee"
             let token = jwt.sign(employeeData, config.SECRET, {
                 expiresIn: '7d'
             });
@@ -590,6 +591,7 @@ exports.token = function (req, res, next) {
             // on employee we only need to set employee employee_id, password and email
             const employeeData = employee.toJSON();
 
+            employeeData.login_type = "employee"
             const token = jwt.sign(employeeData, config.SECRET, {
                 expiresIn: '7d'
             });
