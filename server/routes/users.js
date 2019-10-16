@@ -1,28 +1,28 @@
 const express = require('express');
 const router = express.Router();
+
+// Middleware
 const authMiddleware = require('../middleware/auth');
 
 const userController = require('../controllers/user');
 
-router.post('/', userController.Create);
+router.post('/', authMiddleware.validateToken, userController.Create);
 
-// router.get('/', authMiddleware.auth, userController.Find);
+router.get('/', authMiddleware.validateToken, userController.Find);
 
-router.get('/', userController.Find);
+router.get('/:id', authMiddleware.validateToken, userController.FindById);
 
-router.get('/:id', userController.FindById);
+router.put('/profile/:id', authMiddleware.validateToken, userController.UpdateProfile);
 
-router.put('/profile/:id', userController.UpdateProfile);
+router.put('/password/:id', authMiddleware.validateToken, userController.changePassword);
 
-router.put('/password/:id', userController.changePassword);
+router.put('/:id', authMiddleware.validateToken, userController.Update);
 
-router.put('/:id', userController.Update);
-
-router.delete('/:id', userController.Delete);
+router.delete('/:id', authMiddleware.validateToken, userController.Delete);
 
 //SET UP RELATIONAL ROUTES
-router.get('/clients/:userId',userController.FindClient);
+router.get('/clients/:userId', authMiddleware.validateToken, userController.FindClient);
 
-router.get('/surveys/:userId',userController.FindSurveys);
+router.get('/surveys/:userId', authMiddleware.validateToken, userController.FindSurveys);
 
 module.exports = router;

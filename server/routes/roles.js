@@ -1,18 +1,20 @@
 const express = require('express');
 const router = express.Router();
+// Middleware
+const authMiddleware = require('../middleware/auth');
 
 const roleController = require('../controllers/role');
 
-router.post('/', roleController.Create);
+router.post('/', authMiddleware.validateToken, roleController.Create);
 
-router.get('/', roleController.Find);
+router.get('/', authMiddleware.validateToken, roleController.Find);
 
-router.get('/by_user/:id', roleController.FindByUserId);
+router.get('/by_user/:id', authMiddleware.validateToken, roleController.FindByUserId);
 
-router.get('/:id', roleController.FindById);
+router.get('/:id', authMiddleware.validateToken, roleController.FindById);
 
-router.put('/:id', roleController.Update);
+router.put('/:id', authMiddleware.validateToken, roleController.Update);
 
-router.delete('/:id', roleController.Delete);
+router.delete('/:id', authMiddleware.validateToken, roleController.Delete);
 
 module.exports = router;

@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+// Middleware
+const authMiddleware = require('../middleware/auth');
 const multer = require('multer');
 const path = require('path');
 
@@ -24,33 +26,33 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage: storage});
+const upload = multer({ storage: storage });
 
-router.post('/:userId', upload.single('image'), clientController.Create);
+router.post('/:userId', authMiddleware.validateToken, upload.single('image'), clientController.Create);
 
-router.get('/assignSurvey', clientController.AssignSurvey);
+router.get('/assignSurvey', authMiddleware.validateToken, clientController.AssignSurvey);
 
-router.get('/unAssignSurvey', clientController.UnAssignSurvey);
+router.get('/unAssignSurvey', authMiddleware.validateToken, clientController.UnAssignSurvey);
 
-router.get('/', clientController.Find);
+router.get('/', authMiddleware.validateToken, clientController.Find);
 
 router.get('/:id', clientController.FindById);
 
-router.put('/:id',upload.single('image'), clientController.Update);
+router.put('/:id', authMiddleware.validateToken, upload.single('image'), clientController.Update);
 
-router.delete('/:id', clientController.Delete);
+router.delete('/:id', authMiddleware.validateToken, clientController.Delete);
 
 //SET UP RELATIONAL ROUTES
-router.post('/employees/:clientId', clientController.FindEmployees);
+router.post('/employees/:clientId', authMiddleware.validateToken, clientController.FindEmployees);
 
-router.get('/surveys/:clientId', clientController.FindSurveys);
+router.get('/surveys/:clientId', authMiddleware.validateToken, clientController.FindSurveys);
 
-router.get('/organizations/:clientId', clientController.FindOrganizations);
+router.get('/organizations/:clientId', authMiddleware.validateToken, clientController.FindOrganizations);
 
-router.get('/emails/:clientId', clientController.FindEmails);
+router.get('/emails/:clientId', authMiddleware.validateToken, clientController.FindEmails);
 
-router.get('/email_by_id/:clientId', clientController.FindEmailById);
+router.get('/email_by_id/:clientId', authMiddleware.validateToken, clientController.FindEmailById);
 
-router.post('/emails/update/:clientId', clientController.UpdateEmail);
+router.post('/emails/update/:clientId', authMiddleware.validateToken, clientController.UpdateEmail);
 
 module.exports = router;

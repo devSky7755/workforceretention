@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
+// Middleware
+const authMiddleware = require('../middleware/auth');
 
 const industryController = require('../controllers/industry');
 
-router.post('/', industryController.Create);
+router.post('/', authMiddleware.validateToken, industryController.Create);
 
-router.get('/', industryController.Find);
+router.get('/', authMiddleware.validateToken, industryController.Find);
 
-router.get('/:id', industryController.FindById);
+router.get('/:id', authMiddleware.validateToken, industryController.FindById);
 
-router.put('/:id', industryController.Update);
+router.put('/:id', authMiddleware.validateToken, industryController.Update);
 
-router.delete('/:id', industryController.Delete);
+router.delete('/:id', authMiddleware.validateToken, industryController.Delete);
 
 module.exports = router;

@@ -12,7 +12,7 @@
                         <div *ngIf="employee_details.is_survey == '1'">
                             <h1 style="color: #000;">Your Exit Interview
                                 - {{employee_details.first_name}} {{employee_details.last_name}}</h1>
-                            <ngx-datatable [rows]="completedSurveys" [columnMode]="'force'" [headerHeight]="40"
+                            <ngx-datatable *ngIf="employeeSurvey" [rows]="completedSurveys" [columnMode]="'force'" [headerHeight]="40"
                                 [footerHeight]="50" [rowHeight]="'auto'" [externalPaging]="true" [count]="count"
                                 [offset]="offset" [limit]="limit" (page)='onChangeCompletedSurveys($event)'>
                                 <!-- <ngx-datatable-column name="title">

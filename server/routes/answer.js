@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
+// Middleware
+const authMiddleware = require('../middleware/auth');
+
 const answerController = require('../controllers/answer');
 
 router.post('/update-many', answerController.UpdateAnswers);

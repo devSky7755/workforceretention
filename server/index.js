@@ -38,7 +38,7 @@ const app = express();
 // We should never store the token in the database.
 // We don't need any individual routes for logout because we are not saving the token anywhere in the server. just need to delete the token from staticPage
 
-//CONFIG
+// CONFIG
 const config = require('./config');
 
 // Routes
@@ -66,7 +66,7 @@ const staticPageRoutes = require('./routes/static_pages');
 const surveyEmailRoutes = require('./routes/survey_emails');
 const reportRoutes = require('./routes/reports');
 
-//Connect with the mongodb database
+// Connect with the mongodb database
 mongoose.connect(config.MONGO_URI, {
     useCreateIndex: true,
     useNewUrlParser: true
@@ -74,22 +74,22 @@ mongoose.connect(config.MONGO_URI, {
     .catch(error => console.log('could not connect', error));
 mongoose.set('useFindAndModify', false);
 
-//body-parser configuration for reading data from request body
+// body-parser configuration for reading data from request body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); // x-www-form-urlencoded
 
-//ENABLE CORS. FOR CROSS ORIGIN RESOURCE SHARING
+// ENABLE CORS. FOR CROSS ORIGIN RESOURCE SHARING
 app.use(cors());
 
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/', express.static(path.join(__dirname, 'public')));
 
-//SET UP ROUTES
+// SET UP ROUTES
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/contact', contactRoutes);
 app.use('/api/v1/requestaquote', requestaquoteRoutes);
+app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/clients', clientRoutes);
 app.use('/api/v1/surveys', surveyRoutes);
 app.use('/api/v1/questions', questionRoutes);

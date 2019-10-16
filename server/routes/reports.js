@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+// Middleware
+const authMiddleware = require('../middleware/auth');
+
 const multer = require('multer');
 const path = require('path');
 
@@ -26,23 +29,23 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-router.get('/manager/details/:id', reportController.ManagerReportDetails);
+router.get('/manager/details/:id', authMiddleware.validateToken, reportController.ManagerReportDetails);
 
-router.post('/manager/:id', reportController.ManagerReport);
+router.post('/manager/:id', authMiddleware.validateToken, reportController.ManagerReport);
 
-router.post('/data-output', reportController.DataOutput);
+router.post('/data-output', authMiddleware.validateToken, reportController.DataOutput);
 
 //create new file
-router.post('/', upload.single('file'), reportController.Create);
+router.post('/', authMiddleware.validateToken, upload.single('file'), reportController.Create);
 // find all files
-router.get('/', reportController.Find);
+router.get('/', authMiddleware.validateToken, reportController.Find);
 // find file by id
-router.get('/:id', reportController.FindById);
+router.get('/:id', authMiddleware.validateToken, reportController.FindById);
 // update file
-router.put('/:id', upload.single('file'), reportController.Update);
+router.put('/:id', authMiddleware.validateToken, upload.single('file'), reportController.Update);
 // delete a file
-router.delete('/:id', reportController.Delete);
+router.delete('/:id', authMiddleware.validateToken, reportController.Delete);
 
-router.post('/download-manager-report', reportController.DownloadManagerReport);
+router.post('/download-manager-report', authMiddleware.validateToken, reportController.DownloadManagerReport);
 
 module.exports = router;

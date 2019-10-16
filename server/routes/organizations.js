@@ -1,20 +1,22 @@
 const express = require('express');
 const router = express.Router();
+// Middleware
+const authMiddleware = require('../middleware/auth');
 
 const organizationController = require('../controllers/organization');
 
-router.post('/:clientId', organizationController.Create);
+router.post('/:clientId', authMiddleware.validateToken, organizationController.Create);
 
-router.get('/', organizationController.Find);
+router.get('/', authMiddleware.validateToken, organizationController.Find);
 
 router.get('/:id', organizationController.FindById);
 
-router.put('/:id', organizationController.Update);
+router.put('/:id', authMiddleware.validateToken, organizationController.Update);
 
-router.delete('/:id', organizationController.Delete);
+router.delete('/:id', authMiddleware.validateToken, organizationController.Delete);
 
 //RELATIONAL ROUTES
 //FIND ORGANIZATION DIVISIONS
-router.get('/divisions/:organizationId', organizationController.FindDivisions);
+router.get('/divisions/:organizationId', authMiddleware.validateToken, organizationController.FindDivisions);
 
 module.exports = router;

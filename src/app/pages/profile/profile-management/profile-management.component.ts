@@ -81,7 +81,9 @@ export class ProfileManagementComponent implements OnInit {
   loadUser() {
     this.tokenService.get()
       .subscribe(token => {
+        console.log(token);
         this.userId = token.getPayload()._id
+        console.log(token.getPayload())
         this.user = { ...this.user, ..._.pick(token.getPayload(), ['first_name', 'last_name', 'email', 'username']) }
       });
   }

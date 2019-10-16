@@ -8,6 +8,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { NbTokenService } from "@nebular/auth";
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import {
+    HttpEvent,
+    HttpInterceptor,
+    HttpHandler,
+    HttpRequest,
+} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import 'rxjs/add/operator/mergeMap';
 import { CoreModule } from './@core/core.module';
 
 import { AppComponent } from './app.component';
@@ -18,6 +30,21 @@ import { AuthGuard } from './auth-guard.service';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
+
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+    constructor(private tokenService: NbTokenService) { }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        return this.tokenService.get()
+            .mergeMap((jsonToken: any) => {
+                // Clone the request to add the new header
+                const clonedRequest = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + jsonToken.token) });
+                // Pass the cloned request instead of the original request to the next handle
+                return next.handle(clonedRequest);
+            })
+    }
+}
 
 @NgModule({
     declarations: [AppComponent, LogoutComponent, LoginComponent],
@@ -32,6 +59,11 @@ import { AuthService } from './auth/auth.service';
     ],
     bootstrap: [AppComponent],
     providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
         AuthGuard,
         AuthService,
         Location,
