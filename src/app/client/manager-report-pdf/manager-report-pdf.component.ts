@@ -164,7 +164,7 @@ export class ManagerReportPdfComponent implements OnInit {
       this.employee = data
       console.log(data)
       this.employee.employee_id = this.employeeId
-      this.clientImage = data.employee.client.image ? this.baseUrl + '/images/client/' + data.employee.client.image : 'assets/images/logo_transparent.png'
+      this.clientImage = data.employee.client.image ? this.baseUrl + '/images/client/' + data.employee.client.image : 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logo_transparent.png'
       this.getManagerReport();
     },
       err => {

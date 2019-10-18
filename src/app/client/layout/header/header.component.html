@@ -2,7 +2,7 @@
     <nav style="display: flex;">
         <h1 class="logo ml-3">
             <a [routerLink]="routerLink">
-                <img *ngIf="!isAuth || isDefaultLogo" src="assets/images/logo_transparent.png">
+                <img *ngIf="!isAuth || isDefaultLogo" src="https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logo_transparent.png">
                 <img *ngIf="isAuth && !isDefaultLogo" [src]="clientImage" alt="" style="height: 88px;">
             </a>
         </h1>
@@ -10,8 +10,8 @@
             <li class="main-menu-list">
                 <a class="menu">
                     <div class="dropdown-image">
-                        <!--                        <img src="/assets/images/jack.png" class="rounded-circle profile-image" width="40%">-->
-                        <i class="hamburger-menu"><img src="/assets/images/hamburger_menu.svg"></i>
+                        <!--                        <img src="https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/jack.png" class="rounded-circle profile-image" width="40%">-->
+                        <i class="hamburger-menu"><img src="https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/hamburger_menu.svg"></i>
                     </div>
                     <ul class="dropdown-menu">
                         <li class="dropdown-item" *ngIf="!isAuth"><a routerLink="/client/home"

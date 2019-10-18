@@ -9,16 +9,16 @@ export class SecurityCamerasComponent {
 
   cameras: any[] = [{
     title: 'Camera #1',
-    source: 'assets/images/camera1.jpg',
+    source: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/camera1.jpg',
   }, {
     title: 'Camera #2',
-    source: 'assets/images/camera2.jpg',
+    source: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/camera2.jpg',
   }, {
     title: 'Camera #3',
-    source: 'assets/images/camera3.jpg',
+    source: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/camera3.jpg',
   }, {
     title: 'Camera #4',
-    source: 'assets/images/camera4.jpg',
+    source: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/camera4.jpg',
   }];
 
   selectedCamera: any = this.cameras[0];

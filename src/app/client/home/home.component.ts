@@ -12,18 +12,18 @@ export class HomeComponent implements OnInit, AfterContentInit {
     slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "autoplay": true, "dots": true, "autoplaySpeed": 12000 };
 
     logoSlides = [
-        { img: "assets/images/logos/pybar.png" },
-        { img: "assets/images/logos/blacktown city council.png" },
-        { img: "assets/images/logos/parra leagues.png" },
-        { img: "assets/images/logos/abbott.png" },
-        { img: "assets/images/logos/sofico.jpg" },
-        { img: "assets/images/logos/campbells.png" },
-        { img: "assets/images/logos/coffs.png" },
-        { img: "assets/images/logos/lexisnexis-logo-335x189.png" },
-        { img: "assets/images/logos/Perpetual_logo-700x259.png" },
-        { img: "assets/images/logos/allens.jpg" },
-        { img: "assets/images/logos/amp.jpg" },
-        { img: "assets/images/logos/arnotts.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/pybar.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/blacktown city council.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/parra leagues.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/abbott.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/sofico.jpg" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/campbells.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/coffs.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/lexisnexis-logo-335x189.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/Perpetual_logo-700x259.png" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/allens.jpg" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/amp.jpg" },
+        { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/arnotts.png" },
     ];
     slideLogoConfig = {
         "slidesToShow": 4, "slidesToScroll": 4, "autoplay": true, "autoplaySpeed": 3000

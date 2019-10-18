@@ -68,7 +68,7 @@ exports.ReplyContactEmailTemplate = {
     Director & Founder <br>
     Workforce Retention <br>
     P. +61 410 665 306 <br>
-    <img src="http://54.252.134.98/assets/images/logo_no_space.png" style="height:100px;" height="100">
+    <img src="https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logo_no_space.png" style="height:100px;" height="100">
     `
 };
 
@@ -100,7 +100,7 @@ exports.ReplyQuotationEmailTemplate = {
     Director & Founder <br>
     Workforce Retention <br>
     P. +61 410 665 306 <br>
-    <img src="http://54.252.134.98/assets/images/logo_no_space.png" style="height:100px;" height="100">
+    <img src="https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logo_no_space.png" style="height:100px;" height="100">
     `
 };
 

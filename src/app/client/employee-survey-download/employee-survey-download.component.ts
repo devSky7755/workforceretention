@@ -113,7 +113,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
         this.survey.rating_label = this.ratings.find(r => r.id == this.survey.rating_scale).value;
         this.answers = data.answers;
         this.employee = data.employee;
-        this.clientImage = this.employee.client.image ? this.baseUrl + '/images/client/' + this.employee.client.image : 'assets/images/logo_transparent.png'
+        this.clientImage = this.employee.client.image ? this.baseUrl + '/images/client/' + this.employee.client.image : 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logo_transparent.png'
         this.questionArrange();
     }
 

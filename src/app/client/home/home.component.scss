@@ -46,7 +46,7 @@ nb-card:hover {
 }
 
 .home-cta {
-  background: url("/assets/images/home-bg.jpg") no-repeat center center;
+  background: url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-bg.jpg") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -70,7 +70,7 @@ nb-card:hover {
 
 .home-banner-two {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url("assets/images/home-banner-2.jpeg");
+    url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-banner-2.jpeg");
   width: 100%;
   height: 500px;
   background-size: cover;
@@ -86,7 +86,7 @@ nb-card:hover {
 
 .home-banner-three {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url("assets/images/home-banner-3.jpeg");
+    url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-banner-3.jpeg");
   width: 100%;
   height: 800px;
   background-size: cover;
@@ -288,32 +288,32 @@ nb-card:hover {
 }
 
 .pimg1 {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/images/iStock.jpg");
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/iStock.jpg");
   background-size: cover;
   min-height: 90vh;
 }
 
 .pimg2 {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/assets/images/AdobeStock.jpeg");
+    url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/AdobeStock.jpeg");
   min-height: 400px;
 }
 
 .pimg3 {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/assets/images/home-banner-2.jpeg");
+    url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-banner-2.jpeg");
   min-height: 400px;
 }
 
 .pimg4 {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/assets/images/computer_graph.jpeg");
+    url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/computer_graph.jpeg");
   min-height: 400px;
 }
 
 .pimg5 {
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("/assets/images/stock_image.jpg");
+    url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/stock_image.jpg");
   min-height: 400px;
 }
 
@@ -475,7 +475,7 @@ body {
 
 // Design similar to skout.com
 .slide-header.landing-background-solid {
-  background-image: url(/assets/images/blur_homepage.png);
+  background-image: url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/blur_homepage.png);
   background-position: top center;
   background-attachment: fixed;
   background-size: cover;
@@ -491,7 +491,7 @@ body {
 }
 
 .slide-1 {
-  background-image: url(/assets/images/contact.jpeg);
+  background-image: url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/contact.jpeg);
   background-position: top center;
   background-attachment: fixed;
   height: 480px;
@@ -500,7 +500,7 @@ body {
 }
 
 .slide-2 {
-  background-image: url("/assets/images/home-banner-2.jpeg");
+  background-image: url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-banner-2.jpeg");
   background-position: top center;
   background-attachment: fixed;
   height: 480px;
@@ -520,7 +520,7 @@ body {
   z-index: 3;
   content: " ";
   position: fixed;
-  background: url("/assets/images/home-banner-2.jpeg") no-repeat center center;
+  background: url("https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-banner-2.jpeg") no-repeat center center;
   will-change: transform;
   width: 100%;
   height: 100%;
@@ -653,7 +653,7 @@ header {
 }
 
 .moment-image {
-  background: #666 url(/assets/images/blur_homepage.png) no-repeat top;
+  background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/blur_homepage.png) no-repeat top;
   background-size: cover;
   position: fixed;
   width: 100%;
@@ -662,7 +662,7 @@ header {
 }
 
 .moment-image2 {
-  background: #666 url(/assets/images/contact.jpeg) top;
+  background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/contact.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -670,7 +670,7 @@ header {
   top: 100px;
 }
 .moment-image3 {
-  background: #666 url(/assets/images/home-banner-2.jpeg) top;
+  background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-banner-2.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -679,7 +679,7 @@ header {
 }
 
 .moment-image4 {
-  background: #666 url(/assets/images/computer_graph.jpeg) top;
+  background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/computer_graph.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -688,7 +688,7 @@ header {
 }
 
 .moment-image5 {
-  background: #666 url(/assets/images/stock_image.jpg) top;
+  background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/stock_image.jpg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -697,7 +697,7 @@ header {
 }
 
 .moment-image6 {
-  background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) top;
+  background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/AdobeStock-testimonial.jpeg) top;
   position: fixed;
   background-size: cover;
   width: 100%;
@@ -805,28 +805,28 @@ footer p {
     height: 0;
   }
   .moment1 {
-    background: #666 url(/assets/images/contact.jpeg) no-repeat top;
+    background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/contact.jpeg) no-repeat top;
     background-size: cover;
   }
   .moment2 {
-    background: #666 url(/assets/images/second_image.jpeg);
+    background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/second_image.jpeg);
     background-position-y: 25%;
     background-size: cover;
   }
   .moment3 {
-    background: #666 url(/assets/images/home-banner-2.jpeg) center;
+    background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/home-banner-2.jpeg) center;
     background-size: cover;
   }
   .moment4 {
-    background: #666 url(/assets/images/computer_graph.jpeg) top;
+    background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/computer_graph.jpeg) top;
     background-size: cover;
   }
   .moment5 {
-    background: #666 url(/assets/images/stock_image.jpg) top;
+    background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/stock_image.jpg) top;
     background-size: cover;
   }
   .moment6 {
-    background: #666 url(/assets/images/AdobeStock-testimonial.jpeg) top;
+    background: #666 url(https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/AdobeStock-testimonial.jpeg) top;
     background-size: cover;
   }
 
