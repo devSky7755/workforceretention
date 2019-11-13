@@ -166,46 +166,46 @@ exports.Update = (req, res, next) => {
     if (typeof req.file !== 'undefined') {
         data.image = req.file.filename;
     }
-    Email.find({}, function (err, emails) {
-        if (err) return next(err);
-        let client_emails = [];
-        emails.forEach((email) => {
-            if (email.assign_to_client) {
-                delete email._id;
-                client_emails.push(email)
+    // Email.find({}, function (err, emails) {
+    //     if (err) return next(err);
+    //     let client_emails = [];
+    //     emails.forEach((email) => {
+    //         if (email.assign_to_client) {
+    //             delete email._id;
+    //             client_emails.push(email)
+    //         }
+    //     });
+    //     data.emails = client_emails;
+
+    //Update the employee
+
+    // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
+    // Find the existing resource by ID
+    Client.findByIdAndUpdate(
+        // the id of the item to find
+        id,
+        // the change to be made. Mongoose will smartly combine your existing
+        // document with this change, which allows for partial updates too
+        data,
+        // an option that asks mongoose to return the updated version
+        // of the document instead of the pre-updated one.
+        { new: true },
+
+        // the callback function
+        (err, client) => {
+            // Handle any possible database errors
+            if (err) return next(err);
+            if (!client) {
+                return res.status(404).json({ success: false, message: "Client not found." });
             }
-        });
-        data.emails = client_emails;
-
-        //Update the employee
-
-        // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
-        // Find the existing resource by ID
-        Client.findByIdAndUpdate(
-            // the id of the item to find
-            id,
-            // the change to be made. Mongoose will smartly combine your existing
-            // document with this change, which allows for partial updates too
-            data,
-            // an option that asks mongoose to return the updated version
-            // of the document instead of the pre-updated one.
-            { new: true },
-
-            // the callback function
-            (err, client) => {
-                // Handle any possible database errors
-                if (err) return next(err);
-                if (!client) {
-                    return res.status(404).json({ success: false, message: "Client not found." });
-                }
-                return res.send({
-                    "success": true,
-                    "message": "Record updated successfully",
-                    client
-                });
-            }
-        );
-    });
+            return res.send({
+                "success": true,
+                "message": "Record updated successfully",
+                client
+            });
+        }
+    );
+    // });
 };
 
 exports.Delete = (req, res, next) => {
