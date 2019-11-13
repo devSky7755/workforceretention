@@ -2,22 +2,25 @@ const nodemailer = require('nodemailer');
 const smtpTransport = require("nodemailer-smtp-transport");
 const checkEnv = require('./check_env')
 
+const authEmail = checkEnv.isLiveServer ? 'Angeline@workforceretention.com.au' : 'snow930123@gmail.com'
+const authPass = checkEnv.isLiveServer ? '7um3ecAWAW' : 'cdmxjtcbeuqdzkjq'
+
 let transporter = null
 if (!checkEnv.isLiveServer) {
     transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: checkEnv.isLiveServer ? 'firestoreangular0@gmail.com' : 'snow930123@gmail.com',
-            pass: checkEnv.isLiveServer ? 'nipamonalisa1' : 'cdmxjtcbeuqdzkjq'
+            user: authEmail,
+            pass: authPass
         }
     });
 } else {
     transporter = nodemailer.createTransport(smtpTransport({
-        host: 'smtp.anchor.net.au',
+        host: 'smtp.office365.com',
         port: 587,
         auth: {
-            user: "workforc",
-            pass: "hannah333"
+            user: authEmail,
+            pass: authPass
         }
     }));
 }
@@ -27,7 +30,8 @@ exports.sendEmail = function (req, res, next) {
     const { from, to, subject, body } = req.body;
 
     const mailOptions = {
-        from: from,
+        from: authEmail,
+        replyTo: from,
         to: to,
         subject: subject,
         html: body
@@ -51,7 +55,8 @@ exports.sendEmail = function (req, res, next) {
 exports.SendEmailToEmployee = function (email) {
     const { from, to, subject, body } = email;
     const mailOptions = {
-        from: from,
+        from: authEmail,
+        replyTo: from,
         to: to,
         subject: subject,
         text: body
@@ -76,7 +81,8 @@ exports.SendEmailToEmployee = function (email) {
 exports.SendNormalEmail = function (email) {
     const { from, to, subject, body } = email;
     const mailOptions = {
-        from: from,
+        from: authEmail,
+        replyTo: from,
         to: to,
         subject: subject,
         html: body
