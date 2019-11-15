@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
         this.employeeService.getEmployeeSurveys(this.employee.employee_id).subscribe(
             data => {
                 this.count = data.surveys.length;
-                const rows = [];
+                let rows = [];
                 data.surveys.map((employeeSurvey) => {
                     console.log(employeeSurvey);
                     // Modify article role
@@ -74,6 +74,7 @@ export class DashboardComponent implements OnInit {
                     };
                     rows.push(employeeSurvey);
                 });
+                rows = rows.slice(0, 1)
                 this.completedSurveys = rows;
             }
         );

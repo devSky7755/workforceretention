@@ -724,12 +724,14 @@ exports.DataOutput = (req, res, next) => {
             headers.push({ id: 'employee_org', title: 'Employee Org' });
             headers.push({ id: 'employee_div', title: 'Employee Div' });
             headers.push({ id: 'employee_dept', title: 'Employee Dept' });
+            headers.push({ id: 'employee_email', title: 'Employee Email' });
             headers.push({ id: 'employee_hiredate', title: 'Employee HireDate' });
             headers.push({ id: 'employee_resigndate', title: 'Employee ResignDate' });
             headers.push({ id: 'employee_exitdate', title: 'Employee ExitDate' });
             headers.push({ id: 'employee_gender', title: 'Employee Gender' });
             headers.push({ id: 'employee_dob', title: 'Employee DOB' });
             headers.push({ id: 'survey_id', title: 'Survey ID' });
+            headers.push({ id: 'profile_loaded', title: 'Profile Loaded' });
             headers.push({ id: 'survey_starttime', title: 'Survey StartTime' });
             headers.push({ id: 'survey_endtime', title: 'Survey EndTime' });
             headers.push({ id: 'completed_online', title: 'Completed Online' });
@@ -822,7 +824,7 @@ exports.DataOutput = (req, res, next) => {
                                 survey_title: survey.title,
                                 client_id: employee.client._id,
                                 client_name: employee.client.name,
-                                employee_id: employee._id,
+                                employee_id: employee.employee_id,
                                 employee_firstname: employee.first_name,
                                 employee_lastname: employee.last_name,
                                 employee_position: employee.position,
@@ -830,12 +832,14 @@ exports.DataOutput = (req, res, next) => {
                                 employee_org: employee.organization === null || typeof employee.organization == 'undefined' ? '' : employee.organization.name,
                                 employee_div: employee.division === null || typeof employee.division == 'undefined' ? '' : employee.division.name,
                                 employee_dept: employee.department === null || typeof employee.department == 'undefined' ? '' : employee.department.name,
+                                employee_email: employee.email,
                                 employee_hiredate: employee.hire_date == null ? '' : format_date(employee.hire_date),
                                 employee_resigndate: employee.resign_date == null ? '' : format_date(employee.resign_date),
                                 employee_exitdate: employee.exit_date == null ? '' : format_date(employee.exit_date),
                                 employee_gender: employee.gender,
                                 employee_dob: employee.date_of_birth == null ? '' : format_date(employee.date_of_birth),
                                 survey_id: survey._id,
+                                profile_loaded: format_date(employee.createdAt),
                                 survey_starttime: employee.surveys[0].start_date == null ? '' : format_date(employee.surveys[0].start_date),
                                 survey_endtime: employee.surveys[0].end_date == null ? '' : format_date(employee.surveys[0].end_date),
                                 completed_online: employee.surveys[0].completed_online,
