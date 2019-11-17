@@ -36,8 +36,8 @@
                         [organizationId]="organizationId"></ngx-add-edit-division>
                 </div>
                 <div *ngIf="isShowDivision">
-                    <i class="icon nb-arrow-thin-left" *ngIf="permission && permission.is_add" (click)="selectOrganization()"
-                        style="font-size: 50px;cursor: pointer;color: #00d977"></i>
+                    <i class="icon nb-arrow-thin-left" *ngIf="permission && permission.is_add"
+                        (click)="selectOrganization()" style="font-size: 50px;cursor: pointer;color: #00d977"></i>
                     <button class="btn btn-success btn-xs" *ngIf="permission && permission.is_add" style="float: right"
                         (click)="addDivisionButtonClicked()">Add
                         Divisions
@@ -54,8 +54,8 @@
                         [departmentId]="departmentId"></ngx-add-edit-department>
                 </div>
                 <div *ngIf="isShowDepartment">
-                    <i class="icon nb-arrow-thin-left" *ngIf="permission && permission.is_add" (click)="selectDivision()"
-                        style="font-size: 50px;cursor: pointer;color: #00d977"></i>
+                    <i class="icon nb-arrow-thin-left" *ngIf="permission && permission.is_add"
+                        (click)="selectDivision()" style="font-size: 50px;cursor: pointer;color: #00d977"></i>
                     <button class="btn btn-success btn-xs" style="float: right" *ngIf="permission && permission.is_add"
                         (click)="addDepartmentButtonClicked()">Add
                         Department
@@ -72,8 +72,8 @@
                 <!--Show the Client Information Here-->
                 <br><br>
                 <div *ngIf="isShowEmployeeSurvey">
-                    <ngx-employee-survey [employeeId]="employeeId" [surveyCompleted]="surveyCompleted" [surveyStatus]="surveyStatus" [employeeName]="employeeName"
-                        [surveyId]="surveyId" [clientId]="clientId" (showEmployee)="showEmployees()">
+                    <ngx-employee-survey [employeeId]="employeeId" [employeeName]="employeeName" [surveyId]="surveyId"
+                        [clientId]="clientId" (showEmployee)="showEmployees()">
                     </ngx-employee-survey>
                 </div>
                 <div *ngIf="showEmployeeDetails">

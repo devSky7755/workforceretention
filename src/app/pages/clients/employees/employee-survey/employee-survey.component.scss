@@ -1,10 +1,10 @@
-/deep/ .nb-theme-cosmic .form-control{
+/deep/ .nb-theme-cosmic .form-control {
   background-color: #fff;
   width: 100%;
   color: #3f51b5;
   border: 1px solid #342e73;
 }
-/deep/ .nb-theme-cosmic .form-control:focus{
+/deep/ .nb-theme-cosmic .form-control:focus {
   background-color: #f0f0f5;
   color: #3f51b5;
 }
@@ -13,7 +13,11 @@ nb-layout-column {
   padding: 0 !important;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: black;
 }
 .home-section {
@@ -22,7 +26,7 @@ h2, h3, h4, h5, h6 {
 .light-gray {
   background: rgba(0, 0, 0, 0.024);
 }
-.individual-question-box{
+.individual-question-box {
   margin-bottom: 10px;
 }
 .question-box {
@@ -45,7 +49,7 @@ h2, h3, h4, h5, h6 {
   background-color: rgba(255, 255, 255, 0.5);
   width: 90%;
   display: block;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .form__input:focus {
@@ -66,9 +70,9 @@ h2, h3, h4, h5, h6 {
   font-size: 1.2rem;
   font-weight: 700;
   margin-left: 2rem;
-  margin-top: .7rem;
+  margin-top: 0.7rem;
   display: block;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .form__input:placeholder-shown + .form__label {
@@ -103,7 +107,7 @@ h2, h3, h4, h5, h6 {
   display: inline-block;
   position: absolute;
   left: 0;
-  top: -.4rem;
+  top: -0.4rem;
 }
 
 .form__radio-button::after {
@@ -117,7 +121,7 @@ h2, h3, h4, h5, h6 {
   transform: translate(-50%, -50%);
   background-color: #2d8ac7;
   opacity: 0;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
@@ -130,14 +134,16 @@ h2, h3, h4, h5, h6 {
 }
 
 /*Checkboxes styles*/
-input[type="checkbox"] { display: none; }
+input[type="checkbox"] {
+  display: none;
+}
 
 input[type="checkbox"] + label {
   display: block;
   position: relative;
   padding-left: 35px;
   margin-bottom: 20px;
-  font: 14px/20px 'Open Sans', Arial, sans-serif;
+  font: 14px/20px "Open Sans", Arial, sans-serif;
   color: #a1a1e5;
   cursor: pointer;
   -webkit-user-select: none;
@@ -145,10 +151,12 @@ input[type="checkbox"] + label {
   -ms-user-select: none;
 }
 
-input[type="checkbox"] + label:last-child { margin-bottom: 0; }
+input[type="checkbox"] + label:last-child {
+  margin-bottom: 0;
+}
 
 input[type="checkbox"] + label:before {
-  content: '';
+  content: "";
   display: block;
   width: 20px;
   height: 20px;
@@ -156,9 +164,9 @@ input[type="checkbox"] + label:before {
   position: absolute;
   left: 0;
   top: 0;
-  opacity: .6;
-  -webkit-transition: all .12s, border-color .08s;
-  transition: all .12s, border-color .08s;
+  opacity: 0.6;
+  -webkit-transition: all 0.12s, border-color 0.08s;
+  transition: all 0.12s, border-color 0.08s;
 }
 
 input[type="checkbox"]:checked + label:before {
@@ -172,15 +180,15 @@ input[type="checkbox"]:checked + label:before {
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-.multiple-choice-input{
+.multiple-choice-input {
   margin-bottom: 10px;
 }
-td{
+td {
   font-size: 16px;
   font-weight: bold;
   padding-left: 10px;
 }
-th{
+th {
   font-size: 18px;
   font-weight: bold;
   padding-left: 10px;
@@ -194,4 +202,17 @@ table tr:nth-child(odd) {
 table th {
   color: white;
   background-color: black;
+}
+
+/deep/ ngb-progressbar {
+  .progress-bar {
+    background-color: #4db0e8 !important;
+  }
+  .progress-bar-striped {
+    background-size: 1.2rem 1.2rem !important;
+  }
+  .progress {
+    font-size: 0.8rem !important;
+    height: 1.2rem !important;
+  }
 }

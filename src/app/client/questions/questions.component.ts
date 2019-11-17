@@ -195,11 +195,6 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
             this.last_step = reason.id
         });
         this.steps_count = step_no - 1;
-        console.log(this.cur_step)
-        console.log(this.steps_count)
-        console.log(this.last_step)
-        console.log(this.categorical_questions)
-        console.log(this.cur_categorical_questions)
         window.scroll(0,0);
 
         if (this.surveyStatus != "Not Started") {
@@ -338,7 +333,6 @@ export class QuestionsComponent implements OnInit, AfterViewInit {
         const errors = [];
         this.question_answers = [];
         // render answer
-        // foreach question there will have an answer
         this.cur_categorical_questions.questions.map((question) => {
             // first check the question type
             // {id: 1, value: 'Rating Radio Buttons'},
