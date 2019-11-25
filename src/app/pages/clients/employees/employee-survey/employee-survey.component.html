@@ -100,7 +100,7 @@
                             </div>
 
                             <div
-                                *ngIf="question.type==6 && cat_quescur_categorical_questionstion.exit_reason !='Final Question'">
+                                *ngIf="question.type==6 && cur_categorical_questions.exit_reason !='Final Question'">
                                 <div class="boxes">
                                     <div *ngFor="let option of question.options; let multiple_choice_index=index"
                                         class="multiple-choice-input">

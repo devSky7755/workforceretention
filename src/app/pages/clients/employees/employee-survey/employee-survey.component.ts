@@ -147,7 +147,6 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                             this.setPage(data);
                         },
                         err => {
-                            console.log(err);
                         }
                     );
                 }
@@ -472,8 +471,6 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
         } else {
             this.is_complete_submit = 0
         }
-
-        console.log(this.question_answers)
         if (this.surveyStatus != "Not Started") {
             this.updateQuestionAnswer();
         } else {
