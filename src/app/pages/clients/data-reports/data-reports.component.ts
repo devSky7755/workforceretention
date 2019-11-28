@@ -1,4 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SurveyService } from "../../../@core/data/survey.service";
 import { ClientService } from "../../../@core/data/client.service";
 import { ReportService } from "../../../@core/data/report.service";
@@ -20,6 +21,7 @@ export class DataReportsComponent implements OnInit, OnChanges {
     constructor(private surveyService: SurveyService,
         private clientService: ClientService,
         private reportService: ReportService,
+        private ngxLoader: NgxUiLoaderService,
         private urlService: URLService) {
         this.filterData = { survey: '', start_date: null, end_date: null, clients: [] };
     }
@@ -63,15 +65,19 @@ export class DataReportsComponent implements OnInit, OnChanges {
             // this means no survey selected
             alert('Please select client to generate report data.');
         } else {
+            this.ngxLoader.startLoader('download_loader');
             this.reportService.generateReportData(this.filterData).subscribe(
                 res => {
-                    console.log(res);
                     if (res.length > 0) {
                         this.successMessage = res.message;
                         this.download(res.filename);
                     } else {
                         this.successMessage = res.message;
                     }
+                    this.ngxLoader.stopLoader('download_loader');
+                },
+                error => {
+                    this.ngxLoader.stopLoader('download_loader');
                 }
             );
         }

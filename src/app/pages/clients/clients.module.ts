@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 import {ClientsRoutingModule} from './clients-routing.module';
 import {ClientSelectionComponent} from './client-selection/client-selection.component';
@@ -29,7 +30,6 @@ import { EmployeeDetailsComponent } from './employees/employee-details/employee-
 import { EmployeeSurveyComponent } from './employees/employee-survey/employee-survey.component';
 import { DataReportsComponent } from './data-reports/data-reports.component';
 import {CellModule} from "ng2-smart-table/components/cell/cell.module";
-
 @NgModule({
     declarations: [ClientSelectionComponent, AddEditClientComponent,
         EmployeesComponent, OrganizationsComponent,
@@ -48,6 +48,7 @@ import {CellModule} from "ng2-smart-table/components/cell/cell.module";
         EmployeeSurveyComponent,
         DataReportsComponent],
     imports: [
+        NgxUiLoaderModule,
         CommonModule,
         ClientsRoutingModule,
         NbCardModule,

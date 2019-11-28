@@ -3,12 +3,12 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AnalyticsService} from './@core/utils/analytics.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AnalyticsService } from './@core/utils/analytics.service';
 
-import {NbAuthJWTToken, NbAuthService, NbTokenService} from '@nebular/auth';
-import {Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import { NbAuthJWTToken, NbAuthService, NbTokenService } from '@nebular/auth';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,15 +20,14 @@ export class AppComponent implements OnInit, OnDestroy {
     private authSubscription: Subscription;
 
     constructor(private analytics: AnalyticsService,
-                private authService: NbAuthService,
-                private tokenService: NbTokenService,
-                private router: Router) {
+        private authService: NbAuthService,
+        private tokenService: NbTokenService,
+        private router: Router) {
     }
 
 
     ngOnInit(): void {
         this.analytics.trackPageViews();
-
         // When Token will change below code will execute
         this.authSubscription = this.authService.onTokenChange()
             .subscribe((token: NbAuthJWTToken) => {
@@ -37,9 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
                     // token and assigne it to our `employee` variable
                     // Navigate the employee to the product staticPage
                     // this.router.navigate(['pages']);
-
                 }
-
             });
     }
 

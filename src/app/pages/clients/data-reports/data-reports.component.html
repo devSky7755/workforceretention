@@ -10,18 +10,16 @@
             <br>
             <form #f="ngForm" (ngSubmit)="generateReport()">
               <div class="form-group" style="max-width: 550px">
-                <select class="form-control" [(ngModel)]="filterData.survey"
-                        name="report-client" required>
+                <select class="form-control" [(ngModel)]="filterData.survey" name="report-client" required>
                   <option value="">Select a Survey</option>
-                  <option *ngFor="let survey of surveys"
-                          value="{{survey._id}}">{{survey.title}}</option>
+                  <option *ngFor="let survey of surveys" value="{{survey._id}}">{{survey.title}}</option>
                 </select>
               </div>
               <div class="form-group">
                 <div class="boxes" id="client-box">
                   <ng-container *ngFor="let client of clients">
-                    <input type="checkbox" id="{{client._id}}"
-                           (change)="onClientChecked(client._id, $event)" checked disabled>
+                    <input type="checkbox" id="{{client._id}}" (change)="onClientChecked(client._id, $event)" checked
+                      disabled>
                     <label for="{{client._id}}">{{client.name}}</label>
                   </ng-container>
                 </div>
@@ -29,18 +27,16 @@
               <!--START DATE-->
               <div class="form-group">
                 <!--<nb-card-header>Common Datepicker</nb-card-header>-->
-                <input nbInput fullWidth name="start-date"
-                       placeholder="From Exit Date" style="max-width: 550px"
-                       [nbDatepicker]="startDatePicker" [(ngModel)]="filterData.start_date">
+                <input nbInput fullWidth name="start-date" placeholder="From Exit Date" style="max-width: 550px"
+                  [nbDatepicker]="startDatePicker" [(ngModel)]="filterData.start_date">
                 <nb-datepicker #startDatePicker></nb-datepicker>
               </div>
 
               <!--END DATE-->
               <div class="form-group">
                 <!--<nb-card-header>Common Datepicker</nb-card-header>-->
-                <input nbInput fullWidth name="end-date"
-                       placeholder="To Exit Date" style="max-width: 550px"
-                       [nbDatepicker]="endDatePicker" [(ngModel)]="filterData.end_date">
+                <input nbInput fullWidth name="end-date" placeholder="To Exit Date" style="max-width: 550px"
+                  [nbDatepicker]="endDatePicker" [(ngModel)]="filterData.end_date">
                 <nb-datepicker #endDatePicker></nb-datepicker>
               </div>
               <div class="form-group">
@@ -48,13 +44,13 @@
                   Generate Report
                 </button>
               </div>
-
             </form>
           </div>
           <div class="col-lg-2"></div>
         </div>
-
       </nb-card-body>
     </nb-card>
+
+    <ngx-ui-loader [loaderId]="'download_loader'" [overlayColor]="'rgba(40, 40, 40, 0.1)'"></ngx-ui-loader>
   </div>
 </div>
