@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 
 * {
   margin: 0;
@@ -15,12 +15,14 @@
   border-bottom: 2px solid #fff;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   overflow: hidden;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -84,7 +86,8 @@ header nav li a {
   padding: 20px 20px 10px;
 }
 
-.dropdown-menu li a:before, .dropdown-menu li a:after {
+.dropdown-menu li a:before,
+.dropdown-menu li a:after {
   content: "";
   bottom: 0;
   width: 0;
@@ -108,7 +111,8 @@ header nav li a:after {
   left: 50%;
 }
 
-header nav li a:hover:before, header nav li a:hover:after {
+header nav li a:hover:before,
+header nav li a:hover:after {
   width: 50%;
 }
 
@@ -176,6 +180,37 @@ header nav .logo a img {
   height: 88px;
 }
 
+.raq_link {
+  right: 150px;
+  position: absolute;
+  display: flex;
+}
+
+.phone-no {
+  line-height: 42px;
+  margin-right: 20px;
+  font-size: 20px;
+  color: black;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .raq_link {
+    position: relative;
+    display: block;
+    text-align: center;
+    right: 0px;
+    button {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  }
+
+  .phone-no {
+    line-height: 15px;
+    font-size: 12px;
+  }
+}
+
 @media (min-width: 481px) and (max-width: 767px) {
   header nav .logo a img {
     height: 50px;
@@ -188,6 +223,22 @@ header nav .logo a img {
   .dropdown-menu {
     left: -160px;
   }
+
+  .raq_link {
+    position: relative;
+    display: block;
+    text-align: center;
+    right: 0px;
+    button {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  }
+
+  .phone-no {
+    line-height: 15px;
+    font-size: 12px;
+  }
 }
 
 /*
@@ -196,7 +247,6 @@ header nav .logo a img {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-
   header nav .logo a img {
     height: 30px;
   }
@@ -207,5 +257,21 @@ header nav .logo a img {
   }
   .dropdown-menu {
     left: -160px;
+  }
+
+  .raq_link {
+    position: relative;
+    display: block;
+    text-align: center;
+    right: 0px;
+    button {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  }
+
+  .phone-no {
+    line-height: 15px;
+    font-size: 12px;
   }
 }

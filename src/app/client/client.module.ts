@@ -33,6 +33,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { RequestAQuoteComponent } from './request-a-quote/request-a-quote.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { ClientTestimonialComponent } from './home/client-testimonial/client-testimonial.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +58,8 @@ import { PrivacyComponent } from './privacy/privacy.component';
         TimeAgoPipe,
         BlogDetailComponent,
         RequestAQuoteComponent,
-        PrivacyComponent
+        PrivacyComponent,
+        ClientTestimonialComponent
     ],
     imports: [
         NgbModule,

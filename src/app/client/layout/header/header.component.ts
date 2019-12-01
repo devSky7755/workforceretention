@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit {
     clientImage = null
     baseUrl = !environment.production ? 'http://localhost:8080' : ''
     isDefaultLogo = false
+    showPhoneNo = false
     routerLink = '/client/home'
 
     constructor(private router: Router,
@@ -28,6 +29,10 @@ export class HeaderComponent implements OnInit {
             let defaultLogoUrl = ['/client/login']
             if (defaultLogoUrl.includes(event.url)) {
                 this.isDefaultLogo = true
+            }
+            let RAQUrls = ['/flexible-options']
+            if (RAQUrls.includes(event.url)) {
+                this.showPhoneNo = true
             }
         });
     }

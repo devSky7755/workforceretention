@@ -1,0 +1,26 @@
+#content6 {
+  background: rgb(30, 70, 98);
+  color: #fff;
+  top: 0;
+}
+
+.content-slide {
+  background: #fff;
+  padding: 50px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/deep/ .carousel-logo {
+    .img-logo {
+      width: 60%;
+      margin: auto;
+    }
+    .slick-prev,
+    .slick-next {
+      background: #4db0e8 !important;
+      height: 25px !important;
+      width: 25px !important;
+    }
+  }

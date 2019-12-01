@@ -683,6 +683,17 @@ exports.Delete = (req, res, next) => {
 };
 
 exports.DataOutput = (req, res, next) => {
+    const occupations = {
+        1: 'Not Classified',
+        2: 'Managers',
+        3: 'Professionals',
+        4: 'Technicians and Trade Workers',
+        5: 'Community and Personal Service Workers',
+        6: 'Clerical and Administrative Workers',
+        7: 'Sales Workers',
+        8: 'Machinery Operators and Drivers',
+        9: 'Labourers',
+    };
     const filter_data = req.body;
     const filename = Date.now() + '__exit_interview_data.csv';
     const data_path = path.join(__dirname, '../uploads/' + filename);
@@ -720,6 +731,7 @@ exports.DataOutput = (req, res, next) => {
             headers.push({ id: 'employee_firstname', title: 'Employee FirstName' });
             headers.push({ id: 'employee_lastname', title: 'Employee LastName' });
             headers.push({ id: 'employee_position', title: 'Employee Title' });
+            headers.push({ id: 'employee_occupation', title: 'Occ Grouping' });
             headers.push({ id: 'employee_type', title: 'Employee Type' });
             headers.push({ id: 'employee_org', title: 'Employee Org' });
             headers.push({ id: 'employee_div', title: 'Employee Div' });
@@ -828,6 +840,7 @@ exports.DataOutput = (req, res, next) => {
                                 employee_firstname: employee.first_name,
                                 employee_lastname: employee.last_name,
                                 employee_position: employee.position,
+                                employee_occupation: occupations[employee.occupational_group],
                                 employee_type: employee.is_manager === '0' ? 'Employee' : 'Manager',
                                 employee_org: employee.organization === null || typeof employee.organization == 'undefined' ? '' : employee.organization.name,
                                 employee_div: employee.division === null || typeof employee.division == 'undefined' ? '' : employee.division.name,

@@ -184,7 +184,9 @@ nb-layout-column {
 
 .cursor-pointer {
   cursor: pointer;
-  color: #0a3f54;
+  color: #3399c1;
+  font-size: 12px;
+  margin-left: 5px;
 }
 
 /deep/ ::ng-deep .nb-theme-corporate nb-popover {

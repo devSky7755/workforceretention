@@ -311,7 +311,7 @@
 
                     <!--Generate Password Button for Re-generating Password-->
                     <div class="form-group" *ngIf="employeeId">
-                        <button type="button" class="btn btn-primary" (click)="resendPassword()">Resend Password
+                        <button type="button" class="btn btn-primary" (click)="resendPassword()">Resend Email
                         </button>
                     </div>
 
@@ -323,7 +323,9 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit" [disabled]="!employeeForm.valid || get('employee_id').value!='' && get('employee_id').value.length<4" class="btn btn-success">
+                        <button type="submit"
+                            [disabled]="!employeeForm.valid || get('employee_id').value!='' && get('employee_id').value.length<4"
+                            class="btn btn-success">
                             {{employeeId ? 'UPDATE' : 'SAVE'}}
                         </button>
                     </div>
