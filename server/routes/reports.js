@@ -29,9 +29,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-router.get('/manager/details/:id', authMiddleware.validateToken, reportController.ManagerReportDetails);
+router.get('/manager/details/:id', reportController.ManagerReportDetails);
 
-router.post('/manager/:id', authMiddleware.validateToken, reportController.ManagerReport);
+router.post('/manager/:id', reportController.ManagerReport);
 
 router.post('/data-output', authMiddleware.validateToken, reportController.DataOutput);
 

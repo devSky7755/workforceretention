@@ -9,7 +9,7 @@ router.post('/download-completed-survey', authMiddleware.validateToken, surveyCo
 
 router.post('/:userId', authMiddleware.validateToken, surveyController.Create);
 
-router.get('/survey-question-answer/:surveyId', authMiddleware.validateToken, surveyController.SurveyWithQuestionAnswer);
+router.get('/survey-question-answer/:surveyId', surveyController.SurveyWithQuestionAnswer);
 
 router.get('/questions/answers/:surveyId', authMiddleware.validateToken, surveyController.SurveyQuestionsAnswers);
 
