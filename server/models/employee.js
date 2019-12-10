@@ -48,6 +48,10 @@ const employeeSchema = new Schema({
     mobile: {
         type: String
     },
+    note: {
+        type: String,
+        default: null
+    },
     date_of_birth: {
         type: Date
     },

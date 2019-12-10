@@ -700,7 +700,7 @@ exports.DataOutput = (req, res, next) => {
     // header will create dynamically header will have option below
     // survey_title, client_id, client_name,employee_id, employee_number,employee_FirstName
     // employee_LastName, employee_title,employee_type, employee_org, employee_div
-    // employee_dept,employee_HireDate,employee_ResignDate, Employee_ExitDate, Employee_Gender,Employee DOB,
+    // employee_dept,employee_HireDate,employee_ResignDate, Employee_ExitDate, Employee_Gender, Employee_Note, Employee DOB,
     // survey_id, survey_StartTime, survey_EndTime,
     // all the survey questions
 
@@ -741,6 +741,7 @@ exports.DataOutput = (req, res, next) => {
             headers.push({ id: 'employee_resigndate', title: 'Employee ResignDate' });
             headers.push({ id: 'employee_exitdate', title: 'Employee ExitDate' });
             headers.push({ id: 'employee_gender', title: 'Employee Gender' });
+            headers.push({ id: 'employee_note', title: 'Employee Note' });
             headers.push({ id: 'employee_dob', title: 'Employee DOB' });
             headers.push({ id: 'survey_id', title: 'Survey ID' });
             headers.push({ id: 'profile_loaded', title: 'Profile Loaded' });
@@ -850,6 +851,7 @@ exports.DataOutput = (req, res, next) => {
                                 employee_resigndate: employee.resign_date == null ? '' : format_date(employee.resign_date),
                                 employee_exitdate: employee.exit_date == null ? '' : format_date(employee.exit_date),
                                 employee_gender: employee.gender,
+                                employee_note: employee.note == null ? '' : employee.note.replace(/\r/g, '\n'),
                                 employee_dob: employee.date_of_birth == null ? '' : format_date(employee.date_of_birth),
                                 survey_id: survey._id,
                                 profile_loaded: format_date(employee.createdAt),
@@ -927,7 +929,7 @@ exports.DataOutput = (req, res, next) => {
                                         });
                                         data_object[question_id] = escapeSpecialChars(final_answer);
                                     } else if (question.exit_reason === '13') {
-                                        if (answer.options.length > 2) {
+                                        if (answer.options.length >= 2) {
                                             let answer_one = answer.options[0].split('-');
                                             let answer_two = answer.options[1].split('-');
                                             let final_answer = '';

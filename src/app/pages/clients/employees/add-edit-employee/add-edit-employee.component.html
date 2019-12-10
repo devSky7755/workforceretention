@@ -204,6 +204,14 @@
                         <nb-datepicker #exitDatePicker></nb-datepicker>
                     </div>
 
+                    <!--NOTE-->
+                    <div class="form-group">
+                        <div class="input-label">
+                            <textarea nbInput fullWidth formControlName="note" placeholder="Note"
+                                [(ngModel)]="employee.note"></textarea>
+                        </div>
+                    </div>
+
                     <!--EMPLOYEE ACTIVE-->
                     <div class="form__group u-margin-bottom-medium">
                         <label style="padding-top: 5px;padding-right: 30px">Employee Active *</label>

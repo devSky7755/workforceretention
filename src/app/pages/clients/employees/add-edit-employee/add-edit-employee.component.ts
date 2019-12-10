@@ -32,7 +32,8 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         birth_date: '',
         exit_date: '',
         gender: '',
-        occupational_group: ''
+        occupational_group: '',
+        note: ''
     };
     initialEmailAddress;
     organizations;
@@ -112,7 +113,8 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             is_online: new FormControl('1'),
             work_phone: new FormControl(),
             occupational_group: new FormControl('', [Validators.required]),
-            mobile_phone: new FormControl()
+            mobile_phone: new FormControl(),
+            note: new FormControl()
         });
     }
 
@@ -192,6 +194,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             resign_date: this.get('resignation_date').value,
             phone: this.get('work_phone').value,
             mobile: this.get('mobile_phone').value,
+            note: this.get('note').value,
             exit_date: this.get('exit_date').value,
             gender: this.get('gender').value,
             occupational_group: this.get('occupational_group').value,
@@ -255,6 +258,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.get('gender').setValue(data.employee.gender);
         this.get('work_phone').setValue(data.employee.phone);
         this.get('mobile_phone').setValue(data.employee.mobile);
+        this.get('note').setValue(data.employee.note);
         this.get('occupational_group').setValue(data.employee.occupational_group);
         if (this.get('is_manager').value == '1') {
             this.get('resignation_date').setErrors(null);
@@ -264,6 +268,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         }
         this.employee.mobile_phone = data.employee.mobile;
         this.employee.work_phone = data.employee.phone;
+        this.employee.note = data.employee.note;
 
         if (this.get('is_manager').value == '0') {
             this.get('hire_date').setValue(this.dateService.parse(data.employee.hire_date, 'en-us'));
