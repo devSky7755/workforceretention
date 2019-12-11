@@ -117,15 +117,17 @@
                         </div>
                         <!--******************************** ngx-charts implementation *****************************-->
                         <div *ngIf="completed_surveys !== 0">
-                            <div *ngFor="let response of leaving_reason_rearranged_array; let i=index">
-                                <div *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0"
-                                    class="mt-5">
-                                    <!--This means this is Career Opportunities Exit Reason-->
-                                    <!--Give a title -->
-                                    <h2 class="text-center mb-3">{{exit_reasons[response.label_index].value}} ( Rank
-                                        {{i + 1}} )</h2>
-                                    <!--Display the chart-->
-                                    <!-- <div style="display: flex; overflow: hidden;height: 500px">
+                            <div class="row">
+                                <div *ngFor="let response of leaving_reason_rearranged_array; let i=index"
+                                    class="col-lg-6">
+                                    <div *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0"
+                                        class="mt-5">
+                                        <!--This means this is Career Opportunities Exit Reason-->
+                                        <!--Give a title -->
+                                        <h2 class="text-center mb-3">{{exit_reasons[response.label_index].value}} ( Rank
+                                            {{i + 1}} )</h2>
+                                        <!--Display the chart-->
+                                        <!-- <div style="display: flex; overflow: hidden;height: 500px">
                                         <ngx-charts-bar-vertical-stacked [scheme]="barChartColorSchema"
                                             [schemeType]="schemaType"
                                             [results]="exit_reason_data_mapper[response.label_index].value"
@@ -135,8 +137,9 @@
                                             [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
                                         </ngx-charts-bar-vertical-stacked>
                                     </div> -->
-                                    <div [id]="'reasonStackedChart' + response.label_index"
-                                        style="width: 100%; height: 400px;"></div>
+                                        <div [id]="'reasonStackedChart' + response.label_index"
+                                            style="width: 100%; height: 400px;"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div *ngIf="employee_sentiment_working_chart_data.length > 0" class="mt-5">

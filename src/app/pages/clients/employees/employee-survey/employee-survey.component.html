@@ -172,7 +172,7 @@
                             (click)="goPrevious(); $event.preventDefault()">
                             Previous
                         </button>
-                        <button class="btn btn-primary" type="submit" *ngIf="!surveyCompleted">
+                        <button class="btn btn-primary" type="submit">
                             {{cur_categorical_questions.step_no == steps_count ? 'submit' : 'save and continue'}}
                         </button>
                         <button class="btn btn-primary" type="button"

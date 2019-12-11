@@ -330,9 +330,9 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
     }
 
     onSubmitAnswer() {
-        if (this.surveyCompleted) {
-            return
-        }
+        // if (this.surveyCompleted) {
+        //     return
+        // }
         // validate answer
         const errors = [];
         this.question_answers = [];
