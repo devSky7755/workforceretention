@@ -173,7 +173,7 @@ const checkDuplicateEmployees = function (employees, employeesToUpload) {
     //for each employees to upload check if the employee exist in the employees array or not
     employeesToUpload.forEach((employee) => {
         //this line of code is checking if the employee exist with the email
-        let checkedEmployee = employees.find(e => e.email === employee.email || employee.employee_id && (e.employee_id === employee.employee_id || !/[A-Za-z0-9]{0,32}/.test(employee.employee_id) || employee.employee_id.length < 4));
+        let checkedEmployee = employees.find(e => e.email === employee.email || employee.employee_id && (e.employee_id === employee.employee_id || !/[A-Za-z0-9_]{0,32}/.test(employee.employee_id) || employee.employee_id.length < 4));
 
         if (!isNullOrEmpty(checkedEmployee)) {
             // if the employee exist with the email then it's eliminating from the final employees to upload array
@@ -339,7 +339,7 @@ exports.Create = function (req, res, next) {
         return res.status(422).send({ success: false, message: 'Email address is required!' });
     }
 
-    if (!/[A-Za-z0-9]{0,32}/.test(data.employee_id) || data.employee_id && data.employee_id.length < 4) {
+    if (!/[A-Za-z0-9_]{0,32}/.test(data.employee_id) || data.employee_id && data.employee_id.length < 4) {
         return res.status(422).send({ success: false, message: 'Employee ID should be 4 to 32 alphanumeric characters' });
     }
 
