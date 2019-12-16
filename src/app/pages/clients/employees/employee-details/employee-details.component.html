@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="row align-items-center justify-content-center padding-bottom-10"
-                         *ngIf="!surveyCompleted && (employee.is_survey == '1' && employee.is_manager=='0')">
+                         *ngIf="!surveyCompleted && (employee.is_survey == '1')">
                         <div class="col-lg-4"><strong>Complete Exit Interview</strong></div>
                         <div class="col-lg-5">
                             <a [routerLink]="" (click)="onEditSurvey()" *ngIf="surveyId">Click here to complete Exit
@@ -64,13 +64,13 @@
                         </div>
                     </div>
                     <div class="row align-items-center justify-content-center padding-bottom-10"
-                         *ngIf="surveyCompleted && employee.is_survey == '1' && employee.is_manager=='0'">
+                         *ngIf="surveyCompleted && employee.is_survey == '1'">
                         <div class="col-lg-4"><strong>View Exit Interview Results</strong></div>
                         <div class="col-lg-5"><a [routerLink]="" (click)="onEditSurvey()">Click here to View these Exit
                             Interview Results</a></div>
                     </div>
                     <div class="row align-items-center justify-content-center padding-bottom-10"
-                         *ngIf="surveyCompleted && employee.is_survey == '1' && employee.is_manager=='0'">
+                         *ngIf="surveyCompleted && employee.is_survey == '1'">
                         <div class="col-lg-4"><strong>Download PDF</strong></div>
                         <div class="col-lg-5"><a [routerLink]="" (click)="onDownloadPdf()">Click here to download a pdf
                             of these Exit Interview Results</a></div>
