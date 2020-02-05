@@ -87,7 +87,7 @@ export class DataReportsComponent implements OnInit, OnChanges {
         const a = document.createElement('a');
         document.body.appendChild(a);
         a.setAttribute('style', 'display: none');
-        a.href = this.urlService.baseUrl + '/download/server/uploads/' + fileName;
+        a.href = this.urlService.baseUrl + '/download/uploads/' + fileName;
         a.click();
         a.remove(); // remove the element
     }

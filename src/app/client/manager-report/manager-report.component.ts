@@ -999,7 +999,7 @@ export class ManagerReportComponent implements OnInit {
         const a = document.createElement('a');
         document.body.appendChild(a);
         a.setAttribute('style', 'display: none');
-        a.href = this.urlService.baseUrl + '/download/server/pdf/' + fileName;
+        a.href = this.urlService.baseUrl + '/download/pdf/' + fileName;
         a.click();
         a.remove(); // remove the element
     }
