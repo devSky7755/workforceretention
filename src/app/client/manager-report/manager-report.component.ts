@@ -613,7 +613,8 @@ export class ManagerReportComponent implements OnInit {
                     this.eswcdCanvasData.push(canvasData)
                 }
             }
-            for (let i = sentiment_divider_length; i < Math.min(this.employee_sentiment.length, sentiment_divider_length + 10); i++) {
+
+            for (let i = this.employee_sentiment.length - 10; i < this.employee_sentiment.length; i++) {
                 this.employee_sentiment_not_working_chart_data.push(this.employee_sentiment[i]);
             }
             this.esnwcdCanvasData = []
@@ -870,7 +871,7 @@ export class ManagerReportComponent implements OnInit {
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
                 dataPoints: this.gender_split_chart_data,
-                radius: 100
+                radius: 150
             }]
         });
         genderChart.render()
@@ -905,7 +906,7 @@ export class ManagerReportComponent implements OnInit {
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
                 dataPoints: this.tenure_split_chart_data,
-                radius: 100
+                radius: 150
             }]
         });
         tenureChart.render()
@@ -940,7 +941,7 @@ export class ManagerReportComponent implements OnInit {
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
                 dataPoints: this.occupation_split_chart_data,
-                radius: 100
+                radius: 150
             }]
         });
         occupationChart.render()
@@ -975,7 +976,7 @@ export class ManagerReportComponent implements OnInit {
                 yValueFormatString: "##0.00\"%\"",
                 indexLabel: "{y}",
                 dataPoints: this.age_split_chart_data,
-                radius: 100
+                radius: 150
             }]
         });
         ageChart.render()
