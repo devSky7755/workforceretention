@@ -14,6 +14,10 @@
     "last 2 versions",
     "IE 11"
   ],
+  "engines": {
+    "node": "10.16.0",
+    "nvm": "6.9.0"
+  },
   "scripts": {
     "ng": "ng",
     "conventional-changelog": "conventional-changelog",
