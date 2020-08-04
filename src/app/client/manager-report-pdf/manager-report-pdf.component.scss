@@ -272,3 +272,8 @@ header nav {
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
+
+.pdf-chart-container {
+  // page-break-after: always;
+  page-break-inside: avoid;
+}
