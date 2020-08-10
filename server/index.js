@@ -110,6 +110,7 @@ app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/survey_emails', surveyEmailRoutes);
 app.use('/api/v1/reports', reportRoutes);
 
+const port = process.env.port || 8080;
 //Angular DIST output folder
 const appPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(appPath));
@@ -138,6 +139,6 @@ app.use((error, req, res, next) => {
 });
 
 
-app.listen(8080, () => {
-    console.log('server is running')
+app.listen(port, () => {
+    console.log(`server is running on port ${port}`)
 });
