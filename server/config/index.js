@@ -1,5 +1,4 @@
 module.exports = {
-    MONGO_URI : 'mongodb://localhost:27017/workforceretention',
-    // MONGO_URI : 'mongodb://ashikmahmud:Ashikatik1@ds129260.mlab.com:29260/workforceretention',
+    MONGO_URI : process.env.MONGODB_URI || 'mongodb://localhost:27017/workforceretention',
     SECRET : 'SUPER_SECRET'
 };

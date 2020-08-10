@@ -3,3 +3,4 @@ e2e/
 .idea/
 server/uploads/
 server/pdf/
+.DS_Store
