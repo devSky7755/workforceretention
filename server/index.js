@@ -110,7 +110,7 @@ app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/survey_emails', surveyEmailRoutes);
 app.use('/api/v1/reports', reportRoutes);
 
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 //Angular DIST output folder
 const appPath = path.join(__dirname, '..', 'dist');
 app.use(express.static(appPath));
