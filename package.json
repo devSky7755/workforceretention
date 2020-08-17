@@ -23,7 +23,7 @@
     "conventional-changelog": "conventional-changelog",
     "start": "node server/index",
     "start:dev": "ng serve",
-    "heroku-postbuild": "ng build --prod",
+    "heroku-postbuild": "ng build --prod --source-map=false",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
     "test": "ng test",
