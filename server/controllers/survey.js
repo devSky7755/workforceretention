@@ -199,6 +199,7 @@ exports.PrintCompletedSurvey = async (req, res) => {
     // here generate a unique name for the file
     const fileName = Date.now() + '_employee_survey.pdf';
     const filePath = path.join(__dirname, '../pdf/' + fileName);
+    console.log("Writing pdf to path", filePath);
     const options = {
         path: filePath,
         format: 'A4',
