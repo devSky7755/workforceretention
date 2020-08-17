@@ -193,7 +193,7 @@ exports.PrintCompletedSurvey = async (req, res) => {
     //here we need to configure puppeteer for printing pdf
     const url = req.body.url;
     const baseUrl = req.protocol + '://' + req.get('host')
-    console.log(baseUrl + url)
+    console.log("PDF URL", baseUrl + url)
     const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     // here generate a unique name for the file
@@ -206,7 +206,8 @@ exports.PrintCompletedSurvey = async (req, res) => {
         printBackground: true
     };
     await page.goto(baseUrl + url, { waitUntil: 'networkidle0' });
-    await page.pdf(options);
+    const response = await page.pdf(options);
+    console.log("Write pdf response", response);
     await browser.close();
     res.json({ fileName: fileName });
 };
