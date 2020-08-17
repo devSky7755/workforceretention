@@ -1,7 +1,12 @@
 node_modules/
 e2e/
 .idea/
-server/uploads/
-server/pdf/
+server/uploads/*
+!server/uploads/.gitkeep 
+
+server/pdf/*
+!server/pdf/.gitkeep 
+
 .DS_Store
+server/.DS_Store
 dist
