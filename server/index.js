@@ -120,7 +120,7 @@ app.get('/download/:file(*)', function (req, res) { // this routes all types of 
 
     const file = req.params.file;
 
-    const filePath = path.resolve(".") + '/' + file;
+    const filePath = path.resolve(".") + '/server/' + file;
 
     res.download(filePath); // magic of download function
 

@@ -990,7 +990,7 @@ exports.DownloadManagerReport = async (req, res) => {
     const page = await browser.newPage();
     // here generate a unique name for the file
     const fileName = Date.now() + '_manager_report.pdf';
-    const filePath = path.join(__dirname, '../server/pdf/' + fileName);
+    const filePath = path.join(__dirname, '../pdf/' + fileName);
     console.log("Writing pdf to path", filePath);
     const options = {
         path: filePath,
