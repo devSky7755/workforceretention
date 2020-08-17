@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const compression = require('compression')
 
 const app = express();
 
@@ -74,6 +75,7 @@ mongoose.connect(config.MONGO_URI, {
     .catch(error => console.log('could not connect', error));
 mongoose.set('useFindAndModify', false);
 
+app.use(compression())
 // body-parser configuration for reading data from request body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); // x-www-form-urlencoded
