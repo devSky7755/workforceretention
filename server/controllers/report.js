@@ -999,6 +999,9 @@ exports.DownloadManagerReport = async (req, res) => {
         margin: { top: 80, left: 0, right: 0, bottom: 80 },
     };
     await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
+    await page.waitForSelector('#top_leaving_reasons',  {
+        visible: true
+    });
     const response = await page.pdf(options);
     console.log("Write pdf response", response);
     await browser.close();
