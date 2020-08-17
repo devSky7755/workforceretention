@@ -985,7 +985,7 @@ exports.DownloadManagerReport = async (req, res) => {
     const url = req.body.url;
     const baseUrl = req.protocol + '://' + req.get('host')
     // const baseUrl = "http://localhost:4200"
-    console.log("PDF URL", baseUrl + url)
+    console.log("DOWNLOAD MANAGER REPORT PDF URL", baseUrl + url)
     const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
     // here generate a unique name for the file
@@ -999,11 +999,8 @@ exports.DownloadManagerReport = async (req, res) => {
         margin: { top: 80, left: 0, right: 0, bottom: 80 },
     };
     await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
-    await page.waitForSelector('#top_leaving_reasons',  {
-        visible: true
-    });
+    await page.waitFor(5000)
     const response = await page.pdf(options);
-    console.log("Write pdf response", response);
     await browser.close();
     fs.chmodSync(filePath, 0o777);
     res.json({ fileName: fileName });
