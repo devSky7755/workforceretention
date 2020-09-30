@@ -268,3 +268,8 @@ header nav {
 .form__group {
   color: #696969;
 }
+
+.survey-container {
+  // page-break-after: always;
+  page-break-inside: avoid;
+}

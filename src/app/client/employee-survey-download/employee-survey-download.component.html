@@ -54,7 +54,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div *ngFor="let cat_question of categorical_questions">
-                            <div class="question-box" *ngIf="cat_question.questions.length > 0">
+                            <div class="question-box survey-container" *ngIf="cat_question.questions.length > 0">
                                 <h4 *ngIf="['Initial Question', 'Final Question', 'Custom Questions'].indexOf(cat_question.exit_reason) == -1">{{cat_question.exit_reason}}</h4>
                                 <br>
                                 <div *ngFor="let question of cat_question.questions; let q_index=index"
