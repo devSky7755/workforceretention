@@ -203,7 +203,8 @@ exports.PrintCompletedSurvey = async (req, res) => {
     const options = {
         path: filePath,
         format: 'A4',
-        printBackground: true
+        printBackground: true,
+        margin: { top: 80, left: 0, right: 0, bottom: 80 }
     };
     await page.goto(baseUrl + url, { waitUntil: 'networkidle0' });
     const response = await page.pdf(options);
