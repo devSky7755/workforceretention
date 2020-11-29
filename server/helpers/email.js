@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const smtpTransport = require("nodemailer-smtp-transport");
 const checkEnv = require('./check_env')
 
-const authEmail = checkEnv.isLiveServer ? 'Angeline@workforceretention.com.au' : 'snow930123@gmail.com'
+const authEmail = checkEnv.isLiveServer ? process.env.EMAIL_AUTH_USERNAME : 'no-reply@workforceretention.com.au';
 const authPass = checkEnv.isLiveServer ? process.env.EMAIL_AUTH_PASS : 'ZXCVasdf!@#$'
 
 let transporter = null
