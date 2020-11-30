@@ -737,6 +737,8 @@ exports.DataOutput = (req, res, next) => {
             headers.push({ id: 'employee_div', title: 'Employee Div' });
             headers.push({ id: 'employee_dept', title: 'Employee Dept' });
             headers.push({ id: 'employee_email', title: 'Employee Email' });
+            headers.push({ id: 'employee_work_phone', title: 'Employee Work Phone' });
+            headers.push({ id: 'employee_mobile_phone', title: 'Employee Mobile Phone' });
             headers.push({ id: 'employee_hiredate', title: 'Employee HireDate' });
             headers.push({ id: 'employee_resigndate', title: 'Employee ResignDate' });
             headers.push({ id: 'employee_exitdate', title: 'Employee ExitDate' });
@@ -847,6 +849,8 @@ exports.DataOutput = (req, res, next) => {
                                 employee_div: employee.division === null || typeof employee.division == 'undefined' ? '' : employee.division.name,
                                 employee_dept: employee.department === null || typeof employee.department == 'undefined' ? '' : employee.department.name,
                                 employee_email: employee.email,
+                                employee_work_phone: employee.phone,
+                                employee_mobile_phone: employee.mobile,
                                 employee_hiredate: employee.hire_date == null ? '' : format_date(employee.hire_date),
                                 employee_resigndate: employee.resign_date == null ? '' : format_date(employee.resign_date),
                                 employee_exitdate: employee.exit_date == null ? '' : format_date(employee.exit_date),
