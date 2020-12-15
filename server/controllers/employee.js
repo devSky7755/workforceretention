@@ -755,7 +755,7 @@ const sendReminderEmailsToEmployees = function (employees) {
 const one_day = 86400000;
 const five_minute = 300000;
 const three_hours = 10800000;
-setInterval(sendReminderEmails, three_hours);
+setInterval(sendReminderEmailsToEmployees, three_hours);
 
 const getDay = (start_date, end_date) => {
     let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
