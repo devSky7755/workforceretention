@@ -752,10 +752,10 @@ const sendReminderEmailsToEmployees = function (employees) {
     return Promise.all(employeePromises);
 };
 // check within every 3 hours
-// const one_day = 86400000;
-// const five_minute = 300000;
-// const three_hours = 10800000;
-// setInterval(sendReminderEmails, three_hours);
+const one_day = 86400000;
+const five_minute = 300000;
+const three_hours = 10800000;
+setInterval(sendReminderEmails, three_hours);
 
 const getDay = (start_date, end_date) => {
     let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
