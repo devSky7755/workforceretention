@@ -622,7 +622,8 @@ exports.logout = function (req, res) {
     return res.status(200).json({ success: true })
 };
 
-exports.sendReminderEmails = function (req, res, next) {
+const sendReminderEmails = function (req, res, next) {
+    console.log("SEND REMINDER EMAILS");
     //*********************** STEPS ***************
     // STEP-1 : Find all the clients
     // STEP-2 : Check if the client is set for reminder email is on or off (send_reminder_email value true means on)
@@ -663,7 +664,7 @@ exports.sendReminderEmails = function (req, res, next) {
                                 employee.is_online === '1' &&
                                 employee.is_active === '1' &&
                                 !employee.is_send_reminder_email &&
-                                employeeCreatedDay == 5) {
+                                (employeeCreatedDay == 1 || employeeCreatedDay == 2)) {
 
                                 let employeeObject = {
                                     client_name: client.name,
@@ -710,6 +711,8 @@ exports.sendReminderEmails = function (req, res, next) {
         });
 };
 
+exports.sendReminderEmails = sendReminderEmails;
+
 /**
  * GET /api/v1/employees/send-reminder-email
  * @param req
@@ -755,7 +758,7 @@ const sendReminderEmailsToEmployees = function (employees) {
 const one_day = 86400000;
 const five_minute = 300000;
 const three_hours = 10800000;
-setInterval(sendReminderEmailsToEmployees, three_hours);
+setInterval(sendReminderEmails, three_hours);
 
 const getDay = (start_date, end_date) => {
     let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
