@@ -664,7 +664,7 @@ const sendReminderEmails = function (req, res, next) {
                                 employee.is_online === '1' &&
                                 employee.is_active === '1' &&
                                 !employee.is_send_reminder_email &&
-                                (employeeCreatedDay == 1 || employeeCreatedDay == 2)) {
+                                (employeeCreatedDay == 5 || employeeCreatedDay == 10)) {
 
                                 let employeeObject = {
                                     client_name: client.name,
