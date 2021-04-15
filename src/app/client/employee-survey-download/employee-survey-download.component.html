@@ -59,7 +59,7 @@
                                 <br>
                                 <div *ngFor="let question of cat_question.questions; let q_index=index"
                                     class="individual-question-box">
-                                    <h6>{{question.question_no}}. {{question.title}}</h6>
+                                    <h4>{{question.question_no}}. {{question.title}}</h4>
 
                                     <div *ngIf="question.type==1 && cat_question.exit_reason !='Final Question'">
                                         <!--OPTIONS-->
