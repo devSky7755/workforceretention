@@ -1,49 +1,50 @@
 <nb-layout>
     <nb-layout-column>
         <header>
-            <nav style="display: flex;">
+            <nav style="display: flex; flex-direction: row; justify-content:space-between; padding-right: 72px;">
+                <img src="{{ clientImage }}" style="margin-left: 72px;"/>
                 <h1 class="logo ml-3">
                     Exit Interview Report
                 </h1>
             </nav>
         </header>
-        <section class="home-section light-gray">
+        <section class="home-section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12" style="color: #696969 !important;">
                         <br>
                         <div style="display: flex;">
-                            <div style="width: 200px"><strong>Employee Name</strong></div>
+                            <div style="width: 300px"><strong>Employee Name</strong></div>
                             <div>{{employee.first_name}} {{employee.last_name}}</div>
                         </div>
                         <br>
                         <!--No Of Employees-->
                         <div style="display: flex;">
-                            <div style="width: 200px"><strong>Employee Email</strong></div>
+                            <div style="width: 300px"><strong>Employee Email</strong></div>
                             <div>{{employee.email}}</div>
                         </div>
                         <br>
                         <!--Employee Turnover-->
                         <div style="display: flex;">
-                            <div style="width: 200px"><strong>Position Title</strong></div>
+                            <div style="width: 300px"><strong>Position Title</strong></div>
                             <div>{{employee.position}}</div>
                         </div>
                         <br>
                         <!--Client Product-->
                         <div style="display: flex;">
-                            <div style="width: 200px"><strong>Hire Date</strong></div>
+                            <div style="width: 300px"><strong>Hire Date</strong></div>
                             <div>{{employee.hire_date | date}}</div>
                         </div>
                         <br>
                         <!--Client Product-->
                         <div style="display: flex;">
-                            <div style="width: 200px"><strong>Resignation Date</strong></div>
+                            <div style="width: 300px"><strong>Resignation Date</strong></div>
                             <div>{{employee.resign_date | date}}</div>
                         </div>
                         <br>
                         <!--Client Product-->
                         <div style="display: flex;">
-                            <div style="width: 200px"><strong>Exit Date</strong></div>
+                            <div style="width: 300px"><strong>Exit Date</strong></div>
                             <div>{{employee.exit_date | date}}</div>
                         </div>
                         <br>

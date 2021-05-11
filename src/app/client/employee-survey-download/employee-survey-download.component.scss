@@ -9,6 +9,11 @@
   color: #3f51b5;
   border: 1px solid #342e73;
 }
+
+/deep/ .nb-theme-corporate nb-layout .layout {
+  font-family: Arial, Helvetica, sans-serif !important; 
+}
+
 /deep/ .nb-theme-cosmic .form-control:focus {
   background-color: #f0f0f5;
   color: #3f51b5;
@@ -22,8 +27,7 @@ nb-layout-column {
 }
 
 h1 {
-  width: 100%;
-  text-align: center;
+  font-family: Arial, Helvetica, sans-serif !important; 
 }
 
 h2,
@@ -32,6 +36,10 @@ h4,
 h5,
 h6 {
   color: #000;
+  font-family: Arial, Helvetica, sans-serif !important; 
+}
+h4 {
+  font-weight: bold;
 }
 .home-section {
   padding: 80px 0;
@@ -84,7 +92,7 @@ h6 {
 
 .form__label {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: bold;
   margin-left: 2rem;
   margin-top: 0.7rem;
   display: block;
@@ -275,6 +283,10 @@ header nav {
 
 .form__group {
   color: #696969;
+}
+
+.form-group {
+  font-size: 21px !important;
 }
 
 .survey-container {
