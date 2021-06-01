@@ -141,7 +141,13 @@ export class EmployeeSurveyComponent implements OnInit, AfterViewInit, OnChanges
                 if (this.employeeSurvey) {
                     this.surveyCompleted = this.employeeSurvey.completed
                     this.surveyStatus = this.employeeSurvey.completed ? "Completed" : this.employeeSurvey.start_date ? "In Progress" : "Not Started"
-                    this.cur_step = this.employeeSurvey.exit_reason_cur_step ? parseInt(this.employeeSurvey.exit_reason_cur_step) : 11;
+                    if (this.employeeSurvey.completed) {
+                        this.cur_step = 0;
+                    } else if (this.employeeSurvey.exit_reason_cur_step) {
+                        this.cur_step = parseInt(this.employeeSurvey.exit_reason_cur_step);
+                    } else {
+                        this.cur_step = 11;
+                    }
                     this.surveyService.getSurveyQuestions(this.surveyId).subscribe(
                         data => {
                             this.setPage(data);
