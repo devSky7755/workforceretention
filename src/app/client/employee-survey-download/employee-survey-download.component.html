@@ -20,8 +20,8 @@
                         <br>
                         <!--No Of Employees-->
                         <div style="display: flex;">
-                            <div style="width: 300px"><strong>Employee Email</strong></div>
-                            <div>{{employee.email}}</div>
+                            <div style="width: 300px"><strong>Organisation Level</strong></div>
+                            <div>{{ [employee.organization.name, (employee.division || {}).name, (employee.department || {}).name].join(" -> ") }}</div>
                         </div>
                         <br>
                         <!--Employee Turnover-->
@@ -34,12 +34,6 @@
                         <div style="display: flex;">
                             <div style="width: 300px"><strong>Hire Date</strong></div>
                             <div>{{employee.hire_date | date}}</div>
-                        </div>
-                        <br>
-                        <!--Client Product-->
-                        <div style="display: flex;">
-                            <div style="width: 300px"><strong>Resignation Date</strong></div>
-                            <div>{{employee.resign_date | date}}</div>
                         </div>
                         <br>
                         <!--Client Product-->
@@ -204,6 +198,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    Disclaimer: The information contained in this exit interview report is obtained through a phone-based or online interview with 
+                    the afore mentioned exiting employee. Workforce Retention makes best endeavours to provide an accurate summary 
+                    of the employee experience,  but makes no claims, promises or guarantees about the interpretation, accuracy, completeness 
+                    or adequacy of the exiting employee’s disclosure. 
                 </div>
             </div>
         </section>

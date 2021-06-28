@@ -326,11 +326,26 @@ exports.SurveyWithQuestionAnswer = (req, res, next) => {
 
 const findEmployee = function (employeeId) {
     return new Promise((resolve, reject) => {
-        Employee.findById(employeeId).populate({
+        Employee
+        .findById(employeeId)
+        .populate({
             path: 'client',
             model: 'Client',
             select: 'image'
-        }).exec(function (err, employee) {
+        })
+        .populate({
+            path: 'organization',
+            model: 'Organization'
+        })
+        .populate({
+            path: 'division',
+            model: 'Division'
+        })
+        .populate({
+            path: 'department',
+            model: 'Department'
+        })
+        .exec(function (err, employee) {
             if (err) {
                 reject(err);
             } else {
