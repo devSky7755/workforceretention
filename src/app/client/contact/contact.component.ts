@@ -10,7 +10,7 @@ import { ContactService } from "../../@core/data/contact.service";
 })
 export class ContactComponent implements OnInit {
 
-    email = { name: '', from_email: '', subject: '', organization: '', message: '' };
+    email = { name: '', from_email: '', phone: '', organization: '', message: '' };
     contactForm: FormGroup;
 
     constructor(private contactService: ContactService) {
@@ -32,7 +32,7 @@ export class ContactComponent implements OnInit {
                 Validators.required,
                 Validators.pattern("[^ @]*@[^ @]*")
             ]),
-            subject: new FormControl(''),
+            phone: new FormControl(''),
             message: new FormControl('', [Validators.required]),
             organization: new FormControl('', [Validators.required]),
             recaptchaReactive: new FormControl(null, Validators.required)
@@ -46,7 +46,7 @@ export class ContactComponent implements OnInit {
             let param = {
                 name: this.get('name').value,
                 email: this.get('email').value,
-                subject: this.get('subject').value,
+                phone: this.get('phone').value,
                 message: this.get('message').value,
                 organization: this.get('organization').value,
             }

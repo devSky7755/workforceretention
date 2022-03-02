@@ -18,5 +18,7 @@ const schema = Joi.object().keys({
     organization: Joi.string().required(),
 
     subject: Joi.string().allow(''),
+
+    phone: Joi.string().allow('')
 });
 module.exports = schema;
