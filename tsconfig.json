@@ -11,12 +11,23 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "types": [
+      "node",
+      "googlemaps"
+    ],
     "lib": [
       "es2017",
       "dom"
     ],
     "plugins": [
-      { "name": "tslint-language-service"}
-    ]
+      {
+        "name": "tslint-language-service"
+      }
+    ],
+    "paths": {
+      "@angular/*": [
+        "./node_modules/@angular/*"
+      ]
+    }
   }
 }

@@ -52,6 +52,12 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     ];
     organizations_divisions_departments = [];
 
+    // spinner set when submitting form
+    submittingSpinner = false;
+
+    // spinner set when resending email
+    resendingSpinner = false;
+
     // define a employee model
 
     // ****************** Toaster Configuration ********************
@@ -216,6 +222,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             employee['department'] = null;
         }
         if (this.employeeForm.valid) {
+            this.submittingSpinner = true;
             // check if the pageId is null or not. if null then insert else update
             if (this.employeeId) {
                 this.update(employee);
@@ -286,11 +293,13 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
                 this.showToast(NbToastStatus.SUCCESS, null, data.message);
                 this.setEmployee(data);
                 this.selectEmployeeManagement.emit();
+                this.submittingSpinner = false;
             },
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
                 this.showToast(NbToastStatus.DANGER, null, error.message);
+                this.submittingSpinner = false;
             }
         );
     }
@@ -321,25 +330,30 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
                 this.successMessage = data.message;
                 this.showToast(NbToastStatus.SUCCESS, null, data.message);
                 this.setEmployee(data);
+                this.submittingSpinner = false;
             },
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
                 this.showToast(NbToastStatus.DANGER, null, error.message);
+                this.submittingSpinner = false;
             }
         );
     }
 
     resendPassword() {
         // end request to the server for resending password to the employee
+        this.resendingSpinner = true;
         if (this.employeeId != null && this.clientId != null) {
             this.employeeService.resendPassword(this.employeeId, this.clientId).subscribe(
                 () => {
                     this.showToast(NbToastStatus.SUCCESS, null, 'Password sent to the employee email !');
+                    this.resendingSpinner = false;
                 },
                 err => {
                     const {error} = err;
                     this.showToast(NbToastStatus.DANGER, null, error.message);
+                    this.resendingSpinner = false;
                 }
             );
         }

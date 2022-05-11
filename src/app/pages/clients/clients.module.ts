@@ -4,7 +4,7 @@ import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 import {ClientsRoutingModule} from './clients-routing.module';
 import {ClientSelectionComponent} from './client-selection/client-selection.component';
-import {NbActionsModule, NbCardModule, NbTabsetModule} from '@nebular/theme';
+import {NbActionsModule, NbCardModule, NbTabsetModule, NbSpinnerModule} from '@nebular/theme';
 import {SmartTableService} from '../../@core/data/smart-table.service';
 import {AddEditClientComponent} from './client-selection/add-edit-client/add-edit-client.component';
 
@@ -58,7 +58,8 @@ import {CellModule} from "ng2-smart-table/components/cell/cell.module";
         ReactiveFormsModule,
         NbActionsModule,
         NbTabsetModule,
-        CellModule
+        NbSpinnerModule,
+        CellModule,
     ],
     providers: [
         SmartTableService,

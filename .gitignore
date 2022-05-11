@@ -10,3 +10,5 @@ server/pdf/*
 .DS_Store
 server/.DS_Store
 dist
+
+server/public/images/article
