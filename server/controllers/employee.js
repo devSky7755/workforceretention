@@ -50,7 +50,10 @@ exports.Upload = function (req, res, next) {
             console.log(client)
             if (err) return next(err);
             if (!client) {
-                return res.status(404).json({ status: false, message: 'Client not found!' })
+                return res.status(404).json({
+                    status: false,
+                    message: 'Client not found!'
+                })
             }
             // check the client surveys.
             // if the client has no survey available then set a error message that No survey assigned to the client yet !
@@ -107,7 +110,12 @@ exports.Upload = function (req, res, next) {
                         // here before push the json object check if the employee client has assign surveys. if so then assign that surveys to the employee
                         let clientSurveys = [];
                         client.surveys.forEach((survey) => {
-                            let employeeSurvey = { survey: survey, completed: false, start_date: null, end_date: null };
+                            let employeeSurvey = {
+                                survey: survey,
+                                completed: false,
+                                start_date: null,
+                                end_date: null
+                            };
                             clientSurveys.push(employeeSurvey);
                         });
                         if (json[i].occupational_group.trim() in occupationalMatch) {
@@ -216,7 +224,7 @@ const passwordGenerator = function (employees) {
                         resolve(employee);
                     }
 
-                })//----end of password hashing----
+                }) //----end of password hashing----
             }) //---end of salt generation----
         }))
     });
@@ -264,7 +272,12 @@ const sendEmailsToEmployees = (employees, client) => {
             // send email only if is_online is set to 1
             if (employee.is_online === '1') {
 
-                helpers.SendEmailToEmployee({ from, to, subject, body }).then(
+                helpers.SendEmailToEmployee({
+                    from,
+                    to,
+                    subject,
+                    body
+                }).then(
                     () => {
                         // if the promise full fill this block of code will execute
                         // assign the hash password to the employee
@@ -331,19 +344,30 @@ const findDepartmentByName = function (name, organizations) {
 
 exports.Create = function (req, res, next) {
     const data = req.body;
-    const { email } = req.body;
+    const {
+        email
+    } = req.body;
     const clientId = req.params.clientId;
     data.employee_id = data.employee_id ? data.employee_id : null
 
     if (!email) {
-        return res.status(422).send({ success: false, message: 'Email address is required!' });
+        return res.status(422).send({
+            success: false,
+            message: 'Email address is required!'
+        });
     }
 
     if (!/[A-Za-z0-9_]{0,32}/.test(data.employee_id) || data.employee_id && data.employee_id.length < 4) {
-        return res.status(422).send({ success: false, message: 'Employee ID should be 4 to 32 alphanumeric characters' });
+        return res.status(422).send({
+            success: false,
+            message: 'Employee ID should be 4 to 32 alphanumeric characters'
+        });
     }
 
-    Employee.findOne({ email }, async (err, existingUser) => {
+    Employee.findOne({
+        email,
+        client: clientId
+    }, async (err, existingUser) => {
         if (err) return next(err);
         if (existingUser) {
             if (data.employee_id && existingUser.employee_id === data.employee_id) {
@@ -382,7 +406,10 @@ exports.Create = function (req, res, next) {
                     .exec(function (err, client) {
                         if (err) return next(err);
                         if (!client) {
-                            return res.status(404).json({ status: false, message: 'Client not found!' })
+                            return res.status(404).json({
+                                status: false,
+                                message: 'Client not found!'
+                            })
                         }
                         // check the client surveys.
                         // if the client has no survey available then set a error message that No survey assigned to the client yet !
@@ -392,7 +419,12 @@ exports.Create = function (req, res, next) {
                         // here before create the employee check if the employee client has assign surveys. if so then assign that surveys to the employee
                         let clientSurveys = [];
                         client.surveys.forEach((survey) => {
-                            let employeeSurvey = { survey: survey, completed: false, start_date: null, end_date: null };
+                            let employeeSurvey = {
+                                survey: survey,
+                                completed: false,
+                                start_date: null,
+                                end_date: null
+                            };
                             clientSurveys.push(employeeSurvey);
                         });
                         data.surveys = clientSurveys;
@@ -438,7 +470,12 @@ exports.Create = function (req, res, next) {
                             body = body.replace('[employee_password]', password);
                             // check if the employee is set to online or not. if set to is_online === '1' only then sent email
                             if (employee.is_online === '1' || employee.is_manager === '1') {
-                                return helpers.SendEmailToEmployee({ from, to, subject, body });
+                                return helpers.SendEmailToEmployee({
+                                    from,
+                                    to,
+                                    subject,
+                                    body
+                                });
                             } else {
                                 return Promise.resolve();
                             }
@@ -471,7 +508,11 @@ exports.Find = (req, res, next) => {
                 .skip((currentPage) * perPage)
                 .limit(perPage);
         }).then(employees => {
-            return res.status(200).json({ success: true, employees, totalItems })
+            return res.status(200).json({
+                success: true,
+                employees,
+                totalItems
+            })
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -514,7 +555,10 @@ exports.FindById = (req, res, next) => {
 
 exports.login = function (req, res, next) {
 
-    const { email, password } = req.body;
+    const {
+        email,
+        password
+    } = req.body;
     /**
      * this is param checking if they are provided
      */
@@ -527,7 +571,9 @@ exports.login = function (req, res, next) {
      */
 
     // here we need to populate the employee organization, employee division and department
-    Employee.findOne({ email }, 'employee_id email password first_name last_name is_manager is_survey is_report client').then((employee, err) => {
+    Employee.findOne({
+        email
+    }, 'employee_id email password first_name last_name is_manager is_survey is_report client').then((employee, err) => {
         if (err) return (new Error("Unable to find employee with the email " + email));
 
         if (!employee) {
@@ -560,7 +606,11 @@ exports.login = function (req, res, next) {
             });
 
             //return the token here
-            res.json({ access_token: token, refresh_token: refreshToken, employee_id: employee._id });
+            res.json({
+                access_token: token,
+                refresh_token: refreshToken,
+                employee_id: employee._id
+            });
         });
     }).catch(err => {
         next(err)
@@ -580,7 +630,9 @@ exports.token = function (req, res, next) {
     let refreshToken = req.body.refreshToken;
 
     if ((refreshToken in refreshTokens) && (refreshTokens[refreshToken] === email)) {
-        Employee.findOne({ email }, 'employee_id email first_name last_name is_manager is_survey is_report client').then((employee, err) => {
+        Employee.findOne({
+            email
+        }, 'employee_id email first_name last_name is_manager is_survey is_report client').then((employee, err) => {
             if (err) return next(err);
             if (!employee) {
                 const error = new Error("Employee not found, please sign up.");
@@ -595,7 +647,11 @@ exports.token = function (req, res, next) {
             const token = jwt.sign(employeeData, config.SECRET, {
                 expiresIn: '7d'
             });
-            return res.json({ access_token: token, refresh_token: refreshToken, employee_id: employee._id });
+            return res.json({
+                access_token: token,
+                refresh_token: refreshToken,
+                employee_id: employee._id
+            });
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -619,7 +675,9 @@ exports.logout = function (req, res) {
     if (refreshToken in refreshTokens) {
         delete refreshTokens[refreshToken]
     }
-    return res.status(200).json({ success: true })
+    return res.status(200).json({
+        success: true
+    })
 };
 
 const sendReminderEmails = function (req, res, next) {
@@ -686,9 +744,11 @@ const sendReminderEmails = function (req, res, next) {
                         // then we need to update the property is_send_reminder_email to true
                         employees.forEach((employee) => {
                             Employee.findByIdAndUpdate(
-                                employee.employee_id,
-                                { is_send_reminder_email: true },
-                                { new: true },
+                                employee.employee_id, {
+                                    is_send_reminder_email: true
+                                }, {
+                                    new: true
+                                },
                                 (err, employee) => {
                                     if (err) {
                                         return next(err)
@@ -744,12 +804,17 @@ const sendReminderEmailsToEmployees = function (employees) {
             // step-3 : [employee_username] set the employee email
             body = body.replace('[employee_username]', to);
 
-            helpers.SendEmailToEmployee({ from, to, subject, body }).then(
+            helpers.SendEmailToEmployee({
+                from,
+                to,
+                subject,
+                body
+            }).then(
                 () => {
                     resolve(employee)
                 }).catch((err) => {
-                    reject(err)
-                })
+                reject(err)
+            })
         }))
     });
     return Promise.all(employeePromises);
@@ -767,11 +832,20 @@ const getDay = (start_date, end_date) => {
 
 exports.changePassword = (req, res, next) => {
     let employeeId = mongoose.Types.ObjectId(req.params.id);
-    let { old_password, new_password, clientId } = req.body
+    let {
+        old_password,
+        new_password,
+        clientId
+    } = req.body
 
     //check if request body has old_password
     if (!old_password || !new_password) {
-        return res.status(422).send({ errors: [{ title: 'Data missing!', detail: 'Input correct data!' }] });
+        return res.status(422).send({
+            errors: [{
+                title: 'Data missing!',
+                detail: 'Input correct data!'
+            }]
+        });
     }
 
     // check employee by the employeeId
@@ -799,7 +873,10 @@ exports.changePassword = (req, res, next) => {
                     .exec(async function (err, client) {
                         if (err) return next(err);
                         if (!client) {
-                            return res.status(404).json({ status: false, message: 'Client not found!' })
+                            return res.status(404).json({
+                                status: false,
+                                message: 'Client not found!'
+                            })
                         }
                         //before saving the employee to the database. hash password
                         if (err) return next(err);
@@ -885,7 +962,10 @@ exports.generatePassword = function (req, res, next) {
             .exec(async function (err, client) {
                 if (err) return next(err);
                 if (!client) {
-                    return res.status(404).json({ status: false, message: 'Client not found!' })
+                    return res.status(404).json({
+                        status: false,
+                        message: 'Client not found!'
+                    })
                 }
                 //before saving the employee to the database. hash password
                 await bcrypt.genSalt(10, function (err, salt) {
@@ -934,7 +1014,12 @@ exports.generatePassword = function (req, res, next) {
 
                             // step-4 : [employee_password] set the employee plain password.
                             body = body.replace('[employee_password]', password);
-                            return helpers.SendEmailToEmployee({ from, to, subject, body });
+                            return helpers.SendEmailToEmployee({
+                                from,
+                                to,
+                                subject,
+                                body
+                            });
                         }).then(() => {
                             return res.status(200).send({
                                 "success": true,
@@ -958,38 +1043,69 @@ exports.Update = (req, res, next) => {
     const data = req.body;
     let id = req.params.id;
 
-    //Update the employee
-
-    // Joi.validate(data, EmployeeSchema, (err, value) => {
-    // if (err) return next(err);
-    // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
     // Find the existing resource by ID
-    Employee.findByIdAndUpdate(
-        // the id of the item to find
-        id,
-        // the change to be made. Mongoose will smartly combine your existing
-        // document with this change, which allows for partial updates too
-        data,
-        // an option that asks mongoose to return the updated version
-        // of the document instead of the pre-updated one.
-        { new: true },
-
-        // the callback function
-        (err, employee) => {
-            if (err && err.name === 'MongoError' && err.code === 11000) {
-                return next(new Error(`Employee with the email or employee id already exist`));
+    Employee.findById(id).populate({
+        path: 'client',
+        model: 'Client',
+    }).exec((err, employee) => {
+        // Check if email or id exist
+        Employee.findOne({
+            email: data.email,
+            client: employee.client._id,
+            _id: {
+                $ne: id
             }
-            // Handle any possible database errors
+        }, async (err, existingUser) => {
             if (err) return next(err);
-            if (!employee) return res.status(404).json({ success: false, message: "Employee not found." });
-            return res.send({
-                "success": true,
-                "message": "Record updated successfully",
-                employee
-            });
-        }
-    );
-    // })
+            if (existingUser) {
+                if (data.employee_id && existingUser.employee_id === data.employee_id) {
+                    return res.status(422).send({
+                        success: false,
+                        message: 'Employee with this employee id already exist!'
+
+                    });
+                }
+                return res.status(422).send({
+                    success: false,
+                    message: 'Employee with this email already exist!'
+
+                });
+            }
+
+            // This would likely be inside of a PUT request, since we're updating an existing document, hence the req.params.todoId.
+            // Find the existing resource by ID
+            Employee.findByIdAndUpdate(
+                // the id of the item to find
+                id,
+                // the change to be made. Mongoose will smartly combine your existing
+                // document with this change, which allows for partial updates too
+                data,
+                // an option that asks mongoose to return the updated version
+                // of the document instead of the pre-updated one.
+                {
+                    new: true
+                },
+
+                // the callback function
+                (err, employee) => {
+                    if (err && err.name === 'MongoError' && err.code === 11000) {
+                        return next(new Error(`Employee with the email or employee id already exist`));
+                    }
+                    // Handle any possible database errors
+                    if (err) return next(err);
+                    if (!employee) return res.status(404).json({
+                        success: false,
+                        message: "Employee not found."
+                    });
+                    return res.send({
+                        "success": true,
+                        "message": "Record updated successfully",
+                        employee
+                    });
+                }
+            );
+        })
+    });
 };
 
 exports.Delete = (req, res, next) => {
@@ -999,7 +1115,9 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({ id }, schema, (err, value) => {
+    Joi.validate({
+        id
+    }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({
@@ -1012,7 +1130,10 @@ exports.Delete = (req, res, next) => {
         Employee.findByIdAndRemove(id, (err, employee) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!employee) return res.status(404).json({ success: false, message: "Employee not found." });
+            if (!employee) return res.status(404).json({
+                success: false,
+                message: "Employee not found."
+            });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
             return res.send({
@@ -1035,7 +1156,9 @@ exports.FindSurveys = (req, res, next) => {
         })
         .exec(function (err, employee) {
             if (err) return next(err);
-            return res.status(200).json({ success: true, surveys: employee.surveys })
+            return res.status(200).json({
+                success: true,
+                surveys: employee.surveys
+            })
         });
 };
-

@@ -23,7 +23,7 @@ const employeeSchema = new Schema({
         type: String,
         min: [4, 'Too short, min is 4 characters'],
         max: [64, 'Too long, max is 64 characters'],
-        unique: true,
+        unique: false,
         lowercase: true,
         required: 'Email is required',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
