@@ -293,3 +293,7 @@ header nav {
   // page-break-after: always;
   page-break-inside: avoid;
 }
+
+div.form-group.div-text {
+  white-space: pre-wrap;
+}
