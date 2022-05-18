@@ -25,6 +25,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         organization: "",
         employee_id: "",
         position: "",
+        state: "",
         hire_date: "",
         resignation_date: "",
         work_phone: "",
@@ -39,6 +40,17 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     organizations;
     successMessage;
     errorMessage;
+    states = [
+        { id: 1, value: "NSW" },
+        { id: 2, value: "QLD" },
+        { id: 3, value: "SA" },
+        { id: 4, value: "TAS" },
+        { id: 5, value: "VIC" },
+        { id: 6, value: "WA" },
+        { id: 7, value: "ACT" },
+        { id: 8, value: "JBT" },
+        { id: 9, value: "NT" },
+    ];
     occupations = [
         { id: 1, value: "Not Classified" },
         { id: 2, value: "Managers" },
@@ -102,6 +114,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             organization: new FormControl("", [Validators.required]),
             employee_id: new FormControl("", [Validators.pattern("[A-Za-z0-9_]{0,32}")]),
             position: new FormControl("", [Validators.required]),
+            state: new FormControl(""),
             gender: new FormControl("1"),
             birth_date: new FormControl("", Validators.required),
             resignation_date: new FormControl("", Validators.required),
@@ -186,6 +199,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             email: this.get("email").value,
             employee_id: this.get("employee_id").value,
             position: this.get("position").value,
+            state: this.get("state").value,
             is_active: this.get("is_active").value,
             is_survey: this.get("is_survey").value,
             is_online: this.get("is_online").value,
@@ -241,6 +255,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.employee.position = data.employee.position;
         this.employee.employee_id = data.employee.employee_id;
         this.employeeId = data.employee._id;
+        this.employee.state = data.employee.state || "";
         //SET THE VALUE;
 
         //set the organization. combine the organization division and department

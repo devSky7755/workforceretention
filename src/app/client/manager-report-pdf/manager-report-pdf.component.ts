@@ -16,7 +16,7 @@ export class ManagerReportPdfComponent implements OnInit {
   clientImage = null
   baseUrl = !environment.production ? 'http://localhost:8080' : ''
   employeeId;
-  filterData = { start_date: null, end_date: null, level: "", occupational_group: "", gender: "", tenure: "" };
+  filterData = { start_date: null, end_date: null, level: "", occupational_group: "", gender: "", tenure: "", state: "" };
   genders = [{ id: "Male", value: "Male" }, { id: "Female", value: "Female" }];
   employee;
   employee_details;
@@ -60,6 +60,17 @@ export class ManagerReportPdfComponent implements OnInit {
     { id: 7, value: 'Sales Workers' },
     { id: 8, value: 'Machinery Operators and Drivers' },
     { id: 9, value: 'Labourers' },
+  ];
+  states = [
+      { id: 1, value: "NSW" },
+      { id: 2, value: "QLD" },
+      { id: 3, value: "SA" },
+      { id: 4, value: "TAS" },
+      { id: 5, value: "VIC" },
+      { id: 6, value: "WA" },
+      { id: 7, value: "ACT" },
+      { id: 8, value: "JBT" },
+      { id: 9, value: "NT" },
   ];
 
   single = [];
@@ -153,6 +164,7 @@ export class ManagerReportPdfComponent implements OnInit {
         occupational_group: params['occupational_group'] || this.filterData['occupational_group'],
         gender: params['gender'] || this.filterData['gender'],
         tenure: params['tenure'] || this.filterData['tenure'],
+        state: params['state'] || this.filterData['state'],
       }
       this.getEmployee()
     });

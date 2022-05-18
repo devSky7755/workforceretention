@@ -128,6 +128,14 @@
                         </div>
                     </div>
 
+                    <!--State-->
+                    <div class="form-group">
+                        <select class="form-control" formControlName="state" [(ngModel)]="employee.state" aria-placeholder="State">
+                            <option value="">Choose a location</option>
+                            <option *ngFor="let state of states" value="{{state.id}}">{{state.value}}</option>
+                        </select>
+                    </div>
+
                     <!--POSITION TITLE-->
                     <div class="form-group">
                         <div class="input-label">

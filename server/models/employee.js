@@ -38,6 +38,10 @@ const employeeSchema = new Schema({
         type: String,
         required: true
     },
+    state: {
+        type: String,
+        default: null
+    },
     gender: {
         type: String,
         required: true

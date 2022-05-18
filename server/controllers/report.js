@@ -103,7 +103,7 @@ exports.ManagerReportDetails = (req, res, next) => {
 
 exports.ManagerReport = (req, res, next) => {
 
-    const { start_date, end_date, level, occupational_group, gender, tenure } = req.body;
+    const { start_date, end_date, level, occupational_group, gender, tenure, state } = req.body;
     let employeeId = req.params.id;
 
     let filter_object = {};
@@ -123,16 +123,20 @@ exports.ManagerReport = (req, res, next) => {
         filter_object.occupational_group = occupational_group;
     }
 
+    if (!IsNullOrEmpty(state) && state !== '') {
+        filter_object.state = state;
+    }
+
     if (!IsNullOrEmpty(gender) && gender !== '') {
         filter_object.gender = gender
     }
 
-    // we need to filter employee first by occupational_group, gender, tenure and organization level
+    // we need to filter employee first by occupational_group, gender, tenure, state and organization level
     // after getting the employees we will checkout the survey start_date and end_date
 
     // here in the request body we will get the filterObject
     // filterObject will contain view_level (filter the employee by organization level, division level and department level),
-    // start_date, end_date, gender, tenure, occ
+    // start_date, end_date, gender, tenure, state, occ
 
     // ********* we need to filter data foreach filterObject *************
 
@@ -167,6 +171,7 @@ exports.ManagerReport = (req, res, next) => {
                 match: filter_object
             }])
             .exec(function (err, client) {
+                console.log(client.employees.length, client.employees)
                 // client.employees contains all the employees
                 // client.employees.length will be the total length of the
                 // now foreach employees check who have completed the survey or not

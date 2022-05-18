@@ -14,19 +14,26 @@
                                     <div class="form-group">
                                         <select class="form-control" [(ngModel)]="filterData.level" name="level">
                                             <option value="">Select Level *</option>
-                                            <option *ngFor="let organization of organizations_divisions_departments"
-                                                value="{{organization.id}}">
-                                                {{organization.name}}</option>
+                                            <option
+                                                *ngFor="let organization of organizations_divisions_departments"
+                                                value="{{ organization.id }}"
+                                            >
+                                                {{ organization.name }}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- Occupational Group -->
                                     <div class="form-group">
-                                        <select class="form-control" [(ngModel)]="filterData.occupational_group"
-                                            name="occ-group">
+                                        <select
+                                            class="form-control"
+                                            [(ngModel)]="filterData.occupational_group"
+                                            name="occ-group"
+                                        >
                                             <option value="" selected>Select Occupational Group *</option>
-                                            <option *ngFor="let occ of occupations" value="{{occ.id}}">{{occ.value}}
+                                            <option *ngFor="let occ of occupations" value="{{ occ.id }}">
+                                                {{ occ.value }}
                                             </option>
                                         </select>
                                     </div>
@@ -37,38 +44,61 @@
                                 <div class="col-md-6">
                                     <!--Start Date Datetime Show Box-->
                                     <div class="form-group">
-                                        <input class="form-control" name="start_date" placeholder="From: Exit Date"
-                                            [nbDatepicker]="startDatePicker" [(ngModel)]="filterData.start_date">
+                                        <input
+                                            class="form-control"
+                                            name="start_date"
+                                            placeholder="From: Exit Date"
+                                            [nbDatepicker]="startDatePicker"
+                                            [(ngModel)]="filterData.start_date"
+                                        />
                                         <nb-datepicker #startDatePicker></nb-datepicker>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <!--End Date Datetime Show Box-->
                                     <div class="form-group">
-                                        <input class="form-control" name="end_date" placeholder="To: Exit Date"
-                                            [nbDatepicker]="endDatePicker" [(ngModel)]="filterData.end_date">
+                                        <input
+                                            class="form-control"
+                                            name="end_date"
+                                            placeholder="To: Exit Date"
+                                            [nbDatepicker]="endDatePicker"
+                                            [(ngModel)]="filterData.end_date"
+                                        />
                                         <nb-datepicker #endDatePicker></nb-datepicker>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <!--Gender Dropdown Box-->
                                     <div class="form-group">
                                         <select class="form-control" [(ngModel)]="filterData.gender" name="gender">
                                             <option value="" selected>Select Gender *</option>
-                                            <option *ngFor="let gender of genders" value="{{gender.id}}">
-                                                {{gender.value}}</option>
+                                            <option *ngFor="let gender of genders" value="{{ gender.id }}">
+                                                {{ gender.value }}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                     <!--Tenure Dropdown Box-->
                                     <div class="form-group">
                                         <select class="form-control" [(ngModel)]="filterData.tenure" name="tenure">
                                             <option value="" selected>Select Tenure *</option>
-                                            <option *ngFor="let tenure of tenures" value="{{tenure.id}}">
-                                                {{tenure.value}}</option>
+                                            <option *ngFor="let tenure of tenures" value="{{ tenure.id }}">
+                                                {{ tenure.value }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <!--State Dropdown Box-->
+                                    <div class="form-group">
+                                        <select class="form-control" [(ngModel)]="filterData.state" name="state">
+                                            <option value="" selected>Select State *</option>
+                                            <option *ngFor="let state of states" value="{{ state.id }}">
+                                                {{ state.value }}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -77,28 +107,30 @@
                         <div class="text-center">
                             <button type="button" class="btn btn-primary" (click)="viewReport()">View Report</button>
                         </div>
-                        <br>
-                        <h4 class="text-center">There are currently {{completed_surveys}} completed Exit Interviews at
-                            this level.</h4>
+                        <br />
+                        <h4 class="text-center">
+                            There are currently {{ completed_surveys }} completed Exit Interviews at this level.
+                        </h4>
                         <div class="text-center">
-                            <a [routerLink]="" (click)="onDownloadPdf()">Click here to view print version of this
-                                report</a>
+                            <a [routerLink]="" (click)="onDownloadPdf()"
+                                >Click here to view print version of this report</a
+                            >
                         </div>
-                        <br><br>
+                        <br /><br />
                         <table width="100%" *ngIf="completed_surveys !== 0">
                             <tr>
                                 <th>Top 3 Reasons for Leaving</th>
                                 <th class="text-center">Ranking</th>
                                 <th class="text-center">Percentage ( % )</th>
                             </tr>
-                            <tr *ngFor="let leaving_reason of top_leaving_reasons; let i=index">
-                                <td>{{exit_reasons[leaving_reason.label_index].value}}</td>
-                                <td class="text-center">{{i + 1}}</td>
-                                <td class="text-center">{{leaving_reason.percentage}}</td>
+                            <tr *ngFor="let leaving_reason of top_leaving_reasons; let i = index">
+                                <td>{{ exit_reasons[leaving_reason.label_index].value }}</td>
+                                <td class="text-center">{{ i + 1 }}</td>
+                                <td class="text-center">{{ leaving_reason.percentage }}</td>
                             </tr>
                         </table>
 
-                        <br><br>
+                        <br /><br />
                         <!--DISPLAY ALL THE CHART BELOW-->
                         <!--FIRST CHART TOP REASONS FOR LEAVING - PERCENTAGE DISTRIBUTION-->
                         <div *ngIf="completed_surveys !== 0" class="mt-5">
@@ -113,19 +145,24 @@
                                 </ngx-charts-bar-vertical>
                             </div> -->
                             <!--********************************* canvasJS chart implementation ***********************-->
-                            <div id="topReasonVerticalChart" style="width: 100%; height: 400px;"></div>
+                            <div id="topReasonVerticalChart" style="width: 100%; height: 400px"></div>
                         </div>
                         <!--******************************** ngx-charts implementation *****************************-->
                         <div *ngIf="completed_surveys !== 0">
                             <div class="row">
-                                <div *ngFor="let response of leaving_reason_rearranged_array; let i=index"
-                                    class="col-lg-6">
-                                    <div *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0"
-                                        class="mt-5">
+                                <div
+                                    *ngFor="let response of leaving_reason_rearranged_array; let i = index"
+                                    class="col-lg-6"
+                                >
+                                    <div
+                                        *ngIf="exit_reason_data_mapper[response.label_index].value.length > 0"
+                                        class="mt-5"
+                                    >
                                         <!--This means this is Career Opportunities Exit Reason-->
                                         <!--Give a title -->
-                                        <h2 class="text-center mb-3">{{exit_reasons[response.label_index].value}} ( Rank
-                                            {{i + 1}} )</h2>
+                                        <h2 class="text-center mb-3">
+                                            {{ exit_reasons[response.label_index].value }} ( Rank {{ i + 1 }} )
+                                        </h2>
                                         <!--Display the chart-->
                                         <!-- <div style="display: flex; overflow: hidden;height: 500px">
                                         <ngx-charts-bar-vertical-stacked [scheme]="barChartColorSchema"
@@ -137,8 +174,10 @@
                                             [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
                                         </ngx-charts-bar-vertical-stacked>
                                     </div> -->
-                                        <div [id]="'reasonStackedChart' + response.label_index"
-                                            style="width: 100%; height: 400px;"></div>
+                                        <div
+                                            [id]="'reasonStackedChart' + response.label_index"
+                                            style="width: 100%; height: 400px"
+                                        ></div>
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +190,7 @@
                                         [legend]="true" (select)="onSelect($event)">
                                     </ngx-charts-bar-horizontal-stacked>
                                 </div> -->
-                                <div id="employeeSentimentChart" style="width: 100%; min-height: 400px;"></div>
+                                <div id="employeeSentimentChart" style="width: 100%; min-height: 400px"></div>
                             </div>
                             <div *ngIf="employee_sentiment_not_working_chart_data.length > 0" class="mt-5">
                                 <h2 class="text-center mb-3">Employee Sentiment What's Not Working</h2>
@@ -162,26 +201,26 @@
                                         (select)="onSelect($event)">
                                     </ngx-charts-bar-horizontal-stacked>
                                 </div> -->
-                                <div id="employeeSentimentNotChart" style="width: 100%; min-height: 400px;"></div>
+                                <div id="employeeSentimentNotChart" style="width: 100%; min-height: 400px"></div>
                             </div>
                             <div class="row mt-5">
                                 <div *ngIf="gender_split_chart_data.length > 0" class="col-md-6">
                                     <h2 class="text-center mb-3">Gender Split</h2>
-                                    <div id="genderChart" class="mx-auto" style="height: 400px; width: 100%;"></div>
+                                    <div id="genderChart" class="mx-auto" style="height: 400px; width: 100%"></div>
                                 </div>
                                 <div *ngIf="tenure_split_chart_data.length > 0" class="col-md-6">
                                     <h2 class="text-center mb-3">Tenure Split</h2>
-                                    <div id="tenureChart" class="mx-auto" style="height: 400px; width: 100%;"></div>
+                                    <div id="tenureChart" class="mx-auto" style="height: 400px; width: 100%"></div>
                                 </div>
                             </div>
                             <div class="row mt-5">
                                 <div *ngIf="age_split_chart_data.length > 0" class="col-md-6">
                                     <h2 class="text-center mb-3">Age Split</h2>
-                                    <div id="ageChart" class="mx-auto" style="height: 400px; width:100%;"></div>
+                                    <div id="ageChart" class="mx-auto" style="height: 400px; width: 100%"></div>
                                 </div>
                                 <div *ngIf="occupation_split_chart_data.length > 0" class="col-md-6">
                                     <h2 class="text-center mb-3">Occupation Split</h2>
-                                    <div id="occupationChart" class="mx-auto" style="height: 400px; width:100%;"></div>
+                                    <div id="occupationChart" class="mx-auto" style="height: 400px; width: 100%"></div>
                                 </div>
                             </div>
                         </div>
