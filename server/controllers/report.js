@@ -47,7 +47,9 @@ exports.ManagerReportDetails = (req, res, next) => {
             let message = '';
             let match = {};
             if (employee.is_report === '0') {
-                match = { organization: employee.organization };
+                match = {
+                    organization: employee.organization
+                };
             }
             Client.findById(employee.client).populate({
                 path: 'employees',
@@ -103,7 +105,15 @@ exports.ManagerReportDetails = (req, res, next) => {
 
 exports.ManagerReport = (req, res, next) => {
 
-    const { start_date, end_date, level, occupational_group, gender, tenure, state } = req.body;
+    const {
+        start_date,
+        end_date,
+        level,
+        occupational_group,
+        gender,
+        tenure,
+        state
+    } = req.body;
     let employeeId = req.params.id;
 
     let filter_object = {};
@@ -249,26 +259,69 @@ exports.ManagerReport = (req, res, next) => {
                                 female++
                             }
                         });
-                        genders.push({ name: "Male", value: male });
-                        genders.push(({ name: 'Female', value: female }));
+                        genders.push({
+                            name: "Male",
+                            value: male
+                        });
+                        genders.push(({
+                            name: 'Female',
+                            value: female
+                        }));
 
 
-                        let occupations = [
-                            { id: 1, name: 'Not Classified', value: 0 },
-                            { id: 2, name: 'Managers', value: 0 },
-                            { id: 3, name: 'Professionals', value: 0 },
-                            { id: 4, name: 'Technicians and Trade Workers', value: 0 },
-                            { id: 5, name: 'Community and Personal Service Workers', value: 0 },
-                            { id: 6, name: 'Clerical and Administrative Workers', value: 0 },
-                            { id: 7, name: 'Sales Workers', value: 0 },
-                            { id: 8, name: 'Machinery Operators and Drivers', value: 0 },
-                            { id: 9, name: 'Labourers', value: 0 },
+                        let occupations = [{
+                                id: 1,
+                                name: 'Not Classified',
+                                value: 0
+                            },
+                            {
+                                id: 2,
+                                name: 'Managers',
+                                value: 0
+                            },
+                            {
+                                id: 3,
+                                name: 'Professionals',
+                                value: 0
+                            },
+                            {
+                                id: 4,
+                                name: 'Technicians and Trade Workers',
+                                value: 0
+                            },
+                            {
+                                id: 5,
+                                name: 'Community and Personal Service Workers',
+                                value: 0
+                            },
+                            {
+                                id: 6,
+                                name: 'Clerical and Administrative Workers',
+                                value: 0
+                            },
+                            {
+                                id: 7,
+                                name: 'Sales Workers',
+                                value: 0
+                            },
+                            {
+                                id: 8,
+                                name: 'Machinery Operators and Drivers',
+                                value: 0
+                            },
+                            {
+                                id: 9,
+                                name: 'Labourers',
+                                value: 0
+                            },
                         ]
 
                         filtered_employees.forEach((e) => {
                             // calculate age
                             if (!IsNullOrEmpty(e.occupational_group)) {
-                                let occupation = occupations.find(o => { return o.id == e.occupational_group })
+                                let occupation = occupations.find(o => {
+                                    return o.id == e.occupational_group
+                                })
                                 if (occupation) {
                                     occupation.value++
                                 }
@@ -297,10 +350,22 @@ exports.ManagerReport = (req, res, next) => {
                             }
                         });
 
-                        ages.push({ name: "< 25", value: less_than_twenty_five });
-                        ages.push({ name: "25 - 34", value: twenty_five_to_thirty_fourth });
-                        ages.push({ name: "35 - 50", value: thirty_five_to_fifty });
-                        ages.push({ name: "50 >", value: greater_than_fifty });
+                        ages.push({
+                            name: "< 25",
+                            value: less_than_twenty_five
+                        });
+                        ages.push({
+                            name: "25 - 34",
+                            value: twenty_five_to_thirty_fourth
+                        });
+                        ages.push({
+                            name: "35 - 50",
+                            value: thirty_five_to_fifty
+                        });
+                        ages.push({
+                            name: "50 >",
+                            value: greater_than_fifty
+                        });
 
                         let tenures = [];
                         // calculate tenures
@@ -329,11 +394,26 @@ exports.ManagerReport = (req, res, next) => {
                             }
                         });
 
-                        tenures.push({ name: '< 1 year', value: less_than_one_year });
-                        tenures.push({ name: '1 - 2 years', value: one_to_two_year });
-                        tenures.push({ name: '3 - 5 years', value: three_to_five_year });
-                        tenures.push({ name: '6 - 10 years', value: six_to_ten_year });
-                        tenures.push({ name: '> 10 years', value: greater_than_ten_year });
+                        tenures.push({
+                            name: '< 1 year',
+                            value: less_than_one_year
+                        });
+                        tenures.push({
+                            name: '1 - 2 years',
+                            value: one_to_two_year
+                        });
+                        tenures.push({
+                            name: '3 - 5 years',
+                            value: three_to_five_year
+                        });
+                        tenures.push({
+                            name: '6 - 10 years',
+                            value: six_to_ten_year
+                        });
+                        tenures.push({
+                            name: '> 10 years',
+                            value: greater_than_ten_year
+                        });
 
                         const response_array = [];
 
@@ -382,7 +462,7 @@ exports.ManagerReport = (req, res, next) => {
                                                 label_index,
                                                 percentage: 0.0,
                                                 answered: 0
-                                            };// answered is used for how many employee selected
+                                            }; // answered is used for how many employee selected
                                             // the option.
                                             options.push(option_object)
                                         })
@@ -395,7 +475,7 @@ exports.ManagerReport = (req, res, next) => {
                                                 label_index,
                                                 percentage: 0.0,
                                                 answered: 0
-                                            };// answered is used for how many employee selected
+                                            }; // answered is used for how many employee selected
                                             // the option.
                                             options.push(option_object)
                                         })
@@ -407,7 +487,7 @@ exports.ManagerReport = (req, res, next) => {
                                             label_index: 1,
                                             percentage: 0.0,
                                             answered: 0
-                                        };// answered is used for how many employee selected
+                                        }; // answered is used for how many employee selected
                                         const option_no_object = {
                                             label: 'No',
                                             label_index: 0,
@@ -548,7 +628,11 @@ const employeeQuestionAnswers = (employees) => {
         employees.forEach((employee) => {
             employee_ids.push(employee._id);
         });
-        Answer.find({ employee: { $in: employee_ids } }, function (err, docs) {
+        Answer.find({
+            employee: {
+                $in: employee_ids
+            }
+        }, function (err, docs) {
             if (err) {
                 reject(err);
             } else {
@@ -586,12 +670,16 @@ exports.Find = (req, res, next) => {
             totalItems = count;
             //This will return a new promise with the posts.
             return Report.find().populate({
-                path: 'client',
-                model: 'Client',
-            }).skip((currentReport) * perPage)
+                    path: 'client',
+                    model: 'Client',
+                }).skip((currentReport) * perPage)
                 .limit(perPage);
         }).then(reports => {
-            return res.status(200).json({ success: true, reports, totalItems })
+            return res.status(200).json({
+                success: true,
+                reports,
+                totalItems
+            })
         }).catch(err => {
             if (!err.statusCode) {
                 err.statusCode = 500;
@@ -639,13 +727,18 @@ exports.Update = (req, res, next) => {
         data,
         // an option that asks mongoose to return the updated version
         // of the document instead of the pre-updated one.
-        { new: true },
+        {
+            new: true
+        },
 
         // the callback function
         (err, report) => {
             // Handle any possible database errors
             if (err) return next(err);
-            if (!report) return res.status(404).json({ success: false, message: "Report not found." });
+            if (!report) return res.status(404).json({
+                success: false,
+                message: "Report not found."
+            });
             return res.send({
                 "success": true,
                 "message": "Record updated successfully",
@@ -662,7 +755,9 @@ exports.Delete = (req, res, next) => {
         id: Joi.objectId()
     });
 
-    Joi.validate({ id }, schema, (err, value) => {
+    Joi.validate({
+        id
+    }, schema, (err, value) => {
         if (err) {
             // send a 422 error response if validation fails
             return res.status(422).json({
@@ -675,7 +770,10 @@ exports.Delete = (req, res, next) => {
         Report.findByIdAndRemove(id, (err, report) => {
             // As always, handle any potential errors:
             if (err) return next(err);
-            if (!report) return res.status(404).json({ success: false, message: "Report not found." });
+            if (!report) return res.status(404).json({
+                success: false,
+                message: "Report not found."
+            });
             // We'll create a simple object to send back with a message and the id of the document that was removed
             // You can really do this however you want, though.
             return res.send({
@@ -699,6 +797,17 @@ exports.DataOutput = (req, res, next) => {
         8: 'Machinery Operators and Drivers',
         9: 'Labourers',
     };
+    const states = {
+        1: 'NSW',
+        2: 'QLD',
+        3: 'SA',
+        4: 'TAS',
+        5: 'VIC',
+        6: 'WA',
+        7: 'ACT',
+        8: 'JBT',
+        9: 'NT',
+    }
     const filter_data = req.body;
     const filename = Date.now() + '__exit_interview_data.csv';
     const data_path = path.join(__dirname, '../uploads/' + filename);
@@ -729,40 +838,134 @@ exports.DataOutput = (req, res, next) => {
             // foreach survey questions it has answers
 
             // build the survey headers
-            headers.push({ id: 'survey_title', title: 'Survey Title' });
-            headers.push({ id: 'client_id', title: '`client ID`' });
-            headers.push({ id: 'client_name', title: 'Client Name' });
-            headers.push({ id: 'employee_id', title: 'Employee ID' });
-            headers.push({ id: 'employee_firstname', title: 'Employee FirstName' });
-            headers.push({ id: 'employee_lastname', title: 'Employee LastName' });
-            headers.push({ id: 'employee_position', title: 'Employee Title' });
-            headers.push({ id: 'employee_occupation', title: 'Occ Grouping' });
-            headers.push({ id: 'employee_type', title: 'Employee Type' });
-            headers.push({ id: 'employee_org', title: 'Employee Org' });
-            headers.push({ id: 'employee_div', title: 'Employee Div' });
-            headers.push({ id: 'employee_dept', title: 'Employee Dept' });
-            headers.push({ id: 'employee_email', title: 'Employee Email' });
-            headers.push({ id: 'employee_work_phone', title: 'Employee Work Phone' });
-            headers.push({ id: 'employee_mobile_phone', title: 'Employee Mobile Phone' });
-            headers.push({ id: 'employee_hiredate', title: 'Employee HireDate' });
-            headers.push({ id: 'employee_resigndate', title: 'Employee ResignDate' });
-            headers.push({ id: 'employee_exitdate', title: 'Employee ExitDate' });
-            headers.push({ id: 'employee_gender', title: 'Employee Gender' });
-            headers.push({ id: 'employee_note', title: 'Employee Note' });
-            headers.push({ id: 'employee_dob', title: 'Employee DOB' });
-            headers.push({ id: 'survey_id', title: 'Survey ID' });
-            headers.push({ id: 'profile_loaded', title: 'Profile Loaded' });
-            headers.push({ id: 'survey_starttime', title: 'Survey StartTime' });
-            headers.push({ id: 'survey_endtime', title: 'Survey EndTime' });
-            headers.push({ id: 'completed_online', title: 'Completed Online' });
-            headers.push({ id: 'completed_admin', title: 'Completed Admin' });
-            headers.push({ id: 'last_completed_at', title: 'Last Completed Time' });
-            headers.push({ id: 'last_edit', title: 'Last User' });
+            headers.push({
+                id: 'survey_title',
+                title: 'Survey Title'
+            });
+            headers.push({
+                id: 'client_id',
+                title: '`client ID`'
+            });
+            headers.push({
+                id: 'client_name',
+                title: 'Client Name'
+            });
+            headers.push({
+                id: 'employee_id',
+                title: 'Employee ID'
+            });
+            headers.push({
+                id: 'employee_firstname',
+                title: 'Employee FirstName'
+            });
+            headers.push({
+                id: 'employee_lastname',
+                title: 'Employee LastName'
+            });
+            headers.push({
+                id: 'employee_position',
+                title: 'Employee Title'
+            });
+            headers.push({
+                id: 'employee_state',
+                title: 'Employee State'
+            });
+            headers.push({
+                id: 'employee_occupation',
+                title: 'Occ Grouping'
+            });
+            headers.push({
+                id: 'employee_type',
+                title: 'Employee Type'
+            });
+            headers.push({
+                id: 'employee_org',
+                title: 'Employee Org'
+            });
+            headers.push({
+                id: 'employee_div',
+                title: 'Employee Div'
+            });
+            headers.push({
+                id: 'employee_dept',
+                title: 'Employee Dept'
+            });
+            headers.push({
+                id: 'employee_email',
+                title: 'Employee Email'
+            });
+            headers.push({
+                id: 'employee_work_phone',
+                title: 'Employee Work Phone'
+            });
+            headers.push({
+                id: 'employee_mobile_phone',
+                title: 'Employee Mobile Phone'
+            });
+            headers.push({
+                id: 'employee_hiredate',
+                title: 'Employee HireDate'
+            });
+            headers.push({
+                id: 'employee_resigndate',
+                title: 'Employee ResignDate'
+            });
+            headers.push({
+                id: 'employee_exitdate',
+                title: 'Employee ExitDate'
+            });
+            headers.push({
+                id: 'employee_gender',
+                title: 'Employee Gender'
+            });
+            headers.push({
+                id: 'employee_note',
+                title: 'Employee Note'
+            });
+            headers.push({
+                id: 'employee_dob',
+                title: 'Employee DOB'
+            });
+            headers.push({
+                id: 'survey_id',
+                title: 'Survey ID'
+            });
+            headers.push({
+                id: 'profile_loaded',
+                title: 'Profile Loaded'
+            });
+            headers.push({
+                id: 'survey_starttime',
+                title: 'Survey StartTime'
+            });
+            headers.push({
+                id: 'survey_endtime',
+                title: 'Survey EndTime'
+            });
+            headers.push({
+                id: 'completed_online',
+                title: 'Completed Online'
+            });
+            headers.push({
+                id: 'completed_admin',
+                title: 'Completed Admin'
+            });
+            headers.push({
+                id: 'last_completed_at',
+                title: 'Last Completed Time'
+            });
+            headers.push({
+                id: 'last_edit',
+                title: 'Last User'
+            });
 
             let question_no = 0;
             survey.questions.forEach((question) => {
                 question_no++;
-                headers.push({ id: question._id, title: `Question ${question_no} - ` + question.title });
+                headers.push({
+                    id: question._id,
+                    title: `Question ${question_no} - ` + question.title
+                });
             });
 
             const csvWriter = createCsvWriter({
@@ -772,7 +975,11 @@ exports.DataOutput = (req, res, next) => {
 
             //re-arrange data
             // foreach employee populate the client as well
-            Employee.find({ 'client': { $in: filter_data.clients } }).populate({
+            Employee.find({
+                'client': {
+                    $in: filter_data.clients
+                }
+            }).populate({
                 path: 'client',
                 model: 'Client'
             }).populate({
@@ -848,6 +1055,7 @@ exports.DataOutput = (req, res, next) => {
                                 employee_firstname: employee.first_name,
                                 employee_lastname: employee.last_name,
                                 employee_position: employee.position,
+                                employee_state: states[employee.state] || "",
                                 employee_occupation: occupations[employee.occupational_group],
                                 employee_type: employee.is_manager === '0' ? 'Employee' : 'Manager',
                                 employee_org: employee.organization === null || typeof employee.organization == 'undefined' ? '' : employee.organization.name,
@@ -882,19 +1090,54 @@ exports.DataOutput = (req, res, next) => {
                                 let answer = answers.find(a => a.employee.equals(employee._id) && a.question.equals(question._id));
                                 let question_id = question._id;
                                 // this means the question has first choice and second choice
-                                let exit_reason_checkbox = [
-                                    { id: 1, value: 'Career Opportunities' },
-                                    { id: 2, value: 'Meaningful Work' },
-                                    { id: 3, value: 'Communication' },
-                                    { id: 4, value: 'Effective Leadership' },
-                                    { id: 5, value: 'Induction' },
-                                    { id: 6, value: 'Learning & Development' },
-                                    { id: 7, value: 'Manager' },
-                                    { id: 8, value: 'Pay & Benefits' },
-                                    { id: 9, value: 'Work Conditions' },
-                                    { id: 10, value: 'Being Valued' },
-                                    { id: 11, value: 'Operational' },
-                                    { id: 12, value: 'Restructure' },
+                                let exit_reason_checkbox = [{
+                                        id: 1,
+                                        value: 'Career Opportunities'
+                                    },
+                                    {
+                                        id: 2,
+                                        value: 'Meaningful Work'
+                                    },
+                                    {
+                                        id: 3,
+                                        value: 'Communication'
+                                    },
+                                    {
+                                        id: 4,
+                                        value: 'Effective Leadership'
+                                    },
+                                    {
+                                        id: 5,
+                                        value: 'Induction'
+                                    },
+                                    {
+                                        id: 6,
+                                        value: 'Learning & Development'
+                                    },
+                                    {
+                                        id: 7,
+                                        value: 'Manager'
+                                    },
+                                    {
+                                        id: 8,
+                                        value: 'Pay & Benefits'
+                                    },
+                                    {
+                                        id: 9,
+                                        value: 'Work Conditions'
+                                    },
+                                    {
+                                        id: 10,
+                                        value: 'Being Valued'
+                                    },
+                                    {
+                                        id: 11,
+                                        value: 'Operational'
+                                    },
+                                    {
+                                        id: 12,
+                                        value: 'Restructure'
+                                    },
                                 ];
                                 if (answer) {
                                     // we need to do answer processing here.
@@ -995,7 +1238,9 @@ exports.DownloadManagerReport = async (req, res) => {
     const baseUrl = req.protocol + '://' + req.get('host')
     // const baseUrl = "http://localhost:4200"
     console.log("DOWNLOAD MANAGER REPORT PDF URL", baseUrl + url)
-    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
     const page = await browser.newPage();
     // here generate a unique name for the file
     const fileName = Date.now() + '_manager_report.pdf';
@@ -1005,14 +1250,23 @@ exports.DownloadManagerReport = async (req, res) => {
         path: filePath,
         format: 'A4',
         printBackground: true,
-        margin: { top: 80, left: 0, right: 0, bottom: 80 },
+        margin: {
+            top: 80,
+            left: 0,
+            right: 0,
+            bottom: 80
+        },
     };
-    await page.goto(baseUrl + url, { waitUntil: 'networkidle2' });
+    await page.goto(baseUrl + url, {
+        waitUntil: 'networkidle2'
+    });
     await page.waitFor(5000)
     const response = await page.pdf(options);
     await browser.close();
     fs.chmodSync(filePath, 0o777);
-    res.json({ fileName: fileName });
+    res.json({
+        fileName: fileName
+    });
 };
 
 const escapeSpecialChars = (str) => {
@@ -1023,7 +1277,9 @@ const escapeSpecialChars = (str) => {
 }
 
 const format_date = (date) => {
-    date = new Date(date).toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
+    date = new Date(date).toLocaleString("en-US", {
+        timeZone: "Australia/Brisbane"
+    });
     date = new Date(date)
     let dd = date.getDate();
     let mm = date.getMonth() + 1; //January is 0!
@@ -1039,7 +1295,9 @@ const format_date = (date) => {
 };
 
 const format_date_time = (date) => {
-    date = new Date(date).toLocaleString("en-US", { timeZone: "Australia/Brisbane" });
+    date = new Date(date).toLocaleString("en-US", {
+        timeZone: "Australia/Brisbane"
+    });
     date = new Date(date)
     let hh = date.getHours()
     let mi = date.getMinutes()
@@ -1061,4 +1319,3 @@ const IsNullOrEmpty = (obj) => {
     return typeof obj === 'undefined' || obj == null;
 };
 const getAge = birthDate => Math.floor((new Date() - new Date(birthDate).getTime()) / 3.15576e+10);
-
