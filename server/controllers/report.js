@@ -181,7 +181,6 @@ exports.ManagerReport = (req, res, next) => {
                 match: filter_object
             }])
             .exec(function (err, client) {
-                console.log(client.employees.length, client.employees)
                 // client.employees contains all the employees
                 // client.employees.length will be the total length of the
                 // now foreach employees check who have completed the survey or not
@@ -958,6 +957,10 @@ exports.DataOutput = (req, res, next) => {
                 id: 'last_edit',
                 title: 'Last User'
             });
+            headers.push({
+                id: 'created_by',
+                title: 'Created By'
+            });
 
             let question_no = 0;
             survey.questions.forEach((question) => {
@@ -991,6 +994,9 @@ exports.DataOutput = (req, res, next) => {
             }).populate({
                 path: 'department',
                 model: 'Department'
+            }).populate({
+                path: 'created_by',
+                model: 'User'
             }).exec(function (err, employees) {
                 let output_data = [];
                 let filtered_employees = [];
@@ -1077,7 +1083,8 @@ exports.DataOutput = (req, res, next) => {
                                 completed_online: employee.surveys[0].completed_online,
                                 completed_admin: employee.surveys[0].completed_admin,
                                 last_completed_at: !employee.surveys[0].completed_online || !employee.surveys[0].completed_admin || employee.surveys[0].end_date == null ? '' : format_date_time(employee.surveys[0].end_date),
-                                last_edit: employee.surveys[0].last_edit
+                                last_edit: employee.surveys[0].last_edit,
+                                created_by: employee.created_by === null || typeof employee.created_by == 'undefined' ? '': `${employee.created_by.first_name} ${employee.created_by.last_name}`
                             };
                             let answers = [];
                             // first push all the question answers in the answers array

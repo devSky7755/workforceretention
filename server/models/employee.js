@@ -115,6 +115,11 @@ const employeeSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Department'
     },
+    created_by: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        default: null
+    },
     surveys: [employeeSurveySchema]
 }, { timestamps: true });
 

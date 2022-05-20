@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+// Middleware
+const authMiddleware = require('../middleware/auth');
+
 const multer = require('multer');
 const path = require('path');
 
@@ -32,7 +35,7 @@ router.post('/token', employeeController.token);
 
 router.post('/logout', employeeController.logout);
 
-router.post('/:clientId', employeeController.Create);
+router.post('/:clientId', authMiddleware.validateToken, employeeController.Create);
 
 router.get('/', employeeController.Find);
 
@@ -43,7 +46,7 @@ router.get('/:id', employeeController.FindById);
 
 router.put('/password/:id', employeeController.changePassword);
 
-router.put('/:id', employeeController.Update);
+router.put('/:id', authMiddleware.validateToken, employeeController.Update);
 
 router.delete('/:id', employeeController.Delete);
 

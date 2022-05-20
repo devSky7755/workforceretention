@@ -342,7 +342,10 @@ const findDepartmentByName = function (name, organizations) {
     return departmentId;
 };
 
+
 exports.Create = function (req, res, next) {
+    const user = req.user;
+
     const data = req.body;
     const {
         email
@@ -393,6 +396,7 @@ exports.Create = function (req, res, next) {
             });
             data.password = password;
             data.client = clientId;
+            data.created_by = user._id;
             bcrypt.hash(data.password, salt, async function (err, hash) {
                 if (err) return next(err);
                 //First find the employee by id
@@ -745,10 +749,10 @@ const sendReminderEmails = function (req, res, next) {
                         employees.forEach((employee) => {
                             Employee.findByIdAndUpdate(
                                 employee.employee_id, {
-                                    is_send_reminder_email: true
-                                }, {
-                                    new: true
-                                },
+                                is_send_reminder_email: true
+                            }, {
+                                new: true
+                            },
                                 (err, employee) => {
                                     if (err) {
                                         return next(err)
@@ -813,8 +817,8 @@ const sendReminderEmailsToEmployees = function (employees) {
                 () => {
                     resolve(employee)
                 }).catch((err) => {
-                reject(err)
-            })
+                    reject(err)
+                })
         }))
     });
     return Promise.all(employeePromises);
@@ -1039,8 +1043,13 @@ exports.generatePassword = function (req, res, next) {
 };
 
 exports.Update = (req, res, next) => {
+    const user = req.user;
+
     // fetch the request data
-    const data = req.body;
+    const data = {
+        created_by: user._id,
+        ...req.body
+    };
     let id = req.params.id;
 
     // Find the existing resource by ID
