@@ -130,7 +130,8 @@
 
                     <!--State-->
                     <div class="form-group">
-                        <select class="form-control" formControlName="state" [(ngModel)]="employee.state" aria-placeholder="State">
+                        <select class="form-control" formControlName="state" [(ngModel)]="employee.state"
+                            aria-placeholder="State">
                             <option value="">Choose a location</option>
                             <option *ngFor="let state of states" value="{{state.id}}">{{state.value}}</option>
                         </select>
@@ -146,7 +147,7 @@
                         <!--Register Error Here-->
                         <div class="alert alert-danger" role="alert"
                             *ngIf="get('position').touched && get('position').invalid">
-                            <div *ngIf="get('position').errors.required"> Email is required</div>
+                            <div *ngIf="get('position').errors.required"> Position is required</div>
                         </div>
                     </div>
 
@@ -210,6 +211,15 @@
                             <span>Exit Date</span>
                         </div>
                         <nb-datepicker #exitDatePicker></nb-datepicker>
+                    </div>
+
+                    <!--MANAGER NAME-->
+                    <div class="form-group">
+                        <div class="input-label">
+                            <input type="text" class="form-control" formControlName="manager_name" name="manager_name"
+                                placeholder="Manager Name" [(ngModel)]="employee.manager_name">
+                            <span>Manager Name</span>
+                        </div>
                     </div>
 
                     <!--NOTE-->
@@ -327,10 +337,9 @@
 
                     <!--Generate Password Button for Re-generating Password-->
                     <div class="form-group" *ngIf="employeeId">
-                        <button type="button" 
-                            [nbSpinner]="resendingSpinner" nbSpinnerSize="medium" nbSpinnerMessage="..."
-                            [disabled]="resendingSpinner"
-                            class="btn btn-primary" (click)="resendPassword()">
+                        <button type="button" [nbSpinner]="resendingSpinner" nbSpinnerSize="medium"
+                            nbSpinnerMessage="..." [disabled]="resendingSpinner" class="btn btn-primary"
+                            (click)="resendPassword()">
                             Resend Email
                         </button>
                     </div>
@@ -343,8 +352,8 @@
                     </div>
 
                     <div class="text-center">
-                        <button type="submit"
-                            [nbSpinner]="submittingSpinner" nbSpinnerSize="medium" nbSpinnerMessage="..."
+                        <button type="submit" [nbSpinner]="submittingSpinner" nbSpinnerSize="medium"
+                            nbSpinnerMessage="..."
                             [disabled]="submittingSpinner || !employeeForm.valid || get('employee_id').value!='' && get('employee_id').value.length<4"
                             class="btn btn-success">
                             {{employeeId ? 'UPDATE' : 'SAVE'}}

@@ -39,7 +39,7 @@
                     <span>Last Updated</span>
                 </ng-template>
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                    <strong>{{value | date}}</strong>
+                    <strong>{{value | date:'MMM dd yyyy':'UTC +10'}}</strong>
                 </ng-template>
             </ngx-datatable-column>
             <ngx-datatable-column name="id">

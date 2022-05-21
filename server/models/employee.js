@@ -52,6 +52,10 @@ const employeeSchema = new Schema({
     mobile: {
         type: String
     },
+    manager_name: {
+        type: String,
+        default: ""
+    },
     note: {
         type: String,
         default: null

@@ -45,13 +45,13 @@
                         <!--Client Product-->
                         <div style="display: flex">
                             <div style="width: 300px"><strong>Hire Date</strong></div>
-                            <div>{{ employee?.hire_date | date }}</div>
+                            <div>{{ employee?.hire_date | date:'MMM dd yyyy':'UTC +10' }}</div>
                         </div>
                         <br />
                         <!--Client Product-->
                         <div style="display: flex">
                             <div style="width: 300px"><strong>Exit Date</strong></div>
-                            <div>{{ employee?.exit_date | date }}</div>
+                            <div>{{ employee?.exit_date | date:'MMM dd yyyy':'UTC +10' }}</div>
                         </div>
                         <br />
                     </div>

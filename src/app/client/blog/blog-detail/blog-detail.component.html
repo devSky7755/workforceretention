@@ -13,7 +13,7 @@
       <br>
       <div class="container text-left mt-3">
         <div class="w-post-date">
-          {{article.createdAt | date}}
+          {{article.createdAt | date:'MMM dd yyyy':'UTC +10'}}
         </div>
         <div class="w-post-description" [innerHTML]="article.description"></div>
       </div>

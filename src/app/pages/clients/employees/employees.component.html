@@ -91,7 +91,7 @@
             <a [routerLink]="" (click)="onClickSort('exit_date')"><strong>Exit</strong></a>
         </ng-template>
         <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
-            <strong>{{value | date}}</strong>
+            <strong>{{value | date:'MMM dd yyyy':'UTC +10'}}</strong>
         </ng-template>
     </ngx-datatable-column>
 

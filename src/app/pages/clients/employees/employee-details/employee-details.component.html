@@ -35,21 +35,21 @@
                     <!--Client Product-->
                     <div class="row align-items-center justify-content-center" *ngIf="employee.hire_date">
                         <div class="col-lg-4"><strong>Hire Date</strong></div>
-                        <div class="col-lg-5">{{employee.hire_date | date}}</div>
+                        <div class="col-lg-5">{{employee.hire_date | date:'MMM dd yyyy':'UTC +10'}}</div>
                         <br>
                         <br>
                     </div>
                     <!--Client Product-->
                     <div class="row align-items-center justify-content-center" *ngIf="employee.resign_date">
                         <div class="col-lg-4"><strong>Resignation Date</strong></div>
-                        <div class="col-lg-5">{{employee.resign_date | date}}</div>
+                        <div class="col-lg-5">{{employee.resign_date | date:'MMM dd yyyy':'UTC +10'}}</div>
                         <br>
                         <br>
                     </div>
                     <!--Client Product-->
                     <div class="row align-items-center justify-content-center" *ngIf="employee.exit_date">
                         <div class="col-lg-4"><strong>Exit Date</strong></div>
-                        <div class="col-lg-5">{{employee.exit_date | date}}</div>
+                        <div class="col-lg-5">{{employee.exit_date | date:'MMM dd yyyy':'UTC +10'}}</div>
                         <br>
                         <br>
                     </div>
