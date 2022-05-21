@@ -56,6 +56,12 @@ export const NB_CORE_PROVIDERS = [
                 register: {
                     endpoint: '/api/v1/users'
                 },
+                requestPass: {
+                    endpoint: '/api/v1/auth/request-pass',
+                },
+                resetPass: {
+                    endpoint: '/api/v1/auth/reset-pass',
+                },
                 refreshToken: {
                     endpoint: '/api/v1/auth/token'
                 }

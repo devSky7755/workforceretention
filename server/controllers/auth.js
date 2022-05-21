@@ -2,6 +2,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require('../models/user');
 const uuidv4 = require('uuid/v4');
+const mongoose = require('mongoose');
+
+//LOAD EMAIL SERVICE AND TEMPLATES
+const helpers = require('../helpers/email');
+const email_template = require('../helpers/email_template');
 
 const refreshTokens = {};
 
@@ -139,3 +144,130 @@ exports.logout = function (req, res) {
     return res.status(200).json({ success: true })
 };
 
+/**
+ * this is used to send reset password link
+ * GET api/v1/auth/request-pass
+ * @param req
+ * @param res
+ */
+
+exports.requestPass = function (req, res, next) {
+
+    const { email } = req.body;
+    /**
+     * this is param checking if they are provided
+     */
+    if (!email) {
+        return res.status(422).send({ errors: [{ title: 'Data missing!', detail: 'Provide email!' }] });
+    }
+
+    /**
+     * check if the username matches any email
+     */
+
+    User.findOne({ email }).populate({ path: 'role' }).then((user, err) => {
+        if (err) {
+            return res.status(401).send({ data: { errors: ['Unable to find user with the email' + email] } });
+        }
+        if (!user) {
+            return res.status(401).send({ data: { errors: ['User not found, please sign up.'] } });
+        }
+
+        const from = email_template.AdminReSetPasswordTemplate.from_address;
+        let subject = email_template.AdminReSetPasswordTemplate.subject;
+        let body = email_template.AdminReSetPasswordTemplate.body;
+
+        const userData = user.toJSON();
+
+        delete userData.surveys;
+        delete userData.password;
+        delete userData.clients;
+        delete userData.links;
+        userData.login_type = "reset-pass"
+
+        let token = jwt.sign(userData, config.SECRET, {
+            expiresIn: '7d'
+        });
+
+        helpers.SendNormalEmail({
+            from,
+            to: email,
+            subject,
+            body: body.replace('[token]', token),
+        })
+
+        return res.json({
+            "success": true,
+            "email": email,
+        })
+    }).catch(err => {
+        next(err)
+    });
+};
+
+
+/**
+ * this is used to send reset password
+ * GET api/v1/auth/request-pass
+ * @param req
+ * @param res
+ */
+
+exports.resetPass = function (req, res, next) {
+
+    const { password, confirmPassword, token } = req.body;
+    if (password !== confirmPassword) {
+        return res.status(403).send({ data: { errors: ['Password does not match the confirm password.'] } });
+    }
+
+    if (typeof token !== 'undefined') {
+        //verify if this token was from us or not
+        jwt.verify(token, config.SECRET, function (err, decoded) {
+            if (err) {
+                if (err.name === "TokenExpiredError") {
+                    return res.status(401).send({ data: { errors: ['Token is expired.'] } });
+                } else {
+                    throw err
+                }
+            }
+            let id = mongoose.Types.ObjectId(decoded._id);
+            if (decoded.login_type == "reset-pass") {
+                User.findOne(id).then(async (user, error) => {
+                    if (error) throw error;
+                    if (!user) {
+                        return res.status(401).send({ data: { errors: ['User not found.'] } });
+                    }
+                    await bcrypt.genSalt(10, function (err, salt) {
+                        if (err) return next(err);
+                        bcrypt.hash(password, salt, async function (err, hash) {
+                            if (err) return next(err);
+                            // Store hash in your password DB.
+                            // Update the password of the data
+                            user.password = hash
+                            user.save((err) => {
+                                if (err) return next(err);
+                                return res.status(200).send({
+                                    "success": true,
+                                    "message": "Password successfully changed",
+                                    user
+                                })
+                            });
+                        })
+                    })
+                }).catch(err => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    next(err)
+                })
+            } else {
+                const error = new Error("Token is invalid");
+                error.statusCode = 422;
+                throw error
+            }
+
+        });
+    } else {
+        return res.status(403).send({ data: { errors: ['No token provided.'] } });
+    }
+};

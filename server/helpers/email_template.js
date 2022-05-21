@@ -53,6 +53,13 @@ exports.UserEmailPasswordTemplate = {
     body: "Dear [user_firstname],\r\n\r\nYour details have been entered into the Workforce Retention Platform and you will soon able to access some administration functions. \n\nYour User Profile is;\n\nFull Name: [user_firstname] [user_lastname]\nEmail: [user_email]\nLogon Username: [user_username]\nLogon Password: [user_password]\n\nWorkforce Retention Web Office: https://www.workforceretention.com.au/auth/login\n\nIf you would like to have your password reset, please email us at : admin@workforceretention.com.au\n\nWarm wishes,\n\nAngeline\nWorkforce Retention"
 };
 
+exports.AdminReSetPasswordTemplate = {
+    from_address: 'enquiries@workforceretention.com.au',
+    editable: false,
+    subject: "[Workforce Retention - Platform] Reset Password Link",
+    body: '<p>You requested for reset password, kindly use this <a href="https://www.workforceretention.com.au/auth/reset-password?token=[token]">link</a> to reset your password</p>'
+};
+
 
 // *************** Below Email will be sent to user when new contact is submitted ***************
 exports.ReplyContactEmailTemplate = {

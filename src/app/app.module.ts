@@ -29,6 +29,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './auth-guard.service';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { LoginComponent } from './auth/login/login.component';
+import { RequestPasswordComponent } from './auth/request-password/request-password.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { AuthService } from './auth/auth.service';
 
 
@@ -57,7 +59,7 @@ export class AuthInterceptor implements HttpInterceptor {
 }
 
 @NgModule({
-    declarations: [AppComponent, LogoutComponent, LoginComponent],
+    declarations: [AppComponent, LogoutComponent, LoginComponent, RequestPasswordComponent, ResetPasswordComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
