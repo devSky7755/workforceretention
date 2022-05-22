@@ -268,14 +268,15 @@ exports.FindEmployees = (req, res, next) => {
         .populate([{
             path: 'employees',
             model: 'Employee',
+            match: {
+                $or: [
+                    { "first_name": { $regex: new RegExp(filterValue, "i") } },
+                    { "last_name": { $regex: new RegExp(filterValue, "i") } },
+                    { "email": { $regex: new RegExp(filterValue, "i") } }
+                ]
+            },
             options: {
                 sort: sortProp,
-                match: {
-                    $or: [
-                        { "first_name": { $regex: new RegExp(filterValue, "i") } },
-                        { "last_name": { $regex: new RegExp(filterValue, "i") } },
-                        { "email": { $regex: new RegExp(filterValue, "i") } }]
-                }
             }
         }])
         .exec(function (err, client) {
