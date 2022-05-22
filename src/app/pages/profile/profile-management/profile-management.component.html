@@ -107,7 +107,11 @@
                                         <!--Register Error Here-->
                                         <div class="alert alert-danger" role="alert"
                                             *ngIf="get_password('newPassword').touched && get_password('newPassword').invalid">
-                                            Type at least 8 characters
+                                            <div>Your password must be have at least</div>
+                                            <div class="ml-2"> &#8226; 8 characters long</div>
+                                            <div class="ml-2"> &#8226; 1 uppercase & 1 lowercase character</div>
+                                            <div class="ml-2"> &#8226; 1 number</div>
+                                            <div class="ml-2"> &#8226; 1 special character</div>
                                         </div>
                                     </div>
                                 </div>
