@@ -364,7 +364,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         if (this.employeeId != null && this.clientId != null) {
             this.employeeService.resendPassword(this.employeeId, this.clientId).subscribe(
                 () => {
-                    this.showToast(NbToastStatus.SUCCESS, null, "Password sent to the employee email !");
+                    this.showToast(NbToastStatus.SUCCESS, null, "Default email has been sent.");
                     this.resendingSpinner = false;
                 },
                 (err) => {
