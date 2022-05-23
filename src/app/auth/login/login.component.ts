@@ -14,7 +14,6 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
         this.errors = [];
         this.messages = [];
         this.submitted = true;
-
         this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
             this.submitted = false;
             if (result.isSuccess()) {
@@ -22,8 +21,8 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
                     setTimeout(() => {
                         return this.router.navigateByUrl('/auth/tfa', {
                             state: {
-                                phone: "+1 (408) 786-5533",
-                                token: "xxx",
+                                phone: result.getResponse().body.phone,
+                                token: result.getResponse().body.tfa_token,
                             }
                         });
                     }, this.redirectDelay);

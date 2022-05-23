@@ -7,7 +7,7 @@
 
 <h1 id="title" class="title">2-step verification</h1>
 <p class="sub-title">A text message with a verificiation code<br />
-    has been sent to <b>{{form.phone}}</b></p>
+    has been sent to <b>+61 {{form.phone| mask: '0 0000 0000'}}</b></p>
 
 <nb-alert *ngIf="errors?.length && !submitted" outline="danger" role="alert">
     <p class="alert-title"><b>Oh snap!</b></p>
@@ -46,5 +46,5 @@
 
 <section class="sign-in-or-up" aria-label="Sign in or sign up">
     <p><a class="text-link" routerLink="../login">Back to Log In</a></p>
-    <p>Didn't receive a code? <a class="text-link" href="javascript:void(0)" (click)="handleRetry">Try Again</a></p>
+    <p>Didn't receive a code? <a class="text-link" href="javascript:void(0)" (click)="handleRetry()">Try Again</a></p>
 </section>

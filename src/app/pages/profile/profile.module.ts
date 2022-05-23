@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileManagementComponent } from './profile-management/profile-management.component';
@@ -15,6 +16,7 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
     ],
     imports: [
         CommonModule,
+        NgxMaskModule.forRoot(),
         ProfileRoutingModule,
         NbCardModule,
         NbCheckboxModule,

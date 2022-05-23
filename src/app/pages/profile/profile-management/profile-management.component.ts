@@ -51,7 +51,17 @@ export class ProfileManagementComponent implements OnInit {
       username: new FormControl('',
         [Validators.required, Validators.minLength(4)]
       ),
+      phone: new FormControl('', [Validators.pattern("[0-9]{9}")]),
       two_factor_auth: new FormControl(false),
+    });
+
+    this.get("two_factor_auth").valueChanges.subscribe(checked => {
+      if (checked) {
+        this.get("phone").setValidators([Validators.required, Validators.pattern("[0-9]{9}")]);
+      } else {
+        this.get("phone").setValidators([Validators.pattern("[0-9]{9}")]);
+      }
+      this.get("phone").updateValueAndValidity();
     });
 
     this.passwordForm = new FormGroup({
@@ -89,7 +99,7 @@ export class ProfileManagementComponent implements OnInit {
         console.log(token);
         this.userId = token.getPayload()._id
         console.log(token.getPayload())
-        this.user = { ...this.user, ..._.pick(token.getPayload(), ['first_name', 'last_name', 'email', 'username', 'two_factor_auth']) }
+        this.user = { ...this.user, ..._.pick(token.getPayload(), ['first_name', 'last_name', 'email', 'username', 'two_factor_auth', 'phone']) }
       });
   }
 
@@ -99,7 +109,8 @@ export class ProfileManagementComponent implements OnInit {
       last_name: this.get('name').get('lastName').value,
       username: this.get('username').value,
       email: this.get('email').value,
-      two_factor_auth: this.get('two_factor_auth').value
+      two_factor_auth: this.get('two_factor_auth').value,
+      phone: this.get('phone').value,
     };
     this.userService.updateUserProfile(user, this.userId).subscribe(
       data => {

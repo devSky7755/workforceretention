@@ -1,22 +1,22 @@
-import {Observable} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {URLService} from "./url.service";
+import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { URLService } from "./url.service";
 
 const httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 @Injectable()
 export class UserService {
 
     private users = {
-        nick: {name: 'Nick Jones', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/nick.png'},
-        eva: {name: 'Eva Moor', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/eva.png'},
-        jack: {name: 'Jack Williams', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/jack.png'},
-        lee: {name: 'Lee Wong', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/lee.png'},
-        alan: {name: 'Alan Thompson', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/alan.png'},
-        kate: {name: 'Kate Martinez', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/kate.png'},
+        nick: { name: 'Nick Jones', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/nick.png' },
+        eva: { name: 'Eva Moor', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/eva.png' },
+        jack: { name: 'Jack Williams', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/jack.png' },
+        lee: { name: 'Lee Wong', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/lee.png' },
+        alan: { name: 'Alan Thompson', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/alan.png' },
+        kate: { name: 'Kate Martinez', picture: 'https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/kate.png' },
     };
 
     constructor(private http: HttpClient, private urlService: URLService) {
@@ -58,5 +58,19 @@ export class UserService {
 
     getUserClients(userId): Observable<any> {
         return this.http.get(this.urlService.baseUrl + `/api/v1/users/clients/${userId}`);
+    }
+
+    verfiyTfaToken(phone, code, token): Observable<any> {
+        const body = JSON.stringify({
+            phone, code, token
+        });
+        return this.http.post(this.urlService.baseUrl + '/api/v1/auth/verify-tfa-token', body, httpOptions);
+    }
+
+    resendTfaToken(phone, token): Observable<any> {
+        const body = JSON.stringify({
+            phone, token
+        });
+        return this.http.post(this.urlService.baseUrl + '/api/v1/auth/resend-tfa-token', body, httpOptions);
     }
 }

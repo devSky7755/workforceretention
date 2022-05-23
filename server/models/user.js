@@ -45,7 +45,11 @@ const userSchema = new Schema({
     two_factor_auth: {
         type: Boolean,
         default: false,
-    }
+    },
+    phone: {
+        type: String,
+        default: ''
+    },
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -13,9 +13,12 @@ const refreshTokens = {};
 //Config
 const config = require('../config');
 
+// Twilio
+const twilio = require('twilio');
+
 // AuthController responsibility is login, logout, generate a new token, delete a token from the server
 
-const genToken = function (user) {
+const genToken = function (user, forTFA = false) {
     //save the date the token was generated for already inside toJSON()
     const userData = user.toJSON();
 
@@ -28,9 +31,13 @@ const genToken = function (user) {
     let refreshToken = uuidv4();
     refreshTokens[refreshToken] = user.email;
 
-    //save the refreshToken inside the userData
-    userData.refreshToken = refreshToken;
-    userData.login_type = "client"
+    if (!forTFA) {
+        //save the refreshToken inside the userData
+        userData.refreshToken = refreshToken;
+        userData.login_type = "client"
+    } else {
+        userData.login_type = "tfa"
+    }
 
     let token = jwt.sign(userData, config.SECRET, {
         expiresIn: '7d'
@@ -78,9 +85,28 @@ exports.login = function (req, res, next) {
             }
 
             if (user.two_factor_auth) {
-                res.json({
-                    tfa: true
-                })
+                const accountSid = config.TWILIO_ACCOUNT_SID;
+                const authToken = config.TWILIO_AUTH_TOKEN;
+                const client = twilio(accountSid, authToken);
+                if (!user.phone) {
+                    const error = new Error("Phone number not exist.");
+                    error.statusCode = 400;
+                    return next(error)
+                }
+
+                const phone = `+61${user.phone}`;
+                // const phone = "+14087865533"
+
+                return client.verify.services(config.TWILIO_SERVICE_SID)
+                    .verifications
+                    .create({ to: phone, channel: 'sms' })
+                    .then(verification => {
+                        return res.json({
+                            tfa: true,
+                            tfa_token: genToken(user, true),
+                            phone
+                        })
+                    });
             } else {
                 //return the token here
                 res.json({ token: genToken(user) });
@@ -89,6 +115,146 @@ exports.login = function (req, res, next) {
     }).catch(err => {
         next(err)
     });
+};
+
+/**
+ * this is used to send 6-digits to phone
+ * GET api/v1/auth/request-pass
+ * @param req
+ * @param res
+ */
+
+exports.verifyTfaToken = function (req, res, next) {
+    // Download the helper library from https://www.twilio.com/docs/node/install
+    // Find your Account SID and Auth Token at twilio.com/console
+    // and set the environment variables. See http://twil.io/secure
+
+    const { phone, code, token } = req.body;
+
+    if (typeof token !== 'undefined') {
+        //verify if this token was from us or not
+        jwt.verify(token, config.SECRET, function (err, decoded) {
+            if (err) {
+                if (err.name === "TokenExpiredError") {
+                    return res.status(401).send({ data: { errors: ['Token is expired.'] } });
+                } else {
+                    throw err
+                }
+            }
+            let id = mongoose.Types.ObjectId(decoded._id);
+            if (decoded.login_type == "tfa") {
+                User.findOne(id).then(async (user, error) => {
+                    if (error) throw error;
+                    if (!user || user.phone !== phone) {
+                        // if (!user) {
+                        return res.status(401).send({ data: { errors: ['User not found.'] } });
+                    }
+                    const accountSid = config.TWILIO_ACCOUNT_SID;
+                    const authToken = config.TWILIO_AUTH_TOKEN;
+                    const client = twilio(accountSid, authToken);
+
+                    return client.verify.services(config.TWILIO_SERVICE_SID)
+                        .verificationChecks
+                        .create({ to: phone, code })
+                        // .create({ to: '+14087865533', code })
+                        .then(verification_check => {
+                            if (verification_check.valid) {
+                                return res.json({
+                                    token: genToken(user)
+                                })
+                            } else {
+                                return res.status(401).send({ data: { errors: ['Code is incorrect.'] } });
+                            }
+                        }).catch(err => {
+                            return res.status(401).send({ data: { errors: ['Code is incorrect.'] } });
+                        });
+                }).catch(err => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    next(err)
+                })
+            } else {
+                const error = new Error("Token is invalid");
+                error.statusCode = 422;
+                throw error
+            }
+        });
+    } else {
+        return res.status(403).send({ data: { errors: ['No token provided.'] } });
+    }
+};
+
+/**
+ * this is used to send 6-digits to phone
+ * GET api/v1/auth/request-pass
+ * @param req
+ * @param res
+ */
+
+exports.resendTfaToken = function (req, res, next) {
+    // Download the helper library from https://www.twilio.com/docs/node/install
+    // Find your Account SID and Auth Token at twilio.com/console
+    // and set the environment variables. See http://twil.io/secure
+
+    const { phone, token } = req.body;
+
+    if (typeof token !== 'undefined') {
+        //verify if this token was from us or not
+        jwt.verify(token, config.SECRET, function (err, decoded) {
+            if (err) {
+                if (err.name === "TokenExpiredError") {
+                    return res.status(401).send({ data: { errors: ['Token is expired.'] } });
+                } else {
+                    throw err
+                }
+            }
+            let id = mongoose.Types.ObjectId(decoded._id);
+            if (decoded.login_type == "tfa") {
+                User.findOne(id).then(async (user, error) => {
+                    if (error) throw error;
+                    if (!user || user.phone !== phone) {
+                        // if (!user) {
+                        return res.status(401).send({ data: { errors: ['User not found.'] } });
+                    }
+
+                    const accountSid = config.TWILIO_ACCOUNT_SID;
+                    const authToken = config.TWILIO_AUTH_TOKEN;
+                    const client = twilio(accountSid, authToken);
+                    if (!user.phone) {
+                        const error = new Error("Phone number not exist.");
+                        error.statusCode = 400;
+                        return next(error)
+                    }
+
+                    const phone = `+61${user.phone}`;
+                    // const phone = "+14087865533"
+
+                    return client.verify.services(config.TWILIO_SERVICE_SID)
+                        .verifications
+                        .create({ to: phone, channel: 'sms' })
+                        .then(verification => {
+                            return res.json({
+                                tfa: true,
+                                tfa_token: genToken(user, true),
+                                phone
+                            })
+                        });
+                }).catch(err => {
+                    if (!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    next(err)
+                })
+            } else {
+                const error = new Error("Token is invalid");
+                error.statusCode = 422;
+                throw error
+            }
+        });
+    } else {
+        return res.status(403).send({ data: { errors: ['No token provided.'] } });
+    }
 };
 
 /**

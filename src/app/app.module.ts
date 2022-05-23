@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { NbTokenService } from "@nebular/auth";
+import { NgxMaskModule } from 'ngx-mask';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -65,6 +66,7 @@ export class AuthInterceptor implements HttpInterceptor {
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        NgxMaskModule.forRoot(),
         AppRoutingModule,
         NgbModule.forRoot(),
         ThemeModule.forRoot(),

@@ -13,6 +13,12 @@ router.post('/request-pass', authController.requestPass);
 //THIS ROUTE WILL RESET PASSWORD
 router.put('/reset-pass', authController.resetPass);
 
+//THIS ROUTE WILL VERIFY 6-DIGITS TOKEN
+router.post('/verify-tfa-token', authController.verifyTfaToken);
+
+//THIS ROUTE WILL RESEND 6-DIGITS TOKEN
+router.post('/resend-tfa-token', authController.resendTfaToken);
+
 //THIS ROUTE WILL USE TO GENERATE A NEW TOKEN
 router.post('/token', authController.token);
 
