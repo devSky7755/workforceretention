@@ -65,6 +65,11 @@
                                         character long</div>
                                 </div>
                             </div>
+
+                            <!--2FA-->
+                            <nb-checkbox formControlName="two_factor_auth" class="form-control"
+                                [(ngModel)]="user.two_factor_auth">Allow 2 factor authentication?</nb-checkbox>
+
                             <div class="text-center mt-3">
                                 <button type="submit" [disabled]="!userForm.valid" class="btn btn-success">
                                     UPDATE

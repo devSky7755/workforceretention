@@ -15,6 +15,29 @@ const config = require('../config');
 
 // AuthController responsibility is login, logout, generate a new token, delete a token from the server
 
+const genToken = function (user) {
+    //save the date the token was generated for already inside toJSON()
+    const userData = user.toJSON();
+
+    delete userData.surveys;
+    delete userData.password;
+    delete userData.clients;
+    delete userData.links;
+
+    //Generate refresh token
+    let refreshToken = uuidv4();
+    refreshTokens[refreshToken] = user.email;
+
+    //save the refreshToken inside the userData
+    userData.refreshToken = refreshToken;
+    userData.login_type = "client"
+
+    let token = jwt.sign(userData, config.SECRET, {
+        expiresIn: '7d'
+    });
+    return token;
+}
+
 /**
  * this is used to authenticate employee to our api using email and password
  * POST api/v1/employee/login
@@ -54,28 +77,14 @@ exports.login = function (req, res, next) {
                 return next(error)
             }
 
-            //save the date the token was generated for already inside toJSON()
-            const userData = user.toJSON();
-
-            delete userData.surveys;
-            delete userData.password;
-            delete userData.clients;
-            delete userData.links;
-
-            //Generate refresh token
-            let refreshToken = uuidv4();
-            refreshTokens[refreshToken] = email;
-
-            //save the refreshToken inside the userData
-            userData.refreshToken = refreshToken;
-            userData.login_type = "client"
-
-            let token = jwt.sign(userData, config.SECRET, {
-                expiresIn: '7d'
-            });
-
-            //return the token here
-            res.json({ token });
+            if (user.two_factor_auth) {
+                res.json({
+                    tfa: true
+                })
+            } else {
+                //return the token here
+                res.json({ token: genToken(user) });
+            }
         });
     }).catch(err => {
         next(err)

@@ -12,7 +12,7 @@ import * as _ from 'lodash'
 })
 export class ProfileManagementComponent implements OnInit {
 
-  user = { first_name: '', last_name: '', email: '', username: '', old_password: '', new_password: '', new_password_confirmation: '' };
+  user = { first_name: '', last_name: '', email: '', username: '', old_password: '', new_password: '', new_password_confirmation: '', two_factor_auth: false, };
   userId;
   successUserMessage;
   successPasswordMessage;
@@ -50,7 +50,8 @@ export class ProfileManagementComponent implements OnInit {
       ]),
       username: new FormControl('',
         [Validators.required, Validators.minLength(4)]
-      )
+      ),
+      two_factor_auth: new FormControl(false),
     });
 
     this.passwordForm = new FormGroup({
@@ -88,7 +89,7 @@ export class ProfileManagementComponent implements OnInit {
         console.log(token);
         this.userId = token.getPayload()._id
         console.log(token.getPayload())
-        this.user = { ...this.user, ..._.pick(token.getPayload(), ['first_name', 'last_name', 'email', 'username']) }
+        this.user = { ...this.user, ..._.pick(token.getPayload(), ['first_name', 'last_name', 'email', 'username', 'two_factor_auth']) }
       });
   }
 
@@ -97,7 +98,8 @@ export class ProfileManagementComponent implements OnInit {
       first_name: this.get('name').get('firstName').value,
       last_name: this.get('name').get('lastName').value,
       username: this.get('username').value,
-      email: this.get('email').value
+      email: this.get('email').value,
+      two_factor_auth: this.get('two_factor_auth').value
     };
     this.userService.updateUserProfile(user, this.userId).subscribe(
       data => {

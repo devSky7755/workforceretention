@@ -31,18 +31,21 @@ const userSchema = new Schema({
         required: 'Password is required'
     },
 
-    surveys: [{type: Schema.Types.ObjectId, ref: 'Survey'}],
+    surveys: [{ type: Schema.Types.ObjectId, ref: 'Survey' }],
 
-    clients: [{type: Schema.Types.ObjectId, ref: 'Client'}],
+    clients: [{ type: Schema.Types.ObjectId, ref: 'Client' }],
 
-    links: [{type: Schema.Types.ObjectId, ref: 'Link'}],
+    links: [{ type: Schema.Types.ObjectId, ref: 'Link' }],
 
-    articles: [{type: Schema.Types.ObjectId, ref: 'Article'}],
+    articles: [{ type: Schema.Types.ObjectId, ref: 'Article' }],
     role: {
         type: Schema.Types.ObjectId,
         ref: 'Role'
+    },
+    two_factor_auth: {
+        type: Boolean,
+        default: false,
     }
-
 });
 
 module.exports = mongoose.model('User', userSchema);

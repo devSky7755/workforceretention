@@ -12,6 +12,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RequestPasswordComponent } from './auth/request-password/request-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { TfaComponent } from './auth/tfa/tfa.component';
 
 const routes: Routes = [
     {
@@ -50,6 +51,10 @@ const routes: Routes = [
             {
                 path: 'reset-password',
                 component: ResetPasswordComponent,
+            },
+            {
+                path: 'tfa',
+                component: TfaComponent,
             }
         ],
     },

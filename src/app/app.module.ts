@@ -31,6 +31,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RequestPasswordComponent } from './auth/request-password/request-password.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { TfaComponent } from './auth/tfa/tfa.component';
 import { AuthService } from './auth/auth.service';
 
 
@@ -59,7 +60,7 @@ export class AuthInterceptor implements HttpInterceptor {
 }
 
 @NgModule({
-    declarations: [AppComponent, LogoutComponent, LoginComponent, RequestPasswordComponent, ResetPasswordComponent],
+    declarations: [AppComponent, LogoutComponent, LoginComponent, RequestPasswordComponent, ResetPasswordComponent, TfaComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
