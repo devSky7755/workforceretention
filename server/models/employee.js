@@ -13,10 +13,7 @@ const employeeSchema = new Schema({
         type: String,
         match: [/^[a-z0-9A-Z_]{0,32}$/],
         required: false,
-        index: {
-            unique: true,
-            partialFilterExpression: { employee_id: { $type: 'string' } },
-        },
+        unique: false,
         default: null,
     },
     email: {

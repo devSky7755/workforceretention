@@ -72,8 +72,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
         { id: 5, value: "VIC" },
         { id: 6, value: "WA" },
         { id: 7, value: "ACT" },
-        { id: 8, value: "JBT" },
-        { id: 9, value: "NT" },
+        { id: 8, value: "NT" },
     ];
 
     // if question type is Rating Radio Buttons, Exit Interview - Exit Reasons (display like as it is),

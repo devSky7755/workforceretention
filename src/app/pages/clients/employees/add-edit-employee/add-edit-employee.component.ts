@@ -49,8 +49,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         { id: 5, value: "VIC" },
         { id: 6, value: "WA" },
         { id: 7, value: "ACT" },
-        { id: 8, value: "JBT" },
-        { id: 9, value: "NT" },
+        { id: 8, value: "NT" },
     ];
     occupations = [
         { id: 1, value: "Not Classified" },

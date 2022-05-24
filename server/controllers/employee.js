@@ -373,13 +373,13 @@ exports.Create = function (req, res, next) {
     }, async (err, existingUser) => {
         if (err) return next(err);
         if (existingUser) {
-            if (data.employee_id && existingUser.employee_id === data.employee_id) {
-                return res.status(422).send({
-                    success: false,
-                    message: 'Employee with this employee id already exist!'
+            // if (data.employee_id && existingUser.employee_id === data.employee_id) {
+            //     return res.status(422).send({
+            //         success: false,
+            //         message: 'Employee with this employee id already exist!'
 
-                });
-            }
+            //     });
+            // }
             return res.status(422).send({
                 success: false,
                 message: 'Employee with this email already exist!'
@@ -1067,17 +1067,16 @@ exports.Update = (req, res, next) => {
         }, async (err, existingUser) => {
             if (err) return next(err);
             if (existingUser) {
-                if (data.employee_id && existingUser.employee_id === data.employee_id) {
-                    return res.status(422).send({
-                        success: false,
-                        message: 'Employee with this employee id already exist!'
+                // if (data.employee_id && existingUser.employee_id === data.employee_id) {
+                //     return res.status(422).send({
+                //         success: false,
+                //         message: 'Employee with this employee id already exist!'
 
-                    });
-                }
+                //     });
+                // }
                 return res.status(422).send({
                     success: false,
                     message: 'Employee with this email already exist!'
-
                 });
             }
 
@@ -1097,9 +1096,9 @@ exports.Update = (req, res, next) => {
 
                 // the callback function
                 (err, employee) => {
-                    if (err && err.name === 'MongoError' && err.code === 11000) {
-                        return next(new Error(`Employee with the email or employee id already exist`));
-                    }
+                    // if (err && err.name === 'MongoError' && err.code === 11000) {
+                    //     return next(new Error(`Employee with the email or employee id already exist`));
+                    // }
                     // Handle any possible database errors
                     if (err) return next(err);
                     if (!employee) return res.status(404).json({

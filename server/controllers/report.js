@@ -269,50 +269,50 @@ exports.ManagerReport = (req, res, next) => {
 
 
                         let occupations = [{
-                                id: 1,
-                                name: 'Not Classified',
-                                value: 0
-                            },
-                            {
-                                id: 2,
-                                name: 'Managers',
-                                value: 0
-                            },
-                            {
-                                id: 3,
-                                name: 'Professionals',
-                                value: 0
-                            },
-                            {
-                                id: 4,
-                                name: 'Technicians and Trade Workers',
-                                value: 0
-                            },
-                            {
-                                id: 5,
-                                name: 'Community and Personal Service Workers',
-                                value: 0
-                            },
-                            {
-                                id: 6,
-                                name: 'Clerical and Administrative Workers',
-                                value: 0
-                            },
-                            {
-                                id: 7,
-                                name: 'Sales Workers',
-                                value: 0
-                            },
-                            {
-                                id: 8,
-                                name: 'Machinery Operators and Drivers',
-                                value: 0
-                            },
-                            {
-                                id: 9,
-                                name: 'Labourers',
-                                value: 0
-                            },
+                            id: 1,
+                            name: 'Not Classified',
+                            value: 0
+                        },
+                        {
+                            id: 2,
+                            name: 'Managers',
+                            value: 0
+                        },
+                        {
+                            id: 3,
+                            name: 'Professionals',
+                            value: 0
+                        },
+                        {
+                            id: 4,
+                            name: 'Technicians and Trade Workers',
+                            value: 0
+                        },
+                        {
+                            id: 5,
+                            name: 'Community and Personal Service Workers',
+                            value: 0
+                        },
+                        {
+                            id: 6,
+                            name: 'Clerical and Administrative Workers',
+                            value: 0
+                        },
+                        {
+                            id: 7,
+                            name: 'Sales Workers',
+                            value: 0
+                        },
+                        {
+                            id: 8,
+                            name: 'Machinery Operators and Drivers',
+                            value: 0
+                        },
+                        {
+                            id: 9,
+                            name: 'Labourers',
+                            value: 0
+                        },
                         ]
 
                         filtered_employees.forEach((e) => {
@@ -669,9 +669,9 @@ exports.Find = (req, res, next) => {
             totalItems = count;
             //This will return a new promise with the posts.
             return Report.find().populate({
-                    path: 'client',
-                    model: 'Client',
-                }).skip((currentReport) * perPage)
+                path: 'client',
+                model: 'Client',
+            }).skip((currentReport) * perPage)
                 .limit(perPage);
         }).then(reports => {
             return res.status(200).json({
@@ -804,8 +804,7 @@ exports.DataOutput = (req, res, next) => {
         5: 'VIC',
         6: 'WA',
         7: 'ACT',
-        8: 'JBT',
-        9: 'NT',
+        8: 'NT',
     }
     const filter_data = req.body;
     const filename = Date.now() + '__exit_interview_data.csv';
@@ -1084,7 +1083,7 @@ exports.DataOutput = (req, res, next) => {
                                 completed_admin: employee.surveys[0].completed_admin,
                                 last_completed_at: !employee.surveys[0].completed_online || !employee.surveys[0].completed_admin || employee.surveys[0].end_date == null ? '' : format_date_time(employee.surveys[0].end_date),
                                 last_edit: employee.surveys[0].last_edit,
-                                created_by: employee.created_by === null || typeof employee.created_by == 'undefined' ? '': `${employee.created_by.first_name} ${employee.created_by.last_name}`
+                                created_by: employee.created_by === null || typeof employee.created_by == 'undefined' ? '' : `${employee.created_by.first_name} ${employee.created_by.last_name}`
                             };
                             let answers = [];
                             // first push all the question answers in the answers array
@@ -1098,53 +1097,53 @@ exports.DataOutput = (req, res, next) => {
                                 let question_id = question._id;
                                 // this means the question has first choice and second choice
                                 let exit_reason_checkbox = [{
-                                        id: 1,
-                                        value: 'Career Opportunities'
-                                    },
-                                    {
-                                        id: 2,
-                                        value: 'Meaningful Work'
-                                    },
-                                    {
-                                        id: 3,
-                                        value: 'Communication'
-                                    },
-                                    {
-                                        id: 4,
-                                        value: 'Effective Leadership'
-                                    },
-                                    {
-                                        id: 5,
-                                        value: 'Induction'
-                                    },
-                                    {
-                                        id: 6,
-                                        value: 'Learning & Development'
-                                    },
-                                    {
-                                        id: 7,
-                                        value: 'Manager'
-                                    },
-                                    {
-                                        id: 8,
-                                        value: 'Pay & Benefits'
-                                    },
-                                    {
-                                        id: 9,
-                                        value: 'Work Conditions'
-                                    },
-                                    {
-                                        id: 10,
-                                        value: 'Being Valued'
-                                    },
-                                    {
-                                        id: 11,
-                                        value: 'Operational'
-                                    },
-                                    {
-                                        id: 12,
-                                        value: 'Restructure'
-                                    },
+                                    id: 1,
+                                    value: 'Career Opportunities'
+                                },
+                                {
+                                    id: 2,
+                                    value: 'Meaningful Work'
+                                },
+                                {
+                                    id: 3,
+                                    value: 'Communication'
+                                },
+                                {
+                                    id: 4,
+                                    value: 'Effective Leadership'
+                                },
+                                {
+                                    id: 5,
+                                    value: 'Induction'
+                                },
+                                {
+                                    id: 6,
+                                    value: 'Learning & Development'
+                                },
+                                {
+                                    id: 7,
+                                    value: 'Manager'
+                                },
+                                {
+                                    id: 8,
+                                    value: 'Pay & Benefits'
+                                },
+                                {
+                                    id: 9,
+                                    value: 'Work Conditions'
+                                },
+                                {
+                                    id: 10,
+                                    value: 'Being Valued'
+                                },
+                                {
+                                    id: 11,
+                                    value: 'Operational'
+                                },
+                                {
+                                    id: 12,
+                                    value: 'Restructure'
+                                },
                                 ];
                                 if (answer) {
                                     // we need to do answer processing here.

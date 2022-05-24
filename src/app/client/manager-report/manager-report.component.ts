@@ -74,8 +74,7 @@ export class ManagerReportComponent implements OnInit {
         { id: 5, value: "VIC" },
         { id: 6, value: "WA" },
         { id: 7, value: "ACT" },
-        { id: 8, value: "JBT" },
-        { id: 9, value: "NT" },
+        { id: 8, value: "NT" },
     ];
 
     single = [];
@@ -606,8 +605,8 @@ export class ManagerReportComponent implements OnInit {
                 parseFloat(a.positive_percentage) < parseFloat(b.positive_percentage)
                     ? 1
                     : parseFloat(b.positive_percentage) < parseFloat(a.positive_percentage)
-                    ? -1
-                    : 0
+                        ? -1
+                        : 0
             );
             const sentiment_divider_length = Math.round(this.employee_sentiment.length / 2);
             for (let i = 0; i < Math.min(sentiment_divider_length, 10); i++) {
