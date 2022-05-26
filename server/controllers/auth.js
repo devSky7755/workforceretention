@@ -101,10 +101,11 @@ exports.login = function (req, res, next) {
                     .verifications
                     .create({ to: phone, channel: 'sms' })
                     .then(verification => {
+                        console.log(verification)
                         return res.json({
                             tfa: true,
                             tfa_token: genToken(user, true),
-                            phone
+                            phone: user.phone
                         })
                     });
             } else {
@@ -227,17 +228,18 @@ exports.resendTfaToken = function (req, res, next) {
                         return next(error)
                     }
 
-                    const phone = `+61${user.phone}`;
+                    const phoneNumber = `+61${user.phone}`;
                     // const phone = "+14087865533"
 
                     return client.verify.services(config.TWILIO_SERVICE_SID)
                         .verifications
-                        .create({ to: phone, channel: 'sms' })
+                        .create({ to: phoneNumber, channel: 'sms' })
                         .then(verification => {
+                            console.log(verification)
                             return res.json({
                                 tfa: true,
                                 tfa_token: genToken(user, true),
-                                phone
+                                phone: user.phone
                             })
                         });
                 }).catch(err => {
