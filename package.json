@@ -87,6 +87,7 @@
         "csv-parse": "^4.2.0",
         "csv-writer": "^1.2.0",
         "csvtojson": "^2.0.8",
+        "dotenv": "^16.0.1",
         "echarts": "^4.0.2",
         "eva-icons": "^1.1.0",
         "express": "^4.16.4",

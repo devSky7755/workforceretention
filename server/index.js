@@ -1,9 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const compression = require('compression')
+const express = require("express");
+const mongoose = require("mongoose");
+const path = require("path");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const compression = require("compression");
+require("dotenv").config({ path: __dirname + "/.env" });
 
 const app = express();
 
@@ -40,42 +41,44 @@ const app = express();
 // We don't need any individual routes for logout because we are not saving the token anywhere in the server. just need to delete the token from staticPage
 
 // CONFIG
-const config = require('./config');
+const config = require("./config");
 
 // Routes
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
-const contactRoutes = require('./routes/contact');
-const requestaquoteRoutes = require('./routes/requestaquote');
-const questionRoutes = require('./routes/questions');
-const answerRoutes = require('./routes/answer');
-const articleRoutes = require('./routes/articles');
-const departmentRoutes = require('./routes/departments');
-const emailRoutes = require('./routes/emails');
-const linkRoutes = require('./routes/links');
-const employeeRoutes = require('./routes/employees');
-const industryRoutes = require('./routes/industries');
-const organizationRoutes = require('./routes/organizations');
-const pageRoutes = require('./routes/pages');
-const surveyRoutes = require('./routes/surveys');
-const clientRoutes = require('./routes/clients');
-const divisionRoutes = require('./routes/divisions');
-const roleRoutes = require('./routes/roles');
-const boxRoutes = require('./routes/boxs');
-const categoryRoutes = require('./routes/categories');
-const staticPageRoutes = require('./routes/static_pages');
-const surveyEmailRoutes = require('./routes/survey_emails');
-const reportRoutes = require('./routes/reports');
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/users");
+const contactRoutes = require("./routes/contact");
+const requestaquoteRoutes = require("./routes/requestaquote");
+const questionRoutes = require("./routes/questions");
+const answerRoutes = require("./routes/answer");
+const articleRoutes = require("./routes/articles");
+const departmentRoutes = require("./routes/departments");
+const emailRoutes = require("./routes/emails");
+const linkRoutes = require("./routes/links");
+const employeeRoutes = require("./routes/employees");
+const industryRoutes = require("./routes/industries");
+const organizationRoutes = require("./routes/organizations");
+const pageRoutes = require("./routes/pages");
+const surveyRoutes = require("./routes/surveys");
+const clientRoutes = require("./routes/clients");
+const divisionRoutes = require("./routes/divisions");
+const roleRoutes = require("./routes/roles");
+const boxRoutes = require("./routes/boxs");
+const categoryRoutes = require("./routes/categories");
+const staticPageRoutes = require("./routes/static_pages");
+const surveyEmailRoutes = require("./routes/survey_emails");
+const reportRoutes = require("./routes/reports");
 
 // Connect with the mongodb database
-mongoose.connect(config.MONGO_URI, {
+mongoose
+  .connect(config.MONGO_URI, {
     useCreateIndex: true,
-    useNewUrlParser: true
-}).then(() => console.log('Connected to MongoDB'))
-    .catch(error => console.log('could not connect', error));
-mongoose.set('useFindAndModify', false);
+    useNewUrlParser: true,
+  })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.log("could not connect", error));
+mongoose.set("useFindAndModify", false);
 
-app.use(compression())
+app.use(compression());
 // body-parser configuration for reading data from request body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); // x-www-form-urlencoded
@@ -83,64 +86,63 @@ app.use(bodyParser.urlencoded({ extended: false })); // x-www-form-urlencoded
 // ENABLE CORS. FOR CROSS ORIGIN RESOURCE SHARING
 app.use(cors());
 
-app.use('/images', express.static(path.join(__dirname, 'public/images')));
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/', express.static(path.join(__dirname, 'public')));
+app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 // SET UP ROUTES
-app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/requestaquote', requestaquoteRoutes);
-app.use('/api/v1/contact', contactRoutes);
-app.use('/api/v1/users', userRoutes);
-app.use('/api/v1/clients', clientRoutes);
-app.use('/api/v1/surveys', surveyRoutes);
-app.use('/api/v1/questions', questionRoutes);
-app.use('/api/v1/answers', answerRoutes);
-app.use('/api/v1/articles', articleRoutes);
-app.use('/api/v1/emails', emailRoutes);
-app.use('/api/v1/employees', employeeRoutes);
-app.use('/api/v1/links', linkRoutes);
-app.use('/api/v1/departments', departmentRoutes);
-app.use('/api/v1/pages', pageRoutes);
-app.use('/api/v1/static_pages', staticPageRoutes);
-app.use('/api/v1/industries', industryRoutes);
-app.use('/api/v1/organizations', organizationRoutes);
-app.use('/api/v1/divisions', divisionRoutes);
-app.use('/api/v1/roles', roleRoutes);
-app.use('/api/v1/boxes', boxRoutes);
-app.use('/api/v1/categories', categoryRoutes);
-app.use('/api/v1/survey_emails', surveyEmailRoutes);
-app.use('/api/v1/reports', reportRoutes);
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/requestaquote", requestaquoteRoutes);
+app.use("/api/v1/contact", contactRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/clients", clientRoutes);
+app.use("/api/v1/surveys", surveyRoutes);
+app.use("/api/v1/questions", questionRoutes);
+app.use("/api/v1/answers", answerRoutes);
+app.use("/api/v1/articles", articleRoutes);
+app.use("/api/v1/emails", emailRoutes);
+app.use("/api/v1/employees", employeeRoutes);
+app.use("/api/v1/links", linkRoutes);
+app.use("/api/v1/departments", departmentRoutes);
+app.use("/api/v1/pages", pageRoutes);
+app.use("/api/v1/static_pages", staticPageRoutes);
+app.use("/api/v1/industries", industryRoutes);
+app.use("/api/v1/organizations", organizationRoutes);
+app.use("/api/v1/divisions", divisionRoutes);
+app.use("/api/v1/roles", roleRoutes);
+app.use("/api/v1/boxes", boxRoutes);
+app.use("/api/v1/categories", categoryRoutes);
+app.use("/api/v1/survey_emails", surveyEmailRoutes);
+app.use("/api/v1/reports", reportRoutes);
 
 const port = process.env.PORT || 8080;
 //Angular DIST output folder
-const appPath = path.join(__dirname, '..', 'dist');
+const appPath = path.join(__dirname, "..", "dist");
 app.use(express.static(appPath));
 
 // This route is for downloading file
-app.get('/download/:file(*)', function (req, res) { // this routes all types of file
+app.get("/download/:file(*)", function (req, res) {
+  // this routes all types of file
 
-    const file = req.params.file;
+  const file = req.params.file;
 
-    const filePath = path.resolve(".") + '/server/' + file;
+  const filePath = path.resolve(".") + "/server/" + file;
 
-    res.download(filePath); // magic of download function
-
+  res.download(filePath); // magic of download function
 });
 // Serve the Angular index.html file
-app.get('*', (req, res) => {
-    res.sendFile(path.join(appPath, 'index.html'))
+app.get("*", (req, res) => {
+  res.sendFile(path.join(appPath, "index.html"));
 });
 
 //Middleware function for handling error
 //This Middleware function will execute if any error is thrown
 app.use((error, req, res, next) => {
-    const status = error.statusCode || 500;
-    const message = error.message;
-    res.status(status).json({ message, success: false })
+  const status = error.statusCode || 500;
+  const message = error.message;
+  res.status(status).json({ message, success: false });
 });
 
-
 app.listen(port, () => {
-    console.log(`server is running on port ${port}`)
+  console.log(`server is running on port ${port}`);
 });
