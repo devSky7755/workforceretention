@@ -8,7 +8,7 @@ import {DivisionService} from "../../../../@core/data/division.service";
 @Component({
     selector: 'ngx-divisions',
     templateUrl: './divisions.component.html',
-    styleUrls: ['./divisions.component.scss']
+    styleUrls: ['./divisions.component.scss'],
 })
 export class DivisionsComponent implements OnInit, OnChanges {
 
@@ -57,7 +57,7 @@ export class DivisionsComponent implements OnInit, OnChanges {
         this.organizationService.getOrganization(this.organizationId).subscribe(
             data => {
                 this.organizationName = data.organization.name;
-            }
+            },
         );
     }
     deleteDivision(id) {
@@ -70,7 +70,7 @@ export class DivisionsComponent implements OnInit, OnChanges {
             },
             () => {
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -96,7 +96,7 @@ export class DivisionsComponent implements OnInit, OnChanges {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

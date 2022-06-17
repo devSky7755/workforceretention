@@ -20,7 +20,7 @@ export class AddEditBoxComponent implements OnInit {
     // staticPage products [Dropdown], aggregate_reports [Dropdown], staticPage turnover[Input Box],
     // org_mgt [Dropdown]
     box = {
-        title: '', description: "", large_image: '', thumb_image: ''
+        title: '', description: "", large_image: '', thumb_image: '',
     };
     user;
     boxId;
@@ -35,7 +35,7 @@ export class AddEditBoxComponent implements OnInit {
     ngOnInit() {
         this.boxId = this.route.snapshot.paramMap.get('id');
         if (this.boxId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getBox();
         }
         this.createForm();
@@ -54,13 +54,13 @@ export class AddEditBoxComponent implements OnInit {
             title: new FormControl('', Validators.required),
             description: new FormControl(),
             large_image: new FormControl(),
-            thumb_image: new FormControl()
+            thumb_image: new FormControl(),
         });
     }
 
     createBox() {
         if (this.boxForm.valid) {
-            //create a new staticPage object instance
+            // create a new staticPage object instance
             const box = {
                 title: this.get('title').value,
                 description: this.box.description,
@@ -82,7 +82,7 @@ export class AddEditBoxComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.boxForm.setErrors({'message': error.message});
-            }
+            },
         );
     }
 
@@ -96,7 +96,7 @@ export class AddEditBoxComponent implements OnInit {
                 const {error} = err;
                 this.boxForm.setErrors({'message': error.message});
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -106,7 +106,7 @@ export class AddEditBoxComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 

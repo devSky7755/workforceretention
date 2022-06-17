@@ -10,7 +10,7 @@ import {URLService} from "../../../../@core/data/url.service";
 @Component({
     selector: 'ngx-add-edit-client',
     templateUrl: './add-edit-client.component.html',
-    styleUrls: ['./add-edit-client.component.scss']
+    styleUrls: ['./add-edit-client.component.scss'],
 })
 export class AddEditClientComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class AddEditClientComponent implements OnInit {
     // org_mgt [Dropdown]
     client = {
         name: '', workforce: "", country: '', turnover: "", aggregate_reports: "", industry: '',
-        state: '', product: "", org_mgt: "", div_mgt: "", dept_mgt: ""
+        state: '', product: "", org_mgt: "", div_mgt: "", dept_mgt: "",
     };
     australianState = [
         {name: 'National'},
@@ -48,14 +48,14 @@ export class AddEditClientComponent implements OnInit {
         {id: 2, value: '250 - 499'},
         {id: 3, value: '500 - 999'},
         {id: 4, value: '1,000 - 4,999'},
-        {id: 5, value: '5,000 +'}
+        {id: 5, value: '5,000 +'},
     ];
     products = [
         {id: 1, name: 'Exit Interview'},
     ];
     aggregate_reports = [
         {id: 0, name: 'Standard'},
-        {id: 1, name: 'Enhanced'}
+        {id: 1, name: 'Enhanced'},
     ];
     levels = [
         {id: 0, name: 'Aggregate Data Only'},
@@ -73,7 +73,7 @@ export class AddEditClientComponent implements OnInit {
     }
 
     ngOnInit() {
-        //get the employee from the localStorage
+        // get the employee from the localStorage
         // call the refresh token here
         this.tokenService.get()
             .subscribe(token => {
@@ -83,7 +83,7 @@ export class AddEditClientComponent implements OnInit {
         this.createForm();
         this.clientId = this.route.snapshot.paramMap.get('id');
         if (this.clientId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getClient();
             this.clientForm.clearValidators();
             this.get('image').clearValidators();
@@ -129,7 +129,7 @@ export class AddEditClientComponent implements OnInit {
 
     createClient() {
         if (this.clientForm.valid) {
-            //create a new staticPage object instance
+            // create a new staticPage object instance
             const formData = new FormData();
             formData.append('name', this.get('name').value);
             formData.append('country', this.get('country').value);
@@ -141,7 +141,7 @@ export class AddEditClientComponent implements OnInit {
             formData.append('aggregate_reports', this.get('aggregate_reports').value);
             formData.append('industry', this.get('industry').value);
             formData.append('product', this.get('product').value);
-            //Add Image Conditionally
+            // Add Image Conditionally
             if (typeof this.get('turnover').value !== 'undefined' && this.get('turnover').value !== '' && this.get('turnover').value != null) {
                 formData.append('turnover', this.get('turnover').value);
             } else {
@@ -162,14 +162,14 @@ export class AddEditClientComponent implements OnInit {
         this.clientService.createClient(client, this.user._id).subscribe(
             data => {
                 this.successMessage = data.message;
-                //API is returning client industry object which contain industry name and _id
+                // API is returning client industry object which contain industry name and _id
                 this.client.industry = data.client.industry._id;
                 this.setClient(data);
             },
             err => {
                 const {error} = err;
                 this.clientForm.setErrors({'message': error.message});
-            }
+            },
         );
     }
 
@@ -177,7 +177,7 @@ export class AddEditClientComponent implements OnInit {
         this.clientService.updateClient(client, this.clientId).subscribe(
             data => {
                 this.successMessage = data.message;
-                //API is returning client industry _id
+                // API is returning client industry _id
                 this.client.industry = data.client.industry;
                 this.setClient(data);
             },
@@ -185,7 +185,7 @@ export class AddEditClientComponent implements OnInit {
                 const {error} = err;
                 this.clientForm.setErrors({'message': error.message});
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -195,7 +195,7 @@ export class AddEditClientComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -206,7 +206,7 @@ export class AddEditClientComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -221,13 +221,13 @@ export class AddEditClientComponent implements OnInit {
         this.client.org_mgt = data.client.org_mgt;
         this.client.div_mgt = data.client.div_mgt;
         this.client.dept_mgt = data.client.dept_mgt;
-        //http://localhost:8080/images/client
+        // http://localhost:8080/images/client
         if (typeof data.client.image !== 'undefined' && data.client.image !== null) {
             this.imageSrc = this.urlService.baseUrl + '/images/client/' + data.client.image;
         }
         // Finally set the Id of the Client
         this.clientId = data.client._id;
-        //API is returning client industry object which contain industry name and _id
+        // API is returning client industry object which contain industry name and _id
         if (typeof data.client.industry._id !== 'undefined') {
             this.client.industry = data.client.industry._id;
         } else {

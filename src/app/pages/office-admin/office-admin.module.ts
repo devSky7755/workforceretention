@@ -22,7 +22,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         AddEditUserComponent,
         AddEditPermissionComponent,
         EmailManagementComponent,
-        AddEditEmailComponent
+        AddEditEmailComponent,
     ],
     imports: [
         CommonModule,
@@ -33,7 +33,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
         FormsModule,
         ReactiveFormsModule,
         NbCheckboxModule,
-        NgMultiSelectDropDownModule.forRoot()
+        NgMultiSelectDropDownModule.forRoot(),
     ],
     providers: [
         SmartTableService,

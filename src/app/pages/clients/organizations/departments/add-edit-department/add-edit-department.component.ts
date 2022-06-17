@@ -5,7 +5,7 @@ import {DepartmentService} from "../../../../../@core/data/department.service";
 @Component({
     selector: 'ngx-add-edit-department',
     templateUrl: './add-edit-department.component.html',
-    styleUrls: ['./add-edit-department.component.scss']
+    styleUrls: ['./add-edit-department.component.scss'],
 })
 export class AddEditDepartmentComponent implements OnInit, OnChanges {
     @Input() departmentId: string;
@@ -35,7 +35,7 @@ export class AddEditDepartmentComponent implements OnInit, OnChanges {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -48,7 +48,7 @@ export class AddEditDepartmentComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -57,10 +57,10 @@ export class AddEditDepartmentComponent implements OnInit, OnChanges {
             name: this.departmentName,
         };
         if (this.departmentId) {
-            //perform update operation
+            // perform update operation
             this.update(department);
         } else {
-            //perform insert operation
+            // perform insert operation
             this.insert(department);
         }
     }
@@ -76,7 +76,7 @@ export class AddEditDepartmentComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -91,7 +91,7 @@ export class AddEditDepartmentComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 

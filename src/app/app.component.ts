@@ -15,7 +15,7 @@ import { NbIconLibraries } from "@nebular/theme";
 export class AppComponent implements OnInit {
   constructor(
     private iconLibraries: NbIconLibraries,
-    private analytics: AnalyticsService // private seoService: SeoService
+    private analytics: AnalyticsService, // private seoService: SeoService
   ) {
     this.iconLibraries.registerFontPack("nebular", { iconClassPrefix: "nb" });
     this.iconLibraries.setDefaultPack("nebular");

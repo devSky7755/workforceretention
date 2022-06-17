@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Component({
     selector: 'ngx-email-management',
     templateUrl: './email-management.component.html',
-    styleUrls: ['./email-management.component.scss']
+    styleUrls: ['./email-management.component.scss'],
 })
 export class EmailManagementComponent implements OnInit {
 
@@ -46,7 +46,7 @@ export class EmailManagementComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

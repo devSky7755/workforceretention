@@ -250,7 +250,7 @@ export class CountryService {
             {"id": "243", "sort_name": "YE", "name": "Yemen", "phone_code": "967"},
             {"id": "244", "sort_name": "YU", "name": "Yugoslavia", "phone_code": "38"},
             {"id": "245", "sort_name": "ZM", "name": "Zambia", "phone_code": "260"},
-            {"id": "246", "sort_name": "ZW", "name": "Zimbabwe", "phone_code": "263"}
+            {"id": "246", "sort_name": "ZW", "name": "Zimbabwe", "phone_code": "263"},
         ];
 
 

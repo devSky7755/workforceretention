@@ -8,7 +8,7 @@ import { URLService } from "../../../@core/data/url.service";
 @Component({
     selector: 'ngx-data-reports',
     templateUrl: './data-reports.component.html',
-    styleUrls: ['./data-reports.component.scss']
+    styleUrls: ['./data-reports.component.scss'],
 })
 export class DataReportsComponent implements OnInit, OnChanges {
 
@@ -33,7 +33,7 @@ export class DataReportsComponent implements OnInit, OnChanges {
         this.surveyService.getSurvey(surveyId).subscribe(
             res => {
                 this.surveys.push(res.survey);
-            }
+            },
         );
     }
 
@@ -42,7 +42,7 @@ export class DataReportsComponent implements OnInit, OnChanges {
             res => {
                 this.clients.push(res.client);
                 this.getClientSurvey(res.client.surveys[0]);
-            }
+            },
         );
     }
 
@@ -78,7 +78,7 @@ export class DataReportsComponent implements OnInit, OnChanges {
                 },
                 error => {
                     this.ngxLoader.stopLoader('download_loader');
-                }
+                },
             );
         }
     }

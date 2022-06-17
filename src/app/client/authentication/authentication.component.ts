@@ -7,7 +7,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 @Component({
     selector: 'ngx-authentication',
     templateUrl: './authentication.component.html',
-    styleUrls: ['./authentication.component.scss']
+    styleUrls: ['./authentication.component.scss'],
 })
 export class AuthenticationComponent implements OnInit {
 
@@ -33,9 +33,9 @@ export class AuthenticationComponent implements OnInit {
         this.employeeForm = new FormGroup({
             email: new FormControl('', [
                 Validators.required,
-                Validators.pattern("[^ @]*@[^ @]*")
+                Validators.pattern("[^ @]*@[^ @]*"),
             ]),
-            password: new FormControl('', [Validators.required])
+            password: new FormControl('', [Validators.required]),
         });
     }
 
@@ -71,7 +71,7 @@ export class AuthenticationComponent implements OnInit {
                 const {error} = err;
                 this.errorMessage = error.message;
                 this.employeeForm.reset();
-            }
+            },
         );
 
     }

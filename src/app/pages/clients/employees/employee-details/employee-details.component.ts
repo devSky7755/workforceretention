@@ -10,7 +10,7 @@ import { SurveyService } from "../../../../@core/data/survey.service";
 @Component({
     selector: 'ngx-employee-details',
     templateUrl: './employee-details.component.html',
-    styleUrls: ['./employee-details.component.scss']
+    styleUrls: ['./employee-details.component.scss'],
 })
 export class EmployeeDetailsComponent implements OnInit, OnChanges {
 
@@ -22,7 +22,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
     surveyId;
     employeeSurvey;
     surveyCompleted = false;
-    surveyStatus = 'Not Started'
+    surveyStatus = 'Not Started';
 
     constructor(private employeeService: EmployeeService,
         private organizationService: OrganizationService,
@@ -48,7 +48,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 surveyCompleted: this.surveyCompleted,
                 employeeId: this.employeeId,
                 surveyStatus: this.surveyStatus,
-                employeeName: this.employeeName
+                employeeName: this.employeeName,
             });
         }
     }
@@ -68,7 +68,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 if (this.employee.division) {
                     this.getDivision(this.employee.division);
                 }
-            }
+            },
         );
     }
 
@@ -79,7 +79,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 if (this.employee.department) {
                     this.getDepartment(this.employee.department);
                 }
-            }
+            },
         );
     }
 
@@ -87,7 +87,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
         this.departmentService.getDepartment(departmentId).subscribe(
             data => {
                 this.employee.department = data.department.name;
-            }
+            },
         );
     }
 
@@ -101,7 +101,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                 // here we will get the name of the file
                 const fileName = res.fileName;
                 this.download(fileName);
-            }
+            },
         );
     }
 
@@ -126,21 +126,21 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
                     surveyCompleted: this.surveyCompleted,
                     employeeId: this.employeeId,
                     surveyStatus: this.surveyStatus,
-                    employeeName: this.employeeName
+                    employeeName: this.employeeName,
                 });
             });
     }
 
     getEmployee() {
         this.employeeService.getEmployee(this.employeeId).subscribe(data => {
-            //set the employee
+            // set the employee
             this.employee = data.employee;
             if (this.employee.surveys.length > 0) {
                 this.surveyId = this.employee.surveys[0].survey;
                 this.surveyCompleted = this.employee.surveys[0].completed;
                 this.employeeSurvey = this.employee.surveys[0];
-                this.employeeName = (this.employee.first_name ? this.employee.first_name : "") + " " + (this.employee.last_name ? this.employee.last_name : "")
-                this.surveyStatus = this.employee.surveys[0].completed ? "Completed" : this.employee.surveys[0].start_date ? "In Progress" : "Not Started"
+                this.employeeName = (this.employee.first_name ? this.employee.first_name : "") + " " + (this.employee.last_name ? this.employee.last_name : "");
+                this.surveyStatus = this.employee.surveys[0].completed ? "Completed" : this.employee.surveys[0].start_date ? "In Progress" : "Not Started";
             }
             if (this.employee.organization) {
                 this.getOrganization(this.employee.organization);
@@ -148,7 +148,7 @@ export class EmployeeDetailsComponent implements OnInit, OnChanges {
         },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 

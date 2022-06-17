@@ -20,7 +20,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
         ArticleRoutingModule,
         NbCardModule,
         ThemeModule,
-        NgxDatatableModule
+        NgxDatatableModule,
     ],
     providers: [
         SmartTableService,

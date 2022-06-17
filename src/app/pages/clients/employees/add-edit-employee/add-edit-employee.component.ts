@@ -100,7 +100,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     private employeeService: EmployeeService,
     protected dateService: NbDateService<Date>,
     private clientService: ClientService,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
   ) {
     this.min = this.dateService.addDay(this.dateService.today(), -5);
     this.max = this.dateService.addDay(this.dateService.today(), 5);
@@ -155,11 +155,11 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     this.employeeService.getEmployee(this.employeeId).subscribe(
       (data) => {
         this.setEmployee(data);
-        //set the employee
+        // set the employee
       },
       (err) => {
         console.log(err);
-      }
+      },
     );
   }
 
@@ -171,14 +171,14 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
       },
       (err) => {
         console.log(err);
-      }
+      },
     );
   }
 
   setOrganizations(organizations) {
     // foreach organization add in the array
-    //foreach organization division add in the array
-    //foreach division add the department
+    // foreach organization division add in the array
+    // foreach division add the department
     if (typeof organizations !== "undefined" && organizations !== null) {
       organizations.map((organization) => {
         const newOrganization = {
@@ -247,7 +247,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
       occupational_group: this.get("occupational_group").value,
       organization: this.employee.organization,
     };
-    //here check if the organization is selected or division selected or department selected
+    // here check if the organization is selected or division selected or department selected
     const split_organization = this.employee.organization.split("_");
     if (split_organization.length === 3) {
       employee["organization"] = split_organization[0];
@@ -291,9 +291,9 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     this.employee.employee_id = data.employee.employee_id;
     this.employeeId = data.employee._id;
     this.employee.state = data.employee.state || "";
-    //SET THE VALUE;
+    // SET THE VALUE;
 
-    //set the organization. combine the organization division and department
+    // set the organization. combine the organization division and department
     let organization = "";
     if (data.employee.organization) {
       organization += data.employee.organization;
@@ -329,16 +329,16 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
     this.employee.manager_name = data.employee.manager_name;
     if (this.get("is_manager").value == "0") {
       this.get("hire_date").setValue(
-        this.dateService.parse(data.employee.hire_date, "en-us")
+        this.dateService.parse(data.employee.hire_date, "en-us"),
       );
       this.get("birth_date").setValue(
-        this.dateService.parse(data.employee.date_of_birth, "en-us")
+        this.dateService.parse(data.employee.date_of_birth, "en-us"),
       );
       this.get("resignation_date").setValue(
-        this.dateService.parse(data.employee.resign_date, "en-us")
+        this.dateService.parse(data.employee.resign_date, "en-us"),
       );
       this.get("exit_date").setValue(
-        this.dateService.parse(data.employee.exit_date, "en-us")
+        this.dateService.parse(data.employee.exit_date, "en-us"),
       );
     }
   }
@@ -357,7 +357,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.errorMessage = error.message;
         this.showToast("danger", null, error.message);
         this.submittingSpinner = false;
-      }
+      },
     );
   }
 
@@ -394,7 +394,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
         this.errorMessage = error.message;
         this.showToast("danger", null, error.message);
         this.submittingSpinner = false;
-      }
+      },
     );
   }
 
@@ -413,7 +413,7 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
             const { error } = err;
             this.showToast("danger", null, error.message);
             this.resendingSpinner = false;
-          }
+          },
         );
     }
   }
@@ -431,8 +431,8 @@ export class AddEditEmployeeComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    //here we will get the clientId and employeeId on the changes object
-    //Find The Employee and set the employee
+    // here we will get the clientId and employeeId on the changes object
+    // Find The Employee and set the employee
     this.clientId = changes.clientId.currentValue;
     this.employeeId = changes.employeeId.currentValue;
     if (typeof this.employeeId !== "undefined" && this.employeeId !== null) {

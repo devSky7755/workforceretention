@@ -43,24 +43,24 @@ export class AddEditArticleComponent implements OnInit {
         private boxService: BoxService) {
         this.article = {
             title: '', subtitle: '', author: '', keywords: '',
-            description: '', image: null, publish_date: ''
+            description: '', image: null, publish_date: '',
         };
         this.min = this.dateService.addDay(this.dateService.today(), -5);
         this.max = this.dateService.addDay(this.dateService.today(), 5);
     }
 
     ngOnInit() {
-        //get the employee from the localStorage
+        // get the employee from the localStorage
         // call the refresh token here
         this.tokenService.get()
             .subscribe(token => {
                 this.user = token.getPayload();
             });
 
-        this.initFormGroup()
+        this.initFormGroup();
         this.articleId = this.route.snapshot.paramMap.get('id');
         if (this.articleId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getArticle();
             this.articleForm.clearValidators();
             this.get('image').clearValidators();
@@ -87,7 +87,7 @@ export class AddEditArticleComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -115,7 +115,7 @@ export class AddEditArticleComponent implements OnInit {
 
     createArticle() {
         if (this.articleForm.valid) {
-            //create a new staticPage object instance
+            // create a new staticPage object instance
             const formData = new FormData();
             formData.append('title', this.get('title').value);
             formData.append('subtitle', this.get('subtitle').value);
@@ -123,7 +123,7 @@ export class AddEditArticleComponent implements OnInit {
             formData.append('keywords', this.get('keywords').value);
             formData.append('description', this.get('description').value);
             formData.append('publish_date', this.article.publish_date ? this.article.publish_date : '');
-            //Add Image Conditionally
+            // Add Image Conditionally
             if (this.get('image').value !== null) {
                 formData.append('image', this.get('image').value);
             }
@@ -144,7 +144,7 @@ export class AddEditArticleComponent implements OnInit {
             err => {
                 const { error } = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 
@@ -157,7 +157,7 @@ export class AddEditArticleComponent implements OnInit {
             err => {
                 const { error } = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 

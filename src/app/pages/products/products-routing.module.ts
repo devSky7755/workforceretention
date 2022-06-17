@@ -18,7 +18,7 @@ const routes: Routes = [
     },
     {
         path: 'product-management',
-        component: ProductManagementComponent
+        component: ProductManagementComponent,
     },
     {
         path: 'product-management/add',
@@ -34,7 +34,7 @@ const routes: Routes = [
     },
     {
         path: 'box-management/edit/:id',
-        component: AddEditBoxComponent
+        component: AddEditBoxComponent,
     },
     {
         path: 'static-pages/assign-box/:id',

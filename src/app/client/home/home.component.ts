@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'ngx-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss']
+    styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, AfterContentInit {
     employee_details;
@@ -19,11 +19,11 @@ export class HomeComponent implements OnInit, AfterContentInit {
             const helper = new JwtHelperService();
             this.employee_details = helper.decodeToken(employee.access_token);
             if (!helper.isTokenExpired(employee.access_token)) {
-                let routerLink = ''
+                let routerLink = '';
                 if (this.employee_details && this.employee_details.is_survey == 1) {
-                    routerLink = '/client/dashboard'
+                    routerLink = '/client/dashboard';
                 } else if (this.employee_details && this.employee_details.is_report == 1) {
-                    routerLink = '/client/manager-report'
+                    routerLink = '/client/manager-report';
                 }
                 if (routerLink != '') {
                     this.router.navigateByUrl(routerLink);

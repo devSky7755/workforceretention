@@ -18,11 +18,11 @@ const routes: Routes = [
     },
     {
         path: 'survey-management/edit/:id',
-        component: AddEditSurveyComponent
+        component: AddEditSurveyComponent,
     },
     {
         path: 'survey-management/details/:id',
-        component: SurveyDetailsComponent
+        component: SurveyDetailsComponent,
     },
     {
         path: 'email-management/edit/:id',
@@ -34,8 +34,8 @@ const routes: Routes = [
     },
     {
         path: 'survey-management/question/add/:id',
-        component: AddEditQuestionComponent
-    }
+        component: AddEditQuestionComponent,
+    },
 ];
 
 @NgModule({

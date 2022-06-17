@@ -40,7 +40,7 @@ export class LinkManagementComponent implements OnInit {
     }
 
     onClickDelete(id) {
-        //find the employee name from the rows using
+        // find the employee name from the rows using
         const name = this.rows.find(x => x.id === id).employee_id;
         if (confirm("Are you sure to delete " + name)) {
             this.deleteUser(id);
@@ -55,7 +55,7 @@ export class LinkManagementComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -76,7 +76,7 @@ export class LinkManagementComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

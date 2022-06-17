@@ -48,14 +48,14 @@ const routes: Routes = [
         path: "office-admin",
         loadChildren: () =>
           import("./office-admin/office-admin.module").then(
-            (m) => m.OfficeAdminModule
+            (m) => m.OfficeAdminModule,
           ),
       },
       {
         path: "miscellaneous",
         loadChildren: () =>
           import("./miscellaneous/miscellaneous.module").then(
-            (m) => m.MiscellaneousModule
+            (m) => m.MiscellaneousModule,
           ),
       },
       {

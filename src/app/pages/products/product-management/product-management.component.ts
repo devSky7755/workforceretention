@@ -41,7 +41,7 @@ export class ProductManagementComponent implements OnInit {
   }
 
   onClickDelete(id) {
-    //find the employee name from the rows using
+    // find the employee name from the rows using
     const name = this.rows.find(x => x.id === id).username;
     if (confirm("Are you sure to delete " + name)) {
       this.deleteUser(id);
@@ -56,7 +56,7 @@ export class ProductManagementComponent implements OnInit {
         },
         err => {
           console.log(err);
-        }
+        },
     );
   }
 
@@ -75,7 +75,7 @@ export class ProductManagementComponent implements OnInit {
         },
         (err) => {
           console.log(err);
-        }
+        },
     );
   }
 

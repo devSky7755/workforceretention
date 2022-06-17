@@ -5,7 +5,7 @@ import {SurveyEmailService} from "../../../../@core/data/survey-email.service";
 @Component({
   selector: 'ngx-edit-email',
   templateUrl: './edit-email.component.html',
-  styleUrls: ['./edit-email.component.scss']
+  styleUrls: ['./edit-email.component.scss'],
 })
 export class EditEmailComponent implements OnInit {
   successMessage;
@@ -30,7 +30,7 @@ export class EditEmailComponent implements OnInit {
         },
         err => {
           console.log(err);
-        }
+        },
     );
   }
 
@@ -38,10 +38,10 @@ export class EditEmailComponent implements OnInit {
     const email = {
       from_address: this.email.fromAddress,
       subject: this.email.subject,
-      body: this.email.body
+      body: this.email.body,
     };
     if (this.emailId) {
-      //perform update operation
+      // perform update operation
       this.update(email);
     }
   }
@@ -57,7 +57,7 @@ export class EditEmailComponent implements OnInit {
           const {error} = err;
           this.errorMessage = error.message;
           console.log(err);
-        }
+        },
     );
   }
 

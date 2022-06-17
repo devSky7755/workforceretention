@@ -3,12 +3,12 @@ import { Router } from "@angular/router";
 import { IndustryService } from "../../../@core/data/industry.service";
 import { ClientService } from "../../../@core/data/client.service";
 import { OrganizationService } from "../../../@core/data/organization.service";
-import { RolePermissionService } from '../../../common/role/role_permission.service'
+import { RolePermissionService } from '../../../common/role/role_permission.service';
 
 @Component({
     selector: 'ngx-organizations',
     templateUrl: './organizations.component.html',
-    styleUrls: ['./organizations.component.scss']
+    styleUrls: ['./organizations.component.scss'],
 })
 export class OrganizationsComponent implements OnInit, OnChanges {
 
@@ -38,7 +38,7 @@ export class OrganizationsComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients');
     }
 
     onClickAdd() {
@@ -82,7 +82,7 @@ export class OrganizationsComponent implements OnInit, OnChanges {
             },
             () => {
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -96,8 +96,8 @@ export class OrganizationsComponent implements OnInit, OnChanges {
 
     setOrganizations(organizations) {
         // foreach organization add in the array
-        //foreach organization division add in the array
-        //foreach division add the department
+        // foreach organization division add in the array
+        // foreach division add the department
         if (typeof organizations !== 'undefined' && organizations !== null) {
             organizations.map((organization) => {
                 const newOrganization = {
@@ -105,7 +105,7 @@ export class OrganizationsComponent implements OnInit, OnChanges {
                     name: organization.name,
                     isOrganization: true,
                     isDivision: false,
-                    isDepartment: false
+                    isDepartment: false,
                 };
                 this.organizations_divisions_departments.push(newOrganization);
                 if (typeof organization.divisions !== 'undefined' && organization.divisions !== null) {
@@ -115,7 +115,7 @@ export class OrganizationsComponent implements OnInit, OnChanges {
                             name: division.name,
                             isOrganization: false,
                             isDivision: true,
-                            isDepartment: false
+                            isDepartment: false,
                         };
                         this.organizations_divisions_departments.push(newDivision);
                         if (typeof division.departments !== 'undefined' && division.departments !== null) {
@@ -125,7 +125,7 @@ export class OrganizationsComponent implements OnInit, OnChanges {
                                     name: department.name,
                                     isOrganization: false,
                                     isDivision: false,
-                                    isDepartment: true
+                                    isDepartment: true,
                                 };
                                 this.organizations_divisions_departments.push(newDepartment);
                             });
@@ -145,7 +145,7 @@ export class OrganizationsComponent implements OnInit, OnChanges {
         },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

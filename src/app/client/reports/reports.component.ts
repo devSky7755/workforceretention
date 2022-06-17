@@ -8,7 +8,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 @Component({
     selector: 'ngx-reports',
     templateUrl: './reports.component.html',
-    styleUrls: ['./reports.component.scss']
+    styleUrls: ['./reports.component.scss'],
 })
 export class ReportsComponent implements OnInit {
 
@@ -63,9 +63,9 @@ export class ReportsComponent implements OnInit {
                 this.completedSurveys = [{
                     reportType: 'Exit Surveys',
                     reportDescription: 'Aggregate data of Completed Exit Interviews, plus Individual Survey Data',
-                    completedSurveys: this.totalCompletedSurveys + '   /   ' + this.totalEmployees
+                    completedSurveys: this.totalCompletedSurveys + '   /   ' + this.totalEmployees,
                 }];
-            }
+            },
         );
     }
 

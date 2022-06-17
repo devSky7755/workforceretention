@@ -5,7 +5,7 @@ import {LinkCategoryService} from "../../../../@core/data/link-category.service"
 @Component({
     selector: 'ngx-add-edit-category',
     templateUrl: './add-edit-category.component.html',
-    styleUrls: ['./add-edit-category.component.scss']
+    styleUrls: ['./add-edit-category.component.scss'],
 })
 export class AddEditCategoryComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class AddEditCategoryComponent implements OnInit {
     ngOnInit() {
         this.categoryId = this.route.snapshot.paramMap.get('id');
         if (this.categoryId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getCategory();
         }
     }
@@ -33,7 +33,7 @@ export class AddEditCategoryComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -57,7 +57,7 @@ export class AddEditCategoryComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
     update(category) {
@@ -69,7 +69,7 @@ export class AddEditCategoryComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
     setCategory(data) {

@@ -4,7 +4,7 @@ declare var $: any;
 @Component({
   selector: 'ngx-client-testimonial',
   templateUrl: './client-testimonial.component.html',
-  styleUrls: ['./client-testimonial.component.scss']
+  styleUrls: ['./client-testimonial.component.scss'],
 })
 export class ClientTestimonialComponent implements OnInit {
   slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, "autoplay": true, "dots": true, "autoplaySpeed": 12000 };
@@ -24,7 +24,7 @@ export class ClientTestimonialComponent implements OnInit {
     { img: "https://workforceretention.s3-ap-southeast-2.amazonaws.com/assets/images/logos/arnotts.png" },
   ];
   slideLogoConfig = {
-    "slidesToShow": 4, "slidesToScroll": 4, "autoplay": true, "autoplaySpeed": 3000
+    "slidesToShow": 4, "slidesToScroll": 4, "autoplay": true, "autoplaySpeed": 3000,
   };
 
   constructor() { }

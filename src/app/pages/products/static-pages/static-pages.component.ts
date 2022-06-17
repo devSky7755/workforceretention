@@ -51,7 +51,7 @@ export class StaticPagesComponent implements OnInit {
         },
         (err) => {
           console.log(err);
-        }
+        },
     );
   }
 

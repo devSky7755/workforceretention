@@ -7,7 +7,7 @@ import {QuestionService} from "../../../../../@core/data/question.service";
 @Component({
     selector: 'ngx-add-edit-question',
     templateUrl: './add-edit-question.component.html',
-    styleUrls: ['./add-edit-question.component.scss']
+    styleUrls: ['./add-edit-question.component.scss'],
 })
 export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     myForm: FormGroup;
@@ -16,7 +16,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
     questions = [];
     no_of_labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     survey_types = [
-        {id: 1, value: 'Exit Interview'}
+        {id: 1, value: 'Exit Interview'},
     ];
     exit_interview_exit_reason_ids = [
         {id: "career-opportunities-"},
@@ -49,7 +49,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
         {id: 7, value: '1-7'},
         {id: 8, value: '1-8'},
         {id: 9, value: '1-9'},
-        {id: 10, value: '1-10'}
+        {id: 10, value: '1-10'},
     ];
     exit_reason = [
         {id: 1, value: 'Career Opportunities'},
@@ -82,7 +82,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
         this.surveyId = this.route.snapshot.paramMap.get('id');
         this.myForm = this.fb.group({
             email: '',
-            phones: this.fb.array([])
+            phones: this.fb.array([]),
         });
     }
 
@@ -93,7 +93,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -178,7 +178,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
         }
         this.surveyId = data.survey._id;
         if (this.questions.length > 0) {
-            //this means this survey has question
+            // this means this survey has question
             const self = this;
             setTimeout(function () {
                 self.setQuestion();
@@ -198,7 +198,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
                 area: this.questions[i].title ? this.questions[i].title : '',
                 prefix: this.questions[i].type ? this.questions[i].type : '',
                 exit_reason: this.questions[i].exit_reason ? this.questions[i].exit_reason : '',
-                line: this.questions[i].exit_reporting_label ? this.questions[i].exit_reporting_label : ''
+                line: this.questions[i].exit_reporting_label ? this.questions[i].exit_reporting_label : '',
             });
             // check question type as well
             this.onChangeQuestionType(i, this.questions[i].type);
@@ -321,7 +321,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             // if question type is 5(radio-label) get all the labels value
             // if question type is 6(multiple-choice) get all the labels value
 
-            //exit-reason
+            // exit-reason
             const exit_reason = this.phoneForms.controls[i].get('exit_reason').value;
             if (exit_reason == 13) {
                 // this means this is the final question
@@ -393,7 +393,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -411,7 +411,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
         this.questionService.updateManyQuestion(question_array, this.surveyId).subscribe(
             () => {
                 this.router.navigateByUrl('/pages/surveys/survey-management');
-            }
+            },
         );
 
 
@@ -449,7 +449,7 @@ export class AddEditQuestionComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         if (this.surveyId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getSurvey();
         }
     }

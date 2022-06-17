@@ -5,7 +5,7 @@ import {EmailService} from "../../../../@core/data/email.service";
 @Component({
     selector: 'ngx-add-edit-email',
     templateUrl: './add-edit-email.component.html',
-    styleUrls: ['./add-edit-email.component.scss']
+    styleUrls: ['./add-edit-email.component.scss'],
 })
 export class AddEditEmailComponent implements OnInit {
 
@@ -32,7 +32,7 @@ export class AddEditEmailComponent implements OnInit {
             res => {
                 this.email = res.email;
                 console.log(this.email);
-            }
+            },
         );
     }
 
@@ -41,7 +41,7 @@ export class AddEditEmailComponent implements OnInit {
         this.emailService.updateEmail(this.email, this.emailId).subscribe(
             res => {
                 this.successMessage = res.message;
-            }
+            },
         );
     }
 

@@ -12,7 +12,7 @@ export class AssignBoxComponent implements OnInit {
 
     staticPage = {
         title: '',
-        box_1: '', box_2: ''
+        box_1: '', box_2: '',
     };
     staticPageId;
     boxes;
@@ -34,7 +34,7 @@ export class AssignBoxComponent implements OnInit {
         const staticPage = {
             title: this.staticPage.title,
             box_1: this.staticPage.box_1,
-            box_2: this.staticPage.box_2
+            box_2: this.staticPage.box_2,
         };
         this.staticPagService.updateStaticPage(staticPage, this.staticPageId).subscribe(
             data => {
@@ -44,7 +44,7 @@ export class AssignBoxComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 
@@ -55,7 +55,7 @@ export class AssignBoxComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 
@@ -67,7 +67,7 @@ export class AssignBoxComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { URLService } from "./url.service";
 
 const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable()
@@ -62,14 +62,14 @@ export class UserService {
 
     verfiyTfaToken(phone, code, token): Observable<any> {
         const body = JSON.stringify({
-            phone, code, token
+            phone, code, token,
         });
         return this.http.post(this.urlService.baseUrl + '/api/v1/auth/verify-tfa-token', body, httpOptions);
     }
 
     resendTfaToken(phone, token): Observable<any> {
         const body = JSON.stringify({
-            phone, token
+            phone, token,
         });
         return this.http.post(this.urlService.baseUrl + '/api/v1/auth/resend-tfa-token', body, httpOptions);
     }

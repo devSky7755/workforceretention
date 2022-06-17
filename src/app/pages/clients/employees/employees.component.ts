@@ -7,16 +7,16 @@ import {
     OnInit,
     Output,
     SimpleChanges,
-    ViewChild
+    ViewChild,
 } from '@angular/core';
 import { EmployeeService } from "../../../@core/data/employee.service";
 import { URLService } from "../../../@core/data/url.service";
-import { RolePermissionService } from '../../../common/role/role_permission.service'
+import { RolePermissionService } from '../../../common/role/role_permission.service';
 
 @Component({
     selector: 'ngx-employees',
     templateUrl: './employees.component.html',
-    styleUrls: ['./employees.component.scss']
+    styleUrls: ['./employees.component.scss'],
 })
 export class EmployeesComponent implements OnInit, OnChanges {
 
@@ -41,7 +41,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients');
     }
 
     /**
@@ -57,7 +57,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
     }
 
     onClickDelete(employeeId) {
-        //find the employee name from the rows using
+        // find the employee name from the rows using
         const name = this.rows.find(x => x.id === employeeId).employee_id;
         if (confirm("Are you sure to delete " + name)) {
             this.deleteEmployee(employeeId);
@@ -76,7 +76,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -93,7 +93,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
                 err => {
                     const { error } = err;
                     this.errorMessage = error.message;
-                }
+                },
             );
     }
 
@@ -151,7 +151,7 @@ export class EmployeesComponent implements OnInit, OnChanges {
         },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

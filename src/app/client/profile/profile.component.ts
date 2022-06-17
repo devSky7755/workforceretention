@@ -8,14 +8,14 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 @Component({
     selector: 'ngx-profile',
     templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss']
+    styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
     employee;
     employee_details;
     password = { old_password: '', new_password: '', new_password_confirmation: '' };
     passwordForm: FormGroup;
-    successMessage
+    successMessage;
 
 
     constructor(private employeeService: EmployeeService,
@@ -30,24 +30,24 @@ export class ProfileComponent implements OnInit {
         if (localStorage.getItem('employee')) {
             // parse the employee object and check the expiration of the login. if the login time is expired
             this.employee = JSON.parse(localStorage.getItem('employee'));
-            this.createForm()
+            this.createForm();
         }
         this.getEmployeeDetails();
     }
 
     checkPasswords(group: FormGroup) { // here we have the 'passwords' group
-        let pass = group.get('newPassword').value;
-        let confirmPass = group.get('newPasswordConfirmation').value;
+        const pass = group.get('newPassword').value;
+        const confirmPass = group.get('newPasswordConfirmation').value;
 
-        return pass === confirmPass ? null : { notSame: true }
+        return pass === confirmPass ? null : { notSame: true };
     }
 
     createForm() {
         this.passwordForm = new FormGroup({
             oldPassword: new FormControl('', Validators.required),
             newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
-            newPasswordConfirmation: new FormControl('')
-        }, { validators: this.checkPasswords })
+            newPasswordConfirmation: new FormControl(''),
+        }, { validators: this.checkPasswords });
     }
 
     getEmployeeDetails() {
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
                 if (this.employee_details.organization) {
                     this.getOrganization(this.employee_details.organization);
                 }
-            }
+            },
         );
     }
 
@@ -68,7 +68,7 @@ export class ProfileComponent implements OnInit {
                 if (this.employee_details.division) {
                     this.getDivision(this.employee_details.division);
                 }
-            }
+            },
         );
     }
 
@@ -79,7 +79,7 @@ export class ProfileComponent implements OnInit {
                 if (this.employee_details.department) {
                     this.getDepartment(this.employee_details.department);
                 }
-            }
+            },
         );
     }
 
@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit {
         this.departmentService.getDepartment(departmentId).subscribe(
             data => {
                 this.employee_details.department = data.department.name;
-            }
+            },
         );
     }
 
@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
         const password = {
             old_password: this.get("oldPassword").value,
             new_password: this.get("newPassword").value,
-            clientId: this.employee_details.client._id
+            clientId: this.employee_details.client._id,
         };
         this.employeeService.changePassword(password, this.employee_details._id).subscribe(
             data => {
@@ -108,9 +108,9 @@ export class ProfileComponent implements OnInit {
             },
             err => {
                 const { error } = err;
-                this.successMessage = ''
+                this.successMessage = '';
                 this.passwordForm.setErrors({ 'message': error.message });
-            }
+            },
         );
     }
 }

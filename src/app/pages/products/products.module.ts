@@ -30,7 +30,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
         Ng2SmartTableModule,
         NbCardModule,
         ThemeModule,
-        NgxDatatableModule
+        NgxDatatableModule,
     ],
     providers: [
         SmartTableService,

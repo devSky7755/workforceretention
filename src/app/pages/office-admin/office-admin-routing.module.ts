@@ -14,7 +14,7 @@ const routes: Routes = [
     },
     {
         path: 'employee-management/add',
-        component: AddEditUserComponent
+        component: AddEditUserComponent,
     },
     {path: 'employee-management/edit/:id', component: AddEditUserComponent},
     {
@@ -23,20 +23,20 @@ const routes: Routes = [
     },
     {
         path: 'permission-management/add',
-        component: AddEditPermissionComponent
+        component: AddEditPermissionComponent,
     },
     {
         path: 'permission-management/edit/:id',
-        component: AddEditPermissionComponent
+        component: AddEditPermissionComponent,
     },
     {
         path: 'email-management',
-        component: EmailManagementComponent
+        component: EmailManagementComponent,
     },
     {
         path: 'email-management/edit/:id',
-        component: AddEditEmailComponent
-    }
+        component: AddEditEmailComponent,
+    },
 ];
 
 @NgModule({

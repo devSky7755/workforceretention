@@ -5,7 +5,7 @@ import {IndustryService} from "../../../@core/data/industry.service";
 @Component({
     selector: 'ngx-industries',
     templateUrl: './industries.component.html',
-    styleUrls: ['./industries.component.scss']
+    styleUrls: ['./industries.component.scss'],
 })
 export class IndustriesComponent implements OnInit {
 
@@ -47,7 +47,7 @@ export class IndustriesComponent implements OnInit {
             },
             () => {
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -74,7 +74,7 @@ export class IndustriesComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { Router } from "@angular/router";
 import { IndustryService } from "../../../@core/data/industry.service";
 import { ClientService } from "../../../@core/data/client.service";
-import { RolePermissionService } from '../../../common/role/role_permission.service'
+import { RolePermissionService } from '../../../common/role/role_permission.service';
 
 @Component({
     selector: 'ngx-emails',
     templateUrl: './emails.component.html',
-    styleUrls: ['./emails.component.scss']
+    styleUrls: ['./emails.component.scss'],
 })
 export class EmailsComponent implements OnInit, OnChanges {
     @Input() clientId: string;
@@ -25,7 +25,7 @@ export class EmailsComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients');
     }
 
     onClickAdd() {
@@ -59,7 +59,7 @@ export class EmailsComponent implements OnInit, OnChanges {
         },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

@@ -3,6 +3,6 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class URLService {
-    baseUrl = !environment.production ? 'http://localhost:8080' : ''
+    baseUrl = !environment.production ? 'http://localhost:8080' : '';
     // baseUrl = '';
 }

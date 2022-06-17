@@ -6,7 +6,7 @@ import {OrganizationService} from "../../../../../@core/data/organization.servic
 @Component({
     selector: 'ngx-add-edit-division',
     templateUrl: './add-edit-division.component.html',
-    styleUrls: ['./add-edit-division.component.scss']
+    styleUrls: ['./add-edit-division.component.scss'],
 })
 export class AddEditDivisionComponent implements OnInit, OnChanges {
 
@@ -38,7 +38,7 @@ export class AddEditDivisionComponent implements OnInit, OnChanges {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -51,7 +51,7 @@ export class AddEditDivisionComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -59,7 +59,7 @@ export class AddEditDivisionComponent implements OnInit, OnChanges {
         this.organizationService.getOrganization(this.organizationId).subscribe(
             data => {
                 this.organizationName = data.organization.name;
-            }
+            },
         );
     }
 
@@ -68,10 +68,10 @@ export class AddEditDivisionComponent implements OnInit, OnChanges {
             name: this.divisionName,
         };
         if (this.divisionId) {
-            //perform update operation
+            // perform update operation
             this.update(division);
         } else {
-            //perform insert operation
+            // perform insert operation
             this.insert(division);
         }
     }
@@ -87,7 +87,7 @@ export class AddEditDivisionComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -102,7 +102,7 @@ export class AddEditDivisionComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 

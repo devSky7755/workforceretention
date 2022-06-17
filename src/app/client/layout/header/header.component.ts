@@ -25,16 +25,16 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
-    private clientService: ClientService
+    private clientService: ClientService,
   ) {
     router.events
       .filter((event: any) => event instanceof NavigationEnd)
       .subscribe((event) => {
-        let defaultLogoUrl = ["/client/login"];
+        const defaultLogoUrl = ["/client/login"];
         if (defaultLogoUrl.includes(event.url)) {
           this.isDefaultLogo = true;
         }
-        let RAQUrls = ["/program-options"];
+        const RAQUrls = ["/program-options"];
         if (RAQUrls.includes(event.url)) {
           this.showPhoneNo = true;
         }
@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
     this.authSubscription = this.employeeService.authChange.subscribe(
       (authStatus) => {
         this.isAuth = authStatus;
-      }
+      },
     );
   }
 
@@ -99,7 +99,7 @@ export class HeaderComponent implements OnInit {
     // employeeService authChange make this false
     this.employeeService.authChange.next(false);
     this.employeeService.employee = null;
-    //redirect to login page
+    // redirect to login page
     this.router.navigateByUrl("/client/login");
   }
 }

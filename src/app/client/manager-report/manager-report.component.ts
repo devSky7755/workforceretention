@@ -333,7 +333,7 @@ export class ManagerReportComponent implements OnInit {
             // first get the final question
             // find the top 3 reasons for leaving the exit interview from the final question
 
-            //***************Gender Calculation***************
+            // ***************Gender Calculation***************
             this.gender_split_chart_data = data.genders;
             // from gender data calculate percentage
             let total = 0;
@@ -357,8 +357,8 @@ export class ManagerReportComponent implements OnInit {
                 this.gender_split_chart_data = [];
             }
             console.log("gender_split_chart_data", this.gender_split_chart_data);
-            //****************Age Calculation******************
-            //from ages data calculate percentage
+            // ****************Age Calculation******************
+            // from ages data calculate percentage
             this.age_split_chart_data = data.ages;
             total = 0;
             this.age_split_chart_data.map((a) => {
@@ -377,7 +377,7 @@ export class ManagerReportComponent implements OnInit {
                 this.age_split_chart_data = [];
             }
 
-            //*****************Tenure Calculation****************
+            // *****************Tenure Calculation****************
             this.tenure_split_chart_data = data.tenures;
             total = 0;
             this.tenure_split_chart_data.map((t) => {
@@ -396,7 +396,7 @@ export class ManagerReportComponent implements OnInit {
                 this.tenure_split_chart_data = [];
             }
 
-            //*****************Occupation Calculation****************
+            // *****************Occupation Calculation****************
             this.occupation_split_chart_data = data.occupations;
             total = 0;
             this.occupation_split_chart_data.map((t) => {
@@ -531,7 +531,7 @@ export class ManagerReportComponent implements OnInit {
                 mapped_reason.canvasData = [];
                 if (mapped_reason.value.length > 0) {
                     for (let i = 0; i < mapped_reason.value[0].series.length; i++) {
-                        let canvasData = {
+                        const canvasData = {
                             type: "stackedColumn100",
                             name: mapped_reason.value[0].series[i].name,
                             showInLegend: true,
@@ -606,7 +606,7 @@ export class ManagerReportComponent implements OnInit {
                     ? 1
                     : parseFloat(b.positive_percentage) < parseFloat(a.positive_percentage)
                         ? -1
-                        : 0
+                        : 0,
             );
             const sentiment_divider_length = Math.round(this.employee_sentiment.length / 2);
             for (let i = 0; i < Math.min(sentiment_divider_length, 10); i++) {
@@ -617,7 +617,7 @@ export class ManagerReportComponent implements OnInit {
             if (this.employee_sentiment_working_chart_data.length > 0) {
                 this.employee_sentiment_working_chart_data = this.employee_sentiment_working_chart_data.reverse();
                 for (let i = 0; i < this.employee_sentiment_working_chart_data[0].series.length; i++) {
-                    let canvasData = {
+                    const canvasData = {
                         type: "stackedBar100",
                         name: this.employee_sentiment_working_chart_data[0].series[i].name,
                         showInLegend: true,
@@ -645,7 +645,7 @@ export class ManagerReportComponent implements OnInit {
             this.esnwcdCanvasData = [];
             if (this.employee_sentiment_not_working_chart_data.length > 0) {
                 for (let i = 0; i < this.employee_sentiment_not_working_chart_data[0].series.length; i++) {
-                    let canvasData = {
+                    const canvasData = {
                         type: "stackedBar100",
                         name: this.employee_sentiment_not_working_chart_data[0].series[i].name,
                         showInLegend: true,
@@ -776,7 +776,7 @@ export class ManagerReportComponent implements OnInit {
     showReasonStackedChart() {
         this.leaving_reason_rearranged_array.forEach((response, index) => {
             if (this.exit_reason_data_mapper[response.label_index].value.length == 0) return;
-            var reason_stacked_chart = new CanvasJS.Chart("reasonStackedChart" + response.label_index, {
+            const reason_stacked_chart = new CanvasJS.Chart("reasonStackedChart" + response.label_index, {
                 colorSet: "stackColorSets",
                 animationEnabled: true,
                 exportEnabled: true,
@@ -803,7 +803,7 @@ export class ManagerReportComponent implements OnInit {
         });
     }
     showEswcdStackedChart() {
-        var eswcdChart = new CanvasJS.Chart("employeeSentimentChart", {
+        const eswcdChart = new CanvasJS.Chart("employeeSentimentChart", {
             colorSet: "sentimentColorSets",
             animationEnabled: true,
             exportEnabled: true,
@@ -832,7 +832,7 @@ export class ManagerReportComponent implements OnInit {
         eswcdChart.render();
     }
     showEsnwcdStackedChart() {
-        var esnwcdChart = new CanvasJS.Chart("employeeSentimentNotChart", {
+        const esnwcdChart = new CanvasJS.Chart("employeeSentimentNotChart", {
             colorSet: "sentimentColorSets",
             animationEnabled: true,
             exportEnabled: true,
@@ -861,7 +861,7 @@ export class ManagerReportComponent implements OnInit {
         esnwcdChart.render();
     }
     showGenderChart() {
-        var genderChart = new CanvasJS.Chart("genderChart", {
+        const genderChart = new CanvasJS.Chart("genderChart", {
             colorSet: "pieColorSets",
             animationEnabled: true,
             exportEnabled: true,
@@ -898,7 +898,7 @@ export class ManagerReportComponent implements OnInit {
         genderChart.render();
     }
     showTenureChart() {
-        var tenureChart = new CanvasJS.Chart("tenureChart", {
+        const tenureChart = new CanvasJS.Chart("tenureChart", {
             colorSet: "pieColorSets",
             animationEnabled: true,
             exportEnabled: true,
@@ -935,7 +935,7 @@ export class ManagerReportComponent implements OnInit {
         tenureChart.render();
     }
     showOccupationChart() {
-        var occupationChart = new CanvasJS.Chart("occupationChart", {
+        const occupationChart = new CanvasJS.Chart("occupationChart", {
             colorSet: "pieColorSets",
             animationEnabled: true,
             exportEnabled: true,
@@ -972,7 +972,7 @@ export class ManagerReportComponent implements OnInit {
         occupationChart.render();
     }
     showAgeChart() {
-        var ageChart = new CanvasJS.Chart("ageChart", {
+        const ageChart = new CanvasJS.Chart("ageChart", {
             colorSet: "pieColorSets",
             animationEnabled: true,
             exportEnabled: true,

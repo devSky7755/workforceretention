@@ -29,7 +29,7 @@ const routes: Routes = [
     {
         path: 'category-management/edit/:id',
         component: AddEditCategoryComponent,
-    }
+    },
 ];
 
 @NgModule({

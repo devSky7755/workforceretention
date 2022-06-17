@@ -22,7 +22,7 @@ import {FormsModule} from "@angular/forms";
         NbCardModule,
         NgxDatatableModule,
         FormsModule,
-        ThemeModule
+        ThemeModule,
     ],
     providers: [
         SmartTableService,

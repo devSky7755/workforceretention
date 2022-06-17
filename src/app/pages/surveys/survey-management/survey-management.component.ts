@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SurveyService } from "../../../@core/data/survey.service";
 import { NbTokenService } from "@nebular/auth";
-import { RolePermissionService } from '../../../common/role/role_permission.service'
+import { RolePermissionService } from '../../../common/role/role_permission.service';
 
 @Component({
     selector: 'ngx-survey-management',
@@ -26,7 +26,7 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.permission = this.rolePermissionSerivce.getRolePermission('Surveys')
+        this.permission = this.rolePermissionSerivce.getRolePermission('Surveys');
         // call the refresh token here
         this.tokenService.get()
             .subscribe(token => {
@@ -48,7 +48,7 @@ export class SurveyManagementComponent implements OnInit {
     }
 
     onClickDelete(id) {
-        //find the employee name from the rows using
+        // find the employee name from the rows using
         const name = this.rows.find(x => x.id === id).title;
         if (confirm("Are you sure to delete " + name)) {
             this.deleteSurvey(id);
@@ -70,7 +70,7 @@ export class SurveyManagementComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -91,7 +91,7 @@ export class SurveyManagementComponent implements OnInit {
         },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

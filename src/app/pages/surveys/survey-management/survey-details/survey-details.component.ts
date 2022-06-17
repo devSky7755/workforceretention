@@ -6,7 +6,7 @@ import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 @Component({
     selector: 'ngx-survey-details',
     templateUrl: './survey-details.component.html',
-    styleUrls: ['./survey-details.component.scss']
+    styleUrls: ['./survey-details.component.scss'],
 })
 export class SurveyDetailsComponent implements OnInit {
 
@@ -15,7 +15,7 @@ export class SurveyDetailsComponent implements OnInit {
     myForm: FormGroup;
     errorMessage;
     survey_types = [
-        {id: 1, value: 'Exit Interview'}
+        {id: 1, value: 'Exit Interview'},
     ];
     ratings = [
         {id: 2, value: '1-2'},
@@ -26,7 +26,7 @@ export class SurveyDetailsComponent implements OnInit {
         {id: 7, value: '1-7'},
         {id: 8, value: '1-8'},
         {id: 9, value: '1-9'},
-        {id: 10, value: '1-10'}
+        {id: 10, value: '1-10'},
     ];
     rating_labels = [];
 
@@ -41,11 +41,11 @@ export class SurveyDetailsComponent implements OnInit {
         //  here get the id of the survey
         this.surveyId = this.route.snapshot.paramMap.get('id');
         if (this.surveyId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getSurvey();
         }
         this.myForm = this.fb.group({
-            rating_labels: this.fb.array([])
+            rating_labels: this.fb.array([]),
         });
     }
 
@@ -69,14 +69,14 @@ export class SurveyDetailsComponent implements OnInit {
                 console.log(err);
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 
     addLabel() {
 
         const rating_label = this.fb.group({
-            label: []
+            label: [],
         });
         this.getRatingLabels().push(rating_label);
     }
@@ -87,7 +87,7 @@ export class SurveyDetailsComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -106,10 +106,10 @@ export class SurveyDetailsComponent implements OnInit {
         for (let i = 1; i <= this.survey.rating_scale; i++) {
             this.addLabel();
         }
-        //check the rating_labels array
-        //if the rating_labels array is not empty and not null
-        //then create the label
-        //read the value from the rating_labels array and assign it into the text-box
+        // check the rating_labels array
+        // if the rating_labels array is not empty and not null
+        // then create the label
+        // read the value from the rating_labels array and assign it into the text-box
         this.rating_labels = data.survey.rating_labels;
         if (this.rating_labels !== null && typeof this.rating_labels !== 'undefined') {
             this.setRatingLabels(this.rating_labels);

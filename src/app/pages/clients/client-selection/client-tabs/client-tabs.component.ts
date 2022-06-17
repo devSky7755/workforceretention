@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { ClientService } from "../../../../@core/data/client.service";
-import { RolePermissionService } from '../../../../common/role/role_permission.service'
+import { RolePermissionService } from '../../../../common/role/role_permission.service';
 
 @Component({
     selector: 'ngx-client-tabs',
     templateUrl: './client-tabs.component.html',
-    styleUrls: ['./client-tabs.component.scss']
+    styleUrls: ['./client-tabs.component.scss'],
 })
 export class ClientTabsComponent implements OnInit {
 
@@ -22,7 +22,7 @@ export class ClientTabsComponent implements OnInit {
     employeeName;
     surveyId;
 
-    //IS ADD EDIT Variable is used to display the Form for editing
+    // IS ADD EDIT Variable is used to display the Form for editing
     isAddDivision = false;
     isAddDepartment = false;
     isAddEmployee = false;
@@ -32,7 +32,7 @@ export class ClientTabsComponent implements OnInit {
     isAddOrganization = false;
     isEditEmail = false;
 
-    //SHOW Variable for displaying multiple component in a single tab
+    // SHOW Variable for displaying multiple component in a single tab
     isShowOrganization = true;
     isShowDivision = false;
     isShowDepartment = false;
@@ -229,10 +229,10 @@ export class ClientTabsComponent implements OnInit {
     ngOnInit() {
         this.clientId = this.route.snapshot.paramMap.get('id');
         this.getClient();
-        let officePermssion = this.rolePermissionSerivce.getRolePermission('Office Admin')
+        const officePermssion = this.rolePermissionSerivce.getRolePermission('Office Admin');
         this.isSuperAdmin = officePermssion && officePermssion.has_access && officePermssion.is_add && officePermssion.is_delete && officePermssion.is_update;
-        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
-        console.log(this.permission)
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients');
+        console.log(this.permission);
     }
 
     getClient() {
@@ -241,7 +241,7 @@ export class ClientTabsComponent implements OnInit {
         },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 

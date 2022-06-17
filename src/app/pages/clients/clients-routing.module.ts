@@ -19,32 +19,32 @@ const routes: Routes = [
     },
     {
         path: 'client-selection/edit/:id',
-        component: AddEditClientComponent
+        component: AddEditClientComponent,
     },
     {
         path: 'client-selection/details/:id',
-        component: ClientTabsComponent
+        component: ClientTabsComponent,
     },
     {
         path: 'client-selection/employees/:clientId',
-        component: EmployeesComponent
+        component: EmployeesComponent,
     },
     {
         path: 'client-selection/employees/:id',
-        component: AddEditEmployeeComponent
+        component: AddEditEmployeeComponent,
     },
     {
         path: 'client-selection/industries',
-        component: IndustriesComponent
+        component: IndustriesComponent,
     },
     {
         path: 'client-selection/industries/add',
-        component: AddEditIndustryComponent
+        component: AddEditIndustryComponent,
     },
     {
         path: 'client-selection/industries/edit/:id',
-        component: AddEditIndustryComponent
-    }
+        component: AddEditIndustryComponent,
+    },
 ];
 
 @NgModule({

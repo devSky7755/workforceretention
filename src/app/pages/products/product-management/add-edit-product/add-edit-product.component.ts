@@ -45,7 +45,7 @@ export class AddEditProductComponent implements OnInit {
     ngOnInit() {
         this.pageId = this.route.snapshot.paramMap.get('id');
         if (this.pageId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getPage();
         }
         this.getBoxes();
@@ -83,18 +83,18 @@ export class AddEditProductComponent implements OnInit {
     }
 
     setEditorContent(page_text) {
-        //this is used for set the page_text;
+        // this is used for set the page_text;
         this.tinyMCEService.contentChange.next(page_text);
     }
 
     setSimpleEditorContent(home_text) {
-        //This is used for set the home_text
+        // This is used for set the home_text
         this.tinyMCEService.simpleTinyMceContentChange.next(home_text);
     }
 
     createPage() {
         if (this.pageForm.valid) {
-            //create a new staticPage object instance
+            // create a new staticPage object instance
             const page = {
                 title: this.get('title').value,
                 menu_title: this.get('menu_title').value,
@@ -104,7 +104,7 @@ export class AddEditProductComponent implements OnInit {
                 box_2: this.get('box_2').value,
                 box_3: this.get('box_3').value,
                 is_home: this.get('is_home').value,
-                menu_order: 0
+                menu_order: 0,
             };
             if (!this.pageId) {
                 this.insert(page);
@@ -123,7 +123,7 @@ export class AddEditProductComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.pageForm.setErrors({'message': error.message});
-            }
+            },
         );
     }
 
@@ -136,7 +136,7 @@ export class AddEditProductComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.pageForm.setErrors({'message': error.message});
-            }
+            },
         );
     }
 
@@ -147,7 +147,7 @@ export class AddEditProductComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.pageForm.setErrors({'message': error.message});
-            }
+            },
         );
     }
 
@@ -159,7 +159,7 @@ export class AddEditProductComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.pageForm.setErrors({'message': error.message});
-            }
+            },
         );
     }
 

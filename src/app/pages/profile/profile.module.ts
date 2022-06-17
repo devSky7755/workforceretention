@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileManagementComponent } from './profile-management/profile-management.component';
@@ -12,7 +12,7 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 
 @NgModule({
     declarations: [
-        ProfileManagementComponent
+        ProfileManagementComponent,
     ],
     imports: [
         CommonModule,
@@ -21,7 +21,7 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
         NbCardModule,
         NbCheckboxModule,
         ThemeModule,
-        NgxDatatableModule
+        NgxDatatableModule,
     ],
     providers: [
         SmartTableService,

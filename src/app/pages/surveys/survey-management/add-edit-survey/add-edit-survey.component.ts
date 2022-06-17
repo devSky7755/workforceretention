@@ -12,7 +12,7 @@ import { SurveyService } from "../../../../@core/data/survey.service";
 @Component({
     selector: 'ngx-add-edit-survey',
     templateUrl: './add-edit-survey.component.html',
-    styleUrls: ['./add-edit-survey.component.scss']
+    styleUrls: ['./add-edit-survey.component.scss'],
 })
 export class AddEditSurveyComponent implements OnInit {
     // All the staticPage fields should declare here;
@@ -26,10 +26,10 @@ export class AddEditSurveyComponent implements OnInit {
     survey = {
         title: '', description: '', instruction: '',
         no_of_questions: '', survey_type: '',
-        rating_scale: ''
+        rating_scale: '',
     };
     survey_types = [
-        { id: 1, value: 'Exit Interview' }
+        { id: 1, value: 'Exit Interview' },
     ];
     ratings = [
         { id: 2, value: '1-2' },
@@ -40,7 +40,7 @@ export class AddEditSurveyComponent implements OnInit {
         { id: 7, value: '1-7' },
         { id: 8, value: '1-8' },
         { id: 9, value: '1-9' },
-        { id: 10, value: '1-10' }
+        { id: 10, value: '1-10' },
     ];
     surveyId;
     boxes;
@@ -61,11 +61,11 @@ export class AddEditSurveyComponent implements OnInit {
     ngOnInit() {
         this.surveyId = this.route.snapshot.paramMap.get('id');
         if (this.surveyId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getSurvey();
         }
         this.createForm();
-        //get the employee from the localStorage
+        // get the employee from the localStorage
         // call the refresh token here
         this.tokenService.get()
             .subscribe(token => {
@@ -103,20 +103,20 @@ export class AddEditSurveyComponent implements OnInit {
     // }
 
     setSimpleEditorContent(instruction) {
-        //This is used for set the home_text
+        // This is used for set the home_text
         this.tinyMCEService.simpleTinyMceContentChange.next(instruction);
     }
 
     createPage() {
         if (this.surveyForm.valid) {
-            //create a new staticPage object instance
+            // create a new staticPage object instance
             const survey = {
                 title: this.get('title').value,
                 // description: this.survey.description,
                 instruction: this.survey.instruction,
                 no_of_questions: this.get('no_of_questions').value,
                 survey_type: this.get('survey_type').value,
-                rating_scale: this.get('rating_scale').value
+                rating_scale: this.get('rating_scale').value,
             };
             if (!this.surveyId) {
                 this.insert(survey);
@@ -136,7 +136,7 @@ export class AddEditSurveyComponent implements OnInit {
             err => {
                 const { error } = err;
                 this.surveyForm.setErrors({ 'message': error.message });
-            }
+            },
         );
     }
 
@@ -150,7 +150,7 @@ export class AddEditSurveyComponent implements OnInit {
             err => {
                 const { error } = err;
                 this.surveyForm.setErrors({ 'message': error.message });
-            }
+            },
         );
     }
 
@@ -161,7 +161,7 @@ export class AddEditSurveyComponent implements OnInit {
             err => {
                 const { error } = err;
                 this.surveyForm.setErrors({ 'message': error.message });
-            }
+            },
         );
     }
 

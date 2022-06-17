@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ReportService} from "../../../@core/data/report.service";
-import { RolePermissionService } from '../../../common/role/role_permission.service'
+import { RolePermissionService } from '../../../common/role/role_permission.service';
 
 @Component({
     selector: 'ngx-report-files',
@@ -26,7 +26,7 @@ export class ReportFilesComponent implements OnInit {
 
     ngOnInit() {
         this.page(this.offset, this.limit);
-        this.permission = this.rolePermissionSerivce.getRolePermission('Reporting')
+        this.permission = this.rolePermissionSerivce.getRolePermission('Reporting');
     }
 
     /**
@@ -42,7 +42,7 @@ export class ReportFilesComponent implements OnInit {
     }
 
     onClickDelete(id) {
-        //find the employee name from the rows using
+        // find the employee name from the rows using
         const name = this.rows.find(x => x.id === id).title;
         if (confirm("Are you sure to delete? " + name)) {
             this.deleteReport(id);
@@ -57,7 +57,7 @@ export class ReportFilesComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -78,7 +78,7 @@ export class ReportFilesComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

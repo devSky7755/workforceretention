@@ -6,7 +6,7 @@ import {ClientService} from "../../../../@core/data/client.service";
 @Component({
     selector: 'ngx-add-edit-email',
     templateUrl: './add-edit-email.component.html',
-    styleUrls: ['./add-edit-email.component.scss']
+    styleUrls: ['./add-edit-email.component.scss'],
 })
 export class AddEditEmailComponent implements OnInit, OnChanges {
     @Input() emailId;
@@ -29,7 +29,7 @@ export class AddEditEmailComponent implements OnInit, OnChanges {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -37,13 +37,13 @@ export class AddEditEmailComponent implements OnInit, OnChanges {
         const email = {
             from_address: this.email.fromAddress,
             subject: this.email.subject,
-            body: this.email.body
+            body: this.email.body,
         };
         console.log(this.email);
         // ****************** update email ****************
         console.log(email);
         if (this.emailId) {
-            //perform update operation
+            // perform update operation
             this.update(email);
         }
     }
@@ -57,7 +57,7 @@ export class AddEditEmailComponent implements OnInit, OnChanges {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 

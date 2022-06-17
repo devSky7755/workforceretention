@@ -47,7 +47,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private tokenService: NbTokenService) {}
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     return this.tokenService.get().mergeMap((jsonToken: any) => {
       let token = "";
@@ -56,7 +56,7 @@ export class AuthInterceptor implements HttpInterceptor {
       } else {
         if (localStorage.getItem("employee")) {
           // parse the employee object and check the expiration of the login. if the login time is expired
-          let employee = JSON.parse(localStorage.getItem("employee"));
+          const employee = JSON.parse(localStorage.getItem("employee"));
           token = employee.access_token;
         }
       }

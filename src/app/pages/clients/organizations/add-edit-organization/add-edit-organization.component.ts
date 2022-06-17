@@ -5,7 +5,7 @@ import {OrganizationService} from "../../../../@core/data/organization.service";
 @Component({
     selector: 'ngx-add-edit-organization',
     templateUrl: './add-edit-organization.component.html',
-    styleUrls: ['./add-edit-organization.component.scss']
+    styleUrls: ['./add-edit-organization.component.scss'],
 })
 export class AddEditOrganizationComponent implements OnInit, OnChanges {
 
@@ -34,7 +34,7 @@ export class AddEditOrganizationComponent implements OnInit, OnChanges {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -47,7 +47,7 @@ export class AddEditOrganizationComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -56,10 +56,10 @@ export class AddEditOrganizationComponent implements OnInit, OnChanges {
             name: this.organizationName,
         };
         if (this.organizationId) {
-            //perform update operation
+            // perform update operation
             this.update(organization);
         } else {
-            //perform insert operation
+            // perform insert operation
             this.insert(organization);
         }
     }
@@ -75,7 +75,7 @@ export class AddEditOrganizationComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -90,7 +90,7 @@ export class AddEditOrganizationComponent implements OnInit, OnChanges {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 

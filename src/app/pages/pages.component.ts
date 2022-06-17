@@ -21,7 +21,7 @@ export class PagesComponent {
     private authService: AuthService,
     private roleService: RoleService,
     private router: Router,
-    private tokenService: NbTokenService
+    private tokenService: NbTokenService,
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -37,7 +37,7 @@ export class PagesComponent {
   getRole() {
     this.tokenService.get().subscribe((token) => {
       console.log(token);
-      let payload = token.getPayload();
+      const payload = token.getPayload();
       if (!payload || !payload._id) {
         this.logout(payload);
       }
@@ -50,10 +50,10 @@ export class PagesComponent {
           const roleString = JSON.stringify(data.role);
           localStorage.setItem("permission_role_app", roleString);
 
-          let permissions = data.role.permissions;
-          let menu = MENU_ITEMS.filter((item) => {
+          const permissions = data.role.permissions;
+          const menu = MENU_ITEMS.filter((item) => {
             return permissions.some(
-              (permission) => permission.table_name == item.title
+              (permission) => permission.table_name == item.title,
             );
           });
           // let menu = MENU_ITEMS
@@ -62,7 +62,7 @@ export class PagesComponent {
         (err) => {
           console.log(err);
           this.logout(payload);
-        }
+        },
       );
     });
   }

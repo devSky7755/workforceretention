@@ -80,7 +80,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
         private route: ActivatedRoute,
         private answerService: AnswerService,
         private surveyService: SurveyService,
-        private spinnerService: NbSpinnerService
+        private spinnerService: NbSpinnerService,
     ) {
         this.survey = {};
         this.employee = {};
@@ -104,7 +104,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -131,7 +131,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
     questionArrange() {
         let question_no = 1;
         this.exit_reason.map((reason) => {
-            //now we need to loop through questions
+            // now we need to loop through questions
             const categorical_questions = [];
             const categorical_answers = [];
             this.questions.map((question) => {
@@ -142,7 +142,7 @@ export class EmployeeSurveyDownloadComponent implements OnInit {
                     question.question_no = question_no;
                     categorical_questions.push(question);
                     question_no++;
-                    //check if the question is a final question or not
+                    // check if the question is a final question or not
                     if (reason.id == 13) {
                         const choices = [];
                         const choice_labels = [];

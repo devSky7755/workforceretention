@@ -5,7 +5,7 @@ import { RequestAQuoteService } from "../../@core/data/requestaquote.service";
 @Component({
   selector: 'ngx-request-a-quote',
   templateUrl: './request-a-quote.component.html',
-  styleUrls: ['./request-a-quote.component.scss']
+  styleUrls: ['./request-a-quote.component.scss'],
 })
 export class RequestAQuoteComponent implements OnInit {
 
@@ -22,17 +22,17 @@ export class RequestAQuoteComponent implements OnInit {
     license_required_status: '1',
     phone_interview_with_platform_status: '1',
     phone_interview_without_platform_status: '0',
-    exit_report_status: '1'
-  }
+    exit_report_status: '1',
+  };
 
   collapse = {
     license: true,
     phone_interview: true,
     phone_interview_without: true,
     exit_report: true,
-    confidential: true
-  }
-  
+    confidential: true,
+  };
+
   constructor(private requestAQuoteService: RequestAQuoteService) { }
 
   ngOnInit() {
@@ -43,8 +43,8 @@ export class RequestAQuoteComponent implements OnInit {
   }
 
   initRadioBtns() {
-    let element_offs = ['confidential-off', 'phone-interview-without-platform-status-off']
-    let element_ons = ['license-required-status-on', 'phone-interview-with-platform-status-on', 'exit-report-status-on']
+    const element_offs = ['confidential-off', 'phone-interview-without-platform-status-off'];
+    const element_ons = ['license-required-status-on', 'phone-interview-with-platform-status-on', 'exit-report-status-on'];
     element_offs.forEach(element_off => {
       (<HTMLInputElement>document.getElementById(element_off)).checked = true;
     });
@@ -65,16 +65,16 @@ export class RequestAQuoteComponent implements OnInit {
       org_name: new FormControl('', [Validators.required]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*")
+        Validators.pattern("[^ @]*@[^ @]*"),
       ]),
       contact_number: new FormControl('', [Validators.required]),
       workforce_size: new FormControl('', [Validators.required]),
       cur_employee_turnover: new FormControl('', [Validators.required]),
-      recaptchaReactive: new FormControl(null, Validators.required)
+      recaptchaReactive: new FormControl(null, Validators.required),
     });
   }
   requestAQuote() {
-    let param = {
+    const param = {
       name: this.get('name').value,
       position: this.get('position').value,
       org_name: this.get('org_name').value,
@@ -86,16 +86,16 @@ export class RequestAQuoteComponent implements OnInit {
       license_required_status: parseInt(this.quote.license_required_status, 10),
       phone_interview_with_platform_status: parseInt(this.quote.phone_interview_with_platform_status, 10),
       phone_interview_without_platform_status: parseInt(this.quote.phone_interview_without_platform_status, 10),
-      exit_report_status: parseInt(this.quote.exit_report_status, 10)
-    }
+      exit_report_status: parseInt(this.quote.exit_report_status, 10),
+    };
 
     this.requestAQuoteService.submitQuotation(param).subscribe(
       data => {
-        alert('Your request for a quote has been sent.')
+        alert('Your request for a quote has been sent.');
       },
       err => {
         console.log(err);
-      }
+      },
     );
   }
 }

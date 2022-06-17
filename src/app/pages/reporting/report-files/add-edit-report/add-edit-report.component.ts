@@ -40,10 +40,10 @@ export class AddEditReportComponent implements OnInit {
     ngOnInit() {
         this.reportId = this.route.snapshot.paramMap.get('id');
         if (this.reportId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getReport();
         }
-        //get the employee from the localStorage
+        // get the employee from the localStorage
         // call the refresh token here
         this.tokenService.get()
             .subscribe(token => {
@@ -65,7 +65,7 @@ export class AddEditReportComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -73,7 +73,7 @@ export class AddEditReportComponent implements OnInit {
         this.clientService.getClients(0, 100000).subscribe(
             res => {
                 this.clients = res.clients;
-            }
+            },
         );
     }
 
@@ -119,7 +119,7 @@ export class AddEditReportComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 
@@ -132,7 +132,7 @@ export class AddEditReportComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 

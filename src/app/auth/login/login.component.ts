@@ -4,7 +4,7 @@ import { NbAuthResult, NbLoginComponent } from '@nebular/auth';
 @Component({
     selector: 'ngx-auth-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss']
+    styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent extends NbLoginComponent implements OnInit {
     ngOnInit() {
@@ -23,7 +23,7 @@ export class LoginComponent extends NbLoginComponent implements OnInit {
                             state: {
                                 phone: result.getResponse().body.phone,
                                 token: result.getResponse().body.tfa_token,
-                            }
+                            },
                         });
                     }, this.redirectDelay);
                     return;

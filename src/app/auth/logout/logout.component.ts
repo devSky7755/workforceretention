@@ -5,7 +5,7 @@ import {NbTokenService} from '@nebular/auth';
 
 @Component({
     selector: 'ngx-article-management',
-    template: '<div>Logging out, please wait...</div>'
+    template: '<div>Logging out, please wait...</div>',
 })
 
 export class LogoutComponent implements OnInit {
@@ -18,7 +18,7 @@ export class LogoutComponent implements OnInit {
     ngOnInit() {
         this.tokenService.get()
             .subscribe(token => {
-                this.logout(token.getPayload())
+                this.logout(token.getPayload());
             });
     }
 
@@ -30,7 +30,7 @@ export class LogoutComponent implements OnInit {
                     localStorage.removeItem('auth_app_token');
                     this.router.navigateByUrl('/auth/login');
                 }
-            })
+            });
     }
 
 }

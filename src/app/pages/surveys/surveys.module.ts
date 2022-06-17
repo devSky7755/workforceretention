@@ -32,7 +32,7 @@ import {SurveyDetailsComponent} from './survey-management/survey-details/survey-
         NbCardModule,
         NgxDatatableModule,
         ThemeModule,
-        NbCheckboxModule
+        NbCheckboxModule,
     ],
     providers: [
         SmartTableService,

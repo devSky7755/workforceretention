@@ -5,7 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 @Component({
     selector: 'ngx-add-edit-permission',
     templateUrl: './add-edit-permission.component.html',
-    styleUrls: ['./add-edit-permission.component.scss']
+    styleUrls: ['./add-edit-permission.component.scss'],
 })
 export class AddEditPermissionComponent implements OnInit {
 
@@ -33,7 +33,7 @@ export class AddEditPermissionComponent implements OnInit {
         ];
         this.roleId = this.route.snapshot.paramMap.get('id');
         if (this.roleId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getRole();
         } else {
             this.page();
@@ -49,25 +49,25 @@ export class AddEditPermissionComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
     hasAccess(rowIndex) {
         this.rolePermissions[rowIndex].has_access = !this.rolePermissions[rowIndex].has_access;
         if (!this.rolePermissions[rowIndex].has_access) {
-            this.rolePermissions[rowIndex].is_update = false
-            this.rolePermissions[rowIndex].is_add = false
-            this.rolePermissions[rowIndex].is_delete = false
+            this.rolePermissions[rowIndex].is_update = false;
+            this.rolePermissions[rowIndex].is_add = false;
+            this.rolePermissions[rowIndex].is_delete = false;
 
-            this.rolePermissions[rowIndex].tableUpdate = false
-            this.rolePermissions[rowIndex].tableAdd = false
-            this.rolePermissions[rowIndex].tableDelete = false
+            this.rolePermissions[rowIndex].tableUpdate = false;
+            this.rolePermissions[rowIndex].tableAdd = false;
+            this.rolePermissions[rowIndex].tableDelete = false;
         }
     }
 
     hasAccessible(rowIndex) {
-        return !this.rolePermissions[rowIndex].has_access
+        return !this.rolePermissions[rowIndex].has_access;
     }
 
     isUpdate(rowIndex) {
@@ -106,13 +106,13 @@ export class AddEditPermissionComponent implements OnInit {
         });
         const role = {
             name: this.roleName,
-            permissions: this.rolePermissions
+            permissions: this.rolePermissions,
         };
         if (this.roleId) {
-            //perform update operation
+            // perform update operation
             this.update(role);
         } else {
-            //perform insert operation
+            // perform insert operation
             this.insert(role);
         }
     }
@@ -124,14 +124,14 @@ export class AddEditPermissionComponent implements OnInit {
                 this.successMessage = data.message;
                 console.log(data);
                 this.setResult(data);
-                //get the updated result and set it to the role
+                // get the updated result and set it to the role
             },
             err => {
                 console.log(err);
             },
             () => {
                 console.log('completed..');
-            }
+            },
         );
     }
 
@@ -141,14 +141,14 @@ export class AddEditPermissionComponent implements OnInit {
             data => {
                 this.successMessage = data.message;
                 this.setResult(data);
-                //Get the updated result and set it to the roles
+                // Get the updated result and set it to the roles
             },
             err => {
                 console.log(err);
             },
             () => {
                 console.log('completed operation');
-            }
+            },
         );
     }
 
@@ -160,16 +160,16 @@ export class AddEditPermissionComponent implements OnInit {
             permission.is_delete = permission.is_delete ? permission.is_delete : false;
         });
         this.rolePermissions.forEach((element, index) => {
-            let rolePermission = this.role.permissions.find((permission) => {
-                return permission.table_name == element.table_name
+            const rolePermission = this.role.permissions.find((permission) => {
+                return permission.table_name == element.table_name;
             });
             if (rolePermission) {
-                this.rolePermissions[index] = rolePermission
+                this.rolePermissions[index] = rolePermission;
             } else {
                 this.rolePermissions[index].is_update = false;
                 this.rolePermissions[index].is_add = false;
                 this.rolePermissions[index].is_delete = false;
-                this.rolePermissions[index].has_access = false
+                this.rolePermissions[index].has_access = false;
             }
         });
         // this.rolePermissions = this.role.permissions;

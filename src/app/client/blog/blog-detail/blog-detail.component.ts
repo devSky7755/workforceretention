@@ -27,14 +27,14 @@ export class BlogDetailComponent implements OnInit {
   getArticle() {
     this.articleService.getArticle(this.articleId).subscribe(
       data => {
-        this.article = data.article
-        this.article.createdAt = new Date(data.article.createdAt)
+        this.article = data.article;
+        this.article.createdAt = new Date(data.article.createdAt);
         this.article.imageSrc = this.urlService.baseUrl + '/images/article/' + data.article.image;
-        console.log(this.article)
+        console.log(this.article);
       },
       err => {
         console.log(err);
-      }
+      },
     );
   }
   goBack() {

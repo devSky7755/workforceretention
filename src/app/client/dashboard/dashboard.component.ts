@@ -7,7 +7,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 @Component({
     selector: 'ngx-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.scss']
+    styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
     count = 0;
@@ -57,11 +57,11 @@ export class DashboardComponent implements OnInit {
                     employeeSurvey.description = employeeSurvey.survey.description;
                     employeeSurvey.title = employeeSurvey.survey.title;
                     employeeSurvey.noOfQuestion = employeeSurvey.survey.no_of_questions;
-                    employeeSurvey.status = employeeSurvey.completed ? "Completed" : employeeSurvey.start_date ? "In Progress" : "Not Started"
-                    employeeSurvey.instruction = employeeSurvey.survey.instruction
+                    employeeSurvey.status = employeeSurvey.completed ? "Completed" : employeeSurvey.start_date ? "In Progress" : "Not Started";
+                    employeeSurvey.instruction = employeeSurvey.survey.instruction;
                     this.survey_start_date = employeeSurvey.start_date;
 
-                    //completed, survey, start_date and end_date
+                    // completed, survey, start_date and end_date
                     this.employeeSurvey = {
                         _id: employeeSurvey._id,
                         completed: employeeSurvey.completed,
@@ -70,13 +70,13 @@ export class DashboardComponent implements OnInit {
                         end_date: employeeSurvey.end_date,
                         status: employeeSurvey.status,
                         exit_reason_cur_step: employeeSurvey.exit_reason_cur_step ? employeeSurvey.exit_reason_cur_step : 11,
-                        instruction: employeeSurvey.instruction
+                        instruction: employeeSurvey.instruction,
                     };
                     rows.push(employeeSurvey);
                 });
-                rows = rows.slice(0, 1)
+                rows = rows.slice(0, 1);
                 this.completedSurveys = rows;
-            }
+            },
         );
     }
 

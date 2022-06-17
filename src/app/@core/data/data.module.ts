@@ -58,7 +58,7 @@ const SERVICES = [
   ProfitBarAnimationChartService,
   LayoutService,
 
-  //*** OUR OWN SERVICE *****
+  // *** OUR OWN SERVICE *****
   SurveyService,
   ContactService,
   RequestAQuoteService,

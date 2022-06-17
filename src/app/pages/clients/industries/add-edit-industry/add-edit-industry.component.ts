@@ -5,7 +5,7 @@ import {IndustryService} from "../../../../@core/data/industry.service";
 @Component({
     selector: 'ngx-add-edit-industry',
     templateUrl: './add-edit-industry.component.html',
-    styleUrls: ['./add-edit-industry.component.scss']
+    styleUrls: ['./add-edit-industry.component.scss'],
 })
 export class AddEditIndustryComponent implements OnInit {
 
@@ -23,7 +23,7 @@ export class AddEditIndustryComponent implements OnInit {
     ngOnInit() {
         this.industryId = this.route.snapshot.paramMap.get('id');
         if (this.industryId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getIndustry();
         }
     }
@@ -39,7 +39,7 @@ export class AddEditIndustryComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -48,10 +48,10 @@ export class AddEditIndustryComponent implements OnInit {
             name: this.industryName,
         };
         if (this.industryId) {
-            //perform update operation
+            // perform update operation
             this.update(industry);
         } else {
-            //perform insert operation
+            // perform insert operation
             this.insert(industry);
         }
     }
@@ -67,7 +67,7 @@ export class AddEditIndustryComponent implements OnInit {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -82,7 +82,7 @@ export class AddEditIndustryComponent implements OnInit {
                 const {error} = err;
                 this.errorMessage = error.message;
                 console.log(err);
-            }
+            },
         );
     }
 

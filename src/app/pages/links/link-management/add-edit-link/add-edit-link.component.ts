@@ -8,7 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 @Component({
     selector: 'ngx-add-edit-link',
     templateUrl: './add-edit-link.component.html',
-    styleUrls: ['./add-edit-link.component.scss']
+    styleUrls: ['./add-edit-link.component.scss'],
 })
 export class AddEditLinkComponent implements OnInit {
 
@@ -39,10 +39,10 @@ export class AddEditLinkComponent implements OnInit {
     ngOnInit() {
         this.linkId = this.route.snapshot.paramMap.get('id');
         if (this.linkId) {
-            //get the employee from the database and set to the employee
+            // get the employee from the database and set to the employee
             this.getLink();
         }
-        //get the employee from the localStorage
+        // get the employee from the localStorage
         // call the refresh token here
         this.tokenService.get()
             .subscribe(token => {
@@ -58,7 +58,7 @@ export class AddEditLinkComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -69,7 +69,7 @@ export class AddEditLinkComponent implements OnInit {
             title: this.link.title,
             link_url: this.link.link_url,
             description: this.link.description,
-            category: this.link.category
+            category: this.link.category,
         };
         if (this.linkId) {
             this.update(link);
@@ -87,7 +87,7 @@ export class AddEditLinkComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 
@@ -100,7 +100,7 @@ export class AddEditLinkComponent implements OnInit {
             err => {
                 const {error} = err;
                 this.errorMessage = error.message;
-            }
+            },
         );
     }
 
@@ -118,7 +118,7 @@ export class AddEditLinkComponent implements OnInit {
         this.linkCategoryService.getCategories(0, 1000).subscribe(
             data => {
                 this.categories = data.categories;
-            }
+            },
         );
     }
 

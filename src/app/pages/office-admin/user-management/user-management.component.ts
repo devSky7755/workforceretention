@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Component({
     selector: 'ngx-user-management',
     templateUrl: './user-management.component.html',
-    styleUrls: ['./user-management.component.scss']
+    styleUrls: ['./user-management.component.scss'],
 })
 export class UserManagementComponent implements OnInit {
     rows = [];
@@ -41,7 +41,7 @@ export class UserManagementComponent implements OnInit {
     }
 
     onClickDelete(id) {
-        //find the employee name from the rows using
+        // find the employee name from the rows using
         const name = this.rows.find(x => x.id === id).username;
         if (confirm("Are you sure to delete " + name)) {
             this.deleteUser(id);
@@ -56,7 +56,7 @@ export class UserManagementComponent implements OnInit {
             },
             err => {
                 console.log(err);
-            }
+            },
         );
     }
 
@@ -77,7 +77,7 @@ export class UserManagementComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Component({
     selector: 'ngx-permission-management',
     templateUrl: './permission-management.component.html',
-    styleUrls: ['./permission-management.component.scss']
+    styleUrls: ['./permission-management.component.scss'],
 })
 export class PermissionManagementComponent implements OnInit {
 
@@ -31,7 +31,7 @@ export class PermissionManagementComponent implements OnInit {
     }
 
     onClickDelete(id) {
-        //find the employee name from the rows using
+        // find the employee name from the rows using
         const name = this.rows.find(x => x.id === id).name;
         if (confirm("Are you sure to delete " + name)) {
             this.deleteRole(id);
@@ -48,7 +48,7 @@ export class PermissionManagementComponent implements OnInit {
             },
             () => {
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -75,7 +75,7 @@ export class PermissionManagementComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 }

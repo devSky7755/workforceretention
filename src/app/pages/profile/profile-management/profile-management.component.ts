@@ -34,7 +34,7 @@ export class ProfileManagementComponent implements OnInit {
     private userService: UserService,
     private authService: NbAuthService,
     private tokenService: NbTokenService,
-    private localAuth: AuthService
+    private localAuth: AuthService,
   ) {}
 
   ngOnInit() {
@@ -44,8 +44,8 @@ export class ProfileManagementComponent implements OnInit {
 
   checkPasswords(group: FormGroup) {
     // here we have the 'passwords' group
-    let pass = group.get("newPassword").value;
-    let confirmPass = group.get("newPasswordConfirmation").value;
+    const pass = group.get("newPassword").value;
+    const confirmPass = group.get("newPasswordConfirmation").value;
 
     return pass === confirmPass ? null : { notSame: true };
   }
@@ -87,12 +87,12 @@ export class ProfileManagementComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
           Validators.pattern(
-            "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}"
+            "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{8,}",
           ),
         ]),
         newPasswordConfirmation: new FormControl(""),
       },
-      { validators: this.checkPasswords }
+      { validators: this.checkPasswords },
     );
   }
 
@@ -100,7 +100,7 @@ export class ProfileManagementComponent implements OnInit {
     this.tokenService.get().subscribe((curtoken) => {
       this.localAuth.refreshToken(curtoken.getPayload()).subscribe(
         (retval: any) => {
-          let newtoken = retval.token;
+          const newtoken = retval.token;
           this.authService.refreshToken("email", newtoken);
           const token = JSON.parse(localStorage.getItem("auth_app_token"));
           token.value = newtoken;
@@ -108,7 +108,7 @@ export class ProfileManagementComponent implements OnInit {
           localStorage.setItem("auth_app_token", tokenString);
           this.loadUser();
         },
-        (err) => {}
+        (err) => {},
       );
     });
   }
@@ -150,7 +150,7 @@ export class ProfileManagementComponent implements OnInit {
         const { error } = err;
         this.successUserMessage = "";
         this.userForm.setErrors({ message: error.message });
-      }
+      },
     );
   }
 
@@ -168,7 +168,7 @@ export class ProfileManagementComponent implements OnInit {
         const { error } = err;
         this.successPasswordMessage = "";
         this.passwordForm.setErrors({ message: error.message });
-      }
+      },
     );
   }
 

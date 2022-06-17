@@ -1,12 +1,12 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SurveyService} from "../../../@core/data/survey.service";
 import {ClientService} from "../../../@core/data/client.service";
-import { RolePermissionService } from '../../../common/role/role_permission.service'
+import { RolePermissionService } from '../../../common/role/role_permission.service';
 
 @Component({
     selector: 'ngx-surveys',
     templateUrl: './surveys.component.html',
-    styleUrls: ['./surveys.component.scss']
+    styleUrls: ['./surveys.component.scss'],
 })
 export class SurveysComponent implements OnInit, OnChanges {
 
@@ -19,7 +19,7 @@ export class SurveysComponent implements OnInit, OnChanges {
     surveys;
     clientSurveys = [];
     survey_types = [
-        {id: 1, value: 'Exit Interview'}
+        {id: 1, value: 'Exit Interview'},
     ];
     permission;
 
@@ -27,7 +27,7 @@ export class SurveysComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
-        this.permission = this.rolePermissionSerivce.getRolePermission('Clients')
+        this.permission = this.rolePermissionSerivce.getRolePermission('Clients');
     }
 
     onPage(event) {
@@ -39,7 +39,7 @@ export class SurveysComponent implements OnInit, OnChanges {
             data => {
                 this.clientSurveys = data.client.surveys;
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -48,7 +48,7 @@ export class SurveysComponent implements OnInit, OnChanges {
             data => {
                 this.clientSurveys = data.client.surveys;
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -61,7 +61,7 @@ export class SurveysComponent implements OnInit, OnChanges {
             err => {
                 const {error} = err;
                 alert(error.message);
-            }
+            },
         );
     }
 
@@ -87,7 +87,7 @@ export class SurveysComponent implements OnInit, OnChanges {
                 this.surveys.map((survey) => {
                     // Modify staticPage role
                     survey.id = survey._id;
-                    //first check if clientSurveys array is null or not.
+                    // first check if clientSurveys array is null or not.
                     const survey_type = this.survey_types.find(s => s.id == survey.survey_type);
                     survey.type = typeof survey_type !== 'undefined' ? survey_type.value : '';
                     if (this.clientSurveys !== null) {
@@ -96,7 +96,7 @@ export class SurveysComponent implements OnInit, OnChanges {
                     } else {
                         survey.assigned = false;
                     }
-                    //here find the clientSurveys array
+                    // here find the clientSurveys array
                     rows.push(survey);
                 });
                 this.rows = rows;
@@ -109,7 +109,7 @@ export class SurveysComponent implements OnInit, OnChanges {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

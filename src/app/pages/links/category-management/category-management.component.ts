@@ -30,7 +30,7 @@ export class CategoryManagementComponent implements OnInit {
     }
 
     onClickDelete(id) {
-        //find the employee name from the rows using
+        // find the employee name from the rows using
         const name = this.rows.find(x => x.id === id).name;
         if (confirm("Are you sure to delete " + name)) {
             this.deleteCategory(id);
@@ -47,7 +47,7 @@ export class CategoryManagementComponent implements OnInit {
             },
             () => {
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -74,7 +74,7 @@ export class CategoryManagementComponent implements OnInit {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 

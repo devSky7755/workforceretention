@@ -5,7 +5,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ThemeModule } from '../@theme/theme.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
-import { RolePermissionService } from '../common/role/role_permission.service'
+import { RolePermissionService } from '../common/role/role_permission.service';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -22,8 +22,8 @@ const PAGES_COMPONENTS = [
     ...PAGES_COMPONENTS,
   ],
   providers: [
-    RolePermissionService
-  ]
+    RolePermissionService,
+  ],
 })
 export class PagesModule {
 }

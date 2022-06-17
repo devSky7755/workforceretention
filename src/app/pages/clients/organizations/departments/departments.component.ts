@@ -6,7 +6,7 @@ import {DepartmentService} from "../../../../@core/data/department.service";
 @Component({
     selector: 'ngx-departments',
     templateUrl: './departments.component.html',
-    styleUrls: ['./departments.component.scss']
+    styleUrls: ['./departments.component.scss'],
 })
 export class DepartmentsComponent implements OnInit, OnChanges {
     @Input() divisionId: string;
@@ -47,7 +47,7 @@ export class DepartmentsComponent implements OnInit, OnChanges {
             },
             () => {
                 this.page(this.offset, this.limit);
-            }
+            },
         );
     }
 
@@ -73,7 +73,7 @@ export class DepartmentsComponent implements OnInit, OnChanges {
             },
             (err) => {
                 console.log(err);
-            }
+            },
         );
     }
 
