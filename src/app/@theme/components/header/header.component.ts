@@ -1,57 +1,94 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import {
+  NbMediaBreakpointsService,
+  NbMenuService,
+  NbSidebarService,
+  NbThemeService,
+} from "@nebular/theme";
 
-import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
-import { AnalyticsService } from '../../../@core/utils/analytics.service';
-import { LayoutService } from '../../../@core/data/layout.service';
+import { UserService } from "../../../@core/data/users.service";
+import { AnalyticsService } from "../../../@core/utils/analytics.service";
+import { LayoutService } from "../../../@core/utils";
+import { map, takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Component({
-    selector: 'ngx-header',
-    styleUrls: ['./header.component.scss'],
-    templateUrl: './header.component.html',
+  selector: "ngx-header",
+  styleUrls: ["./header.component.scss"],
+  templateUrl: "./header.component.html",
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  private destroy$: Subject<void> = new Subject<void>();
+  userPictureOnly: boolean = false;
+  user: any;
 
-    @Input() position = 'normal';
+  userMenu = [
+    { title: "Profile", link: "/pages/profile/profile-management" },
+    { title: "Log out", link: "/auth/logout" },
+  ];
 
-    user: any;
+  currentTheme = "default";
 
-    userMenu = [
-        { title: 'Profile', link: '/pages/profile/profile-management' },
-        { title: 'Log out', link: '/auth/logout' }
-    ];
+  constructor(
+    private router: Router,
+    private sidebarService: NbSidebarService,
+    private menuService: NbMenuService,
+    private themeService: NbThemeService,
+    private userService: UserService,
+    private analyticsService: AnalyticsService,
+    private layoutService: LayoutService,
+    private breakpointService: NbMediaBreakpointsService
+  ) {}
 
-    constructor(private router: Router, private sidebarService: NbSidebarService,
-        private menuService: NbMenuService,
-        private userService: UserService,
-        private analyticsService: AnalyticsService,
-        private layoutService: LayoutService) {
-    }
+  ngOnInit() {
+    this.currentTheme = this.themeService.currentTheme;
+    const { xl } = this.breakpointService.getBreakpointsMap();
+    this.themeService
+      .onMediaQueryChange()
+      .pipe(
+        map(([, currentBreakpoint]) => currentBreakpoint.width < xl),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(
+        (isLessThanXl: boolean) => (this.userPictureOnly = isLessThanXl)
+      );
 
-    ngOnInit() {
-        this.userService.getUsers(1, 10)
-            .subscribe((users: any) => this.user = users.nick);
-    }
+    this.themeService
+      .onThemeChange()
+      .pipe(
+        map(({ name }) => name),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((themeName) => (this.currentTheme = themeName));
 
-    toggleSidebar(): boolean {
-        this.sidebarService.toggle(true, 'menu-sidebar');
-        this.layoutService.changeLayoutSize();
+    this.userService
+      .getUsers(1, 10)
+      .subscribe((users: any) => (this.user = users.nick));
+  }
 
-        return false;
-    }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
-    toggleSettings(): boolean {
-        this.sidebarService.toggle(false, 'settings-sidebar');
+  toggleSidebar(): boolean {
+    this.sidebarService.toggle(true, "menu-sidebar");
+    this.layoutService.changeLayoutSize();
 
-        return false;
-    }
+    return false;
+  }
 
-    goToHome() {
-        this.router.navigateByUrl('/pages/home');
-    }
+  navigateHome() {
+    this.menuService.navigateHome();
+    return false;
+  }
 
-    startSearch() {
-        this.analyticsService.trackEvent('startSearch');
-    }
+  goToHome() {
+    this.router.navigateByUrl("/pages/home");
+  }
+
+  startSearch() {
+    this.analyticsService.trackEvent("startSearch");
+  }
 }

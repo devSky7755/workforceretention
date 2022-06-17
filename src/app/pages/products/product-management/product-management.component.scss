@@ -1,10 +1,8 @@
-@import '../../../@theme/styles/themes';
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~@nebular/theme/styles/global/breakpoints';
-
+@import "../../../@theme/styles/themes";
+@import "~bootstrap/scss/mixins/breakpoints";
+@import "~@nebular/theme/styles/global/breakpoints";
 
 @include nb-install-component() {
-
   nb-card-body {
     overflow: visible;
   }
@@ -84,13 +82,12 @@
     position: relative;
 
     .form-control {
-
       padding-left: 3rem;
     }
 
     &::before {
-      content: '\F47D';
-      font-family: 'Ionicons';
+      content: "\F47D";
+      font-family: "Ionicons";
       font-size: 2rem;
       position: absolute;
       z-index: 100;
@@ -117,9 +114,6 @@
 
   ngb-rating i {
     color: nb-theme(color-success);
-    @include nb-for-theme(cosmic) {
-      color: nb-theme(color-primary);
-    }
   }
 
   @include media-breakpoint-down(xs) {

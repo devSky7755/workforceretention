@@ -1,167 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap");
+
 // themes - our custom or/and out of the box themes
 @import "themes";
 
 // framework component themes (styles tied to theme variables)
 @import "~@nebular/theme/styles/globals";
-@import "~@nebular/auth/styles/all";
-@import "~@nebular/bootstrap/styles/globals";
-// ...
+@import "~@nebular/auth/styles/globals";
 
-// global app font size
-@import "./font-size";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/grid";
 
 // loading progress bar theme
 @import "./pace.theme";
 
-@import "./bootstrap-rtl";
+@import "./layout";
+@import "./overrides";
 
 // install the framework and custom global styles
 @include nb-install() {
   // framework global styles
   @include nb-theme-global();
   @include nb-auth-global();
-  @include nb-bootstrap-global();
 
+  @include ngx-layout();
   // loading progress bar
   @include ngx-pace-theme();
 
-  // fixed in rc.9 and can be removed after upgrade
-  .custom-control .custom-control-indicator {
-    border-radius: 50%; // TODO: quickfix for https://github.com/akveo/nebular/issues/275
-  }
-  @include bootstrap-rtl();
+  @include nb-overrides();
 }
 
-.nb-theme-corporate nb-layout .layout nb-layout-header nav {
-  background: white;
-  a {
-    color: #2a2a2a;
-  }
-}
-
-.nb-theme-corporate .header-container .logo {
-  border-left: 1px solid #ebeef2 !important;
-}
-
-.nb-theme-corporate nb-card-header {
-  color: black;
-}
-
-.ngx-datatable .datatable-header .datatable-header-cell {
-  color: #0072b1 !important;
-}
-
-.ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {
-  border-bottom-color: #e2e2e2 !important;
-}
-
-.ngx-datatable .datatable-header {
-  border-bottom-color: #a5a5a5 !important;
-}
-
-.nb-theme-corporate nb-tabset nb-tab {
-  font-family: Exo !important;
-}
-
-.nb-theme-corporate nb-layout .layout {
-  font-family: Exo !important;
-}
-
-.nb-theme-corporate nb-layout .layout nb-layout-header nav a:focus,
-.nb-theme-corporate nb-layout .layout nb-layout-header nav a:active,
-.nb-theme-corporate nb-layout .layout nb-layout-header nav a:hover {
-  color: #79cfef;
-}
-.nb-theme-corporate nb-layout .layout nb-layout-header.fixed ~ .layout-container {
-  padding-top: 7.75rem !important;
-  min-height: 100vh;
-}
-.nb-theme-corporate nb-layout .layout nb-layout-header nav {
-  height: 7.75rem !important;
-}
-
-.nb-theme-corporate nb-sidebar .main-container.main-container-fixed {
-  z-index: 1041 !important;
-}
-.nb-theme-corporate .cdk-overlay-container {
-  z-index: 1042;
-}
-
-.form__radio-button {
-  border: 5px solid #1e8ece !important;
-}
-
-.multiselect-dropdown .dropdown-btn {
-  border: 2px solid #dadfe6 !important;
-  padding: 0.75rem 1.325rem !important;
-  border-radius: 0.17rem !important;
-  color: #181818 !important;
-}
-
-.ngx-datatable .datatable-footer .datatable-pager .pager li.active a {
-  color: #fff !important;
-  background-color: #1e8ece !important;
-  border-color: #21afe5 !important;
-}
-
-.ngx-datatable .datatable-footer .datatable-pager .pager li a:hover {
-  color: #21afe5 !important;
-  background-color: #c5cace !important;
-}
-.ngx-datatable .datatable-footer .datatable-pager .pager li a {
-  color: #1e8ece !important;
-}
-
-nb-auth {
-  nb-layout-column {
-    padding-top: 110px !important;
-    nb-card {
-      height: calc(100vh - 2.5rem - 110px) !important;
-    }
-  }
-}
-
-.form__radio-button {
-  border: 2px solid #4db0e8 !important;
-}
-
-.form__radio-button::after {
-  background-color: #3896cc !important;
-}
-
-.nb-theme-corporate .btn.btn-outline-primary {
-  border: 2px solid #3ab8e8 !important;
-}
-
-.nb-theme-corporate .btn.btn-primary {
-  background-color: #3ab8e8;
-}
-
-.nb-theme-corporate .btn.btn-primary:hover,
-.nb-theme-corporate .btn.btn-primary.hover {
-  background-color: #5ab8e8;
-}
-.nb-theme-corporate .btn.btn-primary:active,
-.nb-theme-corporate .btn.btn-primary.active,
-.nb-theme-corporate .btn.btn-primary:active:focus {
-  background-color: #5ab8e8;
-}
-.nb-theme-corporate .btn.btn-primary:focus,
-.nb-theme-corporate .btn.btn-primary.focus {
-  background-color: #5ab8e8;
-}
-
-.nb-theme-corporate .btn.btn-outline-primary:hover,
-.nb-theme-corporate .btn.btn-outline-primary.hover {
-  background-color: #3ab8e8 !important;
-}
-
-.nb-theme-corporate nb-tabset .tabset .tab a::before {
-  background: #3ab8e8;
-  background-image: -webkit-gradient(linear, left top, right top, from(#1e8ece), to(#3ab8e8));
-  background-image: linear-gradient(to right, #35b8e8, #3ab8e8);
-}
-
-.form-group {
-  color: #696969;
-}
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+@import "./theme.workforeR.scss";

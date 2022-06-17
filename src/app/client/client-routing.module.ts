@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
+import { AboutComponent } from "./about/about.component";
 import { AuthenticationComponent } from "./authentication/authentication.component";
-import { ProductComponent } from "./product/product.component";
-import { ContactComponent } from "./contact/contact.component";
 import { BlogComponent } from "./blog/blog.component";
 import { BlogDetailComponent } from "./blog/blog-detail/blog-detail.component";
+import { ProductComponent } from "./product/product.component";
+import { ContactComponent } from "./contact/contact.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { QuestionsComponent } from "./questions/questions.component";
 import { ProfileComponent } from "./profile/profile.component";
@@ -14,7 +15,6 @@ import { ManagerReportComponent } from "./manager-report/manager-report.componen
 import { ReportsComponent } from "./reports/reports.component";
 import { ManagerReportPdfComponent } from "./manager-report-pdf/manager-report-pdf.component";
 import { FlexibleOptionsComponent } from "./flexible-options/flexible-options.component";
-import { AboutComponent } from "./about/about.component";
 import { RequestAQuoteComponent } from "./request-a-quote/request-a-quote.component";
 import { PrivacyComponent } from "./privacy/privacy.component";
 
@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "home", component: HomeComponent },
   { path: "login", component: AuthenticationComponent },
+  { path: "about-us", component: AboutComponent },
   { path: "blogs", redirectTo: "blogs/0" },
   { path: "blogs/:pageNum", component: BlogComponent },
   { path: "blog/:id", component: BlogDetailComponent },
@@ -35,13 +36,12 @@ const routes: Routes = [
   { path: "manager-report", component: ManagerReportComponent },
   { path: "manager-report-pdf", component: ManagerReportPdfComponent },
   { path: "program-options", component: FlexibleOptionsComponent },
-  { path: "about-us", component: AboutComponent },
   { path: "privacy", component: PrivacyComponent },
-  { path: "request-a-quote", component: RequestAQuoteComponent }
+  { path: "request-a-quote", component: RequestAQuoteComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ClientRoutingModule {}

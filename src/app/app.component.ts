@@ -3,44 +3,26 @@
  * Copyright Akveo. All Rights Reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  */
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AnalyticsService } from './@core/utils/analytics.service';
-
-import { NbAuthJWTToken, NbAuthService, NbTokenService } from '@nebular/auth';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-
+import { Component, OnInit } from "@angular/core";
+import { AnalyticsService } from "./@core/utils/analytics.service";
+// import { SeoService } from "./@core/utils/seo.service";
+import { NbIconLibraries } from "@nebular/theme";
 
 @Component({
-    selector: 'ngx-app',
-    template: '<router-outlet></router-outlet>',
+  selector: "ngx-app",
+  template: "<router-outlet></router-outlet>",
 })
-export class AppComponent implements OnInit, OnDestroy {
-    user = {};
-    private authSubscription: Subscription;
+export class AppComponent implements OnInit {
+  constructor(
+    private iconLibraries: NbIconLibraries,
+    private analytics: AnalyticsService // private seoService: SeoService
+  ) {
+    this.iconLibraries.registerFontPack("nebular", { iconClassPrefix: "nb" });
+    this.iconLibraries.setDefaultPack("nebular");
+  }
 
-    constructor(private analytics: AnalyticsService,
-        private authService: NbAuthService,
-        private tokenService: NbTokenService,
-        private router: Router) {
-    }
-
-
-    ngOnInit(): void {
-        this.analytics.trackPageViews();
-        // When Token will change below code will execute
-        this.authSubscription = this.authService.onTokenChange()
-            .subscribe((token: NbAuthJWTToken) => {
-                if (token.isValid()) {
-                    this.user = token.getPayload(); // here we receive a payload from the
-                    // token and assigne it to our `employee` variable
-                    // Navigate the employee to the product staticPage
-                    // this.router.navigate(['pages']);
-                }
-            });
-    }
-
-    ngOnDestroy() {
-        this.authSubscription.unsubscribe();
-    }
+  ngOnInit(): void {
+    this.analytics.trackPageViews();
+    // this.seoService.trackCanonicalChanges();
+  }
 }

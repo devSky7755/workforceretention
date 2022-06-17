@@ -1,97 +1,189 @@
 // @nebular theming framework
-@import '~@nebular/theme/styles/theming';
+@import "~@nebular/theme/styles/theming";
 // @nebular out of the box themes
-@import '~@nebular/theme/styles/themes';
+@import "~@nebular/theme/styles/themes";
 
-// which themes you what to enable (empty to enable all)
-$nb-enabled-themes: (default, cosmic, corporate);
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
 
-$nb-themes: nb-register-theme((
- // app wise variables for each theme
-  sidebar-header-gap: 2rem,
-  sidebar-header-height: initial,
-  layout-content-width: 1400px,
+    menu-item-icon-margin: 0 0.5rem 0 0,
 
-  font-main: Roboto,
-  font-secondary: Exo,
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
 
-  switcher-background: #ebeff5,
-  switcher-background-percentage: 50%,
-  drops-icon-line-gadient: -webkit-linear-gradient(#01dbb5, #0bbb79),
+    select-min-width: 6rem,
 
-  list-item-border-width: 1px,
+    slide-out-background: #f7f9fc,
+    slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+    slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 
-  slide-out-container-width: 30%,
-  slide-out-background: linear-gradient(270deg, #f7fafb 0%, #ecf2f5 100%),
-  slide-out-shadow-color: 0 4px 14px 0 #a2d2c8,
-  slide-out-shadow-color-rtl: 0 4px 14px 0 #a2d2c8,
+    color-success: #40dc7e,
+    color-fg: #a4abb3,
+    font-secondary: Exo,
+    font-weight-bolder: 500,
+    font-weight-normal: 400,
+    color-fg-heading: #2a2a2a,
+    color-fg-highlight: #40dc7e,
+  ),
+  default,
+  default
+);
 
-  chart-panel-summary-box-shadow: none,
-  chart-panel-summary-background-color: #ecf2f5,
-  chart-panel-summary-border-color: #ebeff1,
-  chart-panel-summary-border-width: 1px,
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
 
-  ecommerce-card-border-width: 1px,
+    menu-item-icon-margin: 0 0.5rem 0 0,
 
-  progress-bar-background: linear-gradient(90deg, #3edd81 0%, #3bddaf 100%),
-), default, default);
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
 
-$nb-themes: nb-register-theme((
-  // app wise variables for each theme
-  sidebar-header-gap: 2rem,
-  sidebar-header-height: initial,
-  layout-content-width: 1400px,
+    select-min-width: 6rem,
 
-  font-main: Roboto,
-  font-secondary: Exo,
+    slide-out-background: #252547,
+    slide-out-shadow-color: 2px 0 3px #29157a,
+    slide-out-shadow-color-rtl: -2px 0 3px #29157a,
 
-  switcher-background: #4e41a5,
-  switcher-background-percentage: 14%,
-  drops-icon-line-gadient: -webkit-linear-gradient(#a258fe, #7958fa),
+    color-success: #40dc7e,
+    color-fg: #a4abb3,
+    font-secondary: Exo,
+    font-weight-bolder: 500,
+    font-weight-normal: 400,
+    color-fg-heading: #2a2a2a,
+    color-fg-highlight: #40dc7e,
+  ),
+  cosmic,
+  cosmic
+);
 
-  list-item-border-width: 1px,
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
 
-  slide-out-container-width: 30%,
-  slide-out-background: radial-gradient(circle, #302c6e 0%, #423f8c 100%),
-  slide-out-shadow-color: 2px 0 3px rgba(19, 19, 94, 0.9),
-  slide-out-shadow-color-rtl: -2px 0 3px rgba(19, 19, 94, 0.9),
+    menu-item-icon-margin: 0 0.5rem 0 0,
 
-  chart-panel-summary-box-shadow: none,
-  chart-panel-summary-background-color: rgba(0, 0, 0, 0.1),
-  chart-panel-summary-border-color: #332e73,
-  chart-panel-summary-border-width: 1px,
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
 
-  ecommerce-card-border-width: 1px,
+    select-min-width: 6rem,
 
-  progress-bar-background: linear-gradient(90deg, #00c7c7 0%, #00d977 100%),
-), cosmic, cosmic);
+    slide-out-background: linear-gradient(270deg, #edf1f7 0%, #e4e9f2 100%),
+    slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+    slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 
-$nb-themes: nb-register-theme((
-  // app wise variables for each theme
-  sidebar-header-gap: 2rem,
-  sidebar-header-height: initial,
-  layout-content-width: 1400px,
+    color-success: #40dc7e,
+    color-fg: #a4abb3,
+    font-secondary: Exo,
+    font-weight-bolder: 500,
+    font-weight-normal: 400,
+    color-fg-heading: #2a2a2a,
+    color-fg-highlight: #40dc7e,
+  ),
+  corporate,
+  corporate
+);
 
-  font-main: Roboto,
-  font-secondary: Exo,
+$nb-themes: nb-register-theme(
+  (
+    layout-padding-top: 2.25rem,
 
-  switcher-background: #2b2d34,
-  switcher-background-percentage: 14%,
-  drops-icon-line-gadient: -webkit-linear-gradient(#e9e8eb, #a7a2be),
+    menu-item-icon-margin: 0 0.5rem 0 0,
 
-  list-item-border-width: 1px,
+    card-height-tiny: 13.5rem,
+    card-height-small: 21.1875rem,
+    card-height-medium: 28.875rem,
+    card-height-large: 36.5625rem,
+    card-height-giant: 44.25rem,
+    card-margin-bottom: 1.875rem,
+    card-header-with-select-padding-top: 0.5rem,
+    card-header-with-select-padding-bottom: 0.5rem,
 
-  slide-out-container-width: 30%,
-  slide-out-background: 	linear-gradient(270deg, #f7fafb 0%, #ecf2f5 100%),
-  slide-out-shadow-color: 0 4px 14px 0 #a2d2c8,
-  slide-out-shadow-color-rtl: 0 4px 14px 0 #a2d2c8,
+    select-min-width: 6rem,
 
-  chart-panel-summary-box-shadow: none,
-  chart-panel-summary-background-color: #f7fafb,
-  chart-panel-summary-border-color: #ebeff1,
-  chart-panel-summary-border-width: 1px,
+    slide-out-background: linear-gradient(270deg, #222b45 0%, #151a30 100%),
+    slide-out-shadow-color: 0 4px 14px 0 #8f9bb3,
+    slide-out-shadow-color-rtl: 0 4px 14px 0 #8f9bb3,
 
-  ecommerce-card-border-width: 1px,
+    color-success: #40dc7e,
+    color-fg: #a4abb3,
+    font-secondary: Exo,
+    font-weight-bolder: 500,
+    font-weight-normal: 400,
+    color-fg-heading: #2a2a2a,
+    color-fg-highlight: #40dc7e,
+  ),
+  dark,
+  dark
+);
 
-  progress-bar-background: linear-gradient(90deg, #ff9f6f 0%, #ff8b97 100%),
-), corporate, corporate);
+@forward "@nebular/theme/styles/theming";
+@use "@nebular/theme/styles/theming" as *;
+@use "@nebular/theme/styles/themes/corporate";
+
+$nb-themes: nb-register-theme(
+  (
+    background-basic-color-3: #ffffff,
+
+    color-primary-400: #74d6e7,
+    color-primary-500: #5dcfe3,
+    color-primary-600: #40cce5,
+    color-primary-700: #26cce9,
+    color-primary-800: #15cbeb,
+
+    color-success-400: #74d6e7,
+    color-success-500: #5dcfe3,
+    color-success-600: #40cce5,
+    color-success-700: #26cce9,
+    color-success-800: #15cbeb,
+
+    font-family-primary: Exo,
+    text-heading-1-font-weight: 500,
+    text-heading-2-font-weight: 500,
+    text-heading-3-font-weight: 500,
+    text-heading-4-font-weight: 500,
+    text-heading-5-font-weight: 500,
+    text-heading-6-font-weight: 500,
+    text-heading-1-line-height: 1.2,
+    text-heading-2-line-height: 1.2,
+    text-heading-3-line-height: 1.2,
+    text-heading-4-line-height: 1.2,
+    text-heading-5-line-height: 1.2,
+    text-heading-6-line-height: 1.2,
+    text-paragraph-line-height: 1.25,
+    text-heading-5-font-size: 1.25rem,
+    text-paragraph-font-size: 1rem,
+
+    text-heading-3-font-size: 1.75rem,
+
+    border-radius: 0.75rem,
+
+    color-success: #40dc7e,
+    color-fg: #a4abb3,
+    font-secondary: Exo,
+    font-weight-bolder: 500,
+    font-weight-normal: 400,
+    color-fg-heading: #2a2a2a,
+    color-fg-highlight: #40dc7e,
+  ),
+  workforceR,
+  corporate
+);

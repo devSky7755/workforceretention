@@ -1,123 +1,136 @@
-import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
-import { NbSecurityModule, NbRoleProvider } from '@nebular/security';
-import { of as observableOf } from 'rxjs';
+import {
+  ModuleWithProviders,
+  NgModule,
+  Optional,
+  SkipSelf,
+} from "@angular/core";
+import { CommonModule } from "@angular/common";
+import {
+  NbAuthJWTToken,
+  NbAuthModule,
+  NbPasswordAuthStrategy,
+} from "@nebular/auth";
+import { NbSecurityModule, NbRoleProvider } from "@nebular/security";
+import { of as observableOf } from "rxjs";
 
-import { throwIfAlreadyLoaded } from './module-import-guard';
-import { DataModule } from './data/data.module';
-import { AnalyticsService } from './utils/analytics.service';
-import { environment } from '../../environments/environment';
+import { throwIfAlreadyLoaded } from "./module-import-guard";
+import { DataModule } from "./data/data.module";
+import {
+  AnalyticsService,
+  LayoutService,
+  PlayerService,
+  SeoService,
+  StateService,
+} from "./utils";
+import { environment } from "../../environments/environment";
 
 const socialLinks = [
-    {
-        url: 'https://github.com/akveo/nebular',
-        target: '_blank',
-        icon: 'socicon-github',
-    },
-    {
-        url: 'https://www.facebook.com/akveo/',
-        target: '_blank',
-        icon: 'socicon-facebook',
-    },
-    {
-        url: 'https://twitter.com/akveo_inc',
-        target: '_blank',
-        icon: 'socicon-twitter',
-    },
+  {
+    url: "https://github.com/akveo/nebular",
+    target: "_blank",
+    icon: "github",
+  },
+  {
+    url: "https://www.facebook.com/akveo/",
+    target: "_blank",
+    icon: "facebook",
+  },
+  {
+    url: "https://twitter.com/akveo_inc",
+    target: "_blank",
+    icon: "twitter",
+  },
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
-    getRole() {
-        // here you could provide any role based on any auth flow
-        return observableOf('guest');
-    }
+  getRole() {
+    // here you could provide any role based on any auth flow
+    return observableOf("guest");
+  }
 }
 
 export const NB_CORE_PROVIDERS = [
-    ...DataModule.forRoot().providers,
-    ...NbAuthModule.forRoot({
-
-        strategies: [
-            NbPasswordAuthStrategy.setup({
-                name: 'email',
-                token: {
-                    class: NbAuthJWTToken,
-                    key: 'token', // this parameter tells where to look for the token
-                },
-                baseEndpoint: !environment.production ? 'http://localhost:8080' : '',
-                login: {
-                    endpoint: '/api/v1/auth/login',
-                    redirect: {
-                        success: '/pages',
-                        failure: '/register',
-                    },
-                },
-                register: {
-                    endpoint: '/api/v1/users'
-                },
-                requestPass: {
-                    endpoint: '/api/v1/auth/request-pass',
-                },
-                resetPass: {
-                    endpoint: '/api/v1/auth/reset-pass',
-                },
-                refreshToken: {
-                    endpoint: '/api/v1/auth/token'
-                }
-            }),
-        ],
-        forms: {
-            login: {
-                redirectDelay: 0,
-                socialLinks: socialLinks,
-            },
-            register: {
-                socialLinks: socialLinks,
-            },
+  ...DataModule.forRoot().providers,
+  ...NbAuthModule.forRoot({
+    strategies: [
+      NbPasswordAuthStrategy.setup({
+        name: "email",
+        token: {
+          class: NbAuthJWTToken,
+          key: "token", // this parameter tells where to look for the token
         },
-    }).providers,
-
-    NbSecurityModule.forRoot({
-        accessControl: {
-            guest: {
-                view: '*',
-            },
-            user: {
-                parent: 'guest',
-                create: '*',
-                edit: '*',
-                remove: '*',
-            },
+        baseEndpoint: !environment.production ? "http://localhost:8080" : "",
+        login: {
+          endpoint: "/api/v1/auth/login",
+          redirect: {
+            success: "/pages",
+            failure: "/register",
+          },
         },
-    }).providers,
-
-    {
-        provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
+        register: {
+          endpoint: "/api/v1/users",
+        },
+        requestPass: {
+          endpoint: "/api/v1/auth/request-pass",
+        },
+        resetPass: {
+          endpoint: "/api/v1/auth/reset-pass",
+        },
+        refreshToken: {
+          endpoint: "/api/v1/auth/token",
+        },
+      }),
+    ],
+    forms: {
+      login: {
+        redirectDelay: 0,
+        socialLinks: socialLinks,
+      },
+      register: {
+        socialLinks: socialLinks,
+      },
     },
-    AnalyticsService,
+  }).providers,
+
+  NbSecurityModule.forRoot({
+    accessControl: {
+      guest: {
+        view: "*",
+      },
+      user: {
+        parent: "guest",
+        create: "*",
+        edit: "*",
+        remove: "*",
+      },
+    },
+  }).providers,
+
+  {
+    provide: NbRoleProvider,
+    useClass: NbSimpleRoleProvider,
+  },
+  AnalyticsService,
+  LayoutService,
+  PlayerService,
+  SeoService,
+  StateService,
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-    ],
-    exports: [
-        NbAuthModule,
-    ],
-    declarations: [],
+  imports: [CommonModule],
+  exports: [NbAuthModule],
+  declarations: [],
 })
 export class CoreModule {
-    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-        throwIfAlreadyLoaded(parentModule, 'CoreModule');
-    }
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    throwIfAlreadyLoaded(parentModule, "CoreModule");
+  }
 
-    static forRoot(): ModuleWithProviders {
-        return <ModuleWithProviders>{
-            ngModule: CoreModule,
-            providers: [
-                ...NB_CORE_PROVIDERS,
-            ],
-        };
-    }
+  static forRoot(): ModuleWithProviders<CoreModule> {
+    return {
+      ngModule: CoreModule,
+      providers: [...NB_CORE_PROVIDERS],
+    };
+  }
 }

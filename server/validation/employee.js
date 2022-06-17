@@ -1,50 +1,46 @@
-const Joi = require('joi');
-Joi.objectId = require('joi-objectid')(Joi);
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 
 // define the validation schema
 const schema = Joi.object().keys({
+  first_name: Joi.string().required(),
 
+  last_name: Joi.string().required(),
+  // email is required
+  // email must be a valid email string
+  email: Joi.string().email().min(4).max(32).required(),
 
-    first_name: Joi.string().required(),
+  // name is required
+  employee_id: Joi.string().min(6).max(32).required(),
 
-    last_name: Joi.string().required(),
-    // email is required
-    // email must be a valid email string
-    email: Joi.string().email().min(4).max(32).required(),
+  // accepts alphanumeric strings at least 7 characters long
+  // password is required
+  password: Joi.string().min(6).alphanum().required(),
 
-    // name is required
-    employee_id: Joi.string().min(6).max(32).required(),
+  phone: Joi.string().allow(""),
 
-    // accepts alphanumeric strings at least 7 characters long
-    // password is required
-    password: Joi.string().min(6).alphanum().required(),
+  mobile: Joi.string().allow(""),
 
-    phone: Joi.string().allow(''),
+  organization: Joi.objectId(),
 
-    mobile: Joi.string().allow(''),
+  division: Joi.objectId(),
 
-    organization: Joi.objectId(),
+  department: Joi.objectId(),
 
-    division: Joi.objectId(),
+  occupational_group: Joi.string().allow(""),
 
-    department: Joi.objectId(),
+  is_report: Joi.bool(),
 
-    occupational_group: Joi.string().allow(''),
+  is_online: Joi.bool(),
 
-    is_report: Joi.bool(),
+  is_survey: Joi.bool(),
 
-    is_online: Joi.bool(),
+  is_active: Joi.bool(),
 
-    is_survey: Joi.bool(),
+  gender: Joi.any().valid(...["Male", "Female"]),
 
-    is_active: Joi.bool(),
+  date_of_birth: Joi.string().required(),
 
-    gender: Joi.any().allow(['Male', 'Female']),
-
-    date_of_birth: Joi.string().required(),
-
-    position: Joi.string().required()
-
-
+  position: Joi.string().required(),
 });
 module.exports = schema;

@@ -1,19 +1,19 @@
-@import '~@swimlane/ngx-datatable/release/index.css';
-@import '~@swimlane/ngx-datatable/release/themes/material.css';
-@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.css";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
 
 :host ::ng-deep .datatable-icon-prev::before {
-  content: '<<';
+  content: "<<";
 }
 :host ::ng-deep .datatable-icon-left::before {
-  content: '<';
+  content: "<";
 }
 
 :host ::ng-deep .datatable-icon-right::before {
-  content: '>';
+  content: ">";
 }
 :host ::ng-deep .datatable-icon-skip::before {
-  content: '>>';
+  content: ">>";
 }
 :host ::ng-deep .ngx-datatable {
   width: 100%;
@@ -47,10 +47,20 @@
 :host ::ng-deep .ngx-datatable.scroll-vertical {
   height: 70vh;
 }
-:host ::ng-deep .ngx-datatable:not(.cell-selection) .datatable-body-row:hover, :host ::ng-deep .ngx-datatable:not(.cell-selection) .datatable-body-row:hover .datatable-row-group {
+:host ::ng-deep .ngx-datatable:not(.cell-selection) .datatable-body-row:hover,
+:host
+  ::ng-deep
+  .ngx-datatable:not(.cell-selection)
+  .datatable-body-row:hover
+  .datatable-row-group {
   transition: background 200ms linear;
 }
-:host ::ng-deep .ngx-datatable.cell-selection .datatable-body-cell:hover, :host ::ng-deep .ngx-datatable.cell-selection .datatable-body-cell:hover .datatable-row-group {
+:host ::ng-deep .ngx-datatable.cell-selection .datatable-body-cell:hover,
+:host
+  ::ng-deep
+  .ngx-datatable.cell-selection
+  .datatable-body-cell:hover
+  .datatable-row-group {
   transition: background 200ms linear;
 }
 :host ::ng-deep .ngx-datatable .empty-row {
@@ -96,15 +106,30 @@
   color: #fff;
   vertical-align: bottom;
 }
-:host ::ng-deep .ngx-datatable .datatable-header .datatable-header-cell .datatable-header-cell-wrapper {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-header
+  .datatable-header-cell
+  .datatable-header-cell-wrapper {
   position: relative;
 }
-:host ::ng-deep .ngx-datatable .datatable-header .datatable-header-cell.longpress .draggable::after {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-header
+  .datatable-header-cell.longpress
+  .draggable::after {
   transition: transform 200ms ease, opacity 200ms ease;
   opacity: 0.5;
   transform: scale(1);
 }
-:host ::ng-deep .ngx-datatable .datatable-header .datatable-header-cell .draggable::after {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-header
+  .datatable-header-cell
+  .draggable::after {
   content: " ";
   position: absolute;
   top: 50%;
@@ -120,7 +145,12 @@
   z-index: 9999;
   pointer-events: none;
 }
-:host ::ng-deep .ngx-datatable .datatable-header .datatable-header-cell.dragging .resize-handle {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-header
+  .datatable-header-cell.dragging
+  .resize-handle {
   border-right: none;
 }
 :host ::ng-deep .ngx-datatable .datatable-header .resize-handle {
@@ -130,7 +160,12 @@
   background: #f5f5f5;
   padding: 10px;
 }
-:host ::ng-deep .ngx-datatable .datatable-body .datatable-body-row .datatable-body-cell {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-body
+  .datatable-body-row
+  .datatable-body-cell {
   text-align: left;
   padding: 0.5rem 1.2rem;
   vertical-align: top;
@@ -157,7 +192,13 @@
   transform: translate(0, 0) scale(1, 1);
   background-color: #aad1f9;
 }
-:host ::ng-deep .ngx-datatable .datatable-body .progress-linear .container .bar {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-body
+  .progress-linear
+  .container
+  .bar {
   animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
   transition: transform 200ms linear;
   background-color: #106cc8;
@@ -198,23 +239,50 @@
   list-style: none;
   border-radius: 5px;
 }
-:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager .pager li:first-child a {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-footer
+  .datatable-pager
+  .pager
+  li:first-child
+  a {
   margin-left: 0;
   height: 100%;
   border-bottom-left-radius: 5px;
 }
-:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager .pager li:last-child a {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-footer
+  .datatable-pager
+  .pager
+  li:last-child
+  a {
   border-bottom-right-radius: 5px;
   height: 100%;
 }
-:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager .pager li.active a {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-footer
+  .datatable-pager
+  .pager
+  li.active
+  a {
   z-index: 2;
   color: #fff;
   background-color: #304ffe;
   border-color: #304ffe;
   height: 100%;
 }
-:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager .pager li.disabled {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-footer
+  .datatable-pager
+  .pager
+  li.disabled {
   color: #6c757d;
   pointer-events: none;
   background-color: #fff;
@@ -233,13 +301,28 @@
   background-color: #fff;
   border: 1px solid #dee2e6;
 }
-:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager .pager li a:hover {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-footer
+  .datatable-pager
+  .pager
+  li
+  a:hover {
   color: #0123e0;
   text-decoration: none;
   background-color: #6c757d;
   border-color: #dee2e6;
 }
-:host ::ng-deep .ngx-datatable .datatable-footer .datatable-pager .pager li a i {
+:host
+  ::ng-deep
+  .ngx-datatable
+  .datatable-footer
+  .datatable-pager
+  .pager
+  li
+  a
+  i {
   height: 25px;
   box-sizing: border-box;
   display: flex;
@@ -266,13 +349,13 @@
   box-sizing: border-box;
   padding: 10px 0;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox] {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"] {
   position: relative;
   margin: 0 1rem 0 0;
   cursor: pointer;
   outline: none;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox]:before {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"]:before {
   transition: all 200ms ease-in-out;
   content: "";
   position: absolute;
@@ -282,14 +365,14 @@
   height: 1rem;
   border: 2px solid #f2f2f2;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox]:checked:before {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"]:checked:before {
   transform: rotate(-45deg);
   height: 0.5rem;
   border-color: #009688;
   border-top-style: none;
   border-right-style: none;
 }
-:host ::ng-deep .datatable-checkbox input[type=checkbox]:after {
+:host ::ng-deep .datatable-checkbox input[type="checkbox"]:after {
   content: "";
   position: absolute;
   top: 0;

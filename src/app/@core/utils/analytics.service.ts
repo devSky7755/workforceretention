@@ -3,14 +3,14 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
-declare const gtag: any;
+declare const ga: any;
 
 @Injectable()
 export class AnalyticsService {
   private enabled: boolean;
 
   constructor(private location: Location, private router: Router) {
-    this.enabled = true;
+    this.enabled = false;
   }
 
   trackPageViews() {
@@ -18,21 +18,15 @@ export class AnalyticsService {
       this.router.events.pipe(
         filter((event) => event instanceof NavigationEnd),
       )
-        .subscribe((event: NavigationEnd) => {
-          let path = event.urlAfterRedirects
-          if (!path.startsWith('/auth') && !path.startsWith('/pages')) {
-            // ga('send', { hitType: 'pageview', page: this.location.path() });
-            gtag('config', 'UA-15483887-1', {
-              'page_path': path
-            });
-          }
+        .subscribe(() => {
+          ga('send', {hitType: 'pageview', page: this.location.path()});
         });
     }
   }
 
   trackEvent(eventName: string) {
-    // if (this.enabled) {
-    //   ga('send', 'event', eventName);
-    // }
+    if (this.enabled) {
+      ga('send', 'event', eventName);
+    }
   }
 }

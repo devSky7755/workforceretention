@@ -10,7 +10,7 @@ import "rxjs/add/operator/filter";
 @Component({
   selector: "ngx-header",
   templateUrl: "./header.component.html",
-  styleUrls: ["./header.component.scss"]
+  styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
   isAuth: boolean = false;
@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
   ) {
     router.events
       .filter((event: any) => event instanceof NavigationEnd)
-      .subscribe(event => {
+      .subscribe((event) => {
         let defaultLogoUrl = ["/client/login"];
         if (defaultLogoUrl.includes(event.url)) {
           this.isDefaultLogo = true;
@@ -58,27 +58,38 @@ export class HeaderComponent implements OnInit {
         this.isAuth = true;
         if (this.employee_details && this.employee_details.is_survey == 1) {
           this.routerLink = "/client/dashboard";
-        } else if (this.employee_details && this.employee_details.is_report == 1) {
+        } else if (
+          this.employee_details &&
+          this.employee_details.is_report == 1
+        ) {
           this.routerLink = "/client/manager-report";
         }
-        this.clientImage = this.baseUrl + "/images/client/" + (this.employeeService.clientImage || "");
+        this.clientImage =
+          this.baseUrl +
+          "/images/client/" +
+          (this.employeeService.clientImage || "");
         if (this.employeeService.clientImage === "") {
           const decodedToken = helper.decodeToken(employee.access_token);
           this.getClient(decodedToken.client);
         }
       }
     }
-    this.authSubscription = this.employeeService.authChange.subscribe(authStatus => {
-      this.isAuth = authStatus;
-    });
+    this.authSubscription = this.employeeService.authChange.subscribe(
+      (authStatus) => {
+        this.isAuth = authStatus;
+      }
+    );
   }
 
   getClient(client_id) {
     // here get the client and set the image
-    this.clientService.getClient(client_id).subscribe(res => {
+    this.clientService.getClient(client_id).subscribe((res) => {
       console.log(res);
       this.employeeService.clientImage = res.client.image;
-      this.clientImage = this.baseUrl + "/images/client/" + (this.employeeService.clientImage || "");
+      this.clientImage =
+        this.baseUrl +
+        "/images/client/" +
+        (this.employeeService.clientImage || "");
     });
   }
 

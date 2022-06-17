@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ArticleService } from "../../../@core/data/article.service";
 import { URLService } from "../../../@core/data/url.service";
 import { ActivatedRoute, Router } from "@angular/router";
@@ -8,7 +8,8 @@ import { Location } from '@angular/common';
 @Component({
   selector: 'ngx-blog-detail',
   templateUrl: './blog-detail.component.html',
-  styleUrls: ['./blog-detail.component.scss']
+  styleUrls: ['./blog-detail.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class BlogDetailComponent implements OnInit {
   articleId;
