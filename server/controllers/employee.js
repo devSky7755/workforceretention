@@ -869,11 +869,15 @@ const sendReminderEmails = function (req, res, next) {
               );
             });
             console.log("Reminder Email Send Successful");
-            console.log(res)
-            return res.status(200).send({
-              success: true,
-              message: "Reminder Email Send Successful",
-            });
+            console.log(res);
+            return (
+              (res &&
+                res?.status(200).send({
+                  success: true,
+                  message: "Reminder Email Send Successful",
+                })) ||
+              true
+            );
           })
           .catch((err) => {
             console.log(err);
