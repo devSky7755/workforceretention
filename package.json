@@ -32,6 +32,8 @@
     "postinstall": "ngcc --properties es2015 es5 browser module main --first-only --create-ivy-entry-points --tsconfig \"./src/tsconfig.app.json\""
   },
   "dependencies": {
+    "@angular/cli": "^12.2.17",
+    "@angular/compiler-cli": "^12.2.16",
     "@angular/animations": "^12.2.16",
     "@angular/cdk": "12.1.0",
     "@angular/common": "^12.2.16",
@@ -117,7 +119,8 @@
     "typeface-exo": "0.0.22",
     "uuid": "^8.3.2",
     "web-animations-js": "^2.3.2",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "typescript": "~4.2.3||~4.3.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.1.4",
